@@ -1,0 +1,1670 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Keep layout units stable; only typography scales with the user setting. */
+    --text-scale: 1;
+    font-size: 18px;
+    height: 100%;
+  }
+
+  html[data-text-size="size-1"] {
+    --text-scale: 0.89;
+  }
+
+  html[data-text-size="size-2"] {
+    --text-scale: 1;
+  }
+
+  html[data-text-size="size-3"] {
+    --text-scale: 1.11;
+  }
+
+  html[data-text-size="size-4"] {
+    --text-scale: 1.22;
+  }
+
+  html[data-text-size="size-5"] {
+    --text-scale: 1.33;
+  }
+
+  html[data-text-size="size-6"] {
+    --text-scale: 1.44;
+  }
+
+  html[data-text-size="size-7"] {
+    --text-scale: 1.56;
+  }
+
+  html[data-text-size="size-8"] {
+    --text-scale: 1.67;
+  }
+
+  html[data-text-size="size-9"] {
+    --text-scale: 1.78;
+  }
+
+  html[data-text-size="size-10"] {
+    --text-scale: 1.89;
+  }
+
+  body,
+  #root {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    /* Clear sans-serif with a comfortable line height for easy reading. */
+    font-size: calc(1rem * var(--text-scale));
+    line-height: 1.65;
+    margin: 0;
+    overscroll-behavior: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  /* Clear, visible focus outline for keyboard users */
+  *:focus-visible {
+    outline: 3px solid #22201c;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-sans;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  label,
+  button {
+    overflow-wrap: anywhere;
+  }
+
+  button,
+  [role="button"] {
+    max-width: 100%;
+    white-space: normal;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.app-viewport {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  padding-top: env(safe-area-inset-top);
+  background: var(--everwise-screen-background, #efe9dc);
+}
+
+/* On a computer, fill the space around the centered phone frame with a
+   subtle warm backdrop instead of flat, indistinguishable cream — otherwise
+   the app card barely reads as intentional on a wide browser window. */
+@media (min-width: 640px) {
+  .app-viewport {
+    background:
+      radial-gradient(circle at 50% 6%, rgba(176, 81, 47, 0.07) 0%, transparent 45%),
+      linear-gradient(180deg, #f3eee3 0%, #e7dfce 100%);
+  }
+}
+
+.app-viewport::before {
+  position: fixed;
+  z-index: 200;
+  right: 0;
+  left: 0;
+  display: block;
+  pointer-events: none;
+  content: "";
+}
+
+.app-viewport::before {
+  top: 0;
+  height: env(safe-area-inset-top);
+  background: var(--everwise-safe-top, #efe9dc);
+}
+
+.app-shell {
+  display: flex;
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  min-height: 0;
+  margin-inline: auto;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--everwise-screen-background, #efe9dc);
+}
+
+.app-canvas {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app-navigation {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  html,
+  body,
+  #root {
+    height: auto;
+    min-height: 100%;
+  }
+
+  body {
+    overflow: auto;
+    overscroll-behavior-y: auto;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  .app-viewport {
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 100dvh;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: visible;
+    padding: max(1.5rem, env(safe-area-inset-top)) 1.5rem
+      max(1.5rem, env(safe-area-inset-bottom));
+  }
+
+  .app-shell {
+    width: 100%;
+    max-width: 920px;
+    height: auto;
+    min-height: calc(100dvh - 3rem);
+    overflow: visible;
+    border: 1px solid rgb(34 32 28 / 8%);
+    border-radius: 32px;
+    box-shadow: 0 24px 70px rgb(34 32 28 / 14%);
+  }
+
+  .app-navigation {
+    position: sticky;
+    z-index: 40;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgb(34 32 28 / 10%);
+    border-radius: 32px 32px 0 0;
+    background: rgb(251 249 244 / 94%);
+    box-shadow: 0 6px 20px rgb(34 32 28 / 5%);
+    backdrop-filter: blur(14px);
+  }
+
+  .app-navigation-brand {
+    display: flex;
+    min-width: 0;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.6rem;
+    color: #22201c;
+    font-size: calc(1.05rem * var(--text-scale));
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    flex-wrap: wrap;
+  }
+
+  .app-navigation-brand-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .app-navigation-partner-lockup {
+    display: flex;
+    min-width: 0;
+    flex-basis: 100%;
+    align-items: center;
+    gap: 0.4rem;
+    padding-left: 2.6rem;
+  }
+
+  .app-navigation-partner-logo {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex: 0 0 auto;
+    object-fit: contain;
+  }
+
+  .app-navigation-partner {
+    min-width: 0;
+    color: #625d54;
+    font-size: calc(0.72rem * var(--text-scale));
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .app-navigation-logo {
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 auto;
+    object-fit: contain;
+  }
+
+  .app-navigation-items {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    align-items: stretch;
+    justify-content: flex-end;
+    gap: 0.35rem;
+  }
+
+  .app-navigation-item {
+    display: inline-flex;
+    min-width: 0;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    border-radius: 14px;
+    padding: 0.55rem 0.7rem;
+    color: #4a463f;
+    font-size: calc(0.82rem * var(--text-scale));
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: center;
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+
+  .app-navigation-item:hover {
+    background: #e7dfce;
+    color: #22201c;
+  }
+
+  .app-navigation-item.is-active {
+    background: #b0512f;
+    color: #fbf9f4;
+  }
+
+  /* Tablet: the nav is a horizontal bar, so the text-size stepper sits at
+     the end of the row and its label is redundant next to the +/− buttons. */
+  .app-navigation-textsize {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.35rem;
+  }
+
+  .app-navigation-textsize-label {
+    display: none;
+  }
+
+  .app-navigation-textsize-button {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  /* No room for it in the horizontal tablet bar — the path screen already
+     shows the phase in its own header there. */
+  .app-navigation-progress {
+    display: none;
+  }
+
+  .app-canvas {
+    min-height: calc(100dvh - 3rem);
+    overflow: visible;
+  }
+
+  .has-app-navigation .app-canvas {
+    min-height: calc(100dvh - 8rem);
+  }
+
+  .screen-content-frame {
+    height: auto;
+    min-height: inherit;
+    overflow: visible;
+  }
+
+  .landing-screen,
+  .home-content {
+    padding-inline: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .landing-screen {
+    padding-top: clamp(2rem, 6vh, 4rem);
+    padding-bottom: clamp(2rem, 6vh, 4rem);
+  }
+
+  .landing-layout {
+    display: grid;
+    min-height: auto;
+    grid-template-columns: minmax(0, 1.05fr) minmax(19rem, 0.95fr);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 4.5rem);
+  }
+
+  .landing-intro {
+    max-width: 34rem;
+  }
+
+  .landing-guide {
+    margin-top: 0;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border: 1px solid rgb(34 32 28 / 8%);
+    border-radius: 28px;
+    background: rgb(251 249 244 / 88%);
+    box-shadow: 0 16px 40px rgb(34 32 28 / 8%);
+  }
+
+  .landing-actions {
+    margin-top: 1.75rem;
+    padding-top: 0;
+  }
+
+  .home-content {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .scam-checker-screen,
+  .settings-screen {
+    padding-inline: clamp(2rem, 5vw, 3.5rem);
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .badges-screen,
+  .badges-content {
+    overflow: visible;
+  }
+
+  .badges-content {
+    padding-inline: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .badges-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 1.5rem;
+  }
+
+  .app-canvas-badges .badges-screen > header {
+    border-radius: 0;
+  }
+
+  .app-canvas-path .path-header {
+    border-radius: 0;
+  }
+
+  .release-paywall {
+    height: auto;
+    min-height: calc(100dvh - 3rem);
+    overflow: visible;
+    padding: 1.5rem clamp(2rem, 5vw, 3.75rem) 0;
+  }
+
+  .learning-focus {
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .onboarding-focus {
+    width: 100%;
+    max-width: 760px;
+    min-height: inherit;
+    margin-inline: auto;
+    overflow: visible;
+  }
+
+  .auth-focus {
+    max-width: 640px;
+  }
+
+  .interview-focus > main {
+    overflow: visible;
+  }
+
+  .learning-focus-shell {
+    height: auto;
+    max-height: none;
+    min-height: inherit;
+    overflow: visible;
+  }
+
+  .learning-focus-shell .lesson-content {
+    overflow: visible;
+  }
+
+  .course-path-screen,
+  .course-path-screen .path-scroll {
+    overflow: visible;
+  }
+
+  .course-path-canvas {
+    max-width: 760px;
+  }
+
+  .paywall-main,
+  .paywall-layout {
+    min-height: 0;
+  }
+
+  .paywall-layout {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 900px) {
+  .paywall-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 1.1fr);
+    align-items: center;
+    gap: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .paywall-story,
+  .paywall-offer {
+    min-width: 0;
+  }
+
+  .paywall-headline {
+    text-align: left;
+  }
+
+  .paywall-footer {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Fill the whole browser window on desktop — no padded margin, no
+     max-width cap, no rounded "framed card" look. That treatment reads as
+     a tablet-sized app floating in the middle of the screen; a real
+     desktop web app uses the full window. */
+  .app-viewport {
+    padding: 0;
+  }
+
+  .app-shell {
+    max-width: none;
+    width: 100%;
+    min-height: 100dvh;
+    border-radius: 0;
+  }
+
+  .app-shell.has-app-navigation {
+    display: grid;
+    grid-template-columns: 238px minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .app-navigation {
+    top: 0;
+    height: 100dvh;
+    min-height: 620px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.75rem;
+    padding: 1.5rem 1rem;
+    border-right: 1px solid rgb(34 32 28 / 10%);
+    border-bottom: 0;
+    border-radius: 0;
+    box-shadow: 8px 0 24px rgb(34 32 28 / 4%);
+  }
+
+  .app-navigation-brand {
+    padding-inline: 0.6rem;
+    font-size: calc(1.25rem * var(--text-scale));
+  }
+
+  .app-navigation-partner {
+    font-size: calc(0.72rem * var(--text-scale));
+  }
+
+  .app-navigation-partner-lockup {
+    padding-left: 3.1rem;
+  }
+
+  .app-navigation-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .app-navigation-items {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .app-navigation-item {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 0.8rem 0.9rem;
+    font-size: calc(1rem * var(--text-scale));
+    text-align: left;
+  }
+
+  /* The path nodes are positioned from the canvas centre, so letting the
+     canvas run full width keeps them centred while the phase colour bands
+     reach both edges. Capped at 760px it read as a phone screen pasted onto
+     the desktop page. */
+  .course-path-canvas {
+    max-width: none;
+  }
+
+  /* Desktop: the nav is a vertical sidebar. Push the text-size stepper to
+     the bottom, below the links, and show its label. */
+  /* Desktop: keep it in the sidebar flow right below the links rather than
+     pinned to the bottom corner, where it was easy to miss. */
+  .app-navigation-textsize {
+    margin-top: 1.25rem;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    padding: 0.9rem;
+    border: 2px solid rgb(34 32 28 / 12%);
+    border-radius: 16px;
+    background: #f3ece0;
+  }
+
+  .app-navigation-textsize-label {
+    display: block;
+    color: #22201c;
+    font-size: calc(1rem * var(--text-scale));
+    font-weight: 800;
+  }
+
+  .app-navigation-textsize-button {
+    width: 100%;
+    height: 3.5rem;
+  }
+
+  /* Bottom of the sidebar: current phase + overall course percentage. */
+  .app-navigation-progress {
+    display: block;
+    margin-top: auto;
+    padding: 0.95rem;
+    border: 2px solid rgb(34 32 28 / 12%);
+    border-radius: 16px;
+    background: #f3ece0;
+  }
+
+  .app-navigation-progress-eyebrow {
+    color: #4a463f;
+    font-size: calc(0.8rem * var(--text-scale));
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .app-navigation-progress-title {
+    margin-top: 0.2rem;
+    color: #22201c;
+    font-size: calc(1.05rem * var(--text-scale));
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .app-navigation-progress-biome {
+    color: #4a463f;
+    font-size: calc(0.9rem * var(--text-scale));
+    font-weight: 600;
+  }
+
+  .app-navigation-progress-track {
+    overflow: hidden;
+    height: 0.65rem;
+    margin-top: 0.7rem;
+    border-radius: 999px;
+    background: rgb(34 32 28 / 12%);
+  }
+
+  .app-navigation-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 320ms ease;
+  }
+
+  .app-navigation-progress-percent {
+    margin-top: 0.45rem;
+    color: #4a463f;
+    font-size: calc(0.9rem * var(--text-scale));
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .app-canvas,
+  .has-app-navigation .app-canvas {
+    min-height: 100dvh;
+  }
+
+  .home-dashboard {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
+    grid-template-areas:
+      "primary support"
+      "cta support";
+    align-content: start;
+    justify-content: stretch;
+    gap: 1.25rem;
+  }
+
+  .home-primary {
+    grid-area: primary;
+    align-self: end;
+    min-height: 9rem;
+  }
+
+  .home-support {
+    grid-area: support;
+    align-content: center;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-primary-cta {
+    grid-area: cta;
+    align-self: start;
+  }
+
+  .scam-checker-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
+    align-items: start;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .scam-checker-main,
+  .scam-checker-aside {
+    min-width: 0;
+  }
+
+  .scam-checker-aside {
+    position: sticky;
+    top: 3rem;
+    margin-top: 1rem;
+  }
+
+  .settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 0 1.5rem;
+  }
+
+  .settings-legal {
+    grid-column: 1 / -1;
+  }
+
+  .badges-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .app-canvas-badges .badges-screen > header {
+    border-radius: 0;
+  }
+
+  .app-canvas-path .path-header {
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-navigation {
+    gap: 0.65rem;
+  }
+
+  .app-navigation-brand {
+    display: grid;
+    width: 100%;
+    max-width: 11rem;
+    flex: 0 1 11rem;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.2rem 0.6rem;
+  }
+
+  .app-navigation-brand-name {
+    align-self: center;
+  }
+
+  .app-navigation-partner-lockup {
+    width: 100%;
+    max-width: 100%;
+    grid-column: 1 / -1;
+    padding-left: 0;
+  }
+
+  .app-navigation-items {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.2rem;
+  }
+
+  .app-navigation-item {
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.4rem 0.25rem;
+    font-size: calc(0.76rem * var(--text-scale));
+  }
+
+  html:is(
+      [data-text-size="size-7"],
+      [data-text-size="size-8"],
+      [data-text-size="size-9"],
+      [data-text-size="size-10"]
+    )
+    .app-navigation {
+    position: static;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  html:is(
+      [data-text-size="size-7"],
+      [data-text-size="size-8"],
+      [data-text-size="size-9"],
+      [data-text-size="size-10"]
+    )
+    .app-navigation-items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+ * Let every screen paint through the iPhone home-indicator area. Controls add
+ * their own safe spacing, so the bottom is usable without hiding tap targets.
+ */
+.lesson-footer {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.complete-screen {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  scroll-padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+
+.home-screen {
+  min-height: 0;
+}
+
+.home-partner-branding {
+  max-width: 16rem;
+  color: #625d54;
+  font-size: calc(0.78rem * var(--text-scale));
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.home-partner-lockup {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.home-partner-logo {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.partner-dashboard {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background: #fbf9f4;
+  color: #22201c;
+}
+
+.partner-dashboard > * {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.partner-dashboard-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.partner-dashboard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  padding-bottom: 2rem;
+}
+
+.partner-dashboard-brand {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.partner-dashboard-logo {
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.partner-dashboard-wordmark {
+  font-size: calc(1.45rem * var(--text-scale));
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.partner-dashboard-partner,
+.partner-dashboard-privacy {
+  max-width: 34rem;
+  color: #625d54;
+  font-size: calc(0.92rem * var(--text-scale));
+  line-height: 1.45;
+}
+
+.partner-dashboard-partner-lockup {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.partner-dashboard-partner-logo {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.partner-dashboard-invitation-status {
+  margin-top: 0.75rem;
+  font-weight: 700;
+}
+
+.partner-dashboard h1 {
+  font-size: calc(clamp(2rem, 4vw, 3.5rem) * var(--text-scale));
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.partner-dashboard h2 {
+  font-size: calc(1.65rem * var(--text-scale));
+  font-weight: 750;
+}
+
+.partner-dashboard h3 {
+  margin-bottom: 0.5rem;
+  font-size: calc(1.15rem * var(--text-scale));
+  font-weight: 750;
+}
+
+.partner-dashboard-section {
+  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  border-top: 1px solid rgb(34 32 28 / 16%);
+}
+
+.partner-dashboard-lead {
+  margin-top: 0.75rem;
+  font-size: calc(clamp(2rem, 5vw, 4rem) * var(--text-scale));
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.partner-dashboard-summary-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem clamp(2rem, 6vw, 5rem);
+  margin-top: 0.75rem;
+}
+
+.partner-dashboard-summary-line strong {
+  font-size: calc(1.6rem * var(--text-scale));
+}
+
+.partner-dashboard-threshold,
+.partner-dashboard-confirmation,
+.partner-dashboard-replacement {
+  max-width: 48rem;
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  border: 2px solid rgb(34 32 28 / 16%);
+  border-radius: 18px;
+  background: #efe9dc;
+}
+
+.partner-dashboard-distributions {
+  margin-top: 1.5rem;
+}
+
+.partner-dashboard-breakdown {
+  padding-block: 1.5rem;
+  border-top: 1px solid rgb(34 32 28 / 10%);
+}
+
+.partner-dashboard table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.partner-dashboard th,
+.partner-dashboard td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid rgb(34 32 28 / 10%);
+  overflow-wrap: anywhere;
+  text-align: left;
+  vertical-align: top;
+}
+
+.partner-dashboard th:first-child {
+  width: 56%;
+}
+
+.partner-dashboard-actions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.partner-dashboard-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.partner-dashboard-button {
+  min-height: 60px;
+  margin-top: 1rem;
+  padding: 0.8rem 1.25rem;
+  border: 2px solid #8f3f24;
+  border-radius: 16px;
+  background: #b0512f;
+  color: #fbf9f4;
+  font-size: calc(1rem * var(--text-scale));
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.partner-dashboard-button:hover {
+  background: #8f3f24;
+}
+
+.partner-dashboard-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.partner-dashboard-button-secondary {
+  border-color: rgb(34 32 28 / 30%);
+  background: transparent;
+  color: #22201c;
+}
+
+.partner-dashboard-button-secondary:hover {
+  background: #e7dfce;
+}
+
+.partner-dashboard-confirmation .partner-dashboard-button,
+.partner-dashboard-button-row .partner-dashboard-button,
+.partner-dashboard-replacement .partner-dashboard-button {
+  margin-top: 0;
+}
+
+.partner-dashboard-replacement {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.partner-dashboard-replacement label {
+  font-weight: 700;
+}
+
+.partner-dashboard-replacement input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 60px;
+  padding: 0.75rem;
+  border: 2px solid rgb(34 32 28 / 30%);
+  border-radius: 12px;
+  background: #fffdf8;
+  color: #22201c;
+  font: inherit;
+}
+
+@media (max-width: 767px) {
+  .partner-dashboard-header,
+  .partner-dashboard-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .partner-dashboard-button,
+  .partner-dashboard-button-row .partner-dashboard-button {
+    width: 100%;
+  }
+
+  .partner-dashboard th:first-child {
+    width: 48%;
+  }
+}
+
+.home-content {
+  min-height: 100%;
+}
+
+.path-scroll {
+  overscroll-behavior-y: contain;
+  scroll-padding-block: 1rem 6rem;
+}
+
+@media (max-height: 760px) {
+  .landing-screen {
+    padding-top: 0.75rem;
+  }
+
+  .landing-screen .page-title {
+    margin-top: 0.75rem;
+  }
+
+  .landing-actions {
+    padding-top: 0.5rem;
+  }
+
+  .home-content {
+    padding-top: 0.75rem;
+  }
+
+  .home-intro {
+    margin-top: 0.75rem;
+  }
+
+  .home-stats {
+    margin-top: 0.5rem;
+  }
+}
+
+/*
+ * Keep the App Store paywall fully visible on shorter iPhones. The paywall
+ * deliberately ignores the learner's lesson text scale: purchase terms must
+ * remain complete, readable, and on one screen at every app text setting.
+ */
+@media (max-height: 900px) {
+  .release-paywall {
+    --paywall-wordmark: 26px;
+    --paywall-headline: 31px;
+    --paywall-benefit-title: 18px;
+    --paywall-benefit-body: 15px;
+    --paywall-plan-title: 22px;
+    --paywall-price: 29px;
+    --paywall-cadence: 15px;
+    --paywall-detail: 15px;
+    --paywall-badge: 12px;
+    --paywall-cta: 22px;
+    --paywall-reassurance: 14px;
+    --paywall-footer: 15px;
+    padding: 0.5rem 1rem 0;
+  }
+
+  .paywall-header {
+    height: 3rem;
+  }
+
+  .paywall-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .paywall-headline,
+  .paywall-benefits,
+  .paywall-plans {
+    margin-top: 0.65rem;
+  }
+
+  .paywall-benefit {
+    gap: 0.75rem;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .paywall-benefit-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .paywall-plans {
+    gap: 0.5rem;
+  }
+
+  .paywall-plan-card {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .paywall-plan-annual {
+    min-height: 7.35rem;
+  }
+
+  .paywall-plan-monthly {
+    min-height: 4.9rem;
+  }
+
+  .paywall-cta {
+    min-height: 3.75rem;
+    margin-top: 0.65rem;
+  }
+
+  .paywall-reassurance {
+    margin-top: 0.4rem;
+  }
+
+  .paywall-footer {
+    min-height: 2rem;
+  }
+}
+
+@media (max-height: 740px) {
+  .release-paywall {
+    --paywall-headline: 28px;
+    --paywall-benefit-title: 16px;
+    --paywall-benefit-body: 13px;
+    --paywall-plan-title: 20px;
+    --paywall-price: 26px;
+    --paywall-cadence: 13px;
+    --paywall-detail: 13px;
+    --paywall-badge: 10px;
+    --paywall-cta: 20px;
+    --paywall-reassurance: 12px;
+    --paywall-footer: 13px;
+  }
+
+  .paywall-headline,
+  .paywall-benefits,
+  .paywall-plans,
+  .paywall-cta {
+    margin-top: 0.4rem;
+  }
+
+  .paywall-benefit {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .paywall-plan-annual {
+    min-height: 6.7rem;
+  }
+
+  .paywall-plan-monthly {
+    min-height: 4.35rem;
+  }
+
+  .paywall-footer {
+    margin-top: auto;
+  }
+}
+
+/*
+ * Accessible text scaling
+ *
+ * Tailwind's text utilities use root-relative units. Overriding those sizes
+ * here lets words grow without also enlarging every icon, gap, radius, and
+ * card. Line heights grow with the words so large text never overlaps.
+ */
+html[data-text-size] .text-xs {
+  font-size: calc(0.75rem * var(--text-scale));
+  line-height: calc(1rem * var(--text-scale));
+}
+
+html[data-text-size] .text-sm {
+  font-size: calc(0.875rem * var(--text-scale));
+  line-height: calc(1.25rem * var(--text-scale));
+}
+
+html[data-text-size] .text-base {
+  font-size: calc(1rem * var(--text-scale));
+  line-height: calc(1.5rem * var(--text-scale));
+}
+
+html[data-text-size] .text-lg,
+html[data-text-size] .btn-secondary {
+  font-size: calc(1.125rem * var(--text-scale));
+  line-height: calc(1.75rem * var(--text-scale));
+}
+
+html[data-text-size] .text-xl,
+html[data-text-size] .btn-primary {
+  font-size: calc(1.25rem * var(--text-scale));
+  line-height: calc(1.75rem * var(--text-scale));
+}
+
+html[data-text-size] .text-2xl {
+  font-size: calc(1.5rem * var(--text-scale));
+  line-height: calc(2rem * var(--text-scale));
+}
+
+html[data-text-size] .text-3xl,
+html[data-text-size] .page-title {
+  font-size: calc(1.875rem * var(--text-scale));
+  line-height: calc(2.25rem * var(--text-scale));
+}
+
+html[data-text-size] .text-4xl {
+  font-size: calc(2.25rem * var(--text-scale));
+  line-height: calc(2.5rem * var(--text-scale));
+}
+
+html[data-text-size] .text-5xl {
+  font-size: calc(3rem * var(--text-scale));
+  line-height: calc(3rem * var(--text-scale));
+}
+
+html[data-text-size] .text-6xl {
+  font-size: calc(3.75rem * var(--text-scale));
+  line-height: calc(3.75rem * var(--text-scale));
+}
+
+html[data-text-size] .text-\[13px\] {
+  font-size: calc(13px * var(--text-scale));
+  line-height: 1.35;
+}
+
+html[data-text-size] .text-\[14px\] {
+  font-size: calc(14px * var(--text-scale));
+  line-height: 1.35;
+}
+
+html[data-text-size] .text-\[15px\] {
+  font-size: calc(15px * var(--text-scale));
+  line-height: 1.35;
+}
+
+html[data-text-size] .text-\[17px\] {
+  font-size: calc(17px * var(--text-scale));
+  line-height: 1.35;
+}
+
+html[data-text-size] .text-\[20px\] {
+  font-size: calc(20px * var(--text-scale));
+  line-height: 1.35;
+}
+
+html[data-text-size] .text-\[26px\] {
+  font-size: calc(26px * var(--text-scale));
+  line-height: 1.25;
+}
+
+html[data-text-size] .text-\[30px\] {
+  font-size: calc(30px * var(--text-scale));
+  line-height: 1.2;
+}
+
+/* The resize symbols stay a stable, easy-to-tap size at every level. */
+html[data-text-size] .text-size-control {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* On a computer there's no reason the +/- controls should stay
+   phone-sized — bigger targets and bigger symbols, still one stable size
+   regardless of the chosen text-size setting. */
+@media (min-width: 1024px) {
+  html[data-text-size] .text-size-control {
+    font-size: 2.5rem;
+  }
+}
+
+/* Give very large text a full-width column instead of squeezing it. */
+html:is(
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .home-intro {
+  flex-direction: column;
+}
+
+html:is(
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .home-stats {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/*
+ * At large text sizes, lesson navigation becomes two clear rows. The title
+ * keeps the back button beside it, while Skip gets the full available width.
+ */
+html:is(
+    [data-text-size="size-6"],
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .lesson-top-grid {
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: start;
+  row-gap: 0.75rem;
+}
+
+html:is(
+    [data-text-size="size-6"],
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .lesson-top-label {
+  grid-column: 2;
+  justify-self: stretch;
+}
+
+html:is(
+    [data-text-size="size-6"],
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .lesson-top-label-text {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
+}
+
+html:is(
+    [data-text-size="size-6"],
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .lesson-skip {
+  grid-column: 1 / -1;
+  width: 100%;
+  justify-self: stretch;
+  border: 2px solid rgb(34 32 28 / 15%);
+  background: rgb(255 253 248 / 80%);
+  padding: 0.65rem 1rem;
+}
+
+html:is(
+    [data-text-size="size-6"],
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .lesson-skip-spacer {
+  display: none;
+}
+
+html:is(
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .home-header {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Side-by-side content becomes a readable stack before words get squeezed. */
+html:is(
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .grid-cols-2 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+html:is(
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .responsive-split {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+html:is(
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .responsive-split > * {
+  max-width: 100%;
+  text-align: left;
+}
+
+html:is(
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  :is(.landing-layout, .home-dashboard, .scam-checker-layout, .settings-grid, .paywall-layout) {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: none;
+}
+
+html:is(
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  :is(.home-primary, .home-support, .home-primary-cta, .settings-legal) {
+  grid-area: auto;
+  grid-column: auto;
+}
+
+html:is(
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .scam-checker-aside {
+  position: static;
+}
+
+@keyframes launch-logo {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) rotate(-5deg);
+  }
+  68% {
+    opacity: 1;
+    transform: scale(1.06) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes launch-copy {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes launch-progress {
+  0% {
+    transform: scaleX(0);
+  }
+  78% {
+    transform: scaleX(0.84);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.launch-logo {
+  animation: launch-logo 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.launch-copy {
+  animation: launch-copy 420ms ease-out 180ms both;
+}
+
+.launch-progress-bar {
+  animation: launch-progress 2850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left center;
+}
+
+@keyframes plan-progress {
+  0% {
+    width: 8%;
+  }
+  55% {
+    width: 72%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.plan-progress-bar {
+  animation: plan-progress 2950ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.flashcard-button {
+  perspective: 1200px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.flashcard-stage {
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flashcard-stage.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flashcard-stage {
+    transition: none;
+  }
+}
+
+@media (display-mode: standalone), (max-width: 639px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* One consistent, highly readable title for every main content screen. */
+  .page-title {
+    @apply font-sans text-3xl font-bold leading-tight tracking-tight text-ink;
+  }
+
+  /* Primary clay action button — big, high contrast, easy to tap */
+  .btn-primary {
+    @apply w-full rounded-2xl bg-clay px-6 py-5 text-center text-xl font-bold
+      text-cream-card shadow-btn transition-all duration-150
+      active:translate-y-1 active:shadow-none hover:bg-clay-dark
+      disabled:cursor-not-allowed disabled:bg-clay/50 disabled:shadow-none
+      disabled:hover:bg-clay/50 disabled:active:translate-y-0;
+    min-height: 68px;
+    height: auto;
+  }
+
+  .btn-secondary {
+    @apply w-full rounded-2xl border-2 border-ink/20 bg-cream-card px-6 py-5
+      text-center text-lg font-semibold text-ink transition-colors
+      hover:bg-cream-deep;
+    min-height: 60px;
+    height: auto;
+  }
+
+  .stat-card {
+    @apply rounded-2xl bg-cream-card px-5 py-4 shadow-card;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
