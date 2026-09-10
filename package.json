@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --outDir dist/client && node scripts/build-sites.mjs",
     "lint": "oxlint src server server.mjs scripts",
     "test": "npm run test:unit && npm run test:ui",
     "test:unit": "node --test tests/*.test.js tests/*.test.mjs",
@@ -19,6 +19,7 @@
     "@capacitor/core": "^8.4.2",
     "@capacitor/ios": "^8.4.2",
     "@capacitor/keyboard": "^8.0.5",
+    "drizzle-orm": "^0.45.2",
     "firebase": "^12.16.0",
     "lucide-react": "^0.468.0",
     "react": "^19.2.7",
@@ -26,6 +27,7 @@
     "stripe": "22.4.0"
   },
   "devDependencies": {
+    "@openai/sites-vite-plugin": "^0.2.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -33,7 +35,10 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "autoprefixer": "^10.5.4",
+    "drizzle-kit": "^0.31.10",
+    "esbuild": "^0.28.2",
     "jsdom": "^26.1.0",
+    "miniflare": "^5.20260903.0-alpha",
     "oxlint": "^1.71.0",
     "postcss": "^8.5.20",
     "tailwindcss": "^3.4.19",

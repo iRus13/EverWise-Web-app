@@ -459,6 +459,7 @@ export function createPartnerStore({
   randomBytes = cryptoRandomBytes,
   testOnlyAllowCustomSeatLimits = false,
   testOnlyFileOperations,
+  persistence,
 }) {
   if (typeof filePath !== "string" || !filePath) {
     throw new TypeError("filePath is required");
@@ -466,6 +467,14 @@ export function createPartnerStore({
   let mutationQueue = Promise.resolve();
 
   async function readData({ allowMissing = false } = {}) {
+    if (persistence) {
+      const data = await persistence.read();
+      if (data === null) {
+        if (allowMissing) return null;
+        throw storeError("STORE_NOT_CONFIGURED", "The partner store is not configured.");
+      }
+      return validateData(data, { testOnlyAllowCustomSeatLimits });
+    }
     let text;
     try {
       text = await readFile(filePath, "utf8");
@@ -484,6 +493,16 @@ export function createPartnerStore({
   }
 
   function enqueueMutation(mutator, { allowMissing = false } = {}) {
+    if (persistence) return persistence.mutate(async (current) => {
+      if (current === null && !allowMissing) throw storeError("STORE_NOT_CONFIGURED", "The partner store is not configured.");
+      const working = clone(current === null ? emptyData() : validateData(current, { testOnlyAllowCustomSeatLimits }));
+      const currentDate = nowDate(now);
+      const normalized = normalizeExpired(working, currentDate);
+      const outcome = await mutator(working, currentDate);
+      const changed = outcome.changed || normalized;
+      if (changed) validateData(working, { testOnlyAllowCustomSeatLimits });
+      return { ...outcome, changed, data: working };
+    });
     const run = async () => {
       const releaseLock = await acquireInterprocessMutationLock(filePath);
       try {

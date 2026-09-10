@@ -880,6 +880,7 @@ export function createBillingStore({
   filePath = "/var/lib/everwise/billing.json",
   now = () => new Date(),
   fsImpl,
+  persistence,
 } = {}) {
   if (typeof filePath !== "string" || !filePath) {
     throw new TypeError("filePath must be a non-empty string");
@@ -901,6 +902,7 @@ export function createBillingStore({
   const fileName = basename(filePath);
 
   async function openStoreAnchor({ normalizeMode = false } = {}) {
+    if (persistence) return { close: async () => {} };
     const anchor = await openDirectoryAnchor(parentPath, operations);
     if (!secureDirectoryMode(anchor.parent.mode)) {
       await anchor.close().catch(() => {});
@@ -941,6 +943,14 @@ export function createBillingStore({
   }
 
   async function readData(anchor, { allowMissing = false } = {}) {
+    if (persistence) {
+      const data = await persistence.read();
+      if (data === null) {
+        if (allowMissing) return null;
+        throw storeError("BILLING_STORE_NOT_CONFIGURED", "The billing store is not configured.");
+      }
+      return validateData(data);
+    }
     const primary = await anchor.run({ op: "metadata", name: fileName });
     if (!primary) {
       if (await backupExists(anchor)) {
@@ -970,6 +980,13 @@ export function createBillingStore({
   }
 
   function enqueueMutation(mutator, { allowMissing = false } = {}) {
+    if (persistence) return persistence.mutate(async (current) => {
+      if (current === null && !allowMissing) throw storeError("BILLING_STORE_NOT_CONFIGURED", "The billing store is not configured.");
+      const working = cloneData(current === null ? emptyData() : validateData(current));
+      const outcome = await mutator(working, nowDate(now));
+      if (outcome.changed) validateData(working);
+      return { ...outcome, data: working };
+    });
     const run = async () => {
       const anchor = await openStoreAnchor({ normalizeMode: true });
       let lockAcquired = false;

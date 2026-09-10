@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
+import { sites } from '@openai/sites-vite-plugin'
 
 const DEFAULT_ELEVENLABS_VOICE_ID = 'pqHfZKP75CvOlQylNhV4'
 const DEFAULT_READ_ALOUD_FALLBACK =
@@ -291,6 +292,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      sites(),
       react(),
       elevenLabsReadAloud(
         env.ELEVENLABS_API_KEY,
