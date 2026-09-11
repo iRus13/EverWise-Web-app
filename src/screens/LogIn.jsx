@@ -41,7 +41,7 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
             id="login-identifier"
             label="Username or email"
             value={identifier}
-            onChange={setIdentifier}
+            onChange={(value) => { setIdentifier(value); setError(""); }}
             autoComplete="username"
             placeholder="janemiller or jane@example.com"
           />
@@ -50,7 +50,7 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
             label="Password"
             type="password"
             value={password}
-            onChange={setPassword}
+            onChange={(value) => { setPassword(value); setError(""); }}
             autoComplete="current-password"
             placeholder="Your password"
           />

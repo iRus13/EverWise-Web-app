@@ -266,6 +266,18 @@ export default function ProfileInterview({
     }
   }, [stepIndex]);
 
+  useEffect(() => {
+    setError("");
+  }, [name, age, internetUse, primaryDevice, confidence, scamFrequency, concerns,
+    scamScenario, aiExperience, accessibilityNeeds, trustedContact, researchConsent,
+    email, username, password]);
+
+  const leaveForLogIn = () => {
+    onLogIn?.({ name, age, internetUse, primaryDevice, confidence, scamFrequency,
+      concerns, scamScenario, aiExperience, accessibilityNeeds, trustedContact,
+      researchConsent, email, username });
+  };
+
   const toggle = (value, current, setCurrent) => {
     if (value === "Prefer not to say") {
       setCurrent(current.includes(value) ? [] : [value]);
@@ -767,7 +779,7 @@ export default function ProfileInterview({
                   Already have an account?{" "}
                   <button
                     type="button"
-                    onClick={onLogIn}
+                    onClick={leaveForLogIn}
                     disabled={isBusy}
                     className="font-bold text-clay underline underline-offset-4"
                   >
@@ -801,17 +813,18 @@ export default function ProfileInterview({
           </p>
         ) : null}
 
+      </main>
+
+      <footer className="shrink-0 border-t border-ink/10 bg-cream px-7 pb-6 pt-4">
         {externalError || error ? (
           <p
             role="alert"
-            className="mt-5 rounded-2xl bg-alert/12 px-5 py-4 text-lg font-semibold text-alert"
+            className="mb-3 text-base font-semibold text-alert"
           >
             {externalError || error}
           </p>
         ) : null}
-      </main>
 
-      <footer className="shrink-0 border-t border-ink/10 bg-cream px-7 pb-6 pt-4">
         <button
           type="button"
           className="btn-primary"

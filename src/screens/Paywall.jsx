@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   ArrowRight,
+  BookOpen,
   Circle,
   CircleDot,
   MessageCircleWarning,
@@ -447,7 +448,7 @@ export default function Paywall({
     : `Start ${selectedOffer.trialDays}-day free trial`;
 
   return (
-    <div data-testid="browser-paywall" className="release-paywall relative flex h-full min-h-0 w-full max-w-full flex-1 flex-col overflow-x-hidden overflow-y-auto bg-[#F8F5EF] px-5 pb-0 pt-4">
+    <div data-testid="browser-paywall" className={`release-paywall ${native ? "" : "web-paywall"} relative flex h-full min-h-0 w-full max-w-full flex-1 flex-col overflow-x-hidden overflow-y-auto bg-[#F8F5EF] px-5 pb-0 pt-4`}>
       <Header busy={busy} label={native ? "Close subscription options" : "Back to free lessons"} onBack={onMaybeLater} />
       <main className="paywall-main flex min-h-0 min-w-0 flex-1 flex-col justify-between">
         <div className="paywall-layout min-w-0">
@@ -456,11 +457,16 @@ export default function Paywall({
               Feel confident online.
             </h1>
             <ul className="paywall-benefits mt-5 shrink-0">
-              <Benefit icon={<Search className="h-8 w-8" strokeWidth={2.1} />} title="Check suspicious messages" body="Get a clear explanation before responding." />
+              {native ? (
+                <Benefit icon={<Search className="h-8 w-8" strokeWidth={2.1} />} title="Check suspicious messages" body="Get a clear explanation before responding." />
+              ) : (
+                <Benefit icon={<BookOpen className="h-8 w-8" strokeWidth={2.1} />} title="Keep learning at your pace" body="Unlock the lessons beyond your free introduction." />
+              )}
               <Benefit icon={<MessageCircleWarning className="h-8 w-8" strokeWidth={2.1} />} title="Recognize scams sooner" body="Learn the warning signs and protect your money." />
             </ul>
           </section>
           <section className="paywall-offer min-w-0">
+            {!native ? <h2 className="font-sans text-2xl font-bold text-ink">Choose your plan</h2> : null}
             {billingMessage ? (
               <p className="mt-3 rounded-xl bg-sage/10 px-4 py-3 text-center font-sans text-base font-semibold text-sage-dark" role="status">
                 {billingMessage}
@@ -485,9 +491,17 @@ export default function Paywall({
                 {error}
               </p>
             ) : null}
+            {!native ? (
+              <div id="paywall-trial-summary" className="paywall-trial-summary mt-4 rounded-xl bg-white/60 p-4 text-ink" aria-live="polite" aria-atomic="true">
+                <p className="font-semibold">Today: {selectedOffer.trialDays} days free</p>
+                <p className="mt-1">Then {webPrice(selectedOffer)}, renewing automatically unless you cancel.</p>
+                <p className="mt-2">Cancel before your trial ends to avoid a charge. Go to Settings → Manage subscription.</p>
+              </div>
+            ) : null}
             <button
               type="button"
               aria-label={ctaLabel}
+              aria-describedby={native ? undefined : "paywall-trial-summary paywall-payment-note"}
               className="paywall-cta mt-4 flex min-h-[68px] w-full shrink-0 items-center justify-center gap-2 rounded-2xl bg-clay px-5 font-sans font-bold text-cream-card shadow-btn transition-colors hover:bg-clay-dark disabled:cursor-wait disabled:opacity-70"
               style={fixedText.cta}
               onClick={startPurchase}
@@ -514,10 +528,15 @@ export default function Paywall({
                   : "$14.99 billed monthly. Renews automatically unless you cancel."}
               </p>
             ) : (
-              <p className="paywall-reassurance mt-3 shrink-0 text-center font-sans text-ink" style={fixedText.reassurance}>
+              <p id="paywall-payment-note" className="paywall-reassurance mt-3 shrink-0 text-center font-sans text-ink" style={fixedText.reassurance}>
                 Your payment method is collected now. Billing starts automatically after your trial unless you cancel.
               </p>
             )}
+            {!native ? (
+              <button type="button" onClick={onMaybeLater} disabled={busy} className="paywall-free mt-3 min-h-12 w-full rounded-xl px-4 py-3 font-sans font-semibold text-ink underline underline-offset-4 disabled:opacity-70">
+                Continue with free lessons
+              </button>
+            ) : null}
           </section>
         </div>
         <LegalFooter busy={busy} native={native} onRestore={restore} />
