@@ -53,6 +53,8 @@ async function recordGeometry() {
   const cards = Array.from(document.querySelectorAll('[role="radio"]'));
   const action = document.querySelector('[aria-label^="Start "]');
   const geometry = {
+    termsFontSize: parseFloat(getComputedStyle(document.querySelector(".paywall-reassurance")).fontSize),
+    buttons: Array.from(document.querySelectorAll("button"), button => ({ height: button.getBoundingClientRect().height })),
     clientWidth: document.documentElement.clientWidth,
     scrollWidth: document.documentElement.scrollWidth,
     root: rectFor(root),

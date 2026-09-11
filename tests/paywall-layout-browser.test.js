@@ -117,7 +117,7 @@ async function withLayoutServer(run) {
   }
 }
 
-async function measure(url, width, mutation = "") {
+async function measure(url, width, mutation = "", height = 1000) {
   const profile = await mkdtemp(path.join(os.tmpdir(), "everwise-paywall-chrome-"));
   const query = mutation ? `?mutation=${encodeURIComponent(mutation)}` : "";
   const args = [
@@ -154,7 +154,7 @@ async function measure(url, width, mutation = "") {
     try {
       await cdp.send("Emulation.setDeviceMetricsOverride", {
         width,
-        height: 1000,
+        height,
         deviceScaleFactor: 1,
         mobile: false,
       });
@@ -469,10 +469,12 @@ test("TERM-resistant browser cleanup escalates to KILL and confirms exit", { tim
   assert.equal(stopped, true);
 });
 
-test("real Paywall stays inside desktop and 768px browser viewports", { ...browserTestOptions, timeout: 45_000 }, async () => {
+test("real Paywall stays readable inside phone, tablet and desktop viewports", { ...browserTestOptions, timeout: 120_000 }, async () => {
   await withLayoutServer(async (url) => {
-    for (const width of [1280, 768]) {
-      const geometry = await measure(url, width);
+    for (const [width, height] of [[320,568], [375,667], [390,844], [667,375], [768,1024], [1024,768], [1440,900], [1920,1080]]) {
+      const geometry = await measure(url, width, "", height);
+      assert.ok(geometry.termsFontSize >= 16, "Billing terms must remain at least 16 CSS pixels");
+      assert.ok(geometry.buttons.every((button) => button.height >= 44), "Buttons must remain at least 44 CSS pixels tall");
       assertFitsViewport(geometry, `${width}px browser`);
     }
   });

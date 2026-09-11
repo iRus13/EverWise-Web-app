@@ -306,10 +306,26 @@ describe("browser Stripe paywall", () => {
     expect(root).toHaveClass("w-full", "max-w-full", "overflow-x-hidden");
     expect(screen.getByRole("radiogroup")).toHaveClass("min-w-0");
     for (const button of screen.getAllByRole("button")) {
-      expect(button.className).toMatch(/(?:h-11|min-h-11|min-h-\[(?:44|68|104|148)px\])/);
+      expect(button.className).toMatch(/(?:h-11|min-h-11|min-h-12|min-h-\[(?:44|68|104|148)px\])/);
     }
     for (const radio of screen.getAllByRole("radio")) {
       expect(radio.className).toMatch(/focus-visible:/);
     }
   });
+  test("updates the checkout description with the selected renewal terms", async () => {
+    const user = userEvent.setup();
+    renderWebPaywall();
+    expect(screen.getByRole("button", { name: "Start 3-day free trial" })).toHaveAccessibleDescription(/Then \$7.99\/month.*Settings → Manage subscription/);
+    await user.click(screen.getByRole("radio", { name: /Annual/ }));
+    expect(screen.getByRole("button", { name: "Start 7-day free trial" })).toHaveAccessibleDescription(/Then \$60\/year/);
+  });
+
+  test("the visible free option exits without starting a purchase", async () => {
+    const user = userEvent.setup();
+    const { props } = renderWebPaywall();
+    await user.click(screen.getByRole("button", { name: "Continue with free lessons" }));
+    expect(props.onMaybeLater).toHaveBeenCalledOnce();
+    expect(props.onStartTrial).not.toHaveBeenCalled();
+  });
+
 });

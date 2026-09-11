@@ -962,6 +962,12 @@ function LearnerApp({ initialPartnerFragment }) {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [screen, setScreen] = useState("landing");
+  // Keep an in-memory questionnaire draft only for the detour through login.
+  // Passwords are deliberately excluded by ProfileInterview.
+  const [loginInterviewDraft, setLoginInterviewDraft] = useState(null);
+  useEffect(() => {
+    if (user) setLoginInterviewDraft(null);
+  }, [user]);
   const [paywallVariant, setPaywallVariant] = useState("subscribe");
   const [activeIndex, setActiveIndex] = useState(0);
   // Set when the learner chose the quick check from the course path, so the
@@ -4081,7 +4087,7 @@ function LearnerApp({ initialPartnerFragment }) {
               ? partner
               : null
           }
-          initialInterview={signupRetry?.interview || null}
+          initialInterview={signupRetry?.interview || loginInterviewDraft || null}
           existingAccount={Boolean(profileCompletion)}
           externalBusy={partnerStatus === "claiming"}
           externalError={signupRetry?.error || ""}
@@ -4102,9 +4108,11 @@ function LearnerApp({ initialPartnerFragment }) {
             operationIdRef.current += 1;
             activeOperationRef.current = null;
             setSignupRetry(null);
+            setLoginInterviewDraft(null);
             setScreen("landing");
           }}
-          onLogIn={() => {
+          onLogIn={(draft) => {
+            setLoginInterviewDraft(draft);
             operationIdRef.current += 1;
             activeOperationRef.current = null;
             setSignupRetry(null);
@@ -4118,7 +4126,7 @@ function LearnerApp({ initialPartnerFragment }) {
         <LogIn
           onLogIn={logIn}
           onGoToSignUp={() => setScreen("interview")}
-          onBack={() => setScreen("landing")}
+          onBack={() => setScreen(loginInterviewDraft ? "interview" : "landing")}
         />
       );
       break;
