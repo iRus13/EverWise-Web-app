@@ -1,7 +1,7 @@
 {
   "appId": "com.everwise.app",
   "appName": "Everwise",
-  "webDir": "dist",
+  "webDir": "dist/client",
   "ios": {
     "contentInset": "never",
     "preferredContentMode": "mobile"

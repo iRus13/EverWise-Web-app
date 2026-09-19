@@ -989,6 +989,7 @@ function LearnerApp({ initialPartnerFragment }) {
     uid: null,
     subscriptionStatus: "expired",
   });
+  const nativeEntitlementRequestRef = useRef(0);
   const authGenerationRef = useRef(0);
   const authSettledRef = useRef(false);
   // authSettledRef is a ref, so flipping it doesn't by itself re-run effects
@@ -1278,10 +1279,12 @@ function LearnerApp({ initialPartnerFragment }) {
     const uid = user.uid;
     const generation = authGenerationRef.current;
     setNativeEntitlement({ uid, subscriptionStatus: "expired" });
-    getCurrentEntitlement()
+    const refresh = () => {
+      const request = ++nativeEntitlementRequestRef.current;
+      return getCurrentEntitlement()
       .then(async (entitlement) => {
         if (
-          cancelled ||
+          cancelled || request !== nativeEntitlementRequestRef.current ||
           !appMountedRef.current ||
           generation !== authGenerationRef.current ||
           currentAuthUidRef.current !== uid
@@ -1308,9 +1311,18 @@ function LearnerApp({ initialPartnerFragment }) {
           );
         }
       });
-
+    };
+    const resume = () => { if (document.visibilityState === "visible") void refresh(); };
+    void refresh();
+    window.addEventListener("focus", resume);
+    document.addEventListener("visibilitychange", resume);
+    // Catch expiry, refunds, and approved pending purchases while the app stays open.
+    const interval = window.setInterval(resume, 60_000);
     return () => {
       cancelled = true;
+      window.clearInterval(interval);
+      window.removeEventListener("focus", resume);
+      document.removeEventListener("visibilitychange", resume);
     };
   }, [platform, user]);
 
@@ -3309,22 +3321,28 @@ function LearnerApp({ initialPartnerFragment }) {
       }
       return;
     }
+    const uid = user?.uid;
+    const generation = authGenerationRef.current;
+    if (!uid || currentAuthUidRef.current !== uid) throw new Error("Please sign in again to continue.");
     const entitlement = await purchaseSubscription(plan);
+    if (!appMountedRef.current || generation !== authGenerationRef.current || currentAuthUidRef.current !== uid) return;
     if (!entitlement.active) {
       throw new Error("The subscription is not active yet.");
     }
+    // A lookup started before this purchase must not overwrite its delivery.
+    nativeEntitlementRequestRef.current += 1;
     if (user?.uid && currentAuthUidRef.current === user.uid) {
       setNativeEntitlement({
         uid: user.uid,
         subscriptionStatus: "active",
       });
     }
-    await updateSubscription({
+    void updateSubscription({
       subscriptionStatus: "active",
       trialStartedAt: null,
       plan: planForProduct(entitlement.productId) || plan,
     });
-    goHome();
+    if (generation === authGenerationRef.current && currentAuthUidRef.current === uid) goHome();
   };
 
   const manageBilling = async () => {
@@ -3359,22 +3377,27 @@ function LearnerApp({ initialPartnerFragment }) {
   };
 
   const restorePurchase = async () => {
+    const uid = user?.uid;
+    const generation = authGenerationRef.current;
+    if (!uid || currentAuthUidRef.current !== uid) throw new Error("Please sign in again to continue.");
     const entitlement = await restoreSubscriptions();
+    if (!appMountedRef.current || generation !== authGenerationRef.current || currentAuthUidRef.current !== uid) return;
     if (!entitlement.active) {
       throw new Error("No active subscription was found for this Apple Account.");
     }
+    nativeEntitlementRequestRef.current += 1;
     if (user?.uid && currentAuthUidRef.current === user.uid) {
       setNativeEntitlement({
         uid: user.uid,
         subscriptionStatus: "active",
       });
     }
-    await updateSubscription({
+    void updateSubscription({
       subscriptionStatus: "active",
       trialStartedAt: null,
       plan: planForProduct(entitlement.productId),
     });
-    goHome();
+    if (generation === authGenerationRef.current && currentAuthUidRef.current === uid) goHome();
   };
 
   const resetPassword = async () => {
@@ -4135,7 +4158,7 @@ function LearnerApp({ initialPartnerFragment }) {
         <Home
           partner={sponsoredActive ? partner : null}
           name={profile?.name ?? ""}
-          scamsCaught={profile?.scamsCaught ?? 0}
+          lessonsCompleted={lessonsCompletedCount}
           badgesEarned={badgesEarnedCount}
           allDone={allDone}
           textSize={textSize}
@@ -4216,7 +4239,12 @@ function LearnerApp({ initialPartnerFragment }) {
             billingAccess={billingAccess}
             billingBusy={billingBusy}
             billingMessage={billingRecovery?.message || ""}
-            onRetry={() => {
+            onRetry={async () => {
+              if (platform === "native") {
+                try { setStoreProducts(await getSubscriptionProducts()); }
+                catch { setStoreProducts([]); }
+                return;
+              }
               setBillingRecovery(null);
               setBillingRefreshAttempt((attempt) => attempt + 1);
             }}

@@ -119,7 +119,7 @@ async function withLayoutServer(run) {
 
 async function measure(url, width, mutation = "", height = 1000) {
   const profile = await mkdtemp(path.join(os.tmpdir(), "everwise-paywall-chrome-"));
-  const query = mutation ? `?mutation=${encodeURIComponent(mutation)}` : "";
+  const query = mutation ? `${url.includes("?") ? "&" : "?"}mutation=${encodeURIComponent(mutation)}` : "";
   const args = [
     "--headless=new",
     "--disable-gpu",
@@ -491,5 +491,39 @@ test("geometry proof detects a clipped wide-card regression", { ...browserTestOp
       () => assertFitsViewport(geometry, "wide-card mutation"),
       /plan card .*beyond viewport|plan card .*width .* exceeds viewport/,
     );
+  });
+});
+
+
+test("native paywall remains readable and scrolls to legal controls at all text sizes", { ...browserTestOptions, timeout: 180_000 }, async () => {
+  await withLayoutServer(async (url) => {
+    for (const [width, height] of [[320,568], [390,844], [667,375], [768,1024]]) {
+      for (const textSize of ["size-2", "size-5", "size-10"]) {
+        const geometry = await measure(`${url}?platform=native&textSize=${textSize}`, width, "", height);
+        assertFitsViewport(geometry, `native ${width} ${textSize}`);
+        assert.ok(geometry.termsFontSize >= 18, "Native renewal terms must stay readable");
+        assert.ok(!geometry.textOverflow, "Native card or terms text must not be clipped");
+        assert.ok(geometry.footerReachable, "Legal and Restore controls must be reachable by scrolling");
+        assert.ok(geometry.buttons.every(button => button.height >= 44), "Native controls need 44px targets");
+      }
+    }
+  });
+});
+
+test("core app screens fit narrow phones and desktop at standard and largest text sizes", { ...browserTestOptions, timeout: 240_000 }, async () => {
+  await withLayoutServer(async (url) => {
+    const appUrl = url.replace("paywall-layout.html", "app-layout.html");
+    const failures = [];
+    for (const view of ["landing", "login", "interview", "signup", "home", "settings", "badges", "path", "lesson", "complete", "scam-checker"]) {
+      for (const [width,height] of [[320,568],[768,1024],[1440,900]]) {
+        for (const textSize of ["size-2","size-10"]) {
+          const geometry = await measure(`${appUrl}?view=${view}&textSize=${textSize}`, width, "", height);
+          if (geometry.scrollWidth > geometry.clientWidth + 1 || geometry.outside.length || geometry.brokenImages.length || !geometry.headings) {
+            failures.push({view,width,textSize,...geometry});
+          }
+        }
+      }
+    }
+    assert.deepEqual(failures, [], "Screens must render a heading, loaded images and controls within the viewport");
   });
 });

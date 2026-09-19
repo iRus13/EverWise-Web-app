@@ -1,6 +1,8 @@
 # Everwise iOS Release Checklist
 
-## Verified locally
+Current local evidence is in the [September 19 audit](docs/qa/2026-09-19-ios-web-audit.md). Generic unsigned builds pass on this Mac; simulator/device and live billing checks remain open. The notes below describe an earlier setup and are not current proof.
+
+## Earlier release notes
 
 - Release builds pass in Xcode with zero build warnings on iPhone 17e, iPhone 17 Pro, and iPhone 17 Pro Max simulators.
 - An unsigned generic-device archive passes Xcode's local store validation.
@@ -39,4 +41,4 @@
 - Annual: `com.everwise.app.annual`
 - Monthly: `com.everwise.app.monthly`
 
-The paywall's displayed fallback prices must remain identical to the App Store Connect prices. StoreKit replaces supported price labels with Apple's localized product metadata when the products are available.
+The paywall displays Apple's localized product prices, subscription periods, and verified free-trial eligibility. It does not offer purchases using fallback prices when products are unavailable. Confirm the intended product prices and trial configuration in App Store Connect.

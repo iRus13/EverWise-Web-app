@@ -1671,7 +1671,7 @@ html:is(
 
 /* Web subscription terms stay readable even on short screens. Let the page
    scroll instead of applying the compact App Store typography above. */
-.release-paywall.web-paywall {
+.release-paywall {
   --paywall-wordmark: 1.75rem;
   --paywall-headline: clamp(2rem, 3vw, 3rem);
   --paywall-benefit-title: 1.25rem;
@@ -1684,32 +1684,43 @@ html:is(
   --paywall-footer: 1rem;
   padding: 1rem clamp(1rem, 4vw, 4rem) max(1rem, env(safe-area-inset-bottom));
 }
-.web-paywall .paywall-main { flex: 1 0 auto; }
-.web-paywall .paywall-layout {
+.release-paywall .paywall-main { flex: 1 0 auto; }
+.release-paywall .paywall-layout {
   width: 100%;
   max-width: 72rem;
   margin: 1.5rem auto;
   gap: 2rem;
 }
-.web-paywall .paywall-story { padding-bottom: 1.5rem; }
-.web-paywall .paywall-benefit { padding-block: 1rem; }
-.web-paywall .paywall-plan-card { min-height: 0; padding: 1.25rem 1rem; }
-.web-paywall .paywall-plans { gap: 0.75rem; margin-top: 1rem; }
-.web-paywall .paywall-plan-card span { overflow-wrap: anywhere; }
-.web-paywall .paywall-trial-summary,
-.web-paywall .paywall-reassurance { font-size: 1rem; line-height: 1.5; }
-.web-paywall .paywall-plan-card span[style] { line-height: 1.35 !important; }
-.web-paywall .paywall-cta { margin-top: 1rem; min-height: 3.5rem; }
-.web-paywall button:focus-visible { outline: 3px solid #2D302A; outline-offset: 3px; }
-.web-paywall .paywall-footer { flex-wrap: wrap; margin-top: 1rem; }
+.release-paywall .paywall-story { padding-bottom: 1.5rem; }
+.release-paywall .paywall-benefit { padding-block: 1rem; }
+.release-paywall .paywall-plan-card { min-height: 0; padding: 1.25rem 1rem; }
+.release-paywall .paywall-plans { gap: 0.75rem; margin-top: 1rem; }
+.release-paywall .paywall-plan-card span { overflow-wrap: anywhere; }
+.release-paywall .paywall-trial-summary,
+.release-paywall .paywall-reassurance { font-size: 1rem; line-height: 1.5; }
+.release-paywall .paywall-plan-card span[style] { line-height: 1.35 !important; }
+.release-paywall .paywall-cta { margin-top: 1rem; min-height: 3.5rem; }
+.release-paywall button:focus-visible { outline: 3px solid #2D302A; outline-offset: 3px; }
+.release-paywall .paywall-footer { flex-wrap: wrap; margin-top: 1rem; }
 @media (min-width: 900px) {
-  .web-paywall .paywall-layout { align-items: start; gap: 4rem; }
-  .web-paywall .paywall-story { padding-top: 2rem; }
+  .release-paywall .paywall-layout { align-items: start; gap: 4rem; }
+  .release-paywall .paywall-story { padding-top: 2rem; }
 }
-.web-paywall .paywall-header { padding-inline: 3rem; }
-.web-paywall .paywall-logo { width: 2rem; height: 2rem; }
-.web-paywall .paywall-plan-card { position: relative; }
-.web-paywall .paywall-plan-card > span { display: block; }
-.web-paywall .paywall-plan-card > span > svg { position: absolute; top: 1.25rem; right: 1rem; }
-.web-paywall .paywall-plan-card > span > span { display: block; }
-.web-paywall .paywall-plan-card > span > span > span:first-child { display: block; padding-right: 3rem; }
+.release-paywall .paywall-header { padding-inline: 3rem; }
+.release-paywall .paywall-logo { width: 2rem; height: 2rem; }
+.release-paywall .paywall-plan-card { position: relative; }
+.release-paywall .paywall-plan-card > span { display: block; }
+.release-paywall .paywall-plan-card > span > svg { position: absolute; top: 1.25rem; right: 1rem; }
+.release-paywall .paywall-plan-card > span > span { display: block; }
+.release-paywall .paywall-plan-card > span > span > span:first-child { display: block; padding-right: 3rem; }
+
+/* Keep financial terms legible and honor the learner's chosen text size. */
+.release-paywall {
+  --paywall-detail: max(1rem, calc(1rem * var(--text-scale)));
+  --paywall-reassurance: max(1rem, calc(1rem * var(--text-scale)));
+  --paywall-footer: max(1rem, calc(1rem * var(--text-scale)));
+}
+.release-paywall .paywall-reassurance,
+.release-paywall .paywall-trial-summary { font-size: max(1rem, calc(1rem * var(--text-scale))); }
+.release-paywall .paywall-plan-card span { overflow-wrap: anywhere; }
+.release-paywall .paywall-plan-card .items-baseline { flex-wrap: wrap; }

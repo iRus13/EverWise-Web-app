@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import BackButton from "../components/BackButton";
 import ReadAloud from "../components/ReadAloud";
 import { MessageSearchIcon } from "../components/Icons";
@@ -27,6 +27,15 @@ const verdictDetails = {
     titleClassName: "text-sage-dark",
   },
 };
+
+function validAssessment(value) {
+  return value && Object.hasOwn(verdictDetails, value.verdict)
+    && typeof value.summary === "string" && value.summary.trim().length > 0
+    && value.summary.length <= 6000
+    && [value.warning_signs, value.next_steps].every((items) => Array.isArray(items)
+      && items.length <= 20 && items.every((item) => typeof item === "string" && item.length <= 6000))
+    && (value.urgent_action === null || (typeof value.urgent_action === "string" && value.urgent_action.length <= 6000));
+}
 
 function ResultSection({ title, items }) {
   if (!items?.length) return null;
@@ -57,6 +66,8 @@ export default function ScamChecker({ onBack }) {
   const [result, setResult] = useState(null);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
+  const requestRef = useRef(null);
+  useEffect(() => () => requestRef.current?.abort(), []);
   const cleanMessage = message.trim();
   const details = result ? verdictDetails[result.verdict] : null;
 
@@ -73,7 +84,10 @@ export default function ScamChecker({ onBack }) {
 
   const checkMessage = async (event) => {
     event.preventDefault();
-    if (!cleanMessage || cleanMessage.length > MAX_MESSAGE_LENGTH) return;
+    if (!cleanMessage || cleanMessage.length > MAX_MESSAGE_LENGTH || requestRef.current) return;
+    const controller = new AbortController();
+    requestRef.current = controller;
+    const timeout = setTimeout(() => controller.abort(), 30_000);
 
     setStatus("loading");
     setError("");
@@ -84,6 +98,7 @@ export default function ScamChecker({ onBack }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: cleanMessage }),
+        signal: controller.signal,
       });
 
       if (!response.ok) {
@@ -100,10 +115,11 @@ export default function ScamChecker({ onBack }) {
       }
 
       const nextResult = await response.json();
-      if (!verdictDetails[nextResult.verdict]) {
+      if (!validAssessment(nextResult)) {
         throw new Error("unavailable");
       }
 
+      if (controller.signal.aborted) return;
       setResult(nextResult);
       setStatus("success");
     } catch (err) {
@@ -114,6 +130,9 @@ export default function ScamChecker({ onBack }) {
           : "We could not check this message right now. Do not click links, send money, or share a code until you verify it another way.",
       );
       setStatus("error");
+    } finally {
+      clearTimeout(timeout);
+      if (requestRef.current === controller) requestRef.current = null;
     }
   };
 
@@ -153,6 +172,7 @@ export default function ScamChecker({ onBack }) {
           </label>
           <textarea
             id="message-to-check"
+            disabled={status === "loading"}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             maxLength={MAX_MESSAGE_LENGTH}

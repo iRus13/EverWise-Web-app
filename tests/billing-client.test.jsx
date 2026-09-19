@@ -131,7 +131,7 @@ vi.mock("../src/screens/ExamPlayer.jsx", () => ({
   default: ({ exam }) => <h1>Exam: {exam.id}</h1>,
 }));
 vi.mock("../src/screens/Paywall.jsx", () => ({
-  default: ({ billingAccess, billingAvailable, billingPlans, billingStatus, onMaybeLater, onRetry, onStartLearning, onStartTrial, platform }) => (
+  default: ({ billingAccess, billingAvailable, billingPlans, billingStatus, onMaybeLater, onRetry, onRestore, onStartLearning, onStartTrial, platform }) => (
     <main>
       <h1>Subscription options</h1>
       <span data-testid="paywall-billing-status">{billingStatus}</span>
@@ -148,6 +148,7 @@ vi.mock("../src/screens/Paywall.jsx", () => ({
       <button type="button" onClick={onMaybeLater}>
         Back free
       </button>
+      {platform === "native" && <button type="button" onClick={() => void onRestore().catch(() => {})}>Restore Apple purchases</button>}
       <button type="button" onClick={onStartLearning}>
         Start learning
       </button>
@@ -759,6 +760,65 @@ describe("browser billing bootstrap and provider selection", () => {
     });
     expect(mocks.purchaseSubscription).toHaveBeenCalledWith("annual");
     expect(mocks.createBillingCheckout).toHaveBeenCalledTimes(1);
+  });
+
+  test("a native purchase completing after sign-out cannot update a different session", async () => {
+    mocks.native = true;
+    const purchase = deferred();
+    mocks.purchaseSubscription.mockReturnValue(purchase.promise);
+    await openAuthenticatedApp({access: NONE, uid: "native-original"});
+    fireEvent.click(screen.getByRole("button", {name: "Open course"}));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name: "Open protected lesson"})));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name: "Start annual trial"})));
+    await act(async () => mocks.authCallback(null));
+    mocks.updateDoc.mockClear();
+    await act(async () => purchase.resolve({active: true, productId: "com.everwise.app.annual"}));
+    expect(mocks.updateDoc).not.toHaveBeenCalled();
+    expect(screen.queryByRole("button", {name: "Open course"})).not.toBeInTheDocument();
+  });
+
+  test("native access is rechecked after returning from Apple subscription management", async () => {
+    mocks.native = true;
+    mocks.getCurrentEntitlement.mockResolvedValue({active: true, productId: "com.everwise.app.annual"});
+    await openAuthenticatedApp({access: NONE, uid: "native-resume"});
+    const previous = mocks.getCurrentEntitlement.mock.calls.length;
+    mocks.getCurrentEntitlement.mockResolvedValue({active: false});
+    await act(async () => window.dispatchEvent(new Event("focus")));
+    expect(mocks.getCurrentEntitlement.mock.calls.length).toBeGreaterThan(previous);
+    fireEvent.click(screen.getByRole("button", {name: "Open course"}));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name: "Open protected lesson"})));
+    expect(screen.getByRole("button", {name: "Start annual trial"})).toBeVisible();
+  });
+
+  test.each(["purchase", "restore"])("an older native check cannot revoke a successful %s", async (operation) => {
+    mocks.native = true;
+    await openAuthenticatedApp({ access: NONE, uid: "native-purchase-race" });
+    const olderCheck = deferred();
+    mocks.getCurrentEntitlement.mockReturnValueOnce(olderCheck.promise);
+    await act(async () => window.dispatchEvent(new Event("focus")));
+    mocks.purchaseSubscription.mockResolvedValue({ active: true, productId: "com.everwise.app.annual" });
+    mocks.restoreSubscriptions.mockResolvedValue({ active: true, productId: "com.everwise.app.annual" });
+    fireEvent.click(screen.getByRole("button", { name: "Open course" }));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Open protected lesson" })));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: operation === "purchase" ? "Start annual trial" : "Restore Apple purchases" })));
+    await act(async () => olderCheck.resolve({ active: false }));
+    await openProtected("lesson");
+    expect(screen.queryByRole("button", { name: "Start annual trial" })).not.toBeInTheDocument();
+  });
+
+  test.each(["purchase", "restore"])("a successful %s opens learning while the profile write is offline", async (operation) => {
+    mocks.native = true;
+    await openAuthenticatedApp({ access: NONE, uid: "native-offline-profile" });
+    const profileWrite = deferred();
+    mocks.updateDoc.mockReturnValue(profileWrite.promise);
+    mocks.purchaseSubscription.mockResolvedValue({ active: true, productId: "com.everwise.app.annual" });
+    mocks.restoreSubscriptions.mockResolvedValue({ active: true, productId: "com.everwise.app.annual" });
+    fireEvent.click(screen.getByRole("button", { name: "Open course" }));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Open protected lesson" })));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: operation === "purchase" ? "Start annual trial" : "Restore Apple purchases" })));
+    expect(screen.getByRole("heading", { name: "Home" })).toBeVisible();
+    await openProtected("lesson");
+    await act(async () => profileWrite.resolve());
   });
 
   test("keeps the paywall available while the Checkout Session is being created", async () => {

@@ -10,6 +10,16 @@ do things online) and **protection** (how to spot the tricks).
 Built with **React + Vite**, **Tailwind CSS**, and **Firebase** (Authentication
 + Cloud Firestore) for real accounts and saved progress.
 
+## Current audit and build outputs
+
+The [September 19 iOS/web audit](docs/qa/2026-09-19-ios-web-audit.md) records current fixes, test evidence, and remaining live-device/payment checks.
+
+- `npm run build`: web client in `dist/client`, Sites worker in `dist/server`.
+- `npm run build:web`: web client only; accepts Vite options such as `--base`.
+- `npm run build:ios`: builds and copies the current client into the iOS project. Set `VITE_EVERWISE_API_URL` to the confirmed HTTPS API origin for hosted features.
+- `npm run preview`: previews `dist/client`.
+- `npm test`: unit/backend/browser checks and UI/curriculum tests. Chrome is required for browser checks in CI.
+
 ## Getting started
 
 ```bash

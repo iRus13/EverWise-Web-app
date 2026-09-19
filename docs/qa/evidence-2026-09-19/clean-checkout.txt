@@ -1,0 +1,16 @@
+Final committed-source verification — September 19, 2026
+Runtime source: 50e4ea5 (current main merged without conflicts).
+Final test environment: bbf0e3b (jsdom scroll stub only).
+Fresh detached worktree, without the user's local allowScripts map.
+Committed package.json parses; dependency/devDependency maps match package-lock.json.
+npm ci --ignore-scripts: passed.
+npm run lint: passed.
+npm run test:unit: 438 passed, zero failed or skipped.
+npm run test:ui: 1673 passed in 15 files.
+npm run build: passed (client + Sites worker).
+npm run build:ios: passed (fresh client assets + Capacitor sync).
+Fresh unsigned generic iOS Release build: BUILD SUCCEEDED.
+WebKit: 90 layout combinations plus two real public-navigation journeys passed.
+Local source is preserved on audit/ios-web-2026-09-19.
+No dependency lifecycle scripts, migrations, deployments, or purchases were run here.
+Warnings: large client bundle; upstream Capacitor Keyboard synthesis and unused AppIntents metadata.

@@ -20,9 +20,9 @@ async function getAudioBlob(text, signal) {
     return response.blob();
   });
 
-  audioCache.set(cacheKey, request);
   try {
     const blob = await request;
+    if (!signal.aborted) audioCache.set(cacheKey, blob);
     if (audioCache.size > 20) {
       audioCache.delete(audioCache.keys().next().value);
     }
@@ -40,6 +40,8 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
   const abortRef = useRef(null);
 
   useEffect(() => {
+    setSpeaking(false);
+    setLoading(false);
     return () => {
       abortRef.current?.abort();
       audioRef.current?.pause();
@@ -78,15 +80,21 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
     const controller = new AbortController();
     abortRef.current = controller;
     setLoading(true);
+    let timedOut = false;
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, 8_000);
 
     try {
-      const audioUrl = URL.createObjectURL(
-        await getAudioBlob(speakText, controller.signal),
-      );
+      const blob = await getAudioBlob(speakText, controller.signal);
+      if (controller.signal.aborted || abortRef.current !== controller) return;
+      const audioUrl = URL.createObjectURL(blob);
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
-      audio.onended = stop;
+      audio.onended = () => { if (audioRef.current === audio) stop(); };
       audio.onerror = () => {
+        if (abortRef.current !== controller || controller.signal.aborted) return;
         stop();
         speakWithDeviceVoice(speakText);
       };
@@ -94,10 +102,12 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
       setLoading(false);
       setSpeaking(true);
       await audio.play();
-    } catch (error) {
-      if (error.name === "AbortError") return;
-      setLoading(false);
+    } catch {
+      if ((controller.signal.aborted && !timedOut) || abortRef.current !== controller) return;
+      stop();
       speakWithDeviceVoice(speakText);
+    } finally {
+      clearTimeout(timeout);
     }
   };
 

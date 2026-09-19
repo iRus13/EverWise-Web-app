@@ -1245,6 +1245,10 @@ describe("custom radio accessibility", () => {
     const user = userEvent.setup();
     render(
       <RealPaywall
+        storeProducts={[
+          { id: "com.everwise.app.monthly", displayPrice: "$14.99", periodUnit: "month", periodValue: 1 },
+          { id: "com.everwise.app.annual", displayPrice: "$89.99", periodUnit: "year", periodValue: 1 },
+        ]}
         onStartTrial={vi.fn()}
         onMaybeLater={() => {}}
         onRestore={vi.fn()}
@@ -1374,6 +1378,7 @@ describe("sponsored signup orchestration", () => {
     mocks.credential.mockReset();
     mocks.deleteDoc.mockReset();
     mocks.deleteUser.mockReset();
+    mocks.cancelBillingSubscription.mockReset().mockResolvedValue({ canceled: true });
     mocks.createBillingCheckout.mockReset();
     mocks.createBillingPortal.mockReset();
     mocks.fetchBillingAccess.mockReset();

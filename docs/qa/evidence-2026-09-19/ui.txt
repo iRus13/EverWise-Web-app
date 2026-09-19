@@ -1,0 +1,11 @@
+> everwise@0.0.0 test:ui
+> vitest run --passWithNoTests
+
+
+ RUN  v4.1.11 /private/tmp/everwise-final-verification
+
+
+ Test Files  15 passed (15)
+      Tests  1673 passed (1673)
+   Start at  13:30:48
+   Duration  13.81s (transform 3.19s, setup 693ms, import 5.67s, tests 19.45s, environment 4.22s)
