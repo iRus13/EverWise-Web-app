@@ -25,7 +25,7 @@ Local candidate on `audit/ios-web-2026-09-19`, based on transferred commit `62cb
 
 ## Verification
 
-- **438 unit/backend/browser tests passed; zero failed or skipped.** Includes billing, webhook verification, account isolation, partner seat races and crash recovery, durable storage, and responsive browser measurements. [Log](evidence-2026-09-19/unit-and-browser.txt)
+- **439 unit/backend/browser tests passed; zero failed or skipped.** Includes billing, webhook verification, account isolation, partner seat races and crash recovery, durable storage, and responsive browser measurements. [Log](evidence-2026-09-19/unit-and-browser.txt)
 - **1,673 UI tests passed in 15 files.** Includes 1,366 curriculum checks: rendering every shipped lesson/challenge activity, validating answer data, completing every scored lesson, and exercising passing/failing exams. Existing account, onboarding, deletion, access and settings tests remain included. [Log](evidence-2026-09-19/ui.txt)
 - **86 responsive combinations:** eight web paywall sizes; 12 native-paywall combinations across four sizes and three app text settings; 66 combinations across 11 main screens, three widths and two text settings. Separate deliberately broken geometry fixture verifies that clipping is detected.
 - Main screens: welcome, login, interview, signup, Home, Settings, badges, course path, lesson, completion and scam checker. Browser fixtures use synthetic data and inert account/purchase callbacks.
@@ -78,3 +78,7 @@ Apple's [subscription metadata](https://developer.apple.com/documentation/storek
 Optional WebKit check: install Playwright 1.62.1 and its WebKit browser in an isolated directory, then run `EVERWISE_PLAYWRIGHT_MODULE=/absolute/path/to/node_modules/playwright node scripts/qa-webkit.mjs`. The PR workflow contains the Linux installation commands.
 
 The scene migration follows Apple’s [UIKit scene lifecycle guidance](https://developer.apple.com/documentation/technotes/tn3187-migrating-to-the-uikit-scene-based-life-cycle).
+
+## GitHub CI follow-up
+
+The first Linux PR run passed installation and lint, but cold Chrome exceeded the harness’s three-second DevTools discovery bound (437/438 unit tests passed). Discovery now allows ten seconds inside the unchanged 30-second measurement deadline. The response-body read also remains under the abort deadline, with a new regression test. The updated local suite passes **2,112 tests** (439 unit/backend/browser + 1,673 UI). No app behavior or geometry assertion was weakened. GitHub reruns the complete suite and WebKit checks on this correction.

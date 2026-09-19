@@ -142,7 +142,9 @@ async function measure(url, width, mutation = "", height = 1000) {
     const port = await waitForDebugPort(profile, chrome, { signal: measurement.signal });
     const targets = await fetchDevtoolsTargets(port, {
       signal: measurement.signal,
-      timeoutMs: 3000,
+      // Cold Chrome startup can outlive its port-file announcement on busy CI.
+      // Keep the entire measurement bounded while allowing discovery to settle.
+      timeoutMs: 10_000,
     });
     const target = targets.find((candidate) => candidate.type === "page");
     assert.ok(target?.webSocketDebuggerUrl, "Chrome did not expose a debuggable page");
@@ -243,7 +245,7 @@ async function fetchDevtoolsTargets(port, {
     const response = await fetchImpl(`http://127.0.0.1:${port}/json/list`, {
       signal: bound.signal,
     });
-    return response.json();
+    return await response.json();
   } finally {
     bound.cleanup();
   }
@@ -402,6 +404,18 @@ test("hung DevTools discovery is aborted within its bound", { timeout: 1000 }, a
     /DevTools discovery timed out/,
   );
   assert.equal(receivedSignal, true);
+});
+
+test("a stalled DevTools response body remains inside the discovery deadline", { timeout: 1000 }, async () => {
+  const fetchImpl = async (_url, { signal }) => ({
+    json: () => new Promise((_resolve, reject) => {
+      signal.addEventListener("abort", () => reject(signal.reason), { once: true });
+    }),
+  });
+  await assert.rejects(
+    fetchDevtoolsTargets(1, { fetchImpl, timeoutMs: 20 }),
+    /DevTools discovery timed out/,
+  );
 });
 
 test("a stalled debugging socket is aborted and closed", { timeout: 1000 }, async () => {

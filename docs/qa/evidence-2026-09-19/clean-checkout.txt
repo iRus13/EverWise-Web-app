@@ -14,3 +14,5 @@ WebKit: 90 layout combinations plus two real public-navigation journeys passed.
 Local source is preserved on audit/ios-web-2026-09-19.
 No dependency lifecycle scripts, migrations, deployments, or purchases were run here.
 Warnings: large client bundle; upstream Capacitor Keyboard synthesis and unused AppIntents metadata.
+
+Post-publication test-harness correction: all 439 unit/backend/browser and 1673 UI tests pass locally. Runtime source is unchanged. The extra test verifies timeout coverage while reading a stalled DevTools response body.
