@@ -29,7 +29,13 @@ try {
   async function geometry(path, width, height) {
     await page.setViewportSize({ width, height });
     await page.goto(`${base}${path}`);
-    await page.waitForSelector('body[data-geometry-ready="true"]');
+    try {
+      // The marker signals measurement completion, independently of the body's
+      // box (its children may own all of the scrolling/layout).
+      await page.waitForSelector('body[data-geometry-ready="true"]', {state:"attached"});
+    } catch (error) {
+      throw new Error(`Geometry not ready: ${path} at ${width}x${height}; page errors: ${errors.join("; ")}`, {cause:error});
+    }
     const result = await page.evaluate(() => JSON.parse(atob(document.body.dataset.geometry)));
     assert.ok(result.scrollWidth <= result.clientWidth + 1, `${path} overflow at ${width}`);
     combinations++;

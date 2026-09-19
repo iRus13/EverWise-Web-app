@@ -1,5 +1,5 @@
 // Isolated, synthetic screen data. No Firebase session or billing actions.
-import React from "react";
+import React, { useEffect } from "react";
 import {createRoot} from "react-dom/client";
 import AppShell from "../../src/components/AppShell";
 import Landing from "../../src/screens/Landing";
@@ -33,7 +33,11 @@ const screens = {
   complete: <Complete lesson={lesson} onDone={noop}/>,
   "scam-checker": <ScamChecker onBack={noop}/>,
 };
-createRoot(document.getElementById("root")).render(<AppShell screen={view} isAuthenticated={!["landing","login","interview","signup"].includes(view)} textSize={textSize} onTextSizeChange={noop} onHome={noop} onCourse={noop} onScamChecker={noop} onBadges={noop} onSettings={noop}>{screens[view]}</AppShell>);
+function MeasuredScreen() {
+  useEffect(() => { void measure(); }, []);
+  return <AppShell screen={view} isAuthenticated={!["landing","login","interview","signup"].includes(view)} textSize={textSize} onTextSizeChange={noop} onHome={noop} onCourse={noop} onScamChecker={noop} onBadges={noop} onSettings={noop}>{screens[view]}</AppShell>;
+}
+createRoot(document.getElementById("root")).render(<MeasuredScreen />);
 async function measure() {
   await document.fonts.ready;
   await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
@@ -46,4 +50,3 @@ async function measure() {
   document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length}));
   document.body.dataset.geometryReady = "true";
 }
-measure();

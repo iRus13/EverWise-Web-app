@@ -82,3 +82,5 @@ The scene migration follows Apple’s [UIKit scene lifecycle guidance](https://d
 ## GitHub CI follow-up
 
 The first Linux PR run passed installation and lint, but cold Chrome exceeded the harness’s three-second DevTools discovery bound (437/438 unit tests passed). Discovery now allows ten seconds inside the unchanged 30-second measurement deadline. The response-body read also remains under the abort deadline, with a new regression test. The updated local suite passes **2,112 tests** (439 unit/backend/browser + 1,673 UI). No app behavior or geometry assertion was weakened. GitHub reruns the complete suite and WebKit checks on this correction.
+
+The next Linux run passed all tests and the production build, then timed out on the WebKit fixture marker. Fixtures now measure after React commit, and the harness waits for the measurement marker to be attached rather than requiring a visible body box. All geometry, legibility and tap-target assertions remain. The affected Chromium matrix and 90 WebKit combinations plus both public journeys pass locally after the correction.

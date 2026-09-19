@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import Paywall from "../../src/screens/Paywall";
 import "../../src/index.css";
@@ -32,8 +32,9 @@ if (new URLSearchParams(window.location.search).get("mutation") === "wide-card")
 const query = new URLSearchParams(location.search);
 const native = query.get("platform") === "native";
 document.documentElement.dataset.textSize = query.get("textSize") || "size-2";
-createRoot(document.getElementById("root")).render(
-  <Paywall
+function MeasuredPaywall() {
+  useEffect(() => { void recordGeometry(); }, []);
+  return <Paywall
     billingAvailable
     billingAccess={{canStartTrial:true}}
     billingPlans={VERIFIED_WEB_PLANS}
@@ -45,8 +46,9 @@ createRoot(document.getElementById("root")).render(
       {id: "com.everwise.app.monthly", displayPrice: "€12,99", periodUnit: "month", periodValue: 1},
       {id: "com.everwise.app.annual", displayPrice: "€79,99", periodUnit: "year", periodValue: 1, eligibleForTrial: true, trialValue: 1, trialUnit: "week"},
     ]}
-  />,
-);
+  />;
+}
+createRoot(document.getElementById("root")).render(<MeasuredPaywall />);
 
 function rectFor(element) {
   const { left, right, width } = element.getBoundingClientRect();
@@ -78,5 +80,3 @@ async function recordGeometry() {
   document.body.dataset.geometry = btoa(JSON.stringify(geometry));
   document.body.dataset.geometryReady = "true";
 }
-
-recordGeometry();
