@@ -1,5 +1,6 @@
-// Optional browser QA: install Playwright + its WebKit browser, or point
+// Optional browser QA: install Playwright + WebKit (default) or Firefox, or point
 // EVERWISE_PLAYWRIGHT_MODULE at an existing Playwright package directory.
+// Set EVERWISE_QA_BROWSER=firefox to exercise the same checks in Firefox.
 // All external requests are blocked; no account or purchase is created.
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
@@ -9,7 +10,9 @@ import react from "@vitejs/plugin-react";
 import { checkPartnerDashboard } from "./qa-partner-dashboard.mjs";
 
 const require = createRequire(import.meta.url);
-const { webkit } = require(process.env.EVERWISE_PLAYWRIGHT_MODULE || "playwright");
+const browserName = process.env.EVERWISE_QA_BROWSER || "webkit";
+assert.ok(["webkit", "firefox"].includes(browserName), "Unsupported QA browser");
+const browserType = require(process.env.EVERWISE_PLAYWRIGHT_MODULE || "playwright")[browserName];
 const server = await createServer({
   root: fileURLToPath(new URL("../", import.meta.url)),
   configFile: false, logLevel: "error", plugins: [react()],
@@ -19,7 +22,7 @@ await server.listen();
 const base = `http://127.0.0.1:${server.httpServer.address().port}`;
 let browser;
 try {
-  browser = await webkit.launch();
+  browser = await browserType.launch();
   const context = await browser.newContext();
   await context.route("**/*", route => new URL(route.request().url()).origin === base
     ? route.continue() : route.abort());
@@ -69,15 +72,16 @@ try {
       }
     }
   }
-  console.log(`PASS: ${combinations} WebKit responsive screen combinations`);
+  console.log(`PASS: ${combinations} ${browserName === "webkit" ? "WebKit" : "Firefox"} responsive screen combinations`);
   const delayedReset = await geometry("/tests/fixtures/app-layout.html?view=settings-reset-error&resetDelay=200&textSize=size-10", 320, 568);
   assert.ok(delayedReset.recoveryReadable, "Wait for the delayed reset error before measuring it");
   console.log("PASS: delayed reset error is measured after it renders");
 
   // Exercise the real App's public navigation, not isolated screen callbacks.
   // macOS WebKit's default Tab visits fields; Option-Tab includes buttons too.
-  const nextControl = process.platform === "darwin" ? "Alt+Tab" : "Tab";
-  const previousControl = process.platform === "darwin" ? "Alt+Shift+Tab" : "Shift+Tab";
+  const macWebKit = process.platform === "darwin" && browserName === "webkit";
+  const nextControl = macWebKit ? "Alt+Tab" : "Tab";
+  const previousControl = macWebKit ? "Alt+Shift+Tab" : "Shift+Tab";
   for (const [width, height] of [[390,844], [1440,900]]) {
     await page.setViewportSize({ width, height });
     await page.goto(base);
