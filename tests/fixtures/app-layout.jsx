@@ -24,7 +24,7 @@ const noop = () => {};
 const lesson = allLessons[1];
 const screens = {
   "password-reset": <PasswordReset onBack={noop} onResetPassword={async () => {}} />,
-  landing: <Landing onSignUp={noop} onLogIn={noop} />,
+  landing: <Landing onGetStarted={noop} onLogIn={noop} />,
   login: <LogIn onLogIn={noop} onGoToSignUp={noop} onBack={noop}/>,
   interview: <ProfileInterview onComplete={noop} onBack={noop} onLogIn={noop}/>,
   signup: <ProfileInterview initialInterview={{name:"Jane", age:70}} onComplete={noop} onBack={noop} onLogIn={noop}/>,
@@ -91,6 +91,16 @@ async function measure() {
     }
     recoveryReadable &&= !document.querySelector('[aria-label="Log out"]').disabled;
   }
-  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight,recoveryReadable}));
+  let landingBottomGap=null;
+  if(view === "landing") {
+    const scroller=document.querySelector(".landing-screen");
+    scroller.scrollTop=scroller.scrollHeight;
+    // Desktop/tablet layouts scroll the document instead of the phone pane.
+    window.scrollTo(0,document.documentElement.scrollHeight);
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    const lastAction=document.querySelector(".landing-actions button:last-child").getBoundingClientRect();
+    landingBottomGap=Math.min(innerHeight,scroller.getBoundingClientRect().bottom)-lastAction.bottom;
+  }
+  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight,recoveryReadable,landingBottomGap}));
   document.body.dataset.geometryReady = "true";
 }

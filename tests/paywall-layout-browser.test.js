@@ -532,7 +532,7 @@ test("core app screens fit narrow phones and desktop at standard and largest tex
       for (const [width,height] of [[320,568],[768,1024],[1440,900], ...((view.endsWith("-pending") || view.startsWith("settings-reset-")) ? [[667,375]] : [])]) {
         for (const textSize of ["size-2","size-10"]) {
           const geometry = await measure(`${appUrl}?view=${view}&textSize=${textSize}`, width, "", height);
-          if (geometry.scrollWidth > geometry.clientWidth + 1 || geometry.outside.length || geometry.brokenImages.length || !geometry.headings || !geometry.noticeReachable || !geometry.recoveryReadable || (geometry.contentHeight !== null && geometry.contentHeight < 80)) {
+          if (geometry.scrollWidth > geometry.clientWidth + 1 || geometry.outside.length || geometry.brokenImages.length || !geometry.headings || !geometry.noticeReachable || !geometry.recoveryReadable || (view === "landing" && geometry.landingBottomGap < 15) || (geometry.contentHeight !== null && geometry.contentHeight < 80)) {
             failures.push({view,width,textSize,...geometry});
           }
         }

@@ -113,6 +113,12 @@
   }
 }
 
+.landing-actions {
+  /* Keep the final action clear of the iPhone home gesture area, including
+     when the welcome page must scroll at larger text sizes. */
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
 .app-viewport {
   position: relative;
   box-sizing: border-box;

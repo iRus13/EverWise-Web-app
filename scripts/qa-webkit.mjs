@@ -48,6 +48,7 @@ try {
         assert.deepEqual(g.outside, [], `${view} controls at ${width} ${size}`);
         assert.deepEqual(g.brokenImages, [], `${view} images`);
         assert.ok(g.headings, `${view} heading`);
+        if (view === "landing") assert.ok(g.landingBottomGap >= 16 - 1, `Welcome actions need bottom clearance at ${width} ${size}: ${g.landingBottomGap}`);
         assert.ok(g.recoveryReadable, `${view} reset status and logout must remain usable at ${width}x${height} ${size}: ${JSON.stringify(g)}`);
         assert.ok(g.noticeReachable && (g.contentHeight === null || g.contentHeight >= 80), `${view} save notice must remain reachable without hiding the screen`);
       }
