@@ -10,6 +10,7 @@ import react from "@vitejs/plugin-react";
 import { checkPartnerDashboard } from "./qa-partner-dashboard.mjs";
 import { checkLearningActivities } from "./qa-learning-layout.mjs";
 import { checkAssessments } from "./qa-assessments.mjs";
+import { checkBadgeGallery } from "./qa-badges.mjs";
 
 const require = createRequire(import.meta.url);
 const browserName = process.env.EVERWISE_QA_BROWSER || "webkit";
@@ -147,6 +148,7 @@ try {
     assert.equal(await page.getByLabel("Password", {exact:true}).inputValue(), "");
     console.log(`PASS: keyboard login/recovery traversal, heading focus and password clearing at ${width}px`);
   }
+  await checkBadgeGallery(page, base);
   await checkPartnerDashboard(page, base);
   await checkLearningActivities(page, base);
   await checkAssessments(page, base);

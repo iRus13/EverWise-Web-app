@@ -98,7 +98,7 @@ export default function Badges({ badges = [], onBack }) {
               Your badges
             </h1>
             <p className="text-sm font-semibold text-cream-card/75 lg:mt-1 lg:text-base">
-              {earnedCount} of {total} earned
+              {earnedCount} of {total} course badges
             </p>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function Badges({ badges = [], onBack }) {
           aria-valuemin={0}
           aria-valuemax={total}
           aria-valuenow={earnedCount}
-          aria-label="Badges earned"
+          aria-label="Course badges earned"
         >
           <div
             className="h-full rounded-full bg-cream-card transition-[width] duration-500 ease-out"
@@ -119,10 +119,35 @@ export default function Badges({ badges = [], onBack }) {
       </header>
 
       <div className="badges-content mx-auto min-h-0 w-full max-w-5xl flex-1 overflow-y-auto px-6 pb-10 pt-7 lg:px-12 lg:pt-10">
-        {earnedCount === 0 && (
+        {earnedCount === 0 && bonus.length === 0 && (
           <p className="mb-8 rounded-3xl bg-cream-card px-6 py-6 text-center text-xl leading-snug text-ink-soft shadow-card">
             Finish your first lesson to earn your first badge.
           </p>
+        )}
+
+        {bonus.length > 0 && (
+          <section className="mb-10">
+            <div
+              className="h-px w-full bg-sage"
+              aria-hidden="true"
+            />
+            <p className="mt-3 text-[15px] font-bold uppercase tracking-[0.12em] text-sage-dark">
+              Additional awards
+            </p>
+            <h2 className="mt-1 font-sans text-[26px] font-bold leading-tight text-ink">
+              Exam honors
+            </h2>
+            <div className="badges-grid mt-6 grid grid-cols-2 gap-x-4 gap-y-8">
+              {bonus.map((name) => (
+                <BadgeTile
+                  key={name}
+                  badge={{ name, source: "exam", subtitle: "Exam result" }}
+                  earned
+                  color="#6B8E5A"
+                />
+              ))}
+            </div>
+          </section>
         )}
 
         {groups.map(({ phase, badges: list }) => {
@@ -165,31 +190,6 @@ export default function Badges({ badges = [], onBack }) {
             </section>
           );
         })}
-
-        {bonus.length > 0 && (
-          <section className="mb-4">
-            <div
-              className="h-px w-full bg-sage"
-              aria-hidden="true"
-            />
-            <p className="mt-3 text-[15px] font-bold uppercase tracking-[0.12em] text-sage-dark">
-              Bonus
-            </p>
-            <h2 className="mt-1 font-sans text-[26px] font-bold leading-tight text-ink">
-              Exam honors
-            </h2>
-            <div className="badges-grid mt-6 grid grid-cols-2 gap-x-4 gap-y-8">
-              {bonus.map((name) => (
-                <BadgeTile
-                  key={name}
-                  badge={{ name, source: "exam", subtitle: "Exam result" }}
-                  earned
-                  color="#6B8E5A"
-                />
-              ))}
-            </div>
-          </section>
-        )}
       </div>
     </div>
   );

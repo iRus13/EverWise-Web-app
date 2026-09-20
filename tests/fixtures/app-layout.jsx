@@ -35,7 +35,7 @@ const screens = {
   home: <Home name="Jane" textSize={textSize} onTextSizeChange={noop} onStart={noop} onOpenBadges={noop} onOpenSettings={noop} onOpenScamChecker={noop}/>,
   settings: <Settings subscriptionStatus="expired" textSize={textSize} onTextSizeChange={noop} onBack={noop} onLogOut={noop} onOpenPaywall={noop} onDeleteAccount={noop}
     onResetPassword={() => view === "settings-reset-error" ? new Promise((_, reject) => setTimeout(() => reject({code:"auth/network-request-failed"}), Number(query.get("resetDelay")) || 0)) : new Promise(() => {})}/>,
-  badges: <Badges onBack={noop}/>,
+  badges: <Badges badges={query.get("awards") === "earned" ? [allLessons[0].badge, "Communication Champion", "Communication Master"] : query.get("awards") === "honors" ? ["Communication Master"] : []} onBack={noop}/>,
   path: <LessonPath textSize={textSize} onBack={noop} onSelectLesson={noop} onSelectExam={noop} onSelectChallenge={noop}/>,
   lesson: <LessonPlayer lesson={lesson} onBack={noop} onExit={noop} onComplete={noop}/>,
   complete: <Complete lesson={lesson} onDone={noop}/>,
