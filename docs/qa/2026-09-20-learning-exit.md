@@ -21,3 +21,11 @@ This evidence does not replace physical-iPhone touch or VoiceOver acceptance. Re
 - docs/qa/2026-09-20-learning-exit.md
 
 The preexisting package.json script-approval map remains excluded.
+
+## Firefox scrolling follow-up
+
+The first Linux Firefox run (35499184517, job106047747118) launched successfully and passed all 184 responsive layouts plus public onboarding and keyboard journeys at 390px and 1440px. It then timed out waiting for the dashboard's invitation action after a single 50,000px wheel event. That evidence alone does not establish a product scrolling defect.
+
+The dashboard check now sends bounded, viewport-sized wheel steps and waits briefly between events, like repeated user scrolling. It still requires the invitation action to fit within the viewport and never calls scrollIntoView or changes scrollTop. Failure output includes the screen state, viewport, text size, scroll position and action rectangle. Both local engines passed all 24 dashboard cases with the revised check. A separate WebKit negative probe restored the original height:auto dashboard and verified that the revised check still rejects the inaccessible controls. Linux Firefox validation of the change is pending.
+
+Follow-up exact manifest: scripts/qa-partner-dashboard.mjs and this report. Application behavior and browser security settings are unchanged by this follow-up.

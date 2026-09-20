@@ -62,12 +62,22 @@ export async function checkPartnerDashboard(page, base) {
             // Use actual wheel input. Locator scrolling can move overflow:hidden
             // ancestors and would conceal the original inaccessible dashboard.
             await page.mouse.move(width/2, height/2);
-            await page.mouse.wheel(0, 50000);
-            await page.waitForFunction(() => {
-              const action=[...document.querySelectorAll("button")].find(el => el.textContent === "Replace learner link");
-              const rect=action?.getBoundingClientRect();
-              return rect && rect.top >= 0 && rect.bottom <= innerHeight+1;
-            }, null, { timeout: 5000 });
+            // Use several wheel events, as a user would, and allow the
+            // browser to settle asynchronous scrolling between them.
+            // Never use scrollIntoView or mutate scrollTop to make this pass.
+            let reached=false, scrollEvidence;
+            for (let attempt=0; attempt<24 && !reached; attempt++) {
+              await page.mouse.wheel(0, Math.max(1000, height*2));
+              await page.waitForTimeout(150);
+              scrollEvidence=await page.locator("main").evaluate(main => {
+                const action=[...main.querySelectorAll("button")].find(el => el.textContent === "Replace learner link");
+                const rect=action?.getBoundingClientRect();
+                return { top:rect?.top, bottom:rect?.bottom, viewport:innerHeight,
+                  scrollTop:main.scrollTop, height:main.clientHeight, scrollHeight:main.scrollHeight };
+              });
+              reached=scrollEvidence.top >= 0 && scrollEvidence.bottom <= height+1;
+            }
+            assert.ok(reached, `${state} ${width}x${height} ${textSize}: wheel scrolling must expose invitation actions: ${JSON.stringify(scrollEvidence)}`);
             const before = rotations;
             await page.getByRole("button", { name: "Replace learner link", exact: true }).click();
             assert.equal(rotations, before, "Opening confirmation must preserve the invitation");
