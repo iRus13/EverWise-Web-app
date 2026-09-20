@@ -3873,8 +3873,14 @@ function LearnerApp({ initialPartnerFragment }) {
   const finishExam = ({ tier, earnedPhaseBadge, phaseBadge }) => {
     if (!canRecordProgress() || !activeExam || !tier) return;
     const already = completedLessons.includes(activeExam.id);
-    const badges = [!already && tier.title, earnedPhaseBadge && phaseBadge]
-      .filter(badge => badge && !(profile.badges ?? []).includes(badge));
+    const ownedBadges = profile.badges ?? [];
+    // A retake can earn a higher tier even when this exam is already complete.
+    // Keep earned awards, but do not add a lower tier after a better result.
+    const improvedTier = !already || !(activeExam.results ?? []).some(result =>
+      ownedBadges.includes(result.title) && result.minScore >= tier.minScore
+    );
+    const badges = [improvedTier && tier.title, earnedPhaseBadge && phaseBadge]
+      .filter(badge => badge && !ownedBadges.includes(badge));
     if (!already || badges.length) {
       progressSync.record({
         completedLessons: already ? [] : [activeExam.id],

@@ -63,3 +63,26 @@ test.each(examsByOrder)("exam $id supports passing and failing without inflating
     cleanup();
   }
 });
+
+test.each(examsByOrder)("exam $id honors its stated passing-score boundary", (exam) => {
+  for (const score of [exam.passingScore - 1, exam.passingScore]) {
+    const onPass = vi.fn();
+    render(<ExamPlayer exam={exam} onBack={() => {}} onPass={onPass} />);
+    fireEvent.click(screen.getByRole("button", { name: "Start exam" }));
+    for (const [index, question] of exam.questions.entries()) {
+      const answer = index < score ? question.correctIndex : (question.correctIndex + 1) % question.options.length;
+      fireEvent.click(screen.getByRole("button", { name: question.options[answer] }));
+      fireEvent.click(screen.getByRole("button", { name: /^(Next|See results)$/ }));
+    }
+    expect(screen.getByText(`You scored ${score} of ${exam.totalQuestions}.`)).toBeVisible();
+    if (score < exam.passingScore) {
+      expect(screen.queryByRole("button", { name: "Back to your path" })).not.toBeInTheDocument();
+      expect(screen.getByRole("button", { name: /Retake exam|Try again/ })).toBeVisible();
+      expect(onPass).not.toHaveBeenCalled();
+    } else {
+      fireEvent.click(screen.getByRole("button", { name: "Back to your path" }));
+      expect(onPass).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({ score }));
+    }
+    cleanup();
+  }
+});

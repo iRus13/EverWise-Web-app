@@ -34,3 +34,5 @@ export async function readOwnProfile() {
 export const disconnectDatabase = () => disableNetwork(db);
 export const reconnectDatabase = () => enableNetwork(db);
 export const forgeSubscriptionMirror = () => withinDeadline(updateDoc(doc(db, "users", auth.currentUser.uid), { subscriptionStatus: "active", plan: "annual" }));
+// Prerequisite setup only; target challenge/exam completions go through real UI.
+export const seedOwnProgress = (completedLessons) => withinDeadline(updateDoc(doc(db, "users", auth.currentUser.uid), { completedLessons, badges: [] }));

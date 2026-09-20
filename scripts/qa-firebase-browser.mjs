@@ -6,7 +6,8 @@ import { mkdtemp } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { createServer } from "vite";
 import react from "@vitejs/plugin-react";
-import { assertEmulatorEnvironment, isCanceledFirestoreNavigationError, QA_PROJECT, QA_HOST, QA_PORTS } from "./firebase-qa-config.mjs";
+import { allLessons, challengesByOrder, examsByOrder } from "../src/data/lessons.js";
+import { assertEmulatorEnvironment, firestoreChannelKey, isCanceledFirestoreNavigationError, isUnloadingFirestoreRetry, QA_PROJECT, QA_HOST, QA_PORTS } from "./firebase-qa-config.mjs";
 
 export async function runBrowserScenarios() {
   assertEmulatorEnvironment(process.env);
@@ -71,6 +72,29 @@ export async function runBrowserScenarios() {
         }
         return route.continue();
       });
+      // Observe native fetch failures without replacing responses or retries.
+      // This attributes WebKit's blocked unload-time retries to the old page.
+      const documentRequestTrace = [];
+      await context.exposeBinding("__qaInitialChannelEvent", (_source, event) => documentRequestTrace.push(event));
+      await context.addInitScript(({ host, port }) => {
+        const documentId = crypto.randomUUID();
+        let hidden = false, leaving = false;
+        const emit = event => void window.__qaInitialChannelEvent({ documentId, hidden, leaving, ...event }).catch(() => {});
+        addEventListener("beforeunload", () => { leaving = true; emit({ event: "beforeunload" }); });
+        addEventListener("pagehide", () => { hidden = true; emit({ event: "pagehide" }); });
+        const originalFetch = window.fetch;
+        window.fetch = function (...args) {
+          const input = args[0];
+          const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+          const tracked = url.origin === `http://${host}:${port}` && /\/google\.firestore\.v1\.Firestore\/(Listen|Write)\/channel$/.test(url.pathname) && !url.searchParams.has("SID");
+          if (!tracked) return Reflect.apply(originalFetch, this, args);
+          emit({ event: "fetch", url: url.href });
+          return Reflect.apply(originalFetch, this, args).catch(error => {
+            emit({ event: "error", url: url.href, name: error.name, message: error.message });
+            throw error;
+          });
+        };
+      }, { host: QA_HOST, port: QA_PORTS.firestore });
       const page = await context.newPage();
       page.setDefaultTimeout(20_000);
       const network = [];
@@ -79,21 +103,28 @@ export async function runBrowserScenarios() {
         const url = new URL(response.url());
         if ([String(QA_PORTS.auth), String(QA_PORTS.firestore)].includes(url.port)) recordNetwork({ path: url.pathname, status: response.status() });
       });
-      const channels = new Set(), abandoned = new Set(), canceled = new Set();
-      const channelId = request => {
-        const url = new URL(request.url());
-        return url.origin === `http://${QA_HOST}:${QA_PORTS.firestore}` && /^\/google\.firestore\.v1\.Firestore\/(Listen|Write)\/channel$/.test(url.pathname) ? url.searchParams.get("SID") : null;
-      };
-      page.on("request", request => { const id = channelId(request); if (id) channels.add(id); });
+      const channels = new Set(), initializing = new Set(), abandoned = new Set(), canceled = new Set();
+      const channelId = request => firestoreChannelKey(request.url());
+      page.on("request", request => {
+        const id = channelId(request);
+        if (id) (id.startsWith("url:") ? initializing : channels).add(id);
+      });
+      page.on("requestfinished", request => {
+        const id = channelId(request);
+        initializing.delete(id);
+      });
       page.on("pageerror", error => errors.push(error.message));
       page.on("requestfailed", request => {
         const id = channelId(request);
+        initializing.delete(id);
         if (id && ["cancelled", "Load request cancelled"].includes(request.failure()?.errorText)) canceled.add(id);
         const url = new URL(request.url());
         if ([String(QA_PORTS.auth), String(QA_PORTS.firestore)].includes(url.port)) recordNetwork({ path: url.pathname, failure: request.failure()?.errorText });
       });
       async function reload() {
         channels.forEach(id => abandoned.add(id)); channels.clear();
+        // Only initial requests still in flight at reload can be abandoned.
+        initializing.forEach(id => abandoned.add(id)); initializing.clear();
         await page.reload();
       }
       const button = name => page.getByRole("button", { name, exact: true });
@@ -229,16 +260,94 @@ export async function runBrowserScenarios() {
         await page.getByRole("alert").waitFor();
         assert.equal(await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).auth.currentUser), null);
         console.log(`PASS: successful retry deletes the real profile and Auth login at ${width}px`);
+
+        // Isolate assessment progress from the account-deletion journey above.
+        // Prerequisites and paid access are synthetic; target completions,
+        // Firebase writes, reloads, earned badges and path unlocks are real.
+        await reload();
+        await signUp(`assessment_${width}`);
+        const exam=examsByOrder[0];
+        const challenge=challengesByOrder.find(item => item.phase===exam.phase);
+        const nextLesson=allLessons.find(item => item.phase===exam.phase+1);
+        const prerequisites=[
+          ...allLessons.filter(item => item.phase<=exam.phase),
+          ...challengesByOrder.filter(item => item.phase<exam.phase),
+          ...examsByOrder.filter(item => item.phase<exam.phase),
+        ].map(item => item.id);
+        await page.evaluate(async ids => (await import("/tests/fixtures/firebase-emulator.js")).seedOwnProgress(ids),prerequisites);
+        syntheticApis["/api/billing/access"]={...syntheticApis["/api/billing/access"],access:"full",status:"active",plan:"annual",canStartTrial:false,canManage:true,currentPeriodEndsAt:"2099-01-01T00:00:00.000Z"};
+        await reload(); await readyHome(); await button("Continue learning").click();
+        assert.equal(await button(`Start exam: ${exam.title}`).count(),0,"Exam stays locked before the challenge");
+        const nextLessonName=`Start lesson: ${nextLesson.pathTitle || nextLesson.title}`;
+        assert.equal(await button(nextLessonName).count(),0,"Next phase stays locked before the exam");
+        await button(`Start challenge: ${challenge.title}`).click();
+        if(width===390) await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).disconnectDatabase());
+        // The ungraded challenge allows skipping; all authored answer paths
+        // have separate full-browser coverage in qa-assessments.mjs.
+        for(const [index] of challenge.blocks.entries()) {
+          await page.waitForFunction(value => document.querySelector('[role="progressbar"]')?.getAttribute("aria-valuenow")===String(value),index+1);
+          await button("Skip this step").click();
+        }
+        await button("Back to your path").click();
+        await button(`Start exam: ${exam.title}`).waitFor();
+        if(width===390) assert.equal(await queueSize(),1,"Offline challenge completion is durable before reload");
+        async function savedAssessments(expectedIds,expectedBadges) {
+          await page.waitForFunction(() => !Object.keys(localStorage).some(key => key.startsWith("everwise.progress.pending.v1:")),undefined,{timeout:60_000});
+          const saved=await ownProfile();
+          assert.deepEqual([...saved.completedLessons].sort(),[...expectedIds].sort());
+          assert.deepEqual([...saved.badges].sort(),[...expectedBadges].sort());
+        }
+        await reload(); await readyHome();
+        await savedAssessments([...prerequisites,challenge.id],[]);
+        await button("Continue learning").click();
+        await button(`Start exam: ${exam.title}`).waitFor();
+        assert.equal(await button(nextLessonName).count(),0);
+        console.log(`PASS: real challenge completion, ${width===390 ? "offline queue, " : ""}server acknowledgement, reload and exam unlock at ${width}px`);
+
+        async function playExam(correctCount,redo=false) {
+          await button(`${redo ? "Redo" : "Start"} exam: ${exam.title}`).click();
+          await button("Start exam").click();
+          if(width===390 && !redo) await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).disconnectDatabase());
+          for(const [index,question] of exam.questions.entries()) {
+            await page.getByRole("heading",{name:question.question,exact:true}).waitFor();
+            await button(question.options[index<correctCount ? question.correctIndex : (question.correctIndex+1)%question.options.length]).click();
+            await button(index+1<exam.questions.length ? "Next" : "See results").click();
+          }
+          await page.getByText(`You scored ${correctCount} of ${exam.totalQuestions}.`,{exact:true}).waitFor();
+          const tier=[...exam.results].sort((a,b)=>b.minScore-a.minScore).find(item=>correctCount>=item.minScore);
+          await page.getByText(tier.title,{exact:true}).waitFor();
+          await button("Back to your path").click();
+          await button(nextLessonName).waitFor();
+          return tier.title;
+        }
+        const firstBadge=await playExam(exam.passingScore);
+        if(width===390) assert.equal(await queueSize(),1,"Offline exam completion is durable before reload");
+        await reload(); await readyHome();
+        const completedAssessments=[...prerequisites,challenge.id,exam.id];
+        await savedAssessments(completedAssessments,[firstBadge]);
+        await button("Continue learning").click(); await button(nextLessonName).waitFor();
+        console.log(`PASS: real exam completion, ${width===390 ? "offline queue, " : ""}badge persistence, reload and next-phase unlock at ${width}px`);
+        const improvedBadge=await playExam(exam.questions.length,true);
+        assert.notEqual(improvedBadge,firstBadge,"The retake must earn a better result");
+        await savedAssessments(completedAssessments,[firstBadge,improvedBadge]);
+        await reload(); await readyHome();
+        await savedAssessments(completedAssessments,[firstBadge,improvedBadge]);
+        console.log(`PASS: a better exam retake persists its new trophy without duplicating completion at ${width}px`);
         assert.deepEqual(unexpected, [], "No unrecognized API or external network requests");
-        const navigationDiagnostics = errors.filter(message => isCanceledFirestoreNavigationError(message, abandoned, canceled));
+        const canceledDiagnostics = errors.filter(message => isCanceledFirestoreNavigationError(message, abandoned, canceled));
+        const unloadDiagnostics = errors.filter(message => isUnloadingFirestoreRetry(message, documentRequestTrace));
+        const navigationDiagnostics = [...canceledDiagnostics, ...unloadDiagnostics];
         assert.deepEqual(errors.filter(message => !navigationDiagnostics.includes(message)), [], "No app errors or active-channel failures");
-        console.log(`INFO: ${navigationDiagnostics.length} WebKit diagnostics matched independently canceled Firestore channels from discarded pages`);
+        console.log(`INFO: ${canceledDiagnostics.length} WebKit diagnostics matched independently canceled Firestore channels from discarded pages`);
+        console.log(`INFO: ${unloadDiagnostics.length} initial-channel diagnostics matched exact fetch retries issued after beforeunload and before pagehide of the same document`);
         console.log(`PASS: ${blockedResources.length} optional external requests blocked at ${width}px; all account traffic stayed local`);
         completedWidths.push(width);
       } catch (error) {
         console.error(`Browser QA failed at ${width}px:`, (await page.locator("body").innerText()).slice(0, 3000));
         console.error("Local emulator response diagnostics:", JSON.stringify(network));
         console.error("Browser errors:", JSON.stringify(errors));
+        console.error("Initial channel document trace:", JSON.stringify(documentRequestTrace));
+        console.error("Initial channel cancellation evidence:", JSON.stringify([...canceled].filter(id => id.startsWith("url:")).map(id => ({id, abandoned: abandoned.has(id)}))));
         console.error("Unexpected destinations:", JSON.stringify(unexpected));
         throw error;
       } finally { await context.close(); }

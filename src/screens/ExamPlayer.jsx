@@ -19,9 +19,7 @@ export default function ExamPlayer({ exam, onBack, onPass, phaseColor }) {
   const tier = pickTier(exam.results, score);
   const passingScore = exam.passingScore ?? 0;
   const metPass = score >= passingScore;
-  // Exams with a minScore: 0 tier always have a result; otherwise require a tier.
-  const alwaysHasTier = (exam.results || []).some((r) => r.minScore === 0);
-  const canComplete = alwaysHasTier ? metPass : tier != null;
+  const canComplete = metPass && tier != null;
   const earnedPhaseBadge = metPass && Boolean(exam.phaseBadge);
 
   const restart = () => {

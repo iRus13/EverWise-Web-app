@@ -14,6 +14,7 @@ import { challengesByOrder, examsByOrder, lessonsByOrder } from "../src/data/les
 
 const mocks = vi.hoisted(() => ({
   authCallback: null,
+  examTier: null,
   initialAuthUser: null,
   native: false,
   createBillingCheckout: vi.fn(),
@@ -129,7 +130,7 @@ vi.mock("../src/screens/ChallengePlayer.jsx", () => ({
   default: ({ challenge, onComplete }) => <><h1>Challenge: {challenge.id}</h1><button onClick={onComplete}>Finish challenge</button></>,
 }));
 vi.mock("../src/screens/ExamPlayer.jsx", () => ({
-  default: ({ exam, onPass }) => <><h1>Exam: {exam.id}</h1><button onClick={() => onPass({tier:{title:"Safety Pro"},earnedPhaseBadge:true,phaseBadge:exam.phaseBadge})}>Finish exam</button></>,
+  default: ({ exam, onPass }) => <><h1>Exam: {exam.id}</h1><button onClick={() => onPass({tier:mocks.examTier ?? {title:"Safety Pro"},earnedPhaseBadge:true,phaseBadge:exam.phaseBadge})}>Finish exam</button></>,
 }));
 vi.mock("../src/screens/Paywall.jsx", () => ({
   default: ({ billingAccess, billingAvailable, billingPlans, billingStatus, onMaybeLater, onRetry, onRestore, onStartLearning, onStartTrial, platform }) => (
@@ -411,6 +412,7 @@ async function openProtected(kind = "lesson") {
 describe("browser billing bootstrap and provider selection", () => {
   beforeEach(() => {
     mocks.initialAuthUser = null;
+    mocks.examTier = null;
     mocks.native = false;
     for (const mock of Object.values(mocks)) {
       if (typeof mock?.mockReset === "function") mock.mockReset();
@@ -493,6 +495,34 @@ describe("browser billing bootstrap and provider selection", () => {
       badges:{operation:"arrayUnion",values:expect.arrayContaining(["Safety Pro",...item.phaseBadge ? [item.phaseBadge] : []])},
     }));
     expect(screen.getByRole("status")).toHaveTextContent("Saving your progress");
+  });
+
+  test.each(["better", "same", "lower"])("exam retakes save only a newly earned better tier: %s", async result => {
+    const exam = examsByOrder[0];
+    const tiers = [...exam.results].sort((a, b) => a.minScore - b.minScore);
+    const champion = tiers[0];
+    const master = tiers.at(-1);
+    const owned = result === "lower" ? master : champion;
+    const earned = result === "better" ? master : champion;
+    mocks.examTier = earned;
+    await openAuthenticatedApp({
+      access: ACTIVE,
+      uid: `retake-${result}`,
+      completedLessons: [exam.id],
+      profileOverrides: { badges: [owned.title] },
+    });
+    await openProtected("exam");
+    mocks.updateDoc.mockClear();
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Finish exam" })));
+    expect(screen.getByRole("heading", { name: "Course path" })).toBeVisible();
+    if (result === "better") {
+      expect(mocks.updateDoc).toHaveBeenCalledExactlyOnceWith(
+        expect.objectContaining({ uid: `retake-${result}` }),
+        { badges: { operation: "arrayUnion", values: [master.title] } },
+      );
+    } else {
+      expect(mocks.updateDoc).not.toHaveBeenCalled();
+    }
   });
 
   test("keeps an active native Apple entitlement authoritative when it resolves before a delayed inactive profile", async () => {

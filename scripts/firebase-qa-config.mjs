@@ -8,18 +8,53 @@ export function assertEmulatorEnvironment(env) {
   assert.equal(env.FIRESTORE_EMULATOR_HOST, `${QA_HOST}:${QA_PORTS.firestore}`, "Firestore must use the local emulator");
 }
 
-// WebKit can report canceled Firestore channels from the document being
-// discarded as page errors. Only recognize a channel observed before reload
-// AND independently reported canceled by the browser's network events.
-export function isCanceledFirestoreNavigationError(message, abandoned, canceled) {
-  if (!message.endsWith(" due to access control checks.")) return false;
+// Initial channel requests do not have a server-issued SID yet. Their entire
+// URL is required so another request cannot supply cancellation evidence.
+export function firestoreChannelKey(value) {
+  const url = new URL(value);
+  if (url.origin !== `http://${QA_HOST}:${QA_PORTS.firestore}` ||
+      !/^\/google\.firestore\.v1\.Firestore\/(Listen|Write)\/channel$/.test(url.pathname)) return null;
+  return url.searchParams.get("SID") || `url:${url.href}`;
+}
+
+function firestoreDiagnosticUrl(message) {
+  if (!message.endsWith(" due to access control checks.")) return null;
   const match = message.match(/(?:https?:\/)?\/127\.0\.0\.1:\d+\/google\.firestore\.v1\.Firestore\/(?:Listen|Write)\/channel\?[^\s]+/);
-  if (!match) return false;
+  if (!match) return null;
   try {
     const url = new URL(match[0].startsWith("/") ? `http:/${match[0]}` : match[0]);
-    const id = url.searchParams.get("SID");
-    return url.origin === `http://${QA_HOST}:${QA_PORTS.firestore}` && Boolean(id) && abandoned.has(id) && canceled.has(id);
-  } catch { return false; }
+    return firestoreChannelKey(url) ? url : null;
+  } catch { return null; }
+}
+
+// WebKit can report canceled Firestore channels from the document being
+// discarded as page errors. Require independent browser cancellation evidence.
+export function isCanceledFirestoreNavigationError(message, abandoned, canceled) {
+  const url = firestoreDiagnosticUrl(message);
+  const id = url && firestoreChannelKey(url);
+  return Boolean(id) && abandoned.has(id) && canceled.has(id);
+}
+
+// A Firestore retry issued after beforeunload may be rejected before WebKit
+// emits a network request event. Accept only the exact native fetch URL from
+// that departing document, followed by its pagehide. Active-page errors fail.
+export function isUnloadingFirestoreRetry(message, trace) {
+  const url = firestoreDiagnosticUrl(message);
+  if (!url || url.searchParams.has("SID") ||
+      url.searchParams.get("database") !== `projects/${QA_PROJECT}/databases/default`) return false;
+  return trace.some((failure, index) => {
+    if (failure.event !== "error" || failure.url !== url.href ||
+        failure.leaving !== true || failure.name !== "TypeError" ||
+        failure.message !== "Load failed" || !failure.documentId) return false;
+    const before = trace.slice(0, index).filter(event => event.documentId === failure.documentId);
+    const unload = before.findIndex(event => event.event === "beforeunload" && event.leaving === true);
+    return unload !== -1 && before.slice(unload + 1).some(event =>
+      event.event === "fetch" && event.url === url.href && event.leaving === true
+    ) && trace.slice(index + 1).some(event =>
+      event.documentId === failure.documentId && event.event === "pagehide" &&
+      event.hidden === true && event.leaving === true
+    );
+  });
 }
 
 export function firebaseQaExitCode({ code, timedOut, result }) {

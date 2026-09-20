@@ -121,7 +121,7 @@ export async function checkAssessments(page, base) {
         await page.getByRole("heading",{name:exam.title,exact:true}).waitFor();
         await click("Start exam");
         assert.ok(exam.passingScore > 1,"The failed route needs a nonzero score below the pass mark");
-        await answerExam(exam,pass ? exam.questions.length : 1);
+        await answerExam(exam,pass ? exam.questions.length : exam.passingScore - 1);
         assert.equal(await page.getByTestId("assessment-outcome").count(),0,"No premature completion callback");
         if (pass) {
           await click("Back to your path");
