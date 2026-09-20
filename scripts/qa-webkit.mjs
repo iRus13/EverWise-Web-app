@@ -6,6 +6,7 @@ import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
 import react from "@vitejs/plugin-react";
+import { checkPartnerDashboard } from "./qa-partner-dashboard.mjs";
 
 const require = createRequire(import.meta.url);
 const { webkit } = require(process.env.EVERWISE_PLAYWRIGHT_MODULE || "playwright");
@@ -140,6 +141,7 @@ try {
     assert.equal(await page.getByLabel("Password", {exact:true}).inputValue(), "");
     console.log(`PASS: keyboard login/recovery traversal, heading focus and password clearing at ${width}px`);
   }
+  await checkPartnerDashboard(page, base);
   assert.deepEqual(errors, [], "No browser page errors");
   await context.close();
   console.log("PASS: no uncaught browser errors; external requests blocked throughout");
