@@ -37,7 +37,7 @@ const screens = {
     onResetPassword={() => view === "settings-reset-error" ? new Promise((_, reject) => setTimeout(() => reject({code:"auth/network-request-failed"}), Number(query.get("resetDelay")) || 0)) : new Promise(() => {})}/>,
   badges: <Badges onBack={noop}/>,
   path: <LessonPath textSize={textSize} onBack={noop} onSelectLesson={noop} onSelectExam={noop} onSelectChallenge={noop}/>,
-  lesson: <LessonPlayer lesson={lesson} onBack={noop} onComplete={noop}/>,
+  lesson: <LessonPlayer lesson={lesson} onBack={noop} onExit={noop} onComplete={noop}/>,
   complete: <Complete lesson={lesson} onDone={noop}/>,
   "scam-checker": <ScamChecker onBack={noop}/>,
   "billing-error": <BillingAccessError onRetry={noop} onBack={noop}/>,

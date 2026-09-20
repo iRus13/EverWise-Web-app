@@ -1395,7 +1395,7 @@ html:is(
 
 /*
  * At large text sizes, lesson navigation becomes two clear rows. The title
- * keeps the back button beside it, while Skip gets the full available width.
+ * keeps the back button beside it, while Skip and Exit share a full-width row.
  */
 html:is(
     [data-text-size="size-6"],
@@ -1442,10 +1442,24 @@ html:is(
     [data-text-size="size-9"],
     [data-text-size="size-10"]
   )
-  .lesson-skip {
+  .lesson-top-actions {
   grid-column: 1 / -1;
   width: 100%;
   justify-self: stretch;
+  gap: 0.5rem;
+}
+
+html:is(
+    [data-text-size="size-6"],
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .lesson-top-actions > button {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
   border: 2px solid rgb(34 32 28 / 15%);
   background: rgb(255 253 248 / 80%);
   padding: 0.65rem 1rem;
@@ -1458,8 +1472,37 @@ html:is(
     [data-text-size="size-9"],
     [data-text-size="size-10"]
   )
-  .lesson-skip-spacer {
+  .lesson-top-actions:has(.lesson-skip-spacer) {
   display: none;
+}
+
+/* Let large-text lessons flow on short screens; fixed navigation and actions
+   would otherwise leave only a line or two for the activity itself. */
+@media (max-width: 767px) and (max-height: 700px) {
+  html:is(
+      [data-text-size="size-6"],
+      [data-text-size="size-7"],
+      [data-text-size="size-8"],
+      [data-text-size="size-9"],
+      [data-text-size="size-10"]
+    ) .learning-focus-shell {
+    overflow-y: auto;
+  }
+
+  html:is(
+      [data-text-size="size-6"],
+      [data-text-size="size-7"],
+      [data-text-size="size-8"],
+      [data-text-size="size-9"],
+      [data-text-size="size-10"]
+    ) .learning-focus-shell .lesson-content {
+    flex: none;
+    overflow: visible;
+  }
+}
+
+.builder-columns {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
 }
 
 html:is(

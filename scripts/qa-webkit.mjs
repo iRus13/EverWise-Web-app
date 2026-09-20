@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
 import react from "@vitejs/plugin-react";
 import { checkPartnerDashboard } from "./qa-partner-dashboard.mjs";
+import { checkLearningActivities } from "./qa-learning-layout.mjs";
 
 const require = createRequire(import.meta.url);
 const browserName = process.env.EVERWISE_QA_BROWSER || "webkit";
@@ -146,6 +147,7 @@ try {
     console.log(`PASS: keyboard login/recovery traversal, heading focus and password clearing at ${width}px`);
   }
   await checkPartnerDashboard(page, base);
+  await checkLearningActivities(page, base);
   assert.deepEqual(errors, [], "No browser page errors");
   await context.close();
   console.log("PASS: no uncaught browser errors; external requests blocked throughout");
