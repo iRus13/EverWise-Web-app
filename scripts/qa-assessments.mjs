@@ -10,6 +10,12 @@ export async function clickReachable(locator, context) {
     // Let the screen's feedback-scroll effect settle before measuring a new
     // target (especially the header immediately after answering a question).
     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    // Entrance transforms keep changing the target position after scrolling.
+    // Measure the settled layout without disabling animations or relaxing the
+    // clipping gate. Infinite decorative animations must not block the check.
+    await Promise.all(document.getAnimations()
+      .filter(animation => Number.isFinite(animation.effect.getComputedTiming().endTime))
+      .map(animation => animation.finished.catch(() => {})));
     const failures = [];
     for (const edge of ["top", "bottom"]) {
       for (let parent = element.parentElement; parent; parent = parent.parentElement) {

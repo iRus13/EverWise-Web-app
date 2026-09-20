@@ -7,6 +7,7 @@ import {join} from "node:path";
 import {createServer} from "vite";
 import react from "@vitejs/plugin-react";
 import {checkLessonJourneys,checkQuizRecovery} from "./qa-lesson-journeys.mjs";
+import {checkReachability} from "./qa-reachability.mjs";
 
 const browserName=process.env.EVERWISE_QA_BROWSER || "webkit";
 assert.ok(["webkit","firefox","chromium"].includes(browserName));
@@ -31,7 +32,10 @@ try {
   await context.route("**/*",route => new URL(route.request().url()).origin === base ? route.continue() : route.abort());
   page=await context.newPage();
   page.on("pageerror",error => errors.push(error.message));
-  if(shard === 0) await checkQuizRecovery(page,base);
+  if(shard === 0) {
+    await checkReachability(page);
+    await checkQuizRecovery(page,base);
+  }
   await checkLessonJourneys(page,base,{shard,shards,ids});
   assert.deepEqual(errors,[],"No uncaught lesson errors");
   console.log(`PASS: ${browserName} lesson shard ${shard+1}/${shards} complete; external requests blocked; no uncaught errors`);
