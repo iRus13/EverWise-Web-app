@@ -165,3 +165,30 @@ test("real screens complete free learning, save progress, open settings/paywall 
   await act(async () => fireEvent.click(screen.getByRole("button", {name: /Log out/i})));
   expect(screen.getByRole("button", {name:"Get Started"})).toBeVisible();
 });
+
+test("settings recovery uses the signed-in email and ignores results after account switch", async () => {
+  prepareProgressTest();
+  let resolve;
+  sendPasswordResetEmail.mockReset().mockImplementation(() => new Promise(done => {resolve=done;}));
+  await renderLearner("reset-owner");
+  fireEvent.click(within(screen.getByRole("navigation", {name:"Primary navigation"})).getByRole("button", {name:"Settings"}));
+  await act(async () => fireEvent.click(screen.getByRole("button", {name:"Reset password"})));
+  expect(sendPasswordResetEmail).toHaveBeenCalledExactlyOnceWith({}, "reset-owner@example.com");
+  await act(async () => state.authCallback(testUser("other-owner")));
+  fireEvent.click(within(screen.getByRole("navigation", {name:"Primary navigation"})).getByRole("button", {name:"Settings"}));
+  await act(async () => resolve());
+  expect(screen.queryByText(/If an account uses your email address/)).not.toBeInTheDocument();
+  expect(screen.getByRole("button", {name:"Reset password"})).toBeEnabled();
+});
+
+test("settings never offers reset emails to the reserved username alias", async () => {
+  prepareProgressTest();
+  sendPasswordResetEmail.mockReset();
+  const view=render(<App />);
+  await screen.findByRole("button", {name:"Get Started"});
+  await act(async () => state.authCallback({...testUser("username-owner"), email:"jane@accounts.everwise.app"}));
+  fireEvent.click(within(screen.getByRole("navigation", {name:"Primary navigation"})).getByRole("button", {name:"Settings"}));
+  expect(screen.queryByRole("button", {name:"Reset password"})).not.toBeInTheDocument();
+  expect(sendPasswordResetEmail).not.toHaveBeenCalled();
+  view.unmount();
+});

@@ -77,7 +77,7 @@ import LessonPath from "./screens/LessonPath";
 import LearningContent from "./components/LearningContent.jsx";
 import ProgressSaveNotice from "./components/ProgressSaveNotice.jsx";
 import useProgressSync from "./hooks/useProgressSync.js";
-import { requestEmailPasswordReset } from "./utils/passwordRecovery.js";
+import { canReceivePasswordReset, requestEmailPasswordReset } from "./utils/passwordRecovery.js";
 import Complete from "./screens/Complete";
 import ScamChecker from "./screens/ScamChecker";
 import PartnerAccessError from "./screens/PartnerAccessError";
@@ -3413,8 +3413,10 @@ function LearnerApp({ initialPartnerFragment }) {
   };
 
   const resetPassword = async () => {
-    if (!user?.email) throw new Error("No email address is available.");
-    await sendPasswordResetEmail(auth, user.email);
+    if (!user?.uid || currentAuthUidRef.current !== user.uid || !authSettledRef.current) {
+      throw new Error("The account changed. Open settings again to retry.");
+    }
+    await requestEmailPasswordReset(user.email, email => sendPasswordResetEmail(auth, email));
   };
 
   const finishDeletedAccountLocally = () => {
@@ -4137,6 +4139,7 @@ function LearnerApp({ initialPartnerFragment }) {
     case "settings":
       content = (
         <Settings
+          key={user?.uid}
           billing={settingsBilling}
           onBack={accountDeletionBusy ? undefined : goHome}
           onLogOut={logOut}
@@ -4146,7 +4149,7 @@ function LearnerApp({ initialPartnerFragment }) {
             setBillingRecovery(null);
             setBillingRefreshAttempt((attempt) => attempt + 1);
           }}
-          onResetPassword={profile?.email ? resetPassword : undefined}
+          onResetPassword={canReceivePasswordReset(user?.email) ? resetPassword : undefined}
           onDeleteAccount={deleteAccount}
           textSize={textSize}
           onTextSizeChange={setTextSize}

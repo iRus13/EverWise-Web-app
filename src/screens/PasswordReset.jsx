@@ -1,53 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import BackButton from "../components/BackButton.jsx";
 import Field from "../components/Field.jsx";
-import { authErrorMessage } from "../utils/authErrors.js";
 import { canReceivePasswordReset } from "../utils/passwordRecovery.js";
+import usePasswordResetRequest from "../hooks/usePasswordResetRequest.js";
 
 export default function PasswordReset({ initialEmail = "", onResetPassword, onBack }) {
   const [email, setEmail] = useState(canReceivePasswordReset(initialEmail) ? initialEmail.trim() : "");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const [sent, setSent] = useState(false);
+  const reset = usePasswordResetRequest(onResetPassword);
+  const { busy, sent } = reset;
+  const [validationError, setValidationError] = useState("");
+  const error = validationError || reset.error;
   const [invalid, setInvalid] = useState(false);
-  const request = useRef(0);
-  const busyRef = useRef(false);
   const heading = useRef(null);
   useEffect(() => {
     heading.current?.focus();
-    return () => { request.current += 1; };
   }, []);
 
   const submit = async event => {
     event.preventDefault();
-    if (busyRef.current) return;
+    if (busy) return;
     if (!canReceivePasswordReset(email)) {
       setInvalid(true);
-      setError("Enter the email address you used to create your account.");
+      setValidationError("Enter the email address you used to create your account.");
       return;
     }
-    busyRef.current = true;
-    setBusy(true); setError(""); setInvalid(false);
-    const generation = ++request.current;
-    let timer;
-    try {
-      await Promise.race([
-        onResetPassword(email),
-        new Promise((_, reject) => {
-          timer = window.setTimeout(() => reject({code:"recovery/timeout"}), 20_000);
-        }),
-      ]);
-      if (generation === request.current) setSent(true);
-    } catch (failure) {
-      if (generation === request.current) {
-        setError(failure?.code === "recovery/timeout"
-          ? "We haven’t received a response yet. A reset email may still arrive. Check your inbox before trying again."
-          : authErrorMessage(failure));
-      }
-    } finally {
-      window.clearTimeout(timer);
-      if (generation === request.current) { busyRef.current = false; setBusy(false); }
-    }
+    setValidationError(""); setInvalid(false);
+    await reset.run(email);
   };
 
   return (
@@ -63,7 +41,7 @@ export default function PasswordReset({ initialEmail = "", onResetPassword, onBa
         <form className="mt-8 flex flex-1 flex-col gap-6" onSubmit={submit} noValidate>
           <p className="text-xl text-ink-soft">Enter the email you used to sign up.</p>
           <Field id="reset-email" label="Email address" type="email" inputMode="email" autoComplete="email"
-            value={email} onChange={value => { setEmail(value); setError(""); setInvalid(false); }} disabled={busy}
+            value={email} onChange={value => { setEmail(value); setValidationError(""); reset.clear(); setInvalid(false); }} disabled={busy}
             ariaInvalid={invalid} describedBy={error ? "reset-help reset-error" : "reset-help"} />
           <p id="reset-help" className="text-lg text-ink-soft">Email reset is available for accounts created with an email address. If your organization gave you a username, ask them for password help. Username-only accounts cannot receive reset emails.</p>
           {error && <p id="reset-error" role="alert" className="rounded-2xl bg-alert/12 px-5 py-4 text-lg font-semibold text-alert">{error}</p>}

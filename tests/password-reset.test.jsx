@@ -39,7 +39,7 @@ test("failed network requests recover and duplicate submissions are suppressed",
   const send = vi.fn().mockImplementationOnce(() => new Promise((_, reject) => {fail = reject;})).mockResolvedValue();
   render(<PasswordReset initialEmail="learner@example.com" onResetPassword={send} />);
   const button = screen.getByRole("button", {name:"Send reset link"});
-  fireEvent.click(button); fireEvent.click(button);
+  await act(async () => { fireEvent.click(button); fireEvent.click(button); });
   expect(send).toHaveBeenCalledOnce();
   expect(screen.getByLabelText("Email address")).toBeDisabled();
   await act(async () => fail({code:"auth/network-request-failed"}));
@@ -66,7 +66,7 @@ test("leaving a pending reset returns to login and ignores its eventual response
   render(<LogIn onResetPassword={() => new Promise(done => {resolve = done;})} />);
   fireEvent.click(screen.getByRole("button", {name:"Forgot password?"}));
   fireEvent.change(screen.getByLabelText("Email address"), {target:{value:"learner@example.com"}});
-  fireEvent.click(screen.getByRole("button", {name:"Send reset link"}));
+  await act(async () => fireEvent.click(screen.getByRole("button", {name:"Send reset link"})));
   fireEvent.click(screen.getByRole("button", {name:"Back"}));
   await act(async () => resolve());
   expect(screen.getByRole("button", {name:"Forgot password?"})).toBeVisible();

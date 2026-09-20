@@ -29,7 +29,8 @@ const screens = {
   interview: <ProfileInterview onComplete={noop} onBack={noop} onLogIn={noop}/>,
   signup: <ProfileInterview initialInterview={{name:"Jane", age:70}} onComplete={noop} onBack={noop} onLogIn={noop}/>,
   home: <Home name="Jane" textSize={textSize} onTextSizeChange={noop} onStart={noop} onOpenBadges={noop} onOpenSettings={noop} onOpenScamChecker={noop}/>,
-  settings: <Settings subscriptionStatus="expired" textSize={textSize} onTextSizeChange={noop} onBack={noop} onLogOut={noop} onOpenPaywall={noop} onDeleteAccount={noop}/>,
+  settings: <Settings subscriptionStatus="expired" textSize={textSize} onTextSizeChange={noop} onBack={noop} onLogOut={noop} onOpenPaywall={noop} onDeleteAccount={noop}
+    onResetPassword={() => view === "settings-reset-error" ? Promise.reject({code:"auth/network-request-failed"}) : new Promise(() => {})}/>,
   badges: <Badges onBack={noop}/>,
   path: <LessonPath textSize={textSize} onBack={noop} onSelectLesson={noop} onSelectExam={noop} onSelectChallenge={noop}/>,
   lesson: <LessonPlayer lesson={lesson} onBack={noop} onComplete={noop}/>,
@@ -37,10 +38,13 @@ const screens = {
   "scam-checker": <ScamChecker onBack={noop}/>,
 };
 function MeasuredScreen() {
-  useEffect(() => { void measure(); }, []);
-  const screen = view.replace(/-pending$/, "");
+  useEffect(() => {
+    if (view.startsWith("settings-reset-")) document.querySelector('[aria-label="Reset password"]').click();
+    void measure();
+  }, []);
+  const screen = view.startsWith("settings-reset-") ? "settings" : view.replace(/-pending$/, "");
   return <AppShell screen={screen} isAuthenticated={!["landing","login","password-reset","interview","signup"].includes(screen)} textSize={textSize} onTextSizeChange={noop} onHome={noop} onCourse={noop} onScamChecker={noop} onBadges={noop} onSettings={noop}>
-    {view.endsWith("-pending") && <ProgressSaveNotice status={{pending:true,saving:false,durable:screen==="home"}} onRetry={noop}/>}
+    {["home-pending", "complete-pending"].includes(view) && <ProgressSaveNotice status={{pending:true,saving:false,durable:screen==="home"}} onRetry={noop}/>}
     {screens[screen]}
   </AppShell>;
 }
@@ -62,6 +66,17 @@ async function measure() {
     noticeReachable=button.bottom <= notice.getBoundingClientRect().bottom + 1 && button.bottom <= innerHeight + 1;
     contentHeight=document.querySelector(".home-screen, .complete-screen").getBoundingClientRect().height;
   }
-  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight}));
+  let recoveryReadable=true;
+  if(view.startsWith("settings-reset-")) {
+    const message=document.querySelector(view.endsWith("error") ? '[role="alert"]' : '[role="status"]');
+    if(!message) recoveryReadable=false;
+    else {
+      message.scrollIntoView({block:"end"});
+      const rect=message.getBoundingClientRect();
+      recoveryReadable=rect.left >= -1 && rect.right <= viewport + 1 && rect.bottom <= innerHeight + 1;
+    }
+    recoveryReadable &&= !document.querySelector('[aria-label="Log out"]').disabled;
+  }
+  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight,recoveryReadable}));
   document.body.dataset.geometryReady = "true";
 }

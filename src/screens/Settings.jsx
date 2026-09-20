@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowLeftIcon } from "../components/Icons";
 import { openLegalPage } from "../config/legalLinks";
 import TextSizeControl from "../components/TextSizeControl";
+import usePasswordResetRequest from "../hooks/usePasswordResetRequest.js";
 
 const SUPPORT_EMAIL = "everwisedigitalliteracy@gmail.com";
 
@@ -392,8 +393,8 @@ export default function Settings({
   textSize,
   onTextSizeChange,
 }) {
-  const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
+  const reset = usePasswordResetRequest(onResetPassword);
   const [busy, setBusy] = useState(false);
   const [billingActionBusy, setBillingActionBusy] = useState(false);
   const [billingActionError, setBillingActionError] = useState("");
@@ -421,24 +422,10 @@ export default function Settings({
     }
   };
 
-  const resetPassword = async () => {
-    setBusy(true);
-    setError("");
-    setNotice("");
-    try {
-      await onResetPassword();
-      setNotice("Password reset email sent.");
-    } catch {
-      setError("We could not send the reset email. Please try again.");
-    } finally {
-      setBusy(false);
-    }
-  };
-
   const handleDeleteAccount = async () => {
     setBusy(true);
     setError("");
-    setNotice("");
+    reset.clear();
     const password = currentPassword;
     setCurrentPassword("");
     try {
@@ -611,11 +598,17 @@ export default function Settings({
         </p>
         <Row label="Log out" onClick={onLogOut} disabled={busy} />
         {typeof onResetPassword === "function" ? (
-          <Row
-            label="Reset password"
-            hint="Send a secure reset link to your email"
-            onClick={busy ? undefined : resetPassword}
-          />
+          <div>
+            <Row
+              label="Reset password"
+              hint={reset.busy ? "Requesting reset…" : "Send a secure reset link to your email"}
+              onClick={() => { setError(""); void reset.run(); }}
+              disabled={busy || reset.busy}
+            />
+            {reset.busy && <p className="mt-3 text-lg text-ink-soft" role="status">Requesting a reset email… You can leave this screen while it sends.</p>}
+            {reset.sent && <p className="mt-3 text-lg text-sage-dark" role="status">If an account uses your email address, you’ll receive a reset link. Check your inbox and spam folder.</p>}
+            {reset.error && <p className="mt-3 text-lg font-semibold text-alert" role="alert">{reset.error}</p>}
+          </div>
         ) : null}
         <Row
           label="Contact support"
@@ -629,14 +622,11 @@ export default function Settings({
           <Row
             label="Delete account"
             hint="Permanently remove your account and saved progress"
-            onClick={
-              busy
-                ? undefined
-                : () => {
-                    setError("");
-                    setConfirmingDelete(true);
-                  }
-            }
+            onClick={() => {
+              setError("");
+              setConfirmingDelete(true);
+            }}
+            disabled={busy || reset.busy}
           />
         ) : (
           <div className="rounded-2xl border-2 border-alert/40 bg-alert/10 px-5 py-5">
@@ -683,7 +673,7 @@ export default function Settings({
                 type="button"
                 className="flex-1 rounded-2xl bg-alert px-6 py-5 text-center text-lg font-bold text-cream-card shadow-btn transition-all active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:opacity-60"
                 onClick={handleDeleteAccount}
-                disabled={busy || !currentPassword}
+                disabled={busy || reset.busy || !currentPassword}
               >
                 {busy ? "Deleting…" : "Yes, delete"}
               </button>
@@ -707,11 +697,6 @@ export default function Settings({
         </section>
       </div>
 
-      {notice ? (
-        <p className="mt-6 rounded-2xl bg-sage/10 px-5 py-4 text-lg font-semibold text-sage-dark" role="status">
-          {notice}
-        </p>
-      ) : null}
       {error ? (
         <p className="mt-6 rounded-2xl bg-alert/10 px-5 py-4 text-lg font-semibold text-alert" role="alert">
           {error}

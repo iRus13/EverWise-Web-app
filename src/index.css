@@ -82,6 +82,13 @@
     border-radius: 6px;
   }
 
+  /* Headings/landmarks receive focus for page announcements, not interaction.
+     Keep the strong keyboard ring on buttons, links and form controls. */
+  .app-canvas:focus,
+  .app-canvas h1[tabindex="-1"]:focus {
+    outline: none;
+  }
+
   h1,
   h2,
   h3 {

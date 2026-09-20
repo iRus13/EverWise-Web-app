@@ -41,13 +41,14 @@ try {
     combinations++;
     return result;
   }
-  for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "home-pending", "settings", "badges", "path", "lesson", "complete", "complete-pending", "scam-checker"]) {
-    for (const [width, height] of [[320,568], [768,1024], [1440,900], ...view.endsWith("-pending") ? [[667,375]] : []]) {
+  for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "home-pending", "settings", "settings-reset-pending", "settings-reset-error", "badges", "path", "lesson", "complete", "complete-pending", "scam-checker"]) {
+    for (const [width, height] of [[320,568], [768,1024], [1440,900], ...((view.endsWith("-pending") || view.startsWith("settings-reset-")) ? [[667,375]] : [])]) {
       for (const size of ["size-2", "size-10"]) {
         const g = await geometry(`/tests/fixtures/app-layout.html?view=${view}&textSize=${size}`, width, height);
         assert.deepEqual(g.outside, [], `${view} controls at ${width} ${size}`);
         assert.deepEqual(g.brokenImages, [], `${view} images`);
         assert.ok(g.headings, `${view} heading`);
+        assert.ok(g.recoveryReadable, `${view} reset status and logout must remain usable`);
         assert.ok(g.noticeReachable && (g.contentHeight === null || g.contentHeight >= 80), `${view} save notice must remain reachable without hiding the screen`);
       }
     }
@@ -68,6 +69,9 @@ try {
   console.log(`PASS: ${combinations} WebKit responsive screen combinations`);
 
   // Exercise the real App's public navigation, not isolated screen callbacks.
+  // macOS WebKit's default Tab visits fields; Option-Tab includes buttons too.
+  const nextControl = process.platform === "darwin" ? "Alt+Tab" : "Tab";
+  const previousControl = process.platform === "darwin" ? "Alt+Shift+Tab" : "Shift+Tab";
   for (const [width, height] of [[390,844], [1440,900]]) {
     await page.setViewportSize({ width, height });
     await page.goto(base);
@@ -106,6 +110,30 @@ try {
     await page.getByRole("button", {name:"Back to welcome", exact:true}).click();
     await page.getByRole("button", {name:"Get Started", exact:true}).waitFor();
     console.log(`PASS: real App onboarding, login detour, validation and answer recovery at ${width}px`);
+
+    // Check actual keyboard traversal and focus recovery with real DOM content.
+    await page.getByRole("button", {name:"Log In", exact:true}).focus();
+    await page.keyboard.press("Enter");
+    await page.waitForFunction(() => document.activeElement?.tagName === "H1" && document.activeElement.textContent.includes("back"));
+    await page.keyboard.press(nextControl);
+    assert.equal(await page.getByLabel("Username or email").evaluate(el => el === document.activeElement), true);
+    await page.keyboard.type("learner@example.com");
+    await page.keyboard.press(nextControl);
+    assert.equal(await page.getByLabel("Password", {exact:true}).evaluate(el => el === document.activeElement), true);
+    await page.keyboard.type("synthetic-not-submitted");
+    await page.keyboard.press(nextControl);
+    assert.equal(await page.getByRole("button", {name:"Forgot password?"}).evaluate(el => el === document.activeElement), true);
+    assert.notEqual(await page.getByRole("button", {name:"Forgot password?"}).evaluate(el => getComputedStyle(el).outlineStyle), "none", "Interactive keyboard focus stays visible");
+    await page.keyboard.press("Enter");
+    await page.waitForFunction(() => document.activeElement?.tagName === "H1" && document.activeElement.textContent.includes("Reset"));
+    await page.keyboard.press(nextControl);
+    assert.equal(await page.getByLabel("Email address").evaluate(el => el === document.activeElement), true);
+    await page.keyboard.press(previousControl);
+    assert.equal(await page.getByRole("button", {name:"Back", exact:true}).evaluate(el => el === document.activeElement), true);
+    await page.keyboard.press("Enter");
+    await page.waitForFunction(() => document.activeElement?.tagName === "H1" && document.activeElement.textContent.includes("back"));
+    assert.equal(await page.getByLabel("Password", {exact:true}).inputValue(), "");
+    console.log(`PASS: keyboard login/recovery traversal, heading focus and password clearing at ${width}px`);
   }
   assert.deepEqual(errors, [], "No browser page errors");
   await context.close();
