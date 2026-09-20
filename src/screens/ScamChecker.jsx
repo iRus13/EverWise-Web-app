@@ -6,6 +6,7 @@ import { apiEndpoint } from "../utils/apiEndpoint";
 
 const CHECK_MESSAGE_ENDPOINT = apiEndpoint("/api/check-message");
 const MAX_MESSAGE_LENGTH = 6000;
+const RESULT_SAFETY_REMINDER = "Never use a link, phone number, or contact detail from a suspicious message. Find the organization’s official website, app, card, or statement yourself.";
 
 const verdictDetails = {
   likely_scam: {
@@ -73,13 +74,15 @@ export default function ScamChecker({ onBack }) {
 
   const readAloudText = useMemo(() => {
     if (!result || !details) return "";
+    const urgentAction = result.urgent_action ? `Act now: ${result.urgent_action}` : "";
     const warningSigns = result.warning_signs?.length
       ? `Warning signs: ${result.warning_signs.join(". ")}.`
       : "";
     const nextSteps = result.next_steps?.length
       ? `What to do next: ${result.next_steps.join(". ")}.`
       : "";
-    return `${details.title}. ${result.summary}. ${warningSigns} ${nextSteps}`;
+    return [`${details.title}.`, result.summary, urgentAction, warningSigns, nextSteps, RESULT_SAFETY_REMINDER]
+      .filter(Boolean).join(" ");
   }, [details, result]);
 
   const checkMessage = async (event) => {
@@ -241,9 +244,7 @@ export default function ScamChecker({ onBack }) {
           </div>
 
           <p className="mt-5 rounded-2xl bg-cream-deep px-5 py-4 text-base leading-snug text-ink-soft">
-            Never use a link, phone number, or contact detail from a suspicious
-            message. Find the organization’s official website, app, card, or
-            statement yourself.
+            {RESULT_SAFETY_REMINDER}
           </p>
 
           <button type="button" className="btn-secondary mt-5" onClick={startOver}>
