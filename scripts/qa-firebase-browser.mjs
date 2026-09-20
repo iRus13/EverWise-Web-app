@@ -87,6 +87,7 @@ export async function runBrowserScenarios() {
         await page.reload();
       }
       const button = name => page.getByRole("button", { name, exact: true });
+      const readyHome = () => button("Continue learning").waitFor({ timeout: 60_000 });
       const ownProfile = () => page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).readOwnProfile());
       const queueSize = () => page.evaluate(() => Object.keys(localStorage).filter(key => key.startsWith("everwise.progress.pending.v1:")).length);
       async function savedWelcome() {
@@ -123,7 +124,7 @@ export async function runBrowserScenarios() {
         await button("See my plan options").click({ timeout: 60_000 });
         await page.getByRole("button", { name: /^Start \d+-day free trial$/ }).waitFor();
         await button("Continue with free lessons").click();
-        await button("Continue learning").waitFor();
+        await readyHome();
       }
       async function logout() {
         if (await button("Back to home").isVisible()) await button("Back to home").click();
@@ -146,7 +147,7 @@ export async function runBrowserScenarios() {
         if (width === 390) assert.equal(await queueSize(), 1, "Offline completion is journaled before reload");
         else await savedWelcome();
         await reload();
-        await button("Continue learning").waitFor();
+        await readyHome();
         await savedWelcome();
         assert.equal(await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).auth.currentUser.uid), firstUid);
         console.log(`PASS: ${width === 390 ? "offline completion survives reload and reconnects" : "saved completion and sign-in survive reload"} at ${width}px`);
@@ -160,7 +161,7 @@ export async function runBrowserScenarios() {
         await page.getByLabel("Username or email").fill(username);
         await page.getByLabel("Password", { exact: true }).fill("synthetic-browser-password-42");
         await button("Log In").click();
-        await button("Continue learning").waitFor();
+        await readyHome();
         assert.deepEqual((await ownProfile()).completedLessons, ["welcome"]);
         assert.deepEqual((await ownProfile()).badges, ["Welcome Aboard"]);
         assert.equal(await queueSize(), 0);
@@ -168,6 +169,7 @@ export async function runBrowserScenarios() {
         await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).forgeSubscriptionMirror());
         assert.equal((await ownProfile()).subscriptionStatus, "active");
         await reload();
+        await readyHome();
         await button("Continue learning").click();
         await page.getByRole("button", { name: /^Start lesson:/ }).first().click();
         await page.getByRole("button", { name: /^Start \d+-day free trial$/ }).waitFor();

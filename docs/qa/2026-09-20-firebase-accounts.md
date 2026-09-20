@@ -79,8 +79,12 @@ response statuses on failure. The second run completed signup, but the progress
 acknowledgement after reload outlasted the old 20-second test wait; the app
 correctly retained its durable journal and showed the pending-sync notice.
 Acknowledgement also receives a 60-second bound, followed by a mandatory server
-read. This changes no application behavior or saved-data assertions; the overall
-emulator run still has a ten-minute limit. Final CI status is in PR #3.
+read. The third run confirmed offline recovery and reached username login, where
+the same cold profile-read delay exceeded the Home transition's old bound.
+Account-loading transitions consistently use 60 seconds as well; ordinary UI
+actions retain 20 seconds. This changes no application behavior or saved-data
+assertions; the overall emulator run still has a ten-minute limit. Final CI
+status is in PR #3.
 
 These are local emulator and simulator results. They do not prove deployed
 Firestore rules, production persistence, real payment/provider behavior,
