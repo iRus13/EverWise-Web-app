@@ -48,6 +48,7 @@ vi.mock("firebase/auth", () => ({
 }));
 
 vi.mock("firebase/firestore", () => ({
+  arrayUnion: vi.fn((...values) => ({operation:"arrayUnion", values})),
   deleteDoc: vi.fn(),
   doc: vi.fn((_db, collection, uid) => ({ collection, uid })),
   getDoc: mocks.getDoc,
@@ -125,10 +126,10 @@ vi.mock("../src/screens/LessonPlayer.jsx", () => ({
   default: ({ lesson }) => <h1>Lesson: {lesson.id}</h1>,
 }));
 vi.mock("../src/screens/ChallengePlayer.jsx", () => ({
-  default: ({ challenge }) => <h1>Challenge: {challenge.id}</h1>,
+  default: ({ challenge, onComplete }) => <><h1>Challenge: {challenge.id}</h1><button onClick={onComplete}>Finish challenge</button></>,
 }));
 vi.mock("../src/screens/ExamPlayer.jsx", () => ({
-  default: ({ exam }) => <h1>Exam: {exam.id}</h1>,
+  default: ({ exam, onPass }) => <><h1>Exam: {exam.id}</h1><button onClick={() => onPass({tier:{title:"Safety Pro"},earnedPhaseBadge:true,phaseBadge:exam.phaseBadge})}>Finish exam</button></>,
 }));
 vi.mock("../src/screens/Paywall.jsx", () => ({
   default: ({ billingAccess, billingAvailable, billingPlans, billingStatus, onMaybeLater, onRetry, onRestore, onStartLearning, onStartTrial, platform }) => (
@@ -476,6 +477,23 @@ describe("browser billing bootstrap and provider selection", () => {
       ).toBeVisible();
     }
   );
+
+  test.each(["challenge", "exam"])("finishing a %s advances with a pending atomic progress write", async kind => {
+    const uid=`pending-${kind}`;
+    mocks.updateDoc.mockImplementation(()=>new Promise(()=>{}));
+    await openAuthenticatedApp({access:ACTIVE,uid});
+    await openProtected(kind);
+    await act(async()=>fireEvent.click(screen.getByRole("button",{name:`Finish ${kind}`})));
+    expect(screen.getByRole("heading",{name:"Course path"})).toBeVisible();
+    const item=kind==="exam" ? examsByOrder[0] : challengesByOrder[0];
+    expect(mocks.updateDoc).toHaveBeenCalledWith(expect.objectContaining({uid}),expect.objectContaining({
+      completedLessons:{operation:"arrayUnion",values:[item.id]},
+    }));
+    if(kind==="exam") expect(mocks.updateDoc).toHaveBeenCalledWith(expect.anything(),expect.objectContaining({
+      badges:{operation:"arrayUnion",values:expect.arrayContaining(["Safety Pro",...item.phaseBadge ? [item.phaseBadge] : []])},
+    }));
+    expect(screen.getByRole("status")).toHaveTextContent("Saving your progress");
+  });
 
   test("keeps an active native Apple entitlement authoritative when it resolves before a delayed inactive profile", async () => {
     mocks.native = true;

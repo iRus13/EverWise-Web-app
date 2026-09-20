@@ -24,7 +24,7 @@ function messageFor(code, partnerName) {
     return "Your sponsored access is active, but your personal profile still needs to be completed. You can retake the short assessment without creating another account.";
   }
   if (code === "ACCOUNT_PROFILE_UNAVAILABLE") {
-    return "We could not load your account right now. Your progress is safe. Please try again or log out.";
+    return "We could not load your account right now. Please try again or log out.";
   }
   if (code === "PARTNER_CLEANUP_INCOMPLETE") {
     return "We could not safely finish cleaning up your new account. Do not create another account. Try to log out, then contact support for help.";
@@ -49,7 +49,8 @@ export default function PartnerAccessError({
       code === "ACCOUNT_PROFILE_UNAVAILABLE") &&
     typeof onRetry === "function";
   const heading =
-    code === "PARTNER_CLEANUP_INCOMPLETE" ? "Account setup" : "Sponsored access";
+    code === "ACCOUNT_PROFILE_UNAVAILABLE" ? "Your account" :
+      code === "PARTNER_CLEANUP_INCOMPLETE" ? "Account setup" : "Sponsored access";
 
   return (
     <div className="onboarding-focus flex min-h-0 flex-1 flex-col overflow-y-auto px-7 pb-7 pt-8">

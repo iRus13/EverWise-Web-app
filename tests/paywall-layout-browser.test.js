@@ -528,11 +528,11 @@ test("core app screens fit narrow phones and desktop at standard and largest tex
   await withLayoutServer(async (url) => {
     const appUrl = url.replace("paywall-layout.html", "app-layout.html");
     const failures = [];
-    for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "settings", "badges", "path", "lesson", "complete", "scam-checker"]) {
-      for (const [width,height] of [[320,568],[768,1024],[1440,900]]) {
+    for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "home-pending", "settings", "badges", "path", "lesson", "complete", "complete-pending", "scam-checker"]) {
+      for (const [width,height] of [[320,568],[768,1024],[1440,900], ...view.endsWith("-pending") ? [[667,375]] : []]) {
         for (const textSize of ["size-2","size-10"]) {
           const geometry = await measure(`${appUrl}?view=${view}&textSize=${textSize}`, width, "", height);
-          if (geometry.scrollWidth > geometry.clientWidth + 1 || geometry.outside.length || geometry.brokenImages.length || !geometry.headings) {
+          if (geometry.scrollWidth > geometry.clientWidth + 1 || geometry.outside.length || geometry.brokenImages.length || !geometry.headings || !geometry.noticeReachable || (geometry.contentHeight !== null && geometry.contentHeight < 80)) {
             failures.push({view,width,textSize,...geometry});
           }
         }

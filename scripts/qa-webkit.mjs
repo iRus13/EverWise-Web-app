@@ -41,13 +41,14 @@ try {
     combinations++;
     return result;
   }
-  for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "settings", "badges", "path", "lesson", "complete", "scam-checker"]) {
-    for (const [width, height] of [[320,568], [768,1024], [1440,900]]) {
+  for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "home-pending", "settings", "badges", "path", "lesson", "complete", "complete-pending", "scam-checker"]) {
+    for (const [width, height] of [[320,568], [768,1024], [1440,900], ...view.endsWith("-pending") ? [[667,375]] : []]) {
       for (const size of ["size-2", "size-10"]) {
         const g = await geometry(`/tests/fixtures/app-layout.html?view=${view}&textSize=${size}`, width, height);
         assert.deepEqual(g.outside, [], `${view} controls at ${width} ${size}`);
         assert.deepEqual(g.brokenImages, [], `${view} images`);
         assert.ok(g.headings, `${view} heading`);
+        assert.ok(g.noticeReachable && (g.contentHeight === null || g.contentHeight >= 80), `${view} save notice must remain reachable without hiding the screen`);
       }
     }
   }

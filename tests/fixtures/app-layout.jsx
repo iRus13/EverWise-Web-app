@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import {createRoot} from "react-dom/client";
 import AppShell from "../../src/components/AppShell";
+import ProgressSaveNotice from "../../src/components/ProgressSaveNotice.jsx";
 import Landing from "../../src/screens/Landing";
 import LogIn from "../../src/screens/LogIn";
 import PasswordReset from "../../src/screens/PasswordReset.jsx";
@@ -37,7 +38,11 @@ const screens = {
 };
 function MeasuredScreen() {
   useEffect(() => { void measure(); }, []);
-  return <AppShell screen={view} isAuthenticated={!["landing","login","interview","signup"].includes(view)} textSize={textSize} onTextSizeChange={noop} onHome={noop} onCourse={noop} onScamChecker={noop} onBadges={noop} onSettings={noop}>{screens[view]}</AppShell>;
+  const screen = view.replace(/-pending$/, "");
+  return <AppShell screen={screen} isAuthenticated={!["landing","login","password-reset","interview","signup"].includes(screen)} textSize={textSize} onTextSizeChange={noop} onHome={noop} onCourse={noop} onScamChecker={noop} onBadges={noop} onSettings={noop}>
+    {view.endsWith("-pending") && <ProgressSaveNotice status={{pending:true,saving:false,durable:screen==="home"}} onRetry={noop}/>}
+    {screens[screen]}
+  </AppShell>;
 }
 createRoot(document.getElementById("root")).render(<MeasuredScreen />);
 async function measure() {
@@ -49,6 +54,14 @@ async function measure() {
     return r.width > 0 && (r.left < -1 || r.right > viewport + 1);
   }).map(el => ({label: el.textContent.trim().slice(0,90) || el.getAttribute("aria-label"), left: el.getBoundingClientRect().left, right: el.getBoundingClientRect().right}));
   const images = Array.from(document.images).filter(img => img.complete && !img.naturalWidth).map(img => img.getAttribute("src"));
-  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length}));
+  const notice=document.querySelector('[data-testid="progress-save-notice"]');
+  let noticeReachable=true, contentHeight=null;
+  if(notice){
+    notice.scrollTop=notice.scrollHeight;
+    const button=notice.querySelector("button").getBoundingClientRect();
+    noticeReachable=button.bottom <= notice.getBoundingClientRect().bottom + 1 && button.bottom <= innerHeight + 1;
+    contentHeight=document.querySelector(".home-screen, .complete-screen").getBoundingClientRect().height;
+  }
+  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight}));
   document.body.dataset.geometryReady = "true";
 }

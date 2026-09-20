@@ -176,6 +176,7 @@ vi.mock("firebase/auth", () => ({
 }));
 
 vi.mock("firebase/firestore", () => ({
+  arrayUnion: vi.fn((...values) => ({operation:"arrayUnion", values})),
   Timestamp: { now: vi.fn(() => ({ seconds: 1 })) },
   deleteDoc: mocks.deleteDoc,
   doc: vi.fn((_db, collection, uid) => ({ collection, uid })),
@@ -1725,7 +1726,7 @@ describe("sponsored signup orchestration", () => {
     expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(3);
 
     await finishVisibleLessonUntilProgressSaveStarts();
-    expect(screen.getByRole("progressbar", { name: "Lesson progress" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "Great Job!" })).toBeVisible();
     await act(async () => {
       pendingRefresh.resolve({ status: "none" });
       await pendingRefresh.promise;
@@ -1734,7 +1735,7 @@ describe("sponsored signup orchestration", () => {
     expect(
       screen.queryByRole("heading", { name: "Pricing and subscription" }),
     ).not.toBeInTheDocument();
-    expect(screen.getByRole("progressbar", { name: "Lesson progress" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "Great Job!" })).toBeVisible();
 
     await act(async () => {
       pendingProgressSave.resolve();

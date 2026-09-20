@@ -75,6 +75,8 @@ import Settings, {
 import Paywall from "./screens/Paywall";
 import LessonPath from "./screens/LessonPath";
 import LearningContent from "./components/LearningContent.jsx";
+import ProgressSaveNotice from "./components/ProgressSaveNotice.jsx";
+import useProgressSync from "./hooks/useProgressSync.js";
 import { requestEmailPasswordReset } from "./utils/passwordRecovery.js";
 import Complete from "./screens/Complete";
 import ScamChecker from "./screens/ScamChecker";
@@ -1021,6 +1023,13 @@ function LearnerApp({ initialPartnerFragment }) {
     itemId: null,
     completedIds: [],
   });
+  const progressSync = useProgressSync({
+    uid: user?.uid,
+    profile,
+    enabled: Boolean(user && profile && authChecked && !accountDeletionBusy),
+    setProfile,
+    currentUid: currentAuthUidRef,
+  });
 
   useEffect(() => {
     appMountedRef.current = true;
@@ -1343,6 +1352,7 @@ function LearnerApp({ initialPartnerFragment }) {
       authSettledRef.current = false;
       currentAuthUidRef.current = u?.uid || null;
       if (previousAuthUid && previousAuthUid !== (u?.uid || null)) {
+        setProfile(null);
         pendingProtectedNavigationRef.current = null;
         clearStoredBillingReturnIntent();
       } else if (u?.uid) {
@@ -1411,6 +1421,7 @@ function LearnerApp({ initialPartnerFragment }) {
         return;
       }
 
+      setProfile(null);
       setPartnerOwnerUid(null);
       setPartner(null);
       setPartnerStatus("idle");
@@ -1492,6 +1503,8 @@ function LearnerApp({ initialPartnerFragment }) {
               setPartnerOwnerUid(null);
               setPartner(null);
               setPartnerStatus("idle");
+              updatePartnerRecovery({kind:"authenticated-bootstrap", user:u, phase:"profile", busy:false});
+              setScreen("partner-error");
             }
           } catch {
             if (
@@ -3405,6 +3418,7 @@ function LearnerApp({ initialPartnerFragment }) {
   };
 
   const finishDeletedAccountLocally = () => {
+    progressSync.clear();
     authGenerationRef.current += 1;
     authoritativeAccessVersionRef.current += 1;
     backgroundAccessRefreshRef.current = null;
@@ -3829,98 +3843,40 @@ function LearnerApp({ initialPartnerFragment }) {
     }
   };
 
-  const finishChallenge = async () => {
-    if (user && profile && activeChallenge) {
-      const already = completedLessons.includes(activeChallenge.id);
-      if (!already) {
-        const updates = {
-          completedLessons: [...completedLessons, activeChallenge.id],
-        };
-        setProfile((p) => ({ ...p, ...updates }));
-        try {
-          await updateDoc(doc(db, "users", user.uid), updates);
-        } catch (err) {
-          if (import.meta.env.DEV) {
-            console.error(
-              "[Everwise][firestore] Failed to save challenge:",
-              err?.code || err?.name || "unknown",
-            );
-          }
-        }
-      }
+  const canRecordProgress = () => Boolean(
+    user?.uid && profile && authChecked &&
+    currentAuthUidRef.current === user.uid && !accountDeletionBusyRef.current
+  );
+
+  const finishChallenge = () => {
+    if (!canRecordProgress() || !activeChallenge) return;
+    if (!completedLessons.includes(activeChallenge.id)) {
+      progressSync.record({ completedLessons: [activeChallenge.id] });
     }
     goPath();
   };
 
-  const finishLesson = async () => {
-    if (user && profile && activeLesson) {
-      const already = completedLessons.includes(activeLesson.id);
-      const prevBadges = profile.badges ?? [];
-
-      const updates = {
-        completedLessons: already
-          ? completedLessons
-          : [...completedLessons, activeLesson.id],
-        badges:
-          already || prevBadges.includes(activeLesson.badge)
-            ? prevBadges
-            : [...prevBadges, activeLesson.badge],
-      };
-
-      setProfile((p) => ({ ...p, ...updates }));
-      try {
-        await updateDoc(doc(db, "users", user.uid), updates);
-      } catch (err) {
-        if (import.meta.env.DEV) {
-          console.error(
-            "[Everwise][firestore] Failed to save progress:",
-            err?.code || err?.name || "unknown",
-          );
-        }
-      }
+  const finishLesson = () => {
+    if (!canRecordProgress() || !activeLesson) return;
+    if (!completedLessons.includes(activeLesson.id)) {
+      progressSync.record({
+        completedLessons: [activeLesson.id],
+        badges: activeLesson.badge ? [activeLesson.badge] : [],
+      });
     }
     setScreen("complete");
   };
 
-  const finishExam = async ({
-    tier,
-    earnedPhaseBadge,
-    phaseBadge,
-  }) => {
-    if (user && profile && activeExam && tier) {
-      const already = completedLessons.includes(activeExam.id);
-      const prevBadges = profile.badges ?? [];
-
-      let nextBadges = [...prevBadges];
-      if (!already && tier.title && !nextBadges.includes(tier.title)) {
-        nextBadges.push(tier.title);
-      }
-      if (
-        earnedPhaseBadge &&
-        phaseBadge &&
-        !nextBadges.includes(phaseBadge)
-      ) {
-        nextBadges.push(phaseBadge);
-      }
-
-      const updates = {
-        completedLessons: already
-          ? completedLessons
-          : [...completedLessons, activeExam.id],
-        badges: nextBadges,
-      };
-
-      setProfile((p) => ({ ...p, ...updates }));
-      try {
-        await updateDoc(doc(db, "users", user.uid), updates);
-      } catch (err) {
-        if (import.meta.env.DEV) {
-          console.error(
-            "[Everwise][firestore] Failed to save exam:",
-            err?.code || err?.name || "unknown",
-          );
-        }
-      }
+  const finishExam = ({ tier, earnedPhaseBadge, phaseBadge }) => {
+    if (!canRecordProgress() || !activeExam || !tier) return;
+    const already = completedLessons.includes(activeExam.id);
+    const badges = [!already && tier.title, earnedPhaseBadge && phaseBadge]
+      .filter(badge => badge && !(profile.badges ?? []).includes(badge));
+    if (!already || badges.length) {
+      progressSync.record({
+        completedLessons: already ? [] : [activeExam.id],
+        badges,
+      });
     }
     goPath();
   };
@@ -4424,6 +4380,7 @@ function LearnerApp({ initialPartnerFragment }) {
       onTextSizeChange={setTextSize}
       courseProgress={courseProgress}
     >
+      <ProgressSaveNotice status={progressSync.status} onRetry={progressSync.retry} />
       <div
         key={screen}
         className="screen-content-frame flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden"
