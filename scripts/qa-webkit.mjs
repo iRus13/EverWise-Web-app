@@ -9,6 +9,7 @@ import { createServer } from "vite";
 import react from "@vitejs/plugin-react";
 import { checkPartnerDashboard } from "./qa-partner-dashboard.mjs";
 import { checkLearningActivities } from "./qa-learning-layout.mjs";
+import { checkAssessments } from "./qa-assessments.mjs";
 
 const require = createRequire(import.meta.url);
 const browserName = process.env.EVERWISE_QA_BROWSER || "webkit";
@@ -148,6 +149,7 @@ try {
   }
   await checkPartnerDashboard(page, base);
   await checkLearningActivities(page, base);
+  await checkAssessments(page, base);
   assert.deepEqual(errors, [], "No browser page errors");
   await context.close();
   console.log("PASS: no uncaught browser errors; external requests blocked throughout");
