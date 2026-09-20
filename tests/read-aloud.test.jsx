@@ -57,3 +57,58 @@ test("rejected playback releases audio and falls back only once", async () => {
   expect(window.speechSynthesis.speak).toHaveBeenCalledTimes(1);
   expect(audios[0].pause).toHaveBeenCalled();
 });
+
+test.each(["onend", "onerror"].flatMap(event => ["device", "recorded"].map(mode => ({event, mode}))))(
+  "a canceled device utterance's $event cannot reset newer $mode playback",
+  async ({event, mode}) => {
+    const response = {ok:true, blob:async () => new Blob(["new audio"])};
+    const fetchMock = vi.fn().mockRejectedValueOnce(new Error("provider unavailable"));
+    if (mode === "recorded") fetchMock.mockResolvedValueOnce(response);
+    else fetchMock.mockRejectedValueOnce(new Error("provider unavailable"));
+    vi.stubGlobal("fetch", fetchMock);
+    render(<ReadAloud text={`Restart ${event} ${mode}`} />);
+    await act(async () => fireEvent.click(screen.getByRole("button")));
+    const oldUtterance = window.speechSynthesis.speak.mock.calls[0][0];
+    const staleCallback = oldUtterance[event];
+    fireEvent.click(screen.getByRole("button", {name:"Stop"}));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name:"Read aloud"})));
+    const cancellations = window.speechSynthesis.cancel.mock.calls.length;
+    act(() => staleCallback());
+    expect(screen.getByRole("button", {name:"Stop"})).toHaveAttribute("aria-pressed", "true");
+    expect(window.speechSynthesis.cancel).toHaveBeenCalledTimes(cancellations);
+    fireEvent.click(screen.getByRole("button", {name:"Stop"}));
+    if (mode === "recorded") expect(audios[0].pause).toHaveBeenCalled();
+    else expect(window.speechSynthesis.cancel).toHaveBeenCalledTimes(cancellations + 1);
+    expect(screen.getByRole("button", {name:"Read aloud"})).toHaveAttribute("aria-pressed", "false");
+  },
+);
+
+test("leaving one lesson invalidates its speech callback before the next lesson starts", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("provider unavailable")));
+  const view = render(<ReadAloud text="First device-spoken lesson" />);
+  await act(async () => fireEvent.click(screen.getByRole("button")));
+  const oldCallback = window.speechSynthesis.speak.mock.calls[0][0].onend;
+  view.rerender(<ReadAloud text="Second device-spoken lesson" />);
+  await act(async () => fireEvent.click(screen.getByRole("button", {name:"Read aloud"})));
+  act(() => oldCallback());
+  expect(screen.getByRole("button", {name:"Stop"})).toHaveAttribute("aria-pressed", "true");
+  const currentCallback = window.speechSynthesis.speak.mock.calls[1][0].onend;
+  act(() => currentCallback());
+  expect(screen.getByRole("button", {name:"Read aloud"})).toHaveAttribute("aria-pressed", "false");
+});
+
+test("an ended recording from an unmounted screen cannot cancel the new screen's device speech", async () => {
+  vi.stubGlobal("fetch", vi.fn()
+    .mockResolvedValueOnce({ok:true, blob:async () => new Blob(["old recording"])})
+    .mockRejectedValueOnce(new Error("provider unavailable")));
+  const oldScreen = render(<ReadAloud text="Unmounted recorded lesson" />);
+  await act(async () => fireEvent.click(screen.getByRole("button")));
+  const staleEnded = audios[0].onended;
+  oldScreen.unmount();
+  render(<ReadAloud text="New screen's device-spoken lesson" />);
+  await act(async () => fireEvent.click(screen.getByRole("button")));
+  const cancellations = window.speechSynthesis.cancel.mock.calls.length;
+  act(() => staleEnded());
+  expect(window.speechSynthesis.cancel).toHaveBeenCalledTimes(cancellations);
+  expect(screen.getByRole("button", {name:"Stop"})).toHaveAttribute("aria-pressed", "true");
+});

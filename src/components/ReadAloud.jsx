@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { SpeakerIcon, StopIcon } from "./Icons";
 import { apiEndpoint } from "../utils/apiEndpoint";
 
@@ -38,25 +38,30 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
   const [loading, setLoading] = useState(false);
   const audioRef = useRef(null);
   const abortRef = useRef(null);
+  const utteranceRef = useRef(null);
+
+  const releasePlayback = useCallback(() => {
+    // Invalidate ownership before cancellation: stopping an audio source can
+    // itself enqueue callbacks, including after another screen starts speech.
+    const controller = abortRef.current;
+    const audio = audioRef.current;
+    abortRef.current = null;
+    audioRef.current = null;
+    utteranceRef.current = null;
+    controller?.abort();
+    audio?.pause();
+    if (audio?.src) URL.revokeObjectURL(audio.src);
+    window.speechSynthesis?.cancel();
+  }, []);
 
   useEffect(() => {
     setSpeaking(false);
     setLoading(false);
-    return () => {
-      abortRef.current?.abort();
-      audioRef.current?.pause();
-      if (audioRef.current?.src) URL.revokeObjectURL(audioRef.current.src);
-      window.speechSynthesis?.cancel();
-    };
-  }, [text]);
+    return releasePlayback;
+  }, [text, releasePlayback]);
 
   const stop = () => {
-    abortRef.current?.abort();
-    abortRef.current = null;
-    audioRef.current?.pause();
-    if (audioRef.current?.src) URL.revokeObjectURL(audioRef.current.src);
-    audioRef.current = null;
-    window.speechSynthesis?.cancel();
+    releasePlayback();
     setLoading(false);
     setSpeaking(false);
   };
@@ -66,8 +71,14 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
     const utterance = new SpeechSynthesisUtterance(speakText);
     utterance.rate = 0.9;
     utterance.pitch = 1;
-    utterance.onend = () => setSpeaking(false);
-    utterance.onerror = () => setSpeaking(false);
+    const finish = () => {
+      if (utteranceRef.current !== utterance) return;
+      utteranceRef.current = null;
+      setSpeaking(false);
+    };
+    utterance.onend = finish;
+    utterance.onerror = finish;
+    utteranceRef.current = utterance;
     setSpeaking(true);
     window.speechSynthesis.speak(utterance);
   };
