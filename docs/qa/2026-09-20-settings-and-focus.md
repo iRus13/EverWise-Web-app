@@ -88,3 +88,16 @@ the HTTPS API setting and Apple products needed for live acceptance.
 
 The local pre-existing package.json script-approval map is excluded. No merge,
 deployment, purchase, migration or production mutation is included.
+
+## CI fixture correction
+
+The first published run passed the full test suite and build, then failed the
+WebKit reset-error fixture. A new local reproduction with a deliberately delayed
+provider failure confirmed that geometry could be measured before React rendered
+the requested error state. The fixture now waits up to five seconds for that
+specific state and allows its scroll position to settle. All readability and
+navigation assertions remain. A dedicated Chromium regression and an additional
+WebKit probe cover the delayed response. The final CI result is recorded in PR #3.
+
+Correction manifest: this report, `scripts/qa-webkit.mjs`,
+`tests/fixtures/app-layout.jsx`, and `tests/paywall-layout-browser.test.js`.

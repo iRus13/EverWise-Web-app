@@ -48,7 +48,7 @@ try {
         assert.deepEqual(g.outside, [], `${view} controls at ${width} ${size}`);
         assert.deepEqual(g.brokenImages, [], `${view} images`);
         assert.ok(g.headings, `${view} heading`);
-        assert.ok(g.recoveryReadable, `${view} reset status and logout must remain usable`);
+        assert.ok(g.recoveryReadable, `${view} reset status and logout must remain usable at ${width}x${height} ${size}: ${JSON.stringify(g)}`);
         assert.ok(g.noticeReachable && (g.contentHeight === null || g.contentHeight >= 80), `${view} save notice must remain reachable without hiding the screen`);
       }
     }
@@ -67,6 +67,9 @@ try {
     }
   }
   console.log(`PASS: ${combinations} WebKit responsive screen combinations`);
+  const delayedReset = await geometry("/tests/fixtures/app-layout.html?view=settings-reset-error&resetDelay=200&textSize=size-10", 320, 568);
+  assert.ok(delayedReset.recoveryReadable, "Wait for the delayed reset error before measuring it");
+  console.log("PASS: delayed reset error is measured after it renders");
 
   // Exercise the real App's public navigation, not isolated screen callbacks.
   // macOS WebKit's default Tab visits fields; Option-Tab includes buttons too.

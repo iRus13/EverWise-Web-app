@@ -541,3 +541,11 @@ test("core app screens fit narrow phones and desktop at standard and largest tex
     assert.deepEqual(failures, [], "Screens must render a heading, loaded images and controls within the viewport");
   });
 });
+
+test("settings recovery geometry waits for the requested asynchronous error state", browserTestOptions, async () => {
+  await withLayoutServer(async url => {
+    const appUrl=url.replace("paywall-layout.html", "app-layout.html");
+    const geometry=await measure(`${appUrl}?view=settings-reset-error&resetDelay=200&textSize=size-10`, 320, "", 568);
+    assert.equal(geometry.recoveryReadable, true, "Measure the rendered error, not the earlier pending state");
+  });
+});

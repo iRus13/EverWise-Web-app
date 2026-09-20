@@ -30,7 +30,7 @@ const screens = {
   signup: <ProfileInterview initialInterview={{name:"Jane", age:70}} onComplete={noop} onBack={noop} onLogIn={noop}/>,
   home: <Home name="Jane" textSize={textSize} onTextSizeChange={noop} onStart={noop} onOpenBadges={noop} onOpenSettings={noop} onOpenScamChecker={noop}/>,
   settings: <Settings subscriptionStatus="expired" textSize={textSize} onTextSizeChange={noop} onBack={noop} onLogOut={noop} onOpenPaywall={noop} onDeleteAccount={noop}
-    onResetPassword={() => view === "settings-reset-error" ? Promise.reject({code:"auth/network-request-failed"}) : new Promise(() => {})}/>,
+    onResetPassword={() => view === "settings-reset-error" ? new Promise((_, reject) => setTimeout(() => reject({code:"auth/network-request-failed"}), Number(query.get("resetDelay")) || 0)) : new Promise(() => {})}/>,
   badges: <Badges onBack={noop}/>,
   path: <LessonPath textSize={textSize} onBack={noop} onSelectLesson={noop} onSelectExam={noop} onSelectChallenge={noop}/>,
   lesson: <LessonPlayer lesson={lesson} onBack={noop} onComplete={noop}/>,
@@ -50,6 +50,19 @@ function MeasuredScreen() {
 }
 createRoot(document.getElementById("root")).render(<MeasuredScreen />);
 async function measure() {
+  if (view.startsWith("settings-reset-")) {
+    const selector=view.endsWith("error") ? '[role="alert"]' : '[role="status"]';
+    await new Promise((resolve, reject) => {
+      const observer=new MutationObserver(check);
+      const timer=setTimeout(() => { observer.disconnect(); reject(new Error(`Reset fixture did not reach ${selector}`)); }, 5000);
+      function check() {
+        if (!document.querySelector(selector)) return;
+        clearTimeout(timer); observer.disconnect(); resolve();
+      }
+      observer.observe(document.body, {childList:true,subtree:true});
+      check();
+    });
+  }
   await document.fonts.ready;
   await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
   const viewport = document.documentElement.clientWidth;
@@ -72,6 +85,7 @@ async function measure() {
     if(!message) recoveryReadable=false;
     else {
       message.scrollIntoView({block:"end"});
+      await new Promise(resolve => requestAnimationFrame(resolve));
       const rect=message.getBoundingClientRect();
       recoveryReadable=rect.left >= -1 && rect.right <= viewport + 1 && rect.bottom <= innerHeight + 1;
     }
