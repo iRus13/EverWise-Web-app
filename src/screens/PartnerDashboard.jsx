@@ -130,10 +130,12 @@ export default function PartnerDashboard({ adminToken }) {
   const [rotationStep, setRotationStep] = useState("idle");
   const [replacementLink, setReplacementLink] = useState("");
   const [copyStatus, setCopyStatus] = useState("");
+  const [reportAttempt, setReportAttempt] = useState(0);
 
   useEffect(() => {
     if (!adminToken) return undefined;
     let cancelled = false;
+    setStatus("loading");
     fetchPartnerReport({ adminToken })
       .then((nextReport) => {
         if (cancelled) return;
@@ -141,15 +143,15 @@ export default function PartnerDashboard({ adminToken }) {
         setDashboardUpdatedAt(nextReport.updatedAt);
         setStatus("ready");
       })
-      .catch(() => {
+      .catch((error) => {
         if (cancelled) return;
         setReport(null);
-        setStatus("invalid");
+        setStatus(error?.code === "INVALID_ADMIN" ? "invalid" : "error");
       });
     return () => {
       cancelled = true;
     };
-  }, [adminToken]);
+  }, [adminToken, reportAttempt]);
 
   const confirmRotation = async () => {
     if (rotationStep === "rotating") return;
@@ -193,8 +195,22 @@ export default function PartnerDashboard({ adminToken }) {
           aria-hidden="true"
           className="partner-dashboard-logo"
         />
-        <h1>Everwise partner reporting</h1>
-        <p>This admin link is not available.</p>
+        <h1>{status === "error" ? "Partner report" : "Everwise partner reporting"}</h1>
+        {status === "error" ? (
+          <>
+            <p role="alert">The report could not be loaded. Please try again.</p>
+            <button
+              type="button"
+              className="partner-dashboard-button"
+              onClick={() => {
+                setStatus("loading");
+                setReportAttempt((attempt) => attempt + 1);
+              }}
+            >
+              Try loading report again
+            </button>
+          </>
+        ) : <p>This admin link is not available.</p>}
       </main>
     );
   }
@@ -389,7 +405,19 @@ export default function PartnerDashboard({ adminToken }) {
         ) : null}
 
         {rotationStep === "error" ? (
-          <p role="alert">The learner link could not be replaced. Please try again later.</p>
+          <div className="partner-dashboard-confirmation">
+            <p role="alert">
+              We couldn't confirm whether the learner link was replaced.
+              Replacing it again will stop any current learner link from working.
+            </p>
+            <button
+              type="button"
+              className="partner-dashboard-button partner-dashboard-button-secondary"
+              onClick={() => setRotationStep("confirm")}
+            >
+              Review replacement
+            </button>
+          </div>
         ) : null}
       </section>
     </main>

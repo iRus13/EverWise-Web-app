@@ -18,11 +18,17 @@ export async function checkPartnerDashboard(page, base) {
     },
     updatedAt: "2026-09-20T00:00:00.000Z",
   };
-  let state = "ready", rotations = 0, combinations = 0;
+  let state = "ready", rotations = 0, combinations = 0, reports = 0;
+  let reportError = false, rotationError = false;
   const pattern = `${base}/api/partner/admin/**`;
   const route = async request => {
     const path = new URL(request.request().url()).pathname;
+    assert.equal(request.request().postDataJSON().adminToken,token,"Recovery retains the scrubbed token only in memory");
     if (path === "/api/partner/admin/report") {
+      reports++;
+      if (reportError) {
+        return request.fulfill({status:503,json:{code:"PARTNER_UNAVAILABLE"}});
+      }
       if (state === "invalid") return request.fulfill({ status: 401, json: { code: "INVALID_ADMIN" } });
       return request.fulfill({ json: state === "suppressed" ? {
         ...report, research: { consentedCount: 4, consentedPercentage: 66.7, suppressed: true, distributions: null },
@@ -30,6 +36,10 @@ export async function checkPartnerDashboard(page, base) {
     }
     if (path === "/api/partner/admin/rotate-invite") {
       rotations++;
+      if (rotationError) {
+        rotationError=false;
+        return request.fulfill({status:503,json:{code:"PARTNER_UNAVAILABLE"}});
+      }
       return request.fulfill({ json: { partnerId: report.partnerId, inviteToken: "R".repeat(43) } });
     }
     throw new Error(`Unexpected partner QA request: ${path}`);
@@ -93,6 +103,65 @@ export async function checkPartnerDashboard(page, base) {
         }
       }
     }
+    // A read failure can recover without re-opening the scrubbed admin URL.
+    // An uncertain write must never retry until a fresh explicit confirmation.
+    async function wheelTo(name,width,height) {
+      await page.mouse.move(width/2,height/2);
+      let rect;
+      for(let attempt=0;attempt<24;attempt++) {
+        rect=await page.getByRole("button",{name,exact:true}).evaluate(el => el.getBoundingClientRect().toJSON());
+        if(rect.top >= -1 && rect.bottom <= height+1 && rect.left >= -1 && rect.right <= width+1) return;
+        await page.mouse.wheel(0,rect.top < 0 ? -Math.max(1000,height*2) : Math.max(1000,height*2));
+        await page.waitForTimeout(150);
+      }
+      assert.fail(`Recovery action ${name} unreachable at ${width}x${height}: ${JSON.stringify(rect)}`);
+    }
+    state="ready";
+    let recoveries=0;
+    for(const [width,height] of [[320,568],[667,375],[768,1024],[1440,900]]) {
+      for(const textSize of ["size-2","size-10"]) {
+        reportError=true; rotationError=true;
+        const reportsBefore=reports, rotationsBefore=rotations;
+        await page.setViewportSize({width,height});
+        await page.goto(`${base}/?qaPartnerRecovery=${recoveries}#partner-admin=${token}`);
+        await page.getByRole("button",{name:"Try loading report again",exact:true}).waitFor();
+        await page.evaluate(async size => {document.documentElement.dataset.textSize=size;await document.fonts.ready;},textSize);
+        assert.equal(new URL(page.url()).hash,"");
+        const firstTop=await page.locator("main > :first-child").evaluate(el => el.getBoundingClientRect().top);
+        assert.ok(firstTop>=-1,`Report recovery content clipped above its scroll area at ${width} ${textSize}: ${firstTop}`);
+        const headingTop=await page.getByRole("heading",{level:1}).evaluate(el => el.getBoundingClientRect().top);
+        assert.ok(headingTop>=-1,`Report recovery heading clipped at ${width} ${textSize}: ${headingTop}`);
+        await wheelTo("Try loading report again",width,height);
+        const reportsAtError=reports;
+        assert.ok(reportsAtError > reportsBefore);
+        reportError=false;
+        await page.getByRole("button",{name:"Try loading report again",exact:true}).click();
+        await page.getByRole("heading",{name:"Partner overview",exact:true}).waitFor();
+        assert.equal(reports,reportsAtError+1);
+        assert.equal(rotations,rotationsBefore);
+        await wheelTo("Replace learner link",width,height);
+        await page.getByRole("button",{name:"Replace learner link",exact:true}).click();
+        await wheelTo("Replace link now",width,height);
+        await page.getByRole("button",{name:"Replace link now",exact:true}).click();
+        await page.getByText(/couldn't confirm whether the learner link was replaced/).waitFor();
+        assert.equal(rotations,rotationsBefore+1);
+        assert.equal(await page.getByLabel("Replacement learner link",{exact:true}).count(),0);
+        await wheelTo("Review replacement",width,height);
+        await page.getByRole("button",{name:"Review replacement",exact:true}).click();
+        assert.equal(rotations,rotationsBefore+1);
+        await wheelTo("Cancel",width,height);
+        await page.getByRole("button",{name:"Cancel",exact:true}).click();
+        assert.equal(rotations,rotationsBefore+1);
+        await page.getByRole("button",{name:"Replace learner link",exact:true}).click();
+        await wheelTo("Replace link now",width,height);
+        await page.getByRole("button",{name:"Replace link now",exact:true}).click();
+        await page.getByLabel("Replacement learner link",{exact:true}).waitFor();
+        assert.equal(rotations,rotationsBefore+2);
+        assert.equal(new URL(page.url()).hash,"");
+        recoveries++;
+      }
+    }
+    console.log(`PASS: ${recoveries} real App report retries and uncertain invitation replacements; fresh confirmation required`);
   } finally {
     await page.unroute(pattern, route);
   }

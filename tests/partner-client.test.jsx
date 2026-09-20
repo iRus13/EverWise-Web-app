@@ -496,6 +496,41 @@ describe("aggregate partner dashboard", () => {
     expect(screen.queryByText(/seat/i)).not.toBeInTheDocument();
   });
 
+  test("retries a temporary report failure without discarding the in-memory admin link", async () => {
+    mocks.fetchPartnerReport.mockRejectedValueOnce(new PartnerAccessError())
+      .mockResolvedValueOnce(partnerReport());
+    const user = userEvent.setup();
+    render(<PartnerDashboard adminToken={TOKEN} />);
+    const retry = await screen.findByRole("button", {name:"Try loading report again"});
+    expect(screen.queryByText("This admin link is not available.")).not.toBeInTheDocument();
+    expect(screen.queryByText("Community Partner")).not.toBeInTheDocument();
+    await user.click(retry);
+    expect(await screen.findByText(/Reporting for Community Partner/)).toBeVisible();
+    expect(mocks.fetchPartnerReport).toHaveBeenCalledTimes(2);
+    expect(mocks.fetchPartnerReport).toHaveBeenLastCalledWith({adminToken:TOKEN});
+    expect(mocks.rotatePartnerInvite).not.toHaveBeenCalled();
+  });
+
+  test("an uncertain replacement requires fresh confirmation before retrying", async () => {
+    mocks.fetchPartnerReport.mockResolvedValue(partnerReport());
+    mocks.rotatePartnerInvite.mockRejectedValueOnce(new PartnerAccessError())
+      .mockResolvedValueOnce({partnerId:"community-partner",inviteToken:"r".repeat(43)});
+    const user = userEvent.setup();
+    render(<PartnerDashboard adminToken={TOKEN} />);
+    await user.click(await screen.findByRole("button", {name:"Replace learner link"}));
+    await user.click(screen.getByRole("button", {name:"Replace link now"}));
+    expect(await screen.findByRole("alert")).toHaveTextContent("couldn't confirm whether the learner link was replaced");
+    expect(screen.queryByLabelText("Replacement learner link")).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", {name:"Review replacement"}));
+    expect(mocks.rotatePartnerInvite).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByRole("button", {name:"Cancel"}));
+    expect(mocks.rotatePartnerInvite).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByRole("button", {name:"Replace learner link"}));
+    await user.click(screen.getByRole("button", {name:"Replace link now"}));
+    expect(await screen.findByLabelText("Replacement learner link")).toHaveValue(`${window.location.origin}/#partner=${"r".repeat(43)}`);
+    expect(mocks.rotatePartnerInvite).toHaveBeenCalledTimes(2);
+  });
+
   test("confirms invite replacement before showing the one-session learner link", async () => {
     const replacementToken = "r".repeat(43);
     mocks.fetchPartnerReport.mockResolvedValue(partnerReport());

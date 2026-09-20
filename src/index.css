@@ -876,10 +876,22 @@
 .partner-dashboard-status {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 1rem;
   text-align: center;
+}
+
+.partner-dashboard-status > * {
+  flex-shrink: 0;
+}
+
+.partner-dashboard-status > :first-child {
+  margin-top: auto;
+}
+
+.partner-dashboard-status > :last-child {
+  margin-bottom: auto;
 }
 
 .partner-dashboard-header {
