@@ -8,6 +8,7 @@ await vi.hoisted(async () => {
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import LessonPlayer from "../src/screens/LessonPlayer.jsx";
+import { readLessonPosition, saveLessonPosition } from "../src/utils/lessonProgress.js";
 
 // ReadAloud reaches for the network and audio; neither is the subject here.
 vi.mock("../src/components/ReadAloud.jsx", () => ({
@@ -233,7 +234,7 @@ describe("testing out of a lesson you already know", () => {
 
   test("a saved place wins over the quick check, so progress is never lost", () => {
     renderPlayer({
-      initialPosition: { ...AT_QUIZ, quizIndex: 1 },
+      initialPosition: { ...AT_QUIZ, quizIndex: 1, answeredThrough: 1, reviewQueue: [0] },
       startInTestOut: true,
     });
     expect(screen.queryByText("Quick check")).not.toBeInTheDocument();
@@ -256,4 +257,91 @@ describe("testing out of a lesson you already know", () => {
 
     expect(screen.getByText("Question 1 of 5")).toBeVisible();
   });
+});
+
+
+describe("quiz navigation and durable first attempts", () => {
+  const back = () => fireEvent.click(screen.getByRole("button", {name:"Go back"}));
+  const resume = props => {
+    const position = props.onPositionChange.mock.calls.at(-1)[0];
+    localStorage.clear();
+    expect(saveLessonPosition({uid:"quiz-learner",lessonId:LESSON.id,position,storage:localStorage})).toBe(true);
+    const saved = readLessonPosition({uid:"quiz-learner",lessonId:LESSON.id,storage:localStorage});
+    cleanup();
+    return renderPlayer({initialPosition:saved});
+  };
+  test("backtracking cannot score an answer twice", () => {
+    const props=renderPlayer();
+    answer("A worldwide network"); advance("Next");
+    back(); answer("A worldwide network"); advance("Next");
+    answer("A page you visit online"); advance("See results");
+    expect(props.onComplete).toHaveBeenCalledExactlyOnceWith(2);
+  });
+  test("changing a missed answer after going back does not change its first-attempt score", () => {
+    const props=renderPlayer();
+    answer("A phone"); advance("Next");
+    back(); answer("A worldwide network"); advance("Next");
+    answer("A page you visit online"); advance("See results");
+    expect(props.onComplete).not.toHaveBeenCalled();
+    answer("A worldwide network"); advance("Finish lesson");
+    expect(props.onComplete).toHaveBeenCalledExactlyOnceWith(1);
+  });
+  test("missed answers survive storage and reload before the review begins", () => {
+    let props=renderPlayer();
+    answer("A phone"); advance("Next");
+    props=resume(props);
+    answer("A page you visit online"); advance("See results");
+    expect(props.onComplete).not.toHaveBeenCalled();
+    expect(screen.getByText("Second look")).toBeVisible();
+    answer("A worldwide network"); advance("Finish lesson");
+    expect(props.onComplete).toHaveBeenCalledExactlyOnceWith(1);
+  });
+  test("reloading a previously answered question cannot add the same point", () => {
+    let props=renderPlayer();
+    answer("A worldwide network"); advance("Next"); back();
+    props=resume(props);
+    answer("A worldwide network"); advance("Next");
+    answer("A page you visit online"); advance("See results");
+    expect(props.onComplete).toHaveBeenCalledExactlyOnceWith(2);
+  });
+  test("an unanswered skipped quiz question comes back for review", () => {
+    const props=renderPlayer();
+    advance("Skip this step"); answer("A page you visit online"); advance("See results");
+    expect(props.onComplete).not.toHaveBeenCalled();
+    answer("A worldwide network"); advance("Finish lesson");
+    expect(props.onComplete).toHaveBeenCalledExactlyOnceWith(1);
+  });
+});
+
+
+test("a legacy quiz without first-attempt history restarts only the quiz", () => {
+  renderPlayer({initialPosition:{...AT_QUIZ,quizIndex:1,score:1}});
+  expect(screen.getByRole("heading",{name:"What is the internet?"})).toBeVisible();
+  expect(screen.queryByRole("heading",{name:"Learn",exact:true})).not.toBeInTheDocument();
+});
+
+
+test("leaving while quiz feedback is visible preserves the first attempt", () => {
+  const props=renderPlayer();
+  answer("A phone");
+  const saved=props.onPositionChange.mock.calls.at(-1)[0];
+  expect(saved).toMatchObject({phase:"quiz",quizIndex:0,score:0,reviewQueue:[0],answeredThrough:1});
+  cleanup();
+  const next=renderPlayer({initialPosition:saved});
+  answer("A worldwide network"); advance("Next");
+  answer("A page you visit online"); advance("See results");
+  expect(next.onComplete).not.toHaveBeenCalled();
+  answer("A worldwide network"); advance("Finish lesson");
+  expect(next.onComplete).toHaveBeenCalledExactlyOnceWith(1);
+});
+
+test("first-attempt history from a longer edited quiz is not trusted", () => {
+  renderPlayer({initialPosition:{...AT_QUIZ,answeredThrough:3,score:3}});
+  expect(screen.getByRole("heading",{name:"Learn",exact:true})).toBeVisible();
+});
+
+test("a legacy review score cannot include points for its outstanding missed questions", () => {
+  const props=renderPlayer({initialPosition:{phase:"review",blockIndex:0,quizIndex:1,score:2,reviewQueue:[0]}});
+  answer("A worldwide network"); advance("Finish lesson");
+  expect(props.onComplete).toHaveBeenCalledExactlyOnceWith(1);
 });

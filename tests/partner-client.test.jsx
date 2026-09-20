@@ -18,6 +18,7 @@ await vi.hoisted(async () => {
 });
 
 import App from "../src/App.jsx";
+import { allLessons } from "../src/data/lessons.js";
 import AppShell from "../src/components/AppShell.jsx";
 import Landing from "../src/screens/Landing.jsx";
 import PartnerDashboard, {
@@ -841,8 +842,17 @@ async function clickWithFakeTimers(element) {
   });
 }
 
-async function finishVisibleLessonUntilProgressSaveStarts() {
+async function finishVisibleLessonUntilProgressSaveStarts(lessonId) {
+  const lesson=allLessons.find(item => item.id === lessonId);
   for (let step = 0; step < 100 && mocks.updateDoc.mock.calls.length === 0; step += 1) {
+    const question=lesson.quiz?.find(q => screen.queryByRole("heading",{name:q.question,exact:true}));
+    if (question) {
+      await clickWithFakeTimers(screen.getByRole("button",{name:question.options[question.correctIndex],exact:true}));
+      const next=screen.queryByRole("button",{name:/^(Next|See results|Finish lesson)$/});
+      expect(next).not.toBeNull();
+      await clickWithFakeTimers(next);
+      continue;
+    }
     const skip =
       screen.queryByRole("button", { name: "Skip this step" }) ||
       screen.queryByRole("button", { name: "Skip" });
@@ -1760,7 +1770,7 @@ describe("sponsored signup orchestration", () => {
     await act(async () => vi.advanceTimersByTimeAsync(60_000));
     expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(3);
 
-    await finishVisibleLessonUntilProgressSaveStarts();
+    await finishVisibleLessonUntilProgressSaveStarts("ai");
     expect(screen.getByRole("heading", { name: "Great Job!" })).toBeVisible();
     await act(async () => {
       pendingRefresh.resolve({ status: "none" });

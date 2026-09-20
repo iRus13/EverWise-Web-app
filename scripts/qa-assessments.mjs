@@ -3,10 +3,13 @@ import { challengesByOrder, examsByOrder } from "../src/data/lessons.js";
 
 // Before Playwright clicks, prove both ends are reachable by scrolling only
 // containers that a user can scroll. Never move overflow:hidden ancestors.
-async function clickReachable(locator, context) {
+export async function clickReachable(locator, context) {
   await locator.waitFor();
   const failures = await locator.evaluate(async element => {
     await document.fonts.ready;
+    // Let the screen's feedback-scroll effect settle before measuring a new
+    // target (especially the header immediately after answering a question).
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     const failures = [];
     for (const edge of ["top", "bottom"]) {
       for (let parent = element.parentElement; parent; parent = parent.parentElement) {
