@@ -21,3 +21,15 @@ export function isCanceledFirestoreNavigationError(message, abandoned, canceled)
     return url.origin === `http://${QA_HOST}:${QA_PORTS.firestore}` && Boolean(id) && abandoned.has(id) && canceled.has(id);
   } catch { return false; }
 }
+
+export function firebaseQaExitCode({ code, timedOut, result }) {
+  // Firebase CLI catches SIGTERM and can exit zero after interrupting its child.
+  // Neither that exit code nor a partial browser journey proves completion.
+  if (timedOut) return 1;
+  if (code !== 0) return Number.isInteger(code) && code > 0 ? code : 1;
+  assert.equal(result?.project, QA_PROJECT, "Missing isolated suite completion proof");
+  assert.equal(result?.version, 1, "Unsupported completion proof");
+  assert.equal(result?.serviceScenarios, 15, "Incomplete service scenarios");
+  assert.deepEqual(result?.browserWidths, [390, 1440], "Both browser journeys must finish");
+  return 0;
+}

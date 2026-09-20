@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { fileURLToPath } from "node:url";
+import { writeFile } from "node:fs/promises";
 import { initializeApp, deleteApp } from "firebase/app";
 import { initializeAuth, inMemoryPersistence, connectAuthEmulator, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, deleteUser } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator, doc, collection, setDoc, updateDoc, getDocFromServer, getDocs, deleteDoc, arrayUnion, disableNetwork, enableNetwork, terminate } from "firebase/firestore";
@@ -23,6 +24,7 @@ function client(name) {
   const value = { app, auth, db }; clients.push(value); return value;
 }
 const denied = promise => assert.rejects(promise, error => error.code === "permission-denied");
+let browserWidths;
 try {
   const alice = client("alice"), bob = client("bob"), guest = client("guest"), aliceTab = client("alice-tab");
   const { user: a } = await createUserWithEmailAndPassword(alice.auth, "alice@example.test", password);
@@ -75,7 +77,10 @@ try {
   });
   console.log(`PASS: ${passed} real Firebase Auth/Firestore emulator scenarios`);
   const { runBrowserScenarios } = await import("./qa-firebase-browser.mjs");
-  await runBrowserScenarios();
+  browserWidths = await runBrowserScenarios();
 } finally {
   await Promise.all(clients.map(async ({ app, db }) => { await terminate(db); await deleteApp(app); }));
 }
+await writeFile(process.env.EVERWISE_FIREBASE_QA_RESULT, JSON.stringify({
+  version: 1, project: QA_PROJECT, serviceScenarios: passed, browserWidths,
+}));

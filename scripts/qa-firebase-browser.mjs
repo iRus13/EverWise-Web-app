@@ -34,6 +34,7 @@ export async function runBrowserScenarios() {
     const base = `http://${QA_HOST}:${server.httpServer.address().port}`;
     const allowed = new Set([base, `http://${QA_HOST}:${QA_PORTS.auth}`, `http://${QA_HOST}:${QA_PORTS.firestore}`]);
     browser = await webkit.launch();
+    const completedWidths = [];
     for (const width of [390, 1440]) {
       const context = await browser.newContext({ viewport: { width, height: 900 }, serviceWorkers: "block" });
       const unexpected = [], errors = [], blockedResources = [];
@@ -180,6 +181,7 @@ export async function runBrowserScenarios() {
         assert.deepEqual(errors.filter(message => !navigationDiagnostics.includes(message)), [], "No app errors or active-channel failures");
         console.log(`INFO: ${navigationDiagnostics.length} WebKit diagnostics matched independently canceled Firestore channels from discarded pages`);
         console.log(`PASS: ${blockedResources.length} optional external requests blocked at ${width}px; all account traffic stayed local`);
+        completedWidths.push(width);
       } catch (error) {
         console.error(`Browser QA failed at ${width}px:`, (await page.locator("body").innerText()).slice(0, 3000));
         console.error("Local emulator response diagnostics:", JSON.stringify(network));
@@ -189,5 +191,6 @@ export async function runBrowserScenarios() {
       } finally { await context.close(); }
     }
     console.log("PASS: real Firebase browser journeys; billing and partner APIs used explicit synthetic responses; no live providers");
+    return completedWidths;
   } finally { await browser?.close(); await server.close(); }
 }
