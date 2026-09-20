@@ -188,7 +188,7 @@ export default function PartnerDashboard({ adminToken }) {
     return (
       <main className="partner-dashboard partner-dashboard-status">
         <img
-          src="/everwise-logo-192.png"
+          src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
           alt=""
           aria-hidden="true"
           className="partner-dashboard-logo"
@@ -218,7 +218,7 @@ export default function PartnerDashboard({ adminToken }) {
       <header className="partner-dashboard-header">
         <div className="partner-dashboard-brand">
           <img
-            src="/everwise-logo-192.png"
+            src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
             alt=""
             aria-hidden="true"
             className="partner-dashboard-logo"

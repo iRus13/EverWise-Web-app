@@ -403,6 +403,7 @@ async function openProtected(kind = "lesson") {
     await Promise.resolve();
     await Promise.resolve();
   });
+  await act(async () => vi.dynamicImportSettled());
   expect(screen.getByRole("heading", { name: new RegExp(`^${kind}`, "i") })).toBeVisible();
 }
 
@@ -1693,7 +1694,10 @@ describe("authoritative billing revalidation and revocation", () => {
       uid: "safe-free-lesson",
     });
     fireEvent.click(screen.getByRole("button", { name: "Open course" }));
-    fireEvent.click(screen.getByRole("button", { name: "Open free lesson" }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "Open free lesson" }));
+      await vi.dynamicImportSettled();
+    });
     expect(screen.getByRole("heading", { name: /^Lesson:/ })).toBeVisible();
     await act(async () => vi.advanceTimersByTimeAsync(60_000));
     expect(screen.getByRole("heading", { name: /^Lesson:/ })).toBeVisible();

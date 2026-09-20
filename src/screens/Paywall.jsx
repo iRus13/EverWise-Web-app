@@ -250,7 +250,7 @@ function Header({ busy, label, onBack }) {
         <X className="h-7 w-7" strokeWidth={2} aria-hidden="true" />
       </button>
       <div className="flex min-w-0 items-center justify-center gap-2">
-        <img src="/everwise-logo-192.png" alt="" className="paywall-logo h-[52px] w-[52px] shrink-0 object-contain" />
+        <img src={`${import.meta.env.BASE_URL}everwise-logo-192.png`} alt="" className="paywall-logo h-[52px] w-[52px] shrink-0 object-contain" />
         <span className="truncate font-serif font-bold text-ink" style={fixedText.wordmark}>
           EverWise
         </span>

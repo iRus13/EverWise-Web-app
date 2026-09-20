@@ -4,7 +4,7 @@
 // Profile stores earned badges as an array of badge NAME strings
 // (see App.jsx finishLesson / finishExam), so matching is by name.
 
-import { lessonsByOrder, examsByOrder } from "../data/lessons";
+import { lessonsByOrder, examsByOrder } from "../data/course-catalog.js";
 import { allPhases as phases, getPhase, phaseLabel } from "../data/phases";
 
 /**

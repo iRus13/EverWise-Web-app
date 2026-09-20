@@ -85,6 +85,19 @@ by default, alternating `protection` and `skill`. Each lesson has:
 
 Add a lesson by appending another object to that array.
 
+After editing curriculum data, run `node scripts/build-course-catalog.mjs`.
+The generated catalog keeps course navigation, completion and badges available
+without loading every exercise at startup. `npm test` checks it against the
+authored lessons. Exercise content and players download when an activity opens;
+a failed download offers retry, reload and a return to the course path.
+
+For production browser checks, build the app and run
+`EVERWISE_PLAYWRIGHT_MODULE=/absolute/path/to/playwright node scripts/qa-production.mjs`.
+The check blocks external requests and verifies startup payload, deferred content,
+images, login validation, install-manifest paths and legal-page return links.
+Set `EVERWISE_QA_BASE=/EverWise/` after building with `--base=/EverWise/` to test
+subfolder hosting. CI runs both forms.
+
 ## Accessibility
 
 Designed for older eyes and hands — accessibility is the top priority:

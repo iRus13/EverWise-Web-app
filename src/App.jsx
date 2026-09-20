@@ -24,7 +24,7 @@ import {
   lessonsByOrder,
   challengesByOrder,
   examsByOrder,
-} from "./data/lessons";
+} from "./data/course-catalog.js";
 import { getPhase } from "./data/phases";
 import {
   courseStanding,
@@ -74,9 +74,7 @@ import Settings, {
 } from "./screens/Settings";
 import Paywall from "./screens/Paywall";
 import LessonPath from "./screens/LessonPath";
-import LessonPlayer from "./screens/LessonPlayer";
-import ChallengePlayer from "./screens/ChallengePlayer";
-import ExamPlayer from "./screens/ExamPlayer";
+import LearningContent from "./components/LearningContent.jsx";
 import Complete from "./screens/Complete";
 import ScamChecker from "./screens/ScamChecker";
 import PartnerAccessError from "./screens/PartnerAccessError";
@@ -4342,9 +4340,10 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "lesson":
       content = (
-        <LessonPlayer
+        <LearningContent
+          kind="lesson"
+          itemId={activeLesson.id}
           key={activeLesson.id}
-          lesson={activeLesson}
           onBack={goPath}
           initialPosition={readLessonPosition({
             uid: user?.uid,
@@ -4375,9 +4374,10 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "challenge":
       content = (
-        <ChallengePlayer
+        <LearningContent
+          kind="challenge"
+          itemId={activeChallenge.id}
           key={activeChallenge.id}
-          challenge={activeChallenge}
           onBack={goPath}
           onComplete={finishChallenge}
         />
@@ -4385,9 +4385,10 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "exam":
       content = (
-        <ExamPlayer
+        <LearningContent
+          kind="exam"
+          itemId={activeExam.id}
           key={activeExam.id}
-          exam={activeExam}
           phaseColor={getPhase(activeExam.phase).accent}
           onBack={goPath}
           onPass={finishExam}

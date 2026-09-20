@@ -1533,7 +1533,7 @@ describe("sponsored signup orchestration", () => {
       screen.getByRole("button", { name: "Start lesson: What is AI?" }),
     );
 
-    expect(screen.getByRole("heading", { name: "What is AI?" })).toBeVisible();
+    expect(await screen.findByRole("heading", { name: "What is AI?" })).toBeVisible();
     expect(screen.queryByText("Pricing and subscription")).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Go back" }));

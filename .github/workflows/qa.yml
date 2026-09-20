@@ -29,3 +29,8 @@ jobs:
           node "$RUNNER_TEMP/everwise-browser/node_modules/playwright/cli.js" install --with-deps webkit
       - name: WebKit layouts and real public navigation
         run: EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-browser/node_modules/playwright" node scripts/qa-webkit.mjs
+      - name: Production startup and asset paths
+        run: |
+          EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-browser/node_modules/playwright" node scripts/qa-production.mjs
+          npm run build:web -- --base=/EverWise/
+          EVERWISE_QA_BASE=/EverWise/ EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-browser/node_modules/playwright" node scripts/qa-production.mjs

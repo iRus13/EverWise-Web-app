@@ -6,22 +6,22 @@
 // BLOCK TYPES: learn, multiselect, flashcards, fillblank,
 //              scenario, truefalse, choice, builder
 
-import { phase2Lessons } from "./phase2-lessons";
-import { phase3Lessons, phase3Exam } from "./phase3-lessons";
-import { phase4Lessons, phase4Exam } from "./phase4-lessons";
-import { phase5Lessons, phase5Exam } from "./phase5-lessons";
-import { phase6Lessons, phase6Exam } from "./phase6-lessons";
-import { phase7Lessons, phase7Exam } from "./phase7-lessons";
-import { scamPhase1Lessons } from "./scam-phase1-lessons";
-import { scamPhase2Lessons } from "./scam-phase2-lessons";
-import { scamPhase3Lessons } from "./scam-phase3-lessons";
-import { scamPhase4Lessons } from "./scam-phase4-lessons";
-import { scamPhase5Lessons } from "./scam-phase5-lessons";
-import { scamPhase6Lessons } from "./scam-phase6-lessons";
-import { scamPhase7Lessons } from "./scam-phase7-lessons";
-import { scamPhase8Lessons } from "./scam-phase8-lessons";
-import { scamPhase9Lessons } from "./scam-phase9-lessons";
-import { scamPhase10Lessons } from "./scam-phase10-lessons";
+import { phase2Lessons } from "./phase2-lessons.js";
+import { phase3Lessons, phase3Exam } from "./phase3-lessons.js";
+import { phase4Lessons, phase4Exam } from "./phase4-lessons.js";
+import { phase5Lessons, phase5Exam } from "./phase5-lessons.js";
+import { phase6Lessons, phase6Exam } from "./phase6-lessons.js";
+import { phase7Lessons, phase7Exam } from "./phase7-lessons.js";
+import { scamPhase1Lessons } from "./scam-phase1-lessons.js";
+import { scamPhase2Lessons } from "./scam-phase2-lessons.js";
+import { scamPhase3Lessons } from "./scam-phase3-lessons.js";
+import { scamPhase4Lessons } from "./scam-phase4-lessons.js";
+import { scamPhase5Lessons } from "./scam-phase5-lessons.js";
+import { scamPhase6Lessons } from "./scam-phase6-lessons.js";
+import { scamPhase7Lessons } from "./scam-phase7-lessons.js";
+import { scamPhase8Lessons } from "./scam-phase8-lessons.js";
+import { scamPhase9Lessons } from "./scam-phase9-lessons.js";
+import { scamPhase10Lessons } from "./scam-phase10-lessons.js";
 import { phaseChallenges } from "./phase-challenges.js";
 import { labelFinalLessonsForChallenges } from "../utils/courseProgress.js";
 

@@ -41,7 +41,7 @@ export default function Home({
         <div className="home-header flex items-center justify-between gap-3 lg:hidden">
           <div className="flex items-center gap-3">
             <img
-              src="/everwise-logo-192.png"
+              src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
               alt=""
               aria-hidden="true"
               className="h-9 w-9 object-contain"

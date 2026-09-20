@@ -33,9 +33,6 @@ jobs:
         env:
           VITE_EVERWISE_API_URL: https://everwise.dexio-games.com
         run: npm run build:web -- --base=/EverWise/
-      - name: Fix app paths for GitHub Pages
-        run: |
-          find dist/client -type f \( -name '*.js' -o -name '*.html' -o -name '*.webmanifest' \) -exec sed -i 's|"/everwise-|"/EverWise/everwise-|g; s|"/manifest.webmanifest"|"/EverWise/manifest.webmanifest"|g; s|"start_url": "/"|"start_url": "/EverWise/"|g' {} +
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site

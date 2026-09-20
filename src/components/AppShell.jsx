@@ -55,7 +55,7 @@ export default function AppShell({
           <nav className="app-navigation" aria-label="Primary navigation">
             <div className="app-navigation-brand">
               <img
-                src="/everwise-logo-192.png"
+                src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
                 alt=""
                 aria-hidden="true"
                 className="app-navigation-logo"

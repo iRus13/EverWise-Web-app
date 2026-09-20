@@ -48,7 +48,7 @@ test("real screens complete free learning, save progress, open settings/paywall 
   await act(async () => state.authCallback({uid: "qa-user", email: "qa@example.com", getIdToken: async () => "synthetic-token"}));
   fireEvent.click(await screen.findByRole("button", {name: "Continue learning"}));
   await act(async () => fireEvent.click(screen.getByRole("button", {name: "Start lesson: Welcome to Everwise"})));
-  expect(screen.getByRole("heading", {name: "How Everwise Works"})).toBeVisible();
+  expect(await screen.findByRole("heading", {name: "How Everwise Works"})).toBeVisible();
   await act(async () => fireEvent.click(screen.getByRole("button", {name: "Continue", exact:true})));
   expect(screen.getByRole("heading", {name: "Welcome Aboard!"})).toBeVisible();
   expect(state.updateDoc).toHaveBeenCalledWith(expect.objectContaining({uid:"qa-user"}), expect.objectContaining({completedLessons:["welcome"]}));
