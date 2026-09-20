@@ -258,15 +258,15 @@ export default function ScamChecker({ onBack }) {
           <h2 className="text-xl font-bold text-ink">Check more safely</h2>
           <ul className="mt-3 space-y-3 text-lg leading-snug text-ink-soft">
             <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">1.</span>
+              <span className="shrink-0 whitespace-nowrap font-bold text-sage-dark" aria-hidden="true">1.</span>
               <span>Remove passwords and account numbers before pasting.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">2.</span>
+              <span className="shrink-0 whitespace-nowrap font-bold text-sage-dark" aria-hidden="true">2.</span>
               <span>Do not use links or phone numbers from a suspicious message.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">3.</span>
+              <span className="shrink-0 whitespace-nowrap font-bold text-sage-dark" aria-hidden="true">3.</span>
               <span>Contact the organization using its official website, app, card, or statement.</span>
             </li>
           </ul>

@@ -517,7 +517,7 @@ export default function Settings({
             <Row
               label="View plans"
               onClick={onOpenPaywall}
-              hint="Start free trial"
+              hint="Compare plans and pricing"
               disabled={billingBusy}
             />
           </section>
@@ -585,7 +585,7 @@ export default function Settings({
               <Row
                 label="View plans"
                 onClick={onOpenPaywall}
-                hint="Start free trial"
+                hint="Compare plans and pricing"
                 disabled={billingBusy}
               />
             )}
