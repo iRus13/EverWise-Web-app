@@ -41,7 +41,7 @@ try {
     combinations++;
     return result;
   }
-  for (const view of ["landing", "login", "interview", "signup", "home", "settings", "badges", "path", "lesson", "complete", "scam-checker"]) {
+  for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "settings", "badges", "path", "lesson", "complete", "scam-checker"]) {
     for (const [width, height] of [[320,568], [768,1024], [1440,900]]) {
       for (const size of ["size-2", "size-10"]) {
         const g = await geometry(`/tests/fixtures/app-layout.html?view=${view}&textSize=${size}`, width, height);

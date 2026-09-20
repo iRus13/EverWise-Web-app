@@ -2,12 +2,14 @@ import { useState } from "react";
 import Field from "../components/Field";
 import BackButton from "../components/BackButton";
 import { authErrorMessage } from "../utils/authErrors";
+import PasswordReset from "./PasswordReset.jsx";
 
-export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
+export default function LogIn({ onLogIn, onGoToSignUp, onBack, onResetPassword }) {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [resetting, setResetting] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -24,6 +26,8 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
       setBusy(false);
     }
   };
+
+  if (resetting) return <PasswordReset initialEmail={identifier} onResetPassword={onResetPassword} onBack={() => setResetting(false)} />;
 
   return (
     <div className="onboarding-focus auth-focus flex flex-1 flex-col overflow-y-auto px-7 pb-10 pt-6">
@@ -55,6 +59,12 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
             placeholder="Your password"
           />
         </div>
+
+        {onResetPassword && <button type="button" disabled={busy}
+          className="mt-4 min-h-11 self-start text-lg font-semibold text-clay underline underline-offset-4"
+          onClick={() => { setPassword(""); setError(""); setResetting(true); }}>
+          Forgot password?
+        </button>}
 
         {error && (
           <p

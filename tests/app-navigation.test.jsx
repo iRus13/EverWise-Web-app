@@ -31,8 +31,22 @@ vi.mock("../src/services/partnerAccess.js", async (original) => ({
   ...(await original()), fetchPartnerAccess: vi.fn(async () => ({status: "none"})),
 }));
 import App from "../src/App.jsx";
+import {sendPasswordResetEmail} from "firebase/auth";
 
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); window.localStorage.clear(); window.sessionStorage.clear(); });
+
+test("anonymous login recovery reaches Firebase only with a real email address", async () => {
+  const timeout = window.setTimeout.bind(window);
+  vi.spyOn(window, "setTimeout").mockImplementation((fn, delay, ...args) => timeout(fn, delay === 3000 ? 0 : delay, ...args));
+  sendPasswordResetEmail.mockResolvedValue();
+  render(<App />);
+  fireEvent.click(await screen.findByRole("button", {name:"Log In", exact:true}));
+  fireEvent.click(screen.getByRole("button", {name:"Forgot password?"}));
+  fireEvent.change(screen.getByLabelText("Email address"), {target:{value:" Learner@Example.com "}});
+  fireEvent.click(screen.getByRole("button", {name:"Send reset link"}));
+  expect(await screen.findByRole("status")).toHaveTextContent("If an account uses this email address");
+  expect(sendPasswordResetEmail).toHaveBeenCalledWith({}, "learner@example.com");
+});
 
 test("real screens complete free learning, save progress, open settings/paywall and log out", async () => {
   const timeout = window.setTimeout.bind(window);

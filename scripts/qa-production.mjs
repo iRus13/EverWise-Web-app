@@ -57,6 +57,12 @@ try {
     await page.getByRole("button", {name:"Log In", exact:true}).click();
     await page.getByRole("button", {name:"Log In", exact:true}).click();
     await page.getByRole("alert").filter({hasText:"Please enter"}).waitFor();
+    await page.getByRole("button", {name:"Forgot password?"}).click();
+    assert.equal(await page.getByRole("heading", {name:"Reset your password"}).evaluate(element => element === document.activeElement), true);
+    await page.getByLabel("Email address").fill("learner@accounts.everwise.app");
+    await page.getByRole("button", {name:"Send reset link"}).click();
+    await page.getByRole("alert").filter({hasText:"email address you used"}).waitFor();
+    await page.getByRole("button", {name:"Back", exact:true}).click();
     await page.getByRole("button", {name:"Back", exact:true}).click();
     await page.getByRole("button", {name:"Get Started", exact:true}).waitFor();
 

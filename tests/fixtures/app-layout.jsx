@@ -4,6 +4,7 @@ import {createRoot} from "react-dom/client";
 import AppShell from "../../src/components/AppShell";
 import Landing from "../../src/screens/Landing";
 import LogIn from "../../src/screens/LogIn";
+import PasswordReset from "../../src/screens/PasswordReset.jsx";
 import ProfileInterview from "../../src/screens/ProfileInterview";
 import Home from "../../src/screens/Home";
 import Settings from "../../src/screens/Settings";
@@ -21,6 +22,7 @@ document.documentElement.dataset.textSize = textSize;
 const noop = () => {};
 const lesson = allLessons[1];
 const screens = {
+  "password-reset": <PasswordReset onBack={noop} onResetPassword={async () => {}} />,
   landing: <Landing onSignUp={noop} onLogIn={noop} />,
   login: <LogIn onLogIn={noop} onGoToSignUp={noop} onBack={noop}/>,
   interview: <ProfileInterview onComplete={noop} onBack={noop} onLogIn={noop}/>,

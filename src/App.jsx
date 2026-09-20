@@ -75,6 +75,7 @@ import Settings, {
 import Paywall from "./screens/Paywall";
 import LessonPath from "./screens/LessonPath";
 import LearningContent from "./components/LearningContent.jsx";
+import { requestEmailPasswordReset } from "./utils/passwordRecovery.js";
 import Complete from "./screens/Complete";
 import ScamChecker from "./screens/ScamChecker";
 import PartnerAccessError from "./screens/PartnerAccessError";
@@ -4146,6 +4147,7 @@ function LearnerApp({ initialPartnerFragment }) {
       content = (
         <LogIn
           onLogIn={logIn}
+          onResetPassword={email => requestEmailPasswordReset(email, address => sendPasswordResetEmail(auth, address))}
           onGoToSignUp={() => setScreen("interview")}
           onBack={() => setScreen(loginInterviewDraft ? "interview" : "landing")}
         />

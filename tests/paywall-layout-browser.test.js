@@ -528,7 +528,7 @@ test("core app screens fit narrow phones and desktop at standard and largest tex
   await withLayoutServer(async (url) => {
     const appUrl = url.replace("paywall-layout.html", "app-layout.html");
     const failures = [];
-    for (const view of ["landing", "login", "interview", "signup", "home", "settings", "badges", "path", "lesson", "complete", "scam-checker"]) {
+    for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "settings", "badges", "path", "lesson", "complete", "scam-checker"]) {
       for (const [width,height] of [[320,568],[768,1024],[1440,900]]) {
         for (const textSize of ["size-2","size-10"]) {
           const geometry = await measure(`${appUrl}?view=${view}&textSize=${textSize}`, width, "", height);
