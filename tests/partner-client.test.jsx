@@ -732,7 +732,7 @@ async function openReturningSponsoredSettings(overrides = {}) {
   return { returningProfile, returningUser, user };
 }
 
-async function openReturningPublicSettings(overrides = {}) {
+async function openReturningPublicSettings(overrides = {}, profileOverrides = {}) {
   window.history.replaceState(null, "", "/");
   const returningUser = {
     uid: "returning-public-delete",
@@ -740,7 +740,7 @@ async function openReturningPublicSettings(overrides = {}) {
     getIdToken: vi.fn(async () => "returning-public-token"),
     ...overrides,
   };
-  const returningProfile = learnerProfile({ email: returningUser.email });
+  const returningProfile = learnerProfile({ email: returningUser.email, ...profileOverrides });
   mocks.getDoc.mockResolvedValue(profileSnapshot(returningProfile));
   mocks.fetchPartnerAccess.mockResolvedValue({ status: "none" });
   const user = userEvent.setup();
@@ -2599,6 +2599,26 @@ describe("sponsored signup orchestration", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "We could not delete your account right now. Your saved profile was restored.",
     );
+  });
+
+  test.each(["active", "trial"])("restores learning data without recreating a %s subscription mirror", async (subscriptionStatus) => {
+    mocks.deleteUser.mockRejectedValue({ code: "auth/internal-error" });
+    mocks.setDoc.mockImplementation(async (_reference, data) => {
+      if (data.subscriptionStatus !== "expired" || data.trialStartedAt !== null || data.plan !== null) {
+        throw new Error("Profile create denied");
+      }
+    });
+    const { returningProfile, user } = await openReturningPublicSettings({}, {
+      subscriptionStatus, trialStartedAt: "2026-09-19T10:00:00.000Z", plan: "annual",
+      completedLessons: ["welcome"], badges: ["Welcome Aboard"],
+    });
+    await user.click(screen.getByRole("button", { name: "Yes, delete" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("Your saved profile was restored");
+    expect(mocks.setDoc).toHaveBeenCalledWith(
+      { collection: "users", uid: "returning-public-delete" },
+      { ...returningProfile, subscriptionStatus: "expired", trialStartedAt: null, plan: null },
+    );
+    expect(returningProfile.subscriptionStatus).toBe(subscriptionStatus);
   });
 
   test("cancels the subscription before destroying anything on deletion", async () => {

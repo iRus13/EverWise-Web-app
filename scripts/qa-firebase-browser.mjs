@@ -38,6 +38,9 @@ export async function runBrowserScenarios() {
     for (const width of [390, 1440]) {
       const context = await browser.newContext({ viewport: { width, height: 900 }, serviceWorkers: "block" });
       const unexpected = [], errors = [], blockedResources = [];
+      let rejectAuthDeletion = false;
+      let rejectedAuthDeletions = 0;
+      let billingCancellations = 0;
       const syntheticApis = {
         "/api/partner/access": { status: "none" },
         "/api/billing/access": { access: "none", status: "none", plan: null, trialEndsAt: null, currentPeriodEndsAt: null, cancelAtPeriodEnd: false, canStartTrial: true, canManage: false },
@@ -45,9 +48,14 @@ export async function runBrowserScenarios() {
           { key: "annual", currency: "usd", unitAmount: 6000, interval: "year", trialDays: 7 },
           { key: "monthly", currency: "usd", unitAmount: 799, interval: "month", trialDays: 3 },
         ] },
+        "/api/billing/cancel": { canceled: true },
       };
       await context.route("**/*", route => {
         const url = new URL(route.request().url());
+        if (url.origin === `http://${QA_HOST}:${QA_PORTS.auth}` && url.pathname.endsWith("/accounts:delete") && rejectAuthDeletion) {
+          rejectedAuthDeletions++;
+          return route.fulfill({ status: 400, json: { error: { code: 400, message: "OPERATION_NOT_ALLOWED" } } });
+        }
         if (!allowed.has(url.origin)) {
           const destination = `${url.origin}${url.pathname}`;
           // Optional font loading and Firebase's connectivity image are never
@@ -57,6 +65,7 @@ export async function runBrowserScenarios() {
           return route.abort();
         }
         if (url.origin === base && url.pathname.startsWith("/api/")) {
+          if (url.pathname === "/api/billing/cancel") billingCancellations++;
           if (Object.hasOwn(syntheticApis, url.pathname)) return route.fulfill({ json: syntheticApis[url.pathname], headers: { "Cache-Control": "no-store" } });
           unexpected.push(url.pathname); return route.abort();
         }
@@ -176,6 +185,50 @@ export async function runBrowserScenarios() {
         await page.getByRole("button", { name: /^Start \d+-day free trial$/ }).waitFor();
         await button("Continue with free lessons").waitFor();
         console.log(`PASS: forged profile subscription does not unlock paid lessons at ${width}px`);
+        await button("Continue with free lessons").click();
+        await readyHome();
+        await button("Settings").click();
+        await button("Delete account").click();
+        await page.getByLabel("Current password", { exact: true }).fill("incorrect-synthetic-password");
+        await button("Yes, delete").click();
+        await page.getByRole("alert").filter({ hasText: "We could not delete your account" }).waitFor();
+        assert.equal(billingCancellations, 0, "Incorrect password must not cancel billing");
+        assert.deepEqual((await ownProfile()).completedLessons, ["welcome"]);
+        rejectAuthDeletion = true;
+        await page.getByLabel("Current password", { exact: true }).fill("synthetic-browser-password-42");
+        await button("Yes, delete").click();
+        await page.getByRole("alert").filter({ hasText: "Your saved profile was restored" }).waitFor();
+        assert.equal(rejectedAuthDeletions, 1, "Only the Auth deletion failure was injected");
+        assert.equal(billingCancellations, 1);
+        assert.deepEqual((await ownProfile()).completedLessons, ["welcome"]);
+        assert.deepEqual((await ownProfile()).badges, ["Welcome Aboard"]);
+        console.log(`PASS: incorrect-password protection and real profile restoration after Auth deletion failure at ${width}px`);
+        assert.equal((await ownProfile()).subscriptionStatus, "expired");
+        assert.equal((await ownProfile()).trialStartedAt, null);
+        assert.equal((await ownProfile()).plan, null);
+        await reload();
+        await readyHome();
+        assert.deepEqual((await ownProfile()).completedLessons, ["welcome"]);
+        rejectAuthDeletion = false;
+        await button("Settings").click();
+        await button("Delete account").click();
+        await page.getByLabel("Current password", { exact: true }).fill("synthetic-browser-password-42");
+        await button("Yes, delete").click();
+        await button("Get Started").waitFor({ timeout: 60_000 });
+        assert.equal(billingCancellations, 2);
+        assert.equal(await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).auth.currentUser), null);
+        // Emulator-only admin read proves the document is gone after sign-out.
+        // The environment guard and fixed loopback demo URL exclude cloud data.
+        const deletedProfile = await context.request.get(`http://${QA_HOST}:${QA_PORTS.firestore}/v1/projects/${QA_PROJECT}/databases/default/documents/users/${firstUid}`, { headers: { Authorization: "Bearer owner" } });
+        assert.equal(deletedProfile.status(), 404);
+        assert.equal((await deletedProfile.json()).error.status, "NOT_FOUND");
+        await button("Log In").click();
+        await page.getByLabel("Username or email").fill(username);
+        await page.getByLabel("Password", { exact: true }).fill("synthetic-browser-password-42");
+        await button("Log In").click();
+        await page.getByRole("alert").waitFor();
+        assert.equal(await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).auth.currentUser), null);
+        console.log(`PASS: successful retry deletes the real profile and Auth login at ${width}px`);
         assert.deepEqual(unexpected, [], "No unrecognized API or external network requests");
         const navigationDiagnostics = errors.filter(message => isCanceledFirestoreNavigationError(message, abandoned, canceled));
         assert.deepEqual(errors.filter(message => !navigationDiagnostics.includes(message)), [], "No app errors or active-channel failures");

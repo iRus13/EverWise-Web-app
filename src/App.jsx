@@ -78,6 +78,7 @@ import LearningContent from "./components/LearningContent.jsx";
 import ProgressSaveNotice from "./components/ProgressSaveNotice.jsx";
 import useProgressSync from "./hooks/useProgressSync.js";
 import { canReceivePasswordReset, requestEmailPasswordReset } from "./utils/passwordRecovery.js";
+import { profileForRecreation } from "./utils/profileRecovery.js";
 import Complete from "./screens/Complete";
 import ScamChecker from "./screens/ScamChecker";
 import PartnerAccessError from "./screens/PartnerAccessError";
@@ -3578,7 +3579,7 @@ function LearnerApp({ initialPartnerFragment }) {
         let profileRestored = !profileDeleted || firebaseDeleted;
         if (profileDeleted && !firebaseDeleted) {
           try {
-            await setDoc(doc(db, "users", expectedUid), cachedProfile);
+            await setDoc(doc(db, "users", expectedUid), profileForRecreation(cachedProfile));
             profileRestored = true;
           } catch {
             profileRestored = false;
@@ -3723,7 +3724,7 @@ function LearnerApp({ initialPartnerFragment }) {
         }
         if (profileDeleted) {
           try {
-            await setDoc(doc(db, "users", expectedUid), cachedProfile);
+            await setDoc(doc(db, "users", expectedUid), profileForRecreation(cachedProfile));
             profileRestored = true;
           } catch {
             profileRestored = false;
