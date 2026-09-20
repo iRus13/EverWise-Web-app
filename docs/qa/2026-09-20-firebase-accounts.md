@@ -72,6 +72,12 @@ independently reported canceled by the browser. Other page errors, new-channel
 failures, wrong endpoints, missing server data or unacknowledged progress still
 fail. The separated diagnostic count is printed. Unit tests cover those bounds.
 
+The first Linux CI run passed the service scenarios but timed out at the initial
+signup profile save after 20 seconds. The browser harness now gives that cold
+connection a specific 60-second bound and reports the last 30 local emulator
+response statuses on failure. This changes no application behavior or assertions;
+the overall emulator run still has a ten-minute limit. Final CI status is in PR #3.
+
 These are local emulator and simulator results. They do not prove deployed
 Firestore rules, production persistence, real payment/provider behavior,
 physical-device airplane mode, VoiceOver, or App Store/TestFlight acceptance.

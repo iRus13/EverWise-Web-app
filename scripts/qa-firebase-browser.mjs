@@ -63,6 +63,12 @@ export async function runBrowserScenarios() {
       });
       const page = await context.newPage();
       page.setDefaultTimeout(20_000);
+      const network = [];
+      const recordNetwork = event => { network.push(event); if (network.length > 30) network.shift(); };
+      page.on("response", response => {
+        const url = new URL(response.url());
+        if ([String(QA_PORTS.auth), String(QA_PORTS.firestore)].includes(url.port)) recordNetwork({ path: url.pathname, status: response.status() });
+      });
       const channels = new Set(), abandoned = new Set(), canceled = new Set();
       const channelId = request => {
         const url = new URL(request.url());
@@ -73,6 +79,8 @@ export async function runBrowserScenarios() {
       page.on("requestfailed", request => {
         const id = channelId(request);
         if (id && request.failure()?.errorText === "cancelled") canceled.add(id);
+        const url = new URL(request.url());
+        if ([String(QA_PORTS.auth), String(QA_PORTS.firestore)].includes(url.port)) recordNetwork({ path: url.pathname, failure: request.failure()?.errorText });
       });
       async function reload() {
         channels.forEach(id => abandoned.add(id)); channels.clear();
@@ -107,7 +115,9 @@ export async function runBrowserScenarios() {
         await page.getByLabel("Username", { exact: true }).fill(username);
         await page.getByLabel("Choose a password").fill("synthetic-browser-password-42");
         await button("Build my plan").click();
-        await button("See my plan options").click();
+        // The first WebChannel connection can be slow in a cold emulator/CI
+        // browser. Keep a specific bound without weakening any saved-data check.
+        await button("See my plan options").click({ timeout: 60_000 });
         await page.getByRole("button", { name: /^Start \d+-day free trial$/ }).waitFor();
         await button("Continue with free lessons").click();
         await button("Continue learning").waitFor();
@@ -167,6 +177,9 @@ export async function runBrowserScenarios() {
         console.log(`PASS: ${blockedResources.length} optional external requests blocked at ${width}px; all account traffic stayed local`);
       } catch (error) {
         console.error(`Browser QA failed at ${width}px:`, (await page.locator("body").innerText()).slice(0, 3000));
+        console.error("Local emulator response diagnostics:", JSON.stringify(network));
+        console.error("Browser errors:", JSON.stringify(errors));
+        console.error("Unexpected destinations:", JSON.stringify(unexpected));
         throw error;
       } finally { await context.close(); }
     }
