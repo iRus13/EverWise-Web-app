@@ -41,10 +41,11 @@ try {
     combinations++;
     return result;
   }
-  for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "home-pending", "settings", "settings-reset-pending", "settings-reset-error", "badges", "path", "lesson", "complete", "complete-pending", "scam-checker"]) {
-    for (const [width, height] of [[320,568], [768,1024], [1440,900], ...((view.endsWith("-pending") || view.startsWith("settings-reset-")) ? [[667,375]] : [])]) {
+  for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "home-pending", "settings", "settings-reset-pending", "settings-reset-error", "badges", "path", "lesson", "complete", "complete-pending", "scam-checker", "billing-error", "billing-inactive", "billing-checking", "billing-timeout", "partner-error", "partner-cleanup", "personal-plan"]) {
+    for (const [width, height] of [[320,568], [768,1024], [1440,900], ...((view.endsWith("-pending") || view.startsWith("settings-reset-") || /^(billing-|partner-|personal-plan)/.test(view)) ? [[667,375]] : [])]) {
       for (const size of ["size-2", "size-10"]) {
         const g = await geometry(`/tests/fixtures/app-layout.html?view=${view}&textSize=${size}`, width, height);
+        assert.deepEqual(g.unreachable, [], `${view} actions reachable at ${width}x${height} ${size}`);
         assert.deepEqual(g.outside, [], `${view} controls at ${width} ${size}`);
         assert.deepEqual(g.brokenImages, [], `${view} images`);
         assert.ok(g.headings, `${view} heading`);

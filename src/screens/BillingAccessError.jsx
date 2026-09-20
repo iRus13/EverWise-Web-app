@@ -10,8 +10,8 @@ export default function BillingAccessError({ kind = "temporary", onRetry, onBack
   const temporary = kind === "temporary";
 
   return (
-    <main className="mx-auto flex h-full w-full max-w-2xl flex-col justify-center px-6 py-10 text-center">
-      <section className="rounded-3xl bg-cream-card px-6 py-8 shadow-card sm:px-10" role="alert">
+    <main className="mx-auto flex h-full min-h-0 w-full max-w-2xl flex-1 flex-col overflow-y-auto px-6 py-10 text-center">
+      <section className="my-auto shrink-0 rounded-3xl bg-cream-card px-6 py-8 shadow-card sm:px-10" role="alert">
         <h1 ref={headingRef} className="font-serif text-4xl font-bold text-ink" tabIndex={-1}>
           {temporary ? "We could not verify your subscription" : "Your subscription is not active"}
         </h1>

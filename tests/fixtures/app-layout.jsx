@@ -14,6 +14,10 @@ import LessonPath from "../../src/screens/LessonPath";
 import LessonPlayer from "../../src/screens/LessonPlayer";
 import Complete from "../../src/screens/Complete";
 import ScamChecker from "../../src/screens/ScamChecker";
+import BillingAccessError from "../../src/screens/BillingAccessError.jsx";
+import BillingConfirmation from "../../src/screens/BillingConfirmation.jsx";
+import PartnerAccessError from "../../src/screens/PartnerAccessError.jsx";
+import PersonalPlan from "../../src/screens/PersonalPlan.jsx";
 import {allLessons} from "../../src/data/lessons";
 import "../../src/index.css";
 const query = new URLSearchParams(location.search);
@@ -36,6 +40,13 @@ const screens = {
   lesson: <LessonPlayer lesson={lesson} onBack={noop} onComplete={noop}/>,
   complete: <Complete lesson={lesson} onDone={noop}/>,
   "scam-checker": <ScamChecker onBack={noop}/>,
+  "billing-error": <BillingAccessError onRetry={noop} onBack={noop}/>,
+  "billing-inactive": <BillingAccessError kind="inactive" onRetry={noop} onBack={noop}/>,
+  "billing-checking": <BillingConfirmation onBack={noop}/>,
+  "billing-timeout": <BillingConfirmation phase="timeout" onRetry={noop} onManageBilling={noop} onBack={noop}/>,
+  "partner-error": <PartnerAccessError code="PARTNER_ACCESS_UNCONFIRMED" onRetry={noop} onLogOut={noop}/>,
+  "partner-cleanup": <PartnerAccessError code="PARTNER_CLEANUP_INCOMPLETE" onLogOut={noop} showSupport/>,
+  "personal-plan": <PersonalPlan profile={{profileInterview:{concerns:["Suspicious links"],scamFrequency:"never"}}} onContinue={noop}/>,
 };
 function MeasuredScreen() {
   useEffect(() => {
@@ -45,11 +56,23 @@ function MeasuredScreen() {
   const screen = view.startsWith("settings-reset-") ? "settings" : view.replace(/-pending$/, "");
   return <AppShell screen={screen} isAuthenticated={!["landing","login","password-reset","interview","signup"].includes(screen)} textSize={textSize} onTextSizeChange={noop} onHome={noop} onCourse={noop} onScamChecker={noop} onBadges={noop} onSettings={noop}>
     {["home-pending", "complete-pending"].includes(view) && <ProgressSaveNotice status={{pending:true,saving:false,durable:screen==="home"}} onRetry={noop}/>}
-    {screens[screen]}
+    <div className="screen-content-frame flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden">{screens[screen]}</div>
   </AppShell>;
 }
 createRoot(document.getElementById("root")).render(<MeasuredScreen />);
 async function measure() {
+  if(view === "personal-plan") {
+    await new Promise((resolve, reject) => {
+      const observer=new MutationObserver(check);
+      const timer=setTimeout(() => { observer.disconnect(); reject(new Error("Plan fixture did not finish")); }, 5000);
+      function check() {
+        if (!document.querySelector(".screen-content-frame button")) return;
+        clearTimeout(timer); observer.disconnect(); resolve();
+      }
+      observer.observe(document.body, {childList:true,subtree:true});
+      check();
+    });
+  }
   if (view.startsWith("settings-reset-")) {
     const selector=view.endsWith("error") ? '[role="alert"]' : '[role="status"]';
     await new Promise((resolve, reject) => {
@@ -65,6 +88,13 @@ async function measure() {
   }
   await document.fonts.ready;
   await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  // The plan mounts a finite entrance animation after its preparation delay.
+  // Measure its settled position, rather than scroll against a moving heading.
+  if (view === "personal-plan") {
+    await Promise.all(document.getAnimations()
+      .filter(animation => Number.isFinite(animation.effect.getComputedTiming().endTime))
+      .map(animation => animation.finished.catch(() => {})));
+  }
   const viewport = document.documentElement.clientWidth;
   const outside = Array.from(document.querySelectorAll("button,input,textarea")).filter(el => {
     const r = el.getBoundingClientRect();
@@ -101,6 +131,37 @@ async function measure() {
     const lastAction=document.querySelector(".landing-actions button:last-child").getBoundingClientRect();
     landingBottomGap=Math.min(innerHeight,scroller.getBoundingClientRect().bottom)-lastAction.bottom;
   }
-  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight,recoveryReadable,landingBottomGap}));
+  const unreachable=[];
+  if (/^(billing-|partner-|personal-plan)/.test(view)) {
+    for(const control of document.querySelectorAll(".screen-content-frame h1, .screen-content-frame button, .screen-content-frame a")) {
+      const heading=control.tagName === "H1";
+      // Scroll only user-scrollable containers. scrollIntoView() would also
+      // move overflow:hidden ancestors and conceal an inaccessible layout.
+      for(let parent=control.parentElement; parent; parent=parent.parentElement) {
+        if(!/^(auto|scroll)$/.test(getComputedStyle(parent).overflowY)) continue;
+        const rect=control.getBoundingClientRect(), box=parent.getBoundingClientRect();
+        const top=Math.max(0,box.top), bottom=Math.min(innerHeight,box.bottom);
+        parent.scrollTop += heading || rect.top < top ? rect.top-top : Math.max(0,rect.bottom-bottom);
+      }
+      // Wide layouts scroll the document. Body.scrollTop does not move the
+      // viewport in standards mode, so use the document's scrolling API.
+      if (/^(auto|scroll)$/.test(getComputedStyle(document.body).overflowY)) {
+        const rect=control.getBoundingClientRect();
+        window.scrollBy(0, heading || rect.top < 0 ? rect.top : Math.max(0,rect.bottom-innerHeight));
+      }
+      await new Promise(resolve => requestAnimationFrame(resolve));
+      let top=0, bottom=innerHeight;
+      for(let parent=control.parentElement; parent; parent=parent.parentElement) {
+        if(!/^(auto|scroll|hidden|clip)$/.test(getComputedStyle(parent).overflowY)) continue;
+        const box=parent.getBoundingClientRect();
+        top=Math.max(top,box.top); bottom=Math.min(bottom,box.bottom);
+      }
+      const rect=control.getBoundingClientRect();
+      if(rect.top < top-1 || (heading ? rect.top >= bottom : rect.bottom > bottom+1)) {
+        unreachable.push({label:control.textContent.trim(),top:rect.top,bottom:rect.bottom,clipTop:top,clipBottom:bottom});
+      }
+    }
+  }
+  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight,recoveryReadable,landingBottomGap,unreachable}));
   document.body.dataset.geometryReady = "true";
 }

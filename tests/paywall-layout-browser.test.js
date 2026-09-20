@@ -549,3 +549,22 @@ test("settings recovery geometry waits for the requested asynchronous error stat
     assert.equal(geometry.recoveryReadable, true, "Measure the rendered error, not the earlier pending state");
   });
 });
+
+
+test("subscription and sponsored recovery actions and personal plan remain reachable", { ...browserTestOptions, timeout: 180_000 }, async () => {
+  await withLayoutServer(async url => {
+    const appUrl=url.replace("paywall-layout.html", "app-layout.html");
+    const failures=[];
+    for (const view of ["billing-error", "billing-inactive", "billing-checking", "billing-timeout", "partner-error", "partner-cleanup", "personal-plan"]) {
+      for (const [width,height] of [[320,568], [667,375], [768,1024], [1440,900]]) {
+        for (const textSize of ["size-2", "size-10"]) {
+          const g=await measure(`${appUrl}?view=${view}&textSize=${textSize}`, width, "", height);
+          if (g.unreachable.length || g.outside.length || g.brokenImages.length || !g.headings || g.scrollWidth > g.clientWidth+1) {
+            failures.push({view,width,height,textSize,...g});
+          }
+        }
+      }
+    }
+    assert.deepEqual(failures, [], "Headings and recovery actions must be reachable through user-scrollable containers");
+  });
+});

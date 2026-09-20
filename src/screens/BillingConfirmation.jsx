@@ -15,9 +15,9 @@ export default function BillingConfirmation({
   const timedOut = phase === "timeout";
 
   return (
-    <main className="mx-auto flex h-full w-full max-w-2xl flex-col justify-center px-6 py-10 text-center">
+    <main className="mx-auto flex h-full min-h-0 w-full max-w-2xl flex-1 flex-col overflow-y-auto px-6 py-10 text-center">
       <section
-        className="rounded-3xl bg-cream-card px-6 py-8 shadow-card sm:px-10"
+        className="my-auto shrink-0 rounded-3xl bg-cream-card px-6 py-8 shadow-card sm:px-10"
         role="region"
         aria-label="Subscription confirmation status"
         aria-live="polite"
