@@ -75,8 +75,12 @@ fail. The separated diagnostic count is printed. Unit tests cover those bounds.
 The first Linux CI run passed the service scenarios but timed out at the initial
 signup profile save after 20 seconds. The browser harness now gives that cold
 connection a specific 60-second bound and reports the last 30 local emulator
-response statuses on failure. This changes no application behavior or assertions;
-the overall emulator run still has a ten-minute limit. Final CI status is in PR #3.
+response statuses on failure. The second run completed signup, but the progress
+acknowledgement after reload outlasted the old 20-second test wait; the app
+correctly retained its durable journal and showed the pending-sync notice.
+Acknowledgement also receives a 60-second bound, followed by a mandatory server
+read. This changes no application behavior or saved-data assertions; the overall
+emulator run still has a ten-minute limit. Final CI status is in PR #3.
 
 These are local emulator and simulator results. They do not prove deployed
 Firestore rules, production persistence, real payment/provider behavior,

@@ -78,7 +78,7 @@ export async function runBrowserScenarios() {
       page.on("pageerror", error => errors.push(error.message));
       page.on("requestfailed", request => {
         const id = channelId(request);
-        if (id && request.failure()?.errorText === "cancelled") canceled.add(id);
+        if (id && ["cancelled", "Load request cancelled"].includes(request.failure()?.errorText)) canceled.add(id);
         const url = new URL(request.url());
         if ([String(QA_PORTS.auth), String(QA_PORTS.firestore)].includes(url.port)) recordNetwork({ path: url.pathname, failure: request.failure()?.errorText });
       });
@@ -90,7 +90,10 @@ export async function runBrowserScenarios() {
       const ownProfile = () => page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).readOwnProfile());
       const queueSize = () => page.evaluate(() => Object.keys(localStorage).filter(key => key.startsWith("everwise.progress.pending.v1:")).length);
       async function savedWelcome() {
-        await page.waitForFunction(() => !Object.keys(localStorage).some(key => key.startsWith("everwise.progress.pending.v1:")));
+        // Allow the emulator's streaming acknowledgement to arrive after the
+        // app's honest 15-second pending notice. The server read below is still
+        // mandatory; a local-only completion can never pass this assertion.
+        await page.waitForFunction(() => !Object.keys(localStorage).some(key => key.startsWith("everwise.progress.pending.v1:")), undefined, { timeout: 60_000 });
         assert.deepEqual((await ownProfile()).completedLessons, ["welcome"], "Acknowledged completion must exist on the server");
       }
       async function signUp(username) {
