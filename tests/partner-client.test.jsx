@@ -972,7 +972,7 @@ describe("sponsored settings", () => {
     expect(screen.queryByText("Subscription")).not.toBeInTheDocument();
     expect(screen.queryByText("Trial")).not.toBeInTheDocument();
     expect(screen.queryByText("Monthly plan")).not.toBeInTheDocument();
-    expect(screen.queryByText("Start free trial")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "View plans", exact: true })).not.toBeInTheDocument();
     expect(screen.queryByText("Manage subscription")).not.toBeInTheDocument();
   });
 
@@ -1589,7 +1589,7 @@ describe("sponsored signup orchestration", () => {
       screen.getByText("Full access provided by Community Partner"),
     ).toBeVisible();
     expect(screen.queryByText("Subscription")).not.toBeInTheDocument();
-    expect(screen.queryByText("Start free trial")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "View plans", exact: true })).not.toBeInTheDocument();
   });
 
   test("window focus removes suspended sponsorship without ejecting safe Home", async () => {
@@ -1629,7 +1629,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/temporarily unavailable/i)).not.toBeInTheDocument();
     expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(2);
@@ -1959,7 +1959,7 @@ describe("sponsored signup orchestration", () => {
     await clickWithFakeTimers(
       screen.getByRole("button", { name: "Open Settings" }),
     );
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
   });
 
@@ -2000,7 +2000,7 @@ describe("sponsored signup orchestration", () => {
       screen.getByRole("button", { name: "Open Settings" }),
     );
 
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/temporarily unavailable/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
   });
@@ -2072,7 +2072,7 @@ describe("sponsored signup orchestration", () => {
 
     await user.click(screen.getByRole("button", { name: "Go back" }));
     await user.click(screen.getByRole("button", { name: "Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
     expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(3);
   });
@@ -2610,7 +2610,7 @@ describe("sponsored signup orchestration", () => {
     expect(
       screen.getByText("Full access provided by Community Partner"),
     ).toBeVisible();
-    expect(screen.queryByText("Start free trial")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "View plans", exact: true })).not.toBeInTheDocument();
     expect(screen.queryByText("Pricing and subscription")).not.toBeInTheDocument();
   });
 
@@ -3224,7 +3224,7 @@ describe("sponsored signup orchestration", () => {
       returningProfile,
     );
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(window.sessionStorage.getItem("everwise-partner-release-receipt")).toBeNull();
   });
 
@@ -3390,7 +3390,7 @@ describe("sponsored signup orchestration", () => {
     expect(window.sessionStorage.getItem("everwise-partner-release-receipt")).toBeNull();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test("preserves the old receipt without blocking a newer account switched during confirmation", async () => {
@@ -3874,7 +3874,7 @@ describe("sponsored signup orchestration", () => {
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test("old invalid-receipt terminalization cannot overwrite byte-exact newer recovery", async () => {
@@ -3899,7 +3899,7 @@ describe("sponsored signup orchestration", () => {
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test.each([
@@ -3931,7 +3931,7 @@ describe("sponsored signup orchestration", () => {
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test("old cleanup failure cannot terminalize byte-exact newer recovery", async () => {
@@ -3965,7 +3965,7 @@ describe("sponsored signup orchestration", () => {
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test("ignores and clears corrupted release recovery storage safely", async () => {
@@ -4018,7 +4018,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(
       screen.queryByText(/Full access provided by/i),
     ).not.toBeInTheDocument();
@@ -4225,7 +4225,7 @@ describe("sponsored signup orchestration", () => {
     });
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
   });
 
@@ -4646,7 +4646,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
     expect(mocks.setDoc).not.toHaveBeenCalled();
     expect(mocks.claimPartnerSeat).not.toHaveBeenCalled();
@@ -4757,7 +4757,7 @@ describe("sponsored signup orchestration", () => {
     });
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
     expect(mocks.setDoc).not.toHaveBeenCalled();
   });
@@ -4894,7 +4894,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
   });
 
