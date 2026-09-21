@@ -5,7 +5,7 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 const require=createRequire(import.meta.url);
 const {chromium}=require(process.env.EVERWISE_PLAYWRIGHT_MODULE||'playwright');
-const base=process.env.EVERWISE_QA_BASE||'http://127.0.0.1:8876';
+const base=process.env.EVERWISE_QA_BASE||`http://127.0.0.1:${process.env.EVERWISE_QA_PORT||8867}`;
 const output=path.resolve('../qa-onboarding-device-evidence');await mkdir(output,{recursive:true});
 const viewports=[[320,568],[390,844],[430,932],[667,375],[768,1024],[1024,768],[1440,900],[1920,1080]];
 const cases=[];

@@ -6,7 +6,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 const require=createRequire(import.meta.url);
 const {chromium,webkit,devices}=require(process.env.EVERWISE_PLAYWRIGHT_MODULE||'playwright');
-const base=`http://127.0.0.1:${process.env.EVERWISE_QA_PORT||8870}`;
+const base=`http://127.0.0.1:${process.env.EVERWISE_QA_PORT||8867}`;
 const output=path.resolve(process.env.EVERWISE_WEB_EVIDENCE||'../qa-mobile-browser-evidence');await mkdir(output,{recursive:true});
 const profiles=[
   {name:'iphone-small',engine:'webkit',options:{...devices['iPhone SE']},ios:true},

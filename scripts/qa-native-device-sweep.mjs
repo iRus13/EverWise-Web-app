@@ -76,9 +76,20 @@ for(const device of selected) {
       const caseId=`${runId}-${slug}-${size}-${scene.name}`;
       await fetchQA(`${base}/__qa/command?device=${slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({caseId,path:`${scene.url}&textSize=${size}`})});
       let result;
-      for(let attempt=0;attempt<120;attempt++) {
+      for(let attempt=0;attempt<240;attempt++) {
         result=await(await fetchQA(`${base}/__qa/result?key=${slug}:${caseId}`)).json();
-        if(result)break;await sleep(500);
+        if(result)break;
+        // The iOS 27 simulator can present an empty loopback WKWebView
+        // during launch/navigation. Retain that observation and retry once;
+        // it is not evidence of a successful cold launch of the shipping app.
+        if(attempt===60) {
+          (record.measurementRelaunches ||= []).push(caseId);
+          await capture(udid,path.join(folder,`before-relaunch-${caseId}.png`)).catch(()=>{});
+          command("xcrun",["simctl","launch","--terminate-running-process",udid,"com.everwise.visualqa"]);
+          await fetchQA(`${base}/__qa/command?device=${slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({caseId,path:`${scene.url}&textSize=${size}`})});
+          console.log(`RETRY ${device.name}: ${size} ${scene.name} required a QA relaunch`);
+        }
+        await sleep(500);
       }
       if(!result)throw Error(`No measurement for ${caseId}`);
       await sleep(350);
