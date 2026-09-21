@@ -13,6 +13,7 @@ This audit uses the running web app and native WKWebView, screenshot review, con
 - Stack the final-challenge trophy above the enlarged title on phones, avoiding a single trailing letter on its own line.
 - Reserve native safe-area space around the partner report and shorten its numeric column heading to avoid an orphaned final letter.
 - Bound billing and exam headings by their content width, avoiding broken ordinary words at enlarged text. Body copy retains the full text preference. A range-based check verifies whole words across all five authored exam titles and four billing states.
+- Give the welcome brand extra top space in tall, narrow compatibility windows, where iPad window controls can otherwise overlap the logo.
 - Match fixture fonts, password recovery action, safe-area container and scroll hierarchy to production. Fake-clock account tests explicitly settle lazy imports before asserting the loaded lesson.
 
 ## Browser evidence
@@ -43,6 +44,14 @@ The installed runtime is iOS 27.0 with Xcode 27.0. Baguette 0.1.99 supplies simu
 Each native case runs production components inside a separately identified, disposable QA app with synthetic identities/offers and a loopback-only compiled server. The QA copy permits HTTP web content; the shipping bundle is not modified for this. The lab blocks external connections and does not load production environment files. Simulator launch failures and interrupted pilots are excluded from completed coverage. Xcode Device Hub sometimes shadows headless input/presentation; healing after boot and relaunching restored some affected simulator runs. Later cold loopback-test launches and navigations also produced empty views. The runner retains before-relaunch captures and records any recovery attempt, with one bounded relaunch per failed measurement. These recoveries verify warm fixture rendering, not reliable shipping-app cold startup.
 
 The rebuilt bundled iPhone Air app was separately installed and observed at the welcome screen. Native input opened onboarding, entered a synthetic name and age, advanced to step 2, scrolled the choices and visibly selected Smartphone. Software-keyboard, VoiceOver, physical-device, live billing and delivery acceptance remain separate. Native PNG capture uses Baguette's image encoder, so the evidence is not a bit-for-bit golden-pixel comparison.
+
+The consolidated matrix contains 3,014 web captures and 1,080 native cases across 12 simulator models (45 scenes at two app text sizes per model). That is 4,094 cases across 52 device/window profiles. The 34 browser window profiles include three additional short-window profiles with targeted rather than full-scene coverage, plus six mobile-browser profiles. Replacement captures retain the same case keys.
+
+Image-content inspection caught three blank first welcome captures despite passing DOM measurements. Their original images are retained as observations. The runner now uses a fresh result ID after a relaunch, retains its initial capture, and revisits the first scene after the other cases. It preserves the first measurement separately when replacing it with the warm revisit. These are warm-layout checks and do not establish reliable cold startup; additional bundled-app iPad launch attempts also showed blank or operating-system loading frames.
+
+The final welcome-spacing refinement passed 62 Chromium cases across the original 31 sizes, 20 tall-window/boundary cases, and 24 WebKit header/scroll-reachability checks. The updated iOS simulator build succeeded. Native replacement runs and the final image-content inspection are indexed in the local review gallery.
+
+The completed [QA run for a4392df](https://github.com/iRus13/EverWise-Web-app/actions/runs/35553591719) passed all 15 jobs, including 2,219 unit/backend/browser/UI tests and 666 authored lesson journeys across three browser engines. Its first Firebase attempt failed on two connection diagnostics after the account/progress assertions completed; one targeted rerun passed with parent completion proof. That completed run precedes the final welcome-spacing and capture-runner refinements; their targeted checks are described above.
 
 ## Repeat the checks
 

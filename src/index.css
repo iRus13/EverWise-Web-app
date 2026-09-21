@@ -119,6 +119,14 @@
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
+/* Tall iPad compatibility windows place window controls inside the upper
+   content area. Keep the welcome brand below that chrome. */
+@media (max-width: 639px) and (min-height: 1000px) {
+  .landing-screen {
+    padding-top: 2.5rem;
+  }
+}
+
 .app-viewport {
   position: relative;
   box-sizing: border-box;

@@ -71,9 +71,13 @@ for(const device of selected) {
     command("codesign",["--force","--sign","-",deviceBundle]);
     command("xcrun",["simctl","install",udid,deviceBundle]);
     command("xcrun",["simctl","launch","--terminate-running-process",udid,"com.everwise.visualqa"]);
-    for(const size of ["size-2","size-10"]) for(const scene of selectedScenes) {
-      if(record.cases.some(c=>c.screenshot===`${slug}/${size}-${scene.name}.png`))continue;
-      const caseId=`${runId}-${slug}-${size}-${scene.name}`;
+    const plannedCases = ["size-2", "size-10"].flatMap(size => selectedScenes.map(scene => ({size, scene})));
+    // Revisit the first scene after presentation has warmed up. Retain its
+    // original measurement/image; this verifies a warm layout, not cold start.
+    plannedCases.push({size: "size-2", scene: selectedScenes[0], warmRecheck: true});
+    for(const {size, scene, warmRecheck} of plannedCases) {
+      if(!warmRecheck && record.cases.some(c=>c.screenshot===`${slug}/${size}-${scene.name}.png`))continue;
+      let caseId=`${runId}-${slug}-${size}-${scene.name}${warmRecheck ? "-warm-recheck" : ""}`;
       await fetchQA(`${base}/__qa/command?device=${slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({caseId,path:`${scene.url}&textSize=${size}`})});
       let result;
       for(let attempt=0;attempt<240;attempt++) {
@@ -85,6 +89,9 @@ for(const device of selected) {
         if(attempt===60) {
           (record.measurementRelaunches ||= []).push(caseId);
           await capture(udid,path.join(folder,`before-relaunch-${caseId}.png`)).catch(()=>{});
+          // A restored document can still report the previous attempt while
+          // its replacement is navigating. Accept only the new attempt.
+          caseId += "-retry-1";
           command("xcrun",["simctl","launch","--terminate-running-process",udid,"com.everwise.visualqa"]);
           await fetchQA(`${base}/__qa/command?device=${slug}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({caseId,path:`${scene.url}&textSize=${size}`})});
           console.log(`RETRY ${device.name}: ${size} ${scene.name} required a QA relaunch`);
@@ -94,8 +101,19 @@ for(const device of selected) {
       if(!result)throw Error(`No measurement for ${caseId}`);
       await sleep(350);
       const filename=`${size}-${scene.name}.png`;
+      if (!record.cases.length) {
+        record.initialCapture = `${slug}/initial-capture-${filename}`;
+        await capture(udid,path.join(folder,`initial-capture-${filename}`));
+        await sleep(1500);
+      }
       await capture(udid,path.join(folder,filename));
-      const entry={...result,screenshot:`${slug}/${filename}`};record.cases.push(entry);
+      const entry={...result,screenshot:`${slug}/${filename}`};
+      const existing = record.cases.findIndex(c => c.screenshot === entry.screenshot);
+      if (existing >= 0) {
+        record.firstMeasurement = record.cases[existing];
+        record.cases[existing] = entry;
+        record.warmFirstCaseRecheck = true;
+      } else record.cases.push(entry);
       const bad=Boolean(result.error||result.native!==true||result.outside?.length||result.unreachable?.length||result.brokenImages?.length||result.errors?.length||result.scrollWidth>result.width+1);
       console.log(`${bad?"REVIEW":"PASS"} ${device.name} ${size} ${scene.name}: ${result.width}x${result.height} controls=${result.controls} outside=${result.outside?.length} unreachable=${result.unreachable?.length} small=${result.small?.length}`);
       await writeFile(summaryPath,JSON.stringify(summary,null,2));
