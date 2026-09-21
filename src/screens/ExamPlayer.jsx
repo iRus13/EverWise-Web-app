@@ -31,7 +31,7 @@ export default function ExamPlayer({ exam, onBack, onPass, phaseColor }) {
 
   if (phase === "intro") {
     return (
-      <div className="learning-focus flex flex-1 flex-col overflow-y-auto px-7 pb-10 pt-8">
+      <div className="exam-intro learning-focus flex flex-1 flex-col overflow-y-auto px-7 pb-10 pt-8">
         <button
           type="button"
           onClick={onBack}
@@ -47,7 +47,7 @@ export default function ExamPlayer({ exam, onBack, onPass, phaseColor }) {
           <TrophyIcon className="h-12 w-12" />
         </div>
 
-        <h1 className="page-title mt-6 text-center">
+        <h1 className="exam-intro-heading page-title mt-6 text-center">
           {exam.title}
         </h1>
         <p className="mt-4 text-center text-xl text-ink-soft">

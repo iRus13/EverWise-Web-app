@@ -298,7 +298,7 @@ export default function PartnerDashboard({ adminToken }) {
                     <thead>
                       <tr>
                         <th scope="col">Group</th>
-                        <th scope="col">Responses</th>
+                        <th scope="col">Count</th>
                         <th scope="col">Share</th>
                       </tr>
                     </thead>

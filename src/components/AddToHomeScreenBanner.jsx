@@ -6,7 +6,9 @@ const DISMISS_KEY = "everwise-a2hs-dismissed";
 function detectPlatform() {
   if (typeof navigator === "undefined") return "unknown";
   const ua = navigator.userAgent || "";
-  const isIOS = /iphone|ipad|ipod/i.test(ua) && !window.MSStream;
+  // iPad Safari can send a Mac user agent. Its standalone capability remains
+  // available, so installation guidance must not depend on the device name.
+  const isIOS = (typeof navigator.standalone === "boolean" || /iphone|ipad|ipod/i.test(ua)) && !window.MSStream;
   const isAndroid = /android/i.test(ua);
   if (isIOS) return "ios";
   if (isAndroid) return "android";
@@ -85,7 +87,7 @@ export default function AddToHomeScreenBanner() {
           type="button"
           onClick={dismiss}
           aria-label="Dismiss"
-          className="-mr-1 -mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg text-ink-faint transition-colors hover:bg-cream-deep"
+          className="-mr-1 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg text-ink-faint transition-colors hover:bg-cream-deep"
         >
           ×
         </button>

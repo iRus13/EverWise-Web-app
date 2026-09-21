@@ -781,7 +781,7 @@ export default function ProfileInterview({
                     type="button"
                     onClick={leaveForLogIn}
                     disabled={isBusy}
-                    className="font-bold text-clay underline underline-offset-4"
+                    className="inline-flex min-h-[44px] items-center px-1 align-middle font-bold text-clay underline underline-offset-4"
                   >
                     Log in
                   </button>

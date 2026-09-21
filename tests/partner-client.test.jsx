@@ -840,6 +840,9 @@ async function clickWithFakeTimers(element) {
     fireEvent.click(element);
     await Promise.resolve();
   });
+  // React may start a lazy screen import only after the click is committed.
+  // Fake clock advancement does not wait for that module to finish loading.
+  await act(async () => { await vi.dynamicImportSettled(); });
 }
 
 async function finishVisibleLessonUntilProgressSaveStarts(lessonId) {
@@ -1579,7 +1582,7 @@ describe("sponsored signup orchestration", () => {
       screen.getByRole("button", { name: "Start lesson: What is AI?" }),
     );
 
-    expect(await screen.findByRole("heading", { name: "What is AI?" })).toBeVisible();
+    expect(await screen.findByRole("heading", { name: "What is AI?" }, { timeout: 5000 })).toBeVisible();
     expect(screen.queryByText("Pricing and subscription")).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Go back" }));

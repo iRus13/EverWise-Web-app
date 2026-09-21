@@ -21,6 +21,11 @@ import PersonalPlan from "../../src/screens/PersonalPlan.jsx";
 import {allLessons} from "../../src/data/lessons";
 import "../../src/index.css";
 const query = new URLSearchParams(location.search);
+if (query.get("mutation") === "unscrollable-sidebar") {
+  const style = document.createElement("style");
+  style.textContent = ".app-navigation { overflow: visible !important; }";
+  document.head.append(style);
+}
 const view = query.get("view") || "home";
 const textSize = query.get("textSize") || "size-2";
 document.documentElement.dataset.textSize = textSize;
@@ -29,7 +34,7 @@ const lesson = allLessons[1];
 const screens = {
   "password-reset": <PasswordReset onBack={noop} onResetPassword={async () => {}} />,
   landing: <Landing onGetStarted={noop} onLogIn={noop} />,
-  login: <LogIn onLogIn={noop} onGoToSignUp={noop} onBack={noop}/>,
+  login: <LogIn onLogIn={noop} onGoToSignUp={noop} onBack={noop} onResetPassword={async () => {}}/>,
   interview: <ProfileInterview onComplete={noop} onBack={noop} onLogIn={noop}/>,
   signup: <ProfileInterview initialInterview={{name:"Jane", age:70}} onComplete={noop} onBack={noop} onLogIn={noop}/>,
   home: <Home name="Jane" textSize={textSize} onTextSizeChange={noop} onStart={noop} onOpenBadges={noop} onOpenSettings={noop} onOpenScamChecker={noop}/>,
@@ -162,6 +167,19 @@ async function measure() {
       }
     }
   }
-  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight,recoveryReadable,landingBottomGap,unreachable}));
+  let navigationReachable = true;
+  const navigation = document.querySelector('.app-navigation');
+  const navControls = navigation ? [...navigation.querySelectorAll('button')].filter(el => el.getClientRects().length) : [];
+  if (navigation && navControls.length) {
+    navigation.scrollTop = 0;
+    const first = navControls[0].getBoundingClientRect();
+    navigationReachable = first.top >= -1;
+    navigation.scrollTop = navigation.scrollHeight;
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    const last = navControls.at(-1).getBoundingClientRect();
+    navigationReachable &&= last.bottom <= Math.min(innerHeight, navigation.getBoundingClientRect().bottom) + 1;
+    navigation.scrollTop = 0;
+  }
+  document.body.dataset.geometry = btoa(JSON.stringify({clientWidth:viewport, scrollWidth:document.documentElement.scrollWidth, outside, brokenImages:images, headings:document.querySelectorAll("h1").length,noticeReachable,contentHeight,recoveryReadable,landingBottomGap,unreachable,navigationReachable}));
   document.body.dataset.geometryReady = "true";
 }

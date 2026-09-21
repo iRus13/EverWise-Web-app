@@ -72,7 +72,7 @@ export default function Home({
           </button>
         </div>
 
-        <div className="mt-4 lg:hidden">
+        <div className="mt-4 empty:hidden">
           <AddToHomeScreenBanner />
         </div>
 

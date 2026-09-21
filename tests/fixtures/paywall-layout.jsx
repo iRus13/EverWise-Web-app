@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import Paywall from "../../src/screens/Paywall";
+import AppShell from "../../src/components/AppShell";
 import "../../src/index.css";
 
 const VERIFIED_WEB_PLANS = [
@@ -48,7 +49,14 @@ function MeasuredPaywall() {
     ]}
   />;
 }
-createRoot(document.getElementById("root")).render(<MeasuredPaywall />);
+// Match the production native safe-area and scrolling containers.
+createRoot(document.getElementById("root")).render(
+  <AppShell screen="paywall">
+    <div className="screen-content-frame flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden">
+      <MeasuredPaywall />
+    </div>
+  </AppShell>
+);
 
 function rectFor(element) {
   const { left, right, width } = element.getBoundingClientRect();

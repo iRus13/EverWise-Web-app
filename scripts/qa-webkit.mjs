@@ -11,24 +11,28 @@ import { checkPartnerDashboard } from "./qa-partner-dashboard.mjs";
 import { checkLearningActivities } from "./qa-learning-layout.mjs";
 import { checkAssessments } from "./qa-assessments.mjs";
 import { checkBadgeGallery } from "./qa-badges.mjs";
+import { checkHeadingWrapping } from "./qa-heading-layout.mjs";
 
 const require = createRequire(import.meta.url);
 const browserName = process.env.EVERWISE_QA_BROWSER || "webkit";
 assert.ok(["webkit", "firefox"].includes(browserName), "Unsupported QA browser");
 const browserType = require(process.env.EVERWISE_PLAYWRIGHT_MODULE || "playwright")[browserName];
-const server = await createServer({
+const server = process.env.EVERWISE_QA_BASE ? null : await createServer({
   root: fileURLToPath(new URL("../", import.meta.url)),
   configFile: false, logLevel: "error", plugins: [react()],
   server: { host: "127.0.0.1", port: 0 },
 });
-await server.listen();
-const base = `http://127.0.0.1:${server.httpServer.address().port}`;
+await server?.listen();
+const base = process.env.EVERWISE_QA_BASE || `http://127.0.0.1:${server.httpServer.address().port}`;
 let browser;
 try {
   browser = await browserType.launch();
   const context = await browser.newContext();
   await context.route("**/*", route => new URL(route.request().url()).origin === base
     ? route.continue() : route.abort());
+  // This suite drives navigation itself and uses fixture geometry. Disable the
+  // optional native lab controller, including on an already-running lab.
+  await context.route("**/__qa/controller.js", route => route.fulfill({contentType:"application/javascript",body:""}));
   const page = await context.newPage();
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -152,10 +156,11 @@ try {
   await checkPartnerDashboard(page, base);
   await checkLearningActivities(page, base);
   await checkAssessments(page, base);
+  await checkHeadingWrapping(page, base);
   assert.deepEqual(errors, [], "No browser page errors");
   await context.close();
   console.log("PASS: no uncaught browser errors; external requests blocked throughout");
 } finally {
   await browser?.close();
-  await server.close();
+  await server?.close();
 }

@@ -568,3 +568,16 @@ test("subscription and sponsored recovery actions and personal plan remain reach
     assert.deepEqual(failures, [], "Headings and recovery actions must be reachable through user-scrollable containers");
   });
 });
+
+
+test("desktop sidebar controls remain reachable at largest text in short windows", { ...browserTestOptions, timeout: 60_000 }, async () => {
+  await withLayoutServer(async url => {
+    const appUrl=url.replace("paywall-layout.html", "app-layout.html")+"?view=home&textSize=size-10";
+    for(const height of [480,600,768]) {
+      const g=await measure(appUrl,1024,"",height);
+      assert.equal(g.navigationReachable,true,`Sidebar controls reachable at 1024x${height}`);
+    }
+    const clipped=await measure(appUrl,1024,"unscrollable-sidebar",768);
+    assert.equal(clipped.navigationReachable,false,"Removing sidebar scrolling must reproduce the clipped text-size controls");
+  });
+});
