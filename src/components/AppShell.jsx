@@ -33,6 +33,33 @@ export default function AppShell({
   onTextSizeChange,
   courseProgress = null,
 }) {
+  const canvas = useRef(null);
+  useEffect(() => {
+    const main = canvas.current;
+    if (!main) return;
+    let target;
+    const focusContent = () => {
+      // Respect a child screen that has already focused its own field/heading.
+      if (main.contains(document.activeElement) && document.activeElement !== main) {
+        target = document.activeElement;
+        return;
+      }
+      target = main.querySelector("h1") || main;
+      target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    };
+    focusContent();
+    const observer = new MutationObserver(() => {
+      // A lazy screen can replace the focused loading heading. Restore focus
+      // only if it was lost with that node, never over a learner's new focus.
+      if ((!main.contains(target) && document.activeElement === document.body) ||
+          (target === main && document.activeElement === main && main.querySelector("h1"))) {
+        focusContent();
+      }
+    });
+    observer.observe(main, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [screen]);
   const navigation = primaryNavigationState(screen, isAuthenticated);
   const handlers = {
     home: onHome,
@@ -55,7 +82,7 @@ export default function AppShell({
           <nav className="app-navigation" aria-label="Primary navigation">
             <div className="app-navigation-brand">
               <img
-                src="/everwise-logo-192.png"
+                src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
                 alt=""
                 aria-hidden="true"
                 className="app-navigation-logo"
@@ -114,8 +141,9 @@ export default function AppShell({
           </nav>
         ) : null}
 
-        <main className={`app-canvas app-canvas-${screen}`}>{children}</main>
+        <main ref={canvas} tabIndex={-1} className={`app-canvas app-canvas-${screen}`}>{children}</main>
       </div>
     </div>
   );
 }
+import { useEffect, useRef } from "react";

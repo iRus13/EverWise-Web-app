@@ -58,7 +58,7 @@ export default function ConfidenceBlock({
         progress={progress}
         progressTotal={progressTotal}
         onBack={onBack}
-      onExit={onExit}
+        onExit={onExit}
         footer={
           selected != null ? (
             <button className="btn-primary" onClick={nextQuestion}>
@@ -87,6 +87,7 @@ export default function ConfidenceBlock({
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
+      onExit={onExit}
     >
       <div className="animate-fade-up">
         <h1 className="page-title">

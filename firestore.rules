@@ -2,23 +2,18 @@ rules_version = '2';
 
 // Everwise Firestore security rules.
 //
-// SCOPE OF THIS VERSION: these rules close the data-privacy hole — no user
-// can read or write another user's document. They are safe to deploy today
-// and will not break the existing purchase flow.
+// Each learner owns only their users/{uid} document. New accounts start unpaid.
+// Existing clients can update subscription mirror fields on their own profile.
+// These client-writable fields are NOT authorization: App.jsx resolves access
+// from the current user's billing API, native StoreKit, or partner entitlement.
+// Keep that separation in any new client or backend reader. The emulator browser
+// suite verifies that a forged active profile cannot unlock paid web lessons.
 //
-// KNOWN REMAINING HOLE (deliberate, documented): a signed-in user can still
-// write subscriptionStatus:"active" to their own document and get free
-// access. Closing that requires entitlement to be written by trusted server
-// code that verifies the App Store receipt (a Firebase Function, or a
-// RevenueCat webhook). Until that exists, the app cannot tell a real
-// purchase from a forged one. See the commented-out block at the bottom for
-// the stricter rules to switch on once it does.
+// Lesson content currently ships in public assets; the UI paywall does not make
+// that content confidential. Protected content requires server-side authorization.
 //
-// Also note: all lesson content ships inside the public JS bundle, so the
-// paywall never protected the course text itself. Only server-rendered or
-// server-fetched content can be gated.
-//
-// Deploy with:  firebase deploy --only firestore:rules
+// firebase.json explicitly targets the app's named database "default".
+// This file alone does not prove which rules are deployed in a live project.
 
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -49,33 +44,3 @@ service cloud.firestore {
     }
   }
 }
-
-// ---------------------------------------------------------------------------
-// STRICTER ENTITLEMENT RULES — enable once receipt verification exists.
-//
-// Replace the `allow update` line above with the version below. It lets the
-// client change progress fields and lets it DOWNGRADE itself to "expired"
-// (the trial-expiry path in normalizeSubscription), but makes upgrading to
-// "trial"/"active" impossible from a device. At that point the purchase flow
-// in App.jsx must stop writing entitlement directly and instead wait for the
-// server to write it.
-//
-//   function onlySafeFieldsChanged() {
-//     return request.resource.data.diff(resource.data)
-//       .affectedKeys()
-//       .hasOnly([
-//         'name', 'username', 'profileInterview', 'onboardingCompleted',
-//         'scamsCaught', 'badges', 'completedLessons'
-//       ]);
-//   }
-//
-//   function onlyExpiresEntitlement() {
-//     return request.resource.data.diff(resource.data)
-//       .affectedKeys()
-//       .hasOnly(['subscriptionStatus', 'trialStartedAt', 'plan'])
-//       && request.resource.data.subscriptionStatus == 'expired';
-//   }
-//
-//   allow update: if isOwner()
-//     && (onlySafeFieldsChanged() || onlyExpiresEntitlement());
-// ---------------------------------------------------------------------------

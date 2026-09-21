@@ -4,7 +4,7 @@ import {
   examsByOrder,
   challengesByOrder,
   pathOrderForPhase,
-} from "../data/lessons";
+} from "../data/course-catalog.js";
 import { getPhase, phaseLabel } from "../data/phases";
 import {
   CheckIcon,
@@ -125,7 +125,7 @@ export default function LessonPath({
       biomeColor: getPhase(c.phase).color,
     })),
     ...examsByOrder
-      .filter((e) => e && e.id && Array.isArray(e.questions))
+      .filter((e) => e && e.id && e.questionCount > 0)
       .map((e) => ({
         kind: "exam",
         id: e.id,
@@ -357,7 +357,7 @@ export default function LessonPath({
             type="button"
             onClick={onBack}
             aria-label="Back to home"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-cream-card/90 transition-colors hover:bg-white/15 lg:hidden"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-cream-card/90 transition-colors hover:bg-white/15 lg:hidden"
           >
             <ArrowLeftIcon className="h-5 w-5" />
           </button>
@@ -514,7 +514,7 @@ export default function LessonPath({
                     {onTestOutLesson &&
                     node.kind === "lesson" &&
                     state === "current" &&
-                    (lessons[node.lessonIndex]?.quiz?.length ?? 0) > 0 ? (
+                    (lessons[node.lessonIndex]?.quizCount ?? 0) > 0 ? (
                       <button
                         type="button"
                         onClick={() => onTestOutLesson(node.lessonIndex)}

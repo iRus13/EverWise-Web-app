@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { SpeakerIcon, StopIcon } from "./Icons";
 import { apiEndpoint } from "../utils/apiEndpoint";
 
@@ -20,9 +20,9 @@ async function getAudioBlob(text, signal) {
     return response.blob();
   });
 
-  audioCache.set(cacheKey, request);
   try {
     const blob = await request;
+    if (!signal.aborted) audioCache.set(cacheKey, blob);
     if (audioCache.size > 20) {
       audioCache.delete(audioCache.keys().next().value);
     }
@@ -38,23 +38,30 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
   const [loading, setLoading] = useState(false);
   const audioRef = useRef(null);
   const abortRef = useRef(null);
+  const utteranceRef = useRef(null);
+
+  const releasePlayback = useCallback(() => {
+    // Invalidate ownership before cancellation: stopping an audio source can
+    // itself enqueue callbacks, including after another screen starts speech.
+    const controller = abortRef.current;
+    const audio = audioRef.current;
+    abortRef.current = null;
+    audioRef.current = null;
+    utteranceRef.current = null;
+    controller?.abort();
+    audio?.pause();
+    if (audio?.src) URL.revokeObjectURL(audio.src);
+    window.speechSynthesis?.cancel();
+  }, []);
 
   useEffect(() => {
-    return () => {
-      abortRef.current?.abort();
-      audioRef.current?.pause();
-      if (audioRef.current?.src) URL.revokeObjectURL(audioRef.current.src);
-      window.speechSynthesis?.cancel();
-    };
-  }, [text]);
+    setSpeaking(false);
+    setLoading(false);
+    return releasePlayback;
+  }, [text, releasePlayback]);
 
   const stop = () => {
-    abortRef.current?.abort();
-    abortRef.current = null;
-    audioRef.current?.pause();
-    if (audioRef.current?.src) URL.revokeObjectURL(audioRef.current.src);
-    audioRef.current = null;
-    window.speechSynthesis?.cancel();
+    releasePlayback();
     setLoading(false);
     setSpeaking(false);
   };
@@ -64,8 +71,14 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
     const utterance = new SpeechSynthesisUtterance(speakText);
     utterance.rate = 0.9;
     utterance.pitch = 1;
-    utterance.onend = () => setSpeaking(false);
-    utterance.onerror = () => setSpeaking(false);
+    const finish = () => {
+      if (utteranceRef.current !== utterance) return;
+      utteranceRef.current = null;
+      setSpeaking(false);
+    };
+    utterance.onend = finish;
+    utterance.onerror = finish;
+    utteranceRef.current = utterance;
     setSpeaking(true);
     window.speechSynthesis.speak(utterance);
   };
@@ -78,15 +91,21 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
     const controller = new AbortController();
     abortRef.current = controller;
     setLoading(true);
+    let timedOut = false;
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, 8_000);
 
     try {
-      const audioUrl = URL.createObjectURL(
-        await getAudioBlob(speakText, controller.signal),
-      );
+      const blob = await getAudioBlob(speakText, controller.signal);
+      if (controller.signal.aborted || abortRef.current !== controller) return;
+      const audioUrl = URL.createObjectURL(blob);
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
-      audio.onended = stop;
+      audio.onended = () => { if (audioRef.current === audio) stop(); };
       audio.onerror = () => {
+        if (abortRef.current !== controller || controller.signal.aborted) return;
         stop();
         speakWithDeviceVoice(speakText);
       };
@@ -94,10 +113,12 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
       setLoading(false);
       setSpeaking(true);
       await audio.play();
-    } catch (error) {
-      if (error.name === "AbortError") return;
-      setLoading(false);
+    } catch {
+      if ((controller.signal.aborted && !timedOut) || abortRef.current !== controller) return;
+      stop();
       speakWithDeviceVoice(speakText);
+    } finally {
+      clearTimeout(timeout);
     }
   };
 

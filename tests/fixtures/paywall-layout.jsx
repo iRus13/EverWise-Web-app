@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import Paywall from "../../src/screens/Paywall";
+import AppShell from "../../src/components/AppShell";
 import "../../src/index.css";
 
 const VERIFIED_WEB_PLANS = [
@@ -29,15 +30,32 @@ if (new URLSearchParams(window.location.search).get("mutation") === "wide-card")
   document.head.append(mutation);
 }
 
-createRoot(document.getElementById("root")).render(
-  <Paywall
+const query = new URLSearchParams(location.search);
+const native = query.get("platform") === "native";
+document.documentElement.dataset.textSize = query.get("textSize") || "size-2";
+function MeasuredPaywall() {
+  useEffect(() => { void recordGeometry(); }, []);
+  return <Paywall
     billingAvailable
+    billingAccess={{canStartTrial:true}}
     billingPlans={VERIFIED_WEB_PLANS}
     onMaybeLater={() => {}}
     onRetry={() => {}}
     onStartTrial={() => Promise.resolve()}
-    platform="web"
-  />,
+    platform={native ? "native" : "web"}
+    storeProducts={[
+      {id: "com.everwise.app.monthly", displayPrice: "€12,99", periodUnit: "month", periodValue: 1},
+      {id: "com.everwise.app.annual", displayPrice: "€79,99", periodUnit: "year", periodValue: 1, eligibleForTrial: true, trialValue: 1, trialUnit: "week"},
+    ]}
+  />;
+}
+// Match the production native safe-area and scrolling containers.
+createRoot(document.getElementById("root")).render(
+  <AppShell screen="paywall">
+    <div className="screen-content-frame flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden">
+      <MeasuredPaywall />
+    </div>
+  </AppShell>
 );
 
 function rectFor(element) {
@@ -51,8 +69,13 @@ async function recordGeometry() {
 
   const root = document.querySelector('[data-testid="browser-paywall"]');
   const cards = Array.from(document.querySelectorAll('[role="radio"]'));
-  const action = document.querySelector('[aria-label^="Start "]');
+  const action = document.querySelector(".paywall-cta");
+  const terms = document.querySelector(".paywall-reassurance");
+  const footer = document.querySelector(".paywall-footer");
+  footer.scrollIntoView({block: "end"});
   const geometry = {
+    footerReachable: footer.getBoundingClientRect().bottom <= innerHeight + 1,
+    textOverflow: [terms, ...cards].some(el => el.scrollWidth > el.clientWidth + 1),
     termsFontSize: parseFloat(getComputedStyle(document.querySelector(".paywall-reassurance")).fontSize),
     buttons: Array.from(document.querySelectorAll("button"), button => ({ height: button.getBoundingClientRect().height })),
     clientWidth: document.documentElement.clientWidth,
@@ -65,5 +88,3 @@ async function recordGeometry() {
   document.body.dataset.geometry = btoa(JSON.stringify(geometry));
   document.body.dataset.geometryReady = "true";
 }
-
-recordGeometry();

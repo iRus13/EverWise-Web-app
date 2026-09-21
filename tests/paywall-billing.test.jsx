@@ -44,6 +44,7 @@ function renderWebPaywall(overrides = {}) {
   const props = {
     platform: "web",
     billingAvailable: true,
+    billingAccess: { canStartTrial: true },
     billingPlans: VERIFIED_PLANS,
     billingBusy: false,
     sponsored: false,
@@ -328,4 +329,12 @@ describe("browser Stripe paywall", () => {
     expect(props.onStartTrial).not.toHaveBeenCalled();
   });
 
+});
+
+
+test.each([false, undefined])("returning or unverified customers are not promised a web trial (%s)", (canStartTrial) => {
+  renderWebPaywall({ billingAccess: {canStartTrial} });
+  expect(screen.getByRole("button", {name: "Continue with monthly"})).toHaveAccessibleDescription(/Today: \$7.99\/month/);
+  expect(document.body).not.toHaveTextContent(/days free|free trial|No charge today/);
+  expect(screen.getByText(/Payment is collected at checkout/)).toBeVisible();
 });

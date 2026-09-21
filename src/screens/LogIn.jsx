@@ -2,12 +2,14 @@ import { useState } from "react";
 import Field from "../components/Field";
 import BackButton from "../components/BackButton";
 import { authErrorMessage } from "../utils/authErrors";
+import PasswordReset from "./PasswordReset.jsx";
 
-export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
+export default function LogIn({ onLogIn, onGoToSignUp, onBack, onResetPassword }) {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [resetting, setResetting] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -25,18 +27,18 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
     }
   };
 
+  if (resetting) return <PasswordReset initialEmail={identifier} onResetPassword={onResetPassword} onBack={() => setResetting(false)} />;
+
   return (
-    <div className="onboarding-focus auth-focus flex flex-1 flex-col overflow-y-auto px-7 pb-10 pt-6">
+    <div className="login-screen onboarding-focus auth-focus flex flex-1 flex-col overflow-y-auto px-7 pb-10 pt-6">
       <BackButton onClick={onBack} />
 
       <form className="flex flex-1 flex-col" onSubmit={submit} noValidate>
         <h1 className="page-title mt-6">
-          Welcome
-          <br />
-          back.
+          Welcome back.
         </h1>
 
-        <div className="mt-10 space-y-6">
+        <div className="login-fields mt-10 space-y-6">
           <Field
             id="login-identifier"
             label="Username or email"
@@ -56,6 +58,12 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
           />
         </div>
 
+        {onResetPassword && <button type="button" disabled={busy}
+          className="mt-4 min-h-11 self-start text-lg font-semibold text-clay underline underline-offset-4"
+          onClick={() => { setPassword(""); setError(""); setResetting(true); }}>
+          Forgot password?
+        </button>}
+
         {error && (
           <p
             role="alert"
@@ -65,7 +73,7 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
           </p>
         )}
 
-        <div className="mt-auto pt-10">
+        <div className="login-actions mt-auto pt-10">
           <button type="submit" className="btn-primary" disabled={busy}>
             {busy ? "Logging in…" : "Log In"}
           </button>
@@ -74,7 +82,7 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack }) {
             <button
               type="button"
               onClick={onGoToSignUp}
-              className="font-bold text-clay underline underline-offset-4"
+              className="inline-flex min-h-[44px] items-center px-1 align-middle font-bold text-clay underline underline-offset-4"
             >
               Sign up
             </button>

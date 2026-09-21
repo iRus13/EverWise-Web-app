@@ -27,16 +27,26 @@ export default function LessonPlayer({
   // change as content is edited, so a stale index must never strand someone on
   // a step that no longer exists.
   const savedQueue = initialPosition?.reviewQueue ?? [];
-  const resumed =
+  const savedPosition =
     initialPosition &&
     initialPosition.blockIndex < lesson.blocks.length &&
     (initialPosition.phase === "block" || initialPosition.quizIndex < quizTotal) &&
     // A saved review queue must still point at questions this quiz has; the
     // content may have changed since it was written.
     savedQueue.every((index) => index < quizTotal) &&
+    (initialPosition.answeredThrough === undefined || initialPosition.answeredThrough <= quizTotal) &&
     (initialPosition.phase !== "review" || savedQueue.length > 0)
       ? initialPosition
       : null;
+  // Old positions did not preserve first attempts or outstanding mistakes while
+  // taking the quiz. Keep completed teaching, but restart that quiz rather than
+  // inventing a score/history. An existing review queue remains resumable.
+  const needsFreshQuiz = savedPosition && savedPosition.phase !== "review" &&
+    savedPosition.answeredThrough === undefined &&
+    (savedPosition.quizIndex > 0 || savedPosition.score > 0 || savedQueue.length > 0);
+  const resumed = needsFreshQuiz
+    ? { ...savedPosition, phase: "quiz", quizIndex: 0, score: 0, reviewQueue: [], answeredThrough: 0 }
+    : savedPosition;
 
   // "testout" | "block" | "quiz" | "review"
   const [phase, setPhase] = useState(
@@ -52,7 +62,14 @@ export default function LessonPlayer({
   const [reviewQueue, setReviewQueue] = useState(resumed?.reviewQueue ?? []);
   const [testOutIndex, setTestOutIndex] = useState(0);
   const [testOutFailed, setTestOutFailed] = useState(false);
-  const scoreRef = useRef(resumed?.score ?? 0);
+  // Older saved reviews may contain points inflated by backtracking. Known
+  // outstanding mistakes must never count toward that saved score.
+  const scoreRef = useRef(Math.min(resumed?.score ?? 0,
+    Math.max(0, quizTotal - (resumed?.reviewQueue?.length ?? 0))));
+  // Questions are visited in order. This high-water mark includes skipped
+  // questions, so neither backtracking nor reloading can count an answer twice.
+  const answeredThroughRef = useRef(resumed?.answeredThrough ??
+    (resumed?.phase === "review" ? quizTotal : 0));
   // Scored on the first attempt only, so replaying a question in review cannot
   // inflate the result.
   const wrongFirstPassRef = useRef(resumed?.reviewQueue ?? []);
@@ -63,7 +80,8 @@ export default function LessonPlayer({
       blockIndex: next.blockIndex,
       quizIndex: next.quizIndex,
       score: scoreRef.current,
-      reviewQueue: next.reviewQueue ?? reviewQueue,
+      reviewQueue: next.reviewQueue ?? wrongFirstPassRef.current,
+      answeredThrough: answeredThroughRef.current,
     });
   };
   const totalSteps = lesson.blocks.length + quizTotal;
@@ -86,18 +104,25 @@ export default function LessonPlayer({
     }
   };
 
+  const recordFirstAttempt = (correct) => {
+    if (quizIndex < answeredThroughRef.current) return;
+    answeredThroughRef.current = quizIndex + 1;
+    if (correct) scoreRef.current += 1;
+    else wrongFirstPassRef.current = [...wrongFirstPassRef.current, quizIndex];
+  };
+
   const answerQuiz = (choice) => {
     if (selected != null) return;
-    const q = quiz[quizIndex];
-    if (choice === q.correctIndex) {
-      scoreRef.current += 1;
-    } else if (!wrongFirstPassRef.current.includes(quizIndex)) {
-      wrongFirstPassRef.current = [...wrongFirstPassRef.current, quizIndex];
-    }
+    recordFirstAttempt(choice === quiz[quizIndex].correctIndex);
+    // Save immediately as well as on navigation: leaving while feedback is
+    // visible must retain this first attempt and any required review.
+    rememberPosition({ phase: "quiz", blockIndex, quizIndex });
     setSelected(choice);
   };
 
   const continueQuiz = () => {
+    // Skip postpones an unanswered question; it does not waive the review.
+    recordFirstAttempt(false);
     if (quizIndex + 1 < quizTotal) {
       setQuizIndex((i) => i + 1);
       setSelected(null);

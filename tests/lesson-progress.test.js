@@ -151,3 +151,19 @@ test("a corrupt review queue is rejected rather than half-trusted", () => {
     );
   }
 });
+
+
+test("first-attempt history survives an earlier current question and storage round trip", () => {
+  const storage=memoryStorage();
+  const position={phase:"quiz",blockIndex:3,quizIndex:0,score:1,reviewQueue:[1],answeredThrough:2};
+  assert.equal(saveLessonPosition({uid:"u1",lessonId:"internet",position,storage}),true);
+  assert.deepEqual(readLessonPosition({uid:"u1",lessonId:"internet",storage}),position);
+});
+
+test("invalid or contradictory first-attempt history is rejected", () => {
+  const storage=memoryStorage();
+  for(const patch of [{answeredThrough:-1},{answeredThrough:1.5},{answeredThrough:"2"},{answeredThrough:501},
+    {answeredThrough:0,score:1},{answeredThrough:1,reviewQueue:[1]},{answeredThrough:1,score:1,reviewQueue:[0]},{answeredThrough:2,score:0,reviewQueue:[0,0]},{answeredThrough:1,score:0,quizIndex:2,reviewQueue:[]}]) {
+    assert.equal(saveLessonPosition({uid:"u1",lessonId:"internet",storage,position:{...POSITION,...patch}}),false);
+  }
+});

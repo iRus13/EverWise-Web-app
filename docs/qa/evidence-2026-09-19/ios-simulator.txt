@@ -1,0 +1,11 @@
+September 19, 2026 — iPhone 18 Pro, iOS 27.0 simulator
+Before scene adoption: startup terminated with EXC_BREAKPOINT / SIGTRAP.
+Faulting symbol: UIApplicationEvaluateRuntimeIssueForNoSceneLifecycleAdoption.
+After scene adoption: Debug simulator build, installation and launch passed.
+Welcome screen visually verified (ios-welcome.jpg).
+App process remained alive after more than 73 seconds.
+WebView loaded and StoreKit getProducts returned an empty catalog.
+API origin is unconfigured; hosted features were not exercised.
+Simulator accessibility snapshot returned zero WebView targets, preventing native
+button/keyboard automation. No actual Apple purchase, restore or auth submission.
+Unsigned generic device Release build is recorded separately in follow-up checks.

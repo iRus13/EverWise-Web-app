@@ -10,7 +10,7 @@ import TextSizeControl from "../components/TextSizeControl";
 export default function Home({
   partner = null,
   name,
-  scamsCaught = 0,
+  lessonsCompleted = 0,
   badgesEarned = 0,
   allDone,
   textSize,
@@ -41,7 +41,7 @@ export default function Home({
         <div className="home-header flex items-center justify-between gap-3 lg:hidden">
           <div className="flex items-center gap-3">
             <img
-              src="/everwise-logo-192.png"
+              src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
               alt=""
               aria-hidden="true"
               className="h-9 w-9 object-contain"
@@ -72,21 +72,21 @@ export default function Home({
           </button>
         </div>
 
-        <div className="mt-4 lg:hidden">
+        <div className="mt-4 empty:hidden">
           <AddToHomeScreenBanner />
         </div>
 
         {/* Mobile intro row (name + inline text-size control) */}
         <div className="home-intro mt-1 flex items-start justify-between gap-4 lg:hidden">
           <div className="min-w-0">
-            <p className="text-xl text-ink-soft animate-fade-up">
+            <h1 className="text-xl text-ink-soft animate-fade-up">
               Hello{firstName ? (
                 <>
                   , <span className="font-semibold text-ink">{firstName}</span>
                 </>
               ) : null}
               .
-            </p>
+            </h1>
             <p className="mt-1 text-lg leading-snug text-ink-soft animate-fade-up">
               Learn at your own pace. Your progress is saved automatically.
             </p>
@@ -97,22 +97,15 @@ export default function Home({
         {/* Desktop page header — text size remains available in the sidebar. */}
         <div className="hidden items-start justify-between gap-6 lg:flex">
           <div>
-            <p className="font-sans text-6xl font-bold tracking-tight text-ink">
+            <h1 className="font-sans text-6xl font-bold tracking-tight text-ink">
               Welcome back{firstName ? `, ${firstName}` : ""}.
-            </p>
+            </h1>
             <p className="mt-3 text-2xl leading-snug text-ink-soft">
               Learn at your own pace. Your progress is saved automatically.
             </p>
-            <ul className="mt-4 max-w-2xl list-disc space-y-2 pl-6 text-2xl leading-snug text-ink-soft marker:text-clay">
-              <li>
-                Click <strong className="font-semibold text-ink">Continue learning</strong> below to jump back into your lessons.
-              </li>
-              <li>
-                Use <strong className="font-semibold text-ink">Check a suspicious message</strong> anytime you get a text, email, or call that feels off.
-              </li>
-              <li>Your badges and scams-caught count update automatically as you go.</li>
-              <li>Revisit any of it anytime from the menu on the left.</li>
-            </ul>
+            <p className="mt-4 max-w-2xl text-xl leading-relaxed text-ink-soft">
+              Continue your next lesson, or check a message that worries you.
+            </p>
           </div>
         </div>
 
@@ -185,11 +178,11 @@ export default function Home({
               <div className="flex items-center gap-2 lg:gap-4">
                 <StarIcon className="h-6 w-6 text-sage lg:h-11 lg:w-11" />
                 <span className="font-sans text-3xl font-bold text-sage lg:text-7xl">
-                  {scamsCaught}
+                  {lessonsCompleted}
                 </span>
               </div>
               <p className="mt-1 text-base text-ink-soft lg:mt-3 lg:text-2xl">
-                scams caught
+                lessons completed
               </p>
             </div>
           </div>

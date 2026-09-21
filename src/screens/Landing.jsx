@@ -24,7 +24,7 @@ export default function Landing({ partner = null, onGetStarted, onLogIn }) {
           ) : (
             <div className="flex items-center gap-3">
               <img
-                src="/everwise-logo-192.png"
+                src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
                 alt=""
                 aria-hidden="true"
                 className="h-10 w-10 object-contain"

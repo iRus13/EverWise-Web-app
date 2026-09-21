@@ -14,6 +14,7 @@ import { challengesByOrder, examsByOrder, lessonsByOrder } from "../src/data/les
 
 const mocks = vi.hoisted(() => ({
   authCallback: null,
+  examTier: null,
   initialAuthUser: null,
   native: false,
   createBillingCheckout: vi.fn(),
@@ -48,6 +49,7 @@ vi.mock("firebase/auth", () => ({
 }));
 
 vi.mock("firebase/firestore", () => ({
+  arrayUnion: vi.fn((...values) => ({operation:"arrayUnion", values})),
   deleteDoc: vi.fn(),
   doc: vi.fn((_db, collection, uid) => ({ collection, uid })),
   getDoc: mocks.getDoc,
@@ -125,13 +127,13 @@ vi.mock("../src/screens/LessonPlayer.jsx", () => ({
   default: ({ lesson }) => <h1>Lesson: {lesson.id}</h1>,
 }));
 vi.mock("../src/screens/ChallengePlayer.jsx", () => ({
-  default: ({ challenge }) => <h1>Challenge: {challenge.id}</h1>,
+  default: ({ challenge, onComplete }) => <><h1>Challenge: {challenge.id}</h1><button onClick={onComplete}>Finish challenge</button></>,
 }));
 vi.mock("../src/screens/ExamPlayer.jsx", () => ({
-  default: ({ exam }) => <h1>Exam: {exam.id}</h1>,
+  default: ({ exam, onPass }) => <><h1>Exam: {exam.id}</h1><button onClick={() => onPass({tier:mocks.examTier ?? {title:"Safety Pro"},earnedPhaseBadge:true,phaseBadge:exam.phaseBadge})}>Finish exam</button></>,
 }));
 vi.mock("../src/screens/Paywall.jsx", () => ({
-  default: ({ billingAccess, billingAvailable, billingPlans, billingStatus, onMaybeLater, onRetry, onStartLearning, onStartTrial, platform }) => (
+  default: ({ billingAccess, billingAvailable, billingPlans, billingStatus, onMaybeLater, onRetry, onRestore, onStartLearning, onStartTrial, platform }) => (
     <main>
       <h1>Subscription options</h1>
       <span data-testid="paywall-billing-status">{billingStatus}</span>
@@ -148,6 +150,7 @@ vi.mock("../src/screens/Paywall.jsx", () => ({
       <button type="button" onClick={onMaybeLater}>
         Back free
       </button>
+      {platform === "native" && <button type="button" onClick={() => void onRestore().catch(() => {})}>Restore Apple purchases</button>}
       <button type="button" onClick={onStartLearning}>
         Start learning
       </button>
@@ -402,12 +405,14 @@ async function openProtected(kind = "lesson") {
     await Promise.resolve();
     await Promise.resolve();
   });
+  await act(async () => vi.dynamicImportSettled());
   expect(screen.getByRole("heading", { name: new RegExp(`^${kind}`, "i") })).toBeVisible();
 }
 
 describe("browser billing bootstrap and provider selection", () => {
   beforeEach(() => {
     mocks.initialAuthUser = null;
+    mocks.examTier = null;
     mocks.native = false;
     for (const mock of Object.values(mocks)) {
       if (typeof mock?.mockReset === "function") mock.mockReset();
@@ -474,6 +479,51 @@ describe("browser billing bootstrap and provider selection", () => {
       ).toBeVisible();
     }
   );
+
+  test.each(["challenge", "exam"])("finishing a %s advances with a pending atomic progress write", async kind => {
+    const uid=`pending-${kind}`;
+    mocks.updateDoc.mockImplementation(()=>new Promise(()=>{}));
+    await openAuthenticatedApp({access:ACTIVE,uid});
+    await openProtected(kind);
+    await act(async()=>fireEvent.click(screen.getByRole("button",{name:`Finish ${kind}`})));
+    expect(screen.getByRole("heading",{name:"Course path"})).toBeVisible();
+    const item=kind==="exam" ? examsByOrder[0] : challengesByOrder[0];
+    expect(mocks.updateDoc).toHaveBeenCalledWith(expect.objectContaining({uid}),expect.objectContaining({
+      completedLessons:{operation:"arrayUnion",values:[item.id]},
+    }));
+    if(kind==="exam") expect(mocks.updateDoc).toHaveBeenCalledWith(expect.anything(),expect.objectContaining({
+      badges:{operation:"arrayUnion",values:expect.arrayContaining(["Safety Pro",...item.phaseBadge ? [item.phaseBadge] : []])},
+    }));
+    expect(screen.getByRole("status")).toHaveTextContent("Saving your progress");
+  });
+
+  test.each(["better", "same", "lower"])("exam retakes save only a newly earned better tier: %s", async result => {
+    const exam = examsByOrder[0];
+    const tiers = [...exam.results].sort((a, b) => a.minScore - b.minScore);
+    const champion = tiers[0];
+    const master = tiers.at(-1);
+    const owned = result === "lower" ? master : champion;
+    const earned = result === "better" ? master : champion;
+    mocks.examTier = earned;
+    await openAuthenticatedApp({
+      access: ACTIVE,
+      uid: `retake-${result}`,
+      completedLessons: [exam.id],
+      profileOverrides: { badges: [owned.title] },
+    });
+    await openProtected("exam");
+    mocks.updateDoc.mockClear();
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Finish exam" })));
+    expect(screen.getByRole("heading", { name: "Course path" })).toBeVisible();
+    if (result === "better") {
+      expect(mocks.updateDoc).toHaveBeenCalledExactlyOnceWith(
+        expect.objectContaining({ uid: `retake-${result}` }),
+        { badges: { operation: "arrayUnion", values: [master.title] } },
+      );
+    } else {
+      expect(mocks.updateDoc).not.toHaveBeenCalled();
+    }
+  });
 
   test("keeps an active native Apple entitlement authoritative when it resolves before a delayed inactive profile", async () => {
     mocks.native = true;
@@ -759,6 +809,65 @@ describe("browser billing bootstrap and provider selection", () => {
     });
     expect(mocks.purchaseSubscription).toHaveBeenCalledWith("annual");
     expect(mocks.createBillingCheckout).toHaveBeenCalledTimes(1);
+  });
+
+  test("a native purchase completing after sign-out cannot update a different session", async () => {
+    mocks.native = true;
+    const purchase = deferred();
+    mocks.purchaseSubscription.mockReturnValue(purchase.promise);
+    await openAuthenticatedApp({access: NONE, uid: "native-original"});
+    fireEvent.click(screen.getByRole("button", {name: "Open course"}));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name: "Open protected lesson"})));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name: "Start annual trial"})));
+    await act(async () => mocks.authCallback(null));
+    mocks.updateDoc.mockClear();
+    await act(async () => purchase.resolve({active: true, productId: "com.everwise.app.annual"}));
+    expect(mocks.updateDoc).not.toHaveBeenCalled();
+    expect(screen.queryByRole("button", {name: "Open course"})).not.toBeInTheDocument();
+  });
+
+  test("native access is rechecked after returning from Apple subscription management", async () => {
+    mocks.native = true;
+    mocks.getCurrentEntitlement.mockResolvedValue({active: true, productId: "com.everwise.app.annual"});
+    await openAuthenticatedApp({access: NONE, uid: "native-resume"});
+    const previous = mocks.getCurrentEntitlement.mock.calls.length;
+    mocks.getCurrentEntitlement.mockResolvedValue({active: false});
+    await act(async () => window.dispatchEvent(new Event("focus")));
+    expect(mocks.getCurrentEntitlement.mock.calls.length).toBeGreaterThan(previous);
+    fireEvent.click(screen.getByRole("button", {name: "Open course"}));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name: "Open protected lesson"})));
+    expect(screen.getByRole("button", {name: "Start annual trial"})).toBeVisible();
+  });
+
+  test.each(["purchase", "restore"])("an older native check cannot revoke a successful %s", async (operation) => {
+    mocks.native = true;
+    await openAuthenticatedApp({ access: NONE, uid: "native-purchase-race" });
+    const olderCheck = deferred();
+    mocks.getCurrentEntitlement.mockReturnValueOnce(olderCheck.promise);
+    await act(async () => window.dispatchEvent(new Event("focus")));
+    mocks.purchaseSubscription.mockResolvedValue({ active: true, productId: "com.everwise.app.annual" });
+    mocks.restoreSubscriptions.mockResolvedValue({ active: true, productId: "com.everwise.app.annual" });
+    fireEvent.click(screen.getByRole("button", { name: "Open course" }));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Open protected lesson" })));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: operation === "purchase" ? "Start annual trial" : "Restore Apple purchases" })));
+    await act(async () => olderCheck.resolve({ active: false }));
+    await openProtected("lesson");
+    expect(screen.queryByRole("button", { name: "Start annual trial" })).not.toBeInTheDocument();
+  });
+
+  test.each(["purchase", "restore"])("a successful %s opens learning while the profile write is offline", async (operation) => {
+    mocks.native = true;
+    await openAuthenticatedApp({ access: NONE, uid: "native-offline-profile" });
+    const profileWrite = deferred();
+    mocks.updateDoc.mockReturnValue(profileWrite.promise);
+    mocks.purchaseSubscription.mockResolvedValue({ active: true, productId: "com.everwise.app.annual" });
+    mocks.restoreSubscriptions.mockResolvedValue({ active: true, productId: "com.everwise.app.annual" });
+    fireEvent.click(screen.getByRole("button", { name: "Open course" }));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: "Open protected lesson" })));
+    await act(async () => fireEvent.click(screen.getByRole("button", { name: operation === "purchase" ? "Start annual trial" : "Restore Apple purchases" })));
+    expect(screen.getByRole("heading", { name: "Home" })).toBeVisible();
+    await openProtected("lesson");
+    await act(async () => profileWrite.resolve());
   });
 
   test("keeps the paywall available while the Checkout Session is being created", async () => {
@@ -1633,7 +1742,10 @@ describe("authoritative billing revalidation and revocation", () => {
       uid: "safe-free-lesson",
     });
     fireEvent.click(screen.getByRole("button", { name: "Open course" }));
-    fireEvent.click(screen.getByRole("button", { name: "Open free lesson" }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "Open free lesson" }));
+      await vi.dynamicImportSettled();
+    });
     expect(screen.getByRole("heading", { name: /^Lesson:/ })).toBeVisible();
     await act(async () => vi.advanceTimersByTimeAsync(60_000));
     expect(screen.getByRole("heading", { name: /^Lesson:/ })).toBeVisible();

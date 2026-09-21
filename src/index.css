@@ -82,6 +82,13 @@
     border-radius: 6px;
   }
 
+  /* Headings/landmarks receive focus for page announcements, not interaction.
+     Keep the strong keyboard ring on buttons, links and form controls. */
+  .app-canvas:focus,
+  .app-canvas h1[tabindex="-1"]:focus {
+    outline: none;
+  }
+
   h1,
   h2,
   h3 {
@@ -103,6 +110,20 @@
     white-space: normal;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.landing-actions {
+  /* Keep the final action clear of the iPhone home gesture area, including
+     when the welcome page must scroll at larger text sizes. */
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* Tall iPad compatibility windows place window controls inside the upper
+   content area. Keep the welcome brand below that chrome. */
+@media (max-width: 639px) and (min-height: 1000px) {
+  .landing-screen {
+    padding-top: 2.5rem;
   }
 }
 
@@ -528,7 +549,9 @@
   .app-navigation {
     top: 0;
     height: 100dvh;
-    min-height: 620px;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
     flex-direction: column;
     align-items: stretch;
     gap: 1.75rem;
@@ -845,9 +868,14 @@
 .partner-dashboard {
   box-sizing: border-box;
   width: 100%;
+  height: 100dvh;
   min-height: 100dvh;
   overflow-x: hidden;
-  padding: clamp(1.5rem, 5vw, 4rem);
+  overflow-y: auto;
+  padding: calc(clamp(1.5rem, 5vw, 4rem) + env(safe-area-inset-top))
+    max(clamp(1.5rem, 5vw, 4rem), env(safe-area-inset-right))
+    calc(clamp(1.5rem, 5vw, 4rem) + env(safe-area-inset-bottom))
+    max(clamp(1.5rem, 5vw, 4rem), env(safe-area-inset-left));
   background: #fbf9f4;
   color: #22201c;
 }
@@ -861,10 +889,22 @@
 .partner-dashboard-status {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 1rem;
   text-align: center;
+}
+
+.partner-dashboard-status > * {
+  flex-shrink: 0;
+}
+
+.partner-dashboard-status > :first-child {
+  margin-top: auto;
+}
+
+.partner-dashboard-status > :last-child {
+  margin-bottom: auto;
 }
 
 .partner-dashboard-header {
@@ -1128,10 +1168,21 @@
   }
 }
 
+/* Keep the normal-size login action visible on compact phones. Larger text
+   and the onscreen keyboard can still use the existing vertical scrolling. */
+@media (max-width: 767px) and (max-height: 700px) {
+  .login-screen { padding-block: 0.75rem; }
+  .login-screen .page-title { margin-top: 0.5rem; }
+  .login-fields { margin-top: 1rem; }
+  .login-fields > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+  .login-actions { padding-top: 0.5rem; }
+  .login-actions > .btn-primary { padding-block: 0.75rem; }
+  .login-actions > p { margin-top: 0.5rem; }
+}
+
 /*
- * Keep the App Store paywall fully visible on shorter iPhones. The paywall
- * deliberately ignores the learner's lesson text scale: purchase terms must
- * remain complete, readable, and on one screen at every app text setting.
+ * Compact paywall spacing for shorter iPhones. The release overrides below
+ * preserve readable, scaled typography and allow the full offer to scroll.
  */
 @media (max-height: 900px) {
   .release-paywall {
@@ -1380,7 +1431,7 @@ html:is(
 
 /*
  * At large text sizes, lesson navigation becomes two clear rows. The title
- * keeps the back button beside it, while Skip gets the full available width.
+ * keeps the back button beside it, while Skip and Exit share a full-width row.
  */
 html:is(
     [data-text-size="size-6"],
@@ -1427,10 +1478,24 @@ html:is(
     [data-text-size="size-9"],
     [data-text-size="size-10"]
   )
-  .lesson-skip {
+  .lesson-top-actions {
   grid-column: 1 / -1;
   width: 100%;
   justify-self: stretch;
+  gap: 0.5rem;
+}
+
+html:is(
+    [data-text-size="size-6"],
+    [data-text-size="size-7"],
+    [data-text-size="size-8"],
+    [data-text-size="size-9"],
+    [data-text-size="size-10"]
+  )
+  .lesson-top-actions > button {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
   border: 2px solid rgb(34 32 28 / 15%);
   background: rgb(255 253 248 / 80%);
   padding: 0.65rem 1rem;
@@ -1443,8 +1508,37 @@ html:is(
     [data-text-size="size-9"],
     [data-text-size="size-10"]
   )
-  .lesson-skip-spacer {
+  .lesson-top-actions:has(.lesson-skip-spacer) {
   display: none;
+}
+
+/* Let large-text lessons flow on short screens; fixed navigation and actions
+   would otherwise leave only a line or two for the activity itself. */
+@media (max-width: 767px) and (max-height: 700px) {
+  html:is(
+      [data-text-size="size-6"],
+      [data-text-size="size-7"],
+      [data-text-size="size-8"],
+      [data-text-size="size-9"],
+      [data-text-size="size-10"]
+    ) .learning-focus-shell {
+    overflow-y: auto;
+  }
+
+  html:is(
+      [data-text-size="size-6"],
+      [data-text-size="size-7"],
+      [data-text-size="size-8"],
+      [data-text-size="size-9"],
+      [data-text-size="size-10"]
+    ) .learning-focus-shell .lesson-content {
+    flex: none;
+    overflow: visible;
+  }
+}
+
+.builder-columns {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
 }
 
 html:is(
@@ -1671,7 +1765,7 @@ html:is(
 
 /* Web subscription terms stay readable even on short screens. Let the page
    scroll instead of applying the compact App Store typography above. */
-.release-paywall.web-paywall {
+.release-paywall {
   --paywall-wordmark: 1.75rem;
   --paywall-headline: clamp(2rem, 3vw, 3rem);
   --paywall-benefit-title: 1.25rem;
@@ -1684,32 +1778,74 @@ html:is(
   --paywall-footer: 1rem;
   padding: 1rem clamp(1rem, 4vw, 4rem) max(1rem, env(safe-area-inset-bottom));
 }
-.web-paywall .paywall-main { flex: 1 0 auto; }
-.web-paywall .paywall-layout {
+.release-paywall .paywall-main { flex: 1 0 auto; }
+.release-paywall .paywall-layout {
   width: 100%;
   max-width: 72rem;
   margin: 1.5rem auto;
   gap: 2rem;
 }
-.web-paywall .paywall-story { padding-bottom: 1.5rem; }
-.web-paywall .paywall-benefit { padding-block: 1rem; }
-.web-paywall .paywall-plan-card { min-height: 0; padding: 1.25rem 1rem; }
-.web-paywall .paywall-plans { gap: 0.75rem; margin-top: 1rem; }
-.web-paywall .paywall-plan-card span { overflow-wrap: anywhere; }
-.web-paywall .paywall-trial-summary,
-.web-paywall .paywall-reassurance { font-size: 1rem; line-height: 1.5; }
-.web-paywall .paywall-plan-card span[style] { line-height: 1.35 !important; }
-.web-paywall .paywall-cta { margin-top: 1rem; min-height: 3.5rem; }
-.web-paywall button:focus-visible { outline: 3px solid #2D302A; outline-offset: 3px; }
-.web-paywall .paywall-footer { flex-wrap: wrap; margin-top: 1rem; }
+.release-paywall .paywall-story { padding-bottom: 1.5rem; }
+.release-paywall .paywall-benefit { padding-block: 1rem; }
+.release-paywall .paywall-plan-card { min-height: 0; padding: 1.25rem 1rem; }
+.release-paywall .paywall-plans { gap: 0.75rem; margin-top: 1rem; }
+.release-paywall .paywall-plan-card span { overflow-wrap: anywhere; }
+.release-paywall .paywall-trial-summary,
+.release-paywall .paywall-reassurance { font-size: 1rem; line-height: 1.5; }
+.release-paywall .paywall-plan-card span[style] { line-height: 1.35 !important; }
+.release-paywall .paywall-cta { margin-top: 1rem; min-height: 3.5rem; }
+.release-paywall button:focus-visible { outline: 3px solid #2D302A; outline-offset: 3px; }
+.release-paywall .paywall-footer { flex-wrap: wrap; margin-top: 1rem; }
 @media (min-width: 900px) {
-  .web-paywall .paywall-layout { align-items: start; gap: 4rem; }
-  .web-paywall .paywall-story { padding-top: 2rem; }
+  .release-paywall .paywall-layout { align-items: start; gap: 4rem; }
+  .release-paywall .paywall-story { padding-top: 2rem; }
 }
-.web-paywall .paywall-header { padding-inline: 3rem; }
-.web-paywall .paywall-logo { width: 2rem; height: 2rem; }
-.web-paywall .paywall-plan-card { position: relative; }
-.web-paywall .paywall-plan-card > span { display: block; }
-.web-paywall .paywall-plan-card > span > svg { position: absolute; top: 1.25rem; right: 1rem; }
-.web-paywall .paywall-plan-card > span > span { display: block; }
-.web-paywall .paywall-plan-card > span > span > span:first-child { display: block; padding-right: 3rem; }
+.release-paywall .paywall-header { padding-inline: 3rem; }
+.release-paywall .paywall-logo { width: 2rem; height: 2rem; }
+.release-paywall .paywall-plan-card { position: relative; }
+.release-paywall .paywall-plan-card > span { display: block; }
+.release-paywall .paywall-plan-card > span > svg { position: absolute; top: 1.25rem; right: 1rem; }
+.release-paywall .paywall-plan-card > span > span { display: block; }
+.release-paywall .paywall-plan-card > span > span > span:first-child { display: block; padding-right: 3rem; }
+
+/* Keep financial terms legible and honor the learner's chosen text size. */
+@media (max-width: 767px) {
+  html:is([data-text-size="size-7"], [data-text-size="size-8"], [data-text-size="size-9"], [data-text-size="size-10"]) .final-challenge-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.release-paywall {
+  --paywall-headline: calc(clamp(2rem, 3vw, 3rem) * var(--text-scale));
+  --paywall-benefit-title: calc(1.25rem * var(--text-scale));
+  --paywall-benefit-body: calc(1.0625rem * var(--text-scale));
+  --paywall-plan-title: calc(1.375rem * var(--text-scale));
+  --paywall-price: calc(1.875rem * var(--text-scale));
+  --paywall-cta: calc(1.25rem * var(--text-scale));
+  --paywall-detail: max(1rem, calc(1rem * var(--text-scale)));
+  --paywall-reassurance: max(1rem, calc(1rem * var(--text-scale)));
+  --paywall-footer: max(1rem, calc(1rem * var(--text-scale)));
+}
+.release-paywall .paywall-reassurance,
+.release-paywall .paywall-trial-summary { font-size: max(1rem, calc(1rem * var(--text-scale))); }
+.release-paywall .paywall-plan-card span { overflow-wrap: anywhere; }
+.release-paywall .paywall-plan-card .items-baseline { flex-wrap: wrap; }
+
+/* Preserve whole headline words on the narrowest phones at enlarged sizes. */
+@media (max-width: 374px) {
+  .release-paywall {
+    --paywall-headline: min(calc(2rem * var(--text-scale)), 15vw);
+  }
+}
+
+/* Bound long status/course headings by their actual content width. Body copy
+   retains the full text preference and the screen remains scrollable. */
+.billing-status-card, .exam-intro { container-type: inline-size; }
+.billing-status-heading {
+  font-size: min(calc(2rem * var(--text-scale)), 15cqi);
+  line-height: 1.15;
+}
+html[data-text-size] .exam-intro-heading {
+  font-size: min(calc(1.875rem * var(--text-scale)), 12cqi);
+  line-height: 1.2;
+}

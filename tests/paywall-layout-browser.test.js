@@ -119,7 +119,7 @@ async function withLayoutServer(run) {
 
 async function measure(url, width, mutation = "", height = 1000) {
   const profile = await mkdtemp(path.join(os.tmpdir(), "everwise-paywall-chrome-"));
-  const query = mutation ? `?mutation=${encodeURIComponent(mutation)}` : "";
+  const query = mutation ? `${url.includes("?") ? "&" : "?"}mutation=${encodeURIComponent(mutation)}` : "";
   const args = [
     "--headless=new",
     "--disable-gpu",
@@ -142,7 +142,9 @@ async function measure(url, width, mutation = "", height = 1000) {
     const port = await waitForDebugPort(profile, chrome, { signal: measurement.signal });
     const targets = await fetchDevtoolsTargets(port, {
       signal: measurement.signal,
-      timeoutMs: 3000,
+      // Cold Chrome startup can outlive its port-file announcement on busy CI.
+      // Keep the entire measurement bounded while allowing discovery to settle.
+      timeoutMs: 10_000,
     });
     const target = targets.find((candidate) => candidate.type === "page");
     assert.ok(target?.webSocketDebuggerUrl, "Chrome did not expose a debuggable page");
@@ -243,7 +245,7 @@ async function fetchDevtoolsTargets(port, {
     const response = await fetchImpl(`http://127.0.0.1:${port}/json/list`, {
       signal: bound.signal,
     });
-    return response.json();
+    return await response.json();
   } finally {
     bound.cleanup();
   }
@@ -404,6 +406,18 @@ test("hung DevTools discovery is aborted within its bound", { timeout: 1000 }, a
   assert.equal(receivedSignal, true);
 });
 
+test("a stalled DevTools response body remains inside the discovery deadline", { timeout: 1000 }, async () => {
+  const fetchImpl = async (_url, { signal }) => ({
+    json: () => new Promise((_resolve, reject) => {
+      signal.addEventListener("abort", () => reject(signal.reason), { once: true });
+    }),
+  });
+  await assert.rejects(
+    fetchDevtoolsTargets(1, { fetchImpl, timeoutMs: 20 }),
+    /DevTools discovery timed out/,
+  );
+});
+
 test("a stalled debugging socket is aborted and closed", { timeout: 1000 }, async () => {
   let socket;
   class StalledSocket {
@@ -491,5 +505,79 @@ test("geometry proof detects a clipped wide-card regression", { ...browserTestOp
       () => assertFitsViewport(geometry, "wide-card mutation"),
       /plan card .*beyond viewport|plan card .*width .* exceeds viewport/,
     );
+  });
+});
+
+
+test("native paywall remains readable and scrolls to legal controls at all text sizes", { ...browserTestOptions, timeout: 180_000 }, async () => {
+  await withLayoutServer(async (url) => {
+    for (const [width, height] of [[320,568], [390,844], [667,375], [768,1024]]) {
+      for (const textSize of ["size-2", "size-5", "size-10"]) {
+        const geometry = await measure(`${url}?platform=native&textSize=${textSize}`, width, "", height);
+        assertFitsViewport(geometry, `native ${width} ${textSize}`);
+        assert.ok(geometry.termsFontSize >= 18, "Native renewal terms must stay readable");
+        assert.ok(!geometry.textOverflow, "Native card or terms text must not be clipped");
+        assert.ok(geometry.footerReachable, "Legal and Restore controls must be reachable by scrolling");
+        assert.ok(geometry.buttons.every(button => button.height >= 44), "Native controls need 44px targets");
+      }
+    }
+  });
+});
+
+test("core app screens fit narrow phones and desktop at standard and largest text sizes", { ...browserTestOptions, timeout: 240_000 }, async () => {
+  await withLayoutServer(async (url) => {
+    const appUrl = url.replace("paywall-layout.html", "app-layout.html");
+    const failures = [];
+    for (const view of ["landing", "login", "password-reset", "interview", "signup", "home", "home-pending", "settings", "settings-reset-pending", "settings-reset-error", "badges", "path", "lesson", "complete", "complete-pending", "scam-checker"]) {
+      for (const [width,height] of [[320,568],[768,1024],[1440,900], ...((view.endsWith("-pending") || view.startsWith("settings-reset-")) ? [[667,375]] : [])]) {
+        for (const textSize of ["size-2","size-10"]) {
+          const geometry = await measure(`${appUrl}?view=${view}&textSize=${textSize}`, width, "", height);
+          if (geometry.scrollWidth > geometry.clientWidth + 1 || geometry.outside.length || geometry.brokenImages.length || !geometry.headings || !geometry.noticeReachable || !geometry.recoveryReadable || (view === "landing" && geometry.landingBottomGap < 15) || (geometry.contentHeight !== null && geometry.contentHeight < 80)) {
+            failures.push({view,width,textSize,...geometry});
+          }
+        }
+      }
+    }
+    assert.deepEqual(failures, [], "Screens must render a heading, loaded images and controls within the viewport");
+  });
+});
+
+test("settings recovery geometry waits for the requested asynchronous error state", browserTestOptions, async () => {
+  await withLayoutServer(async url => {
+    const appUrl=url.replace("paywall-layout.html", "app-layout.html");
+    const geometry=await measure(`${appUrl}?view=settings-reset-error&resetDelay=200&textSize=size-10`, 320, "", 568);
+    assert.equal(geometry.recoveryReadable, true, "Measure the rendered error, not the earlier pending state");
+  });
+});
+
+
+test("subscription and sponsored recovery actions and personal plan remain reachable", { ...browserTestOptions, timeout: 180_000 }, async () => {
+  await withLayoutServer(async url => {
+    const appUrl=url.replace("paywall-layout.html", "app-layout.html");
+    const failures=[];
+    for (const view of ["billing-error", "billing-inactive", "billing-checking", "billing-timeout", "partner-error", "partner-cleanup", "personal-plan"]) {
+      for (const [width,height] of [[320,568], [667,375], [768,1024], [1440,900]]) {
+        for (const textSize of ["size-2", "size-10"]) {
+          const g=await measure(`${appUrl}?view=${view}&textSize=${textSize}`, width, "", height);
+          if (g.unreachable.length || g.outside.length || g.brokenImages.length || !g.headings || g.scrollWidth > g.clientWidth+1) {
+            failures.push({view,width,height,textSize,...g});
+          }
+        }
+      }
+    }
+    assert.deepEqual(failures, [], "Headings and recovery actions must be reachable through user-scrollable containers");
+  });
+});
+
+
+test("desktop sidebar controls remain reachable at largest text in short windows", { ...browserTestOptions, timeout: 60_000 }, async () => {
+  await withLayoutServer(async url => {
+    const appUrl=url.replace("paywall-layout.html", "app-layout.html")+"?view=home&textSize=size-10";
+    for(const height of [480,600,768]) {
+      const g=await measure(appUrl,1024,"",height);
+      assert.equal(g.navigationReachable,true,`Sidebar controls reachable at 1024x${height}`);
+    }
+    const clipped=await measure(appUrl,1024,"unscrollable-sidebar",768);
+    assert.equal(clipped.navigationReachable,false,"Removing sidebar scrolling must reproduce the clipped text-size controls");
   });
 });

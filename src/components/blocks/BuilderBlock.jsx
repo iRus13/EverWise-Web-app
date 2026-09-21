@@ -36,6 +36,7 @@ export default function BuilderBlock({
       onBack={onBack}
       onExit={onExit}
       onSkip={onContinue}
+      revealKey={revealed ? "revealed" : null}
       footer={
         revealed ? (
           <button className="btn-primary" onClick={onContinue}>
@@ -62,10 +63,10 @@ export default function BuilderBlock({
         <ReadAloud text={`${block.title || ""}. ${block.prompt || ""}`} />
       </div>
 
-      {/* Columns side by side — scroll horizontally on narrow phones if needed */}
-      <div className="mt-8 flex gap-3 overflow-x-auto pb-2">
+      {/* Stack on narrow screens so every choice remains readable and reachable. */}
+      <div className="builder-columns mt-8 grid shrink-0 gap-3 pb-2">
         {columns.map((col, ci) => (
-          <div key={col.label} className="min-w-[7.5rem] flex-1">
+          <div key={col.label} className="min-w-0">
             <p className="mb-3 text-center text-base font-bold uppercase tracking-wide text-ink-faint">
               {col.label}
             </p>

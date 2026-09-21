@@ -43,7 +43,7 @@ export default function FinalBossBlock({
       }
     >
       <div className="animate-fade-up">
-        <div className="flex items-center gap-3">
+        <div className="final-challenge-heading flex items-center gap-3">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-clay text-cream-card">
             <TrophyIcon className="h-7 w-7" />
           </div>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import BackButton from "../components/BackButton";
 import ReadAloud from "../components/ReadAloud";
 import { MessageSearchIcon } from "../components/Icons";
@@ -6,6 +6,7 @@ import { apiEndpoint } from "../utils/apiEndpoint";
 
 const CHECK_MESSAGE_ENDPOINT = apiEndpoint("/api/check-message");
 const MAX_MESSAGE_LENGTH = 6000;
+const RESULT_SAFETY_REMINDER = "Never use a link, phone number, or contact detail from a suspicious message. Find the organization’s official website, app, card, or statement yourself.";
 
 const verdictDetails = {
   likely_scam: {
@@ -27,6 +28,15 @@ const verdictDetails = {
     titleClassName: "text-sage-dark",
   },
 };
+
+function validAssessment(value) {
+  return value && Object.hasOwn(verdictDetails, value.verdict)
+    && typeof value.summary === "string" && value.summary.trim().length > 0
+    && value.summary.length <= 6000
+    && [value.warning_signs, value.next_steps].every((items) => Array.isArray(items)
+      && items.length <= 20 && items.every((item) => typeof item === "string" && item.length <= 6000))
+    && (value.urgent_action === null || (typeof value.urgent_action === "string" && value.urgent_action.length <= 6000));
+}
 
 function ResultSection({ title, items }) {
   if (!items?.length) return null;
@@ -57,23 +67,30 @@ export default function ScamChecker({ onBack }) {
   const [result, setResult] = useState(null);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
+  const requestRef = useRef(null);
+  useEffect(() => () => requestRef.current?.abort(), []);
   const cleanMessage = message.trim();
   const details = result ? verdictDetails[result.verdict] : null;
 
   const readAloudText = useMemo(() => {
     if (!result || !details) return "";
+    const urgentAction = result.urgent_action ? `Act now: ${result.urgent_action}` : "";
     const warningSigns = result.warning_signs?.length
       ? `Warning signs: ${result.warning_signs.join(". ")}.`
       : "";
     const nextSteps = result.next_steps?.length
       ? `What to do next: ${result.next_steps.join(". ")}.`
       : "";
-    return `${details.title}. ${result.summary}. ${warningSigns} ${nextSteps}`;
+    return [`${details.title}.`, result.summary, urgentAction, warningSigns, nextSteps, RESULT_SAFETY_REMINDER]
+      .filter(Boolean).join(" ");
   }, [details, result]);
 
   const checkMessage = async (event) => {
     event.preventDefault();
-    if (!cleanMessage || cleanMessage.length > MAX_MESSAGE_LENGTH) return;
+    if (!cleanMessage || cleanMessage.length > MAX_MESSAGE_LENGTH || requestRef.current) return;
+    const controller = new AbortController();
+    requestRef.current = controller;
+    const timeout = setTimeout(() => controller.abort(), 30_000);
 
     setStatus("loading");
     setError("");
@@ -84,6 +101,7 @@ export default function ScamChecker({ onBack }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: cleanMessage }),
+        signal: controller.signal,
       });
 
       if (!response.ok) {
@@ -100,10 +118,11 @@ export default function ScamChecker({ onBack }) {
       }
 
       const nextResult = await response.json();
-      if (!verdictDetails[nextResult.verdict]) {
+      if (!validAssessment(nextResult)) {
         throw new Error("unavailable");
       }
 
+      if (controller.signal.aborted) return;
       setResult(nextResult);
       setStatus("success");
     } catch (err) {
@@ -114,6 +133,9 @@ export default function ScamChecker({ onBack }) {
           : "We could not check this message right now. Do not click links, send money, or share a code until you verify it another way.",
       );
       setStatus("error");
+    } finally {
+      clearTimeout(timeout);
+      if (requestRef.current === controller) requestRef.current = null;
     }
   };
 
@@ -153,6 +175,7 @@ export default function ScamChecker({ onBack }) {
           </label>
           <textarea
             id="message-to-check"
+            disabled={status === "loading"}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             maxLength={MAX_MESSAGE_LENGTH}
@@ -221,9 +244,7 @@ export default function ScamChecker({ onBack }) {
           </div>
 
           <p className="mt-5 rounded-2xl bg-cream-deep px-5 py-4 text-base leading-snug text-ink-soft">
-            Never use a link, phone number, or contact detail from a suspicious
-            message. Find the organization’s official website, app, card, or
-            statement yourself.
+            {RESULT_SAFETY_REMINDER}
           </p>
 
           <button type="button" className="btn-secondary mt-5" onClick={startOver}>
@@ -237,15 +258,15 @@ export default function ScamChecker({ onBack }) {
           <h2 className="text-xl font-bold text-ink">Check more safely</h2>
           <ul className="mt-3 space-y-3 text-lg leading-snug text-ink-soft">
             <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">1.</span>
+              <span className="shrink-0 whitespace-nowrap font-bold text-sage-dark" aria-hidden="true">1.</span>
               <span>Remove passwords and account numbers before pasting.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">2.</span>
+              <span className="shrink-0 whitespace-nowrap font-bold text-sage-dark" aria-hidden="true">2.</span>
               <span>Do not use links or phone numbers from a suspicious message.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">3.</span>
+              <span className="shrink-0 whitespace-nowrap font-bold text-sage-dark" aria-hidden="true">3.</span>
               <span>Contact the organization using its official website, app, card, or statement.</span>
             </li>
           </ul>

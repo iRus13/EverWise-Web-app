@@ -65,7 +65,7 @@ export default function PersonalPlan({ profile, sponsored = false, onContinue })
         aria-live="polite"
       >
         <img
-          src="/everwise-logo-192.png"
+          src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
           alt=""
           className="h-24 w-24 object-contain animate-pop-in"
         />

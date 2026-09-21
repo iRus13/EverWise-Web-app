@@ -3,7 +3,7 @@ export default function Loading() {
     <div className="onboarding-focus flex flex-1 flex-col items-center justify-center px-7 text-center lg:px-16 lg:py-16">
       <div className="launch-logo flex h-24 w-24 items-center justify-center rounded-full bg-cream-card shadow-card lg:h-36 lg:w-36">
         <img
-          src="/everwise-logo-192.png"
+          src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
           alt=""
           aria-hidden="true"
           className="h-16 w-16 object-contain lg:h-24 lg:w-24"

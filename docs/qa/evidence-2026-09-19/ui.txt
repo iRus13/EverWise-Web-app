@@ -1,0 +1,10 @@
+> vitest run --passWithNoTests
+
+
+ RUN  v4.1.11 /Users/qwertyx/Documents/Codex/EverWise/everwise-tips
+
+
+ Test Files  15 passed (15)
+      Tests  1673 passed (1673)
+   Start at  13:38:54
+   Duration  14.03s (transform 3.45s, setup 848ms, import 5.92s, tests 19.45s, environment 4.52s)
