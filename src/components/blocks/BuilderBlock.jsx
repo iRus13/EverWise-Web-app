@@ -1,6 +1,8 @@
+import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
 import BlockShell from "./BlockShell";
+import AnswerFeedback from "./AnswerFeedback";
 
 // Builder: pick one item from each column; selections combine into one string.
 export default function BuilderBlock({
@@ -36,6 +38,7 @@ export default function BuilderBlock({
       onBack={onBack}
       onExit={onExit}
       onSkip={onContinue}
+      revealKey={revealed ? "revealed" : null}
       footer={
         revealed ? (
           <button className="btn-primary" onClick={onContinue}>
@@ -62,30 +65,25 @@ export default function BuilderBlock({
         <ReadAloud text={`${block.title || ""}. ${block.prompt || ""}`} />
       </div>
 
-      {/* Columns side by side — scroll horizontally on narrow phones if needed */}
-      <div className="mt-8 flex gap-3 overflow-x-auto pb-2">
+      {/* Stack on narrow screens so every choice remains readable and reachable. */}
+      <div className="builder-columns mt-8 grid shrink-0 gap-3 pb-2">
         {columns.map((col, ci) => (
-          <div key={col.label} className="min-w-[7.5rem] flex-1">
-            <p className="mb-3 text-center text-base font-bold uppercase tracking-wide text-ink-faint">
+          <div key={col.label} className="min-w-0">
+            <p className="lesson-builder-label">
               {col.label}
             </p>
             <div className="space-y-2">
               {col.items.map((item) => {
                 const active = picks[ci] === item;
                 return (
-                  <button
+                  <AnswerOption
                     key={item}
-                    type="button"
                     disabled={revealed}
                     onClick={() => pick(ci, item)}
-                    className={`w-full rounded-2xl border-2 px-3 py-4 text-center text-lg font-semibold ${
-                      active
-                        ? "border-clay bg-clay/10 text-ink"
-                        : "border-ink/15 bg-cream-card text-ink hover:border-clay/50"
-                    }`}
+                    selected={active}
                   >
                     {item}
-                  </button>
+                  </AnswerOption>
                 );
               })}
             </div>
@@ -94,9 +92,9 @@ export default function BuilderBlock({
       </div>
 
       {/* Combined result */}
-      <div className="mt-8 rounded-3xl bg-cream-card px-5 py-5 shadow-card">
-        <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-          Your password
+      <div className="lesson-reading-section lesson-builder-result mt-8">
+        <p className="lesson-section-label">
+          Practice password
         </p>
         <p className="mt-2 break-all font-sans text-3xl font-semibold text-ink">
           {combined || "—"}
@@ -109,9 +107,9 @@ export default function BuilderBlock({
       </div>
 
       {revealed && block.feedback && (
-        <p className="mt-6 rounded-3xl bg-sage/15 px-5 py-5 text-xl leading-relaxed text-ink">
-          {block.feedback}
-        </p>
+        <AnswerFeedback positive title="Your example is ready">
+          <p>{block.feedback}</p>
+        </AnswerFeedback>
       )}
     </BlockShell>
   );

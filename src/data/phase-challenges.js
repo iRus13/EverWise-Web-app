@@ -121,7 +121,7 @@ export const phaseChallenges = [
       },
     ],
     fillText:
-      "A ______ connects a device to the internet without a cable.",
+      "A device can connect to a wireless network using ______.",
     fillAnswer: "Wi-Fi",
     fillWords: ["Wi-Fi", "password", "camera", "search"],
     scenarioText:

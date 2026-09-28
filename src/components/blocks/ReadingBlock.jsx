@@ -12,8 +12,10 @@ export default function ReadingBlock({
   onExit,
 }) {
   const speakText = [
+    block.heading,
     block.objective && `Learning goal. ${block.objective}`,
     block.question,
+    ...(block.warningSigns?.length ? ["Warning signs", ...block.warningSigns] : []),
     block.text,
   ]
     .filter(Boolean)
@@ -32,22 +34,24 @@ export default function ReadingBlock({
         </button>
       }
     >
-      <div className="animate-fade-up">
+      <div className="lesson-reading">
         {block.heading && (
           <h1 className="page-title">
             {block.heading}
           </h1>
         )}
 
+        <div className="lesson-audio"><ReadAloud text={speakText} /></div>
+
         {block.question && (
-          <p className="mt-4 font-sans text-2xl italic leading-snug text-clay">
-            &ldquo;{block.question}&rdquo;
+          <p className="lesson-reading-question">
+            {block.question}
           </p>
         )}
 
         {block.objective && (
-          <div className="mt-6 rounded-3xl bg-cream-card px-6 py-5 shadow-card">
-            <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
+          <div className="lesson-reading-section">
+            <p className="lesson-section-label">
               What you'll learn
             </p>
             <p className="mt-2 text-xl leading-relaxed text-ink">
@@ -57,18 +61,17 @@ export default function ReadingBlock({
         )}
 
         {block.warningSigns?.length > 0 && (
-          <div className="mt-5 rounded-3xl bg-clay/10 px-6 py-5">
-            <p className="text-base font-bold uppercase tracking-wide text-clay">
-              The five warning signs
+          <div className="lesson-reading-section lesson-warning-signs">
+            <p className="lesson-section-label">
+              Warning signs
             </p>
-            <ul className="mt-3 space-y-2">
+            <ul className="lesson-reading-list">
               {block.warningSigns.map((sign) => (
                 <li
                   key={sign}
-                  className="flex gap-3 text-lg leading-snug text-ink"
+                  className="text-lg"
                 >
-                  <span aria-hidden="true">🚩</span>
-                  <span>{sign}</span>
+                  {sign}
                 </li>
               ))}
             </ul>
@@ -79,9 +82,6 @@ export default function ReadingBlock({
           {block.text}
         </p>
 
-        <div className="mt-7">
-          <ReadAloud text={speakText} />
-        </div>
       </div>
     </BlockShell>
   );

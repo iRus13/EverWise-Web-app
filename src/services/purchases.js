@@ -1,4 +1,5 @@
 import { Capacitor, registerPlugin } from "@capacitor/core";
+import { readWithDeadline } from "../utils/readWithDeadline.js";
 
 const NativePurchases = registerPlugin("EverwisePurchases");
 
@@ -13,7 +14,9 @@ export function nativePurchasesAvailable() {
 
 export async function getSubscriptionProducts() {
   if (!nativePurchasesAvailable()) return [];
-  const result = await NativePurchases.getProducts();
+  const result = await readWithDeadline(() => NativePurchases.getProducts(), {
+    message: "Subscription options took too long to load. Please try again.",
+  });
   return result.products || [];
 }
 

@@ -1,0 +1,52 @@
+/* A single navigation model: a bottom tab bar on compact windows, sidebar on
+   wide windows. Main content owns its scrolling, so tabs never cover it. */
+.has-app-navigation :is(.utility-navigation, .badges-navigation, .today-header) { display: none; }
+.app-navigation-item { font-weight: 500; }
+.app-navigation-item.is-active { color: var(--accent); background: var(--accent-subtle); }
+@media (max-width:1023px) {
+  .app-shell.has-app-navigation { height: 100%; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .app-viewport:has(.has-app-navigation) { height: 100dvh; overflow: hidden; }
+  .has-app-navigation .app-canvas { min-height: 0; overflow-y: auto; }
+  .has-app-navigation .app-navigation {
+    order: 2; position: relative; inset: auto; display: flex; flex: none; z-index: 40;
+    width: 100%; height: auto; min-height: 64px; padding: 6px 8px max(6px,env(safe-area-inset-bottom));
+    border: 0; border-top: 1px solid var(--separator); border-radius: 0;
+    background: rgb(255 255 255 / 96%); box-shadow: none;
+  }
+  .app-navigation :is(.app-navigation-brand,.app-navigation-textsize,.app-navigation-progress) { display: none; }
+  .app-navigation .app-navigation-items { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); width: 100%; gap: 2px; }
+  .app-navigation .app-navigation-item {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    min-width: 0; min-height: 52px; padding: 4px 0; gap: 4px; border-radius: 8px;
+    font-size: clamp(11px, calc(11px * var(--text-scale)), 13px); line-height: 1.2; font-weight: 500; color: var(--text-secondary);
+  }
+  .app-navigation .app-navigation-item > svg { width: 24px; height: 24px; flex: none; }
+  .app-navigation .app-navigation-item.is-active { color: var(--accent); background: transparent; font-weight: 600; }
+  .has-app-navigation .course-back { display: none; }
+  .has-app-navigation .course-path-header { justify-content: flex-end; }
+  .has-app-navigation .course-path-toolbar { position: static; }
+  .has-app-navigation .today-content { padding-top: 28px; }
+}
+@media (min-width:768px) and (max-width:1023px) {
+  .app-viewport:has(.has-app-navigation) { display: block; }
+  .is-native-app .app-shell.has-app-navigation { height: var(--native-available-height); }
+  .has-app-navigation .app-canvas > :is(.today-screen,.badges-screen,.course-outline) { flex: 1 0 auto; overflow: visible; }
+  .has-app-navigation .utility-screen { display: flex; flex: 1 0 auto; }
+  .has-app-navigation .settings-screen { overflow: visible; }
+  .app-navigation .app-navigation-item { font-size: clamp(13px, calc(13px * var(--text-scale)), 17px); }
+}
+@media (min-width:1024px) {
+  .app-navigation { background: #efeff2; border-color: var(--separator); padding: 32px 16px 24px; gap: 32px; }
+  .app-navigation-item { font-size: calc(17px * var(--text-scale)); }
+  .app-navigation-item.is-active { background: #e3e3e8; color: var(--accent); }
+  .app-navigation-brand-name { font-size: 22px; font-weight: 600; }
+  .app-navigation-textsize { margin-top: 28px; }
+  .app-navigation-textsize-label { font-size: calc(13px * var(--text-scale)); color: var(--text-secondary); font-weight: 500; }
+}
+/* Keep every destination visible on compact screens, including at the
+   largest reading sizes. Navigation labels have a bounded caption scale;
+   content keeps its full Dynamic Type and in-app text preference. */
+@media (max-width:1023px) {
+  .app-navigation .app-navigation-item > span { white-space: nowrap; }
+  .app-navigation .app-navigation-item:focus-visible { outline-offset: -3px; }
+}

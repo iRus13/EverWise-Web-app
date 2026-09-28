@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 // Sidebar progress summary: which phase the learner is on and how much of
 // the whole course is behind them. Lives in the nav so it is visible from
 // every screen, not just the path.
@@ -11,6 +12,7 @@ export default function CourseProgressCard({
   phaseCount,
   isComplete = false,
 }) {
+  useLocale();
   const safePercent = Math.min(100, Math.max(0, Math.round(percent)));
 
   return (
@@ -20,7 +22,7 @@ export default function CourseProgressCard({
           ? "Course complete"
           : phaseNumber
             ? `Phase ${phaseNumber}${phaseCount ? ` of ${phaseCount}` : ""}`
-            : "Your progress"}
+            : tr("Your progress")}
       </p>
 
       {phaseTitle ? (

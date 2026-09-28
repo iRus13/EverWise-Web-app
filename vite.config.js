@@ -3,8 +3,6 @@ import react from '@vitejs/plugin-react'
 import { sites } from '@openai/sites-vite-plugin'
 
 const DEFAULT_ELEVENLABS_VOICE_ID = 'pqHfZKP75CvOlQylNhV4'
-const DEFAULT_READ_ALOUD_FALLBACK =
-  'http://143.198.64.226/api/read-aloud'
 // Must match a real OpenAI model. Overridable via OPENAI_MODEL so this does
 // not drift out of sync with server.mjs again.
 const DEFAULT_OPENAI_MODEL = 'gpt-4o-mini'
@@ -208,7 +206,7 @@ Even when likely legitimate, recommend independent verification before sharing i
   }
 }
 
-function elevenLabsReadAloud(apiKey, voiceId, fallbackEndpoint) {
+function elevenLabsReadAloud(apiKey, voiceId) {
   return {
     name: 'everwise-elevenlabs-read-aloud',
     configureServer(server) {
@@ -230,20 +228,10 @@ function elevenLabsReadAloud(apiKey, voiceId, fallbackEndpoint) {
           }
 
           if (!apiKey) {
-            const fallbackResponse = await fetch(fallbackEndpoint, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ text: cleanText }),
-            })
-
-            response.statusCode = fallbackResponse.status
-            response.setHeader(
-              'Content-Type',
-              fallbackResponse.headers.get('content-type') ||
-                'text/plain; charset=utf-8',
-            )
-            response.setHeader('Cache-Control', 'private, no-store')
-            response.end(Buffer.from(await fallbackResponse.arrayBuffer()))
+            // Let the client use device speech. Never forward lesson or pasted
+            // message text to an unrelated fallback server without credentials.
+            response.statusCode = 503
+            response.end('Read-aloud provider unavailable')
             return
           }
 
@@ -251,6 +239,7 @@ function elevenLabsReadAloud(apiKey, voiceId, fallbackEndpoint) {
             `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_22050_32`,
             {
               method: 'POST',
+              signal: AbortSignal.timeout(20000),
               headers: {
                 'Content-Type': 'application/json',
                 'xi-api-key': apiKey,
@@ -297,7 +286,6 @@ export default defineConfig(({ mode }) => {
       elevenLabsReadAloud(
         env.ELEVENLABS_API_KEY,
         env.ELEVENLABS_VOICE_ID || DEFAULT_ELEVENLABS_VOICE_ID,
-        env.READ_ALOUD_FALLBACK || DEFAULT_READ_ALOUD_FALLBACK,
       ),
       openAIScamChecker(
         env.OPENAI_API_KEY,

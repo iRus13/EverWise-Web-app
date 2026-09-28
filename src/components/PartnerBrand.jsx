@@ -37,7 +37,7 @@ export default function PartnerBrand({ partner }) {
   return (
     <div className="flex flex-wrap items-center gap-3" aria-label={`Everwise with ${name}`}>
       <img
-        src="/everwise-logo-192.png"
+        src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
         alt=""
         aria-hidden="true"
         className="h-10 w-10 object-contain"

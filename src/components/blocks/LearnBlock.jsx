@@ -23,24 +23,26 @@ export default function LearnBlock({ block, progress, progressTotal, onContinue,
         </button>
       }
     >
-      <div className="animate-fade-up">
+      <div className="lesson-reading">
         {block.heading && (
           <h1 className="page-title">
             {block.heading}
           </h1>
         )}
+        <div className="lesson-audio"><ReadAloud text={speakParts.join(". ")} /></div>
         {block.text && (
-          <p className="mt-5 text-2xl leading-relaxed text-ink-soft">{block.text}</p>
+          block.text.split(/\n\s*\n/).filter(part => part.trim()).map((paragraph, index) => (
+            <p key={index} className="mt-5 whitespace-pre-line text-2xl leading-relaxed text-ink-soft">{paragraph}</p>
+          ))
         )}
         {block.bullets?.length > 0 && (
-          <ul className="mt-6 space-y-3">
+          <ul className="lesson-reading-list">
             {block.bullets.map((item) => (
               <li
                 key={item}
-                className="flex gap-3 text-xl leading-snug text-ink"
+                className="text-xl leading-relaxed text-ink"
               >
-                <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-clay" aria-hidden="true" />
-                <span>{item}</span>
+                {item}
               </li>
             ))}
           </ul>
@@ -50,9 +52,6 @@ export default function LearnBlock({ block, progress, progressTotal, onContinue,
             {block.footer}
           </p>
         )}
-        <div className="mt-8">
-          <ReadAloud text={speakParts.join(". ")} />
-        </div>
       </div>
     </BlockShell>
   );

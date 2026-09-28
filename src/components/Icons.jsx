@@ -4,7 +4,7 @@
 const base = {
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: 2.4,
+  strokeWidth: 1.8,
   strokeLinecap: "round",
   strokeLinejoin: "round",
 };

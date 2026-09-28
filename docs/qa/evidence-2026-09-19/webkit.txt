@@ -1,0 +1,4 @@
+PASS: 90 WebKit responsive screen combinations
+PASS: real App onboarding, login detour, validation and answer recovery at 390px
+PASS: real App onboarding, login detour, validation and answer recovery at 1440px
+PASS: no uncaught browser errors; external requests blocked throughout

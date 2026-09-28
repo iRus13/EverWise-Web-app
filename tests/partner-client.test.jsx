@@ -18,6 +18,7 @@ await vi.hoisted(async () => {
 });
 
 import App from "../src/App.jsx";
+import { allLessons } from "../src/data/lessons.js";
 import AppShell from "../src/components/AppShell.jsx";
 import Landing from "../src/screens/Landing.jsx";
 import PartnerDashboard, {
@@ -176,6 +177,7 @@ vi.mock("firebase/auth", () => ({
 }));
 
 vi.mock("firebase/firestore", () => ({
+  arrayUnion: vi.fn((...values) => ({operation:"arrayUnion", values})),
   Timestamp: { now: vi.fn(() => ({ seconds: 1 })) },
   deleteDoc: mocks.deleteDoc,
   doc: vi.fn((_db, collection, uid) => ({ collection, uid })),
@@ -495,6 +497,41 @@ describe("aggregate partner dashboard", () => {
     expect(screen.queryByText(/seat/i)).not.toBeInTheDocument();
   });
 
+  test("retries a temporary report failure without discarding the in-memory admin link", async () => {
+    mocks.fetchPartnerReport.mockRejectedValueOnce(new PartnerAccessError())
+      .mockResolvedValueOnce(partnerReport());
+    const user = userEvent.setup();
+    render(<PartnerDashboard adminToken={TOKEN} />);
+    const retry = await screen.findByRole("button", {name:"Try loading report again"});
+    expect(screen.queryByText("This admin link is not available.")).not.toBeInTheDocument();
+    expect(screen.queryByText("Community Partner")).not.toBeInTheDocument();
+    await user.click(retry);
+    expect(await screen.findByText(/Reporting for Community Partner/)).toBeVisible();
+    expect(mocks.fetchPartnerReport).toHaveBeenCalledTimes(2);
+    expect(mocks.fetchPartnerReport).toHaveBeenLastCalledWith({adminToken:TOKEN});
+    expect(mocks.rotatePartnerInvite).not.toHaveBeenCalled();
+  });
+
+  test("an uncertain replacement requires fresh confirmation before retrying", async () => {
+    mocks.fetchPartnerReport.mockResolvedValue(partnerReport());
+    mocks.rotatePartnerInvite.mockRejectedValueOnce(new PartnerAccessError())
+      .mockResolvedValueOnce({partnerId:"community-partner",inviteToken:"r".repeat(43)});
+    const user = userEvent.setup();
+    render(<PartnerDashboard adminToken={TOKEN} />);
+    await user.click(await screen.findByRole("button", {name:"Replace learner link"}));
+    await user.click(screen.getByRole("button", {name:"Replace link now"}));
+    expect(await screen.findByRole("alert")).toHaveTextContent("couldn't confirm whether the learner link was replaced");
+    expect(screen.queryByLabelText("Replacement learner link")).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", {name:"Review replacement"}));
+    expect(mocks.rotatePartnerInvite).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByRole("button", {name:"Cancel"}));
+    expect(mocks.rotatePartnerInvite).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByRole("button", {name:"Replace learner link"}));
+    await user.click(screen.getByRole("button", {name:"Replace link now"}));
+    expect(await screen.findByLabelText("Replacement learner link")).toHaveValue(`${window.location.origin}/#partner=${"r".repeat(43)}`);
+    expect(mocks.rotatePartnerInvite).toHaveBeenCalledTimes(2);
+  });
+
   test("confirms invite replacement before showing the one-session learner link", async () => {
     const replacementToken = "r".repeat(43);
     mocks.fetchPartnerReport.mockResolvedValue(partnerReport());
@@ -507,7 +544,6 @@ describe("aggregate partner dashboard", () => {
     render(<PartnerDashboard adminToken={TOKEN} />);
     await screen.findByText(/Reporting for Community Partner/);
     const originalUpdatedAt = screen.getByRole("time").getAttribute("datetime");
-    const rotationStartedAt = Date.now();
     await user.click(
       screen.getByRole("button", { name: "Replace learner link" }),
     );
@@ -529,13 +565,8 @@ describe("aggregate partner dashboard", () => {
     expect(screen.getByRole("button", { name: "Copy replacement link" })).toBeVisible();
     expect(screen.getAllByDisplayValue(new RegExp(replacementToken))).toHaveLength(1);
     expect(mocks.rotatePartnerInvite).toHaveBeenCalledWith({ adminToken: TOKEN });
-    expect(screen.getByRole("time")).not.toHaveAttribute(
-      "datetime",
-      originalUpdatedAt,
-    );
-    expect(
-      Date.parse(screen.getByRole("time").getAttribute("datetime")),
-    ).toBeGreaterThanOrEqual(rotationStartedAt);
+    // Replacing an invitation does not refresh the aggregate report.
+    expect(screen.getByRole("time")).toHaveAttribute("datetime", originalUpdatedAt);
   });
 
   test("routes a scrubbed admin fragment before Firebase learner authentication", async () => {
@@ -731,7 +762,7 @@ async function openReturningSponsoredSettings(overrides = {}) {
   return { returningProfile, returningUser, user };
 }
 
-async function openReturningPublicSettings(overrides = {}) {
+async function openReturningPublicSettings(overrides = {}, profileOverrides = {}) {
   window.history.replaceState(null, "", "/");
   const returningUser = {
     uid: "returning-public-delete",
@@ -739,7 +770,7 @@ async function openReturningPublicSettings(overrides = {}) {
     getIdToken: vi.fn(async () => "returning-public-token"),
     ...overrides,
   };
-  const returningProfile = learnerProfile({ email: returningUser.email });
+  const returningProfile = learnerProfile({ email: returningUser.email, ...profileOverrides });
   mocks.getDoc.mockResolvedValue(profileSnapshot(returningProfile));
   mocks.fetchPartnerAccess.mockResolvedValue({ status: "none" });
   const user = userEvent.setup();
@@ -803,10 +834,22 @@ async function clickWithFakeTimers(element) {
     fireEvent.click(element);
     await Promise.resolve();
   });
+  // React may start a lazy screen import only after the click is committed.
+  // Fake clock advancement does not wait for that module to finish loading.
+  await act(async () => { await vi.dynamicImportSettled(); });
 }
 
-async function finishVisibleLessonUntilProgressSaveStarts() {
+async function finishVisibleLessonUntilProgressSaveStarts(lessonId) {
+  const lesson=allLessons.find(item => item.id === lessonId);
   for (let step = 0; step < 100 && mocks.updateDoc.mock.calls.length === 0; step += 1) {
+    const question=lesson.quiz?.find(q => screen.queryByRole("heading",{name:q.question,exact:true}));
+    if (question) {
+      await clickWithFakeTimers(screen.getByRole("button",{name:question.options[question.correctIndex],exact:true}));
+      const next=screen.queryByRole("button",{name:/^(Next|See results|Finish lesson)$/});
+      expect(next).not.toBeNull();
+      await clickWithFakeTimers(next);
+      continue;
+    }
     const skip =
       screen.queryByRole("button", { name: "Skip this step" }) ||
       screen.queryByRole("button", { name: "Skip" });
@@ -926,7 +969,7 @@ describe("sponsored settings", () => {
     expect(screen.queryByText("Subscription")).not.toBeInTheDocument();
     expect(screen.queryByText("Trial")).not.toBeInTheDocument();
     expect(screen.queryByText("Monthly plan")).not.toBeInTheDocument();
-    expect(screen.queryByText("Start free trial")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "View plans", exact: true })).not.toBeInTheDocument();
     expect(screen.queryByText("Manage subscription")).not.toBeInTheDocument();
   });
 
@@ -1156,7 +1199,7 @@ describe("sponsored research choice", () => {
     await user.click(screen.getByRole("button", { name: "Start" }));
 
     const nextHeading = screen.getByRole("heading", {
-      name: "How often do you use the internet, and which device do you use most often?",
+      name: "How you get online",
     });
     await waitFor(() => expect(nextHeading).toHaveFocus());
     expect(nextHeading).toHaveAttribute("tabindex", "-1");
@@ -1245,6 +1288,10 @@ describe("custom radio accessibility", () => {
     const user = userEvent.setup();
     render(
       <RealPaywall
+        storeProducts={[
+          { id: "com.everwise.app.monthly", displayPrice: "$14.99", periodUnit: "month", periodValue: 1 },
+          { id: "com.everwise.app.annual", displayPrice: "$89.99", periodUnit: "year", periodValue: 1 },
+        ]}
         onStartTrial={vi.fn()}
         onMaybeLater={() => {}}
         onRestore={vi.fn()}
@@ -1374,6 +1421,7 @@ describe("sponsored signup orchestration", () => {
     mocks.credential.mockReset();
     mocks.deleteDoc.mockReset();
     mocks.deleteUser.mockReset();
+    mocks.cancelBillingSubscription.mockReset().mockResolvedValue({ canceled: true });
     mocks.createBillingCheckout.mockReset();
     mocks.createBillingPortal.mockReset();
     mocks.fetchBillingAccess.mockReset();
@@ -1528,7 +1576,7 @@ describe("sponsored signup orchestration", () => {
       screen.getByRole("button", { name: "Start lesson: What is AI?" }),
     );
 
-    expect(screen.getByRole("heading", { name: "What is AI?" })).toBeVisible();
+    expect(await screen.findByRole("heading", { name: "What is AI?" }, { timeout: 5000 })).toBeVisible();
     expect(screen.queryByText("Pricing and subscription")).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Go back" }));
@@ -1538,7 +1586,7 @@ describe("sponsored signup orchestration", () => {
       screen.getByText("Full access provided by Community Partner"),
     ).toBeVisible();
     expect(screen.queryByText("Subscription")).not.toBeInTheDocument();
-    expect(screen.queryByText("Start free trial")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "View plans", exact: true })).not.toBeInTheDocument();
   });
 
   test("window focus removes suspended sponsorship without ejecting safe Home", async () => {
@@ -1578,7 +1626,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/temporarily unavailable/i)).not.toBeInTheDocument();
     expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(2);
@@ -1605,6 +1653,75 @@ describe("sponsored signup orchestration", () => {
       await timerRefresh.promise;
     });
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
+  });
+
+  test("logout failure is visible in Settings and a fresh attempt can recover", async () => {
+    mocks.fetchPartnerAccess.mockResolvedValue(ACTIVE_PARTNER_ACCESS);
+    await openReturningSponsoredAppWithFakeTimers({uid:"logout-error-user"});
+    await clickWithFakeTimers(screen.getByRole("button",{name:"Open Settings"}));
+    mocks.signOut.mockRejectedValueOnce({code:"auth/network-request-failed"}).mockResolvedValueOnce(undefined);
+    await clickWithFakeTimers(screen.getByRole("button",{name:"Log out",exact:true}));
+    expect(screen.getByRole("alert")).toHaveTextContent("We couldn’t log you out. Please try again.");
+    expect(screen.getByRole("button",{name:"Log out",exact:true})).toBeEnabled();
+    expect(screen.getByRole("heading",{name:"Settings",exact:true})).toBeVisible();
+    expect(mocks.updateDoc).not.toHaveBeenCalled();
+    await clickWithFakeTimers(screen.getByRole("button",{name:"Log out",exact:true}));
+    expect(screen.getByRole("button",{name:"Get Started"})).toBeVisible();
+    expect(mocks.signOut).toHaveBeenCalledTimes(2);
+  });
+
+  test("logout is shared across Settings visits and keeps an unresolved attempt honest", async () => {
+    mocks.fetchPartnerAccess.mockResolvedValue(ACTIVE_PARTNER_ACCESS);
+    await openReturningSponsoredAppWithFakeTimers({uid:"logout-pending-user"});
+    const pending=deferred();mocks.signOut.mockReturnValue(pending.promise);
+    await clickWithFakeTimers(screen.getByRole("button",{name:"Open Settings"}));
+    const button=screen.getByRole("button",{name:"Log out",exact:true});
+    act(()=>{button.click();button.click();});
+    expect(mocks.signOut).toHaveBeenCalledOnce();
+    expect(button).toBeDisabled();
+    expect(screen.getByText("Logging out…")).toBeVisible();
+    await clickWithFakeTimers(screen.getByRole("button",{name:"Back to home",exact:true}));
+    await clickWithFakeTimers(screen.getByRole("button",{name:"Open Settings"}));
+    expect(screen.getByRole("button",{name:"Log out",exact:true})).toBeDisabled();
+    await act(async()=>vi.advanceTimersByTimeAsync(15000));
+    expect(screen.getByText(/Logout is taking longer/)).toBeVisible();
+    expect(mocks.signOut).toHaveBeenCalledOnce();
+    await act(async()=>pending.reject(new Error("Connection failed")));
+    expect(screen.getByRole("alert")).toHaveTextContent("We couldn’t log you out. Please try again.");
+    expect(screen.getByRole("button",{name:"Log out",exact:true})).toBeEnabled();
+  });
+
+  test.each(["resolve", "reject"])("a late logout %s cannot clear a different signed-in account", async settlement => {
+    mocks.fetchPartnerAccess.mockResolvedValue(ACTIVE_PARTNER_ACCESS);
+    await openReturningSponsoredAppWithFakeTimers({uid:"logout-old-user"});
+    const pending=deferred();mocks.signOut.mockReturnValue(pending.promise);
+    await clickWithFakeTimers(screen.getByRole("button",{name:"Open Settings"}));
+    await clickWithFakeTimers(screen.getByRole("button",{name:"Log out",exact:true}));
+    const nextUser={uid:"logout-new-user",email:"new@example.com",getIdToken:vi.fn(async()=>"new-token")};
+    await act(async()=>mocks.authCallback(nextUser));
+    await act(async()=>settlement==="resolve"?pending.resolve():pending.reject(new Error("Old logout failed")));
+    expect(screen.queryByRole("button",{name:"Get Started"})).not.toBeInTheDocument();
+    if(screen.queryByRole("button",{name:"Open Settings"})) await clickWithFakeTimers(screen.getByRole("button",{name:"Open Settings"}));
+    expect(screen.getByRole("heading",{name:"Settings",exact:true})).toBeVisible();
+    expect(screen.queryByText("We couldn’t log you out. Please try again.")).not.toBeInTheDocument();
+    expect(screen.getByRole("button",{name:"Log out",exact:true})).toBeEnabled();
+  });
+
+  test("account recovery exposes logout failure, keeps Retry, then allows successful logout", async () => {
+    window.history.replaceState(null,"","/");
+    mocks.getDoc.mockRejectedValue(new Error("Profile unavailable"));
+    const user={uid:"logout-recovery-user",email:"recovery@example.com",getIdToken:vi.fn(async()=>"token")};
+    render(<App />);await screen.findByRole("button",{name:"Get Started"});
+    await act(async()=>mocks.authCallback(user));
+    expect(screen.getByRole("heading",{name:"Your account"})).toBeVisible();
+    const pending=deferred();mocks.signOut.mockReturnValueOnce(pending.promise).mockResolvedValueOnce(undefined);
+    await act(async()=>fireEvent.click(screen.getByRole("button",{name:"Log out",exact:true})));
+    expect(screen.getByRole("button",{name:"Retry",exact:true})).toBeDisabled();
+    await act(async()=>pending.reject(new Error("Signout failed")));
+    expect(screen.getByRole("alert")).toHaveTextContent("We couldn’t log you out. Please try again.");
+    expect(screen.getByRole("button",{name:"Retry",exact:true})).toBeEnabled();
+    await act(async()=>fireEvent.click(screen.getByRole("button",{name:"Log out",exact:true})));
+    expect(screen.getByRole("button",{name:"Get Started"})).toBeVisible();
   });
 
   test("only one sponsored refresh interval runs and it stops after logout", async () => {
@@ -1719,8 +1836,8 @@ describe("sponsored signup orchestration", () => {
     await act(async () => vi.advanceTimersByTimeAsync(60_000));
     expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(3);
 
-    await finishVisibleLessonUntilProgressSaveStarts();
-    expect(screen.getByRole("progressbar", { name: "Lesson progress" })).toBeVisible();
+    await finishVisibleLessonUntilProgressSaveStarts("ai");
+    expect(screen.getByRole("heading", { name: "Great Job!" })).toBeVisible();
     await act(async () => {
       pendingRefresh.resolve({ status: "none" });
       await pendingRefresh.promise;
@@ -1729,7 +1846,7 @@ describe("sponsored signup orchestration", () => {
     expect(
       screen.queryByRole("heading", { name: "Pricing and subscription" }),
     ).not.toBeInTheDocument();
-    expect(screen.getByRole("progressbar", { name: "Lesson progress" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "Great Job!" })).toBeVisible();
 
     await act(async () => {
       pendingProgressSave.resolve();
@@ -1908,7 +2025,7 @@ describe("sponsored signup orchestration", () => {
     await clickWithFakeTimers(
       screen.getByRole("button", { name: "Open Settings" }),
     );
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
   });
 
@@ -1949,7 +2066,7 @@ describe("sponsored signup orchestration", () => {
       screen.getByRole("button", { name: "Open Settings" }),
     );
 
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/temporarily unavailable/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
   });
@@ -2021,7 +2138,7 @@ describe("sponsored signup orchestration", () => {
 
     await user.click(screen.getByRole("button", { name: "Go back" }));
     await user.click(screen.getByRole("button", { name: "Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
     expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(3);
   });
@@ -2225,6 +2342,64 @@ describe("sponsored signup orchestration", () => {
     expect(mocks.claimPartnerSeat).not.toHaveBeenCalled();
     expect(mocks.deleteUser).not.toHaveBeenCalled();
     expect(screen.queryByText("Pricing and subscription")).not.toBeInTheDocument();
+  });
+
+  test("a stalled initial claim token offers recovery without submitting or repeating a claim", async () => {
+    const deadlines = [];
+    window.setTimeout.mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { deadlines.push(handler); return 15000 + deadlines.length; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    const pending = deferred();
+    const firebaseUser = {uid:"claim-token-timeout",email:"jane@example.com",getIdToken:vi.fn(force => force ? pending.promise : Promise.resolve("cached-token"))};
+    mocks.createUserWithEmailAndPassword.mockImplementation(async () => {await mocks.authCallback(firebaseUser);return {user:firebaseUser};});
+    mocks.fetchPartnerAccess.mockResolvedValue({status:"none"});
+    const user=userEvent.setup();render(<App />);
+    await screen.findByText("Everwise with Community Partner");
+    await completeSponsoredAppInterview(user,"No, use my answers only for my personal plan");
+    expect(deadlines.length).toBeGreaterThan(0);
+    await act(async () => deadlines.at(-1)());
+    expect(await screen.findByRole("button", {name:"Retry"})).toBeEnabled();
+    expect(mocks.claimPartnerSeat).not.toHaveBeenCalled();
+    expect(mocks.fetchPartnerAccess).not.toHaveBeenCalled();
+    expect(mocks.deleteUser).not.toHaveBeenCalled();
+    expect(mocks.setDoc).not.toHaveBeenCalled();
+    expect(JSON.parse(sessionStorage.getItem(PARTNER_CLAIM_RECOVERY_KEY)).uid).toBe(firebaseUser.uid);
+    await act(async () => {pending.resolve("late-initial-token");await pending.promise;});
+    expect(mocks.claimPartnerSeat).not.toHaveBeenCalled();
+    firebaseUser.getIdToken.mockResolvedValue("retry-token");
+    mocks.claimPartnerSeat.mockResolvedValue(ACTIVE_PARTNER_ACCESS);
+    await user.click(screen.getByRole("button", {name:"Retry"}));
+    expect(await screen.findByRole("button", {name:"Start learning"})).toBeVisible();
+    expect(mocks.createUserWithEmailAndPassword).toHaveBeenCalledOnce();
+    expect(mocks.claimPartnerSeat).toHaveBeenCalledOnce();
+    expect(mocks.setDoc).toHaveBeenCalledOnce();
+  });
+
+  test.each(["expires", "signs out"])("a pending recovery token cannot submit a claim after it %s", async (mode) => {
+    const deadlines=[];
+    window.setTimeout.mockImplementation((handler,delay,...args)=>{
+      if(delay===15_000){deadlines.push(handler);return 15000+deadlines.length;}
+      return scheduleTimeout(handler,delay,...args);
+    });
+    const pending=deferred();let fresh=0;
+    const firebaseUser={uid:"claim-recovery-token",email:"jane@example.com",getIdToken:vi.fn(force=>force && ++fresh===2 ? pending.promise : Promise.resolve("token"))};
+    mocks.createUserWithEmailAndPassword.mockImplementation(async()=>{await mocks.authCallback(firebaseUser);return {user:firebaseUser};});
+    mocks.claimPartnerSeat.mockRejectedValueOnce(new PartnerAccessError());
+    mocks.fetchPartnerAccess.mockResolvedValue({status:"none"});
+    const user=userEvent.setup();render(<App />);
+    await screen.findByText("Everwise with Community Partner");
+    await completeSponsoredAppInterview(user,"No, use my answers only for my personal plan");
+    await waitFor(()=>expect(fresh).toBe(2));
+    if(mode==="expires") {
+      await act(async()=>deadlines.at(-1)());
+      expect(await screen.findByRole("button",{name:"Retry"})).toBeEnabled();
+    } else await act(async()=>mocks.authCallback(null));
+    await act(async()=>{pending.resolve("late-recovery-token");await pending.promise;});
+    expect(mocks.claimPartnerSeat).toHaveBeenCalledOnce();
+    expect(mocks.setDoc).not.toHaveBeenCalled();
+    expect(mocks.deleteUser).not.toHaveBeenCalled();
+    if(mode==="signs out")expect(await screen.findByRole("button",{name:"Get Started"})).toBeVisible();
   });
 
   test("retries an indeterminate claim with the same Firebase UID", async () => {
@@ -2559,7 +2734,7 @@ describe("sponsored signup orchestration", () => {
     expect(
       screen.getByText("Full access provided by Community Partner"),
     ).toBeVisible();
-    expect(screen.queryByText("Start free trial")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "View plans", exact: true })).not.toBeInTheDocument();
     expect(screen.queryByText("Pricing and subscription")).not.toBeInTheDocument();
   });
 
@@ -2593,6 +2768,26 @@ describe("sponsored signup orchestration", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "We could not delete your account right now. Your saved profile was restored.",
     );
+  });
+
+  test.each(["active", "trial"])("restores learning data without recreating a %s subscription mirror", async (subscriptionStatus) => {
+    mocks.deleteUser.mockRejectedValue({ code: "auth/internal-error" });
+    mocks.setDoc.mockImplementation(async (_reference, data) => {
+      if (data.subscriptionStatus !== "expired" || data.trialStartedAt !== null || data.plan !== null) {
+        throw new Error("Profile create denied");
+      }
+    });
+    const { returningProfile, user } = await openReturningPublicSettings({}, {
+      subscriptionStatus, trialStartedAt: "2026-09-19T10:00:00.000Z", plan: "annual",
+      completedLessons: ["welcome"], badges: ["Welcome Aboard"],
+    });
+    await user.click(screen.getByRole("button", { name: "Yes, delete" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("Your saved profile was restored");
+    expect(mocks.setDoc).toHaveBeenCalledWith(
+      { collection: "users", uid: "returning-public-delete" },
+      { ...returningProfile, subscriptionStatus: "expired", trialStartedAt: null, plan: null },
+    );
+    expect(returningProfile.subscriptionStatus).toBe(subscriptionStatus);
   });
 
   test("cancels the subscription before destroying anything on deletion", async () => {
@@ -2746,6 +2941,81 @@ describe("sponsored signup orchestration", () => {
     });
     expect(window.sessionStorage.getItem("everwise-partner-release-receipt")).toBeNull();
     expect(window.sessionStorage.getItem(PARTNER_CLAIM_RECOVERY_KEY)).toBeNull();
+  });
+
+  test.each([
+    ["public", "resolve"], ["public", "reject"], ["sponsored", "resolve"], ["sponsored", "reject"],
+  ])("a stalled %s password check recovers and ignores a late %s", async (kind, settlement) => {
+    const { user } = await (kind === "public" ? openReturningPublicSettings() : openReturningSponsoredSettings());
+    const deadlines=[];
+    window.setTimeout.mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { deadlines.push(handler); return 16000 + deadlines.length; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    const pending=deferred();mocks.reauthenticateWithCredential.mockReturnValue(pending.promise);
+    await user.click(screen.getByRole("button",{name:"Yes, delete"}));
+    await waitFor(()=>expect(mocks.reauthenticateWithCredential).toHaveBeenCalledOnce());
+    await act(async()=>deadlines.at(-1)());
+    expect(await screen.findByRole("alert")).toHaveTextContent("Password verification took too long. Nothing was deleted.");
+    expect(screen.getByRole("button",{name:"Cancel"})).toBeEnabled();
+    expect(screen.getByLabelText("Current password")).toHaveValue("");
+    for(const button of within(screen.getByRole("navigation",{name:"Primary navigation"})).getAllByRole("button")) expect(button).toBeEnabled();
+    await act(async()=>{ if(settlement === "resolve") pending.resolve(); else pending.reject({code:"auth/network-request-failed"}); await pending.promise.catch(()=>{}); });
+    expect(mocks.cancelBillingSubscription).not.toHaveBeenCalled();expect(mocks.beginPartnerRelease).not.toHaveBeenCalled();expect(mocks.deleteDoc).not.toHaveBeenCalled();expect(mocks.deleteUser).not.toHaveBeenCalled();expect(mocks.setDoc).not.toHaveBeenCalled();
+    // Only a newly confirmed attempt verifies again. Reject it before mutation.
+    mocks.reauthenticateWithCredential.mockRejectedValue({code:"auth/wrong-password"});
+    await user.type(screen.getByLabelText("Current password"),"synthetic-retry");await user.click(screen.getByRole("button",{name:"Yes, delete"}));
+    expect(await screen.findByRole("alert")).toHaveTextContent("That password isn't right.");expect(mocks.reauthenticateWithCredential).toHaveBeenCalledTimes(2);
+    expect(mocks.beginPartnerRelease).not.toHaveBeenCalled();expect(mocks.cancelBillingSubscription).not.toHaveBeenCalled();expect(mocks.deleteDoc).not.toHaveBeenCalled();expect(mocks.deleteUser).not.toHaveBeenCalled();
+  });
+
+  test.each(["public", "sponsored"])("a timed-out %s password check cannot replace a newer account", async kind => {
+    const { user } = await (kind === "public" ? openReturningPublicSettings() : openReturningSponsoredSettings());
+    const deadlines=[];
+    window.setTimeout.mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { deadlines.push(handler); return 17000 + deadlines.length; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    const pending=deferred();mocks.reauthenticateWithCredential.mockReturnValue(pending.promise);
+    await user.click(screen.getByRole("button",{name:"Yes, delete"}));await waitFor(()=>expect(mocks.reauthenticateWithCredential).toHaveBeenCalledOnce());const expire=deadlines.at(-1);
+    await switchToPublicAccount("new-after-password-wait");
+    await act(async()=>{expire();pending.resolve();await pending.promise;});
+    expect(screen.getByRole("heading",{name:"Home screen"})).toBeVisible();expect(screen.queryByText(/Password verification took too long/)).toBeNull();
+    expect(mocks.cancelBillingSubscription).not.toHaveBeenCalled();expect(mocks.beginPartnerRelease).not.toHaveBeenCalled();expect(mocks.deleteDoc).not.toHaveBeenCalled();expect(mocks.deleteUser).not.toHaveBeenCalled();
+  });
+
+  test("a stalled deletion token releases Settings and never uses its late result", async () => {
+    const { returningUser, user } = await openReturningSponsoredSettings();
+    const deadlines = [];
+    window.setTimeout.mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { deadlines.push(handler); return 15000 + deadlines.length; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    const pending = deferred();
+    returningUser.getIdToken.mockImplementation(force => force ? pending.promise : Promise.resolve("cached-token"));
+    await user.click(screen.getByRole("button", {name:"Yes, delete"}));
+    await waitFor(() => expect(returningUser.getIdToken).toHaveBeenCalledWith(true));
+    expect(deadlines.length).toBeGreaterThan(0);
+    await act(async () => deadlines.at(-1)());
+    expect(await screen.findByRole("alert")).toHaveTextContent("Your account and progress are still here");
+    expect(screen.getByRole("button", {name:"Cancel"})).toBeEnabled();
+    expect(screen.getByLabelText("Current password")).toHaveValue("");
+    await act(async () => {pending.resolve("late-secret-token");await pending.promise;});
+    expect(mocks.beginPartnerRelease).not.toHaveBeenCalled();
+    expect(mocks.deleteDoc).not.toHaveBeenCalled();
+    expect(mocks.deleteUser).not.toHaveBeenCalled();
+    expect(mocks.cancelPartnerRelease).not.toHaveBeenCalled();
+    expect(document.body).not.toHaveTextContent("late-secret-token");
+    // A fresh, explicitly confirmed attempt may proceed; fail its release
+    // preparation so this test never reaches either deletion mock.
+    returningUser.getIdToken.mockResolvedValue("retry-token");
+    mocks.beginPartnerRelease.mockRejectedValue(new PartnerAccessError());
+    await user.type(screen.getByLabelText("Current password"), "delete-password");
+    await user.click(screen.getByRole("button", {name:"Yes, delete"}));
+    await waitFor(() => expect(mocks.beginPartnerRelease).toHaveBeenCalledExactlyOnceWith({idToken:"retry-token"}));
+    expect(await screen.findByRole("alert")).toBeVisible();
+    expect(mocks.deleteDoc).not.toHaveBeenCalled();
+    expect(mocks.deleteUser).not.toHaveBeenCalled();
   });
 
   test("does not begin a sponsored release when reauthentication fails", async () => {
@@ -3153,7 +3423,7 @@ describe("sponsored signup orchestration", () => {
       returningProfile,
     );
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(window.sessionStorage.getItem("everwise-partner-release-receipt")).toBeNull();
   });
 
@@ -3319,7 +3589,7 @@ describe("sponsored signup orchestration", () => {
     expect(window.sessionStorage.getItem("everwise-partner-release-receipt")).toBeNull();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test("preserves the old receipt without blocking a newer account switched during confirmation", async () => {
@@ -3670,6 +3940,30 @@ describe("sponsored signup orchestration", () => {
     expect(window.sessionStorage.getItem(PARTNER_RELEASE_RECOVERY_KEY)).not.toBeNull();
   });
 
+  test("slow auth reload guidance does not assume signed-out state or authorize stored receipt work", async () => {
+    const receipt = "6".repeat(43);
+    let slowStartup;
+    window.setTimeout.mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { slowStartup = handler; return 15000; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    window.history.replaceState(null, "", "/");
+    storeConfirmablePartnerRecovery(receipt);
+    mocks.deferInitialAuth = true;
+    render(<App />);
+    await act(async () => { slowStartup(); });
+    expect(screen.getByRole("button", {name: "Try again"})).toBeVisible();
+    expect(screen.getByRole("progressbar", {name: "Starting Everwise"})).toBeVisible();
+    expect(mocks.confirmPartnerRelease).not.toHaveBeenCalled();
+    expect(mocks.fetchPartnerAccess).not.toHaveBeenCalled();
+    expect(mocks.signOut).not.toHaveBeenCalled();
+    await switchToPublicAccount("authenticated-after-slow-message");
+    expect(screen.getByRole("heading", {name: "Home screen"})).toBeVisible();
+    expect(screen.queryByRole("button", {name: "Try again"})).toBeNull();
+    expect(mocks.confirmPartnerRelease).not.toHaveBeenCalled();
+    expect(window.sessionStorage.getItem(PARTNER_RELEASE_RECOVERY_KEY)).not.toBeNull();
+  });
+
   test("a recovered receipt never replaces a newer user present at startup", async () => {
     const receipt = "u".repeat(43);
     const currentUser = {
@@ -3803,7 +4097,7 @@ describe("sponsored signup orchestration", () => {
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test("old invalid-receipt terminalization cannot overwrite byte-exact newer recovery", async () => {
@@ -3828,7 +4122,7 @@ describe("sponsored signup orchestration", () => {
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test.each([
@@ -3860,7 +4154,7 @@ describe("sponsored signup orchestration", () => {
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test("old cleanup failure cannot terminalize byte-exact newer recovery", async () => {
@@ -3894,7 +4188,7 @@ describe("sponsored signup orchestration", () => {
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     expect(screen.queryByText(/Finishing account deletion/i)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
   });
 
   test("ignores and clears corrupted release recovery storage safely", async () => {
@@ -3947,7 +4241,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(
       screen.queryByText(/Full access provided by/i),
     ).not.toBeInTheDocument();
@@ -4026,9 +4320,148 @@ describe("sponsored signup orchestration", () => {
     mocks.initialAuthUser = returningUser;
     await user.click(screen.getByRole("button", { name: "Retry" }));
     expect(await screen.findByRole("heading", {
-      name: "Let’s personalize your EverWise lessons",
+      name: "Your personal lessons",
     })).toBeVisible();
     expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(2);
+  });
+
+  test("a stalled startup profile read offers recovery and ignores its late response after retry", async () => {
+    window.history.replaceState(null, "", "/");
+    let expire;
+    vi.spyOn(globalThis, "setTimeout").mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { expire = handler; return 15000; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    const pending = deferred();
+    const returningUser = {uid: "slow-profile", email: "jane@example.com", getIdToken: vi.fn(async () => "test-token")};
+    mocks.getDoc.mockReturnValueOnce(pending.promise).mockResolvedValueOnce(profileSnapshot(learnerProfile()));
+    mocks.fetchPartnerAccess.mockResolvedValue({status: "none"});
+    const user = userEvent.setup();
+    render(<App />);
+    await screen.findByRole("button", {name: "Get Started"});
+    let bootstrap;
+    await act(async () => { bootstrap = mocks.authCallback(returningUser); });
+    expect(screen.getByRole("progressbar", {name: "Starting Everwise"})).toBeVisible();
+    expect(mocks.fetchPartnerAccess).not.toHaveBeenCalled();
+    await act(async () => { expire(); await bootstrap; });
+    expect(screen.getByText(/could not load your account right now/i)).toBeVisible();
+    expect(screen.getByRole("button", {name: "Log out"})).toBeVisible();
+    mocks.initialAuthUser = returningUser;
+    await user.click(screen.getByRole("button", {name: "Retry"}));
+    expect(await screen.findByRole("heading", {name: "Home screen"})).toBeVisible();
+    await act(async () => { pending.resolve(profileSnapshot(learnerProfile({subscriptionStatus: null}))); });
+    expect(screen.getByRole("heading", {name: "Home screen"})).toBeVisible();
+    expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(1);
+    expect(mocks.updateDoc).not.toHaveBeenCalled();
+    expect(mocks.getDoc).toHaveBeenCalledTimes(2);
+  });
+
+  test("an old profile timeout cannot replace a newer signed-in account", async () => {
+    window.history.replaceState(null, "", "/");
+    const deadlines = [];
+    vi.spyOn(globalThis, "setTimeout").mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { deadlines.push(handler); return 15000 + deadlines.length; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    const pending = deferred();
+    mocks.getDoc.mockReturnValueOnce(pending.promise).mockResolvedValueOnce(profileSnapshot(learnerProfile()));
+    mocks.fetchPartnerAccess.mockResolvedValue({status: "none"});
+    render(<App />);
+    await screen.findByRole("button", {name: "Get Started"});
+    let older;
+    await act(async () => { older = mocks.authCallback({uid: "older-profile", getIdToken: vi.fn()}); });
+    const expireOlderProfile = deadlines.at(-1);
+    await act(async () => { await mocks.authCallback({uid: "newer-profile", getIdToken: vi.fn(async () => "newer-token")}); });
+    expect(screen.getByRole("heading", {name: "Home screen"})).toBeVisible();
+    await act(async () => { expireOlderProfile(); await older; });
+    expect(screen.getByRole("heading", {name: "Home screen"})).toBeVisible();
+    expect(screen.queryByText(/could not load your account/i)).not.toBeInTheDocument();
+    expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(1);
+    expect(mocks.updateDoc).not.toHaveBeenCalled();
+  });
+
+  test.each(["mirrored", "missing"])("a stalled access token recovers the %s profile without using the late token", async (kind) => {
+    window.history.replaceState(null, "", "/");
+    const deadlines = [];
+    window.setTimeout.mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { deadlines.push(handler); return 15000 + deadlines.length; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    const pending = deferred();
+    const returningUser = {uid: "slow-token", email: "jane@example.com", getIdToken: vi.fn().mockReturnValueOnce(pending.promise).mockResolvedValue("retry-token")};
+    const profile = profileSnapshot(learnerProfile({accessSource: "partner", partnerId: "community-partner"}));
+    mocks.getDoc.mockResolvedValueOnce(kind === "missing" ? {exists: () => false} : profile).mockResolvedValue(profile);
+    mocks.fetchPartnerAccess.mockResolvedValue(ACTIVE_PARTNER_ACCESS);
+    const user = userEvent.setup();
+    render(<App />);
+    await screen.findByRole("button", {name: "Get Started"});
+    let bootstrap;
+    await act(async () => { bootstrap = mocks.authCallback(returningUser); });
+    expect(returningUser.getIdToken).toHaveBeenCalledOnce();
+    expect(returningUser.getIdToken).toHaveBeenCalledWith();
+    expect(mocks.fetchPartnerAccess).not.toHaveBeenCalled();
+    const expireToken = deadlines.at(-1);
+    await act(async () => { expireToken(); await bootstrap; });
+    expect(screen.getByRole("heading", {name: "Sponsored access"})).toBeVisible();
+    expect(screen.getByRole("button", {name: "Log out"})).toBeVisible();
+    expect(screen.queryByRole("heading", {name: "Home screen"})).toBeNull();
+    mocks.initialAuthUser = returningUser;
+    await user.click(screen.getByRole("button", {name: "Retry"}));
+    expect(await screen.findByRole("heading", {name: "Home screen"})).toBeVisible();
+    await act(async () => { pending.resolve("abandoned-token"); await pending.promise; });
+    expect(screen.getByRole("heading", {name: "Home screen"})).toBeVisible();
+    expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(1);
+    expect(mocks.fetchPartnerAccess).toHaveBeenCalledWith({idToken: "retry-token"});
+    expect(mocks.signOut).not.toHaveBeenCalled();
+    expect(mocks.claimPartnerSeat).not.toHaveBeenCalled();
+    expect(mocks.updateDoc).not.toHaveBeenCalled();
+  });
+
+  test("a stalled token cannot replace a newer account or send a late access request", async () => {
+    window.history.replaceState(null, "", "/");
+    const deadlines = [];
+    window.setTimeout.mockImplementation((handler, delay, ...args) => {
+      if (delay === 15_000) { deadlines.push(handler); return 15000 + deadlines.length; }
+      return scheduleTimeout(handler, delay, ...args);
+    });
+    const pending = deferred();
+    mocks.getDoc.mockResolvedValue(profileSnapshot(learnerProfile()));
+    mocks.fetchPartnerAccess.mockResolvedValue({status: "none"});
+    render(<App />);
+    await screen.findByRole("button", {name: "Get Started"});
+    let older;
+    await act(async () => { older = mocks.authCallback({uid:"older-token", getIdToken:vi.fn(() => pending.promise)}); });
+    const expireOlderToken = deadlines.at(-1);
+    await act(async () => { await mocks.authCallback({uid:"newer-token", getIdToken:vi.fn(async () => "newer-token")}); });
+    expect(screen.getByRole("heading", {name:"Home screen"})).toBeVisible();
+    await act(async () => { expireOlderToken(); await older; pending.resolve("stale-token"); await pending.promise; });
+    expect(screen.getByRole("heading", {name:"Home screen"})).toBeVisible();
+    expect(screen.queryByRole("button", {name:"Retry"})).toBeNull();
+    expect(mocks.fetchPartnerAccess).toHaveBeenCalledTimes(1);
+    expect(mocks.fetchPartnerAccess).toHaveBeenCalledWith({idToken:"newer-token"});
+  });
+
+  test.each([
+    ["missing status", {subscriptionStatus: null, trialStartedAt: null, plan: null}],
+    ["expired trial", {subscriptionStatus:"trial", trialStartedAt:"2000-01-01T00:00:00.000Z", plan:"annual"}],
+    ["missing legacy fields", {subscriptionStatus:undefined, trialStartedAt:undefined, plan:undefined}],
+  ])("legacy profile startup: %s does not require a subscription-mirror write", async (_label, legacy) => {
+    window.history.replaceState(null, "", "/");
+    const stored = learnerProfile(legacy);
+    const unchanged = structuredClone(stored);
+    mocks.getDoc.mockResolvedValue(profileSnapshot(stored));
+    mocks.updateDoc.mockImplementation(() => new Promise(() => {}));
+    mocks.fetchPartnerAccess.mockResolvedValue(ACTIVE_PARTNER_ACCESS);
+    render(<App />);
+    await screen.findByRole("button", {name:"Get Started"});
+    let bootstrap;
+    await act(async () => { bootstrap = mocks.authCallback({uid:"legacy-profile",getIdToken:vi.fn(async () => "token")}); });
+    expect(await screen.findByRole("heading", {name:"Home screen"})).toBeVisible();
+    await bootstrap;
+    expect(mocks.updateDoc).not.toHaveBeenCalled();
+    expect(mocks.setDoc).not.toHaveBeenCalled();
+    expect(mocks.fetchPartnerAccess).toHaveBeenCalledOnce();
+    expect(stored).toEqual(unchanged);
   });
 
   test("a profile-read failure offers retry and logout, then resumes the saved account", async () => {
@@ -4154,7 +4587,7 @@ describe("sponsored signup orchestration", () => {
     });
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
   });
 
@@ -4303,7 +4736,7 @@ describe("sponsored signup orchestration", () => {
     });
 
     expect(screen.getByRole("heading", {
-      name: "Let’s personalize your EverWise lessons",
+      name: "Your personal lessons",
     })).toBeVisible();
     expect(screen.getByText(
       "Your answers and lesson progress will be saved to this account.",
@@ -4521,7 +4954,7 @@ describe("sponsored signup orchestration", () => {
       await mocks.authCallback(returningUser);
     });
     expect(screen.getByRole("heading", {
-      name: "Let’s personalize your EverWise lessons",
+      name: "Your personal lessons",
     })).toBeVisible();
 
     await act(async () => {
@@ -4530,7 +4963,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(await screen.findByRole("button", { name: "Get Started" })).toBeVisible();
     expect(screen.queryByRole("heading", {
-      name: "Let’s personalize your EverWise lessons",
+      name: "Your personal lessons",
     })).not.toBeInTheDocument();
     expect(mocks.setDoc).not.toHaveBeenCalled();
     expect(mocks.claimPartnerSeat).not.toHaveBeenCalled();
@@ -4575,7 +5008,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
     expect(mocks.setDoc).not.toHaveBeenCalled();
     expect(mocks.claimPartnerSeat).not.toHaveBeenCalled();
@@ -4606,6 +5039,13 @@ describe("sponsored signup orchestration", () => {
       await screen.findByText(/could not safely finish cleaning up your new account/i),
     ).toBeVisible();
     expect(screen.getByRole("button", { name: "Try to log out" })).toBeVisible();
+    await user.click(screen.getByRole("button", { name: "Try to log out" }));
+    expect(screen.getByRole("alert")).toHaveTextContent("We couldn’t log you out. Please try again.");
+    expect(mocks.signOut).toHaveBeenCalledTimes(2);
+    mocks.signOut.mockResolvedValueOnce(undefined);
+    await user.click(screen.getByRole("button", { name: "Try to log out" }));
+    expect(screen.queryByRole("button", { name: "Try to log out" })).not.toBeInTheDocument();
+    expect(mocks.signOut).toHaveBeenCalledTimes(3);
     expect(screen.getByRole("link", { name: "Contact support" })).toBeVisible();
     expect(screen.queryByRole("button", { name: "Retry" })).not.toBeInTheDocument();
     expect(mocks.createUserWithEmailAndPassword).toHaveBeenCalledTimes(1);
@@ -4686,7 +5126,7 @@ describe("sponsored signup orchestration", () => {
     });
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
     expect(mocks.setDoc).not.toHaveBeenCalled();
   });
@@ -4823,7 +5263,7 @@ describe("sponsored signup orchestration", () => {
 
     expect(screen.getByRole("heading", { name: "Home screen" })).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Open Settings" }));
-    expect(screen.getByText("Start free trial")).toBeVisible();
+    expect(screen.getByRole("button", { name: "View plans", exact: true })).toBeVisible();
     expect(screen.queryByText(/Full access provided by/i)).not.toBeInTheDocument();
   });
 

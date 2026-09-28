@@ -1,0 +1,60 @@
+.app-viewport:has(.status-screen), .app-viewport:has(.personal-plan) {
+  --everwise-screen-background: var(--surface-grouped);
+  --everwise-safe-top: var(--surface-grouped);
+  --everwise-safe-bottom: var(--surface-grouped);
+}
+.status-screen, .personal-plan {
+  flex: 1; min-height: 0; width: 100%; overflow-y: auto;
+  background: var(--surface-grouped); color: var(--text-primary);
+}
+.status-content, .personal-plan-content {
+  width: 100%; max-width: 584px; min-height: 100%; margin-inline: auto;
+  padding: 24px 24px max(32px, env(safe-area-inset-bottom));
+  display: flex; flex-direction: column;
+}
+.status-brand { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 650; letter-spacing: -.02em; }
+.status-brand img { width: 28px; height: 28px; object-fit: contain; }
+.status-message { padding-block: 36px 16px; margin-block: auto; }
+.status-context { margin-bottom: 12px; color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); line-height: 1.4; font-weight: 600; }
+.status-message h1, .personal-plan h1 {
+  font-size: calc(28px * var(--heading-scale)); line-height: 1.2; letter-spacing: -.025em; font-weight: 650; text-wrap: initial;
+}
+.status-description, .personal-plan-intro, .personal-plan-note, .personal-plan-strength p {
+  margin-top: 16px; font-size: calc(17px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary);
+}
+.status-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+.status-actions .startup-retry { padding-inline: 12px; }
+.status-progress { display: flex; align-items: center; gap: 12px; margin-top: 24px; font-size: calc(16px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }
+.status-progress > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.status-spinner { flex: none; width: 22px; height: 22px; border: 2px solid #d7d2c7; border-top-color: var(--accent); border-radius: 50%; animation: status-spin 900ms linear infinite; }
+@keyframes status-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .status-spinner { animation: none; } }
+@media (min-width: 768px) {
+  .status-content, .personal-plan-content { padding-top: 32px; padding-bottom: 40px; min-height: calc(100dvh - 3rem); }
+}
+@media (min-width: 1024px) { .status-content, .personal-plan-content { min-height: 100dvh; } }
+@media (min-width: 768px) {
+  .is-native-app .status-content, .is-native-app .personal-plan-content { min-height: var(--native-available-height); }
+}
+@media (max-height: 500px) { .status-content { padding-top: 16px; } .status-message { padding-top: 24px; } }
+
+.personal-plan-content { gap: 24px; }
+.personal-plan header { margin-top: 12px; }
+.personal-plan-intro { margin-top: 12px; }
+.personal-plan-topics { background: var(--surface); border-radius: var(--radius-group); padding-inline: 20px; counter-reset: topic; }
+.personal-plan-topics li { display: flex; align-items: baseline; gap: 16px; padding-block: 20px; font-size: calc(17px * var(--text-scale)); line-height: 1.45; font-weight: 500; }
+.personal-plan-topics li + li { border-top: 1px solid var(--separator); }
+.personal-plan-number { flex: none; color: var(--accent); font-variant-numeric: tabular-nums; }
+.personal-plan-strength h2 { font-size: calc(18px * var(--heading-scale)); line-height: 1.4; font-weight: 650; }
+.personal-plan-strength p { margin-top: 8px; }
+.personal-plan-note { margin-top: 0; font-size: calc(15px * var(--text-scale)); }
+.personal-plan-actions { padding-top: 4px; margin-top: auto; }
+
+.status-message { padding: 32px 0; }
+.status-context { font-size: calc(13px * var(--text-scale)); font-weight: 500; }
+.status-message h1 { max-width: 18ch; }
+.status-description { max-width: 40ch; }
+.status-actions { margin-top: 32px; }
+.personal-plan-strength { padding-left: 16px; border-left: 3px solid var(--accent); }
+.personal-plan-strength h2 { font-size: calc(15px * var(--heading-scale)); }
+.personal-plan-strength p { font-size: calc(15px * var(--text-scale)); }

@@ -17,17 +17,49 @@ final class EverwisePurchasesPlugin: CAPPlugin, CAPBridgedPlugin {
         "com.everwise.app.monthly"
     ]
 
+    private var updatesTask: Task<Void, Never>?
+
+    override func load() {
+        // Purchases approved later (for example, Ask to Buy) arrive here rather
+        // than through the original purchase call. Finish verified deliveries.
+        updatesTask = Task { [weak self] in
+            for await result in Transaction.updates {
+                guard let self else { return }
+                guard case .verified(let transaction) = result,
+                      self.productIDs.contains(transaction.productID) else { continue }
+                await transaction.finish()
+            }
+        }
+    }
+
+    deinit {
+        updatesTask?.cancel()
+    }
+
     @objc func getProducts(_ call: CAPPluginCall) {
         Task {
             do {
                 let products = try await Product.products(for: productIDs)
-                let payload: [[String: Any]] = products.map { product in
-                    [
+                var payload: [[String: Any]] = []
+                for product in products {
+                    guard let subscription = product.subscription else { continue }
+                    var item: [String: Any] = [
                         "id": product.id,
                         "displayName": product.displayName,
                         "displayPrice": product.displayPrice,
-                        "description": product.description
+                        "description": product.description,
+                        "periodUnit": periodUnit(subscription.subscriptionPeriod.unit),
+                        "periodValue": subscription.subscriptionPeriod.value,
+                        "eligibleForTrial": false
                     ]
+                    if let offer = subscription.introductoryOffer,
+                       offer.paymentMode == .freeTrial,
+                       await subscription.isEligibleForIntroOffer {
+                        item["eligibleForTrial"] = true
+                        item["trialUnit"] = periodUnit(offer.period.unit)
+                        item["trialValue"] = offer.period.value * offer.periodCount
+                    }
+                    payload.append(item)
                 }
                 call.resolve(["products": payload])
             } catch {
@@ -89,6 +121,7 @@ final class EverwisePurchasesPlugin: CAPPlugin, CAPBridgedPlugin {
             guard case .verified(let transaction) = result,
                   productIDs.contains(transaction.productID),
                   transaction.revocationDate == nil,
+                  !transaction.isUpgraded,
                   transaction.expirationDate.map({ $0 > Date() }) ?? true else {
                 continue
             }
@@ -106,6 +139,16 @@ final class EverwisePurchasesPlugin: CAPPlugin, CAPBridgedPlugin {
             payload["expirationDate"] = ISO8601DateFormatter().string(from: expirationDate)
         }
         return payload
+    }
+
+    private func periodUnit(_ unit: Product.SubscriptionPeriod.Unit) -> String {
+        switch unit {
+        case .day: return "day"
+        case .week: return "week"
+        case .month: return "month"
+        case .year: return "year"
+        @unknown default: return "unknown"
+        }
     }
 
     private func verified<T>(_ result: VerificationResult<T>) throws -> T {

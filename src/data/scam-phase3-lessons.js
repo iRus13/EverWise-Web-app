@@ -5,7 +5,7 @@
 // Boss deliberately uses a different channel — call, text, pop-up, email,
 // letter — so learners see the same five signs arrive in different envelopes.
 
-import { WARNING_SIGNS } from "./scam-phase2-lessons";
+import { WARNING_SIGNS } from "./scam-phase2-lessons.js";
 
 // Shown at the top of every reading in this phase.
 const REMINDER = WARNING_SIGNS;
