@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowDown, Check, ChevronDown, ChevronRight, Lock, Search, X } from "lucide-react";
 import { lessonsByOrder as lessons, examsByOrder, challengesByOrder, pathOrderForPhase } from "../data/course-catalog.js";
@@ -31,6 +32,7 @@ export default function LessonPath({
   completedLessons = [], onSelectLesson, onSelectExam, onSelectChallenge,
   onTestOutLesson, onBack, hasSavedLessonPosition, hasSavedAssessmentPosition,
 }) {
+  useLocale();
   const doneSet = new Set(completedLessons);
   const currentId = findCurrentPlayableId(playables, completedLessons, curriculum);
   const current = playables.find(item => item.id === currentId);
@@ -183,8 +185,8 @@ export default function LessonPath({
   return <div className="course-path-screen course-outline">
     <header ref={toolbarRef} className="course-path-toolbar">
       <div className="course-path-header">
-        <button type="button" className="course-back" onClick={onBack} aria-label="Back to home" title="Home">
-          <ArrowLeft size={22} aria-hidden="true" /><span>Home</span>
+        <button type="button" className="course-back" onClick={onBack} aria-label={tr("Back to home")} title={tr("Home")}>
+          <ArrowLeft size={22} aria-hidden="true" /><span>{tr("Home")}</span>
         </button>
         <div className="course-toolbar-actions">
         <button ref={searchButton} type="button" className="course-search-toggle" onClick={toggleSearch}
@@ -203,7 +205,7 @@ export default function LessonPath({
       <div className="course-path-content">
         {searching && <div id="course-search" className="course-search">
           <h1>Search course</h1>
-          <form role="search" aria-label="Course" onSubmit={event => {event.preventDefault(); searchInput.current?.blur();}}>
+          <form role="search" aria-label={tr("Course")} onSubmit={event => {event.preventDefault(); searchInput.current?.blur();}}>
             <label htmlFor="course-search-input">Lesson or topic</label>
             <div className="course-search-field">
               <Search size={22} aria-hidden="true" />
@@ -224,7 +226,7 @@ export default function LessonPath({
             <h1>Your path</h1>
             <p>{allDone ? "You've finished every step. Return to any lesson whenever you need a refresher." : "Build your confidence, one small step at a time."}</p>
             <div className="course-progress">
-              <p><strong>{completed}</strong> of {playables.length} steps complete</p>
+              <p><strong>{completed}</strong> {tr("of")} {playables.length} steps complete</p>
               <div role="progressbar" aria-label="Course progress" aria-valuemin={0} aria-valuemax={playables.length} aria-valuenow={completed}>
                 <span style={{width: `${completed / playables.length * 100}%`}} />
               </div>
@@ -239,14 +241,14 @@ export default function LessonPath({
               const isCurrent = phase.number === current?.phase;
               return <section key={phase.number} className={`course-phase${isCurrent ? " course-phase-current" : ""}`}>
                 {searching ? <h2 id={`course-phase-${phase.number}`} className="course-search-phase-heading">
-                  <span className="course-phase-number">Phase {phaseLabel(phase)}</span>
+                  <span className="course-phase-number">{tr("Phase")} {phaseLabel(phase)}</span>
                   <span className="course-phase-title">{phase.title}</span>
                 </h2> : <h2>
                   <button id={`course-phase-${phase.number}`} type="button" className="course-phase-toggle"
                     aria-expanded={isOpen} aria-controls={`course-phase-steps-${phase.number}`}
                     onClick={() => togglePhase(phase.number)}>
                     <span className="course-phase-description">
-                      <span className="course-phase-number">Phase {phaseLabel(phase)}{isCurrent ? " · In progress" : ""}</span>
+                      <span className="course-phase-number">{tr("Phase")} {phaseLabel(phase)}{isCurrent ? " · In progress" : ""}</span>
                       <span className="course-phase-title">{phase.title}</span>
                       <span className="course-phase-progress">{phaseDone === phase.steps.length ? "Completed" : `${phaseDone} of ${phase.steps.length} steps complete`}</span>
                     </span>

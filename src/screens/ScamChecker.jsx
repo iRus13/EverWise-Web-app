@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { useEffect, useMemo, useRef, useState } from "react";
 import UtilityScreen from "../components/UtilityScreen";
 import ReadAloud from "../components/ReadAloud";
@@ -47,6 +48,7 @@ function ResultSection({ title, items, ordered = false }) {
 }
 
 export default function ScamChecker({ onBack }) {
+  useLocale();
   const [message, setMessage] = useState("");
   const [result, setResult] = useState(null);
   const [status, setStatus] = useState("idle");
@@ -86,7 +88,7 @@ export default function ScamChecker({ onBack }) {
     const nextSteps = result.next_steps?.length
       ? `What to do next: ${result.next_steps.join(". ")}.`
       : "";
-    return [`${details.title}.`, result.summary, urgentAction, warningSigns, nextSteps, RESULT_SAFETY_REMINDER]
+    return [`${tr(details.title)}.`, result.summary, urgentAction, warningSigns, nextSteps, RESULT_SAFETY_REMINDER]
       .filter(Boolean).join(" ");
   }, [details, result]);
 
@@ -177,16 +179,16 @@ export default function ScamChecker({ onBack }) {
     <div className="scam-checker-screen">
       <div className="scam-checker-content">
         <header className="scam-header">
-          <p className="scam-eyebrow">PAUSE. CHECK. DECIDE.</p>
-          <h1>Scam checker</h1>
-          <p>Get a second opinion on a text, email, or social media message.</p>
+          <p className="scam-eyebrow">{tr("PAUSE. CHECK. DECIDE.")}</p>
+          <h1>{tr("Scam checker")}</h1>
+          <p>{tr("Get a second opinion on a text, email, or social media message.")}</p>
         </header>
 
         {status !== "success" ? (
           <form className="scam-form" onSubmit={checkMessage}>
             <div data-form-field>
-              <label htmlFor="message-to-check">Message to check</label>
-              <p id="message-help" className="scam-help">Remove passwords, verification codes, and account numbers before pasting.</p>
+              <label htmlFor="message-to-check">{tr("Message to check")}</label>
+              <p id="message-help" className="scam-help">{tr("Remove passwords, verification codes, and account numbers before pasting.")}</p>
               <textarea
                 ref={inputRef}
                 id="message-to-check"
@@ -199,43 +201,43 @@ export default function ScamChecker({ onBack }) {
                 autoComplete="off"
                 autoCapitalize="off"
                 spellCheck={false}
-                placeholder="Paste the message here…"
+                placeholder={tr("Paste the message here…")}
               />
-              <p id="message-count" className="scam-count">{message.length.toLocaleString()} / {MAX_MESSAGE_LENGTH.toLocaleString()} characters</p>
+              <p id="message-count" className="scam-count">{message.length.toLocaleString()} / {MAX_MESSAGE_LENGTH.toLocaleString()} {tr("characters")}</p>
             </div>
-            <p id="message-privacy" className="scam-help">When you choose Check this message, the text is sent to our AI provider to generate a result. This is a second opinion, not a guarantee.</p>
+            <p id="message-privacy" className="scam-help">{tr("When you choose Check this message, the text is sent to our AI provider to generate a result. This is a second opinion, not a guarantee.")}</p>
 
-            {error && <div ref={errorRef} tabIndex={-1} className="scam-error" role="alert">{error}</div>}
+            {error && <div ref={errorRef} tabIndex={-1} className="scam-error" role="alert">{tr(error)}</div>}
             <div className="scam-actions">
               <button type="submit" disabled={!cleanMessage || status === "loading"} className="btn-primary">
-                {status === "loading" ? "Checking message…" : "Check this message"}
+                {status === "loading" ? tr("Checking message…") : tr("Check this message")}
               </button>
-              {status === "loading" && <button type="button" className="btn-secondary" onClick={cancelCheck}>Cancel check</button>}
+              {status === "loading" && <button type="button" className="btn-secondary" onClick={cancelCheck}>{tr("Cancel check")}</button>}
             </div>
-            <p role="status" className="scam-status">{status === "loading" ? "Checking your message. This can take up to 30 seconds." : notice}</p>
+            <p role="status" className="scam-status">{status === "loading" ? tr("Checking your message. This can take up to 30 seconds.") : tr(notice)}</p>
           </form>
         ) : (
           <div className="scam-result">
             <section className={`scam-verdict ${details.className}`}>
-              <p className="scam-risk-label">{details.eyebrow}</p>
-              <h2 ref={resultRef} tabIndex={-1}>{details.title}</h2>
+              <p className="scam-risk-label">{tr(details.eyebrow)}</p>
+              <h2 ref={resultRef} tabIndex={-1}>{tr(details.title)}</h2>
               <p>{result.summary}</p>
             </section>
-            <ReadAloud text={readAloudText} label="Read this result aloud" />
-            {result.urgent_action && <section className="scam-urgent"><h3>Act now</h3><p>{result.urgent_action}</p></section>}
-            <ResultSection title="Warning signs" items={result.warning_signs} />
-            <ResultSection title="What to do next" items={result.next_steps} ordered />
-            <p className="scam-safety">{RESULT_SAFETY_REMINDER}</p>
+            <ReadAloud text={readAloudText} label={tr("Read this result aloud")} />
+            {result.urgent_action && <section className="scam-urgent"><h3>{tr("Act now")}</h3><p>{result.urgent_action}</p></section>}
+            <ResultSection title={tr("Warning signs")} items={result.warning_signs} />
+            <ResultSection title={tr("What to do next")} items={result.next_steps} ordered />
+            <p className="scam-safety">{tr(RESULT_SAFETY_REMINDER)}</p>
             <div className="scam-actions">
-              <button type="button" className="btn-primary" onClick={() => returnToMessage(true)}>Check another message</button>
-              <button type="button" className="btn-secondary" onClick={() => returnToMessage()}>Edit this message</button>
+              <button type="button" className="btn-primary" onClick={() => returnToMessage(true)}>{tr("Check another message")}</button>
+              <button type="button" className="btn-secondary" onClick={() => returnToMessage()}>{tr("Edit this message")}</button>
             </div>
           </div>
         )}
 
         {status !== "success" && <aside className="scam-safety">
-          <h2>Verify before acting</h2>
-          <p>Do not use links or phone numbers from a suspicious message. Contact the organization through its official website, app, card, or statement.</p>
+          <h2>{tr("Verify before acting")}</h2>
+          <p>{tr("Do not use links or phone numbers from a suspicious message. Contact the organization through its official website, app, card, or statement.")}</p>
         </aside>}
       </div>
     </div>

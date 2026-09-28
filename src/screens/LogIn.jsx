@@ -1,3 +1,5 @@
+import LanguageSelect from "../components/LanguageSelect";
+import { tr, useLocale } from '../i18n';
 import { useRef, useState } from "react";
 import Field from "../components/Field";
 import AccountLayout from "../components/AccountLayout";
@@ -5,6 +7,7 @@ import { authErrorMessage } from "../utils/authErrors";
 import PasswordReset from "./PasswordReset.jsx";
 
 export default function LogIn({ onLogIn, onGoToSignUp, onBack, onResetPassword }) {
+  useLocale();
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -39,12 +42,13 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack, onResetPassword }
   if (resetting) return <PasswordReset initialEmail={identifier} onResetPassword={onResetPassword} onBack={() => setResetting(false)} />;
 
   return (
-    <AccountLayout className="login-screen" onBack={onBack} title="Welcome back." description="Log in to continue your lessons and saved progress.">
-      <form className="account-form" onSubmit={submit} noValidate>
+    <AccountLayout className="login-screen" onBack={onBack} title={tr("Welcome back.")} description={tr("Log in to continue your lessons and saved progress.")}>
+      <LanguageSelect />
+        <form className="account-form" onSubmit={submit} noValidate>
         <div className="account-fields">
           <Field
             id="login-identifier"
-            label="Username or email"
+            label={tr("Username or email")}
             value={identifier}
             onChange={(value) => { setIdentifier(value); setError(""); setMissing({}); }}
             autoComplete="username"
@@ -53,11 +57,11 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack, onResetPassword }
             inputRef={identifierInput}
             ariaInvalid={missing.identifier || undefined}
             describedBy={error ? "login-error" : undefined}
-            placeholder="Your username or email"
+            placeholder={tr("Your username or email")}
           />
           <Field
             id="login-password"
-            label="Password"
+            label={tr("Password")}
             type="password"
             value={password}
             onChange={(value) => { setPassword(value); setError(""); setMissing({}); }}
@@ -65,15 +69,13 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack, onResetPassword }
             inputRef={passwordInput}
             ariaInvalid={missing.password || undefined}
             describedBy={error ? "login-error" : undefined}
-            placeholder="Your password"
+            placeholder={tr("Your password")}
           />
         </div>
 
         {onResetPassword && <button type="button" disabled={busy}
           className="account-link account-recovery"
-          onClick={() => { setPassword(""); setError(""); setResetting(true); }}>
-          Forgot password?
-        </button>}
+          onClick={() => { setPassword(""); setError(""); setResetting(true); }}>{tr("Forgot password?")}</button>}
 
         {error && (
           <p
@@ -81,23 +83,20 @@ export default function LogIn({ onLogIn, onGoToSignUp, onBack, onResetPassword }
             id="login-error"
             className="account-error"
           >
-            {error}
+            {tr(error)}
           </p>
         )}
 
         <div className="account-actions">
           <button type="submit" className="btn-primary" disabled={busy}>
-            {busy ? "Logging in…" : "Log In"}
+            {busy ? tr("Logging in…") : tr("Log In")}
           </button>
-          <p className="account-alternative">
-            New here?{" "}
+          <p className="account-alternative">{tr("New here?")}{" "}
             <button
               type="button"
               onClick={onGoToSignUp}
               className="account-link"
-            >
-              Sign up
-            </button>
+            >{tr("Sign up")}</button>
           </p>
         </div>
       </form>

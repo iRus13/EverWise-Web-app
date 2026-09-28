@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -21,10 +22,10 @@ function nativePlans(products) {
         || product.periodUnit !== interval || product.periodValue !== 1) return null;
     plans[key] = {
       key, name: key === "annual" ? "Annual" : "Monthly",
-      price: product.displayPrice, cadence: `/${interval}`,
+      price: product.displayPrice, cadence: `/${tr(interval)}`,
       trial: product.eligibleForTrial === true && Number.isInteger(product.trialValue)
         && product.trialValue > 0 && ["day", "week", "month", "year"].includes(product.trialUnit)
-        ? `${product.trialValue} ${product.trialUnit}${product.trialValue === 1 ? "" : "s"}` : null,
+        ? tr("{count} {unit}", { count: product.trialValue, unit: tr(`${product.trialUnit}${product.trialValue === 1 ? "" : "s"}`) }) : null,
     };
   }
   return plans;
@@ -141,7 +142,7 @@ function verifiedWebPlans(plans) {
 
 function webPrice(plan) {
   const amount = plan.unitAmount / 100;
-  return `$${Number.isInteger(amount) ? amount : amount.toFixed(2)}/${plan.interval}`;
+  return `$${Number.isInteger(amount) ? amount : amount.toFixed(2)}/${tr(plan.interval)}`;
 }
 
 function Benefit({ icon, title, body }) {
@@ -158,12 +159,12 @@ function PlanCard({ disabled, native, offer, onSelect, selected, tabIndex }) {
     className={`paywall-plan-card paywall-plan-${offer.key}`}>
     <SelectionIcon className="subscription-choice" strokeWidth={1.8} aria-hidden="true" />
     <span className="subscription-plan-content">
-      <span className="subscription-plan-name">{offer.name || (offer.key === "annual" ? "Annual" : "Monthly")}</span>
+      <span className="subscription-plan-name">{tr(offer.name) || (offer.key === "annual" ? tr("Annual") : tr("Monthly"))}</span>
       <span className="subscription-price">{native ? <>{offer.price}<span className="subscription-cadence">{offer.cadence}</span></> : webPrice(offer)}</span>
-      {native ? offer.trial ? <span className="subscription-plan-detail">{offer.trial} free, then {offer.price}{offer.cadence}</span> : null
+      {native ? offer.trial ? <span className="subscription-plan-detail">{offer.trial} {tr("free, then")} {offer.price}{offer.cadence}</span> : null
         : <span className="subscription-plan-detail">{offer.trialDays > 0
-          ? `${offer.trialDays} days free, then ${webPrice(offer)} unless canceled.`
-          : `${webPrice(offer)}, billed at checkout. Renews unless canceled.`}</span>}
+          ? tr("{days} days free, then {price} unless canceled.", { days: offer.trialDays, price: webPrice(offer) })
+          : tr("{price}, billed at checkout. Renews unless canceled.", { price: webPrice(offer) })}</span>}
     </span>
   </button>;
 }
@@ -179,9 +180,9 @@ function Header({ busy, label, onBack }) {
 
 function LegalFooter({ busy, native, onRestore }) {
   return <div className="paywall-footer">
-    <button type="button" onClick={() => openLegalPage("terms")}>Terms</button>
-    <button type="button" onClick={() => openLegalPage("privacy")}>Privacy</button>
-    {native ? <button type="button" onClick={onRestore} disabled={busy}>Restore</button> : null}
+    <button type="button" onClick={() => openLegalPage("terms")}>{tr("Terms")}</button>
+    <button type="button" onClick={() => openLegalPage("privacy")}>{tr("Privacy")}</button>
+    {native ? <button type="button" onClick={onRestore} disabled={busy}>{tr("Restore")}</button> : null}
   </div>;
 }
 
@@ -199,12 +200,12 @@ function OperationFeedback({ error, status }) {
 
 function Unavailable({ busy, message, onBack, onFree, onRetry, onRestore, native = false, sponsored, error, status }) {
   return <div data-testid="browser-paywall" className="subscription-screen release-paywall">
-    <Header busy={busy} label="Back to home" onBack={onBack} />
+    <Header busy={busy} label={tr("Back to home")} onBack={onBack} />
     <div className="subscription-unavailable">
-      <h1>{sponsored ? "Your learning access is ready" : native ? "Keep learning for free" : "Continue learning on the web"}</h1>
+      <h1>{sponsored ? tr("Your learning access is ready") : native ? tr("Keep learning for free") : tr("Continue learning on the web")}</h1>
       <p role="status">{message}</p>
-      {!sponsored && typeof onRetry === "function" ? <button type="button" className="btn-primary" onClick={onRetry} disabled={busy}>Retry</button> : null}
-      <button type="button" className="btn-secondary" onClick={onFree || onBack} disabled={busy}>{onFree ? "Open free introduction" : "Back to home"}</button>
+      {!sponsored && typeof onRetry === "function" ? <button type="button" className="btn-primary" onClick={onRetry} disabled={busy}>{tr("Retry")}</button> : null}
+      <button type="button" className="btn-secondary" onClick={onFree || onBack} disabled={busy}>{onFree ? tr("Open free introduction") : tr("Back to home")}</button>
       <OperationFeedback error={error} status={status} />
     </div>
     <LegalFooter busy={busy} native={native} onRestore={onRestore} />
@@ -227,6 +228,7 @@ export default function Paywall({
   sponsored = false,
   storeProducts = [],
 }) {
+  useLocale();
   // Monthly is both listed first and selected on open: the smaller commitment
   // is the easier first step for someone still deciding, and the plan they read
   // first should be the one already chosen.
@@ -367,32 +369,30 @@ export default function Paywall({
 
   const selectedOffer = offers[selectedPlan];
   const ctaLabel = native
-    ? selectedOffer.trial ? `Start ${selectedOffer.trial} free trial` : `Continue with ${selectedPlan}`
-    : selectedOffer.trialDays > 0 ? `Start ${selectedOffer.trialDays}-day free trial` : `Continue with ${selectedPlan}`;
+    ? selectedOffer.trial ? tr("Start {trial} free trial", { trial: selectedOffer.trial }) : tr("Continue with {plan}", { plan: tr(selectedPlan) })
+    : selectedOffer.trialDays > 0 ? tr("Start {days}-day free trial", { days: selectedOffer.trialDays }) : tr("Continue with {plan}", { plan: tr(selectedPlan) });
 
   return (
     <div data-testid="browser-paywall" className={`subscription-screen release-paywall ${native ? "native-paywall" : "web-paywall"}`}>
-      <Header busy={busy} label={native ? "Close subscription options" : "Back to home"} onBack={onMaybeLater} />
+      <Header busy={busy} label={native ? tr("Close subscription options") : tr("Back to home")} onBack={onMaybeLater} />
       <div className="paywall-main">
         <div className="paywall-layout">
           <section className="paywall-story">
-            <p className="subscription-eyebrow">EVERWISE MEMBERSHIP</p>
-            <h1 className="paywall-headline">
-              Feel confident online.
-            </h1>
+            <p className="subscription-eyebrow">{tr("EVERWISE MEMBERSHIP")}</p>
+            <h1 className="paywall-headline">{tr("Feel confident online.")}</h1>
             <ul className="paywall-benefits">
-              <Benefit icon={<BookOpen size={24} strokeWidth={1.8} />} title="Keep learning at your pace" body="Unlock the lessons beyond your free introduction." />
-              <Benefit icon={<MessageCircleWarning size={24} strokeWidth={1.8} />} title="Recognize scams sooner" body="Practice spotting warning signs in everyday messages." />
+              <Benefit icon={<BookOpen size={24} strokeWidth={1.8} />} title={tr("Keep learning at your pace")} body={tr("Unlock the lessons beyond your free introduction.")} />
+              <Benefit icon={<MessageCircleWarning size={24} strokeWidth={1.8} />} title={tr("Recognize scams sooner")} body={tr("Practice spotting warning signs in everyday messages.")} />
             </ul>
           </section>
           <section className="paywall-offer">
-            <h2>Choose your plan</h2>
+            <h2>{tr("Choose your plan")}</h2>
             {billingMessage ? (
               <p className="mt-3 rounded-xl bg-sage/10 px-4 py-3 text-center font-sans text-base font-semibold text-sage-dark" role="status">
                 {billingMessage}
               </p>
             ) : null}
-            <div className="paywall-plans" role="radiogroup" aria-label="Choose a subscription plan" aria-busy={busy} onKeyDown={handlePlanKeyDown}>
+            <div className="paywall-plans" role="radiogroup" aria-label={tr("Choose a subscription plan")} aria-busy={busy} onKeyDown={handlePlanKeyDown}>
               {offerList.map((offer) => (
                 <PlanCard
                   key={offer.key}
@@ -407,18 +407,17 @@ export default function Paywall({
             </div>
             {!native ? (
               <div id="paywall-trial-summary" className="paywall-trial-summary" aria-live="polite" aria-atomic="true">
-                <p className="font-semibold">Today: {selectedOffer.trialDays > 0 ? `${selectedOffer.trialDays} days free` : webPrice(selectedOffer)}</p>
-                <p className="mt-1">Then {webPrice(selectedOffer)}, renewing automatically unless you cancel.</p>
-                <p className="mt-2">{selectedOffer.trialDays > 0 ? "Cancel before your trial ends to avoid a charge. " : ""}Go to Settings → Manage subscription to cancel.</p>
+                <p className="font-semibold">{tr("Today:")} {selectedOffer.trialDays > 0 ? tr("{days} days free", { days: selectedOffer.trialDays }) : webPrice(selectedOffer)}</p>
+                <p className="mt-1">{tr("Then")} {webPrice(selectedOffer)}{tr(", renewing automatically unless you cancel.")}</p>
+                <p className="mt-2">{selectedOffer.trialDays > 0 ? tr("Cancel before your trial ends to avoid a charge. ") : ""}{tr("Go to Settings → Manage subscription to cancel.")}</p>
               </div>
             ) : null}
             {native ? (
               <p id="paywall-native-terms" className="paywall-reassurance">
-                {selectedOffer.trial ? `${selectedOffer.trial} free, then ` : ""}{selectedOffer.price}{selectedOffer.cadence}. Renews automatically unless canceled. Manage or cancel in your Apple Account subscriptions.
-              </p>
+                {selectedOffer.trial ? tr("{trial} free, then ", { trial: selectedOffer.trial }) : ""}{selectedOffer.price}{selectedOffer.cadence}{tr(". Renews automatically unless canceled. Manage or cancel in your Apple Account subscriptions.")}</p>
             ) : (
               <p id="paywall-payment-note" className="paywall-reassurance">
-                {selectedOffer.trialDays > 0 ? "Your payment method is collected now. Billing starts automatically after your trial unless you cancel." : "Payment is collected at checkout. Your subscription renews automatically unless you cancel."}
+                {selectedOffer.trialDays > 0 ? tr("Your payment method is collected now. Billing starts automatically after your trial unless you cancel.") : tr("Payment is collected at checkout. Your subscription renews automatically unless you cancel.")}
               </p>
             )}
             <button
@@ -435,7 +434,7 @@ export default function Paywall({
             {feedbackSource !== "restore" ? <OperationFeedback error={error} status={operationStatus} /> : null}
             {(
               <button type="button" onClick={onStartLearning || onMaybeLater} disabled={busy} className="paywall-free">
-                {onStartLearning ? "Open free introduction" : "Back to home"}
+                {onStartLearning ? tr("Open free introduction") : tr("Back to home")}
               </button>
             )}
           </section>

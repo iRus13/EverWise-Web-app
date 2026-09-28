@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { useRef, useState } from "react";
 import BlockRenderer from "../components/blocks/BlockRenderer";
 import BlockShell from "../components/blocks/BlockShell";
@@ -16,6 +17,7 @@ export default function LessonPlayer({
   onExit,
   startInTestOut = false,
 }) {
+  useLocale();
   const quiz = lesson.quiz ?? [];
   const quizTotal = quiz.length;
   // A learner who already knows a lesson can prove it instead of sitting
@@ -256,7 +258,7 @@ export default function LessonPlayer({
         }
       >
         <p className="text-lg font-semibold text-ink-faint">
-          Question {testOutIndex + 1} of {testOutQuestions.length}
+          Question {testOutIndex + 1} {tr("of")} {testOutQuestions.length}
         </p>
         {testOutFailed ? (
           <p className="mt-1 text-lg leading-snug text-ink-soft">
@@ -351,7 +353,7 @@ export default function LessonPlayer({
       }
     >
       <p className="text-lg font-semibold text-ink-faint">
-        Quiz {quizIndex + 1} of {quizTotal}
+        Quiz {quizIndex + 1} {tr("of")} {quizTotal}
       </p>
       <MultipleChoiceBody
         text={q.question}

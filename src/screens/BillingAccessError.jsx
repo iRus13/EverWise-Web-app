@@ -1,17 +1,19 @@
+import { tr, useLocale } from '../i18n';
 import StatusScreen from "../components/StatusScreen";
 
 export default function BillingAccessError({ kind = "temporary", onRetry, onBack }) {
+  useLocale();
   const temporary = kind === "temporary";
   return (
     <StatusScreen
-      label="Subscription"
-      title={temporary ? "We could not verify your subscription" : "Your subscription is not active"}
+      label={tr("Subscription")}
+      title={temporary ? tr("We could not verify your subscription") : tr("Your subscription is not active")}
       description={temporary
-        ? "Access could not be checked right now. Please retry when you are ready."
-        : "Choose a plan to continue unfinished lessons, or return home."}
+        ? tr("Access could not be checked right now. Please retry when you are ready.")
+        : tr("Choose a plan to continue unfinished lessons, or return home.")}
       actions={<>
-        {onRetry && <button type="button" className="btn-primary" onClick={onRetry}>Retry</button>}
-        {onBack && <button type="button" className="btn-secondary" onClick={onBack}>Back to home</button>}
+        {onRetry && <button type="button" className="btn-primary" onClick={onRetry}>{tr("Retry")}</button>}
+        {onBack && <button type="button" className="btn-secondary" onClick={onBack}>{tr("Back to home")}</button>}
       </>}
     />
   );

@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { useState } from "react";
 import BlockShell from "../components/blocks/BlockShell";
 import ReadAloud from "../components/ReadAloud";
@@ -11,6 +12,7 @@ function pickTier(results, score) {
 }
 
 export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPositionChange }) {
+  useLocale();
   const [position, setPosition] = useState(() =>
     restoreAssessmentPosition(exam, "exam", initialPosition) || {phase:"intro", answers:[], selected:null});
   const {phase, answers, selected} = position;
@@ -85,7 +87,7 @@ export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPo
       }
     >
       <p className="text-lg font-semibold text-ink-faint">
-        Question {progress} of {total}
+        Question {progress} {tr("of")} {total}
       </p>
       <h1 className="page-title mt-3">
         {q.question}

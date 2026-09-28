@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { Capacitor } from "@capacitor/core";
 import "../styles/native-shell.css";
 import "../styles/design-system.css";
@@ -40,6 +41,7 @@ export default function AppShell({
   onTextSizeChange,
   courseProgress = null,
 }) {
+  useLocale();
   const canvas = useRef(null);
   const viewport = useRef(null);
   useNativeWindowInsets(viewport);
@@ -98,7 +100,7 @@ export default function AppShell({
         }`}
       >
         {showNavigation ? (
-          <nav className="app-navigation" aria-label="Primary navigation">
+          <nav className="app-navigation" aria-label={tr("Primary navigation")}>
             <div className="app-navigation-brand">
               <img
                 src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
@@ -113,8 +115,7 @@ export default function AppShell({
                     partner={partner}
                     className="app-navigation-partner-logo"
                   />
-                  <small className="app-navigation-partner">
-                    Access provided by {partnerName}
+                  <small className="app-navigation-partner">{tr("Access provided by")} {partnerName}
                   </small>
                 </div>
               ) : null}
@@ -128,22 +129,20 @@ export default function AppShell({
                     type="button"
                     onClick={handlers[item.id]}
                     disabled={navigationDisabled}
-                    aria-label={item.label}
+                    aria-label={tr(item.label)}
                     aria-current={item.active ? "page" : undefined}
                     className={`app-navigation-item ${
                       item.active ? "is-active" : ""
                     }`}
                   >
                     <Icon className="h-6 w-6 shrink-0" />
-                    <span>{item.id === "scam-checker" ? "Checker" : item.label}</span>
+                    <span>{item.id === "scam-checker" ? tr("Checker") : tr(item.label)}</span>
                   </button>
                 );
               })}
               {onTextSizeChange ? (
                 <div className="app-navigation-textsize">
-                  <span className="app-navigation-textsize-label">
-                    Text size
-                  </span>
+                  <span className="app-navigation-textsize-label">{tr("Text size")}</span>
                   <TextSizeControl
                     textSize={textSize}
                     onTextSizeChange={onTextSizeChange}

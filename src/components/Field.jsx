@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import "../styles/field.css";
 
@@ -21,6 +22,7 @@ export default function Field({
   autoCapitalize,
   spellCheck,
 }) {
+  useLocale();
   const [revealed, setRevealed] = useState(false);
   const input = useRef(null);
   const selection = useRef(null);
@@ -64,12 +66,12 @@ export default function Field({
       {password ? <div className="field-label-row">
         {labelElement}
         <button type="button" className="field-password-toggle" disabled={disabled}
-          aria-label={revealed ? "Hide password" : "Show password"} aria-controls={id}
+          aria-label={revealed ? tr("Hide password") : tr("Show password")} aria-controls={id}
           onPointerDown={event => { if (document.activeElement === input.current) event.preventDefault(); }}
           onClick={() => {
             selection.current = [input.current.selectionStart, input.current.selectionEnd, input.current.selectionDirection];
             setRevealed(previous => !previous);
-          }}>{revealed ? "Hide" : "Show"}</button>
+          }}>{revealed ? tr("Hide") : tr("Show")}</button>
       </div> : labelElement}
       <input
         ref={setInput}

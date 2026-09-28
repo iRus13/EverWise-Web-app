@@ -1,3 +1,5 @@
+import LanguageSelect from "../components/LanguageSelect";
+import { tr, useLocale } from '../i18n';
 import Field from "../components/Field";
 import { useEffect, useId, useRef, useState } from "react";
 import "../styles/settings.css";
@@ -18,7 +20,7 @@ function SettingsSection({ title, className, children, error }) {
       <h2 id={headingId}>{title}</h2>
       <div className="settings-group">
         {children}
-        {error ? <p className="settings-feedback text-alert" role="alert">{error}</p> : null}
+        {error ? <p className="settings-feedback text-alert" role="alert">{tr(error)}</p> : null}
       </div>
     </section>
   );
@@ -351,8 +353,8 @@ export function PartnerReleaseRecovery({ busy = false, terminal = null, onRetry 
       focusKey={terminal}
       description={terminal ? terminalReleaseMessage(terminal) : "Your account has been deleted, but we still need to finish releasing its sponsored place. Please retry so another learner can use it."}
       actions={terminal
-        ? <a className="btn-primary" href={`mailto:${SUPPORT_EMAIL}`}>Contact support</a>
-        : <button type="button" className="btn-primary" onClick={onRetry} disabled={busy} aria-busy={busy}>{busy ? "Retrying…" : "Retry"}</button>}
+        ? <a className="btn-primary" href={`mailto:${SUPPORT_EMAIL}`}>{tr("Contact support")}</a>
+        : <button type="button" className="btn-primary" onClick={onRetry} disabled={busy} aria-busy={busy}>{busy ? "Retrying…" : tr("Retry")}</button>}
     />
   );
 }
@@ -360,7 +362,7 @@ export function PartnerReleaseRecovery({ busy = false, terminal = null, onRetry 
 export function PartnerDeletionReconciliation({ reconciliation = "compensation" }) {
   return <StatusScreen title="Account deletion needs help" focusKey={reconciliation}
     description={terminalReleaseMessage(reconciliation)}
-    actions={<a className="btn-primary" href={`mailto:${SUPPORT_EMAIL}`}>Contact support</a>} />;
+    actions={<a className="btn-primary" href={`mailto:${SUPPORT_EMAIL}`}>{tr("Contact support")}</a>} />;
 }
 
 export default function Settings({
@@ -385,6 +387,7 @@ export default function Settings({
   textSize,
   onTextSizeChange,
 }) {
+  useLocale();
   const [error, setError] = useState("");
   const logOutFeedbackId = useId();
   const reset = usePasswordResetRequest(onResetPassword);
@@ -478,20 +481,21 @@ export default function Settings({
     <UtilityScreen onBack={onBack} navigationDisabled={busy}>
     <div className="settings-screen">
       <header className="settings-header">
-        <h1>Settings</h1>
+        <h1>{tr("Settings")}</h1>
       </header>
 
       <div className="settings-grid">
         <div className="settings-profile">
           <span className="settings-avatar" aria-hidden="true">{name.trim().slice(0, 1).toUpperCase() || "E"}</span>
-          <div><h2>{name.trim() || "Your account"}</h2><p>Your learning, at your pace.</p></div>
+          <div><h2>{name.trim() || tr("Your account")}</h2><p>{tr("Your learning, at your pace.")}</p></div>
         </div>
-        <SettingsSection title="Display" className="settings-display">
+        <SettingsSection title={tr("Language")}><LanguageSelect showContentNotice /></SettingsSection>
+        <SettingsSection title={tr("Display")} className="settings-display">
           <div className="settings-row settings-text-size">
             <div className="min-w-0">
-              <p className="settings-row-label">Text size</p>
+              <p className="settings-row-label">{tr("Text size")}</p>
               <p className="settings-row-hint">
-                {Capacitor.isNativePlatform() ? "Follows your device text size. Adjust further here." : "Applies everywhere in the app"}
+                {Capacitor.isNativePlatform() ? tr("Follows your device text size. Adjust further here.") : tr("Applies everywhere in the app")}
               </p>
             </div>
             {onTextSizeChange ? (
@@ -505,80 +509,73 @@ export default function Settings({
         </SettingsSection>
 
         {billingView.provider === "sponsor" ? (
-          <SettingsSection title="Access" className="settings-subscription" error={billingActionError}>
+          <SettingsSection title={tr("Access")} className="settings-subscription" error={billingActionError}>
             <div className="settings-summary">
-              <p className="text-xl font-semibold text-ink">
-                Full access provided by {billingView.partnerName}
+              <p className="text-xl font-semibold text-ink">{tr("Full access provided by")} {billingView.partnerName}
               </p>
-              <p className="mt-1 text-lg text-ink-soft">
-                No subscription or payment is required.
-              </p>
+              <p className="mt-1 text-lg text-ink-soft">{tr("No subscription or payment is required.")}</p>
             </div>
           </SettingsSection>
         ) : billingView.provider === "unavailable" ? (
-          <SettingsSection title="Subscription" className="settings-subscription" error={billingActionError}>
+          <SettingsSection title={tr("Subscription")} className="settings-subscription" error={billingActionError}>
             <p
               className={`settings-feedback ${billingBusy ? "text-ink-soft" : "text-alert"}`}
               role={billingBusy ? "status" : "alert"}
             >
-              {billingBusy ? "Checking your subscription…" : "Billing is temporarily unavailable."}
+              {billingBusy ? tr("Checking your subscription…") : tr("Billing is temporarily unavailable.")}
             </p>
             <Row
-              label="Retry"
-              hint="Check subscription status again"
+              label={tr("Retry")}
+              hint={tr("Check subscription status again")}
               onClick={() => runBillingAction(onRetryBilling)}
               disabled={billingBusy}
             />
           </SettingsSection>
         ) : billingView.provider === "none" ? (
-          <SettingsSection title="Subscription" className="settings-subscription" error={billingActionError}>
-            <Row label="Status" value="No subscription" />
+          <SettingsSection title={tr("Subscription")} className="settings-subscription" error={billingActionError}>
+            <Row label={tr("Status")} value={tr("No subscription")} />
             <Row
-              label="View plans"
+              label={tr("View plans")}
               onClick={onOpenPaywall}
-              hint="Compare plans and pricing"
+              hint={tr("Compare plans and pricing")}
               disabled={billingBusy}
             />
           </SettingsSection>
         ) : (
-          <SettingsSection title="Subscription" className="settings-subscription" error={billingActionError}>
+          <SettingsSection title={tr("Subscription")} className="settings-subscription" error={billingActionError}>
             <div className="settings-summary">
               <div className="flex flex-wrap items-baseline justify-between gap-3">
-                <p className="text-xl font-semibold text-ink">Status</p>
+                <p className="text-xl font-semibold text-ink">{tr("Status")}</p>
                 <p className="text-xl font-semibold text-clay">
-                  {billingStatusLabel(billingView.status)}
+                  {tr(billingStatusLabel(billingView.status))}
                 </p>
               </div>
               <p className="mt-2 text-lg font-semibold text-ink">
-                {billingView.plan === "monthly" ? "Monthly plan" : "Annual plan"}
+                {billingView.plan === "monthly" ? tr("Monthly plan") : tr("Annual plan")}
               </p>
               {billingView.cancelAtPeriodEnd && ACCESS_GRANTING_STATUSES.has(billingView.status) ? (
-                <p className="mt-1 text-lg text-ink-soft">
-                  Cancellation scheduled — access continues until {formatCancellationInstant(
+                <p className="mt-1 text-lg text-ink-soft">{tr("Cancellation scheduled — access continues until")} {formatCancellationInstant(
                     billingView.currentPeriodEndsAt,
                     billingLocale,
                     billingTimeZone,
                   )}.
                 </p>
               ) : billingView.cancelAtPeriodEnd ? (
-                <p className="mt-1 text-lg text-ink-soft">
-                  Cancellation scheduled for {formatCancellationInstant(
+                <p className="mt-1 text-lg text-ink-soft">{tr("Cancellation scheduled for")} {formatCancellationInstant(
                     billingView.currentPeriodEndsAt,
                     billingLocale,
                     billingTimeZone,
                   )}.
                 </p>
               ) : billingView.status === "trialing" ? (
-                <p className="mt-1 text-lg text-ink-soft">
-                  Trial ends {formatBillingDate(
+                <p className="mt-1 text-lg text-ink-soft">{tr("Trial ends")} {formatBillingDate(
                     billingView.trialEndsAt,
                     billingLocale,
                     billingTimeZone,
                   )}.
                 </p>
               ) : billingView.status === "active" && billingView.currentPeriodEndsAt ? (
-                <p className="mt-1 text-lg text-ink-soft">
-                  Renews {formatBillingDate(
+                <p className="mt-1 text-lg text-ink-soft">{tr("Renews")} {formatBillingDate(
                     billingView.currentPeriodEndsAt,
                     billingLocale,
                     billingTimeZone,
@@ -588,47 +585,47 @@ export default function Settings({
             </div>
             {billingView.canManage ? (
               <Row
-                label="Manage subscription"
+                label={tr("Manage subscription")}
                 onClick={() => runBillingAction(onManageSubscription)}
                 disabled={billingBusy}
                 hint={
                   billingView.provider === "apple"
-                    ? "Manage your subscription in Apple subscription settings."
-                    : "Open the secure billing portal"
+                    ? tr("Manage your subscription in Apple subscription settings.")
+                    : tr("Open the secure billing portal")
                 }
               />
             ) : (
               <Row
-                label="View plans"
+                label={tr("View plans")}
                 onClick={onOpenPaywall}
-                hint="Compare plans and pricing"
+                hint={tr("Compare plans and pricing")}
                 disabled={billingBusy}
               />
             )}
           </SettingsSection>
         )}
 
-        <SettingsSection title="Account" className="settings-account">
+        <SettingsSection title={tr("Account")} className="settings-account">
         <div className="settings-logout-row">
-          <Row label="Log out" onClick={onLogOut} disabled={busy || logOutBusy} busy={logOutBusy}
+          <Row label={tr("Log out")} onClick={onLogOut} disabled={busy || logOutBusy} busy={logOutBusy}
             describedBy={logOutBusy || logOutError ? logOutFeedbackId : undefined} />
           <LogOutFeedback id={logOutFeedbackId} busy={logOutBusy} slow={logOutSlow} error={logOutError} />
         </div>
         {typeof onResetPassword === "function" ? (
           <div className="settings-reset-row">
             <Row
-              label="Reset password"
-              hint={reset.busy ? "Requesting reset…" : "Send a secure reset link to your email"}
+              label={tr("Reset password")}
+              hint={reset.busy ? tr("Requesting reset…") : tr("Send a secure reset link to your email")}
               onClick={() => { setError(""); void reset.run(); }}
               disabled={busy || reset.busy || logOutBusy}
             />
-            {reset.busy && <p className="mt-3 text-lg text-ink-soft" role="status">Requesting a reset email… You can leave this screen while it sends.</p>}
-            {reset.sent && <p className="mt-3 text-lg text-sage-dark" role="status">If an account uses your email address, you’ll receive a reset link. Check your inbox and spam folder.</p>}
+            {reset.busy && <p className="mt-3 text-lg text-ink-soft" role="status">{tr("Requesting a reset email… You can leave this screen while it sends.")}</p>}
+            {reset.sent && <p className="mt-3 text-lg text-sage-dark" role="status">{tr("If an account uses your email address, you’ll receive a reset link. Check your inbox and spam folder.")}</p>}
             {reset.error && <p className="mt-3 text-lg font-semibold text-alert" role="alert">{reset.error}</p>}
           </div>
         ) : null}
         <Row
-          label="Contact support"
+          label={tr("Contact support")}
           hint={SUPPORT_EMAIL}
           onClick={() => {
             window.location.href = `mailto:${SUPPORT_EMAIL}`;
@@ -637,10 +634,10 @@ export default function Settings({
 
         {!confirmingDelete ? (
           <Row
-            label="Delete account"
+            label={tr("Delete account")}
             destructive
             buttonRef={deleteButton}
-            hint="Permanently remove your account and saved progress"
+            hint={tr("Permanently remove your account and saved progress")}
             onClick={() => {
               setError("");
               setConfirmingDelete(true);
@@ -649,35 +646,27 @@ export default function Settings({
           />
         ) : (
           <div className="settings-delete-confirmation">
-            <h3 ref={deleteHeading} tabIndex={-1} className="text-xl font-bold text-ink">Delete your account?</h3>
-            <p className="mt-2 text-lg leading-snug text-ink-soft">
-              This permanently deletes your account, progress, and badges.
-              {" "}This cannot be undone.
-            </p>
+            <h3 ref={deleteHeading} tabIndex={-1} className="text-xl font-bold text-ink">{tr("Delete your account?")}</h3>
+            <p className="mt-2 text-lg leading-snug text-ink-soft">{tr("This permanently deletes your account, progress, and badges.")}{" "}{tr("This cannot be undone.")}</p>
             <div className="settings-delete-billing">
-              <h4>Before you delete</h4>
-              <p>
-                If you subscribed through Apple, cancel that subscription first.
-                {" "}Deleting your account does not stop Apple billing.
-              </p>
+              <h4>{tr("Before you delete")}</h4>
+              <p>{tr("If you subscribed through Apple, cancel that subscription first.")}{" "}{tr("Deleting your account does not stop Apple billing.")}</p>
               <button
                 type="button"
                 className="btn-secondary"
                 disabled={busy}
                 onClick={() => window.open("https://apps.apple.com/account/subscriptions", "_blank", "noopener,noreferrer")}
-              >
-                Open Apple billing
-              </button>
+              >{tr("Open Apple billing")}</button>
               <p>
                 {cancelsWebsiteSubscription
-                  ? "Any subscription bought on our website is cancelled before deletion. If cancellation fails, your account is kept."
-                  : "If you subscribed on our website, cancel in EverWise web Settings before deleting your account here."}
+                  ? tr("Any subscription bought on our website is cancelled before deletion. If cancellation fails, your account is kept.")
+                  : tr("If you subscribed on our website, cancel in EverWise web Settings before deleting your account here.")}
               </p>
             </div>
             <div className="mt-4">
               <Field
                 id="delete-current-password"
-                label="Current password"
+                label={tr("Current password")}
                 type="password"
                 value={currentPassword}
                 onChange={setCurrentPassword}
@@ -685,9 +674,7 @@ export default function Settings({
                 describedBy="delete-password-hint"
                 disabled={busy}
               />
-              <p id="delete-password-hint" className="mt-2 text-base text-ink-soft">
-                Enter your current password to confirm it is you.
-              </p>
+              <p id="delete-password-hint" className="mt-2 text-base text-ink-soft">{tr("Enter your current password to confirm it is you.")}</p>
             </div>
             <div className="settings-delete-actions">
               <button
@@ -698,30 +685,28 @@ export default function Settings({
                   setConfirmingDelete(false);
                 }}
                 disabled={busy}
-              >
-                Cancel
-              </button>
+              >{tr("Cancel")}</button>
               <button
                 type="button"
                 className="btn-primary settings-delete-button"
                 onClick={handleDeleteAccount}
                 disabled={busy || reset.busy || logOutBusy || !currentPassword}
               >
-                {busy ? "Deleting…" : "Yes, delete"}
+                {busy ? tr("Deleting…") : tr("Yes, delete")}
               </button>
             </div>
-            {error ? <p ref={deleteError} className="mt-4 text-alert" role="alert">{error}</p> : null}
+            {error ? <p ref={deleteError} className="mt-4 text-alert" role="alert">{tr(error)}</p> : null}
           </div>
         )}
         </SettingsSection>
 
-        <SettingsSection title="Legal" className="settings-legal">
+        <SettingsSection title={tr("Legal")} className="settings-legal">
         <Row
-          label="Privacy Policy"
+          label={tr("Privacy Policy")}
           onClick={() => openLegalPage("privacy")}
         />
         <Row
-          label="Terms of Service"
+          label={tr("Terms of Service")}
           onClick={() => openLegalPage("terms")}
         />
         </SettingsSection>

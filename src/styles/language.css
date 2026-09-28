@@ -1,0 +1,6 @@
+.language-preference { width: 100%; }
+.language-control { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: calc(16px * var(--text-scale, 1)); color: var(--ink, #252525); }
+.language-control select { min-height: 44px; max-width: 100%; padding: 8px 36px 8px 12px; border: 1px solid #d1d1d6; border-radius: 10px; background-color: #fff; font: inherit; color: inherit; }
+.language-control select:focus-visible { outline: 3px solid #80503e; outline-offset: 3px; }
+.language-content-note { margin: 12px 0 0; color: #595959; font-size: calc(15px * var(--text-scale, 1)); line-height: 1.5; }
+.welcome-language { margin-top: 24px; }

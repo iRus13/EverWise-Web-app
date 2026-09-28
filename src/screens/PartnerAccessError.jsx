@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import StatusScreen from "../components/StatusScreen";
 import {useId} from "react";
 import LogOutFeedback from "../components/LogOutFeedback";
@@ -46,6 +47,7 @@ export default function PartnerAccessError({
   logOutSlow = false,
   logOutError = "",
 }) {
+  useLocale();
   const logOutFeedbackId = useId();
   const canRetry =
     (code === "PARTNER_UNAVAILABLE" ||
@@ -66,7 +68,7 @@ export default function PartnerAccessError({
       actions={<>
         {canRetry && <button type="button" className="btn-primary" onClick={onRetry} disabled={retryBusy || logOutBusy} aria-busy={retryBusy}>{retryLabel}</button>}
         {typeof onLogOut === "function" && <button type="button" className={canRetry ? "btn-secondary" : "btn-primary"} onClick={onLogOut} disabled={logOutBusy} aria-busy={logOutBusy} aria-describedby={logOutBusy || logOutError ? logOutFeedbackId : undefined}>{logOutLabel}</button>}
-        {showSupport && <a className="btn-secondary" href={`mailto:${SUPPORT_EMAIL}`}>Contact support</a>}
+        {showSupport && <a className="btn-secondary" href={`mailto:${SUPPORT_EMAIL}`}>{tr("Contact support")}</a>}
       </>}
     >
       <LogOutFeedback id={logOutFeedbackId} busy={logOutBusy} slow={logOutSlow} error={logOutError} />

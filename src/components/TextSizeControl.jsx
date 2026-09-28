@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 // The −/+ text size stepper. It lives in one place so every screen can show
 // the same control: the persistent nav (tablet and desktop), the Home intro
 // row, and the Settings screen (the reliable route on a phone, where the nav
@@ -12,6 +13,7 @@ export default function TextSizeControl({
   buttonClassName = "h-11 w-11",
   label = "Text size",
 }) {
+  useLocale();
   const index = Math.max(0, TEXT_SIZES.indexOf(textSize));
   const atSmallest = index === 0;
   const atLargest = index === TEXT_SIZES.length - 1;
@@ -26,7 +28,7 @@ export default function TextSizeControl({
         type="button"
         onClick={() => onTextSizeChange(textSizeStep(textSize, -1))}
         disabled={atSmallest}
-        aria-label="Make text smaller"
+        aria-label={tr("Make text smaller")}
         className={`text-size-control flex items-center justify-center font-bold text-ink transition-colors enabled:hover:bg-cream-deep enabled:active:bg-cream-deep disabled:cursor-not-allowed disabled:text-ink-faint ${buttonClassName}`}
       >
         −
@@ -36,7 +38,7 @@ export default function TextSizeControl({
         type="button"
         onClick={() => onTextSizeChange(textSizeStep(textSize, 1))}
         disabled={atLargest}
-        aria-label="Make text larger"
+        aria-label={tr("Make text larger")}
         className={`text-size-control flex items-center justify-center font-bold text-ink transition-colors enabled:hover:bg-cream-deep enabled:active:bg-cream-deep disabled:cursor-not-allowed disabled:text-ink-faint ${buttonClassName}`}
       >
         +

@@ -1,9 +1,11 @@
+import { tr, useLocale } from '../i18n';
 import { useEffect, useState } from "react";
 import StatusScreen from "../components/StatusScreen";
 
 const reloadApp = () => window.location.reload();
 
 export default function Loading({ allowReload = true, onReload = reloadApp }) {
+  useLocale();
   const [slow, setSlow] = useState(false);
   useEffect(() => {
     setSlow(false);
@@ -14,11 +16,11 @@ export default function Loading({ allowReload = true, onReload = reloadApp }) {
   const showRecovery = allowReload && slow;
   return (
     <StatusScreen
-      title="Learn with confidence."
-      progressLabel="Starting Everwise"
+      title={tr("Learn with confidence.")}
+      progressLabel={tr("Starting Everwise")}
       focusHeading={false}
-      description={showRecovery ? "This is taking longer than usual. Check your connection, then reload the app." : undefined}
-      actions={showRecovery ? <button type="button" className="btn-primary startup-retry" onClick={onReload}>Try again</button> : undefined}
+      description={showRecovery ? tr("This is taking longer than usual. Check your connection, then reload the app.") : undefined}
+      actions={showRecovery ? <button type="button" className="btn-primary startup-retry" onClick={onReload}>{tr("Try again")}</button> : undefined}
     />
   );
 }

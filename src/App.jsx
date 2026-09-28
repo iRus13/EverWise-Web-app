@@ -1,3 +1,4 @@
+import { tr, useLocale } from './i18n';
 import React, { useEffect, useRef, useState } from "react";
 import {
   EmailAuthProvider,
@@ -4014,7 +4015,7 @@ function LearnerApp({ initialPartnerFragment }) {
           }
           onRetry={retryAuthenticatedBootstrap}
           retryBusy={partnerRecovery.busy}
-          retryLabel={partnerRecovery.busy ? "Retrying…" : "Retry"}
+          retryLabel={partnerRecovery.busy ? "Retrying…" : tr("Retry")}
           onLogOut={logOut}
           logOutBusy={logOutState.busy}
           logOutSlow={logOutState.slow}
@@ -4032,7 +4033,7 @@ function LearnerApp({ initialPartnerFragment }) {
           partnerName={partnerRecovery.partner?.name || partner?.name}
           onRetry={retryPartnerClaim}
           retryBusy={partnerRecovery.busy}
-          retryLabel={partnerRecovery.busy ? "Retrying…" : "Retry"}
+          retryLabel={partnerRecovery.busy ? "Retrying…" : tr("Retry")}
           onLogOut={logOut}
           logOutBusy={logOutState.busy}
           logOutSlow={logOutState.slow}
@@ -4520,6 +4521,7 @@ function LearnerApp({ initialPartnerFragment }) {
 }
 
 export default function App() {
+  useLocale();
   const [initialPartnerFragment] = useState(capturePartnerFragment);
 
   if (

@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { useEffect, useMemo, useRef } from "react";
 import "../styles/status-screen.css";
 
@@ -50,6 +51,7 @@ function getPlan(profile) {
 }
 
 export default function PersonalPlan({ profile, sponsored = false, onContinue }) {
+  useLocale();
   const plan = useMemo(() => getPlan(profile), [profile]);
   const heading = useRef(null);
   useEffect(() => { heading.current?.focus({ preventScroll: true }); }, []);
@@ -59,9 +61,9 @@ export default function PersonalPlan({ profile, sponsored = false, onContinue })
       <div className="personal-plan-content">
         <div className="status-brand"><img src={`${import.meta.env.BASE_URL}everwise-logo-192.png`} alt="" /><span>Everwise</span></div>
         <header>
-          <p className="status-context">Your plan is ready</p>
-          <h1 ref={heading} tabIndex={-1}>Your personal learning plan</h1>
-          <p className="personal-plan-intro">We recommend starting with these three topics:</p>
+          <p className="status-context">{tr("Your plan is ready")}</p>
+          <h1 ref={heading} tabIndex={-1}>{tr("Your personal learning plan")}</h1>
+          <p className="personal-plan-intro">{tr("We recommend starting with these three topics:")}</p>
         </header>
         <ol className="personal-plan-topics">
           {plan.recommendations.map((recommendation, index) => (
@@ -75,10 +77,10 @@ export default function PersonalPlan({ profile, sponsored = false, onContinue })
           <h2 id="plan-strength">A strength to build on</h2>
           <p>{plan.strength}</p>
         </section>
-        <p className="personal-plan-note">Your answers are saved. You can change accessibility preferences later.</p>
+        <p className="personal-plan-note">{tr("Your answers are saved. You can change accessibility preferences later.")}</p>
         <div className="personal-plan-actions">
           <button type="button" className="btn-primary" onClick={onContinue}>
-            {sponsored ? "Start learning" : "See my plan options"}
+            {sponsored ? tr("Start learning") : tr("See my plan options")}
           </button>
         </div>
       </div>

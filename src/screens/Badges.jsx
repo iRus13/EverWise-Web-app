@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import {useState} from "react";
 import {Award, Check, ChevronDown, Lock} from "lucide-react";
 import {badgeCatalog, badgeCounts, extraEarnedBadges} from "../utils/badges";
@@ -18,6 +19,7 @@ function BadgeTile({badge, earned}) {
 }
 
 export default function Badges({badges = [], onBack}) {
+  useLocale();
   const [filter, setFilter] = useState(() => badges.length ? "earned" : "all");
   const [expanded, setExpanded] = useState(() => new Set(badges.length ? [] : [badgeCatalog()[0]?.phase.number]));
   const earnedSet = new Set(badges);
@@ -26,11 +28,11 @@ export default function Badges({badges = [], onBack}) {
   const bonus = extraEarnedBadges(badges);
   return <div className="badges-screen">
     <div className="badges-navigation"><div>
-      <button type="button" className="badges-back" onClick={onBack} aria-label="Back to home"><ArrowLeftIcon className="h-5 w-5"/> Home</button>
+      <button type="button" className="badges-back" onClick={onBack} aria-label={tr("Back to home")}><ArrowLeftIcon className="h-5 w-5"/> {tr("Home")}</button>
     </div></div>
     <header className="badges-header">
       <h1>Your badges</h1>
-      <p>{earnedCount} of {total} course badges</p>
+      <p>{earnedCount} {tr("of")} {total} course badges</p>
       <div className="badges-progress" role="progressbar" aria-valuemin={0} aria-valuemax={total} aria-valuenow={earnedCount} aria-label="Course badges earned">
         <span style={{width:`${total ? earnedCount / total * 100 : 0}%`}}/>
       </div>
@@ -62,13 +64,13 @@ export default function Badges({badges = [], onBack}) {
                 if (next.has(phase.number)) next.delete(phase.number); else next.add(phase.number);
                 return next;
               })}>
-              <span><span className="badge-phase-number">Phase {phaseLabel(phase)}</span><span className="badge-phase-title">{phase.title}</span></span>
+              <span><span className="badge-phase-number">{tr("Phase")} {phaseLabel(phase)}</span><span className="badge-phase-title">{phase.title}</span></span>
               <ChevronDown aria-hidden="true" size={20}/>
             </button></h2>
-            <p id={countId}>{earned.length} of {list.length} earned</p>
+            <p id={countId}>{earned.length} {tr("of")} {list.length} earned</p>
           </div> : <div className="badge-section-heading">
-            <div><p>Phase {phaseLabel(phase)}</p><h2>{phase.title}</h2></div>
-            <p>{earned.length} of {list.length} earned</p>
+            <div><p>{tr("Phase")} {phaseLabel(phase)}</p><h2>{phase.title}</h2></div>
+            <p>{earned.length} {tr("of")} {list.length} earned</p>
           </div>}
           <div id={contentId} hidden={!open}>
             {open && <ul className="badges-grid">{visible.map(badge => <BadgeTile key={badge.name} badge={badge} earned={earnedSet.has(badge.name)}/>)}</ul>}

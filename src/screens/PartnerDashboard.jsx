@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { useEffect, useRef, useState } from "react";
 import { Capacitor } from "@capacitor/core";
 import { partnerLearnerBaseUrl } from "../utils/partnerLearnerUrl";
@@ -123,6 +124,7 @@ function invitationStatusLabel(status) {
 }
 
 export default function PartnerDashboard({ adminToken }) {
+  useLocale();
   // A different admin link owns a different report and one-session invitation.
   return <AppShell screen="partner-dashboard"><PartnerDashboardSession key={adminToken || ""} adminToken={adminToken} /></AppShell>;
 }
@@ -265,7 +267,7 @@ function PartnerDashboardSession({ adminToken }) {
         <div className="partner-dashboard-summaries">
           <section className="partner-dashboard-summary" aria-labelledby="seat-summary">
             <h2 id="seat-summary">Sponsored access</h2>
-            <p className="partner-dashboard-lead">{claimed} of {limit} seats in use</p>
+            <p className="partner-dashboard-lead">{claimed} {tr("of")} {limit} seats in use</p>
             <p>{available} seats available</p>
           </section>
           <section className="partner-dashboard-summary" aria-labelledby="research-summary">
@@ -306,7 +308,7 @@ function PartnerDashboardSession({ adminToken }) {
               <h3 ref={confirmationHeading} tabIndex={-1}>Replace learner link?</h3>
               <p>The previous learner link will stop working as soon as you replace it.</p>
               <div className="partner-dashboard-button-row">
-                <button type="button" className="btn-secondary" onClick={() => setRotationStep("idle")} disabled={rotationStep === "rotating"}>Cancel</button>
+                <button type="button" className="btn-secondary" onClick={() => setRotationStep("idle")} disabled={rotationStep === "rotating"}>{tr("Cancel")}</button>
                 <button type="button" className="btn-secondary partner-dashboard-destructive" onClick={confirmRotation} disabled={rotationStep === "rotating"} aria-busy={rotationStep === "rotating"}>{rotationStep === "rotating" ? "Replacing…" : "Replace link now"}</button>
               </div>
             </div>}

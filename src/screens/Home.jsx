@@ -1,3 +1,4 @@
+import { tr, useLocale } from '../i18n';
 import { BookIcon, MessageSearchIcon } from "../components/Icons";
 import AddToHomeScreenBanner from "../components/AddToHomeScreenBanner";
 import { PartnerLogo } from "../components/PartnerBrand.jsx";
@@ -24,6 +25,7 @@ export default function Home({
   nextActivity = null, onStartNext,
   onStart, onOpenBadges, onOpenSettings, onOpenScamChecker,
 }) {
+  useLocale();
   const partnerName = partner?.name?.trim();
   const firstName = name ? name.trim().split(" ")[0] : "";
   const [opening, setOpening] = useState(false);
@@ -36,7 +38,7 @@ export default function Home({
     if (openError) errorMessage.current?.scrollIntoView?.({block: "nearest"});
   }, [openError]);
   const activity = !allDone && nextActivity;
-  const actionLabel = activity ? `${activity.resumable ? "Resume" : "Start"} ${activity.kind}` : "";
+  const actionLabel = activity ? tr(activity.resumable ? "Resume {kind}" : "Start {kind}", { kind: tr(activity.kind) }) : "";
   const openNext = async () => {
     if (openingRef.current) return;
     openingRef.current = true;
@@ -54,56 +56,56 @@ export default function Home({
             <img src={`${import.meta.env.BASE_URL}everwise-logo-192.png`} alt="" aria-hidden="true" />
             <span>Everwise</span>
           </div>
-          <button type="button" className="today-settings" onClick={onOpenSettings}>Settings</button>
+          <button type="button" className="today-settings" onClick={onOpenSettings}>{tr("Settings")}</button>
         </header>
         {partnerName ? (
           <div className="today-partner">
             <PartnerLogo partner={partner} className="home-partner-logo" />
-            <p>Access provided by {partnerName}</p>
+            <p>{tr("Access provided by")} {partnerName}</p>
           </div>
         ) : null}
         <section className="today-intro">
-          <p className="today-greeting">Hello{firstName ? `, ${firstName}` : ""}.</p>
-          <h1>Today</h1>
+          <p className="today-greeting">{tr("Hello")}{firstName ? `, ${firstName}` : ""}.</p>
+          <h1>{tr("Today")}</h1>
         </section>
         <div className="today-dashboard">
           <section className="today-learning" aria-labelledby="today-learning-title">
-            <div className="today-section-label"><BookIcon className="start-icon" /><span>{activity ? activity.resumable ? "Ready to continue" : "Up next" : "Your learning"}</span></div>
-            <h2 id="today-learning-title">{allDone ? "Course complete." : activity?.title || "Your course"}</h2>
-            {activity ? <p className="today-activity-phase">Phase {activity.phaseNumber}{activity.phaseTitle ? ` · ${activity.phaseTitle}` : ""}</p> : null}
-            <p>{learningDescription(activity, allDone)}</p>
+            <div className="today-section-label"><BookIcon className="start-icon" /><span>{activity ? activity.resumable ? tr("Ready to continue") : tr("Up next") : tr("Your learning")}</span></div>
+            <h2 id="today-learning-title">{allDone ? tr("Course complete.") : activity?.title || tr("Your course")}</h2>
+            {activity ? <p className="today-activity-phase">{tr("Phase")} {activity.phaseNumber}{activity.phaseTitle ? ` · ${activity.phaseTitle}` : ""}</p> : null}
+            <p>{tr(learningDescription(activity, allDone))}</p>
             {activity ? <>
               <button type="button" className="btn-primary" onClick={openNext} disabled={opening}
                 aria-busy={opening} aria-label={`${opening ? `Opening ${activity.kind}` : actionLabel}: ${activity.title}`}>
-                {opening ? `Opening ${activity.kind}…` : actionLabel}
+                {opening ? tr("Opening {kind}…", { kind: tr(activity.kind) }) : actionLabel}
               </button>
-              {openError ? <p ref={errorMessage} className="today-open-error" role="alert">{openError}</p> : null}
-              <button type="button" className="today-course-link" onClick={onStart}>View course<Chevron /></button>
-            </> : <button type="button" className="btn-primary" onClick={onStart}>{allDone ? "Review course" : "View course"}</button>}
+              {openError ? <p ref={errorMessage} className="today-open-error" role="alert">{tr(openError)}</p> : null}
+              <button type="button" className="today-course-link" onClick={onStart}>{tr("View course")}<Chevron /></button>
+            </> : <button type="button" className="btn-primary" onClick={onStart}>{allDone ? tr("Review course") : tr("View course")}</button>}
           </section>
           <div className="today-secondary">
           <section className="today-tools" aria-labelledby="today-tools-title">
-            <h2 id="today-tools-title" className="sr-only">Tools</h2>
+            <h2 id="today-tools-title" className="sr-only">{tr("Tools")}</h2>
             <button type="button" className="today-checker" onClick={onOpenScamChecker}>
               <span className="today-tool-symbol"><MessageSearchIcon className="start-icon" /></span>
-              <span><strong>Scam checker</strong><span>Look for warning signs and get clear next steps.</span></span>
+              <span><strong>{tr("Scam checker")}</strong><span>{tr("Look for warning signs and get clear next steps.")}</span></span>
               <ArrowUpRight className="start-chevron" aria-hidden="true" />
             </button>
           </section>
           <section className="today-progress" aria-labelledby="today-progress-title">
-            <h2 id="today-progress-title">Your progress</h2>
+            <h2 id="today-progress-title">{tr("Your progress")}</h2>
             <div className="today-progress-rows">
-              <div className="today-lesson-count"><strong>{lessonsCompleted}</strong><span>lessons completed</span></div>
+              <div className="today-lesson-count"><strong>{lessonsCompleted}</strong><span>{tr("lessons completed")}</span></div>
               <button type="button" className="today-badges" onClick={onOpenBadges}>
                 <Award className="start-icon" aria-hidden="true" />
-                <span><strong>{badgesEarned} {badgesEarned === 1 ? "badge" : "badges"}</strong><span>View your badges</span></span>
+                <span><strong>{badgesEarned} {badgesEarned === 1 ? tr("badge") : tr("badges")}</strong><span>{tr("View your badges")}</span></span>
                 <Chevron />
               </button>
             </div>
           </section>
           </div>
         </div>
-        <p className="today-footnote">Small steps. Lasting confidence.</p>
+        <p className="today-footnote">{tr("Small steps. Lasting confidence.")}</p>
         <div className="today-install"><AddToHomeScreenBanner /></div>
       </div>
     </div>
