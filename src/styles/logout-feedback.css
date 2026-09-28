@@ -1,0 +1,4 @@
+.logout-feedback { padding: 14px 18px; font-size: calc(17px * var(--text-scale)); line-height: 1.45; color: var(--text-secondary); background: #f4f1e9; border-radius: 10px; scroll-margin-block: 16px; }
+.logout-feedback-error { color: #922e21; background: var(--danger-subtle); border-left: 3px solid var(--danger); }
+.settings-logout-row .logout-feedback { margin: 0 18px 16px; }
+.status-message > .logout-feedback { margin-top: 20px; }

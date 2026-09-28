@@ -577,7 +577,9 @@ test("desktop sidebar controls remain reachable at largest text in short windows
       const g=await measure(appUrl,1024,"",height);
       assert.equal(g.navigationReachable,true,`Sidebar controls reachable at 1024x${height}`);
     }
-    const clipped=await measure(appUrl,1024,"unscrollable-sidebar",768);
+    // Compact controls now fit at 768px. At 480px, scrolling is still
+    // essential; removing it must make this same passing case fail.
+    const clipped=await measure(appUrl,1024,"unscrollable-sidebar",480);
     assert.equal(clipped.navigationReachable,false,"Removing sidebar scrolling must reproduce the clipped text-size controls");
   });
 });

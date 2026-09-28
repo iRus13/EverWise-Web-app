@@ -1,5 +1,6 @@
-import React from "react";
-import { AlertCircle } from "lucide-react";
+import StatusScreen from "../components/StatusScreen";
+import {useId} from "react";
+import LogOutFeedback from "../components/LogOutFeedback";
 
 const SUPPORT_EMAIL = "everwisedigitalliteracy@gmail.com";
 
@@ -40,7 +41,12 @@ export default function PartnerAccessError({
   onLogOut,
   logOutLabel = "Log out",
   showSupport = false,
+  retryBusy = false,
+  logOutBusy = false,
+  logOutSlow = false,
+  logOutError = "",
 }) {
+  const logOutFeedbackId = useId();
   const canRetry =
     (code === "PARTNER_UNAVAILABLE" ||
       code === "PARTNER_ACCESS_UNCONFIRMED" ||
@@ -53,40 +59,17 @@ export default function PartnerAccessError({
       code === "PARTNER_CLEANUP_INCOMPLETE" ? "Account setup" : "Sponsored access";
 
   return (
-    <div className="onboarding-focus flex min-h-0 flex-1 flex-col overflow-y-auto px-7 pb-7 pt-8">
-      <div className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center text-center">
-        <AlertCircle
-          className="mx-auto h-16 w-16 text-clay"
-          strokeWidth={2}
-          aria-hidden="true"
-        />
-        <h1 className="page-title mt-6">{heading}</h1>
-        <p className="mt-4 text-lg leading-relaxed text-ink-soft" role="status">
-          {messageFor(code, partnerName)}
-        </p>
-        {canRetry ? (
-          <button type="button" className="btn-primary mt-8" onClick={onRetry}>
-            {retryLabel}
-          </button>
-        ) : null}
-        {typeof onLogOut === "function" ? (
-          <button
-            type="button"
-            className={`${canRetry ? "btn-secondary mt-4" : "btn-primary mt-8"}`}
-            onClick={onLogOut}
-          >
-            {logOutLabel}
-          </button>
-        ) : null}
-        {showSupport ? (
-          <a
-            className="btn-secondary mt-4"
-            href={`mailto:${SUPPORT_EMAIL}`}
-          >
-            Contact support
-          </a>
-        ) : null}
-      </div>
-    </div>
+    <StatusScreen
+      title={heading}
+      description={messageFor(code, partnerName)}
+      focusKey={code}
+      actions={<>
+        {canRetry && <button type="button" className="btn-primary" onClick={onRetry} disabled={retryBusy || logOutBusy} aria-busy={retryBusy}>{retryLabel}</button>}
+        {typeof onLogOut === "function" && <button type="button" className={canRetry ? "btn-secondary" : "btn-primary"} onClick={onLogOut} disabled={logOutBusy} aria-busy={logOutBusy} aria-describedby={logOutBusy || logOutError ? logOutFeedbackId : undefined}>{logOutLabel}</button>}
+        {showSupport && <a className="btn-secondary" href={`mailto:${SUPPORT_EMAIL}`}>Contact support</a>}
+      </>}
+    >
+      <LogOutFeedback id={logOutFeedbackId} busy={logOutBusy} slow={logOutSlow} error={logOutError} />
+    </StatusScreen>
   );
 }

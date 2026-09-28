@@ -1,6 +1,7 @@
+import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
-import { CheckIcon } from "../Icons";
+import AnswerFeedback from "./AnswerFeedback";
 import BlockShell from "./BlockShell";
 
 // Shared multiple-choice UI used by scenario, choice, and quiz questions.
@@ -19,11 +20,11 @@ export function MultipleChoiceBody({
   return (
     <>
       {title && (
-        <p className="text-lg font-bold uppercase tracking-wide text-ink-faint">
+        <p className="lesson-kicker">
           {title}
         </p>
       )}
-      <h1 className="page-title mt-2">
+      <h1 className="page-title lesson-question mt-2">
         {text}
       </h1>
       <div className="mt-5">
@@ -32,60 +33,27 @@ export function MultipleChoiceBody({
 
       <div className="mt-8 space-y-4">
         {options.map((option, i) => {
-          let style =
-            "border-ink/15 bg-cream-card text-ink hover:border-clay hover:bg-clay/5";
-          if (answered) {
-            if (i === correctIndex) style = "border-sage bg-sage/15 text-sage-dark";
-            else if (i === selected) style = "border-alert bg-alert/12 text-alert";
-            else style = "border-ink/10 bg-cream-card text-ink-faint";
-          }
           return (
-            <button
+            <AnswerOption
               key={i}
-              type="button"
+
               disabled={answered}
               onClick={() => onSelect(i)}
-              className={`w-full rounded-2xl border-2 px-6 py-6 text-left text-2xl font-semibold transition-colors ${style}`}
+              selected={selected === i}
+              state={answered ? i === correctIndex ? "correct" : i === selected ? "incorrect" : "other" : undefined}
+
             >
               {option}
-            </button>
+            </AnswerOption>
           );
         })}
       </div>
 
-      {answered && (
-        <div
-          className={`mt-8 animate-pop-in rounded-3xl p-6 ${
-            isCorrect ? "bg-sage/15" : "bg-alert/12"
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <div
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-cream-card ${
-                isCorrect ? "bg-sage" : "bg-alert"
-              }`}
-            >
-              {isCorrect ? (
-                <CheckIcon className="h-8 w-8" />
-              ) : (
-                <span className="font-sans text-2xl font-bold">!</span>
-              )}
-            </div>
-            <p
-              className={`font-sans text-2xl font-bold ${
-                isCorrect ? "text-sage-dark" : "text-alert"
-              }`}
-            >
-              {isCorrect ? "That's right" : "Not quite"}
-            </p>
-          </div>
-          {explanation && (
-            <p className="mt-3 text-xl leading-relaxed text-ink-soft">
-              {explanation}
-            </p>
-          )}
-        </div>
-      )}
+      {answered && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right" : "Not quite"}>
+        {!isCorrect && <p className="lesson-correction">The correct answer is: {options[correctIndex]}</p>}
+        {explanation && <p>{explanation}</p>}
+      </AnswerFeedback>}
+
     </>
   );
 }
@@ -117,7 +85,6 @@ export default function ScenarioBlock({
       }
     >
       <MultipleChoiceBody
-        title={block.title}
         text={block.text}
         options={block.options}
         correctIndex={block.correctIndex}

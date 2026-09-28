@@ -1,40 +1,54 @@
-import { useState } from "react";
-import { ArrowLeftIcon } from "../components/Icons";
+import Field from "../components/Field";
+import { useEffect, useId, useRef, useState } from "react";
+import "../styles/settings.css";
+import StatusScreen from "../components/StatusScreen";
+import UtilityScreen from "../components/UtilityScreen";
 import { openLegalPage } from "../config/legalLinks";
 import TextSizeControl from "../components/TextSizeControl";
+import LogOutFeedback from "../components/LogOutFeedback";
 import usePasswordResetRequest from "../hooks/usePasswordResetRequest.js";
+import { Capacitor } from "@capacitor/core";
 
 const SUPPORT_EMAIL = "everwisedigitalliteracy@gmail.com";
 
-function Row({ label, value, onClick, hint, disabled = false }) {
+function SettingsSection({ title, className, children, error }) {
+  const headingId = useId();
+  return (
+    <section className={`settings-section ${className}`} aria-labelledby={headingId}>
+      <h2 id={headingId}>{title}</h2>
+      <div className="settings-group">
+        {children}
+        {error ? <p className="settings-feedback text-alert" role="alert">{error}</p> : null}
+      </div>
+    </section>
+  );
+}
+
+function Row({ label, value, onClick, hint, disabled = false, destructive = false, buttonRef, describedBy, busy }) {
+  const hintId = useId();
   const interactive = typeof onClick === "function";
   const Comp = interactive ? "button" : "div";
   return (
     <Comp
+      ref={buttonRef}
       type={interactive ? "button" : undefined}
       onClick={onClick}
       disabled={interactive ? disabled : undefined}
       aria-label={interactive ? label : undefined}
-      className={`responsive-split flex w-full items-center justify-between gap-4 rounded-2xl bg-cream-card px-5 py-5 text-left shadow-card ${
-        interactive
-          ? "transition-colors hover:bg-cream-deep active:bg-cream-deep disabled:cursor-not-allowed disabled:opacity-60"
-          : ""
-      }`}
+      aria-describedby={interactive ? [hint && hintId, describedBy].filter(Boolean).join(" ") || undefined : undefined}
+      aria-busy={interactive && busy ? true : undefined}
+      className={`settings-row ${destructive ? "settings-row-destructive" : ""}`}
     >
-      <div className="min-w-0">
-        <p className="text-xl font-semibold text-ink">{label}</p>
-        {hint ? (
-          <p className="mt-1 text-lg text-ink-soft">{hint}</p>
-        ) : null}
-      </div>
+      <span className="settings-row-copy">
+        <span className="settings-row-label">{label}</span>
+        {hint ? <span className="settings-row-hint" id={hintId}>{hint}</span> : null}
+      </span>
       {value != null ? (
-        <p className="shrink-0 text-right text-xl font-semibold text-clay">
-          {value}
-        </p>
+        <span className="settings-row-value">{value}</span>
       ) : interactive ? (
-        <span className="shrink-0 text-2xl text-ink-faint" aria-hidden="true">
-          →
-        </span>
+        <svg className="settings-chevron" width="16" height="20" viewBox="0 0 16 20" fill="none" aria-hidden="true">
+          <path d="m6 5 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       ) : null}
     </Comp>
   );
@@ -332,50 +346,25 @@ function terminalReleaseMessage(terminal) {
 
 export function PartnerReleaseRecovery({ busy = false, terminal = null, onRetry }) {
   return (
-    <div className="onboarding-focus flex min-h-0 flex-1 flex-col overflow-y-auto px-7 pb-7 pt-8">
-      <div className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center text-center">
-        <h1 className="page-title">Finishing account deletion</h1>
-        <p className="mt-4 text-lg leading-relaxed text-ink-soft" role="status">
-          {terminal
-            ? terminalReleaseMessage(terminal)
-            : "Your account has been deleted, but we still need to finish releasing its sponsored place. Please retry so another learner can use it."}
-        </p>
-        {terminal ? (
-          <a className="btn-primary mt-8" href={`mailto:${SUPPORT_EMAIL}`}>
-            Contact support
-          </a>
-        ) : (
-          <button
-            type="button"
-            className="btn-primary mt-8"
-            onClick={onRetry}
-            disabled={busy}
-          >
-            {busy ? "Retrying…" : "Retry"}
-          </button>
-        )}
-      </div>
-    </div>
+    <StatusScreen
+      title="Finishing account deletion"
+      focusKey={terminal}
+      description={terminal ? terminalReleaseMessage(terminal) : "Your account has been deleted, but we still need to finish releasing its sponsored place. Please retry so another learner can use it."}
+      actions={terminal
+        ? <a className="btn-primary" href={`mailto:${SUPPORT_EMAIL}`}>Contact support</a>
+        : <button type="button" className="btn-primary" onClick={onRetry} disabled={busy} aria-busy={busy}>{busy ? "Retrying…" : "Retry"}</button>}
+    />
   );
 }
 
 export function PartnerDeletionReconciliation({ reconciliation = "compensation" }) {
-  return (
-    <div className="onboarding-focus flex min-h-0 flex-1 flex-col overflow-y-auto px-7 pb-7 pt-8">
-      <div className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center text-center">
-        <h1 className="page-title">Account deletion needs help</h1>
-        <p className="mt-4 text-lg leading-relaxed text-ink-soft" role="status">
-          {terminalReleaseMessage(reconciliation)}
-        </p>
-        <a className="btn-primary mt-8" href={`mailto:${SUPPORT_EMAIL}`}>
-          Contact support
-        </a>
-      </div>
-    </div>
-  );
+  return <StatusScreen title="Account deletion needs help" focusKey={reconciliation}
+    description={terminalReleaseMessage(reconciliation)}
+    actions={<a className="btn-primary" href={`mailto:${SUPPORT_EMAIL}`}>Contact support</a>} />;
 }
 
 export default function Settings({
+  name = "",
   billing,
   billingLocale,
   billingTimeZone,
@@ -385,6 +374,9 @@ export default function Settings({
   plan,
   onBack,
   onLogOut,
+  logOutBusy = false,
+  logOutSlow = false,
+  logOutError = "",
   onOpenPaywall,
   onManageSubscription,
   onRetryBilling,
@@ -394,12 +386,54 @@ export default function Settings({
   onTextSizeChange,
 }) {
   const [error, setError] = useState("");
+  const logOutFeedbackId = useId();
   const reset = usePasswordResetRequest(onResetPassword);
   const [busy, setBusy] = useState(false);
   const [billingActionBusy, setBillingActionBusy] = useState(false);
   const [billingActionError, setBillingActionError] = useState("");
   const [confirmingDelete, setConfirmingDelete] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
+  const deleteButton = useRef(null);
+  const deleteHeading = useRef(null);
+  const deleteError = useRef(null);
+  const wasConfirmingDelete = useRef(false);
+  useEffect(() => {
+    if (confirmingDelete) {
+      const heading = deleteHeading.current;
+      heading?.focus({preventScroll:true});
+      const pane = heading?.closest(".settings-screen");
+      // Put the explanation in view, rather than only the focused heading
+      // at the bottom edge. Do not scroll the fixed application shell.
+      if (pane) pane.scrollTop = Math.max(0, pane.scrollTop + heading.getBoundingClientRect().top - pane.getBoundingClientRect().top - 16);
+    }
+    else if (wasConfirmingDelete.current) deleteButton.current?.focus();
+    wasConfirmingDelete.current = confirmingDelete;
+  }, [confirmingDelete]);
+  useEffect(() => {
+    if (!confirmingDelete || !error || !deleteError.current) return;
+    const message = deleteError.current;
+    const reveal = () => {
+      if (document.activeElement?.id === "delete-current-password") return;
+      let owner = message.parentElement;
+      while (owner && (!/^(auto|scroll)$/.test(getComputedStyle(owner).overflowY) || owner.scrollHeight <= owner.clientHeight)) owner = owner.parentElement;
+      if (!owner || owner === document.body || owner === document.documentElement) owner = document.scrollingElement;
+      if (!owner) return;
+      const bounds = owner === document.scrollingElement ? {top: 0, bottom: innerHeight} : owner.getBoundingClientRect();
+      const top = Math.max(0, bounds.top) + 16;
+      const bottom = Math.min(innerHeight, bounds.bottom) - 16;
+      const rect = message.getBoundingClientRect();
+      if (rect.top >= top && rect.bottom <= bottom) return;
+      const delta = rect.height > bottom - top || rect.top < top ? rect.top - top : rect.bottom - bottom;
+      owner.scrollTop = Math.max(0, Math.min(owner.scrollHeight - owner.clientHeight, owner.scrollTop + delta));
+    };
+    reveal();
+    // Font loading, rotation and keyboard dismissal can move the explanation
+    // after it mounts. Reveal it again only if that layout change hides it.
+    const observer = typeof ResizeObserver === "function" ? new ResizeObserver(reveal) : null;
+    observer?.observe(message.closest(".settings-delete-confirmation"));
+    window.addEventListener("resize", reveal);
+    return () => { observer?.disconnect(); window.removeEventListener("resize", reveal); };
+  }, [confirmingDelete, error]);
 
   const billingView = normalizeBillingViewModel(billing, {
     partner,
@@ -408,6 +442,7 @@ export default function Settings({
     subscriptionStatus,
   });
   const billingBusy = billingView.busy || billingActionBusy;
+  const cancelsWebsiteSubscription = !Capacitor.isNativePlatform() && billingView.provider !== "sponsor";
 
   const runBillingAction = async (action) => {
     if (typeof action !== "function" || billingBusy) return;
@@ -440,30 +475,23 @@ export default function Settings({
   };
 
   return (
-    <div className="settings-screen mx-auto flex w-full max-w-3xl flex-1 flex-col overflow-y-auto px-7 pb-10 pt-8 lg:px-0 lg:pt-12">
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={onBack}
-          disabled={busy}
-          aria-label="Back to home"
-          className="rounded-full p-1.5 text-ink-soft transition-colors hover:bg-cream-deep lg:hidden"
-        >
-          <ArrowLeftIcon className="h-7 w-7" />
-        </button>
-        <h1 className="page-title lg:text-4xl">Settings</h1>
-      </div>
+    <UtilityScreen onBack={onBack} navigationDisabled={busy}>
+    <div className="settings-screen">
+      <header className="settings-header">
+        <h1>Settings</h1>
+      </header>
 
       <div className="settings-grid">
-        <section className="settings-section settings-display mt-8 space-y-3">
-          <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-            Display
-          </p>
-          <div className="responsive-split flex w-full items-center justify-between gap-4 rounded-2xl bg-cream-card px-5 py-5 shadow-card">
+        <div className="settings-profile">
+          <span className="settings-avatar" aria-hidden="true">{name.trim().slice(0, 1).toUpperCase() || "E"}</span>
+          <div><h2>{name.trim() || "Your account"}</h2><p>Your learning, at your pace.</p></div>
+        </div>
+        <SettingsSection title="Display" className="settings-display">
+          <div className="settings-row settings-text-size">
             <div className="min-w-0">
-              <p className="text-xl font-semibold text-ink">Text size</p>
-              <p className="mt-1 text-lg text-ink-soft">
-                Applies everywhere in the app
+              <p className="settings-row-label">Text size</p>
+              <p className="settings-row-hint">
+                {Capacitor.isNativePlatform() ? "Follows your device text size. Adjust further here." : "Applies everywhere in the app"}
               </p>
             </div>
             {onTextSizeChange ? (
@@ -474,14 +502,11 @@ export default function Settings({
               />
             ) : null}
           </div>
-        </section>
+        </SettingsSection>
 
         {billingView.provider === "sponsor" ? (
-          <section className="settings-section settings-subscription mt-8 space-y-3">
-            <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-              Access
-            </p>
-            <div className="rounded-2xl bg-cream-card px-5 py-5 shadow-card">
+          <SettingsSection title="Access" className="settings-subscription" error={billingActionError}>
+            <div className="settings-summary">
               <p className="text-xl font-semibold text-ink">
                 Full access provided by {billingView.partnerName}
               </p>
@@ -489,17 +514,14 @@ export default function Settings({
                 No subscription or payment is required.
               </p>
             </div>
-          </section>
+          </SettingsSection>
         ) : billingView.provider === "unavailable" ? (
-          <section className="settings-section settings-subscription mt-8 space-y-3">
-            <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-              Subscription
-            </p>
+          <SettingsSection title="Subscription" className="settings-subscription" error={billingActionError}>
             <p
-              className="rounded-2xl bg-alert/10 px-5 py-5 text-lg font-semibold text-alert shadow-card"
-              role="alert"
+              className={`settings-feedback ${billingBusy ? "text-ink-soft" : "text-alert"}`}
+              role={billingBusy ? "status" : "alert"}
             >
-              Billing is temporarily unavailable.
+              {billingBusy ? "Checking your subscription…" : "Billing is temporarily unavailable."}
             </p>
             <Row
               label="Retry"
@@ -507,12 +529,9 @@ export default function Settings({
               onClick={() => runBillingAction(onRetryBilling)}
               disabled={billingBusy}
             />
-          </section>
+          </SettingsSection>
         ) : billingView.provider === "none" ? (
-          <section className="settings-section settings-subscription mt-8 space-y-3">
-            <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-              Subscription
-            </p>
+          <SettingsSection title="Subscription" className="settings-subscription" error={billingActionError}>
             <Row label="Status" value="No subscription" />
             <Row
               label="View plans"
@@ -520,13 +539,10 @@ export default function Settings({
               hint="Compare plans and pricing"
               disabled={billingBusy}
             />
-          </section>
+          </SettingsSection>
         ) : (
-          <section className="settings-section settings-subscription mt-8 space-y-3">
-            <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-              Subscription
-            </p>
-            <div className="rounded-2xl bg-cream-card px-5 py-5 shadow-card">
+          <SettingsSection title="Subscription" className="settings-subscription" error={billingActionError}>
+            <div className="settings-summary">
               <div className="flex flex-wrap items-baseline justify-between gap-3">
                 <p className="text-xl font-semibold text-ink">Status</p>
                 <p className="text-xl font-semibold text-clay">
@@ -589,21 +605,22 @@ export default function Settings({
                 disabled={billingBusy}
               />
             )}
-          </section>
+          </SettingsSection>
         )}
 
-        <section className="settings-section settings-account mt-8 space-y-3">
-        <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-          Account
-        </p>
-        <Row label="Log out" onClick={onLogOut} disabled={busy} />
+        <SettingsSection title="Account" className="settings-account">
+        <div className="settings-logout-row">
+          <Row label="Log out" onClick={onLogOut} disabled={busy || logOutBusy} busy={logOutBusy}
+            describedBy={logOutBusy || logOutError ? logOutFeedbackId : undefined} />
+          <LogOutFeedback id={logOutFeedbackId} busy={logOutBusy} slow={logOutSlow} error={logOutError} />
+        </div>
         {typeof onResetPassword === "function" ? (
-          <div>
+          <div className="settings-reset-row">
             <Row
               label="Reset password"
               hint={reset.busy ? "Requesting reset…" : "Send a secure reset link to your email"}
               onClick={() => { setError(""); void reset.run(); }}
-              disabled={busy || reset.busy}
+              disabled={busy || reset.busy || logOutBusy}
             />
             {reset.busy && <p className="mt-3 text-lg text-ink-soft" role="status">Requesting a reset email… You can leave this screen while it sends.</p>}
             {reset.sent && <p className="mt-3 text-lg text-sage-dark" role="status">If an account uses your email address, you’ll receive a reset link. Check your inbox and spam folder.</p>}
@@ -621,43 +638,58 @@ export default function Settings({
         {!confirmingDelete ? (
           <Row
             label="Delete account"
+            destructive
+            buttonRef={deleteButton}
             hint="Permanently remove your account and saved progress"
             onClick={() => {
               setError("");
               setConfirmingDelete(true);
             }}
-            disabled={busy || reset.busy}
+            disabled={busy || reset.busy || logOutBusy}
           />
         ) : (
-          <div className="rounded-2xl border-2 border-alert/40 bg-alert/10 px-5 py-5">
-            <p className="text-xl font-bold text-ink">Delete your account?</p>
+          <div className="settings-delete-confirmation">
+            <h3 ref={deleteHeading} tabIndex={-1} className="text-xl font-bold text-ink">Delete your account?</h3>
             <p className="mt-2 text-lg leading-snug text-ink-soft">
               This permanently deletes your account, progress, and badges.
-              Any active subscription is cancelled first, so you will not be
-              billed again. This cannot be undone.
+              {" "}This cannot be undone.
             </p>
-            <div className="mt-4">
-              <label
-                htmlFor="delete-current-password"
-                className="block text-xl font-semibold text-ink"
+            <div className="settings-delete-billing">
+              <h4>Before you delete</h4>
+              <p>
+                If you subscribed through Apple, cancel that subscription first.
+                {" "}Deleting your account does not stop Apple billing.
+              </p>
+              <button
+                type="button"
+                className="btn-secondary"
+                disabled={busy}
+                onClick={() => window.open("https://apps.apple.com/account/subscriptions", "_blank", "noopener,noreferrer")}
               >
-                Current password
-              </label>
-              <input
+                Open Apple billing
+              </button>
+              <p>
+                {cancelsWebsiteSubscription
+                  ? "Any subscription bought on our website is cancelled before deletion. If cancellation fails, your account is kept."
+                  : "If you subscribed on our website, cancel in EverWise web Settings before deleting your account here."}
+              </p>
+            </div>
+            <div className="mt-4">
+              <Field
                 id="delete-current-password"
-                name="delete-current-password"
+                label="Current password"
                 type="password"
                 value={currentPassword}
-                onChange={(event) => setCurrentPassword(event.target.value)}
+                onChange={setCurrentPassword}
                 autoComplete="current-password"
-                className="mt-2 w-full rounded-2xl border-2 border-ink/20 bg-cream-card px-5 text-xl text-ink transition-colors focus:border-clay"
-                style={{ minHeight: "62px" }}
+                describedBy="delete-password-hint"
+                disabled={busy}
               />
-              <p className="mt-2 text-base text-ink-soft">
+              <p id="delete-password-hint" className="mt-2 text-base text-ink-soft">
                 Enter your current password to confirm it is you.
               </p>
             </div>
-            <div className="mt-4 flex gap-3">
+            <div className="settings-delete-actions">
               <button
                 type="button"
                 className="btn-secondary flex-1"
@@ -671,21 +703,19 @@ export default function Settings({
               </button>
               <button
                 type="button"
-                className="flex-1 rounded-2xl bg-alert px-6 py-5 text-center text-lg font-bold text-cream-card shadow-btn transition-all active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:opacity-60"
+                className="btn-primary settings-delete-button"
                 onClick={handleDeleteAccount}
-                disabled={busy || reset.busy || !currentPassword}
+                disabled={busy || reset.busy || logOutBusy || !currentPassword}
               >
                 {busy ? "Deleting…" : "Yes, delete"}
               </button>
             </div>
+            {error ? <p ref={deleteError} className="mt-4 text-alert" role="alert">{error}</p> : null}
           </div>
         )}
-        </section>
+        </SettingsSection>
 
-        <section className="settings-section settings-legal mt-8 space-y-3">
-        <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-          Legal
-        </p>
+        <SettingsSection title="Legal" className="settings-legal">
         <Row
           label="Privacy Policy"
           onClick={() => openLegalPage("privacy")}
@@ -694,19 +724,10 @@ export default function Settings({
           label="Terms of Service"
           onClick={() => openLegalPage("terms")}
         />
-        </section>
+        </SettingsSection>
       </div>
 
-      {error ? (
-        <p className="mt-6 rounded-2xl bg-alert/10 px-5 py-4 text-lg font-semibold text-alert" role="alert">
-          {error}
-        </p>
-      ) : null}
-      {billingActionError ? (
-        <p className="mt-6 rounded-2xl bg-alert/10 px-5 py-4 text-lg font-semibold text-alert" role="alert">
-          {billingActionError}
-        </p>
-      ) : null}
     </div>
+    </UtilityScreen>
   );
 }

@@ -36,9 +36,19 @@ async function getAudioBlob(text, signal) {
 export default function ReadAloud({ text, label = "Read aloud" }) {
   const [speaking, setSpeaking] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const errorRef = useRef(null);
   const audioRef = useRef(null);
   const abortRef = useRef(null);
   const utteranceRef = useRef(null);
+
+  useEffect(() => {
+    if (!error) return undefined;
+    const frame = requestAnimationFrame(() => {
+      errorRef.current?.scrollIntoView?.({block: "nearest", behavior: "auto"});
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [error]);
 
   const releasePlayback = useCallback(() => {
     // Invalidate ownership before cancellation: stopping an audio source can
@@ -57,6 +67,7 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
   useEffect(() => {
     setSpeaking(false);
     setLoading(false);
+    setError("");
     return releasePlayback;
   }, [text, releasePlayback]);
 
@@ -64,23 +75,36 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
     releasePlayback();
     setLoading(false);
     setSpeaking(false);
+    setError("");
   };
 
   const speakWithDeviceVoice = (speakText) => {
-    if (!("speechSynthesis" in window)) return;
-    const utterance = new SpeechSynthesisUtterance(speakText);
-    utterance.rate = 0.9;
-    utterance.pitch = 1;
-    const finish = () => {
-      if (utteranceRef.current !== utterance) return;
+    const unavailable = () => {
       utteranceRef.current = null;
       setSpeaking(false);
+      setError("Audio isn't available right now. Please try again.");
     };
-    utterance.onend = finish;
-    utterance.onerror = finish;
-    utteranceRef.current = utterance;
-    setSpeaking(true);
-    window.speechSynthesis.speak(utterance);
+    if (!window.speechSynthesis || typeof SpeechSynthesisUtterance !== "function") {
+      unavailable();
+      return;
+    }
+    try {
+      const utterance = new SpeechSynthesisUtterance(speakText);
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      utterance.onend = () => {
+        if (utteranceRef.current !== utterance) return;
+        utteranceRef.current = null;
+        setSpeaking(false);
+      };
+      utterance.onerror = () => {
+        if (utteranceRef.current === utterance) unavailable();
+      };
+      utteranceRef.current = utterance;
+      setSpeaking(true);
+      window.speechSynthesis.speak(utterance);
+    } catch { unavailable(); }
+
   };
 
   const speak = async () => {
@@ -123,6 +147,7 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
   };
 
   return (
+    <div className="read-aloud">
     <button
       type="button"
       onClick={speaking || loading ? stop : speak}
@@ -131,11 +156,13 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
       className={`inline-flex items-center gap-3 rounded-full border-2 px-5 py-3 text-lg font-semibold transition-colors ${
         speaking || loading
           ? "border-clay bg-clay text-cream-card"
-          : "border-clay/40 bg-cream-card text-clay hover:bg-clay/10"
+          : "border-clay/40 bg-cream-card text-clay enabled:hover:bg-clay/10 enabled:active:bg-clay/10"
       }`}
     >
       {speaking || loading ? <StopIcon /> : <SpeakerIcon />}
       {loading ? "Starting…" : speaking ? "Stop" : label}
     </button>
+    {error && <p ref={errorRef} className="read-aloud-error" role="status">{error}</p>}
+    </div>
   );
 }

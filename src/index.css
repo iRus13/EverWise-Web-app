@@ -6,49 +6,51 @@
   html {
     -webkit-text-size-adjust: 100%;
     /* Keep layout units stable; only typography scales with the user setting. */
-    --text-scale: 1;
-    font-size: 18px;
+    --app-text-scale: 1;
+    --text-scale: calc(var(--app-text-scale) * var(--system-text-scale, 1));
+    --heading-scale: calc(var(--app-text-scale) * var(--system-title-scale, 1));
+    font-size: 16px;
     height: 100%;
   }
 
   html[data-text-size="size-1"] {
-    --text-scale: 0.89;
+    --app-text-scale: 0.89;
   }
 
   html[data-text-size="size-2"] {
-    --text-scale: 1;
+    --app-text-scale: 1;
   }
 
   html[data-text-size="size-3"] {
-    --text-scale: 1.11;
+    --app-text-scale: 1.11;
   }
 
   html[data-text-size="size-4"] {
-    --text-scale: 1.22;
+    --app-text-scale: 1.22;
   }
 
   html[data-text-size="size-5"] {
-    --text-scale: 1.33;
+    --app-text-scale: 1.33;
   }
 
   html[data-text-size="size-6"] {
-    --text-scale: 1.44;
+    --app-text-scale: 1.44;
   }
 
   html[data-text-size="size-7"] {
-    --text-scale: 1.56;
+    --app-text-scale: 1.56;
   }
 
   html[data-text-size="size-8"] {
-    --text-scale: 1.67;
+    --app-text-scale: 1.67;
   }
 
   html[data-text-size="size-9"] {
-    --text-scale: 1.78;
+    --app-text-scale: 1.78;
   }
 
   html[data-text-size="size-10"] {
-    --text-scale: 1.89;
+    --app-text-scale: 1.89;
   }
 
   body,
@@ -58,10 +60,11 @@
   }
 
   body {
-    @apply bg-cream text-ink font-sans antialiased;
+    @apply text-ink font-sans antialiased;
+    background: var(--surface-grouped);
     /* Clear sans-serif with a comfortable line height for easy reading. */
-    font-size: calc(1rem * var(--text-scale));
-    line-height: 1.65;
+    font-size: calc(17px * var(--text-scale));
+    line-height: 1.5;
     margin: 0;
     overscroll-behavior: none;
     -webkit-user-select: none;
@@ -77,7 +80,7 @@
 
   /* Clear, visible focus outline for keyboard users */
   *:focus-visible {
-    outline: 3px solid #22201c;
+    outline: 3px solid var(--text-primary);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -119,14 +122,6 @@
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
-/* Tall iPad compatibility windows place window controls inside the upper
-   content area. Keep the welcome brand below that chrome. */
-@media (max-width: 639px) and (min-height: 1000px) {
-  .landing-screen {
-    padding-top: 2.5rem;
-  }
-}
-
 .app-viewport {
   position: relative;
   box-sizing: border-box;
@@ -143,9 +138,7 @@
    the app card barely reads as intentional on a wide browser window. */
 @media (min-width: 640px) {
   .app-viewport {
-    background:
-      radial-gradient(circle at 50% 6%, rgba(176, 81, 47, 0.07) 0%, transparent 45%),
-      linear-gradient(180deg, #f3eee3 0%, #e7dfce 100%);
+    background: var(--surface-grouped);
   }
 }
 
@@ -249,7 +242,7 @@
     flex: 0 0 auto;
     align-items: center;
     gap: 0.6rem;
-    color: #22201c;
+    color: var(--text-primary);
     font-size: calc(1.05rem * var(--text-scale));
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -320,13 +313,16 @@
     transition: color 150ms ease, background-color 150ms ease;
   }
 
-  .app-navigation-item:hover {
+  .app-navigation-item:enabled:not(.is-active):active {
     background: #e7dfce;
-    color: #22201c;
+    color: var(--text-primary);
+  }
+  @media (hover: hover) {
+    .app-navigation-item:enabled:not(.is-active):hover { background: #e7dfce; color: var(--text-primary); }
   }
 
   .app-navigation-item.is-active {
-    background: #b0512f;
+    background: var(--accent);
     color: #fbf9f4;
   }
 
@@ -418,34 +414,7 @@
     padding-bottom: 3rem;
   }
 
-  .badges-screen,
-  .badges-content {
-    overflow: visible;
-  }
 
-  .badges-content {
-    padding-inline: clamp(2rem, 5vw, 3.5rem);
-  }
-
-  .badges-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 1.5rem;
-  }
-
-  .app-canvas-badges .badges-screen > header {
-    border-radius: 0;
-  }
-
-  .app-canvas-path .path-header {
-    border-radius: 0;
-  }
-
-  .release-paywall {
-    height: auto;
-    min-height: calc(100dvh - 3rem);
-    overflow: visible;
-    padding: 1.5rem clamp(2rem, 5vw, 3.75rem) 0;
-  }
 
   .learning-focus {
     width: 100%;
@@ -465,10 +434,6 @@
     max-width: 640px;
   }
 
-  .interview-focus > main {
-    overflow: visible;
-  }
-
   .learning-focus-shell {
     height: auto;
     max-height: none;
@@ -480,48 +445,7 @@
     overflow: visible;
   }
 
-  .course-path-screen,
-  .course-path-screen .path-scroll {
-    overflow: visible;
-  }
 
-  .course-path-canvas {
-    max-width: 760px;
-  }
-
-  .paywall-main,
-  .paywall-layout {
-    min-height: 0;
-  }
-
-  .paywall-layout {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
-
-@media (min-width: 900px) {
-  .paywall-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 1.1fr);
-    align-items: center;
-    gap: clamp(2.5rem, 7vw, 5rem);
-  }
-
-  .paywall-story,
-  .paywall-offer {
-    min-width: 0;
-  }
-
-  .paywall-headline {
-    text-align: left;
-  }
-
-  .paywall-footer {
-    margin-top: 1rem;
-  }
 }
 
 @media (min-width: 1024px) {
@@ -542,7 +466,7 @@
 
   .app-shell.has-app-navigation {
     display: grid;
-    grid-template-columns: 238px minmax(0, 1fr);
+    grid-template-columns: 260px minmax(0, 1fr);
     align-items: stretch;
   }
 
@@ -554,30 +478,37 @@
     overscroll-behavior-y: contain;
     flex-direction: column;
     align-items: stretch;
-    gap: 1.75rem;
-    padding: 1.5rem 1rem;
+    gap: 24px;
+    padding: 24px 16px;
     border-right: 1px solid rgb(34 32 28 / 10%);
     border-bottom: 0;
     border-radius: 0;
-    box-shadow: 8px 0 24px rgb(34 32 28 / 4%);
+    box-shadow: none;
   }
 
   .app-navigation-brand {
-    padding-inline: 0.6rem;
-    font-size: calc(1.25rem * var(--text-scale));
+    padding-inline: 8px;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 650;
+    line-height: 1.2;
   }
 
   .app-navigation-partner {
-    font-size: calc(0.72rem * var(--text-scale));
+    font-size: calc(14px * var(--text-scale));
+    font-weight: 400;
+    line-height: 1.4;
   }
 
   .app-navigation-partner-lockup {
-    padding-left: 3.1rem;
+    padding-left: 0;
+    margin-top: 6px;
+    align-items: flex-start;
   }
 
   .app-navigation-logo {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 32px;
+    height: 32px;
   }
 
   .app-navigation-items {
@@ -593,70 +524,75 @@
     width: 100%;
     justify-content: flex-start;
     gap: 0.75rem;
-    padding: 0.8rem 0.9rem;
-    font-size: calc(1rem * var(--text-scale));
+    min-height: 48px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: calc(18px * var(--text-scale));
+    font-weight: 600;
+    line-height: 1.3;
     text-align: left;
   }
 
-  /* The path nodes are positioned from the canvas centre, so letting the
-     canvas run full width keeps them centred while the phase colour bands
-     reach both edges. Capped at 760px it read as a phone screen pasted onto
-     the desktop page. */
-  .course-path-canvas {
-    max-width: none;
+  .app-navigation-item.is-active {
+    background: #eee2d6;
+    color: var(--accent);
   }
 
-  /* Desktop: the nav is a vertical sidebar. Push the text-size stepper to
-     the bottom, below the links, and show its label. */
-  /* Desktop: keep it in the sidebar flow right below the links rather than
-     pinned to the bottom corner, where it was easy to miss. */
+  .app-navigation-item > svg {
+    width: min(32px, calc(24px * var(--text-scale)));
+    height: min(32px, calc(24px * var(--text-scale)));
+  }
+
+  /* Separate utilities from destinations without competing card outlines. */
   .app-navigation-textsize {
-    margin-top: 1.25rem;
+    margin-top: 12px;
     margin-left: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0.6rem;
-    padding: 0.9rem;
-    border: 2px solid rgb(34 32 28 / 12%);
-    border-radius: 16px;
-    background: #f3ece0;
+    padding: 16px 12px 0;
+    border: 0;
+    border-top: 1px solid var(--separator);
+    border-radius: 0;
+    background: transparent;
   }
 
   .app-navigation-textsize-label {
     display: block;
-    color: #22201c;
-    font-size: calc(1rem * var(--text-scale));
-    font-weight: 800;
+    color: var(--text-primary);
+    font-size: calc(16px * var(--text-scale));
+    font-weight: 600;
   }
 
   .app-navigation-textsize-button {
     width: 100%;
-    height: 3.5rem;
+    height: 48px;
   }
 
   /* Bottom of the sidebar: current phase + overall course percentage. */
   .app-navigation-progress {
     display: block;
     margin-top: auto;
-    padding: 0.95rem;
-    border: 2px solid rgb(34 32 28 / 12%);
-    border-radius: 16px;
-    background: #f3ece0;
+    padding: 16px 12px 0;
+    border: 0;
+    border-top: 1px solid var(--separator);
+    border-radius: 0;
+    background: transparent;
   }
 
   .app-navigation-progress-eyebrow {
     color: #4a463f;
-    font-size: calc(0.8rem * var(--text-scale));
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: calc(14px * var(--text-scale));
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
   }
 
   .app-navigation-progress-title {
     margin-top: 0.2rem;
-    color: #22201c;
-    font-size: calc(1.05rem * var(--text-scale));
-    font-weight: 800;
+    color: var(--text-primary);
+    font-size: calc(18px * var(--text-scale));
+    font-weight: 600;
     line-height: 1.2;
   }
 
@@ -721,24 +657,6 @@
     align-self: start;
   }
 
-  .scam-checker-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
-    align-items: start;
-    gap: clamp(1.5rem, 4vw, 3rem);
-  }
-
-  .scam-checker-main,
-  .scam-checker-aside {
-    min-width: 0;
-  }
-
-  .scam-checker-aside {
-    position: sticky;
-    top: 3rem;
-    margin-top: 1rem;
-  }
-
   .settings-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -750,16 +668,13 @@
     grid-column: 1 / -1;
   }
 
-  .badges-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
 
-  .app-canvas-badges .badges-screen > header {
-    border-radius: 0;
-  }
+}
 
-  .app-canvas-path .path-header {
-    border-radius: 0;
+/* Give enlarged navigation labels room without shrinking the user's text. */
+@media (min-width: 1024px) {
+  html:is([data-expanded-text="true"], [data-text-size="size-6"], [data-text-size="size-7"], [data-text-size="size-8"], [data-text-size="size-9"], [data-text-size="size-10"]) .app-shell.has-app-navigation {
+    grid-template-columns: clamp(280px, 28vw, 360px) minmax(0, 1fr);
   }
 }
 
@@ -801,7 +716,7 @@
     font-size: calc(0.76rem * var(--text-scale));
   }
 
-  html:is(
+  html:is([data-expanded-text="true"],
       [data-text-size="size-7"],
       [data-text-size="size-8"],
       [data-text-size="size-9"],
@@ -814,7 +729,7 @@
     gap: 0.5rem;
   }
 
-  html:is(
+  html:is([data-expanded-text="true"],
       [data-text-size="size-7"],
       [data-text-size="size-8"],
       [data-text-size="size-9"],
@@ -865,282 +780,10 @@
   object-fit: contain;
 }
 
-.partner-dashboard {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100dvh;
-  min-height: 100dvh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: calc(clamp(1.5rem, 5vw, 4rem) + env(safe-area-inset-top))
-    max(clamp(1.5rem, 5vw, 4rem), env(safe-area-inset-right))
-    calc(clamp(1.5rem, 5vw, 4rem) + env(safe-area-inset-bottom))
-    max(clamp(1.5rem, 5vw, 4rem), env(safe-area-inset-left));
-  background: #fbf9f4;
-  color: #22201c;
-}
-
-.partner-dashboard > * {
-  width: 100%;
-  max-width: 1120px;
-  margin-inline: auto;
-}
-
-.partner-dashboard-status {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 1rem;
-  text-align: center;
-}
-
-.partner-dashboard-status > * {
-  flex-shrink: 0;
-}
-
-.partner-dashboard-status > :first-child {
-  margin-top: auto;
-}
-
-.partner-dashboard-status > :last-child {
-  margin-bottom: auto;
-}
-
-.partner-dashboard-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: clamp(1.5rem, 5vw, 4rem);
-  padding-bottom: 2rem;
-}
-
-.partner-dashboard-brand {
-  display: flex;
-  flex: 0 1 auto;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.partner-dashboard-logo {
-  width: 3rem;
-  height: 3rem;
-  flex: 0 0 auto;
-  object-fit: contain;
-}
-
-.partner-dashboard-wordmark {
-  font-size: calc(1.45rem * var(--text-scale));
-  font-weight: 800;
-  line-height: 1.1;
-}
-
-.partner-dashboard-partner,
-.partner-dashboard-privacy {
-  max-width: 34rem;
-  color: #625d54;
-  font-size: calc(0.92rem * var(--text-scale));
-  line-height: 1.45;
-}
-
-.partner-dashboard-partner-lockup {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.partner-dashboard-partner-logo {
-  width: 2rem;
-  height: 2rem;
-  flex: 0 0 auto;
-  object-fit: contain;
-}
-
-.partner-dashboard-invitation-status {
-  margin-top: 0.75rem;
-  font-weight: 700;
-}
-
-.partner-dashboard h1 {
-  font-size: calc(clamp(2rem, 4vw, 3.5rem) * var(--text-scale));
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-}
-
-.partner-dashboard h2 {
-  font-size: calc(1.65rem * var(--text-scale));
-  font-weight: 750;
-}
-
-.partner-dashboard h3 {
-  margin-bottom: 0.5rem;
-  font-size: calc(1.15rem * var(--text-scale));
-  font-weight: 750;
-}
-
-.partner-dashboard-section {
-  padding-block: clamp(1.5rem, 4vw, 2.5rem);
-  border-top: 1px solid rgb(34 32 28 / 16%);
-}
-
-.partner-dashboard-lead {
-  margin-top: 0.75rem;
-  font-size: calc(clamp(2rem, 5vw, 4rem) * var(--text-scale));
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
-}
-
-.partner-dashboard-summary-line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem clamp(2rem, 6vw, 5rem);
-  margin-top: 0.75rem;
-}
-
-.partner-dashboard-summary-line strong {
-  font-size: calc(1.6rem * var(--text-scale));
-}
-
-.partner-dashboard-threshold,
-.partner-dashboard-confirmation,
-.partner-dashboard-replacement {
-  max-width: 48rem;
-  margin-top: 1.25rem;
-  padding: 1.25rem;
-  border: 2px solid rgb(34 32 28 / 16%);
-  border-radius: 18px;
-  background: #efe9dc;
-}
-
-.partner-dashboard-distributions {
-  margin-top: 1.5rem;
-}
-
-.partner-dashboard-breakdown {
-  padding-block: 1.5rem;
-  border-top: 1px solid rgb(34 32 28 / 10%);
-}
-
-.partner-dashboard table {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-}
-
-.partner-dashboard th,
-.partner-dashboard td {
-  padding: 0.75rem 0.5rem;
-  border-bottom: 1px solid rgb(34 32 28 / 10%);
-  overflow-wrap: anywhere;
-  text-align: left;
-  vertical-align: top;
-}
-
-.partner-dashboard th:first-child {
-  width: 56%;
-}
-
-.partner-dashboard-actions {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
-.partner-dashboard-button-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.partner-dashboard-button {
-  min-height: 60px;
-  margin-top: 1rem;
-  padding: 0.8rem 1.25rem;
-  border: 2px solid #8f3f24;
-  border-radius: 16px;
-  background: #b0512f;
-  color: #fbf9f4;
-  font-size: calc(1rem * var(--text-scale));
-  font-weight: 750;
-  line-height: 1.3;
-}
-
-.partner-dashboard-button:hover {
-  background: #8f3f24;
-}
-
-.partner-dashboard-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.partner-dashboard-button-secondary {
-  border-color: rgb(34 32 28 / 30%);
-  background: transparent;
-  color: #22201c;
-}
-
-.partner-dashboard-button-secondary:hover {
-  background: #e7dfce;
-}
-
-.partner-dashboard-confirmation .partner-dashboard-button,
-.partner-dashboard-button-row .partner-dashboard-button,
-.partner-dashboard-replacement .partner-dashboard-button {
-  margin-top: 0;
-}
-
-.partner-dashboard-replacement {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.partner-dashboard-replacement label {
-  font-weight: 700;
-}
-
-.partner-dashboard-replacement input {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 60px;
-  padding: 0.75rem;
-  border: 2px solid rgb(34 32 28 / 30%);
-  border-radius: 12px;
-  background: #fffdf8;
-  color: #22201c;
-  font: inherit;
-}
-
-@media (max-width: 767px) {
-  .partner-dashboard-header,
-  .partner-dashboard-actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .partner-dashboard-button,
-  .partner-dashboard-button-row .partner-dashboard-button {
-    width: 100%;
-  }
-
-  .partner-dashboard th:first-child {
-    width: 48%;
-  }
-}
-
 .home-content {
   min-height: 100%;
 }
 
-.path-scroll {
-  overscroll-behavior-y: contain;
-  scroll-padding-block: 1rem 6rem;
-}
 
 @media (max-height: 760px) {
   .landing-screen {
@@ -1168,136 +811,6 @@
   }
 }
 
-/* Keep the normal-size login action visible on compact phones. Larger text
-   and the onscreen keyboard can still use the existing vertical scrolling. */
-@media (max-width: 767px) and (max-height: 700px) {
-  .login-screen { padding-block: 0.75rem; }
-  .login-screen .page-title { margin-top: 0.5rem; }
-  .login-fields { margin-top: 1rem; }
-  .login-fields > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
-  .login-actions { padding-top: 0.5rem; }
-  .login-actions > .btn-primary { padding-block: 0.75rem; }
-  .login-actions > p { margin-top: 0.5rem; }
-}
-
-/*
- * Compact paywall spacing for shorter iPhones. The release overrides below
- * preserve readable, scaled typography and allow the full offer to scroll.
- */
-@media (max-height: 900px) {
-  .release-paywall {
-    --paywall-wordmark: 26px;
-    --paywall-headline: 31px;
-    --paywall-benefit-title: 18px;
-    --paywall-benefit-body: 15px;
-    --paywall-plan-title: 22px;
-    --paywall-price: 29px;
-    --paywall-cadence: 15px;
-    --paywall-detail: 15px;
-    --paywall-badge: 12px;
-    --paywall-cta: 22px;
-    --paywall-reassurance: 14px;
-    --paywall-footer: 15px;
-    padding: 0.5rem 1rem 0;
-  }
-
-  .paywall-header {
-    height: 3rem;
-  }
-
-  .paywall-logo {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-
-  .paywall-headline,
-  .paywall-benefits,
-  .paywall-plans {
-    margin-top: 0.65rem;
-  }
-
-  .paywall-benefit {
-    gap: 0.75rem;
-    padding-top: 0.45rem;
-    padding-bottom: 0.45rem;
-  }
-
-  .paywall-benefit-icon {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .paywall-plans {
-    gap: 0.5rem;
-  }
-
-  .paywall-plan-card {
-    padding-top: 0.65rem;
-    padding-bottom: 0.65rem;
-  }
-
-  .paywall-plan-annual {
-    min-height: 7.35rem;
-  }
-
-  .paywall-plan-monthly {
-    min-height: 4.9rem;
-  }
-
-  .paywall-cta {
-    min-height: 3.75rem;
-    margin-top: 0.65rem;
-  }
-
-  .paywall-reassurance {
-    margin-top: 0.4rem;
-  }
-
-  .paywall-footer {
-    min-height: 2rem;
-  }
-}
-
-@media (max-height: 740px) {
-  .release-paywall {
-    --paywall-headline: 28px;
-    --paywall-benefit-title: 16px;
-    --paywall-benefit-body: 13px;
-    --paywall-plan-title: 20px;
-    --paywall-price: 26px;
-    --paywall-cadence: 13px;
-    --paywall-detail: 13px;
-    --paywall-badge: 10px;
-    --paywall-cta: 20px;
-    --paywall-reassurance: 12px;
-    --paywall-footer: 13px;
-  }
-
-  .paywall-headline,
-  .paywall-benefits,
-  .paywall-plans,
-  .paywall-cta {
-    margin-top: 0.4rem;
-  }
-
-  .paywall-benefit {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-  }
-
-  .paywall-plan-annual {
-    min-height: 6.7rem;
-  }
-
-  .paywall-plan-monthly {
-    min-height: 4.35rem;
-  }
-
-  .paywall-footer {
-    margin-top: auto;
-  }
-}
-
 /*
  * Accessible text scaling
  *
@@ -1320,16 +833,19 @@ html[data-text-size] .text-base {
   line-height: calc(1.5rem * var(--text-scale));
 }
 
-html[data-text-size] .text-lg,
-html[data-text-size] .btn-secondary {
+html[data-text-size] .text-lg {
   font-size: calc(1.125rem * var(--text-scale));
   line-height: calc(1.75rem * var(--text-scale));
 }
 
-html[data-text-size] .text-xl,
-html[data-text-size] .btn-primary {
+html[data-text-size] .text-xl {
   font-size: calc(1.25rem * var(--text-scale));
   line-height: calc(1.75rem * var(--text-scale));
+}
+
+html[data-text-size] :is(.btn-primary, .btn-secondary) {
+  font-size: calc(1rem * var(--text-scale));
+  line-height: 1.4;
 }
 
 html[data-text-size] .text-2xl {
@@ -1399,17 +915,9 @@ html[data-text-size] .text-size-control {
   line-height: 1;
 }
 
-/* On a computer there's no reason the +/- controls should stay
-   phone-sized — bigger targets and bigger symbols, still one stable size
-   regardless of the chosen text-size setting. */
-@media (min-width: 1024px) {
-  html[data-text-size] .text-size-control {
-    font-size: 2.5rem;
-  }
-}
 
 /* Give very large text a full-width column instead of squeezing it. */
-html:is(
+html:is([data-expanded-text="true"],
     [data-text-size="size-7"],
     [data-text-size="size-8"],
     [data-text-size="size-9"],
@@ -1419,7 +927,7 @@ html:is(
   flex-direction: column;
 }
 
-html:is(
+html:is([data-expanded-text="true"],
     [data-text-size="size-7"],
     [data-text-size="size-8"],
     [data-text-size="size-9"],
@@ -1429,93 +937,10 @@ html:is(
   grid-template-columns: minmax(0, 1fr);
 }
 
-/*
- * At large text sizes, lesson navigation becomes two clear rows. The title
- * keeps the back button beside it, while Skip and Exit share a full-width row.
- */
-html:is(
-    [data-text-size="size-6"],
-    [data-text-size="size-7"],
-    [data-text-size="size-8"],
-    [data-text-size="size-9"],
-    [data-text-size="size-10"]
-  )
-  .lesson-top-grid {
-  grid-template-columns: 44px minmax(0, 1fr);
-  align-items: start;
-  row-gap: 0.75rem;
-}
-
-html:is(
-    [data-text-size="size-6"],
-    [data-text-size="size-7"],
-    [data-text-size="size-8"],
-    [data-text-size="size-9"],
-    [data-text-size="size-10"]
-  )
-  .lesson-top-label {
-  grid-column: 2;
-  justify-self: stretch;
-}
-
-html:is(
-    [data-text-size="size-6"],
-    [data-text-size="size-7"],
-    [data-text-size="size-8"],
-    [data-text-size="size-9"],
-    [data-text-size="size-10"]
-  )
-  .lesson-top-label-text {
-  overflow: visible;
-  white-space: normal;
-  text-overflow: clip;
-}
-
-html:is(
-    [data-text-size="size-6"],
-    [data-text-size="size-7"],
-    [data-text-size="size-8"],
-    [data-text-size="size-9"],
-    [data-text-size="size-10"]
-  )
-  .lesson-top-actions {
-  grid-column: 1 / -1;
-  width: 100%;
-  justify-self: stretch;
-  gap: 0.5rem;
-}
-
-html:is(
-    [data-text-size="size-6"],
-    [data-text-size="size-7"],
-    [data-text-size="size-8"],
-    [data-text-size="size-9"],
-    [data-text-size="size-10"]
-  )
-  .lesson-top-actions > button {
-  flex: 1 1 0;
-  min-width: 0;
-  width: auto;
-  border: 2px solid rgb(34 32 28 / 15%);
-  background: rgb(255 253 248 / 80%);
-  padding: 0.65rem 1rem;
-}
-
-html:is(
-    [data-text-size="size-6"],
-    [data-text-size="size-7"],
-    [data-text-size="size-8"],
-    [data-text-size="size-9"],
-    [data-text-size="size-10"]
-  )
-  .lesson-top-actions:has(.lesson-skip-spacer) {
-  display: none;
-}
-
 /* Let large-text lessons flow on short screens; fixed navigation and actions
    would otherwise leave only a line or two for the activity itself. */
 @media (max-width: 767px) and (max-height: 700px) {
-  html:is(
+  html:is([data-expanded-text="true"],
       [data-text-size="size-6"],
       [data-text-size="size-7"],
       [data-text-size="size-8"],
@@ -1525,7 +950,7 @@ html:is(
     overflow-y: auto;
   }
 
-  html:is(
+  html:is([data-expanded-text="true"],
       [data-text-size="size-6"],
       [data-text-size="size-7"],
       [data-text-size="size-8"],
@@ -1541,7 +966,7 @@ html:is(
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
 }
 
-html:is(
+html:is([data-expanded-text="true"],
     [data-text-size="size-8"],
     [data-text-size="size-9"],
     [data-text-size="size-10"]
@@ -1552,7 +977,7 @@ html:is(
 }
 
 /* Side-by-side content becomes a readable stack before words get squeezed. */
-html:is(
+html:is([data-expanded-text="true"],
     [data-text-size="size-7"],
     [data-text-size="size-8"],
     [data-text-size="size-9"],
@@ -1562,7 +987,7 @@ html:is(
   grid-template-columns: minmax(0, 1fr);
 }
 
-html:is(
+html:is([data-expanded-text="true"],
     [data-text-size="size-7"],
     [data-text-size="size-8"],
     [data-text-size="size-9"],
@@ -1573,7 +998,7 @@ html:is(
   flex-direction: column;
 }
 
-html:is(
+html:is([data-expanded-text="true"],
     [data-text-size="size-7"],
     [data-text-size="size-8"],
     [data-text-size="size-9"],
@@ -1584,18 +1009,18 @@ html:is(
   text-align: left;
 }
 
-html:is(
+html:is([data-expanded-text="true"],
     [data-text-size="size-7"],
     [data-text-size="size-8"],
     [data-text-size="size-9"],
     [data-text-size="size-10"]
   )
-  :is(.landing-layout, .home-dashboard, .scam-checker-layout, .settings-grid, .paywall-layout) {
+  :is(.landing-layout, .home-dashboard, .settings-grid) {
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas: none;
 }
 
-html:is(
+html:is([data-expanded-text="true"],
     [data-text-size="size-7"],
     [data-text-size="size-8"],
     [data-text-size="size-9"],
@@ -1606,110 +1031,15 @@ html:is(
   grid-column: auto;
 }
 
-html:is(
-    [data-text-size="size-7"],
-    [data-text-size="size-8"],
-    [data-text-size="size-9"],
-    [data-text-size="size-10"]
-  )
-  .scam-checker-aside {
-  position: static;
-}
-
-@keyframes launch-logo {
-  0% {
-    opacity: 0;
-    transform: scale(0.72) rotate(-5deg);
-  }
-  68% {
-    opacity: 1;
-    transform: scale(1.06) rotate(1deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0);
-  }
-}
-
-@keyframes launch-copy {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes launch-progress {
-  0% {
-    transform: scaleX(0);
-  }
-  78% {
-    transform: scaleX(0.84);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-.launch-logo {
-  animation: launch-logo 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.launch-copy {
-  animation: launch-copy 420ms ease-out 180ms both;
-}
-
-.launch-progress-bar {
-  animation: launch-progress 2850ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  transform-origin: left center;
-}
-
-@keyframes plan-progress {
-  0% {
-    width: 8%;
-  }
-  55% {
-    width: 72%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-.plan-progress-bar {
-  animation: plan-progress 2950ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.flashcard-button {
-  perspective: 1200px;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.flashcard-stage {
-  transform-style: preserve-3d;
-  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.flashcard-stage.is-flipped {
-  transform: rotateY(180deg);
-}
-
-.flashcard-face {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.flashcard-back {
-  transform: rotateY(180deg);
-}
-
+/* Both faces share a grid cell to preserve card height. Explicit visibility
+   avoids WebKit compositing reversed back-face text through the front. */
+.flashcard-button { -webkit-tap-highlight-color: transparent; }
+.flashcard-face { visibility: hidden; opacity: 0; }
+.flashcard-stage:not(.is-flipped) > .flashcard-face:not(.flashcard-back),
+.flashcard-stage.is-flipped > .flashcard-back { visibility: visible; opacity: 1; animation: card-reveal 160ms ease-out; }
+@keyframes card-reveal { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .flashcard-stage {
-    transition: none;
-  }
+  .flashcard-face { animation: none !important; }
 }
 
 @media (display-mode: standalone), (max-width: 639px) {
@@ -1729,20 +1059,20 @@ html:is(
 
   /* Primary clay action button — big, high contrast, easy to tap */
   .btn-primary {
-    @apply w-full rounded-2xl bg-clay px-6 py-5 text-center text-xl font-bold
-      text-cream-card shadow-btn transition-all duration-150
-      active:translate-y-1 active:shadow-none hover:bg-clay-dark
+    @apply w-full rounded-2xl bg-clay px-6 py-3 text-center text-xl font-semibold
+      text-cream-card transition-colors duration-150
+      active:bg-clay-dark hover:bg-clay-dark
       disabled:cursor-not-allowed disabled:bg-clay/50 disabled:shadow-none
       disabled:hover:bg-clay/50 disabled:active:translate-y-0;
-    min-height: 68px;
+    min-height: 56px;
     height: auto;
   }
 
   .btn-secondary {
-    @apply w-full rounded-2xl border-2 border-ink/20 bg-cream-card px-6 py-5
+    @apply w-full rounded-2xl border border-ink/20 bg-cream-card px-6 py-3
       text-center text-lg font-semibold text-ink transition-colors
-      hover:bg-cream-deep;
-    min-height: 60px;
+      hover:bg-cream-deep active:bg-cream-deep;
+    min-height: 56px;
     height: auto;
   }
 
@@ -1763,89 +1093,11 @@ html:is(
   }
 }
 
-/* Web subscription terms stay readable even on short screens. Let the page
-   scroll instead of applying the compact App Store typography above. */
-.release-paywall {
-  --paywall-wordmark: 1.75rem;
-  --paywall-headline: clamp(2rem, 3vw, 3rem);
-  --paywall-benefit-title: 1.25rem;
-  --paywall-benefit-body: 1.0625rem;
-  --paywall-plan-title: 1.375rem;
-  --paywall-price: 1.875rem;
-  --paywall-detail: 1rem;
-  --paywall-cta: 1.25rem;
-  --paywall-reassurance: 1rem;
-  --paywall-footer: 1rem;
-  padding: 1rem clamp(1rem, 4vw, 4rem) max(1rem, env(safe-area-inset-bottom));
-}
-.release-paywall .paywall-main { flex: 1 0 auto; }
-.release-paywall .paywall-layout {
-  width: 100%;
-  max-width: 72rem;
-  margin: 1.5rem auto;
-  gap: 2rem;
-}
-.release-paywall .paywall-story { padding-bottom: 1.5rem; }
-.release-paywall .paywall-benefit { padding-block: 1rem; }
-.release-paywall .paywall-plan-card { min-height: 0; padding: 1.25rem 1rem; }
-.release-paywall .paywall-plans { gap: 0.75rem; margin-top: 1rem; }
-.release-paywall .paywall-plan-card span { overflow-wrap: anywhere; }
-.release-paywall .paywall-trial-summary,
-.release-paywall .paywall-reassurance { font-size: 1rem; line-height: 1.5; }
-.release-paywall .paywall-plan-card span[style] { line-height: 1.35 !important; }
-.release-paywall .paywall-cta { margin-top: 1rem; min-height: 3.5rem; }
-.release-paywall button:focus-visible { outline: 3px solid #2D302A; outline-offset: 3px; }
-.release-paywall .paywall-footer { flex-wrap: wrap; margin-top: 1rem; }
-@media (min-width: 900px) {
-  .release-paywall .paywall-layout { align-items: start; gap: 4rem; }
-  .release-paywall .paywall-story { padding-top: 2rem; }
-}
-.release-paywall .paywall-header { padding-inline: 3rem; }
-.release-paywall .paywall-logo { width: 2rem; height: 2rem; }
-.release-paywall .paywall-plan-card { position: relative; }
-.release-paywall .paywall-plan-card > span { display: block; }
-.release-paywall .paywall-plan-card > span > svg { position: absolute; top: 1.25rem; right: 1rem; }
-.release-paywall .paywall-plan-card > span > span { display: block; }
-.release-paywall .paywall-plan-card > span > span > span:first-child { display: block; padding-right: 3rem; }
-
-/* Keep financial terms legible and honor the learner's chosen text size. */
+/* Keep the final challenge heading usable at enlarged text sizes. */
 @media (max-width: 767px) {
-  html:is([data-text-size="size-7"], [data-text-size="size-8"], [data-text-size="size-9"], [data-text-size="size-10"]) .final-challenge-heading {
+  html:is([data-expanded-text="true"],[data-text-size="size-7"], [data-text-size="size-8"], [data-text-size="size-9"], [data-text-size="size-10"]) .final-challenge-heading {
     flex-direction: column;
     align-items: flex-start;
   }
 }
-.release-paywall {
-  --paywall-headline: calc(clamp(2rem, 3vw, 3rem) * var(--text-scale));
-  --paywall-benefit-title: calc(1.25rem * var(--text-scale));
-  --paywall-benefit-body: calc(1.0625rem * var(--text-scale));
-  --paywall-plan-title: calc(1.375rem * var(--text-scale));
-  --paywall-price: calc(1.875rem * var(--text-scale));
-  --paywall-cta: calc(1.25rem * var(--text-scale));
-  --paywall-detail: max(1rem, calc(1rem * var(--text-scale)));
-  --paywall-reassurance: max(1rem, calc(1rem * var(--text-scale)));
-  --paywall-footer: max(1rem, calc(1rem * var(--text-scale)));
-}
-.release-paywall .paywall-reassurance,
-.release-paywall .paywall-trial-summary { font-size: max(1rem, calc(1rem * var(--text-scale))); }
-.release-paywall .paywall-plan-card span { overflow-wrap: anywhere; }
-.release-paywall .paywall-plan-card .items-baseline { flex-wrap: wrap; }
-
-/* Preserve whole headline words on the narrowest phones at enlarged sizes. */
-@media (max-width: 374px) {
-  .release-paywall {
-    --paywall-headline: min(calc(2rem * var(--text-scale)), 15vw);
-  }
-}
-
-/* Bound long status/course headings by their actual content width. Body copy
-   retains the full text preference and the screen remains scrollable. */
-.billing-status-card, .exam-intro { container-type: inline-size; }
-.billing-status-heading {
-  font-size: min(calc(2rem * var(--text-scale)), 15cqi);
-  line-height: 1.15;
-}
-html[data-text-size] .exam-intro-heading {
-  font-size: min(calc(1.875rem * var(--text-scale)), 12cqi);
-  line-height: 1.2;
-}
+.read-aloud-error { margin-top: 8px; font-size: calc(16px * var(--text-scale)); line-height: 1.45; color: #922e21; }

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowLeftIcon } from "../Icons";
+import { useId, useState } from "react";
+import { ChevronLeft, ChevronRight, RotateCw } from "lucide-react";
 import ReadAloud from "../ReadAloud";
 import BlockShell from "./BlockShell";
 
@@ -11,6 +11,7 @@ export default function FlashcardsBlock({
   onBack,
   onExit,
 }) {
+  const cardId = useId();
   const cards = block.cards || [];
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -38,13 +39,15 @@ export default function FlashcardsBlock({
       onBack={onBack}
       onExit={onExit}
       onSkip={onContinue}
+      scrollKey={index}
       footer={
         <button className="btn-primary" onClick={continueFromCard}>
           Continue
         </button>
       }
     >
-      <p className="text-lg font-semibold text-ink-faint">
+      <h1 className="page-title">{block.title || "Flashcards"}</h1>
+      <p className="lesson-card-count">
         Card {index + 1} of {cards.length}
       </p>
 
@@ -53,7 +56,8 @@ export default function FlashcardsBlock({
         onClick={() => setFlipped((f) => !f)}
         aria-label={flipped ? "Show front of card" : "Show back of card"}
         aria-pressed={flipped}
-        className="flashcard-button mt-6 w-full shrink-0 overflow-hidden rounded-3xl bg-cream-card text-center shadow-card"
+        aria-describedby={`${cardId}-${flipped ? "back" : "front"}`}
+        className="flashcard-button mt-6 w-full shrink-0 overflow-hidden text-center"
       >
         <span
           key={index}
@@ -65,10 +69,10 @@ export default function FlashcardsBlock({
             aria-hidden={flipped}
             className="flashcard-face col-start-1 row-start-1 flex min-h-[220px] w-full flex-col items-center justify-center px-6 py-8"
           >
-            <span className="text-base font-bold uppercase tracking-wide text-ink-faint">
-              Front · tap to flip
+            <span className="lesson-card-side">
+              Front
             </span>
-            <span className="flashcard-copy mt-4 w-full break-words font-sans text-2xl font-semibold leading-snug text-ink">
+            <span id={`${cardId}-front`} className="flashcard-copy mt-4 w-full break-words font-sans text-2xl font-semibold leading-snug text-ink">
               {card.front}
             </span>
           </span>
@@ -77,38 +81,39 @@ export default function FlashcardsBlock({
             aria-hidden={!flipped}
             className="flashcard-face flashcard-back col-start-1 row-start-1 flex min-h-[220px] w-full flex-col items-center justify-center px-6 py-8"
           >
-            <span className="text-base font-bold uppercase tracking-wide text-ink-faint">
-              Back · tap to flip
+            <span className="lesson-card-side">
+              Back
             </span>
-            <span className="flashcard-copy mt-4 w-full break-words font-sans text-2xl font-semibold leading-snug text-ink">
+            <span id={`${cardId}-back`} className="flashcard-copy mt-4 w-full break-words font-sans text-2xl font-semibold leading-snug text-ink">
               {card.back}
             </span>
           </span>
         </span>
+        <span className="lesson-card-hint" aria-hidden="true"><RotateCw size={16} /> Tap to turn over</span>
       </button>
 
-      <div className="mt-6">
+      <div className="lesson-card-audio">
         <ReadAloud text={flipped ? card.back : card.front} />
       </div>
 
-      <div className="mt-8 flex items-center justify-between gap-4">
+      <div className="lesson-card-navigation">
         <button
           type="button"
           onClick={() => go(index - 1)}
           disabled={index === 0}
           aria-label="Previous card"
-          className="flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-ink/15 bg-cream-card text-ink disabled:opacity-40"
+          className="lesson-card-step"
         >
-          <ArrowLeftIcon className="h-8 w-8" />
+          <ChevronLeft size={20} aria-hidden="true" /><span>Previous</span>
         </button>
         <button
           type="button"
           onClick={() => go(index + 1)}
           disabled={index >= cards.length - 1}
           aria-label="Next card"
-          className="flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-ink/15 bg-cream-card text-ink disabled:opacity-40"
+          className="lesson-card-step"
         >
-          <ArrowLeftIcon className="h-8 w-8 rotate-180" />
+          <span>Next</span><ChevronRight size={20} aria-hidden="true" />
         </button>
       </div>
     </BlockShell>

@@ -11,6 +11,9 @@ export async function checkBadgeGallery(page, base) {
         await page.goto(`${base}/tests/fixtures/app-layout.html?view=badges&awards=${awards}&textSize=${textSize}`);
         await page.waitForSelector('body[data-geometry-ready="true"]', {state:"attached"});
         const label = `${awards} ${width}x${height} ${textSize}`;
+        // Check the complete collection only after explicitly opening it.
+        await page.getByRole("button", {name:"All badges",exact:true}).click();
+        for(const toggle of await page.locator('.badge-phase-toggle').all()) if(await toggle.getAttribute('aria-expanded') === 'false') await toggle.click();
         assert.equal(await page.getByRole("progressbar", {name:"Course badges earned"}).getAttribute("aria-valuenow"), awards === "earned" ? "2" : "0", label);
         assert.equal(await page.getByText("Finish your first lesson to earn your first badge.", {exact:true}).count(), awards === "empty" ? 1 : 0, `${label}: empty hint only for empty collection`);
         const layout = await page.locator(".badges-screen").evaluate(screen => {
@@ -34,6 +37,19 @@ export async function checkBadgeGallery(page, base) {
         } else {
           assert.equal(await page.getByRole("heading", {name:"Exam honors",exact:true}).count(), 0);
         }
+        // The fixture's geometry probe deliberately scrolls the sidebar.
+        // Start this separate user journey with its navigation at the top.
+        if(width >= 768) await page.getByRole("navigation",{name:"Primary navigation"}).evaluate(element=>{element.scrollTop=0;});
+        await page.locator(".badge-tile").last().scrollIntoViewIfNeeded();
+        await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));
+        const last=await page.locator(".badge-tile").last().boundingBox();
+        assert.ok(last.y < height && last.y+last.height > 0,`${label}: collection is scrolled to its final badge`);
+        const primaryIsPinned=width >= 768 && await page.getByRole("navigation",{name:"Primary navigation"}).evaluate(element=>getComputedStyle(element).position !== "static");
+        const home=primaryIsPinned ? page.getByRole("navigation",{name:"Primary navigation"}).getByRole("button",{name:"Home",exact:true}) : page.getByRole("button",{name:"Back to home",exact:true});
+        const back=await home.boundingBox();
+        assert.ok(back.y >= -1 && back.y+back.height <= height+1,`${label}: Home remains visible at the bottom of the collection`);
+        assert.ok(await home.evaluate(button=>{const r=button.getBoundingClientRect();return button.contains(document.elementFromPoint(r.left+r.width/2,r.top+r.height/2));}),`${label}: Home is not covered by another header`);
+        await page.locator(".badges-screen").evaluate(element=>{element.scrollTop=0;});
         combinations++;
       }
     }

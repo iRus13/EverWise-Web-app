@@ -2,6 +2,7 @@
   "appId": "com.everwise.app",
   "appName": "Everwise",
   "webDir": "dist/client",
+  "backgroundColor": "#F5F5F7",
   "ios": {
     "contentInset": "never",
     "preferredContentMode": "mobile"

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { X } from "lucide-react";
 import ReadAloud from "../ReadAloud";
 import { CheckIcon } from "../Icons";
 import BlockShell from "./BlockShell";
+import AnswerFeedback from "./AnswerFeedback";
 
 export default function MultiselectBlock({
   block,
@@ -22,7 +24,7 @@ export default function MultiselectBlock({
 
   const resultMessage = fullyCorrect
     ? block.feedback
-    : block.incorrectFeedback || block.feedback;
+    : block.incorrectFeedback;
 
   const toggle = (i) => {
     if (checked) return;
@@ -59,7 +61,7 @@ export default function MultiselectBlock({
         )
       }
     >
-      <h1 className="page-title">
+      <h1 className="page-title lesson-question">
         {block.prompt || block.title}
       </h1>
       <div className="mt-5">
@@ -68,15 +70,6 @@ export default function MultiselectBlock({
 
       <div className="mt-8 space-y-3">
         {block.options.map((opt, i) => {
-          let style =
-            "border-ink/15 bg-cream-card text-ink hover:border-clay hover:bg-clay/5";
-          if (checked) {
-            if (opt.correct) style = "border-sage bg-sage/15 text-sage-dark";
-            else if (picked.has(i)) style = "border-alert bg-alert/12 text-alert";
-            else style = "border-ink/10 bg-cream-card text-ink-faint";
-          } else if (picked.has(i)) {
-            style = "border-clay bg-clay/10 text-ink";
-          }
           return (
             <button
               key={i}
@@ -84,19 +77,20 @@ export default function MultiselectBlock({
               onClick={() => toggle(i)}
               disabled={checked}
               aria-pressed={picked.has(i)}
-              className={`flex w-full items-center gap-3 rounded-2xl border-2 px-5 py-5 text-left text-xl font-semibold transition-colors ${style}`}
+              data-answer-state={checked ? opt.correct ? "correct" : picked.has(i) ? "incorrect" : "other" : picked.has(i) ? "selected" : undefined}
+              className="lesson-answer lesson-answer-multiple"
             >
               <span
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md border-2 ${
-                  picked.has(i) || (checked && opt.correct)
-                    ? "border-transparent bg-clay text-cream-card"
-                    : "border-ink/25"
+                className={`lesson-multiple-mark ${
+                  checked && opt.correct ? "is-correct"
+                    : checked && picked.has(i) ? "is-incorrect"
+                    : picked.has(i) ? "is-selected" : ""
                 }`}
                 aria-hidden="true"
               >
-                {(picked.has(i) || (checked && opt.correct)) && (
-                  <CheckIcon className="h-5 w-5" />
-                )}
+                {checked && picked.has(i) && !opt.correct
+                  ? <X className="h-5 w-5" />
+                  : (picked.has(i) || (checked && opt.correct)) && <CheckIcon className="h-5 w-5" />}
               </span>
               {opt.text}
             </button>
@@ -104,15 +98,11 @@ export default function MultiselectBlock({
         })}
       </div>
 
-      {checked && resultMessage && (
-        <p
-          className={`mt-8 rounded-3xl px-5 py-5 text-xl leading-relaxed text-ink ${
-            fullyCorrect ? "bg-sage/15" : "bg-alert/12"
-          }`}
-        >
-          {resultMessage}
-        </p>
-      )}
+      {checked && <AnswerFeedback positive={fullyCorrect} title={fullyCorrect ? "That's right" : "Let's review your choices"}>
+        {resultMessage && <p>{resultMessage}</p>}
+        {!fullyCorrect && <p className="lesson-correction">Correct choices: {block.options.filter(option => option.correct).map(option => option.text).join("; ")}</p>}
+      </AnswerFeedback>}
+
     </BlockShell>
   );
 }

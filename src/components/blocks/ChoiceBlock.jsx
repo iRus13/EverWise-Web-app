@@ -29,7 +29,6 @@ export default function ChoiceBlock({
       }
     >
       <MultipleChoiceBody
-        title={block.title}
         text={block.text}
         options={block.options}
         correctIndex={block.correctIndex}

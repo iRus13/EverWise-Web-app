@@ -1,3 +1,5 @@
+import { readWithDeadline } from "../utils/readWithDeadline.js";
+
 export const MAX_BILLING_RESPONSE_BYTES = 25_000;
 export const BILLING_REQUEST_TIMEOUT_MS = 10_000;
 
@@ -476,7 +478,14 @@ const billingRequest = async ({
   // before any network activity, which is why this never worked.
   const { fetchImpl, apiEndpointImpl, setTimeoutImpl, clearTimeoutImpl } =
     dependencies;
-  const token = await authenticatedToken(user);
+  let token;
+  try {
+    token = await readWithDeadline(() => authenticatedToken(user), { message: "Billing access token timed out" });
+  } catch (error) {
+    if (error instanceof BillingAccessError) throw error;
+    // An unavailable token is not evidence that the saved login is invalid.
+    throw unavailable();
+  }
   const controller = new AbortController();
   const termination = createRequestTermination(controller);
   let timeoutId = null;

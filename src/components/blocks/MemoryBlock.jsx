@@ -38,13 +38,13 @@ export default function MemoryBlock({
           Today's lesson builds on what you already know.
         </p>
 
-        <div className="mt-7 space-y-4">
+        <div className="lesson-memory-list">
           {links.map((link) => (
             <div
               key={link.lesson}
-              className="rounded-3xl bg-cream-card px-6 py-5 shadow-card"
+              className="lesson-memory-item"
             >
-              <p className="text-base font-bold uppercase tracking-wide text-clay">
+              <p className="lesson-section-label">
                 {link.lesson}
               </p>
               <p className="mt-2 text-xl leading-relaxed text-ink">

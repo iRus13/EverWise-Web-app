@@ -156,6 +156,18 @@ export function findCurrentPlayableId(
   return null;
 }
 
+export function nextCourseActivity(completed, curriculum) {
+  const { lessons, challenges, exams } = curriculum;
+  const byId = new Map([
+    ...lessons.map((item, lessonIndex) => [item.id, { ...item, kind: "lesson", lessonIndex }]),
+    ...challenges.map(item => [item.id, { ...item, kind: "challenge" }]),
+    ...exams.map(item => [item.id, { ...item, kind: "exam" }]),
+  ]);
+  const ordered = requiredCourseIds(lessons, challenges, exams).map(id => byId.get(id));
+  const currentId = findCurrentPlayableId(ordered, completed, curriculum);
+  return byId.get(currentId) ?? null;
+}
+
 export function labelFinalLessonsForChallenges(lessons, challenges) {
   const challengePhases = new Set(
     challenges.map((challenge) => challenge.phase),

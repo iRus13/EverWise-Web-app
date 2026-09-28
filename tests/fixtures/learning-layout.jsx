@@ -13,7 +13,9 @@ document.documentElement.dataset.textSize=textSize;
 const samples=allLessons.flatMap(lesson => lesson.blocks.map((block, blockIndex) => ({lesson, block, blockIndex})))
   .filter(sample => sample.block.type === type)
   .sort((a,b) => JSON.stringify(b.block).length-JSON.stringify(a.block).length);
-const sample=samples[0];
+const sample=query.has("lesson")
+  ? samples.find(item => item.lesson.id === query.get("lesson") && item.blockIndex === Number(query.get("block")))
+  : samples[0];
 if(!sample) throw new Error(`No authored ${type} activity`);
 const noop=() => {};
 

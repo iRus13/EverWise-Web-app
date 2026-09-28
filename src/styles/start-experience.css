@@ -1,0 +1,74 @@
+.welcome-screen, .today-screen { flex: 1; min-height: 0; overflow-y: auto; background: var(--surface-grouped); color: var(--text-primary); }
+.welcome-content, .today-content { width: 100%; max-width: 1120px; margin-inline: auto; padding: 28px 24px max(24px,env(safe-area-inset-bottom)); }
+.start-brand { display: flex; align-items: center; gap: 8px; }
+.start-brand img { width: 30px; height: 30px; object-fit: contain; }
+.start-brand span { font-size: 20px; font-weight: 600; letter-spacing: -.6px; }
+.welcome-content { display: flex; flex-direction: column; min-height: 100%; gap: 32px; }
+.welcome-brand { margin-bottom: 12px; }
+.welcome-intro .welcome-eyebrow { color: var(--accent); font-size: calc(11px * var(--text-scale)); letter-spacing: 1.4px; line-height: 1.5; font-weight: 600; margin: 0 0 16px; }
+.welcome-intro h1 { font-size: calc(38px * var(--heading-scale)); line-height: 1.08; letter-spacing: -1.4px; font-weight: 650; text-wrap: initial; }
+.welcome-intro > p { margin-top: 20px; font-size: calc(17px * var(--text-scale)); color: var(--text-secondary); line-height: 1.5; max-width: 38ch; }
+.welcome-intro .welcome-sponsorship { font-size: calc(15px * var(--text-scale)); color: var(--success); }
+.welcome-guide h2 { font-size: calc(13px * var(--text-scale)); font-weight: 500; color: var(--text-secondary); margin-bottom: 16px; }
+.welcome-guide ol { display: grid; gap: 20px; }
+.welcome-guide li { display: flex; align-items: flex-start; gap: 16px; }
+.welcome-step-number { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 12px; color: var(--accent); background: var(--accent-subtle); }
+.welcome-guide h3 { font-size: calc(17px * var(--text-scale)); line-height: 1.35; font-weight: 600; text-wrap: initial; }
+.welcome-guide li p { margin-top: 3px; font-size: calc(15px * var(--text-scale)); line-height: 1.4; color: var(--text-secondary); }
+.welcome-actions { margin-top: auto; display: grid; gap: 8px; padding-top: 8px; }
+.welcome-actions .btn-secondary { border-color: transparent; background: transparent; }
+.today-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.today-settings { min-height: 44px; color: var(--accent); font-size: calc(17px * var(--text-scale)); }
+.today-partner { display: flex; align-items: center; gap: 8px; font-size: calc(15px * var(--text-scale)); color: var(--text-secondary); margin-bottom: 16px; }
+.today-intro { margin-bottom: 28px; }
+.today-greeting { font-size: calc(17px * var(--text-scale)); color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px; }
+.today-intro h1 { max-width: 15ch; font-size: calc(34px * var(--heading-scale)); font-weight: 650; line-height: 1.12; letter-spacing: -1px; text-wrap: initial; }
+.today-dashboard { display: grid; gap: 24px; }
+.today-learning { min-width: 0; padding: 24px; border: 0; border-radius: var(--radius-feature); background: var(--surface); box-shadow: 0 2px 8px rgb(0 0 0 / 3%); }
+.today-section-label { display: flex; gap: 8px; align-items: center; font-size: calc(13px * var(--text-scale)); font-weight: 600; line-height: 1.4; color: var(--accent); }
+.start-icon { width: 22px; height: 22px; flex: none; }
+.today-learning h2 { margin-top: 24px; font-size: calc(24px * var(--heading-scale)); font-weight: 600; letter-spacing: -.5px; line-height: 1.22; text-wrap: initial; }
+.today-learning > p { font-size: calc(15px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); margin-top: 16px; }
+.today-learning .today-activity-phase { margin-top: 8px; font-size: calc(13px * var(--text-scale)); }
+.today-learning .btn-primary { margin-top: 24px; }
+.today-course-link { display: flex; width: 100%; align-items: center; justify-content: center; gap: 6px; min-height: 44px; margin-top: 8px; color: var(--accent); font-size: calc(15px * var(--text-scale)); font-weight: 500; }
+.start-chevron { flex: none; width: 16px; height: 18px; color: var(--text-secondary); }
+.today-secondary { display: grid; align-content: start; gap: 28px; min-width: 0; }
+.today-checker { display: flex; width: 100%; align-items: center; gap: 12px; padding: 4px 0 20px; border-bottom: 1px solid var(--separator); text-align: left; }
+.today-tool-symbol { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: 14px; background: #e7ecea; color: var(--success); }
+.today-checker > span:not(.today-tool-symbol) { flex: 1; min-width: 0; }
+.today-checker strong { display: block; font-size: calc(17px * var(--text-scale)); font-weight: 600; line-height: 1.3; }
+.today-checker span span { display: block; margin-top: 4px; color: var(--text-secondary); font-size: calc(13px * var(--text-scale)); line-height: 1.4; }
+.today-progress h2 { font-size: calc(13px * var(--text-scale)); font-weight: 500; line-height: 1.4; color: var(--text-secondary); margin-bottom: 16px; }
+.today-progress-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.today-lesson-count, .today-badges > span { display: flex; flex-direction: column; gap: 5px; }
+.today-lesson-count strong,.today-badges strong { display: block; font-size: calc(22px * var(--text-scale)); font-weight: 600; line-height: 1.3; letter-spacing: -.4px; font-variant-numeric: tabular-nums; }
+.today-lesson-count > span,.today-badges span span { font-size: calc(13px * var(--text-scale)); color: var(--text-secondary); line-height: 1.4; }
+.today-badges { display: flex; align-items: center; justify-content: space-between; min-height: 52px; border-left: 1px solid var(--separator); padding-left: 20px; text-align: left; gap: 8px; }
+.today-badges > .start-icon { display: none; }
+.today-footnote { margin-top: 32px; font-size: calc(13px * var(--text-scale)); color: var(--text-secondary); }
+.today-install:empty { display: none; }
+.today-install:not(:empty) { margin-top: 24px; }
+.today-open-error { color: var(--danger) !important; }
+@media (hover:hover) { .today-checker:hover, .today-badges:hover { color: var(--accent); } .today-course-link:hover { text-decoration: underline; } }
+@media (min-width:768px) {
+  .welcome-content { display: grid; grid-template-columns: 1.1fr 1fr; align-content: center; gap: 40px 64px; padding: 56px; min-height: 100dvh; }
+  .welcome-brand { grid-column: 1 / -1; margin-bottom: 8px; }
+  .welcome-intro { grid-column: 1; grid-row: 2 / 4; align-self: center; }
+  .welcome-intro h1 { font-size: calc(48px * var(--heading-scale)); }
+  .welcome-guide,.welcome-actions { grid-column: 2; }
+  .welcome-actions { margin-top: 0; }
+  .today-content { padding: 40px; }
+  .today-dashboard { grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
+  .today-learning { padding: 28px; }
+  .today-intro h1 { max-width: none; }
+  .today-secondary { padding-top: 8px; }
+}
+@media (min-width:1024px) { .today-content { padding: 56px 48px; } .today-intro { margin-bottom: 40px; } }
+@media (max-height:740px) and (max-width:767px) { .welcome-content { gap: 24px; padding-top: 20px; } .welcome-brand { margin-bottom: 0; } .welcome-guide ol { gap: 16px; } }
+html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) :is(.welcome-content,.today-dashboard,.today-progress-rows) { grid-template-columns: minmax(0,1fr); }
+html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .welcome-content > * { grid-column: auto; grid-row: auto; }
+html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .today-badges { border-left: 0; border-top: 1px solid var(--separator); padding: 16px 0 0; }
+.app-screen-landing,.app-screen-home { --everwise-screen-background: var(--surface-grouped); --everwise-safe-top: var(--surface-grouped); }
+
+@media(min-width:700px) and (max-width:767px) { .today-content { padding: 36px; } .today-dashboard { grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: start; } .today-intro h1 { max-width: none; } }

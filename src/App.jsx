@@ -30,6 +30,7 @@ import {
   courseStanding,
   isCourseComplete,
   requiredCourseIds,
+  nextCourseActivity,
 } from "./utils/courseProgress.js";
 import {
   isTrialExpired,
@@ -45,6 +46,7 @@ import {
   readLessonPosition,
   saveLessonPosition,
 } from "./utils/lessonProgress.js";
+import {clearAllAssessmentPositions, clearAssessmentPosition, readAssessmentPosition, saveAssessmentPosition} from "./utils/assessmentProgress.js";
 import { consumePartnerFragment } from "./utils/partnerLinks.js";
 import {
   clearPartnerClaimRecovery,
@@ -79,6 +81,9 @@ import ProgressSaveNotice from "./components/ProgressSaveNotice.jsx";
 import useProgressSync from "./hooks/useProgressSync.js";
 import { canReceivePasswordReset, requestEmailPasswordReset } from "./utils/passwordRecovery.js";
 import { profileForRecreation } from "./utils/profileRecovery.js";
+import { readStartupProfile } from "./utils/startupProfile.js";
+import { readWithDeadline } from "./utils/readWithDeadline.js";
+import { verifyDeletionPassword } from "./utils/verifyDeletionPassword.js";
 import Complete from "./screens/Complete";
 import ScamChecker from "./screens/ScamChecker";
 import PartnerAccessError from "./screens/PartnerAccessError";
@@ -812,13 +817,19 @@ async function reconcilePartnerClaim({
   inviteToken,
   researchConsent,
   researchSnapshot,
+  operationIsCurrent,
 }) {
+  const requireCurrent = () => {
+    if (!operationIsCurrent()) throw new StalePartnerOperationError();
+  };
+  requireCurrent();
   let access;
   try {
     access = await fetchAuthoritativePartnerAccess(firebaseUser);
   } catch {
     return null;
   }
+  requireCurrent();
   if (!access || typeof access !== "object") return null;
   if (access.status === "active" || access.status === "suspended") {
     return access;
@@ -826,7 +837,8 @@ async function reconcilePartnerClaim({
   if (access.status !== "none") return null;
 
   try {
-    const idToken = await firebaseUser.getIdToken(true);
+    const idToken = await readWithDeadline(() => firebaseUser.getIdToken(true), { message: "Account verification timed out" });
+    requireCurrent();
     return await claimPartnerSeat({
       idToken,
       inviteToken,
@@ -834,6 +846,7 @@ async function reconcilePartnerClaim({
       researchSnapshot,
     });
   } catch (error) {
+    requireCurrent();
     if (isDefinitivePartnerClaimRejection(error)) throw error;
     try {
       access = await fetchAuthoritativePartnerAccess(firebaseUser);
@@ -894,13 +907,13 @@ async function fetchAuthoritativePartnerAccess(firebaseUser) {
   // a refresh on every call was firing extra token/auth-state churn that
   // left the billing-fetch effect's authSettledRef never staying settled
   // long enough for a Retry click to land in a working window.
-  const idToken = await firebaseUser.getIdToken();
+  const idToken = await readWithDeadline(() => firebaseUser.getIdToken(), { message: "Account access token timed out" });
   return fetchPartnerAccess({ idToken });
 }
 
-/** Ensure subscription fields exist and expire trials past 7 days. */
-async function normalizeSubscription(uid, data) {
-  let next = { ...data };
+/** Normalize legacy metadata locally; verified providers determine access. */
+function normalizeSubscription(data) {
+  const next = { ...data };
   const updates = {};
 
   if (!next.subscriptionStatus) {
@@ -916,18 +929,7 @@ async function normalizeSubscription(uid, data) {
 
   if (Object.keys(updates).length === 0) return next;
 
-  next = { ...next, ...updates };
-  try {
-    await updateDoc(doc(db, "users", uid), updates);
-  } catch (err) {
-    if (import.meta.env.DEV) {
-      console.error(
-        "[Everwise][firestore] Failed to normalize subscription:",
-        err?.code || err?.name || "unknown",
-      );
-    }
-  }
-  return next;
+  return { ...next, ...updates };
 }
 
 function LearnerApp({ initialPartnerFragment }) {
@@ -960,7 +962,6 @@ function LearnerApp({ initialPartnerFragment }) {
   // refs aren't part of React's dependency tracking).
   const [authSettledVersion, setAuthSettledVersion] = useState(0);
   const [authBootstrapAttempt, setAuthBootstrapAttempt] = useState(0);
-  const [launchAnimationDone, setLaunchAnimationDone] = useState(false);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [screen, setScreen] = useState("landing");
@@ -979,6 +980,7 @@ function LearnerApp({ initialPartnerFragment }) {
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [textSize, setTextSize] = useState(getSavedTextSize);
   const [storeProducts, setStoreProducts] = useState([]);
+  const storeProductsRequestRef = useRef(0);
   const [billingOwnerUid, setBillingOwnerUid] = useState(null);
   const [billingStatus, setBillingStatus] = useState("unavailable");
   const [billingAccess, setBillingAccess] = useState(null);
@@ -1006,6 +1008,8 @@ function LearnerApp({ initialPartnerFragment }) {
   const operationIdRef = useRef(0);
   const activeOperationRef = useRef(null);
   const accountDeletionBusyRef = useRef(false);
+  const logOutInFlightRef = useRef(false);
+  const [logOutState, setLogOutState] = useState({busy:false, slow:false, error:""});
   const releaseConfirmationOperationIdRef = useRef(0);
   const activeReleaseConfirmationRef = useRef(null);
   const partnerFragmentRef = useRef(partnerFragment);
@@ -1218,10 +1222,18 @@ function LearnerApp({ initialPartnerFragment }) {
     };
   }, [partnerFragment, partnerPreviewAttempt]);
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => setLaunchAnimationDone(true), 3000);
-    return () => window.clearTimeout(timer);
-  }, []);
+  const loadStoreProducts = async () => {
+    // Startup and a learner's Retry can overlap. Only the newest read owns
+    // the catalog, including when an older read eventually fails.
+    const request = ++storeProductsRequestRef.current;
+    try {
+      const products = await getSubscriptionProducts();
+      if (appMountedRef.current && request === storeProductsRequestRef.current) setStoreProducts(products);
+    } catch (error) {
+      if (appMountedRef.current && request === storeProductsRequestRef.current) setStoreProducts([]);
+      throw error;
+    }
+  };
 
   useEffect(() => {
     warnIfNativeApiIsMissing();
@@ -1238,8 +1250,7 @@ function LearnerApp({ initialPartnerFragment }) {
     }
 
     if (platform === "native") {
-      getSubscriptionProducts()
-        .then(setStoreProducts)
+      loadStoreProducts()
         .catch((error) => {
           if (import.meta.env.DEV) {
             console.warn(
@@ -1249,6 +1260,7 @@ function LearnerApp({ initialPartnerFragment }) {
           }
         });
     }
+    return () => { storeProductsRequestRef.current += 1; };
   }, [platform]);
 
   useEffect(() => {
@@ -1261,17 +1273,10 @@ function LearnerApp({ initialPartnerFragment }) {
   }, [textSize]);
 
   useEffect(() => {
-    const screenBackground = screen === "paywall" ? "#F8F5EF" : "#EFE9DC";
+    const screenBackground = screen === "paywall" ? "#F5F5F7"
+      : ["landing", "home", "settings", "login", "password-reset", "interview", "signup", "path", "lesson", "challenge", "exam", "complete", "badges", "scam-checker", "loading", "personal-plan", "billing-error", "billing-confirmation", "partner-error"].includes(screen) ? "#F5F5F7"
+      : "#F5F5F7";
     const root = document.documentElement;
-
-    // LessonPath owns its phase-aware safe-area colors. Do not overwrite them
-    // from the parent after the child effect has selected the active phase.
-    if (screen === "path") {
-      root.style.setProperty("--everwise-safe-top", "#B5502E");
-      const themeColor = document.querySelector('meta[name="theme-color"]');
-      themeColor?.setAttribute("content", "#B5502E");
-      return;
-    }
 
     root.style.setProperty("--everwise-screen-background", screenBackground);
     root.style.setProperty("--everwise-safe-top", screenBackground);
@@ -1352,6 +1357,7 @@ function LearnerApp({ initialPartnerFragment }) {
       authGenerationRef.current = generation;
       authSettledRef.current = false;
       currentAuthUidRef.current = u?.uid || null;
+      if (previousAuthUid !== currentAuthUidRef.current) setLogOutState(state => ({...state, error:""}));
       if (previousAuthUid && previousAuthUid !== (u?.uid || null)) {
         setProfile(null);
         pendingProtectedNavigationRef.current = null;
@@ -1461,7 +1467,7 @@ function LearnerApp({ initialPartnerFragment }) {
       }
 
       try {
-        const snap = await getDoc(doc(db, "users", u.uid));
+        const snap = await readStartupProfile(() => getDoc(doc(db, "users", u.uid)));
         if (
           generation !== authGenerationRef.current ||
           currentAuthUidRef.current !== u.uid
@@ -1527,7 +1533,7 @@ function LearnerApp({ initialPartnerFragment }) {
           return;
         }
 
-        const normalized = await normalizeSubscription(u.uid, snap.data());
+        const normalized = normalizeSubscription(snap.data());
         if (
           generation !== authGenerationRef.current ||
           currentAuthUidRef.current !== u.uid
@@ -1833,6 +1839,19 @@ function LearnerApp({ initialPartnerFragment }) {
     lessonIdSet.has(id)
   ).length;
   const badgesEarnedCount = (profile?.badges ?? []).length;
+  const nextActivity = nextCourseActivity(completedLessons, {
+    lessons: lessonsByOrder, challenges: challengesByOrder, exams: examsByOrder,
+  });
+  const homeActivity = nextActivity ? {
+    id: nextActivity.id,
+    title: nextActivity.title,
+    kind: nextActivity.kind,
+    phaseNumber: nextActivity.phase,
+    phaseTitle: getPhase(nextActivity.phase)?.title,
+    resumable: Boolean(nextActivity.kind === "lesson"
+      ? readLessonPosition({uid: user?.uid, lessonId: nextActivity.id, storage: window.localStorage})
+      : readAssessmentPosition({uid: user?.uid, itemId: nextActivity.id, storage: window.localStorage})),
+  } : null;
 
   const standing = courseStanding(completedLessons, requiredLearningIds, {
     lessons: lessonsByOrder,
@@ -1995,11 +2014,13 @@ function LearnerApp({ initialPartnerFragment }) {
 
       let sponsoredEntitlement = null;
       if (sponsoredSignup) {
+        let claimRequested = false;
         try {
-          const idToken = await cred.user.getIdToken(true);
+          const idToken = await readWithDeadline(() => cred.user.getIdToken(true), { message: "Account verification timed out" });
           if (!partnerOperationIsCurrent(operation, cred.user.uid)) {
             throw new StalePartnerOperationError();
           }
+          claimRequested = true;
           sponsoredEntitlement = await claimPartnerSeat({
             idToken,
             inviteToken,
@@ -2019,13 +2040,14 @@ function LearnerApp({ initialPartnerFragment }) {
           )
             ? claimError
             : null;
-          if (!definitiveClaimError) {
+          if (!definitiveClaimError && claimRequested) {
             try {
               sponsoredEntitlement = await reconcilePartnerClaim({
                 firebaseUser: cred.user,
                 inviteToken,
                 researchConsent,
                 researchSnapshot,
+                operationIsCurrent: () => partnerOperationIsCurrent(operation, cred.user.uid),
               });
             } catch (reconciliationError) {
               if (isDefinitivePartnerClaimRejection(reconciliationError)) {
@@ -2224,6 +2246,7 @@ function LearnerApp({ initialPartnerFragment }) {
         inviteToken: recovery.inviteToken,
         researchConsent: recovery.researchConsent,
         researchSnapshot: recovery.researchSnapshot,
+        operationIsCurrent: () => strictPartnerOperationIsCurrent(operation),
       });
       if (!strictPartnerOperationIsCurrent(operation)) {
         finishPartnerOperation(operation);
@@ -2537,26 +2560,56 @@ function LearnerApp({ initialPartnerFragment }) {
     }
   };
 
+  // Sign-out changes authentication state, so a slow response is not treated
+  // as cancellation and never starts an automatic retry. Keep one operation
+  // across screen changes and explain both waiting and provider failures.
+  const runLogOut = async (action) => {
+    if (logOutInFlightRef.current) return;
+    logOutInFlightRef.current = true;
+    const uid = currentAuthUidRef.current;
+    setLogOutState({busy:true, slow:false, error:""});
+    const timer = window.setTimeout(() => {
+      if (appMountedRef.current) setLogOutState(state => ({...state, slow:true}));
+    }, 15_000);
+    try {
+      await action(() => appMountedRef.current &&
+        (currentAuthUidRef.current === uid || currentAuthUidRef.current === null));
+    } catch (error) {
+      if (appMountedRef.current && currentAuthUidRef.current === uid) {
+        setLogOutState(state => ({...state, error:"We couldn’t log you out. Please try again."}));
+      }
+      if (import.meta.env.DEV) console.warn("[Everwise] Log out failed:", error?.code || error?.name || "unknown");
+    } finally {
+      window.clearTimeout(timer);
+      logOutInFlightRef.current = false;
+      if (appMountedRef.current) setLogOutState(state => ({...state, busy:false, slow:false}));
+    }
+  };
+
   const retryCleanupSignOut = async () => {
     const recovery = partnerRecoveryRef.current;
     if (recovery?.kind !== "cleanup" || recovery.busy) return;
     updatePartnerRecovery({ ...recovery, busy: true });
-    try {
-      await signOut(auth);
-      const nextRecovery = {
-        ...recovery,
-        cleanup: { ...recovery.cleanup, signedOut: true },
-        busy: false,
-      };
-      setUser(null);
-      setProfile(null);
-      setPartnerOwnerUid(null);
-      updatePartnerRecovery(nextRecovery);
-      setPartnerStatus("unavailable");
-      setScreen("partner-error");
-    } catch {
-      updatePartnerRecovery({ ...recovery, busy: false });
-    }
+    await runLogOut(async (ownsAccount) => {
+      try {
+        await signOut(auth);
+        if (!ownsAccount()) return;
+        const nextRecovery = {
+          ...recovery,
+          cleanup: { ...recovery.cleanup, signedOut: true },
+          busy: false,
+        };
+        setUser(null);
+        setProfile(null);
+        setPartnerOwnerUid(null);
+        updatePartnerRecovery(nextRecovery);
+        setPartnerStatus("unavailable");
+        setScreen("partner-error");
+      } catch (error) {
+        if (ownsAccount()) updatePartnerRecovery({ ...recovery, busy: false });
+        throw error;
+      }
+    });
   };
 
   const logIn = async (identifier, password) => {
@@ -2578,10 +2631,11 @@ function LearnerApp({ initialPartnerFragment }) {
 
   const logOut = async () => {
     if (accountDeletionBusyRef.current) return;
-    operationIdRef.current += 1;
-    activeOperationRef.current = null;
-    try {
+    await runLogOut(async (ownsAccount) => {
+      operationIdRef.current += 1;
+      activeOperationRef.current = null;
       await signOut(auth);
+      if (!ownsAccount()) return;
       authGenerationRef.current += 1;
       authoritativeAccessVersionRef.current += 1;
       backgroundAccessRefreshRef.current = null;
@@ -2602,19 +2656,13 @@ function LearnerApp({ initialPartnerFragment }) {
       setPartnerStatus("idle");
       updatePartnerFragment(null);
       clearAllLessonPositions({ storage: window.localStorage });
+      clearAllAssessmentPositions({ storage: window.localStorage });
       updatePartnerRecovery(null);
       setSignupRetry(null);
       setProfileCompletion(null);
       setAuthChecked(true);
       setScreen("landing");
-    } catch (err) {
-      if (import.meta.env.DEV) {
-        console.error(
-          "[Everwise][auth] Sign out failed:",
-          err?.code || err?.name || "unknown",
-        );
-      }
-    }
+    });
   };
 
   const refreshAuthoritativePartnerAccess = async ({
@@ -3186,7 +3234,7 @@ function LearnerApp({ initialPartnerFragment }) {
     }
   };
 
-  const startLesson = async (index, { testOut = false } = {}) => {
+  const startLesson = async (index, { testOut = false, acceptResult = null } = {}) => {
     const lesson = lessonsByOrder[index];
     let currentAccess = access;
     const requiresFullAccess = !canOpenLesson({
@@ -3196,6 +3244,7 @@ function LearnerApp({ initialPartnerFragment }) {
     if ((requiresFullAccess || sponsoredActive) && user?.uid) {
       const refreshed = await refreshAuthoritativePartnerAccess({
         routeCurrent: false,
+        acceptResult,
       });
       if (!refreshed) return;
       currentAccess = refreshed.fullAccess;
@@ -3235,11 +3284,12 @@ function LearnerApp({ initialPartnerFragment }) {
   // normally; the only difference is where the lesson starts.
   const startLessonTestOut = (index) => startLesson(index, { testOut: true });
 
-  const startChallenge = async (challenge) => {
+  const startChallenge = async (challenge, { acceptResult = null } = {}) => {
     let currentAccess = access;
     if (user?.uid) {
       const refreshed = await refreshAuthoritativePartnerAccess({
         routeCurrent: false,
+        acceptResult,
       });
       if (!refreshed) return;
       currentAccess = refreshed.fullAccess;
@@ -3263,11 +3313,12 @@ function LearnerApp({ initialPartnerFragment }) {
     setScreen("challenge");
   };
 
-  const startExam = async (exam) => {
+  const startExam = async (exam, { acceptResult = null } = {}) => {
     let currentAccess = access;
     if (user?.uid) {
       const refreshed = await refreshAuthoritativePartnerAccess({
         routeCurrent: false,
+        acceptResult,
       });
       if (!refreshed) return;
       currentAccess = refreshed.fullAccess;
@@ -3444,6 +3495,7 @@ function LearnerApp({ initialPartnerFragment }) {
     setPartnerStatus("idle");
     updatePartnerFragment(null);
     clearAllLessonPositions({ storage: window.localStorage });
+    clearAllAssessmentPositions({ storage: window.localStorage });
     updatePartnerRecovery(null);
     setSignupRetry(null);
     setProfileCompletion(null);
@@ -3542,7 +3594,7 @@ function LearnerApp({ initialPartnerFragment }) {
           expectedUser.email,
           currentPassword,
         );
-        await reauthenticateWithCredential(expectedUser, credential);
+        await verifyDeletionPassword(() => reauthenticateWithCredential(expectedUser, credential));
         requireCurrentAccountDeletion(operation);
         // Stop billing BEFORE anything is destroyed. Deleting the Firebase
         // user first would leave a live Stripe subscription charging a card
@@ -3605,7 +3657,7 @@ function LearnerApp({ initialPartnerFragment }) {
         throw new Error(
           profileDeleted
             ? "We could not delete your account right now. Your saved profile was restored."
-            : "We could not delete your account right now. Please try again.",
+            : accountDeletionErrorMessage(err),
         );
       }
       clearPartnerClaimRecovery({
@@ -3641,9 +3693,14 @@ function LearnerApp({ initialPartnerFragment }) {
         expectedUser.email,
         currentPassword,
       );
-      await reauthenticateWithCredential(expectedUser, credential);
+      await verifyDeletionPassword(() => reauthenticateWithCredential(expectedUser, credential));
       requireCurrentAccountDeletion(operation);
-      idToken = await expectedUser.getIdToken(true);
+      try {
+        idToken = await readWithDeadline(() => expectedUser.getIdToken(true), { message: "Account verification timed out" });
+      } catch {
+        // Verification failed before any release or deletion was submitted.
+        throw new PartnerReleasePreparationError();
+      }
       requireCurrentAccountDeletion(operation);
       const intent = await beginPartnerRelease({ idToken });
       if (PARTNER_RELEASE_RECEIPT_PATTERN.test(intent?.receipt)) {
@@ -3853,6 +3910,7 @@ function LearnerApp({ initialPartnerFragment }) {
 
   const finishChallenge = () => {
     if (!canRecordProgress() || !activeChallenge) return;
+    clearAssessmentPosition({uid:user.uid, itemId:activeChallenge.id, storage:window.localStorage});
     if (!completedLessons.includes(activeChallenge.id)) {
       progressSync.record({ completedLessons: [activeChallenge.id] });
     }
@@ -3872,6 +3930,7 @@ function LearnerApp({ initialPartnerFragment }) {
 
   const finishExam = ({ tier, earnedPhaseBadge, phaseBadge }) => {
     if (!canRecordProgress() || !activeExam || !tier) return;
+    clearAssessmentPosition({uid:user.uid, itemId:activeExam.id, storage:window.localStorage});
     const already = completedLessons.includes(activeExam.id);
     const ownedBadges = profile.badges ?? [];
     // A retake can earn a higher tier even when this exam is already complete.
@@ -3892,12 +3951,11 @@ function LearnerApp({ initialPartnerFragment }) {
 
   if (
     !authChecked ||
-    !launchAnimationDone ||
     partnerStatus === "previewing"
   ) {
     return (
       <AppShell screen="loading">
-        <Loading />
+        <Loading allowReload={!user} />
       </AppShell>
     );
   }
@@ -3937,6 +3995,9 @@ function LearnerApp({ initialPartnerFragment }) {
           partnerName={partner?.name}
           onRetry={retryReturningPartnerAccess}
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -3952,8 +4013,12 @@ function LearnerApp({ initialPartnerFragment }) {
               : "PARTNER_ACCESS_UNCONFIRMED"
           }
           onRetry={retryAuthenticatedBootstrap}
+          retryBusy={partnerRecovery.busy}
           retryLabel={partnerRecovery.busy ? "Retrying…" : "Retry"}
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -3966,8 +4031,12 @@ function LearnerApp({ initialPartnerFragment }) {
           code="PARTNER_ACCESS_UNCONFIRMED"
           partnerName={partnerRecovery.partner?.name || partner?.name}
           onRetry={retryPartnerClaim}
+          retryBusy={partnerRecovery.busy}
           retryLabel={partnerRecovery.busy ? "Retrying…" : "Retry"}
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -3980,10 +4049,14 @@ function LearnerApp({ initialPartnerFragment }) {
           code="PARTNER_PROFILE_INCOMPLETE"
           partnerName={partner?.name}
           onRetry={retrySponsoredProfileWrite}
+          retryBusy={partnerRecovery.busy}
           retryLabel={
             partnerRecovery.busy ? "Saving profile…" : "Retry saving profile"
           }
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -3998,6 +4071,9 @@ function LearnerApp({ initialPartnerFragment }) {
           onRetry={startMissingProfileCompletion}
           retryLabel="Complete my profile"
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -4012,6 +4088,9 @@ function LearnerApp({ initialPartnerFragment }) {
           onLogOut={
             partnerRecovery.cleanup.signedOut ? null : retryCleanupSignOut
           }
+          logOutBusy={partnerRecovery.busy || logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
           logOutLabel={
             partnerRecovery.busy ? "Logging out…" : "Try to log out"
           }
@@ -4041,6 +4120,9 @@ function LearnerApp({ initialPartnerFragment }) {
           partnerName={partner?.name}
           onRetry={retryPartnerAccess}
           onLogOut={authenticatedSuspension ? logOut : undefined}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -4126,9 +4208,16 @@ function LearnerApp({ initialPartnerFragment }) {
           lessonsCompleted={lessonsCompletedCount}
           badgesEarned={badgesEarnedCount}
           allDone={allDone}
+          nextActivity={homeActivity}
           textSize={textSize}
           onTextSizeChange={setTextSize}
           onStart={goPath}
+          onStartNext={(acceptResult) => {
+            if (!accountDeletionAllowsNavigation() || !nextActivity) return;
+            if (nextActivity.kind === "lesson") return startLesson(nextActivity.lessonIndex, {acceptResult});
+            if (nextActivity.kind === "challenge") return startChallenge(nextActivity, {acceptResult});
+            return startExam(nextActivity, {acceptResult});
+          }}
           onOpenBadges={goBadges}
           onOpenSettings={goSettings}
           onOpenScamChecker={goScamChecker}
@@ -4146,10 +4235,14 @@ function LearnerApp({ initialPartnerFragment }) {
     case "settings":
       content = (
         <Settings
+          name={profile?.name || ""}
           key={user?.uid}
           billing={settingsBilling}
           onBack={accountDeletionBusy ? undefined : goHome}
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
           onOpenPaywall={goPaywall}
           onManageSubscription={manageBilling}
           onRetryBilling={() => {
@@ -4207,8 +4300,7 @@ function LearnerApp({ initialPartnerFragment }) {
             billingMessage={billingRecovery?.message || ""}
             onRetry={async () => {
               if (platform === "native") {
-                try { setStoreProducts(await getSubscriptionProducts()); }
-                catch { setStoreProducts([]); }
+                await loadStoreProducts();
                 return;
               }
               setBillingRecovery(null);
@@ -4217,7 +4309,9 @@ function LearnerApp({ initialPartnerFragment }) {
             onStartLearning={() => {
               clearPendingProtectedNavigation();
               setBillingRecovery(null);
-              goHome();
+              const introduction = lessonsByOrder.findIndex((lesson) => lesson.id === "welcome");
+              if (introduction >= 0) void startLesson(introduction);
+              else goHome();
             }}
             onMaybeLater={() => {
               clearPendingProtectedNavigation();
@@ -4296,6 +4390,12 @@ function LearnerApp({ initialPartnerFragment }) {
     case "path":
       content = (
         <LessonPath
+          hasSavedAssessmentPosition={(itemId) => Boolean(readAssessmentPosition({
+            uid:user?.uid, itemId, storage:window.localStorage,
+          }))}
+          hasSavedLessonPosition={(lessonId) => Boolean(readLessonPosition({
+            uid: user?.uid, lessonId, storage: window.localStorage,
+          }))}
           completedLessons={completedLessons}
           textSize={textSize}
           onSelectLesson={startLesson}
@@ -4344,6 +4444,15 @@ function LearnerApp({ initialPartnerFragment }) {
       content = (
         <LearningContent
           kind="challenge"
+          initialPosition={readAssessmentPosition({
+            uid:user?.uid, itemId:activeChallenge.id, storage:window.localStorage,
+          })}
+          onPositionChange={(position) => {
+            if (!canRecordProgress()) return;
+            const identity = {uid:user.uid, itemId:activeChallenge.id, storage:window.localStorage};
+            if (position) saveAssessmentPosition({...identity, position});
+            else clearAssessmentPosition(identity);
+          }}
           itemId={activeChallenge.id}
           key={activeChallenge.id}
           onBack={goPath}
@@ -4355,6 +4464,15 @@ function LearnerApp({ initialPartnerFragment }) {
       content = (
         <LearningContent
           kind="exam"
+          initialPosition={readAssessmentPosition({
+            uid:user?.uid, itemId:activeExam.id, storage:window.localStorage,
+          })}
+          onPositionChange={(position) => {
+            if (!canRecordProgress()) return;
+            const identity = {uid:user.uid, itemId:activeExam.id, storage:window.localStorage};
+            if (position) saveAssessmentPosition({...identity, position});
+            else clearAssessmentPosition(identity);
+          }}
           itemId={activeExam.id}
           key={activeExam.id}
           phaseColor={getPhase(activeExam.phase).accent}

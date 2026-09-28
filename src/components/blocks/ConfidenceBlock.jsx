@@ -105,33 +105,24 @@ export default function ConfidenceBlock({
           <button
             type="button"
             onClick={onContinue}
-            className="w-full rounded-2xl border-2 border-sage bg-sage/15 px-6 py-6 text-left text-2xl font-semibold text-sage-dark transition-colors hover:bg-sage/25"
+            className="lesson-answer"
           >
-            <span className="mr-3" aria-hidden="true">
-              😊
-            </span>
             Very confident
           </button>
 
           <button
             type="button"
             onClick={onContinue}
-            className="w-full rounded-2xl border-2 border-sage/50 bg-cream-card px-6 py-6 text-left text-2xl font-semibold text-ink transition-colors hover:bg-sage/10"
+            className="lesson-answer"
           >
-            <span className="mr-3" aria-hidden="true">
-              🙂
-            </span>
             Mostly confident
           </button>
 
           <button
             type="button"
             onClick={startPractice}
-            className="w-full rounded-2xl border-2 border-clay/40 bg-cream-card px-6 py-6 text-left text-2xl font-semibold text-clay transition-colors hover:bg-clay/10"
+            className="lesson-answer"
           >
-            <span className="mr-3" aria-hidden="true">
-              🤔
-            </span>
             I'd like more practice
           </button>
         </div>

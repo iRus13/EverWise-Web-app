@@ -60,7 +60,7 @@ export function allBadgeNames() {
  */
 export function extraEarnedBadges(earned = []) {
   const known = new Set(allBadgeNames());
-  return earned.filter((name) => !known.has(name));
+  return [...new Set(earned)].filter((name) => !known.has(name));
 }
 
 export function badgeCounts(earned = []) {

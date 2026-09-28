@@ -1,6 +1,7 @@
+import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
-import { CheckIcon } from "../Icons";
+import AnswerFeedback from "./AnswerFeedback";
 import BlockShell from "./BlockShell";
 
 export default function FillBlankBlock({
@@ -62,7 +63,7 @@ export default function FillBlankBlock({
       <p className="text-lg font-semibold text-ink-faint">
         Question {qIndex + 1} of {questions.length}
       </p>
-      <h1 className="page-title mt-3">
+      <h1 className="page-title lesson-question mt-3">
         {beforeBlank}
         {filledWord === null ? (
           "______"
@@ -79,64 +80,28 @@ export default function FillBlankBlock({
         <ReadAloud text={q.text.replace("______", "blank")} />
       </div>
 
-      <div className="mt-8 grid grid-cols-2 gap-3">
+      <div className="lesson-answer-grid mt-8">
         {block.wordBank.map((word) => {
-          let style =
-            "border-ink/15 bg-cream-card text-ink hover:border-clay hover:bg-clay/5";
-          if (revealed) {
-            if (word === q.answer) style = "border-sage bg-sage/15 text-sage-dark";
-            else if (word === selected)
-              style = "border-alert bg-alert/12 text-alert";
-            else style = "border-ink/10 bg-cream-card text-ink-faint";
-          }
           return (
-            <button
+            <AnswerOption
               key={word}
-              type="button"
+
               disabled={revealed}
               onClick={() => pick(word)}
-              className={`rounded-2xl border-2 px-4 py-5 text-center text-xl font-semibold ${style}`}
+              selected={selected === word}
+              state={revealed ? word === q.answer ? "correct" : word === selected ? "incorrect" : "other" : undefined}
+
             >
               {word}
-            </button>
+            </AnswerOption>
           );
         })}
       </div>
 
-      {revealed && (
-        <div
-          className={`mt-8 flex items-center gap-3 rounded-3xl p-5 ${
-            isCorrect ? "bg-sage/15" : "bg-alert/12"
-          }`}
-        >
-          <div
-            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-cream-card ${
-              isCorrect ? "bg-sage" : "bg-alert"
-            }`}
-          >
-            {isCorrect ? (
-              <CheckIcon className="h-8 w-8" />
-            ) : (
-              <span className="font-sans text-2xl font-bold">!</span>
-            )}
-          </div>
-          <div>
-            <p className="text-xl font-semibold text-ink">
-              {isCorrect
-                ? "That's right."
-                : `Not quite — the answer is “${q.answer}”.`}
-            </p>
-            {/* An explanation of WHY, when the question provides one. Naming
-                the learner's own choice is what turns a correction into a
-                lesson; without it they only ever see the right answer. */}
-            {!isCorrect && (q.why || q.wrong?.[selected]) ? (
-              <p className="mt-1 text-lg leading-snug text-ink">
-                {q.wrong?.[selected] || q.why}
-              </p>
-            ) : null}
-          </div>
-        </div>
-      )}
+      {revealed && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right." : `Not quite — the answer is “${q.answer}”.`}>
+        {!isCorrect && (q.why || q.wrong?.[selected]) ? <p>{q.wrong?.[selected] || q.why}</p> : null}
+      </AnswerFeedback>}
+
     </BlockShell>
   );
 }

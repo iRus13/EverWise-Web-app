@@ -14,6 +14,7 @@ import { challengesByOrder, examsByOrder, lessonsByOrder } from "../src/data/les
 
 const mocks = vi.hoisted(() => ({
   authCallback: null,
+  catalogRetryError: null,
   examTier: null,
   initialAuthUser: null,
   native: false,
@@ -63,6 +64,8 @@ vi.mock("@capacitor/core", () => ({
     getPlatform: vi.fn(() => (mocks.native ? "ios" : "web")),
     isNativePlatform: vi.fn(() => mocks.native),
   },
+  registerPlugin: vi.fn(() => ({getInsets: vi.fn(async () => ({top: 0}))})),
+
 }));
 vi.mock("@capacitor/keyboard", () => ({
   Keyboard: { setAccessoryBarVisible: vi.fn(() => Promise.resolve()) },
@@ -133,13 +136,15 @@ vi.mock("../src/screens/ExamPlayer.jsx", () => ({
   default: ({ exam, onPass }) => <><h1>Exam: {exam.id}</h1><button onClick={() => onPass({tier:mocks.examTier ?? {title:"Safety Pro"},earnedPhaseBadge:true,phaseBadge:exam.phaseBadge})}>Finish exam</button></>,
 }));
 vi.mock("../src/screens/Paywall.jsx", () => ({
-  default: ({ billingAccess, billingAvailable, billingPlans, billingStatus, onMaybeLater, onRetry, onRestore, onStartLearning, onStartTrial, platform }) => (
+  default: ({ billingAccess, billingAvailable, billingPlans, billingStatus, onMaybeLater, onRetry, onRestore, onStartLearning, onStartTrial, platform, storeProducts }) => (
     <main>
       <h1>Subscription options</h1>
       <span data-testid="paywall-billing-status">{billingStatus}</span>
       <span data-testid="paywall-billing-access">{billingAccess?.access || "missing"}</span>
       <span data-testid="paywall-billing-available">{String(billingAvailable)}</span>
       <span data-testid="paywall-plan-count">{billingPlans.length}</span>
+      <span data-testid="native-catalog">{JSON.stringify(storeProducts)}</span>
+      {platform === "native" && <button onClick={() => void onRetry().catch(error => { mocks.catalogRetryError = error; })}>Retry Apple catalog</button>}
       {platform === "native" || billingAvailable ? (
         <button type="button" onClick={() => void onStartTrial("annual").catch(() => {})}>
           Start annual trial
@@ -525,7 +530,11 @@ describe("browser billing bootstrap and provider selection", () => {
     }
   });
 
-  test("keeps an active native Apple entitlement authoritative when it resolves before a delayed inactive profile", async () => {
+  test.each([
+    ["inactive", {subscriptionStatus:"expired",plan:null}],
+    ["missing", {subscriptionStatus:null,plan:null}],
+    ["expired trial", {subscriptionStatus:"trial",trialStartedAt:"2000-01-01T00:00:00.000Z",plan:"monthly"}],
+  ])("keeps a verified Apple entitlement when it resolves before a delayed %s profile", async (_label, legacy) => {
     mocks.native = true;
     const entitlement = deferred();
     const profileLoad = deferred();
@@ -553,12 +562,14 @@ describe("browser billing bootstrap and provider selection", () => {
       await Promise.resolve();
     });
     await act(async () => {
-      profileLoad.resolve(snapshot(profile({ subscriptionStatus: "expired", plan: null })));
+      profileLoad.resolve(snapshot(profile(legacy)));
       await authPromise;
       await Promise.resolve();
     });
 
     expect(mocks.fetchBillingAccess).not.toHaveBeenCalled();
+    expect(mocks.updateDoc).toHaveBeenCalledWith({collection:"users",uid:user.uid}, {subscriptionStatus:"active",plan:"annual"});
+    expect(mocks.updateDoc.mock.calls.every(([, fields]) => fields.subscriptionStatus === "active")).toBe(true);
     await openProtected("lesson");
     expect(screen.getByRole("heading", { name: /^Lesson:/ })).toBeVisible();
   });
@@ -811,6 +822,34 @@ describe("browser billing bootstrap and provider selection", () => {
     expect(mocks.createBillingCheckout).toHaveBeenCalledTimes(1);
   });
 
+  test.each(["resolve", "reject"])("an old native catalog %s cannot overwrite a newer retry", async (settlement) => {
+    mocks.native = true;
+    const initial = deferred();
+    const fresh = [{id:"com.everwise.app.monthly",displayPrice:"€12,99"}];
+    mocks.getSubscriptionProducts.mockReturnValueOnce(initial.promise).mockResolvedValueOnce(fresh);
+    await openAuthenticatedApp({access:NONE,uid:"catalog-race"});
+    fireEvent.click(screen.getByRole("button", {name:"Open course"}));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name:"Open protected lesson"})));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name:"Retry Apple catalog"})));
+    expect(screen.getByTestId("native-catalog")).toHaveTextContent(JSON.stringify(fresh));
+    await act(async () => settlement === "resolve" ? initial.resolve([]) : initial.reject(new Error("Old request failed")));
+    expect(screen.getByTestId("native-catalog")).toHaveTextContent(JSON.stringify(fresh));
+    expect(mocks.purchaseSubscription).not.toHaveBeenCalled();
+  });
+
+  test("native catalog errors reach the paywall retry handler", async () => {
+    mocks.native = true;
+    mocks.catalogRetryError = null;
+    const error = new Error("Catalog timeout");
+    mocks.getSubscriptionProducts.mockResolvedValueOnce([]).mockRejectedValueOnce(error);
+    await openAuthenticatedApp({access:NONE,uid:"catalog-failed"});
+    fireEvent.click(screen.getByRole("button", {name:"Open course"}));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name:"Open protected lesson"})));
+    await act(async () => fireEvent.click(screen.getByRole("button", {name:"Retry Apple catalog"})));
+    expect(mocks.catalogRetryError).toBe(error);
+    expect(screen.getByTestId("native-catalog")).toHaveTextContent("[]");
+  });
+
   test("a native purchase completing after sign-out cannot update a different session", async () => {
     mocks.native = true;
     const purchase = deferred();
@@ -1018,7 +1057,7 @@ describe("Checkout return confirmation", () => {
     expect(screen.getByText(/still could not confirm/i)).toBeVisible();
     expect(mocks.fetchBillingAccess).toHaveBeenCalledTimes(7);
     expect(screen.getByRole("button", { name: "Retry" })).toBeVisible();
-    expect(screen.getByRole("button", { name: "Back to free lessons" })).toBeVisible();
+    expect(screen.getByRole("button", { name: "Back to home" })).toBeVisible();
     expect(screen.queryByRole("button", { name: "Manage billing" })).not.toBeInTheDocument();
   });
 
@@ -1233,7 +1272,7 @@ describe("Checkout return confirmation", () => {
     expect(screen.queryByRole("heading", { name: /^Lesson:/ })).not.toBeInTheDocument();
     expect(window.sessionStorage.getItem(BILLING_RETURN_INTENT_KEY)).not.toBeNull();
 
-    fireEvent.click(screen.getByRole("button", { name: "Back to free lessons" }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to home" }));
     expect(window.sessionStorage.getItem(BILLING_RETURN_INTENT_KEY)).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Settings" }));
     fireEvent.click(screen.getByRole("button", { name: "View plans" }));
@@ -1326,7 +1365,7 @@ describe("Checkout return confirmation", () => {
     expect(screen.queryByRole("heading", { name: "Home" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: /^Lesson:/ })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Back to free lessons" }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to home" }));
     expect(window.sessionStorage.getItem(BILLING_RETURN_INTENT_KEY)).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Settings" }));
     fireEvent.click(screen.getByRole("button", { name: "View plans" }));
@@ -1453,9 +1492,9 @@ describe("Checkout return confirmation", () => {
     expect(window.sessionStorage.getItem(BILLING_RETURN_INTENT_KEY)).toBeNull();
   });
 
-  test.each(["lesson", "challenge", "exam"])(
-    "Back free abandons a pending %s so later verified access cannot reopen it",
-    async (kind) => {
+  test.each(["lesson", "challenge", "exam"].flatMap(kind => ["Back free", "Start learning"].map(exit => [kind, exit])))(
+    "%s: %s abandons the paid destination so later access cannot reopen it",
+    async (kind, exit) => {
       mocks.fetchBillingAccess.mockResolvedValue(NONE);
       await openAuthenticatedApp({ access: NONE, uid: `abandon-${kind}` });
       fireEvent.click(screen.getByRole("button", { name: "Open course" }));
@@ -1469,7 +1508,9 @@ describe("Checkout return confirmation", () => {
         await Promise.resolve();
       });
       expect(window.sessionStorage.getItem(BILLING_RETURN_INTENT_KEY)).not.toBeNull();
-      fireEvent.click(screen.getByRole("button", { name: "Back free" }));
+      fireEvent.click(screen.getByRole("button", { name: exit }));
+      await act(async () => vi.dynamicImportSettled());
+      expect(screen.getByRole("heading", {name: exit === "Start learning" ? "Lesson: welcome" : "Home"})).toBeVisible();
       expect(window.sessionStorage.getItem(BILLING_RETURN_INTENT_KEY)).toBeNull();
 
       mocks.fetchBillingAccess.mockResolvedValue(ACTIVE);
@@ -1548,7 +1589,7 @@ describe("Checkout return confirmation", () => {
     });
     expect(screen.getByText(/could not verify your subscription/i)).toBeVisible();
     expect(window.sessionStorage.getItem(BILLING_RETURN_INTENT_KEY)).not.toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "Back to free lessons" }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to home" }));
     expect(window.sessionStorage.getItem(BILLING_RETURN_INTENT_KEY)).toBeNull();
 
     mocks.fetchBillingAccess.mockResolvedValue(ACTIVE);
@@ -1594,7 +1635,7 @@ describe("Checkout return confirmation", () => {
     expect(screen.getByRole("region", { name: "Subscription confirmation status" })).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "Retry" }));
     fireEvent.click(screen.getByRole("button", { name: "Manage billing" }));
-    fireEvent.click(screen.getByRole("button", { name: "Back to free lessons" }));
+    fireEvent.click(screen.getByRole("button", { name: "Back to home" }));
     expect(retry).toHaveBeenCalledTimes(1);
     expect(manage).toHaveBeenCalledTimes(1);
     expect(back).toHaveBeenCalledTimes(1);

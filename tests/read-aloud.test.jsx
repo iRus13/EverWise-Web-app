@@ -112,3 +112,33 @@ test("an ended recording from an unmounted screen cannot cancel the new screen's
   expect(window.speechSynthesis.cancel).toHaveBeenCalledTimes(cancellations);
   expect(screen.getByRole("button", {name:"Stop"})).toHaveAttribute("aria-pressed", "true");
 });
+
+
+test.each(["missing engine", "missing utterance", "throws", "error event"])("unavailable narration reports %s and a retry clears the error", async failure => {
+  const voice = window.speechSynthesis;
+  const Utterance = globalThis.SpeechSynthesisUtterance;
+  vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("provider offline")));
+  if (failure === "missing engine") vi.stubGlobal("speechSynthesis", undefined);
+  if (failure === "missing utterance") vi.stubGlobal("SpeechSynthesisUtterance", undefined);
+  if (failure === "throws") voice.speak.mockImplementationOnce(() => { throw new Error("voice unavailable"); });
+  render(<ReadAloud text={`Unavailable narration ${failure}`} />);
+  await act(async () => fireEvent.click(screen.getByRole("button", {name:"Read aloud"})));
+  if (failure === "error event") act(() => voice.speak.mock.calls[0][0].onerror());
+  expect(screen.getByRole("status")).toHaveTextContent("Audio isn't available right now. Please try again.");
+  expect(screen.getByRole("button", {name:"Read aloud"})).toHaveAttribute("aria-pressed", "false");
+  vi.stubGlobal("speechSynthesis", voice);
+  vi.stubGlobal("SpeechSynthesisUtterance", Utterance);
+  await act(async () => fireEvent.click(screen.getByRole("button", {name:"Read aloud"})));
+  expect(screen.queryByRole("status")).not.toBeInTheDocument();
+  expect(screen.getByRole("button", {name:"Stop"})).toHaveAttribute("aria-pressed", "true");
+});
+
+test("a canceled utterance error cannot show an unavailable message after Stop", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("provider offline")));
+  render(<ReadAloud text="Canceled utterance must stay quiet" />);
+  await act(async () => fireEvent.click(screen.getByRole("button", {name:"Read aloud"})));
+  const utterance = window.speechSynthesis.speak.mock.calls[0][0];
+  fireEvent.click(screen.getByRole("button", {name:"Stop"}));
+  act(() => utterance.onerror());
+  expect(screen.queryByRole("status")).not.toBeInTheDocument();
+});

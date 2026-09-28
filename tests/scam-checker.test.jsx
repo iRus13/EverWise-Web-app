@@ -36,3 +36,86 @@ test("a stalled request aborts and offers retry within 30 seconds", async () => 
   expect(screen.getByRole("alert")).toBeVisible();
   expect(screen.getByRole("button", {name: "Check this message"})).toBeEnabled();
 });
+
+test("cancel preserves input and ignores an old response after a new check starts", async () => {
+  const pending = [];
+  const fetchMock = vi.fn((_url, options) => new Promise(resolve => pending.push({ resolve, signal: options.signal })));
+  vi.stubGlobal("fetch", fetchMock);
+  submit();
+  fireEvent.click(screen.getByRole("button", {name: "Cancel check"}));
+  expect(pending[0].signal.aborted).toBe(true);
+  const input = screen.getByLabelText("Message to check");
+  expect(input).toHaveValue("Send money now");
+  expect(input).toHaveFocus();
+  expect(screen.getByRole("status")).toHaveTextContent("Check stopped");
+  fireEvent.change(input, {target: {value: "A different message"}});
+  fireEvent.click(screen.getByRole("button", {name: "Check this message"}));
+  await act(async () => pending[0].resolve({ok: true, json: async () => valid}));
+  expect(screen.queryByText(valid.summary)).not.toBeInTheDocument();
+  expect(screen.getByRole("button", {name: "Cancel check"})).toBeVisible();
+  await act(async () => pending[1].resolve({ok: true, json: async () => ({...valid, summary: "The second result"})}));
+  expect(screen.getByText("The second result")).toBeVisible();
+  expect(screen.getByRole("heading", {name: "This is likely a scam"})).toHaveFocus();
+  expect(fetchMock).toHaveBeenCalledTimes(2);
+  expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toEqual({message: "A different message"});
+});
+
+test("timeout recovers even when transport ignores abort, and late rejection cannot replace retry", async () => {
+  vi.useFakeTimers();
+  const pending = [];
+  vi.stubGlobal("fetch", vi.fn((_url, options) => new Promise((resolve, reject) => pending.push({resolve, reject, signal: options.signal}))));
+  submit();
+  await act(async () => vi.advanceTimersByTimeAsync(30_000));
+  expect(screen.getByRole("alert")).toHaveTextContent("took too long");
+  expect(screen.getByRole("alert")).toHaveFocus();
+  expect(screen.getByLabelText("Message to check")).toBeEnabled();
+  fireEvent.click(screen.getByRole("button", {name: "Check this message"}));
+  await act(async () => pending[0].reject(new Error("old failure")));
+  expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  await act(async () => pending[1].resolve({ok: true, json: async () => valid}));
+  expect(screen.getByText(valid.summary)).toBeVisible();
+  await act(async () => vi.advanceTimersByTimeAsync(30_000));
+  expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+});
+
+test("editing preserves the original message; checking another clears it without sending", async () => {
+  const fetchMock = vi.fn().mockResolvedValue({ok: true, json: async () => valid});
+  vi.stubGlobal("fetch", fetchMock);
+  submit();
+  fireEvent.click(await screen.findByRole("button", {name: "Edit this message"}));
+  expect(screen.getByLabelText("Message to check")).toHaveValue("Send money now");
+  expect(screen.getByLabelText("Message to check")).toHaveFocus();
+  expect(fetchMock).toHaveBeenCalledTimes(1);
+  fireEvent.click(screen.getByRole("button", {name: "Check this message"}));
+  fireEvent.click(await screen.findByRole("button", {name: "Check another message"}));
+  expect(screen.getByLabelText("Message to check")).toHaveValue("");
+  expect(screen.getByLabelText("Message to check")).toHaveFocus();
+  expect(screen.getByRole("button", {name: "Check this message"})).toBeDisabled();
+  expect(fetchMock).toHaveBeenCalledTimes(2);
+});
+
+test("unmount aborts the check and clears its timeout", async () => {
+  vi.useFakeTimers();
+  let signal;
+  vi.stubGlobal("fetch", vi.fn((_url, options) => {signal = options.signal; return new Promise(() => {});}));
+  submit();
+  cleanup();
+  expect(signal.aborted).toBe(true);
+  expect(vi.getTimerCount()).toBe(0);
+});
+
+test("repeated submit events produce one request and service errors preserve input", async () => {
+  let resolve;
+  const fetchMock = vi.fn(() => new Promise(r => {resolve = r;}));
+  vi.stubGlobal("fetch", fetchMock);
+  submit();
+  const input = screen.getByLabelText("Message to check");
+  fireEvent.submit(input.closest("form"));
+  fireEvent.submit(input.closest("form"));
+  expect(fetchMock).toHaveBeenCalledTimes(1);
+  await act(async () => resolve({ok: false, status: 503}));
+  expect(screen.getByRole("alert")).toHaveTextContent("currently unavailable");
+  expect(input).toHaveValue("Send money now");
+  expect(input).toBeEnabled();
+  expect(screen.getByRole("alert")).toHaveFocus();
+});

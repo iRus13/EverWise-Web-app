@@ -1,29 +1,24 @@
-export default function Loading() {
+import { useEffect, useState } from "react";
+import StatusScreen from "../components/StatusScreen";
+
+const reloadApp = () => window.location.reload();
+
+export default function Loading({ allowReload = true, onReload = reloadApp }) {
+  const [slow, setSlow] = useState(false);
+  useEffect(() => {
+    setSlow(false);
+    if (!allowReload) return;
+    const timer = window.setTimeout(() => setSlow(true), 15_000);
+    return () => window.clearTimeout(timer);
+  }, [allowReload]);
+  const showRecovery = allowReload && slow;
   return (
-    <div className="onboarding-focus flex flex-1 flex-col items-center justify-center px-7 text-center lg:px-16 lg:py-16">
-      <div className="launch-logo flex h-24 w-24 items-center justify-center rounded-full bg-cream-card shadow-card lg:h-36 lg:w-36">
-        <img
-          src={`${import.meta.env.BASE_URL}everwise-logo-192.png`}
-          alt=""
-          aria-hidden="true"
-          className="h-16 w-16 object-contain lg:h-24 lg:w-24"
-        />
-      </div>
-      <div className="launch-copy">
-        <p className="mt-6 font-sans text-3xl font-semibold text-ink lg:mt-8 lg:text-5xl">
-          Everwise
-        </p>
-        <p className="mt-2 text-lg text-ink-soft lg:mt-3 lg:text-2xl" role="status">
-          Learn with confidence.
-        </p>
-        <div
-          className="mx-auto mt-6 h-3 w-48 overflow-hidden rounded-full bg-ink/10 lg:mt-8 lg:h-4 lg:w-72"
-          role="progressbar"
-          aria-label="Starting Everwise"
-        >
-          <div className="launch-progress-bar h-full w-full rounded-full bg-clay" />
-        </div>
-      </div>
-    </div>
+    <StatusScreen
+      title="Learn with confidence."
+      progressLabel="Starting Everwise"
+      focusHeading={false}
+      description={showRecovery ? "This is taking longer than usual. Check your connection, then reload the app." : undefined}
+      actions={showRecovery ? <button type="button" className="btn-primary startup-retry" onClick={onReload}>Try again</button> : undefined}
+    />
   );
 }

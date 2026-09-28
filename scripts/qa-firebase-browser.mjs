@@ -128,7 +128,7 @@ export async function runBrowserScenarios() {
         await page.reload();
       }
       const button = name => page.getByRole("button", { name, exact: true });
-      const readyHome = () => button("Continue learning").waitFor({ timeout: 60_000 });
+      const readyHome = () => button("View course").waitFor({ timeout: 60_000 });
       const ownProfile = () => page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).readOwnProfile());
       const queueSize = () => page.evaluate(() => Object.keys(localStorage).filter(key => key.startsWith("everwise.progress.pending.v1:")).length);
       async function savedWelcome() {
@@ -164,7 +164,7 @@ export async function runBrowserScenarios() {
         // browser. Keep a specific bound without weakening any saved-data check.
         await button("See my plan options").click({ timeout: 60_000 });
         await page.getByRole("button", { name: /^Start \d+-day free trial$/ }).waitFor();
-        await button("Continue with free lessons").click();
+        await button("Back to home").click();
         await readyHome();
       }
       async function logout() {
@@ -180,7 +180,7 @@ export async function runBrowserScenarios() {
         const firstUid = await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).auth.currentUser.uid);
         console.log(`PASS: real App signup, onboarding profile and paywall free exit at ${width}px`);
         if (width === 390) await page.evaluate(async () => (await import("/tests/fixtures/firebase-emulator.js")).disconnectDatabase());
-        await button("Continue learning").click();
+        await button("View course").click();
         await button("Start lesson: Welcome to Everwise").click();
         await page.getByRole("heading", { name: "How Everwise Works", exact: true }).waitFor();
         await button("Continue").click();
@@ -195,7 +195,7 @@ export async function runBrowserScenarios() {
         await logout();
         await signUp(`other_${width}`);
         assert.deepEqual((await ownProfile()).completedLessons, []);
-        await button("Continue learning").click();
+        await button("View course").click();
         await button("Start lesson: Welcome to Everwise").waitFor();
         await logout();
         await button("Log In").click();
@@ -211,12 +211,12 @@ export async function runBrowserScenarios() {
         assert.equal((await ownProfile()).subscriptionStatus, "active");
         await reload();
         await readyHome();
-        await button("Continue learning").click();
+        await button("View course").click();
         await page.getByRole("button", { name: /^Start lesson:/ }).first().click();
         await page.getByRole("button", { name: /^Start \d+-day free trial$/ }).waitFor();
-        await button("Continue with free lessons").waitFor();
+        await button("Back to home").waitFor();
         console.log(`PASS: forged profile subscription does not unlock paid lessons at ${width}px`);
-        await button("Continue with free lessons").click();
+        await button("Back to home").click();
         await readyHome();
         await button("Settings").click();
         await button("Delete account").click();
@@ -276,7 +276,7 @@ export async function runBrowserScenarios() {
         ].map(item => item.id);
         await page.evaluate(async ids => (await import("/tests/fixtures/firebase-emulator.js")).seedOwnProgress(ids),prerequisites);
         syntheticApis["/api/billing/access"]={...syntheticApis["/api/billing/access"],access:"full",status:"active",plan:"annual",canStartTrial:false,canManage:true,currentPeriodEndsAt:"2099-01-01T00:00:00.000Z"};
-        await reload(); await readyHome(); await button("Continue learning").click();
+        await reload(); await readyHome(); await button("View course").click();
         assert.equal(await button(`Start exam: ${exam.title}`).count(),0,"Exam stays locked before the challenge");
         const nextLessonName=`Start lesson: ${nextLesson.pathTitle || nextLesson.title}`;
         assert.equal(await button(nextLessonName).count(),0,"Next phase stays locked before the exam");
@@ -299,7 +299,7 @@ export async function runBrowserScenarios() {
         }
         await reload(); await readyHome();
         await savedAssessments([...prerequisites,challenge.id],[]);
-        await button("Continue learning").click();
+        await button("View course").click();
         await button(`Start exam: ${exam.title}`).waitFor();
         assert.equal(await button(nextLessonName).count(),0);
         console.log(`PASS: real challenge completion, ${width===390 ? "offline queue, " : ""}server acknowledgement, reload and exam unlock at ${width}px`);
@@ -325,7 +325,7 @@ export async function runBrowserScenarios() {
         await reload(); await readyHome();
         const completedAssessments=[...prerequisites,challenge.id,exam.id];
         await savedAssessments(completedAssessments,[firstBadge]);
-        await button("Continue learning").click(); await button(nextLessonName).waitFor();
+        await button("View course").click(); await button(nextLessonName).waitFor();
         console.log(`PASS: real exam completion, ${width===390 ? "offline queue, " : ""}badge persistence, reload and next-phase unlock at ${width}px`);
         const improvedBadge=await playExam(exam.questions.length,true);
         assert.notEqual(improvedBadge,firstBadge,"The retake must earn a better result");

@@ -26,6 +26,8 @@ export function authErrorMessage(error) {
 export function accountDeletionErrorMessage(error) {
   const code = error?.code || "";
   switch (code) {
+    case "account/password-verification-timeout":
+      return "Password verification took too long. Nothing was deleted. Check your connection and try again.";
     case "partner/release-preparation-failed":
       return "We could not safely prepare account deletion. Your account and progress are still here. Please try again.";
     case "RECENT_AUTH_REQUIRED":

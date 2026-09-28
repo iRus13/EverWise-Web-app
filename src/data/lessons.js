@@ -51,7 +51,7 @@ const phase1Lessons = [
         bullets: [
           "Each lesson takes about 5 to 7 minutes",
           "You'll read a little, then practice what you learned",
-          "Every lesson ends with a short quiz",
+          "Practice activities help you check what you’ve learned",
           "You earn a badge for each lesson you finish"
         ],
         footer: "There's no rush and no wrong pace. One lesson a day is plenty."

@@ -51,7 +51,7 @@ export async function clickReachable(locator, context) {
   await locator.click();
 }
 
-export async function checkAssessments(page, base) {
+export async function checkAssessments(page, base, onState = async () => {}) {
   let challengeRuns=0, examRuns=0;
   const button = name => page.getByRole("button", {name, exact:true});
   let context;
@@ -62,8 +62,11 @@ export async function checkAssessments(page, base) {
       await page.getByRole("heading",{name:question.question,exact:true}).waitFor();
       assert.equal(await page.getByRole("progressbar").getAttribute("aria-valuenow"),String(index+1));
       assert.equal(await button("Choose an answer before continuing").isDisabled(),true);
-      await click(question.options[index < correctCount ? question.correctIndex : (question.correctIndex+1)%question.options.length]);
-      assert.ok(await page.locator(".lesson-content .mt-8 button").evaluateAll(nodes => nodes.every(node => node.disabled)),"An answer cannot be counted twice");
+      const chosen=index < correctCount ? question.correctIndex : (question.correctIndex+1)%question.options.length;
+      await click(question.options[(chosen+1)%question.options.length]);
+      await click(question.options[chosen]);
+      assert.equal(await button(question.options[chosen]).getAttribute("aria-pressed"),"true","Only the final choice is submitted");
+      assert.equal(await page.locator('.lesson-answer[aria-pressed="true"]').count(),1);
       await click(index+1 < exam.questions.length ? "Next" : "See results");
     }
     await page.getByText(`You scored ${correctCount} of ${exam.totalQuestions}.`,{exact:true}).waitFor();
@@ -119,6 +122,7 @@ export async function checkAssessments(page, base) {
         }
       }
       assert.equal(await page.getByTestId("assessment-outcome").count(),0,"Completion requires the final return action");
+      await onState(page,{kind:"challenge",id:challenge.id,state:"complete",width,height,textSize});
       await click("Back to your path");
       assert.deepEqual(await outcome(),{type:"completed",calls:1});
       challengeRuns++;
@@ -128,9 +132,11 @@ export async function checkAssessments(page, base) {
       for (const pass of [false,true]) {
         await open("exam",exam.id);
         await page.getByRole("heading",{name:exam.title,exact:true}).waitFor();
+        await onState(page,{kind:"exam",id:exam.id,state:pass ? "intro-pass" : "intro-fail",width,height,textSize});
         await click("Start exam");
         assert.ok(exam.passingScore > 1,"The failed route needs a nonzero score below the pass mark");
         await answerExam(exam,pass ? exam.questions.length : exam.passingScore - 1);
+        await onState(page,{kind:"exam",id:exam.id,state:pass ? "passed" : "failed",width,height,textSize});
         assert.equal(await page.getByTestId("assessment-outcome").count(),0,"No premature completion callback");
         if (pass) {
           await click("Back to your path");
@@ -145,6 +151,7 @@ export async function checkAssessments(page, base) {
           assert.equal(await button("Choose an answer before continuing").isDisabled(),true);
           // A nonzero failed score must not leak into a subsequent attempt.
           await answerExam(exam,0);
+          await onState(page,{kind:"exam",id:exam.id,state:"retake",width,height,textSize});
           assert.equal(await button("Back to your path").count(),0);
           await click("Back to path");
           assert.deepEqual(await outcome(),{type:"back",calls:1});
@@ -155,4 +162,5 @@ export async function checkAssessments(page, base) {
     console.log(`PASS: all ${examsByOrder.length} exams pass/fail, exact scores, retry reset and back navigation at ${width}px ${textSize}`);
   }
   console.log(`PASS: ${challengeRuns} challenge journeys and ${examRuns} exam journeys plus ${examsByOrder.length*2} complete retakes using actual authored questions; no skipped answers`);
+  return {challengeRuns,examRuns,retakes:examsByOrder.length*2};
 }

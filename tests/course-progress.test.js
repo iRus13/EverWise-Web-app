@@ -7,6 +7,7 @@ import {
   phaseRequirementsComplete,
   isPlayableUnlocked,
   findCurrentPlayableId,
+  nextCourseActivity,
   labelFinalLessonsForChallenges,
   getChallengeCompletionContent,
 } from "../src/utils/courseProgress.js";
@@ -62,6 +63,19 @@ const playables = [
   { ...challenges[1], kind: "challenge" },
   { ...exams[0], kind: "exam" },
 ];
+
+test("Home's next activity follows lessons, challenges and exams without skipping prerequisites", () => {
+  const ids = requiredCourseIds(lessons, challenges, exams);
+  for (let i = 0; i < ids.length; i++) {
+    const next = nextCourseActivity(ids.slice(0, i), curriculum);
+    assert.equal(next.id, ids[i]);
+    assert.equal(next.kind, playables[i].kind);
+    if (next.kind === "lesson") assert.equal(lessons[next.lessonIndex].id, next.id);
+  }
+  assert.equal(nextCourseActivity(ids, curriculum), null);
+  assert.equal(nextCourseActivity(["p2-l1", "foreign-id"], curriculum).id, "p1-l1");
+  assert.equal(nextCourseActivity([], {lessons:[],challenges:[],exams:[]}), null);
+});
 
 test("requiredCourseIds returns every required item in phase order", () => {
   assert.deepEqual(

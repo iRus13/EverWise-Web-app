@@ -33,7 +33,8 @@ if(extra&&!devices.some(d=>d.type===extra.identifier))devices.push({name:extra.n
 const selected=process.env.EVERWISE_QA_DEVICE_FILTER?devices.filter(d=>new RegExp(process.env.EVERWISE_QA_DEVICE_FILTER).test(d.name)):devices;
 if (!selected.length || !selectedScenes.length) throw Error("Device and scene filters must match at least one case");
 if(process.env.EVERWISE_QA_EXISTING_UDID && selected.length!==1) throw Error("An existing QA device requires exactly one model filter");
-const summary={runId,resumedFrom:prior?.runId,started:new Date().toISOString(),runtime,devices:[],scenes:selectedScenes.map(s=>s.name),scope:"Real native WKWebView, production components, synthetic fixture data; iPhone-only compatibility mode on iPad. No live accounts or purchases."};
+const deviceFamily=JSON.parse(command("plutil",["-extract","UIDeviceFamily","json","-o","-",path.join(shipping,"Info.plist")]));
+const summary={deviceFamily,runId,resumedFrom:prior?.runId,started:new Date().toISOString(),runtime,devices:[],scenes:selectedScenes.map(s=>s.name),scope:"Real native WKWebView, production components, synthetic fixture data; device support is recorded from the built bundle. No live accounts or purchases."};
 await mkdir(output,{recursive:true});
 const summaryPath=path.join(output,`sweep-${runId}.json`);
 for(const device of selected) {

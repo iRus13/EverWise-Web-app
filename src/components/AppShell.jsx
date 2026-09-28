@@ -1,20 +1,27 @@
+import { Capacitor } from "@capacitor/core";
+import "../styles/native-shell.css";
+import "../styles/design-system.css";
+import "../styles/app-navigation.css";
+import { Award } from "lucide-react";
 import {
   BookIcon,
   HomeIcon,
   MessageSearchIcon,
   SettingsIcon,
-  ShieldIcon,
 } from "./Icons";
 import { primaryNavigationState } from "../utils/responsiveNavigation.js";
 import { PartnerLogo } from "./PartnerBrand.jsx";
 import TextSizeControl from "./TextSizeControl";
 import CourseProgressCard from "./CourseProgressCard";
+import useNativeWindowInsets from "../hooks/useNativeWindowInsets";
+import useVisibleFormFocus from "../hooks/useVisibleFormFocus";
+import useNativeTextMetrics from "../hooks/useNativeTextMetrics";
 
 const iconByDestination = {
   home: HomeIcon,
   course: BookIcon,
   "scam-checker": MessageSearchIcon,
-  badges: ShieldIcon,
+  badges: Award,
   settings: SettingsIcon,
 };
 
@@ -34,6 +41,18 @@ export default function AppShell({
   courseProgress = null,
 }) {
   const canvas = useRef(null);
+  const viewport = useRef(null);
+  useNativeWindowInsets(viewport);
+  useNativeTextMetrics();
+  useVisibleFormFocus(canvas);
+  useLayoutEffect(() => {
+    // Wide layouts scroll the document. A new screen must not inherit the
+    // course's current-step offset or a previous page's reading position.
+    // Run before destination effects, so a course or form can then reveal its
+    // own current item. Leave the persistent navigation's scroll position alone.
+    if (document.scrollingElement) document.scrollingElement.scrollTop = 0;
+    if (canvas.current) canvas.current.scrollTop = 0;
+  }, [screen]);
   useEffect(() => {
     const main = canvas.current;
     if (!main) return;
@@ -72,7 +91,7 @@ export default function AppShell({
   const partnerName = partner?.name?.trim();
 
   return (
-    <div className={`app-viewport app-screen-${screen}`}>
+    <div ref={viewport} className={`app-viewport app-screen-${screen}${Capacitor.isNativePlatform() ? " is-native-app" : ""}`}>
       <div
         className={`app-shell ${
           showNavigation ? "has-app-navigation" : "is-focus-shell"
@@ -109,13 +128,14 @@ export default function AppShell({
                     type="button"
                     onClick={handlers[item.id]}
                     disabled={navigationDisabled}
+                    aria-label={item.label}
                     aria-current={item.active ? "page" : undefined}
                     className={`app-navigation-item ${
                       item.active ? "is-active" : ""
                     }`}
                   >
                     <Icon className="h-6 w-6 shrink-0" />
-                    <span>{item.label}</span>
+                    <span>{item.id === "scam-checker" ? "Checker" : item.label}</span>
                   </button>
                 );
               })}
@@ -146,4 +166,4 @@ export default function AppShell({
     </div>
   );
 }
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";

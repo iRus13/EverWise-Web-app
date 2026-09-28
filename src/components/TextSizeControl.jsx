@@ -9,7 +9,7 @@ export default function TextSizeControl({
   textSize,
   onTextSizeChange,
   className = "",
-  buttonClassName = "h-11 w-11 lg:h-20 lg:w-20",
+  buttonClassName = "h-11 w-11",
   label = "Text size",
 }) {
   const index = Math.max(0, TEXT_SIZES.indexOf(textSize));
@@ -18,7 +18,7 @@ export default function TextSizeControl({
 
   return (
     <div
-      className={`flex shrink-0 items-center overflow-hidden rounded-xl border-2 border-ink/15 bg-cream-card ${className}`}
+      className={`flex shrink-0 items-center overflow-hidden rounded-xl border border-ink/15 bg-cream-card ${className}`}
       role="group"
       aria-label={label}
     >
@@ -27,17 +27,17 @@ export default function TextSizeControl({
         onClick={() => onTextSizeChange(textSizeStep(textSize, -1))}
         disabled={atSmallest}
         aria-label="Make text smaller"
-        className={`text-size-control flex items-center justify-center font-bold text-ink transition-colors hover:bg-cream-deep disabled:cursor-not-allowed disabled:text-ink-faint ${buttonClassName}`}
+        className={`text-size-control flex items-center justify-center font-bold text-ink transition-colors enabled:hover:bg-cream-deep enabled:active:bg-cream-deep disabled:cursor-not-allowed disabled:text-ink-faint ${buttonClassName}`}
       >
         −
       </button>
-      <span className="h-7 w-px bg-ink/15 lg:h-12" aria-hidden="true" />
+      <span className="h-7 w-px bg-ink/15" aria-hidden="true" />
       <button
         type="button"
         onClick={() => onTextSizeChange(textSizeStep(textSize, 1))}
         disabled={atLargest}
         aria-label="Make text larger"
-        className={`text-size-control flex items-center justify-center font-bold text-ink transition-colors hover:bg-cream-deep disabled:cursor-not-allowed disabled:text-ink-faint ${buttonClassName}`}
+        className={`text-size-control flex items-center justify-center font-bold text-ink transition-colors enabled:hover:bg-cream-deep enabled:active:bg-cream-deep disabled:cursor-not-allowed disabled:text-ink-faint ${buttonClassName}`}
       >
         +
       </button>

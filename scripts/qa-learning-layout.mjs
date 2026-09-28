@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { allLessons } from "../src/data/lessons.js";
 
 // Caller owns the local server/browser and blocks all external requests.
-export async function checkLearningActivities(page, base) {
+export async function checkLearningActivities(page, base, onState = async () => {}) {
   const types=[...new Set(allLessons.flatMap(lesson => lesson.blocks.map(block => block.type)))].sort();
   const failures=[];
   let combinations=0;
@@ -12,11 +12,22 @@ export async function checkLearningActivities(page, base) {
       while(owner && !/^(auto|scroll)$/.test(getComputedStyle(owner).overflowY)) owner=owner.parentElement;
       if (!owner || owner === document.body || owner === document.documentElement) owner=document.scrollingElement;
       if(atEnd) {
+        const feedback=document.querySelector("[data-lesson-feedback]");
+        if(feedback) {
+          let top=0,bottom=innerHeight;
+          for(let parent=feedback.parentElement;parent;parent=parent.parentElement) {
+            if(!/^(auto|scroll|hidden|clip)$/.test(getComputedStyle(parent).overflowY)) continue;
+            const box=parent.getBoundingClientRect();
+            top=Math.max(top,box.top);bottom=Math.min(bottom,box.bottom);
+          }
+          const summary=feedback.querySelector(".lesson-feedback-heading").getBoundingClientRect();
+          return summary.top >= top-1 && Math.min(summary.bottom,bottom)-summary.top >= Math.min(44,summary.height)-1;
+        }
         const action=document.querySelector(".lesson-footer button").getBoundingClientRect();
         return owner.scrollHeight-owner.clientHeight-owner.scrollTop <= 2 && action.top >= -1 && action.bottom <= innerHeight+1;
       }
-      const heading=document.querySelector(".lesson-content h1").getBoundingClientRect();
-      return owner.scrollTop <= 1 && heading.top >= -1 && Math.min(heading.bottom,innerHeight)-heading.top >= 44;
+      const element=document.querySelector(".lesson-content h1"),heading=element.getBoundingClientRect();
+      return document.activeElement === element && owner.scrollTop <= 1 && heading.top >= -1 && Math.min(heading.bottom,innerHeight)-heading.top >= Math.min(44,heading.height);
     },atEnd);
   }
   async function inspect(context) {
@@ -27,6 +38,8 @@ export async function checkLearningActivities(page, base) {
         .filter(animation => Number.isFinite(animation.effect.getComputedTiming().endTime))
         .map(animation => animation.finished.catch(() => {})));
     });
+    // Capture the state before the reachability probe deliberately scrolls it.
+    await onState(page, context);
     const geometry=await page.evaluate(async () => {
       const failures=[];
       const clip=element => {
@@ -87,6 +100,9 @@ export async function checkLearningActivities(page, base) {
         if(type === "flashcards") {
           await page.getByRole("button",{name:"Show back of card"}).click();
           await inspect({...context,state:"card-back"});
+          await page.getByRole("button",{name:"Next card",exact:true}).click();
+          await expectScrollPosition(false);
+          await inspect({...context,state:"next-card"});
         }
         if(type === "confidence") {
           await page.getByRole("button",{name:/I'd like more practice/}).click();
@@ -96,6 +112,11 @@ export async function checkLearningActivities(page, base) {
           await page.locator('.lesson-content > .mt-8 button[aria-pressed]').first().click();
           await page.getByRole("button",{name:"Check",exact:true}).click();
           // Check is already present before feedback: revealKey must scroll it.
+          await expectScrollPosition(true);
+          await inspect({...context,state:"feedback"});
+        }
+        if(["choice", "scenario", "tiered", "fillblank", "finalboss"].includes(type)) {
+          await page.locator('.lesson-answer').first().click();
           await expectScrollPosition(true);
           await inspect({...context,state:"feedback"});
         }
@@ -124,4 +145,5 @@ export async function checkLearningActivities(page, base) {
   }
   assert.deepEqual(failures,[],"Authored activity controls and reading space must remain usable");
   console.log(`PASS: ${combinations} authored activity layouts across ${types.length} activity types; flashcard flips, confidence practice, answer feedback, next-question scrolling and lesson exit`);
+  return {combinations, types};
 }

@@ -5,7 +5,9 @@ import {mkdir,writeFile} from "node:fs/promises";
 import path from "node:path";
 import {scenes} from "./qa-device-scenes.mjs";
 const require=createRequire(import.meta.url);
-const {chromium}=require(process.env.EVERWISE_PLAYWRIGHT_MODULE||"playwright");
+const engines=require(process.env.EVERWISE_PLAYWRIGHT_MODULE||"playwright");
+const engine=process.env.EVERWISE_QA_BROWSER||"chromium";
+if (!["chromium","webkit"].includes(engine)) throw Error("Unsupported QA browser");
 const base=`http://127.0.0.1:${process.env.EVERWISE_QA_PORT||8867}`;
 const selectedScenes=process.env.EVERWISE_QA_SCENE_FILTER?scenes.filter(s=>new RegExp(process.env.EVERWISE_QA_SCENE_FILTER).test(s.name)):scenes;
 if (!selectedScenes.length) throw Error("Scene filter must match at least one case");
@@ -14,8 +16,8 @@ const viewports=process.env.EVERWISE_QA_VIEWPORTS?JSON.parse(process.env.EVERWIS
   [568,320],[667,375],[874,402],[956,440],[639,760],[640,760],[744,1133],[767,1024],[768,1024],[810,1080],[820,1180],[834,1194],
   [899,760],[900,760],[1023,768],[1024,768],[1180,820],[1280,800],[1366,1024],[1440,900],[1920,1080]];
 await mkdir(output,{recursive:true});
-const summary={started:new Date().toISOString(),viewports,scenes:selectedScenes.map(s=>s.name),cases:[]};
-const browser=await chromium.launch({executablePath:process.env.EVERWISE_CHROME_PATH||"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",headless:true});
+const summary={started:new Date().toISOString(),engine,viewports,scenes:selectedScenes.map(s=>s.name),cases:[]};
+const browser=await engines[engine].launch(engine === "chromium" ? {executablePath:process.env.EVERWISE_CHROME_PATH||"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",headless:true} : {headless:true});
 const queue=[...viewports];
 async function worker(id) {
   const context=await browser.newContext();
@@ -32,9 +34,42 @@ async function worker(id) {
       try {
         await page.goto(`${base}${scene.url}&textSize=${size}&qaDevice=browser-${id}`,{waitUntil:"domcontentloaded"});
         await page.waitForFunction(()=>window.__everwiseVisualQA);
+        // CSS-only native-shell emulation; native WebView evidence is collected
+        // separately by qa-ipad-native. No native plugins are simulated here.
+        if(process.env.EVERWISE_QA_NATIVE_SHELL === "1") {
+          const nativeTop=Number(process.env.EVERWISE_QA_NATIVE_TOP||0);
+          await page.evaluate(top=>{
+            const viewport=document.querySelector(".app-viewport");
+            viewport?.classList.add("is-native-app");
+            viewport?.style.setProperty("--native-window-top", `${top}px`);
+          },nativeTop);
+          entry.nativeTopEmulated=nativeTop;
+          entry.nativeShellEmulated=true;
+        }
         const result=await page.evaluate(()=>window.__everwiseVisualQA.measure());
         entry={...entry,...result};
         entry.failed=Boolean(result.error||result.outside.length||result.unreachable.length||result.errors.length||result.brokenImages.length||result.scrollWidth>width+1);
+        if (await page.locator('.status-screen, .personal-plan').count()) {
+          entry.statusGeometry=await page.evaluate(()=>{
+            const root=document.querySelector('.status-screen, .personal-plan');
+            const heading=root.querySelector('h1');
+            const brokenWords=[];
+            const walker=document.createTreeWalker(heading,NodeFilter.SHOW_TEXT);
+            for(let node=walker.nextNode();node;node=walker.nextNode()) {
+              for(const match of node.textContent.matchAll(/[\p{L}\p{N}]+/gu)) {
+                const range=document.createRange();range.setStart(node,match.index);range.setEnd(node,match.index+match[0].length);
+                if(new Set([...range.getClientRects()].map(r=>Math.round(r.top))).size>1)brokenWords.push(match[0]);
+              }
+            }
+            const controls=[...root.querySelectorAll('.status-actions > button, .status-actions > a')].map(el=>{
+              const r=el.getBoundingClientRect();return {left:r.left,right:r.right};
+            });
+            return {brokenWords,mainCount:document.querySelectorAll('main').length,headingCount:root.querySelectorAll('h1').length,
+              aligned:controls.every(r=>Math.abs(r.left-controls[0].left)<1 && Math.abs(r.right-controls[0].right)<1)};
+          });
+          const g=entry.statusGeometry;
+          entry.failed ||= g.brokenWords.length>0 || g.mainCount!==1 || g.headingCount!==1 || !g.aligned;
+        }
         const filename=`${size}-${scene.name}.png`;
         await page.screenshot({path:path.join(folder,filename)});
         entry.screenshot=`${width}x${height}/${filename}`;

@@ -6,7 +6,7 @@ export default function BackButton({ onClick, label = "Back" }) {
     <button
       type="button"
       onClick={onClick}
-      className="-ml-2 flex items-center gap-1 rounded-full p-2 text-lg font-semibold text-ink-soft transition-colors hover:bg-cream-deep"
+      className="-ml-2 flex items-center gap-1 rounded-full p-2 text-lg font-semibold text-ink-soft transition-colors enabled:hover:bg-cream-deep enabled:active:bg-cream-deep"
       aria-label={label}
     >
       <ArrowLeftIcon className="h-7 w-7" />

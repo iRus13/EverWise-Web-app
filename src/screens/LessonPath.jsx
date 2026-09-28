@@ -1,727 +1,298 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  lessonsByOrder as lessons,
-  examsByOrder,
-  challengesByOrder,
-  pathOrderForPhase,
-} from "../data/course-catalog.js";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowDown, Check, ChevronDown, ChevronRight, Lock, Search, X } from "lucide-react";
+import { lessonsByOrder as lessons, examsByOrder, challengesByOrder, pathOrderForPhase } from "../data/course-catalog.js";
 import { getPhase, phaseLabel } from "../data/phases";
-import {
-  CheckIcon,
-  LockIcon,
-  TrophyIcon,
-  BookIcon,
-  FastForwardIcon,
-  ArrowLeftIcon,
-} from "../components/Icons";
-import {
-  findCurrentPlayableId,
-  isPlayableUnlocked,
-} from "../utils/courseProgress.js";
-import { getPathLayoutMetrics } from "../utils/pathLayout.js";
+import { findCurrentPlayableId } from "../utils/courseProgress.js";
+import "../styles/course-path.css";
 
-const TOP_PAD = 0; // phase color starts directly below the orange header
-// Generous space around the lighter phase headers (no filled block).
-const PHASE_TOP = 32; // used between later phases only
-const PHASE_TOP_FIRST = 8; // no dead space above Phase 1
-const CLAY = "#B5502E";
-const CREAM = "#EFE9DC";
-const DOT_LOCKED = "rgba(34, 32, 28, 0.13)";
-// Diameter of a node's circle (h-28). nodeBoxHeight also covers the label
-// underneath it, which is why the two are not interchangeable when placing the
-// trail: the trail should read as running between the circles a learner taps.
-const NODE_CIRCLE = 112;
-// Keeps a dot from crowding the label above it.
-const DOT_LABEL_CLEARANCE = 12;
+const curriculum = { lessons, challenges: challengesByOrder, exams: examsByOrder };
+const playables = [
+  ...lessons.map((lesson, lessonIndex) => ({
+    kind: "lesson", id: lesson.id, order: lesson.pathOrder ?? lesson.order,
+    phase: lesson.phase, title: lesson.title, lessonIndex, quizCount: lesson.quizCount,
+    label: `Lesson ${lessons.slice(0, lessonIndex + 1).filter(item => item.phase === lesson.phase).length}`,
+  })),
+  ...challengesByOrder.map(challenge => ({
+    kind: "challenge", id: challenge.id, order: pathOrderForPhase(challenge.phase) + 0.4,
+    phase: challenge.phase, title: challenge.title, challenge, label: "Final challenge",
+  })),
+  ...examsByOrder.filter(exam => exam?.id && exam.questionCount > 0).map(exam => ({
+    kind: "exam", id: exam.id, order: pathOrderForPhase(exam.phase) + 0.5,
+    phase: exam.phase, title: exam.title, exam, label: "Phase exam",
+  })),
+].sort((a, b) => a.order - b.order);
+const phaseGroups = [...new Set(playables.map(item => item.phase))].map(number => ({
+  ...getPhase(number), steps: playables.filter(item => item.phase === number),
+}));
 
-// Continuous wave rather than a fixed repeating cycle, so the path never
-// lands on exactly the same bend twice. The first lesson of each phase stays
-// centered under its title.
-function snakeOffset(indexInPhase, phaseNumber, scale = 1) {
-  if (indexInPhase === 0) return 0;
-  const seed = (phaseNumber ?? 1) * 0.83;
-  return Math.round(Math.sin(indexInPhase * 1.35 + seed) * 60 * scale);
-}
-
-// The path's whole layout is computed in raw pixels (calibrated for a phone
-// screen). Rather than leave it tiny on a desktop monitor, every metric is
-// scaled up by this factor once the viewport crosses the lg breakpoint —
-// same trick the app already uses to grow the path for larger text-size
-// settings, just driven by screen width instead.
-const DESKTOP_PATH_SCALE = 1.4;
-
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(min-width: 1024px)").matches,
-  );
-  useEffect(() => {
-    if (typeof window === "undefined") return undefined;
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const handler = (e) => setIsDesktop(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-  return isDesktop;
-}
-
-const curriculum = {
-  lessons,
-  challenges: challengesByOrder,
-  exams: examsByOrder,
-};
+const searchText = value => value.normalize("NFD").replace(/\p{M}/gu, "").toLocaleLowerCase();
 
 export default function LessonPath({
-  completedLessons = [],
-  textSize = "size-2",
-  onSelectLesson,
-  onSelectExam,
-  onSelectChallenge,
-  onTestOutLesson,
-  onBack,
+  completedLessons = [], onSelectLesson, onSelectExam, onSelectChallenge,
+  onTestOutLesson, onBack, hasSavedLessonPosition, hasSavedAssessmentPosition,
 }) {
   const doneSet = new Set(completedLessons);
-  const pathScrollRef = useRef(null);
-  const activePhaseRef = useRef(null);
-  const currentNodeRef = useRef(null);
-  const isDesktop = useIsDesktop();
-  const scale = isDesktop ? DESKTOP_PATH_SCALE : 1;
-  const rawMetrics = getPathLayoutMetrics(textSize);
-  const nodeBoxHeight = Math.round(rawMetrics.nodeBoxHeight * scale);
-  const nodeSlot = Math.round(rawMetrics.nodeSlot * scale);
-  const phaseBandHeight = Math.round(rawMetrics.phaseBandHeight * scale);
-  const phaseBottom = Math.round(rawMetrics.phaseBottom * scale);
-  const pathBottomClearance = Math.round(
-    rawMetrics.pathBottomClearance * scale,
-  );
-  // The trail dots grow with the text too, so the path stays legible as a
-  // single run instead of thinning into specks beside much larger nodes.
-  const dotSize = Math.round((isDesktop ? 28 : 20) * rawMetrics.textScale);
+  const currentId = findCurrentPlayableId(playables, completedLessons, curriculum);
+  const current = playables.find(item => item.id === currentId);
+  const completed = playables.filter(item => doneSet.has(item.id)).length;
+  const allDone = completed === playables.length;
+  const activePhaseNumber = current?.phase ?? phaseGroups[0].number;
+  const [expanded, setExpanded] = useState(() => new Set([activePhaseNumber]));
+  const [searching, setSearching] = useState(false);
+  const [query, setQuery] = useState("");
+  const searchInput = useRef(null);
+  const searchButton = useRef(null);
+  const scrollPositions = useRef([]);
+  const wasSearching = useRef(false);
+  const terms = searchText(query).trim().split(/\s+/).filter(Boolean);
+  const displayedPhases = searching ? phaseGroups.map(phase => ({
+    ...phase,
+    steps: terms.length ? phase.steps.filter(step => {
+      const text = searchText(`${step.title} ${step.kind} ${step.label} Phase ${phaseLabel(phase)} ${phase.title}`);
+      return terms.every(term => text.includes(term));
+    }) : [],
+  })).filter(phase => phase.steps.length) : phaseGroups;
+  const resultCount = displayedPhases.reduce((sum, phase) => sum + phase.steps.length, 0);
+  const currentRef = useRef(null);
+  const toolbarRef = useRef(null);
+  const [locateRequest, setLocateRequest] = useState(0);
 
-  // Lessons + challenges + exams in curriculum order for progress / path nodes.
-  const playables = [
-    ...lessons.map((l, i) => ({
-      kind: "lesson",
-      id: l.id,
-      order: l.pathOrder ?? l.order,
-      phase: l.phase,
-      title: l.pathTitle || l.title,
-      fullTitle: l.title,
-      lessonIndex: i,
-      phaseColor: getPhase(l.phase).color,
-      biomeColor: getPhase(l.phase).color,
-    })),
-    ...challengesByOrder.map((c) => ({
-      kind: "challenge",
-      id: c.id,
-      // Slot just after the last lesson of its phase on the path.
-      order: pathOrderForPhase(c.phase) + 0.4,
-      phase: c.phase,
-      title: "Final Challenge",
-      fullTitle: c.title,
-      challenge: c,
-      phaseColor: getPhase(c.phase).color,
-      biomeColor: getPhase(c.phase).color,
-    })),
-    ...examsByOrder
-      .filter((e) => e && e.id && e.questionCount > 0)
-      .map((e) => ({
-        kind: "exam",
-        id: e.id,
-        order: pathOrderForPhase(e.phase) + 0.5,
-        phase: e.phase,
-        title: "Phase Exam",
-        fullTitle: e.title,
-        exam: e,
-        phaseColor: getPhase(e.phase).color,
-        biomeColor: getPhase(e.phase).color,
-      })),
-  ].sort((a, b) => a.order - b.order);
-
-  // First incomplete item in the shared lesson → challenge → exam sequence.
-  const currentId = findCurrentPlayableId(
-    playables,
-    completedLessons,
-    curriculum,
-  );
-
-  const activePhaseNumber =
-    playables.find((p) => p.id === currentId)?.phase ??
-    playables[playables.length - 1]?.phase ??
-    1;
-  const activePhase = getPhase(activePhaseNumber);
-
-  const items = [];
-  let lastPhase = null;
-  playables.forEach((p) => {
-    if (p.phase !== lastPhase) {
-      items.push({ kind: "phase", phase: getPhase(p.phase) });
-      lastPhase = p.phase;
+  useLayoutEffect(() => {
+    let frame;
+    if (searching) {
+      for (const [owner] of scrollPositions.current) owner.scrollTop = 0;
+      searchInput.current?.focus({preventScroll:true});
+    } else if (wasSearching.current) {
+      searchButton.current?.focus({preventScroll:true});
+      // WebKit may apply a pending focus/scroll adjustment after this layout.
+      // Reapply once at the next frame, before the explicit Current step effect.
+      const restore = () => {
+        for (const [owner, top] of scrollPositions.current) owner.scrollTop = top;
+      };
+      restore();
+      frame = requestAnimationFrame(restore);
     }
-    items.push(p);
-  });
-  items.push({
-    kind: "reward",
-    id: "path-reward",
-    title: "All done",
-    fullTitle: "All done",
-  });
+    wasSearching.current = searching;
+    return () => cancelAnimationFrame(frame);
+  }, [searching]);
 
-  let y = TOP_PAD;
-  let phaseCount = 0;
-  let indexInPhase = 0;
-  const positioned = items.map((item, idx) => {
-    if (item.kind === "phase") {
-      const isFirst = phaseCount === 0;
-      phaseCount += 1;
-      indexInPhase = 0;
-      const topPad = isFirst ? PHASE_TOP_FIRST : PHASE_TOP;
-      const pos = { ...item, top: y, bandTop: y + topPad, isFirst };
-      y += topPad + phaseBandHeight + phaseBottom;
-      return pos;
+  function toggleSearch() {
+    // End input focus before removing the field. Otherwise WebKit can finish
+    // a pending input reveal against the restored course when Escape closes it.
+    if (searching) searchInput.current?.blur();
+    if (!searching) {
+      let owner = toolbarRef.current?.parentElement;
+      const owners = new Set([owner?.querySelector(".path-scroll"), document.scrollingElement]);
+      while (owner) { owners.add(owner); owner = owner.parentElement; }
+      scrollPositions.current = [...owners].filter(Boolean).map(element => [element, element.scrollTop]);
     }
-    const offsetX =
-      item.kind === "reward"
-        ? 0
-        : snakeOffset(indexInPhase, item.phase, scale);
-    if (item.kind !== "reward") indexInPhase += 1;
-    const pos = { ...item, top: y, offsetX };
-    // Only gaps that actually get dots need the tall slot; the last node
-    // needs no clearance below it at all.
-    const next = items[idx + 1];
-    const nextHasDots = next && next.phase != null && next.phase === item.phase;
-    y += !next
-      ? nodeBoxHeight
-      : nextHasDots
-        ? nodeSlot
-        : nodeBoxHeight + 44;
-    return pos;
-  });
-  const containerHeight = y + pathBottomClearance;
+    setQuery("");
+    setSearching(value => !value);
+  }
 
-  const trailNodes = positioned.filter(
-    (n) =>
-      n.kind === "lesson" ||
-      n.kind === "challenge" ||
-      n.kind === "exam" ||
-      n.kind === "reward"
-  );
+  useEffect(() => {
+    setExpanded(previous => previous.has(activePhaseNumber) ? previous : new Set([...previous, activePhaseNumber]));
+  }, [activePhaseNumber]);
 
-  // Curved trails per same-phase segment — never through a phase header.
-  const dots = [];
-  for (let i = 0; i < trailNodes.length - 1; i++) {
-    const a = trailNodes[i];
-    const b = trailNodes[i + 1];
-    if (a.phase == null || b.phase == null || a.phase !== b.phase) continue;
+  useEffect(() => {
+    // Resume at the actual next step without a delayed animated jump. The first
+    // visit keeps the introduction visible; later visits reveal the current row.
+    if (!currentId || currentId === playables[0].id) return undefined;
+    const frame = requestAnimationFrame(() => revealCurrentStep());
+    return () => cancelAnimationFrame(frame);
+  }, [currentId]);
 
-    const ax = a.offsetX ?? 0;
-    const bx = b.offsetX ?? 0;
-    const labelBottom = a.top + nodeBoxHeight;
-    const by = b.top;
-    if (by <= labelBottom) continue;
+  useEffect(() => {
+    if (!locateRequest) return undefined;
+    const frame = requestAnimationFrame(() => {
+      const action = currentRef.current?.querySelector("button");
+      action?.focus({preventScroll:true});
+      revealCurrentStep();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [locateRequest]);
 
-    // Centre the pair on the midpoint between the two CIRCLES, not on the gap
-    // below A's label. Measuring from the label made the trail sit far from the
-    // node above and almost touch the one below (111px against 41px at the
-    // default text size), so it read as belonging to the next lesson rather
-    // than joining the two.
-    const circleBottom = a.top + Math.round(NODE_CIRCLE * scale);
-    const midpoint = (circleBottom + by) / 2;
-    const desiredHalf = ((by - circleBottom) * 0.33) / 2;
-    // ...but never so high that a dot lands on the label above it.
-    const clearanceHalf = midpoint - (labelBottom + DOT_LABEL_CLEARANCE);
-    const half = Math.max(0, Math.min(desiredHalf, clearanceHalf));
+  function revealCurrentStep() {
+    const row = currentRef.current;
+    if (!row) return;
+    let owner = row.parentElement;
+    while (owner && (!/^(auto|scroll)$/.test(getComputedStyle(owner).overflowY) || owner.scrollHeight <= owner.clientHeight + 1)) {
+      owner = owner.parentElement;
+    }
+    owner ||= document.scrollingElement;
+    if (!owner) return;
+    const documentScroll = owner === document.scrollingElement;
+    const bounds = documentScroll ? {top:0, bottom:innerHeight} : owner.getBoundingClientRect();
+    const top = Math.max(0, bounds.top, toolbarRef.current?.getBoundingClientRect().bottom || 0) + 16;
+    const bottom = Math.min(innerHeight, bounds.bottom) - 16;
+    const rect = row.getBoundingClientRect();
+    // A very large-text row can be taller than the available screen. Show its
+    // beginning rather than centering it on text halfway through the activity.
+    const target = rect.height > bottom - top ? top : top + (bottom - top - rect.height) / 2;
+    owner.scrollTo?.({top:owner.scrollTop + rect.top - target, behavior:"auto"});
+  }
 
-    // Lights up once the lesson BEFORE the dots is complete.
-    const color = doneSet.has(a.id) ? getPhase(a.phase).color : DOT_LOCKED;
+  function locateCurrentStep() {
+    setSearching(false);
+    setQuery("");
+    setExpanded(previous => new Set([...previous, activePhaseNumber]));
+    setLocateRequest(request => request + 1);
+  }
 
-    [midpoint - half, midpoint + half].forEach((dotY, k) => {
-      // Keep the horizontal drift matched to the vertical position so the
-      // trail still curves with the snake.
-      const t = (dotY - a.top) / (by - a.top);
-      dots.push({
-        key: `${a.id}-${b.id}-${k}`,
-        x: ax + (bx - ax) * t,
-        y: dotY,
-        color,
-      });
+  useEffect(() => {
+    // In a tablet browser the primary navigation sits above this toolbar.
+    // Its height changes with text size; never cover it with a fixed offset.
+    const toolbar = toolbarRef.current;
+    if (!toolbar) return undefined;
+    const navigation = toolbar.closest(".app-shell")?.querySelector(".app-navigation");
+    const update = () => {
+      const style = navigation && getComputedStyle(navigation);
+      const height = style?.display !== "none" && style?.flexDirection === "row" ? navigation.getBoundingClientRect().height : 0;
+      toolbar.style.setProperty("--course-nav-height", `${height}px`);
+      // At accessibility sizes, keep the navigation icons usable without
+      // letting their enlarged labels consume the entire short viewport.
+      const button = toolbar.querySelector(".course-back");
+      toolbar.dataset.compactControls = String(parseFloat(getComputedStyle(button).fontSize) > 36);
+    };
+    update();
+    if (typeof ResizeObserver === "undefined") return undefined;
+    let frame;
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    });
+    observer.observe(toolbar);
+    if (navigation) observer.observe(navigation);
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); };
+  }, []);
+
+  function togglePhase(number) {
+    setExpanded(previous => {
+      const next = new Set(previous);
+      if (next.has(number)) next.delete(number); else next.add(number);
+      return next;
     });
   }
 
-  const allPlayablesDone = playables.every((p) => doneSet.has(p.id));
-  const activePhaseBackground = mixHex(activePhase.color, CREAM, 0.1);
+  function openStep(step) {
+    if (step.kind === "lesson") onSelectLesson(step.lessonIndex);
+    else if (step.kind === "challenge") onSelectChallenge?.(step.challenge);
+    else onSelectExam?.(step.exam);
+  }
 
-  useEffect(() => {
-    const root = document.documentElement;
-    root.style.setProperty("--everwise-safe-top", CLAY);
-    root.style.setProperty("--everwise-safe-bottom", activePhaseBackground);
-    root.style.setProperty("--everwise-screen-background", activePhaseBackground);
-
-    return () => {
-      root.style.setProperty("--everwise-safe-top", CREAM);
-      root.style.setProperty("--everwise-safe-bottom", CREAM);
-      root.style.setProperty("--everwise-screen-background", CREAM);
-    };
-  }, [activePhaseBackground]);
-
-  useEffect(() => {
-    if (
-      !currentId ||
-      !activePhaseRef.current ||
-      !currentNodeRef.current
-    ) {
-      return undefined;
-    }
-
-    let scrollTimer;
-    const frame = window.requestAnimationFrame(() => {
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      const scrollCurrentIntoComfortableView = (behavior) => {
-        const scroller = pathScrollRef.current;
-        const currentNode = currentNodeRef.current;
-        if (!scroller || !currentNode) return;
-
-        // Above the sm/lg breakpoints, index.css switches `.path-scroll` to
-        // overflow: visible and lets the whole page scroll instead — this
-        // element stops being a scroll container at all, so scrollTo() on
-        // it silently does nothing. Detect that and scroll the window
-        // itself instead, using the node's on-screen position rather than
-        // its offsetTop (which is only meaningful within scroller).
-        const innerScrollActive =
-          window.getComputedStyle(scroller).overflowY === "auto";
-
-        if (innerScrollActive) {
-          // Keep the current lesson in the upper third so the following
-          // lesson is visible without being sliced by the bottom safe area.
-          const targetTop = Math.max(
-            0,
-            currentNode.offsetTop - scroller.clientHeight * 0.34,
-          );
-          scroller.scrollTo({ top: targetTop, behavior });
-          return;
-        }
-
-        const scrollingElement =
-          document.scrollingElement || document.documentElement;
-        const rect = currentNode.getBoundingClientRect();
-        const targetTop = Math.max(
-          0,
-          scrollingElement.scrollTop + rect.top - window.innerHeight * 0.34,
-        );
-        window.scrollTo({ top: targetTop, behavior });
-      };
-
-      activePhaseRef.current?.scrollIntoView({
-        behavior: "auto",
-        block: "start",
-        inline: "nearest",
-      });
-
-      if (reduceMotion) {
-        scrollCurrentIntoComfortableView("auto");
-        return;
-      }
-
-      // Give the learner a moment to see the phase name, then trace the path
-      // down to the lesson that is ready for them now.
-      scrollTimer = window.setTimeout(() => {
-        scrollCurrentIntoComfortableView("smooth");
-      }, 650);
-    });
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(scrollTimer);
-    };
-  }, [activePhaseNumber, currentId]);
-
-  return (
-    // The header stays outside the scrolling path so Home is always one tap
-    // away, even when the learner is deep inside a phase.
-    <div
-      className="course-path-screen flex min-h-0 flex-1 flex-col overflow-hidden"
-      style={{ backgroundColor: activePhaseBackground }}
-    >
-      {/* Neutral chrome — biome color only appears on phase bands/nodes.
-          On desktop every layout metric (node size, spacing, offsets) is
-          scaled up via DESKTOP_PATH_SCALE so nothing looks shrunk down —
-          this isn't the same phone-sized layout stretched into a bigger
-          box, it's genuinely bigger. */}
-      <header className="path-header flex shrink-0 items-center rounded-t-none bg-[#B5502E] px-4 py-1 text-cream-card sm:rounded-t-[40px] lg:px-8 lg:py-4">
-        <div className="flex min-w-0 flex-1 items-center gap-2.5">
-          <button
-            type="button"
-            onClick={onBack}
-            aria-label="Back to home"
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-cream-card/90 transition-colors hover:bg-white/15 lg:hidden"
-          >
-            <ArrowLeftIcon className="h-5 w-5" />
-          </button>
-          <div className="flex min-w-0 flex-1 items-baseline gap-2">
-            <h1 className="shrink-0 font-sans text-xl font-semibold leading-tight lg:text-2xl">
-              Your path
-            </h1>
-            <p className="min-w-0 truncate text-sm font-semibold leading-snug text-cream-card/85 lg:text-lg">
-              Phase {phaseLabel(activePhase)} · {activePhase.biome}
-            </p>
-          </div>
+  return <div className="course-path-screen course-outline">
+    <header ref={toolbarRef} className="course-path-toolbar">
+      <div className="course-path-header">
+        <button type="button" className="course-back" onClick={onBack} aria-label="Back to home" title="Home">
+          <ArrowLeft size={22} aria-hidden="true" /><span>Home</span>
+        </button>
+        <div className="course-toolbar-actions">
+        <button ref={searchButton} type="button" className="course-search-toggle" onClick={toggleSearch}
+          aria-label={searching ? "Close course search" : "Search course"} title={searching ? "Close search" : "Search course"}
+          aria-expanded={searching} aria-controls={searching ? "course-search" : undefined}>
+          {searching ? <X size={24} aria-hidden="true" /> : <Search size={24} aria-hidden="true" />}
+        </button>
+        {current ? <button type="button" className="course-locate" onClick={locateCurrentStep}
+          aria-label="Find your current step" title="Current step">
+          <span>Current step</span><ArrowDown size={20} aria-hidden="true" />
+        </button> : null}
         </div>
-      </header>
-
-      <div
-        ref={pathScrollRef}
-        className="path-scroll min-h-0 flex-1 overflow-y-auto"
-      >
-        <div className="pb-12">
-          <div
-            className="course-path-canvas relative mx-auto w-full max-w-none px-2"
-            style={{ height: containerHeight }}
-          >
-            {positioned
-              .filter((node) => node.kind === "phase")
-              .map((band, index, bands) => {
-                const nextBand = bands[index + 1];
-                const end = nextBand ? nextBand.top : containerHeight;
-                return (
-                  <div
-                    key={`phase-background-${band.phase.number}`}
-                    aria-hidden="true"
-                    className="absolute inset-x-0"
-                    style={{
-                      top: band.top,
-                      height: Math.max(0, end - band.top),
-                      backgroundColor: mixHex(
-                        band.phase.color,
-                        CREAM,
-                        0.1,
-                      ),
-                    }}
-                  />
-                );
-              })}
-
-            {dots.map((d) => (
-              <span
-                key={d.key}
-                aria-hidden="true"
-                className="absolute block -translate-x-1/2 -translate-y-1/2 rounded-full"
-                style={{
-                  left: `calc(50% + ${d.x}px)`,
-                  top: d.y,
-                  height: dotSize,
-                  width: dotSize,
-                }}
-              >
-                <span
-                  className="block h-full w-full rounded-full"
-                  style={{ backgroundColor: d.color }}
-                />
-              </span>
-            ))}
-
-            {positioned.map((node, i) => {
-              if (node.kind === "phase") {
-                return (
-                  <div
-                    key={`phase-${node.phase.number}`}
-                    ref={
-                      node.phase.number === activePhaseNumber
-                        ? activePhaseRef
-                        : null
-                    }
-                    className="absolute left-1/2 z-10 w-[92%] max-w-[380px] -translate-x-1/2 lg:max-w-[520px]"
-                    style={{ top: node.bandTop }}
-                  >
-                    <div
-                      className="h-px w-full"
-                      style={{ backgroundColor: node.phase.color }}
-                      aria-hidden="true"
-                    />
-                    <p
-                      className="mt-3 text-[14px] font-bold uppercase tracking-[0.12em] lg:text-[18px]"
-                      style={{ color: node.phase.color }}
-                    >
-                      Phase {phaseLabel(node.phase)} · {node.phase.biome}
-                    </p>
-                    <p className="mt-1 font-sans text-[30px] font-bold leading-tight text-ink lg:text-[42px]">
-                      {node.phase.title}
-                    </p>
-                  </div>
-                );
-              }
-
-              let state;
-              if (node.kind === "reward") {
-                state = allPlayablesDone ? "reward-done" : "locked";
-              } else if (doneSet.has(node.id)) {
-                state = "done";
-              } else if (node.id === currentId) {
-                state = "current";
-              } else if (
-                !isPlayableUnlocked(node, doneSet, curriculum)
-              ) {
-                state = "locked";
-              } else {
-                state = "locked";
-              }
-
-              const phaseColor =
-                node.kind === "reward"
-                  ? activePhase.color
-                  : getPhase(Number(node.phase)).color;
-
-              const onClick =
-                state === "current" || state === "done"
-                  ? node.kind === "exam"
-                    ? () => onSelectExam?.(node.exam)
-                    : node.kind === "challenge"
-                      ? () => onSelectChallenge?.(node.challenge)
-                      : node.kind === "lesson"
-                        ? () => onSelectLesson(node.lessonIndex)
-                        : undefined
-                  : undefined;
-
-              return (
-                <div
-                  key={node.id || i}
-                  ref={node.id === currentId ? currentNodeRef : null}
-                  className="absolute z-10 flex flex-col items-center"
-                  style={{
-                    left: `calc(50% + ${node.offsetX ?? 0}px)`,
-                    top: node.top,
-                    width: `${10.5 * scale}rem`,
-                    height: nodeBoxHeight,
-                    transform: "translateX(-50%)",
-                  }}
-                >
-                  <div className="relative flex flex-col items-center">
-                    <PathNode
-                      state={state}
-                      kind={node.kind}
-                      phaseColor={phaseColor}
-                      onClick={onClick}
-                      title={node.fullTitle || node.title}
-                    />
-                    {/* Offered beside the node, not in the way of it: tapping
-                        the node still starts the lesson as it always did, so
-                        nobody pays for an option they do not want. Only on the
-                        lesson you are actually up to, and only when there are
-                        questions to answer. */}
-                    {onTestOutLesson &&
-                    node.kind === "lesson" &&
-                    state === "current" &&
-                    (lessons[node.lessonIndex]?.quizCount ?? 0) > 0 ? (
-                      <button
-                        type="button"
-                        onClick={() => onTestOutLesson(node.lessonIndex)}
-                        aria-label={`Already know ${node.fullTitle || node.title}? Take a quick check`}
-                        title="Already know this? Take a quick check"
-                        className="path-test-out absolute -right-1 -top-1 flex min-h-11 min-w-11 items-center justify-center rounded-full border-2 border-cream-card bg-cream-card text-ink-soft shadow-btn transition-colors hover:text-ink"
-                        style={{ backgroundColor: CREAM }}
-                      >
-                        <FastForwardIcon className="h-6 w-6" />
-                      </button>
-                    ) : null}
-                    <Label
-                      state={state}
-                      title={node.title}
-                      phaseColor={phaseColor}
-                    />
-                  </div>
+      </div>
+    </header>
+    <div className="path-scroll">
+      <div className="course-path-content">
+        {searching && <div id="course-search" className="course-search">
+          <h1>Search course</h1>
+          <form role="search" aria-label="Course" onSubmit={event => {event.preventDefault(); searchInput.current?.blur();}}>
+            <label htmlFor="course-search-input">Lesson or topic</label>
+            <div className="course-search-field">
+              <Search size={22} aria-hidden="true" />
+              <input ref={searchInput} id="course-search-input" type="search" value={query}
+                onChange={event => setQuery(event.target.value)} autoComplete="off" autoCapitalize="none" spellCheck={false}
+                enterKeyHint="search" placeholder="e.g. passwords, banking" aria-describedby="course-search-help"
+                onKeyDown={event => {if (event.key === "Escape") {event.preventDefault(); toggleSearch();}}} />
+              {query && <button type="button" aria-label="Clear search" onClick={() => {setQuery(""); searchInput.current?.focus();}}><X size={22} aria-hidden="true" /></button>}
+            </div>
+          </form>
+          <p id="course-search-help">Search lesson titles and course topics.</p>
+          <p className="course-search-count" role="status">{terms.length ? `${resultCount} ${resultCount === 1 ? "result" : "results"}` : "Type a lesson name or topic to begin."}</p>
+          {terms.length > 0 && resultCount === 0 && <p className="course-search-empty">Try a shorter phrase or a broader topic, like “internet” or “money”.</p>}
+          {terms.length > 0 && displayedPhases.some(phase => phase.steps.some(step => !doneSet.has(step.id) && step.id !== currentId)) && <p className="course-search-access">Locked steps open as you progress through the course.</p>}
+        </div>}
+        <div className={`course-path-layout${searching ? " course-search-layout" : ""}`}>
+          {!searching && <div className="course-overview">
+            <h1>Your path</h1>
+            <p>{allDone ? "You've finished every step. Return to any lesson whenever you need a refresher." : "Build your confidence, one small step at a time."}</p>
+            <div className="course-progress">
+              <p><strong>{completed}</strong> of {playables.length} steps complete</p>
+              <div role="progressbar" aria-label="Course progress" aria-valuemin={0} aria-valuemax={playables.length} aria-valuenow={completed}>
+                <span style={{width: `${completed / playables.length * 100}%`}} />
+              </div>
+              <p className="course-progress-note">Lessons, challenges, and exams</p>
+            </div>
+            {!allDone && <p className="course-next-note">Finish each step to unlock the next. You can revisit completed lessons at any time.</p>}
+          </div>}
+          <div className="course-phases">
+            {displayedPhases.map(phase => {
+              const phaseDone = phase.steps.filter(step => doneSet.has(step.id)).length;
+              const isOpen = searching || expanded.has(phase.number);
+              const isCurrent = phase.number === current?.phase;
+              return <section key={phase.number} className={`course-phase${isCurrent ? " course-phase-current" : ""}`}>
+                {searching ? <h2 id={`course-phase-${phase.number}`} className="course-search-phase-heading">
+                  <span className="course-phase-number">Phase {phaseLabel(phase)}</span>
+                  <span className="course-phase-title">{phase.title}</span>
+                </h2> : <h2>
+                  <button id={`course-phase-${phase.number}`} type="button" className="course-phase-toggle"
+                    aria-expanded={isOpen} aria-controls={`course-phase-steps-${phase.number}`}
+                    onClick={() => togglePhase(phase.number)}>
+                    <span className="course-phase-description">
+                      <span className="course-phase-number">Phase {phaseLabel(phase)}{isCurrent ? " · In progress" : ""}</span>
+                      <span className="course-phase-title">{phase.title}</span>
+                      <span className="course-phase-progress">{phaseDone === phase.steps.length ? "Completed" : `${phaseDone} of ${phase.steps.length} steps complete`}</span>
+                    </span>
+                    <ChevronDown size={22} className="course-disclosure" aria-hidden="true" />
+                  </button>
+                </h2>}
+                <div id={`course-phase-steps-${phase.number}`} hidden={!isOpen} aria-labelledby={`course-phase-${phase.number}`}>
+                  <ol className="course-steps">
+                    {phase.steps.map(step => {
+                      const done = doneSet.has(step.id);
+                      const ready = step.id === currentId;
+                      const enabled = ready || done;
+                      const resumable = ready && !done && (step.kind === "lesson" ? Boolean(hasSavedLessonPosition?.(step.id)) : Boolean(hasSavedAssessmentPosition?.(step.id)));
+                      const name = done ? step.kind === "lesson" ? `Redo completed lesson: ${step.title}` : `Redo ${step.kind}: ${step.title}` : resumable ? `Resume ${step.kind}: ${step.title}` : `Start ${step.kind}: ${step.title}`;
+                      const content = <>
+                        <span className="course-step-copy">
+                          <span className="course-step-title">{step.title}</span>
+                          <span className="course-step-details">
+                            <span className="course-step-meta">{step.label} · {done ? "Completed" : resumable ? "In progress" : ready ? "Ready to start" : "Locked"}</span>
+                            <span className="course-step-indicator" aria-hidden="true">
+                              {done ? <Check size={22} /> : ready ? <ArrowRight size={22} /> : <Lock size={20} />}
+                            </span>
+                          </span>
+                          {resumable && <span className="course-resume-note">Continue where you left off</span>}
+                        </span>
+                      </>;
+                      return <li key={step.id} data-course-step={step.id} ref={ready ? currentRef : null}
+                        className={`course-step course-step-${done ? "done" : ready ? "ready" : "locked"}`}>
+                        {enabled ? <button type="button" className="course-step-action" aria-label={name}
+                          aria-current={ready ? "step" : undefined} onClick={() => openStep(step)}>{content}</button>
+                          : <div className="course-step-action">{content}</div>}
+                        {onTestOutLesson && step.kind === "lesson" && ready && !resumable && step.quizCount > 0 ?
+                          <button type="button" className="path-test-out course-quick-check"
+                            aria-label={`Already know this? Take a quick check: ${step.title}`}
+                            onClick={() => onTestOutLesson(step.lessonIndex)}>
+                            Already know this? Take a quick check <ChevronRight size={18} aria-hidden="true" />
+                          </button> : null}
+                      </li>;
+                    })}
+                  </ol>
                 </div>
-              );
+              </section>;
             })}
           </div>
         </div>
       </div>
     </div>
-  );
-}
-
-function PathNode({ state, kind, onClick, title, phaseColor }) {
-  const isExam = kind === "exam";
-  const isChallenge = kind === "challenge";
-  const fill = phaseColor || CLAY;
-  // Challenge sits visually between lesson (START/check) and exam (trophy).
-  const nodeSizeCurrent = isChallenge
-    ? "h-[6.5rem] w-[6.5rem] lg:h-[9rem] lg:w-[9rem]"
-    : "h-28 w-28 lg:h-40 lg:w-40";
-  const nodeSizeDone = isChallenge
-    ? "h-[5.5rem] w-[5.5rem] lg:h-[7.5rem] lg:w-[7.5rem]"
-    : "h-24 w-24 lg:h-32 lg:w-32";
-
-  const ariaStart = isExam
-    ? `Start exam: ${title}`
-    : isChallenge
-    ? `Start challenge: ${title}`
-    : `Start lesson: ${title}`;
-  const ariaRedo = isExam
-    ? `Redo exam: ${title}`
-    : isChallenge
-    ? `Redo challenge: ${title}`
-    : `Redo completed lesson: ${title}`;
-
-  // Current / active node keeps the clay START treatment.
-  if (state === "current") {
-    return (
-      <div className="relative shrink-0">
-        <span
-          className={`absolute inset-0 rounded-full animate-pulse-ring ${
-            isChallenge ? "ring-4 ring-inset ring-cream-card/35" : ""
-          }`}
-          style={{ backgroundColor: `${fill}66` }}
-        />
-        <button
-          type="button"
-          onClick={onClick}
-          aria-label={ariaStart}
-          className={`relative flex ${nodeSizeCurrent} items-center justify-center rounded-full font-sans text-xl font-bold text-cream-card transition-transform active:translate-y-1 lg:text-3xl ${
-            isChallenge ? "ring-[3px] ring-inset ring-cream-card/40" : ""
-          }`}
-          style={{
-            backgroundColor: fill,
-            boxShadow: `0 7px 0 ${shade(fill, -25)}`,
-          }}
-        >
-          {isExam ? (
-            <TrophyIcon className="h-12 w-12 lg:h-16 lg:w-16" />
-          ) : isChallenge ? (
-            <BookIcon className="h-11 w-11 lg:h-14 lg:w-14" />
-          ) : (
-            "START"
-          )}
-        </button>
-      </div>
-    );
-  }
-
-  // Completed: solid phase/biome color (never clay) + white check/icon.
-  if (state === "done") {
-    return (
-      <button
-        type="button"
-        onClick={onClick}
-        aria-label={ariaRedo}
-        className={`flex ${nodeSizeDone} shrink-0 items-center justify-center rounded-full text-white transition-transform active:translate-y-1 active:shadow-none ${
-          isChallenge ? "ring-[3px] ring-inset ring-white/35" : ""
-        }`}
-        style={{
-          backgroundColor: fill,
-          boxShadow: `0 5px 0 ${shade(fill, -25)}`,
-        }}
-      >
-        {isExam ? (
-          <TrophyIcon className="h-11 w-11 lg:h-14 lg:w-14" />
-        ) : isChallenge ? (
-          <BookIcon className="h-10 w-10 lg:h-12 lg:w-12" />
-        ) : (
-          <CheckIcon className="h-11 w-11 lg:h-14 lg:w-14" />
-        )}
-      </button>
-    );
-  }
-
-  if (state === "reward-done") {
-    return (
-      <div
-        className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full text-white lg:h-32 lg:w-32"
-        style={{
-          backgroundColor: fill,
-          boxShadow: `0 5px 0 ${shade(fill, -25)}`,
-        }}
-        aria-label="Reward unlocked"
-      >
-        <TrophyIcon className="h-12 w-12 lg:h-16 lg:w-16" />
-      </div>
-    );
-  }
-
-  // Locked: phase color ~35% over cream — biome-readable, clearly inactive.
-  const lockedFill = mixHex(fill, CREAM, 0.35);
-  const lockedShadow = shade(lockedFill, -22);
-  const lockedIcon = mixHex(fill, "#4A463F", 0.4);
-
-  return (
-    <div
-      className={`flex ${nodeSizeDone} shrink-0 items-center justify-center rounded-full ${
-        isChallenge ? "ring-[3px] ring-inset ring-ink/10" : ""
-      }`}
-      style={{
-        backgroundColor: lockedFill,
-        boxShadow: `0 5px 0 ${lockedShadow}`,
-        color: lockedIcon,
-      }}
-      aria-label={`Locked: ${title}`}
-    >
-      {isExam ? (
-        <TrophyIcon className="h-10 w-10 lg:h-14 lg:w-14" />
-      ) : isChallenge ? (
-        <BookIcon className="h-9 w-9 lg:h-12 lg:w-12" />
-      ) : (
-        <LockIcon className="h-10 w-10 lg:h-14 lg:w-14" />
-      )}
-    </div>
-  );
-}
-
-function Label({ state, title, phaseColor }) {
-  const fill = phaseColor || CLAY;
-  const lockedText = mixHex(fill, "#4A463F", 0.45);
-
-  return (
-    <div className="mt-3 w-full px-1 text-center">
-      <p
-        className="mx-auto line-clamp-2 max-w-[10rem] text-center text-[20px] font-semibold leading-snug lg:max-w-[14rem] lg:text-[26px]"
-        style={
-          state === "current"
-            ? { color: fill }
-            : state === "done" || state === "reward-done"
-            ? { color: fill }
-            : state === "locked"
-            ? { color: lockedText }
-            : undefined
-        }
-        title={title}
-      >
-        {title}
-      </p>
-      {state === "current" && (
-        <span
-          className="mt-1 block text-[13px] font-bold uppercase tracking-wide lg:text-[16px]"
-          style={{ color: fill, opacity: 0.8 }}
-        >
-          Today
-        </span>
-      )}
-    </div>
-  );
-}
-
-function shade(hex, amount) {
-  const h = hex.replace("#", "");
-  const num = parseInt(h, 16);
-  const r = Math.min(255, Math.max(0, (num >> 16) + amount));
-  const g = Math.min(255, Math.max(0, ((num >> 8) & 0xff) + amount));
-  const b = Math.min(255, Math.max(0, (num & 0xff) + amount));
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
-}
-
-// Mix color A into color B by weight (0–1 = how much of A).
-function mixHex(a, b, weightA) {
-  const parse = (hex) => {
-    const h = hex.replace("#", "");
-    const n = parseInt(h.length === 3 ? h.split("").map((c) => c + c).join("") : h, 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  };
-  const [ar, ag, ab] = parse(a);
-  const [br, bg, bb] = parse(b);
-  const w = Math.min(1, Math.max(0, weightA));
-  const r = Math.round(ar * w + br * (1 - w));
-  const g = Math.round(ag * w + bg * (1 - w));
-  const bl = Math.round(ab * w + bb * (1 - w));
-  return `#${((r << 16) | (g << 8) | bl).toString(16).padStart(6, "0")}`;
+  </div>;
 }

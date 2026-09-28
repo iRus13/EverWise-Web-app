@@ -50,6 +50,7 @@ function renderWebPaywall(overrides = {}) {
     sponsored: false,
     onStartTrial: vi.fn(async () => {}),
     onMaybeLater: vi.fn(),
+    onStartLearning: vi.fn(),
     onRetry: vi.fn(async () => {}),
     onRestore: vi.fn(async () => {}),
     ...overrides,
@@ -136,7 +137,7 @@ describe("browser Stripe paywall", () => {
     const user = userEvent.setup();
     const { props } = renderWebPaywall();
 
-    await user.click(screen.getByRole("button", { name: "Back to free lessons" }));
+    await user.click(screen.getByRole("button", { name: "Back to home" }));
     expect(props.onMaybeLater).toHaveBeenCalledTimes(1);
     expect(props.onStartTrial).not.toHaveBeenCalled();
   });
@@ -278,7 +279,7 @@ describe("browser Stripe paywall", () => {
     await waitFor(() => expect(start).not.toBeDisabled());
     rerender(<Paywall {...props} billingBusy />);
     expect(screen.getByRole("button", { name: "Start 3-day free trial" })).toBeDisabled();
-    expect(screen.getByRole("button", { name: "Back to free lessons" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Back to home" })).toBeDisabled();
   });
 
   test("announces browser status and safe Checkout errors", async () => {
@@ -299,19 +300,17 @@ describe("browser Stripe paywall", () => {
     );
   });
 
-  test.each([1440, 768])("keeps the %ipx browser layout width-safe with visible keyboard focus", (width) => {
-    Object.defineProperty(window, "innerWidth", { configurable: true, value: width });
+  test("keeps plan selection separate from purchase and legal actions", () => {
     renderWebPaywall();
-
-    const root = screen.getByTestId("browser-paywall");
-    expect(root).toHaveClass("w-full", "max-w-full", "overflow-x-hidden");
-    expect(screen.getByRole("radiogroup")).toHaveClass("min-w-0");
-    for (const button of screen.getAllByRole("button")) {
-      expect(button.className).toMatch(/(?:h-11|min-h-11|min-h-12|min-h-\[(?:44|68|104|148)px\])/);
-    }
+    expect(screen.getAllByRole("radio")).toHaveLength(2);
     for (const radio of screen.getAllByRole("radio")) {
-      expect(radio.className).toMatch(/focus-visible:/);
+      expect(radio).toHaveAttribute("type", "button");
+      expect(radio.querySelector("button, a, input")).toBeNull();
     }
+    expect(screen.getByRole("button", {name: "Terms"})).toBeEnabled();
+    expect(screen.getByRole("button", {name: "Privacy"})).toBeEnabled();
+    // AppShell owns the page's main landmark.
+    expect(screen.queryByRole("main")).not.toBeInTheDocument();
   });
   test("updates the checkout description with the selected renewal terms", async () => {
     const user = userEvent.setup();
@@ -324,8 +323,9 @@ describe("browser Stripe paywall", () => {
   test("the visible free option exits without starting a purchase", async () => {
     const user = userEvent.setup();
     const { props } = renderWebPaywall();
-    await user.click(screen.getByRole("button", { name: "Continue with free lessons" }));
-    expect(props.onMaybeLater).toHaveBeenCalledOnce();
+    await user.click(screen.getByRole("button", { name: "Open free introduction" }));
+    expect(props.onStartLearning).toHaveBeenCalledOnce();
+    expect(props.onMaybeLater).not.toHaveBeenCalled();
     expect(props.onStartTrial).not.toHaveBeenCalled();
   });
 

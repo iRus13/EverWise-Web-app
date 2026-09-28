@@ -1,6 +1,7 @@
+import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
-import { CheckIcon } from "../Icons";
+import AnswerFeedback from "./AnswerFeedback";
 import BlockShell from "./BlockShell";
 
 export default function TrueFalseBlock({
@@ -56,73 +57,39 @@ export default function TrueFalseBlock({
       <p className="text-lg font-semibold text-ink-faint">
         Question {qIndex + 1} of {questions.length}
       </p>
-      <h1 className="page-title mt-3">
+      <h1 className="page-title lesson-question mt-3">
         {q.text}
       </h1>
       <div className="mt-5">
         <ReadAloud text={q.text} />
       </div>
 
-      <div className="mt-8 grid grid-cols-2 gap-4">
+      <div className="lesson-answer-grid mt-8">
         {[
           { value: true, label: yesLabel },
           { value: false, label: noLabel },
         ].map(({ value, label }) => {
-          let style =
-            "border-ink/15 bg-cream-card text-ink hover:border-clay hover:bg-clay/5";
-          if (answered) {
-            if (value === q.answer) style = "border-sage bg-sage/15 text-sage-dark";
-            else if (value === selected)
-              style = "border-alert bg-alert/12 text-alert";
-            else style = "border-ink/10 bg-cream-card text-ink-faint";
-          }
           return (
-            <button
+            <AnswerOption
               key={label}
-              type="button"
+
               disabled={answered}
               onClick={() => choose(value)}
-              className={`rounded-2xl border-2 px-6 py-8 text-center text-2xl font-bold ${style}`}
+              selected={selected === value}
+              state={answered ? value === q.answer ? "correct" : value === selected ? "incorrect" : "other" : undefined}
+
             >
               {label}
-            </button>
+            </AnswerOption>
           );
         })}
       </div>
 
-      {answered && (
-        <div
-          className={`mt-8 animate-pop-in rounded-3xl p-6 ${
-            isCorrect ? "bg-sage/15" : "bg-alert/12"
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <div
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-cream-card ${
-                isCorrect ? "bg-sage" : "bg-alert"
-              }`}
-            >
-              {isCorrect ? (
-                <CheckIcon className="h-8 w-8" />
-              ) : (
-                <span className="font-sans text-2xl font-bold">!</span>
-              )}
-            </div>
-            <p
-              className={`font-sans text-2xl font-bold ${
-                isCorrect ? "text-sage-dark" : "text-alert"
-              }`}
-            >
-              {isCorrect ? "That's right" : "Not quite"}
-            </p>
-          </div>
-          {q.explanation && (
-            <p className="mt-3 text-xl leading-relaxed text-ink-soft">
-              {q.explanation}
-            </p>
-          )}
-        </div>
-      )}
+      {answered && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right" : "Not quite"}>
+        {!isCorrect && <p className="lesson-correction">The correct answer is: {q.answer ? yesLabel : noLabel}</p>}
+        {q.explanation && <p>{q.explanation}</p>}
+      </AnswerFeedback>}
+
     </BlockShell>
   );
 }

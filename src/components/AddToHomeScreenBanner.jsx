@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Capacitor } from "@capacitor/core";
+import "../styles/install-help.css";
 
 const DISMISS_KEY = "everwise-a2hs-dismissed";
 
@@ -23,11 +24,7 @@ function isStandalone() {
   );
 }
 
-// Web-only banner that tells people how to install Everwise to their phone's
-// home screen. This matters right now specifically because the native iOS
-// app isn't through App Store review yet — the web version is the only way
-// people can use Everwise, and it should still feel like "an app," not just
-// a bookmark.
+// Optional web installation help, kept below the learner's main activities.
 export default function AddToHomeScreenBanner() {
   const [dismissed, setDismissed] = useState(() => {
     try {
@@ -37,18 +34,35 @@ export default function AddToHomeScreenBanner() {
     }
   });
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [installing, setInstalling] = useState(false);
+  const [installError, setInstallError] = useState("");
+  const installingRef = useRef(false);
+  const mounted = useRef(true);
+  const help = useRef(null);
+  const error = useRef(null);
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; };
+  }, []);
+  useEffect(() => {
+    if (installError) error.current?.scrollIntoView?.({ block: "nearest" });
+  }, [installError]);
 
   useEffect(() => {
     function handleBeforeInstallPrompt(event) {
       event.preventDefault();
       setDeferredPrompt(event);
     }
+    function handleInstalled() { dismiss(); }
+    window.addEventListener("appinstalled", handleInstalled);
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-    return () =>
+    return () => {
+      window.removeEventListener("appinstalled", handleInstalled);
       window.removeEventListener(
         "beforeinstallprompt",
         handleBeforeInstallPrompt,
       );
+    };
   }, []);
 
   if (Capacitor.isNativePlatform()) return null;
@@ -70,50 +84,50 @@ export default function AddToHomeScreenBanner() {
   }
 
   async function handleInstallClick() {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    setDeferredPrompt(null);
-    dismiss();
+    if (!deferredPrompt || installingRef.current) return;
+    const prompt = deferredPrompt;
+    installingRef.current = true;
+    setInstalling(true);
+    setInstallError("");
+    try {
+      await prompt.prompt();
+      const choice = await prompt.userChoice;
+      if (mounted.current && choice?.outcome === "accepted") dismiss();
+    } catch {
+      if (mounted.current) setInstallError("Installation could not open. You can add Everwise from your browser’s menu instead.");
+    } finally {
+      installingRef.current = false;
+      if (mounted.current) {
+        // A browser prompt can only be used once. Keep manual help after cancel.
+        setDeferredPrompt(current => current === prompt ? null : current);
+        setInstalling(false);
+        help.current?.focus({ preventScroll: true });
+      }
+    }
   }
 
   return (
-    <div className="mb-4 rounded-2xl border-2 border-clay/20 bg-cream-card px-4 py-3.5 shadow-card">
-      <div className="flex items-start justify-between gap-3">
-        <p className="text-base font-semibold text-ink">
-          Add Everwise to your Home Screen
-        </p>
-        <button
-          type="button"
-          onClick={dismiss}
-          aria-label="Dismiss"
-          className="-mr-1 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg text-ink-faint transition-colors hover:bg-cream-deep"
-        >
-          ×
-        </button>
+    <details className="install-help">
+      <summary ref={help}>Add Everwise to your Home Screen</summary>
+      <div className="install-help-content">
+        <p>Open Everwise from an icon on your device.</p>
+        {platform === "ios" ? (
+          <ol>
+            <li>Open Everwise in Safari.</li>
+            <li>Tap <strong>Share</strong> in Safari’s toolbar or menu, then <strong>Add to Home Screen</strong>.</li>
+            <li>Keep <strong>Open as Web App</strong> on if shown, then tap <strong>Add</strong>.</li>
+          </ol>
+        ) : (
+          <p>Open your browser’s menu and choose <strong>Add to Home screen</strong> or <strong>Install app</strong>.</p>
+        )}
+        {platform === "android" && deferredPrompt ? (
+          <button type="button" className="btn-secondary" onClick={handleInstallClick} disabled={installing} aria-busy={installing}>
+            {installing ? "Opening installation…" : "Install app"}
+          </button>
+        ) : null}
+        {installError ? <p ref={error} role="alert" className="install-help-error">{installError}</p> : null}
+        <button type="button" className="install-help-dismiss" onClick={dismiss}>Don’t show this again</button>
       </div>
-
-      {platform === "android" && deferredPrompt ? (
-        <button
-          type="button"
-          onClick={handleInstallClick}
-          className="btn-secondary mt-2.5"
-          style={{ minHeight: 48 }}
-        >
-          Install app
-        </button>
-      ) : platform === "ios" ? (
-        <p className="mt-1 text-sm leading-snug text-ink-soft">
-          Tap the <strong>Share</strong> button in Safari, then choose{" "}
-          <strong>"Add to Home Screen."</strong>
-        </p>
-      ) : (
-        <p className="mt-1 text-sm leading-snug text-ink-soft">
-          Open your browser's menu and choose{" "}
-          <strong>"Add to Home screen"</strong> or{" "}
-          <strong>"Install app."</strong>
-        </p>
-      )}
-    </div>
+    </details>
   );
 }

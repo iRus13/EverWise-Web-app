@@ -1,0 +1,15 @@
+.install-help { border-top: 1px solid var(--separator); color: var(--text-secondary); font-size: calc(16px * var(--text-scale)); line-height: 1.5; }
+.install-help summary { min-height: 48px; padding: 14px 4px; cursor: pointer; font-weight: 600; color: var(--accent); border-radius: 8px; }
+.install-help summary:active { background: var(--accent-subtle); }
+@media (hover: hover) { .install-help summary:hover { background: var(--accent-subtle); } }
+.install-help summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.install-help-content { padding: 0 4px 8px; max-width: 52ch; }
+.install-help-content > * + * { margin-top: 14px; }
+.install-help ol { list-style: decimal; padding-left: 1.5em; }
+.install-help li + li { margin-top: 8px; }
+.install-help strong { font-weight: 600; color: #34352d; }
+.install-help .btn-secondary { min-height: 48px; }
+.install-help-dismiss { display: block; min-height: 48px; padding: 10px 12px; border-radius: 10px; color: var(--accent); font-weight: 600; text-align: left; }
+.install-help-dismiss:active { background: var(--accent-subtle); }
+@media (hover: hover) { .install-help-dismiss:hover { background: var(--accent-subtle); } }
+.install-help .install-help-error { color: var(--danger); }

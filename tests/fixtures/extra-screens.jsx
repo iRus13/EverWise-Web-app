@@ -10,7 +10,7 @@ document.documentElement.dataset.textSize=query.get("textSize")||"size-2";
 function ExtraScreens() {
   useEffect(()=>{
     const timer=setInterval(()=>{
-      if(view==="loading" || document.querySelector(".partner-dashboard h1")) {
+      if(view==="loading" || document.querySelector(".partner-dashboard h1, .status-screen h1")) {
         document.body.dataset.extraReady="true";clearInterval(timer);
       }
     },100);
