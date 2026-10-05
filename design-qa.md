@@ -1,3 +1,5 @@
+> Historical prototype comparison. Its prices and typography describe an older design and are not current release requirements. See [the current web consistency review](docs/design/2026-10-05-web-consistency.md) and live billing metadata for current behavior.
+
 # Paywall design QA
 
 ## Source

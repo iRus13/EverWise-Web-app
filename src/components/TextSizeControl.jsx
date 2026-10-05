@@ -22,7 +22,7 @@ export default function TextSizeControl({
     <div
       className={`flex shrink-0 items-center overflow-hidden rounded-xl border border-ink/15 bg-cream-card ${className}`}
       role="group"
-      aria-label={label}
+      aria-label={tr(label)}
     >
       <button
         type="button"

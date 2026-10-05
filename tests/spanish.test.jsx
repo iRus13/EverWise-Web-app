@@ -7,6 +7,8 @@ import LanguageSelect from '../src/components/LanguageSelect';
 import Landing from '../src/screens/Landing';
 import LogIn from '../src/screens/LogIn';
 import Paywall from '../src/screens/Paywall';
+import Badges from '../src/screens/Badges';
+import { badgeCatalog } from '../src/utils/badges';
 afterEach(() => { cleanup(); act(() => setLocale('en')); localStorage.clear(); });
 
 test('Spanish is selectable, persisted, and updates document language', () => {
@@ -51,4 +53,35 @@ test('storage updates synchronize existing language selectors', () => {
   localStorage.setItem('everwise.language','es');
   act(() => window.dispatchEvent(new StorageEvent('storage',{key:'everwise.language',newValue:'es'})));
   expect(screen.getByRole('combobox',{name:'Idioma'})).toHaveValue('es');
+});
+
+test('badge filters and counts translate without changing saved award identities', () => {
+  const catalog = badgeCatalog();
+  const savedName = catalog[0].badges[0].name;
+  render(<Badges badges={[savedName, 'Saved exam honor']} />);
+  act(() => setLocale('es'));
+  expect(screen.getByRole('heading', {name:'Tus insignias'})).toBeVisible();
+  expect(screen.getByRole('progressbar', {name:'Insignias del curso obtenidas'})).toHaveAttribute('aria-valuenow','1');
+  expect(screen.getByRole('button', {name:'Obtenidas',exact:true})).toHaveAttribute('aria-pressed','true');
+  expect(screen.getByRole('heading', {name:savedName,exact:true})).toHaveAttribute('lang','en');
+  expect(screen.getByRole('heading', {name:'Saved exam honor'})).toBeVisible();
+  expect(screen.getByText('Resultado del examen')).toBeVisible();
+  fireEvent.click(screen.getByRole('button', {name:'Todas',exact:true}));
+  const phase = screen.getByRole('button', {name:'Etapa 1: Foundations'});
+  fireEvent.click(phase);
+  expect(phase).toHaveAttribute('aria-expanded','true');
+  expect(screen.getByRole('heading', {name:catalog[0].badges[1].name,exact:true})).toBeVisible();
+  act(() => setLocale('en'));
+  expect(screen.getByRole('button', {name:'Phase 1: Foundations'})).toHaveAttribute('aria-expanded','true');
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow','1');
+});
+
+test('new learners get a translated empty state and an honest course-language notice', () => {
+  setLocale('es');
+  render(<Badges badges={[]} />);
+  fireEvent.click(screen.getByRole('button', {name:'Obtenidas',exact:true}));
+  expect(screen.getByRole('status')).toHaveTextContent('Completa tu primera lección');
+  expect(screen.getByText('Los títulos y los nombres de las insignias están en inglés.')).toBeVisible();
+  expect(screen.queryByRole('heading', {name:'Foundations'})).not.toBeInTheDocument();
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow','0');
 });

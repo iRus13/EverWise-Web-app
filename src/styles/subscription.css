@@ -68,11 +68,11 @@
 .subscription-screen .paywall-main { margin-top: 24px; }
 .subscription-screen .paywall-layout { gap: 32px; }
 .subscription-screen .paywall-benefit-icon { color: var(--accent); }
-.subscription-screen .paywall-benefit-body { font-size: calc(13px * var(--text-scale)); }
+.subscription-screen .paywall-benefit-body { font-size: calc(15px * var(--text-scale)); }
 .subscription-screen .paywall-plan-card { padding: 18px; }
 .subscription-screen .paywall-offer h2 { font-size: calc(17px * var(--heading-scale)); font-weight: 600; }
 .subscription-screen .paywall-plans { gap: 10px; }
-.subscription-screen .paywall-footer button { font-size: calc(13px * var(--text-scale)); }
+.subscription-screen .paywall-footer button { font-size: calc(15px * var(--text-scale)); }
 .subscription-screen .paywall-cta { min-height: 52px; font-size: calc(17px * var(--text-scale)); }
 .subscription-screen .paywall-cta svg { width: 20px; height: 20px; }
 @media(min-width:900px) { .subscription-screen .paywall-layout { gap: 72px; } .subscription-screen .paywall-main { margin-top: 56px; } .subscription-screen .paywall-offer { padding: 28px; background: #ededf0; border-radius: 24px; } }

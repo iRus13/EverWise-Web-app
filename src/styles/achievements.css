@@ -3,7 +3,7 @@
 .learning-summary .summary-back { align-self: flex-start; min-height: 44px; margin-bottom: 24px; color: var(--accent); font-size: calc(17px * var(--text-scale)); font-weight: 600; padding: 8px 0; }
 .summary-header { container-type: inline-size; }
 .summary-symbol { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: var(--success-subtle); color: var(--success); margin-bottom: 20px; }
-.summary-eyebrow { color: var(--text-secondary); font-size: calc(13px * var(--text-scale)); line-height: 1.4; margin-bottom: 8px; }
+.summary-eyebrow { color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); line-height: 1.4; margin-bottom: 8px; }
 html[data-text-size] .learning-summary .page-title { font-size: min(calc(28px * var(--heading-scale)),12cqi); font-weight: 650; line-height: 1.2; letter-spacing: -.02em; text-wrap: initial; }
 html[data-system-text-category] .learning-summary .page-title { font-size: calc(28px * var(--heading-scale)); }
 .summary-subtitle { margin-top: 12px; font-size: calc(17px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }
@@ -34,14 +34,14 @@ html[data-system-text-category] .learning-summary .page-title { font-size: calc(
 .badges-empty { margin-bottom: 28px; font-size: calc(17px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }
 .badge-section + .badge-section { margin-top: 32px; }
 .badge-section-heading { display: flex; align-items: end; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin-bottom: 16px; }
-.badge-section-heading p { font-size: calc(13px * var(--text-scale)); line-height: 1.45; color: var(--text-secondary); }
+.badge-section-heading p { font-size: calc(15px * var(--text-scale)); line-height: 1.45; color: var(--text-secondary); }
 .badge-section-heading h2 { margin-top: 4px; font-size: calc(20px * var(--heading-scale)); font-weight: 650; letter-spacing: -.015em; line-height: 1.3; }
 .badges-screen .badges-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; margin: 0; padding: 0; list-style: none; }
 .badge-tile { display: grid; grid-template-columns: 40px minmax(0,1fr); align-items: start; gap: 16px; padding: 20px; border: 0; border-radius: var(--radius-group); background: var(--surface); }
 .badge-symbol { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #f0eee7; color: #625d54; }
 .badge-tile[data-earned=true] .badge-symbol { color: var(--success); background: var(--success-subtle); }
 .badge-copy h3 { font-size: calc(17px * var(--text-scale)); font-weight: 600; line-height: 1.4; }
-.badge-copy > p { margin-top: 6px; font-size: calc(13px * var(--text-scale)); line-height: 1.45; color: var(--text-secondary); }
+.badge-copy > p { margin-top: 6px; font-size: calc(15px * var(--text-scale)); line-height: 1.45; color: var(--text-secondary); }
 .badge-copy .badge-state { margin-top: 12px; }
 .badge-tile[data-earned=true] .badge-state { color: var(--success); font-weight: 600; }
 .badges-screen button:focus-visible, .learning-summary button:focus-visible { outline: 3px solid var(--text-primary); outline-offset: 3px; }
@@ -85,11 +85,11 @@ html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="s
 .badge-phase-heading h2 { margin: 0; }
 .badge-phase-toggle { display: block; position: relative; border-radius: 11px 11px 0 0; width: 100%; margin: 0; padding: 20px 20px 8px; min-height: 64px; text-align: left; color: var(--text-primary); }
 .badge-phase-toggle > span { min-width: 0; }
-.badge-phase-number { display: block; padding-right: 36px; font-size: calc(13px * var(--text-scale)); line-height: 1.45; font-weight: 400; color: var(--text-secondary); }
+.badge-phase-number { display: block; padding-right: 36px; font-size: calc(15px * var(--text-scale)); line-height: 1.45; font-weight: 400; color: var(--text-secondary); }
 .badge-phase-title { display: block; margin-top: 4px; font-size: calc(20px * var(--heading-scale)); font-weight: 650; line-height: 1.3; }
 .badge-phase-toggle svg { position: absolute; top: 24px; right: 20px; color: var(--text-secondary); }
 .badge-phase-toggle[aria-expanded=true] svg { transform: rotate(180deg); }
-.badge-phase-heading > p { padding-inline: 20px; margin-top: 4px; font-size: calc(13px * var(--text-scale)); line-height: 1.45; color: var(--text-secondary); }
+.badge-phase-heading > p { padding-inline: 20px; margin-top: 4px; font-size: calc(15px * var(--text-scale)); line-height: 1.45; color: var(--text-secondary); }
 .badges-screen .badge-phase .badges-grid { padding: 0 20px 20px; }
 .badge-phase .badge-tile { padding: 20px 0 0; border: 0; border-top: 1px solid var(--separator); border-radius: 0; background: transparent; }
 .badges-screen .badge-phase-toggle:focus-visible { outline-offset: -4px; }
@@ -109,9 +109,14 @@ html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="s
 }
 
 .badge-filters { padding: 3px; border-radius: 10px; background: var(--surface-pressed); display: grid; grid-template-columns: 1fr 1fr; }
-.badge-filters button { min-height: 38px; padding: 8px 12px; font-size: calc(15px * var(--text-scale)); border: 0; }
+.badge-filters button { min-height: 48px; padding: 10px 12px; font-size: calc(17px * var(--text-scale)); border: 0; }
 .badge-filters button[aria-pressed=true] { border: 0; border-radius: 8px; box-shadow: 0 1px 4px rgb(0 0 0 / 9%); }
-.badges-empty { padding: 20px; border-radius: var(--radius-group); background: var(--surface); font-size: calc(15px * var(--text-scale)); }
+@media(max-width:767px) {
+  html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .badge-filters { grid-template-columns: minmax(0,1fr); }
+}
+.badges-empty { padding: 0; border-radius: 0; background: transparent; font-size: calc(17px * var(--text-scale)); }
+.badges-header > .badges-total { margin-top: 12px; font-size: calc(17px * var(--text-scale)); font-variant-numeric: tabular-nums; }
+.badges-language-note { margin-bottom: 24px; color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); line-height: 1.5; }
 .badges-header { padding-top: 28px; }
 .summary-symbol { width: 64px; height: 64px; border-radius: 20px; margin-bottom: 24px; }
 .summary-section { padding: 24px; }
@@ -122,7 +127,10 @@ html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="s
 .summary-award { display: flex; flex-direction: column; border: 0; }
 .summary-award p { margin-top: 6px; font-weight: 600; }
 .badge-symbol { border-radius: 12px; background: var(--surface-grouped); }
-@media(min-width:1024px) { .badges-header { padding-top: 48px; } }
+@media(min-width:1024px) {
+  .badges-header { padding-top: 48px; }
+  .badges-header, .badges-screen .badges-content { padding-inline: 48px; }
+}
 /* A completion summary should reveal its next action on a typical iPhone. */
 .learning-summary .summary-header { padding-top: 0; }
 .learning-summary .summary-symbol { width: 56px; height: 56px; margin-bottom: 20px; }

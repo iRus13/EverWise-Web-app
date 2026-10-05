@@ -25,10 +25,17 @@ export default function Landing({ partner = null, onGetStarted, onLogIn }) {
         </header>
         <section className="welcome-intro">
           <p className="welcome-eyebrow">{tr("EVERYDAY DIGITAL CONFIDENCE")}</p>
-          <h1>{tr("A wiser way")}<br />{tr("to be online.")}</h1>
+          <h1>{tr("A wiser way")} {tr("to be online.")}</h1>
           <p>{tr("Feel more confident with the messages, links, and everyday decisions you make online.")}</p>
           {partner ? <p className="welcome-sponsorship">{tr("Your access is provided free by")} {partner.name}.</p> : null}
         </section>
+        <div className="welcome-entry">
+          <div className="welcome-language"><LanguageSelect showContentNotice /></div>
+          <div className="welcome-actions">
+            <button type="button" className="btn-primary" onClick={onGetStarted}>{tr("Get Started")}</button>
+            <button type="button" className="btn-secondary" onClick={onLogIn}>{tr("Log In")}</button>
+          </div>
+        </div>
         <section className="welcome-guide" aria-labelledby="welcome-guide-title">
           <h2 id="welcome-guide-title">{tr("Small steps. Useful skills.")}</h2>
           <ol>
@@ -40,11 +47,6 @@ export default function Landing({ partner = null, onGetStarted, onLogIn }) {
             ))}
           </ol>
         </section>
-        <div className="welcome-language"><LanguageSelect showContentNotice /></div>
-        <div className="welcome-actions">
-          <button type="button" className="btn-primary" onClick={onGetStarted}>{tr("Get Started")}</button>
-          <button type="button" className="btn-secondary" onClick={onLogIn}>{tr("Log In")}</button>
-        </div>
       </div>
     </div>
   );
