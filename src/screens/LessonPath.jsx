@@ -182,7 +182,7 @@ export default function LessonPath({
     else onSelectExam?.(step.exam);
   }
 
-  return <div className="course-path-screen course-outline">
+  return <div className={`course-path-screen course-outline${searching ? "" : " course-trail"}`}>
     <header ref={toolbarRef} className="course-path-toolbar">
       <div className="course-path-header">
         <button type="button" className="course-back" onClick={onBack} aria-label={tr("Back to home")} title={tr("Home")}>
@@ -230,9 +230,7 @@ export default function LessonPath({
               <div role="progressbar" aria-label="Course progress" aria-valuemin={0} aria-valuemax={playables.length} aria-valuenow={completed}>
                 <span style={{width: `${completed / playables.length * 100}%`}} />
               </div>
-              <p className="course-progress-note">Lessons, challenges, and exams</p>
             </div>
-            {!allDone && <p className="course-next-note">Finish each step to unlock the next. You can revisit completed lessons at any time.</p>}
           </div>}
           <div className="course-phases">
             {displayedPhases.map(phase => {
@@ -257,13 +255,19 @@ export default function LessonPath({
                 </h2>}
                 <div id={`course-phase-steps-${phase.number}`} hidden={!isOpen} aria-labelledby={`course-phase-${phase.number}`}>
                   <ol className="course-steps">
-                    {phase.steps.map(step => {
+                    {phase.steps.map((step, stepIndex) => {
                       const done = doneSet.has(step.id);
                       const ready = step.id === currentId;
                       const enabled = ready || done;
                       const resumable = ready && !done && (step.kind === "lesson" ? Boolean(hasSavedLessonPosition?.(step.id)) : Boolean(hasSavedAssessmentPosition?.(step.id)));
                       const name = done ? step.kind === "lesson" ? `Redo completed lesson: ${step.title}` : `Redo ${step.kind}: ${step.title}` : resumable ? `Resume ${step.kind}: ${step.title}` : `Start ${step.kind}: ${step.title}`;
+                      const offsets = [0, 32, 0, -32];
+                      const offset = offsets[stepIndex % offsets.length];
+                      const nextOffset = offsets[(stepIndex + 1) % offsets.length];
                       const content = <>
+                        {!searching && <span className="course-route-stop" aria-hidden="true">
+                          {done ? <Check size={28} /> : ready ? <ArrowRight size={28} /> : <Lock size={25} />}
+                        </span>}
                         <span className="course-step-copy">
                           <span className="course-step-title">{step.title}</span>
                           <span className="course-step-details">
@@ -276,7 +280,12 @@ export default function LessonPath({
                         </span>
                       </>;
                       return <li key={step.id} data-course-step={step.id} ref={ready ? currentRef : null}
-                        className={`course-step course-step-${done ? "done" : ready ? "ready" : "locked"}`}>
+                        className={`course-step course-step-${done ? "done" : ready ? "ready" : "locked"}`}
+                        style={!searching ? {"--path-offset": `${offset}px`} : undefined}>
+                        {!searching && stepIndex < phase.steps.length - 1 && <svg className="course-route-segment" viewBox="0 0 1 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                          <path className="course-route-curved" d={`M ${offset} 0 C ${offset} 50, ${nextOffset} 50, ${nextOffset} 100`} />
+                          <path className="course-route-straight" d="M 0 0 L 0 100" />
+                        </svg>}
                         {enabled ? <button type="button" className="course-step-action" aria-label={name}
                           aria-current={ready ? "step" : undefined} onClick={() => openStep(step)}>{content}</button>
                           : <div className="course-step-action">{content}</div>}
