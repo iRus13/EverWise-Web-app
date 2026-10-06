@@ -38,7 +38,7 @@ export const phase5Lessons = [
           "View visit summaries",
           "Pay medical bills"
         ],
-        footer: "Patient portals are available 24 hours a day, so you can access your health information whenever you need it."
+        footer: "You can usually view portal information at any time, but messages may not be read right away. For urgent concerns, call your healthcare provider instead of waiting for a portal reply."
       },
       {
         type: "learn",
@@ -229,7 +229,7 @@ export const phase5Lessons = [
       {
         type: "learn",
         heading: "Telehealth Scams",
-        text: "Scammers may send fake appointment links or ask you to pay before you even have an appointment, download unknown software, share your Medicare number through email or text, or give your password.\n\nIf something seems suspicious, contact your healthcare provider directly using their official phone number or website."
+        text: "Be cautious about unexpected appointment links, unfamiliar software, demands for immediate payment, or requests to send your Medicare number or password by email or text. A real practice may charge a copay; verify an unexpected request through a phone number you already know.\n\nUse the appointment instructions you confirmed with your healthcare provider."
       },
       {
         type: "multiselect",
@@ -364,7 +364,7 @@ export const phase5Lessons = [
           "A pharmacy recommended by your doctor or insurance company",
           "A licensed online pharmacy"
         ],
-        footer: "Always make sure the medicine was actually prescribed by your healthcare provider if a prescription is required."
+        footer: "For prescription medicines in the U.S., check that an online pharmacy requires a valid prescription, has a licensed pharmacist, gives a U.S. address and phone number, and is licensed by your state board of pharmacy. Use the FDA's BeSafeRx resources to check the license."
       },
       {
         type: "learn",
@@ -379,7 +379,7 @@ export const phase5Lessons = [
           "Has no phone number or customer support",
           "Sends unexpected refill messages"
         ],
-        footer: "If you notice several of these warning signs, do not buy the medication."
+        footer: "Even one warning sign is a reason to pause. Check with your doctor or pharmacist before buying if anything is unclear."
       },
       {
         type: "multiselect",
@@ -1020,7 +1020,7 @@ export const phase5Lessons = [
       {
         type: "learn",
         heading: "Finding the Official DMV Website",
-        text: "Every state has its own official DMV website. For example: California uses dmv.ca.gov, Texas uses txdmv.gov, and Florida uses flhsmv.gov.\n\nMany official DMV websites end in .gov, while others use an official state government address. If you're unsure, search carefully or visit your state's official government website."
+        text: "Each state has its own motor vehicle services, and the agency may have a different name. Some states use separate agencies for driver's licenses and vehicle registration.\n\nStart with USA.gov's state motor vehicle services directory or your state's official government website, then follow its link to the service you need. Many official sites use .gov, but some use another established state address."
       },
       {
         type: "learn",
@@ -1040,7 +1040,7 @@ export const phase5Lessons = [
         heading: "Staying Safe Online",
         text: "When using a DMV website:",
         bullets: [
-          "Type the website address yourself or use a trusted search result",
+          "Use the address you verified through USA.gov or your state's official website",
           "Check that you're on your state's official website",
           "Be cautious of unexpected emails or text messages",
           "Never pay DMV fees with gift cards",
@@ -1237,7 +1237,7 @@ export const phase5Lessons = [
       {
         type: "learn",
         heading: "What Is a .gov Website?",
-        text: "A website ending in .gov is used by U.S. government agencies. Examples include irs.gov, medicare.gov, dmv.ca.gov, and weather.gov.\n\nGovernment websites provide official information and services. Scammers often make websites that look official but use different endings like .com, .net, or .org. Always read the entire web address, not just the beginning."
+        text: "Only verified U.S. government organizations can register a .gov domain. Examples include irs.gov, medicare.gov, dmv.ca.gov and weather.gov.\n\nCheck the website name in the address bar: it comes after https:// and before the next /. A name like irs.gov.example.com is not irs.gov. Some state or local services use other addresses; confirm them through the government's official website or USA.gov."
       },
       {
         type: "learn",
@@ -1298,7 +1298,7 @@ export const phase5Lessons = [
         wordBank: ["gov", "Website", "Information", "Fake"],
         questions: [
           { text: "Official U.S. government websites usually end in .______", answer: "gov" },
-          { text: "Always read the full web ______ before entering personal information.", answer: "Website" },
+          { text: "Check that you are on the official ______ before entering personal information.", answer: "Website" },
           { text: "Fake government websites may try to steal your personal ______.", answer: "Information" }
         ]
       },
@@ -1334,7 +1334,7 @@ export const phase5Lessons = [
       {
         type: "learn",
         heading: "Quick Tip",
-        text: "Before using any government website, ask yourself: Does the web address end in .gov? Am I on the correct government website? Did I type the address myself or use a trusted search result? Am I being asked for unusual payment methods? If you're unsure, stop and verify before entering any personal information."
+        text: "Before entering personal information, check the website name in the address bar. Is it the agency you need? Did you reach it through a verified address, trusted bookmark or an official government directory? A familiar logo or the letters .gov somewhere in a link are not enough. If unsure, stop and verify through USA.gov or the agency's known contact information."
       },
       {
         type: "sort",

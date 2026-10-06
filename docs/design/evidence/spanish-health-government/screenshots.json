@@ -1,0 +1,22 @@
+[
+  {
+    "file": "web-phone-reading.png",
+    "sha256": "bab6f8515dd5a85c875401211c7450b74160077ae06d1b307b7d504c770128c2"
+  },
+  {
+    "file": "web-phone-practice.png",
+    "sha256": "0af8bcdd73649ab32cfb2c50b279d78d115b9f8e03344cd6f4dea8426a062b3e"
+  },
+  {
+    "file": "web-ipad-reading.png",
+    "sha256": "adf20abcb287fd2b7b620a4c9da2068a684d5e7fe6d0db5c4e1581e432148809"
+  },
+  {
+    "file": "web-ipad-challenge.png",
+    "sha256": "8a468cbc1626884dc613e80775761ee55d4dfb3b75ac9f71dd289e4343547b54"
+  },
+  {
+    "file": "web-ipad-completion.png",
+    "sha256": "ae69f917f42b399c843b441f7595216ec80ecec35adba3060a15b5eef602b68a"
+  }
+]
