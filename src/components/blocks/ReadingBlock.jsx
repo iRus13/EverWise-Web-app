@@ -16,13 +16,14 @@ export default function ReadingBlock({
   const t = useLearningText();
   const [expandedBlock, setExpandedBlock] = useState(null);
   const warningSignsVisible = expandedBlock === block;
+  const reminderTitle = block.reminderTitle ?? "Review warning signs";
   const paragraphs = t(block.text || "").split(/\n\s*\n/).filter(part => part.trim());
   const speakText = [
     block.heading,
     block.question,
     block.text,
     ...(block.objective ? ["Learning goal", block.objective] : []),
-    ...(block.warningSigns?.length ? ["Review warning signs", ...(warningSignsVisible ? block.warningSigns : [])] : []),
+    ...(block.warningSigns?.length ? [reminderTitle, ...(warningSignsVisible ? block.warningSigns : [])] : []),
   ]
     .filter(Boolean)
     .map(part => t(part))
@@ -68,7 +69,7 @@ export default function ReadingBlock({
         {block.warningSigns?.length > 0 && (
           <details className="lesson-warning-reminder" open={warningSignsVisible}
             onToggle={event => setExpandedBlock(event.currentTarget.open ? block : null)}>
-            <summary>{t("Review warning signs")}</summary>
+            <summary>{t(reminderTitle)}</summary>
             <ul className="lesson-reading-list">
               {block.warningSigns.map((sign) => (
                 <li
