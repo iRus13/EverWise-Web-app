@@ -30,7 +30,7 @@ test('exam resumes the current choice after unmount, permits changes and derives
 test('a restored failed result can be retried, clearing all previous answers',()=>{
  const change=vi.fn();
  render(<ExamPlayer exam={exam} initialPosition={{kind:'exam',revision:assessmentRevision(exam),phase:'results',answers:[1,null],selected:null}} onPositionChange={change}/>);
- click('Try again');expect(change).toHaveBeenLastCalledWith(null);
+ click('Retake exam');expect(change).toHaveBeenLastCalledWith(null);
  click('Start exam');expect(screen.getByRole('heading',{name:'First?'})).toBeVisible();
  expect(change).toHaveBeenLastCalledWith(expect.objectContaining({answers:[],selected:null}));
 });

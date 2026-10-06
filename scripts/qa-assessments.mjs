@@ -143,8 +143,8 @@ export async function checkAssessments(page, base, onState = async () => {}) {
           const result=await outcome();
           assert.equal(result.type,"passed"); assert.equal(result.calls,1); assert.equal(result.score,exam.questions.length);
         } else {
-          assert.equal(await button("Back to your path").count(),0,"A failed exam cannot unlock completion");
-          await click(exam.phaseBadge ? "Retake exam" : "Try again");
+          assert.equal(await button("Back to your path").count(),1,"A failed exam can return without claiming completion");
+          await click("Retake exam");
           await click("Start exam");
           await page.getByRole("heading",{name:exam.questions[0].question,exact:true}).waitFor();
           assert.equal(await page.getByRole("progressbar").getAttribute("aria-valuenow"),"1");

@@ -5,11 +5,14 @@ import {setLocale} from "../src/i18n";
 import spanish from "../src/i18n/learning-es.json";
 import scenarioPresentations from "../src/data/scenario-presentations.json";
 import {fillBlankParts, learningText} from "../src/i18n/learning.js";
-import {lessonsByOrder, challengesByOrder} from "../src/data/lessons.js";
+import {lessonsByOrder, challengesByOrder, examsByOrder} from "../src/data/lessons.js";
+import {courseSuccessor} from "../src/utils/courseProgress.js";
 import BlockRenderer from "../src/components/blocks/BlockRenderer.jsx";
 import LessonPlayer from "../src/screens/LessonPlayer.jsx";
 import ChallengePlayer from "../src/screens/ChallengePlayer.jsx";
 import Complete from "../src/screens/Complete.jsx";
+import ExamPlayer from "../src/screens/ExamPlayer.jsx";
+import ProgressSaveNotice from "../src/components/ProgressSaveNotice.jsx";
 import LessonPath from "../src/screens/LessonPath.jsx";
 import LanguageSelect from "../src/components/LanguageSelect.jsx";
 import {assessmentRevision} from "../src/utils/assessmentProgress.js";
@@ -251,7 +254,8 @@ test.each(lessons)("$id completion keeps its Spanish summary, next step and retu
   const onDone=vi.fn();
   render(<Complete lesson={lesson} onDone={onDone} />);
   expect(screen.getByRole("heading",{level:1})).toHaveTextContent(t(lesson.complete.title));
-  expect(screen.getByText(t(lesson.complete.next),{exact:true})).toBeVisible();
+  const next=courseSuccessor(lesson.id,{lessons:lessonsByOrder,challenges:challengesByOrder,exams:examsByOrder});
+  expect(screen.getByText(t(next.title),{exact:true})).toBeVisible();
   fireEvent.click(screen.getByRole("button",{name:"Volver a tu recorrido",exact:true}));
   expect(onDone).toHaveBeenCalledOnce();
 });
@@ -262,9 +266,58 @@ test("the Foundations final challenge returns from its translated completion wit
     initialPosition={{kind:"challenge",revision:assessmentRevision(challenge),blockIndex:challenge.blocks.length-1,finished:true}} />);
   expect(screen.getByRole("heading",{level:1})).toHaveTextContent("Repaso completado");
   expect(screen.getAllByText("Repaso completado",{exact:true})).toHaveLength(1);
-  expect(screen.getByText(t("Nice work reviewing Phase {phase}. Next: {next}.",{phase:1,next:t(challenge.nextLabel)}))).toBeVisible();
+  expect(screen.getByText("Terminaste el repaso de esta etapa.")).toBeVisible();
+  expect(screen.getByText("Contraseñas seguras",{exact:true})).toBeVisible();
   fireEvent.click(screen.getByRole("button",{name:"Volver a tu recorrido",exact:true}));
   expect(onComplete).toHaveBeenCalledOnce();
+});
+
+test("exam summaries translate scores and actions without claiming unsaved awards", () => {
+  const exam=examsByOrder[0], onPass=vi.fn();
+  const answers=exam.questions.map(question=>question.correctIndex);
+  render(<ExamPlayer exam={exam} onBack={vi.fn()} onPass={onPass}
+    initialPosition={{kind:"exam",revision:assessmentRevision(exam),phase:"results",answers,selected:null}} />);
+  expect(screen.getByRole("heading",{name:"Puntuación aprobatoria"})).toHaveFocus();
+  expect(screen.getByText(`Obtuviste ${answers.length} de ${answers.length} respuestas correctas.`)).toBeVisible();
+  expect(screen.getByRole("heading",{name:"Resultado",exact:true})).toBeVisible();
+  expect(screen.queryByText("Phase achievement")).not.toBeInTheDocument();
+  expect(screen.queryByText("Trophy earned")).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button",{name:"Volver a tu recorrido"}));
+  expect(onPass).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({score:answers.length,tier:exam.results.find(result=>result.minScore===Math.max(...exam.results.map(result=>result.minScore)))}));
+});
+
+test("all five exam introductions and result tiers have Spanish display copy", () => {
+  expect(examsByOrder).toHaveLength(5);
+  for(const exam of examsByOrder) {
+    for(const key of [exam.title,...exam.topics,...exam.results.flatMap(tier=>[tier.title,tier.message])].filter(Boolean)) {
+      expect(spanish[key],key).toBeTruthy();
+    }
+  }
+});
+
+test("a Spanish exam retry returns to translated intro controls", () => {
+  const exam=examsByOrder[0];
+  render(<ExamPlayer exam={exam} onBack={vi.fn()} onPass={vi.fn()}
+    initialPosition={{kind:"exam",revision:assessmentRevision(exam),phase:"results",answers:exam.questions.map(()=>null),selected:null}} />);
+  expect(screen.getByRole("heading",{name:"Sigue practicando"})).toBeVisible();
+  fireEvent.click(screen.getByRole("button",{name:"Repetir evaluación"}));
+  expect(screen.getByRole("heading",{name:"Temas incluidos"})).toBeVisible();
+  expect(screen.getByText(`Para aprobar, necesitas ${exam.passingScore} de ${exam.questions.length} respuestas correctas.`)).toBeVisible();
+  expect(screen.getByRole("button",{name:"Empezar evaluación"})).toBeEnabled();
+});
+
+test("Spanish save notices distinguish saving, local recovery and unsaved work", () => {
+  const retry=vi.fn();
+  const {rerender}=render(<ProgressSaveNotice status={{pending:true,saving:true,durable:true}} onRetry={retry}/>);
+  expect(screen.getByRole("status")).toHaveTextContent("Guardando tu progreso…");
+  expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  rerender(<ProgressSaveNotice status={{pending:true,saving:false,durable:true}} onRetry={retry}/>);
+  expect(screen.getByRole("status")).toHaveTextContent("guardado en este dispositivo");
+  rerender(<ProgressSaveNotice status={{pending:true,saving:false,durable:false}} onRetry={retry}/>);
+  expect(screen.getByRole("status")).toHaveTextContent("Mantén esta aplicación abierta");
+  expect(screen.getByRole("status")).not.toHaveTextContent("guardado en este dispositivo");
+  fireEvent.click(screen.getByRole("button",{name:"Volver a guardar el progreso"}));
+  expect(retry).toHaveBeenCalledOnce();
 });
 
 test("read aloud receives separately translated sentences and requests a Spanish device voice", async () => {

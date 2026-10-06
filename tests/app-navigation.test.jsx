@@ -113,6 +113,7 @@ test("pending progress advances immediately and a late save cannot navigate a di
   await renderLearner("alice"); await finishWelcome();
   expect(await screen.findByRole("heading", {name:"Welcome Aboard!"})).toBeVisible();
   expect(screen.getByRole("status")).toHaveTextContent("Saving your progress");
+  expect(screen.queryByRole("heading", {name:"Badge earned"})).not.toBeInTheDocument();
   expect(state.updateDoc).toHaveBeenCalledWith({collection:"users",uid:"alice"}, {
     completedLessons:{operation:"arrayUnion",values:["welcome"]},
     badges:{operation:"arrayUnion",values:["Welcome Aboard"]},
@@ -124,6 +125,37 @@ test("pending progress advances immediately and a late save cannot navigate a di
   expect(screen.getByRole("button", {name:"Start lesson: Welcome to Everwise"})).toBeVisible();
   expect(screen.queryByRole("heading", {name:"Welcome Aboard!"})).not.toBeInTheDocument();
   expect(state.updateDoc.mock.calls.every(([document])=>document.uid==="alice")).toBe(true);
+});
+
+test("completion announces a new badge only after saving, and replay does not announce it again", async () => {
+  prepareProgressTest();
+  let finishSave;
+  state.updateDoc.mockImplementation(() => new Promise(resolve => {finishSave=resolve;}));
+  await renderLearner("badge-owner"); await finishWelcome();
+  expect(await screen.findByRole("heading", {name:"Welcome Aboard!"})).toBeVisible();
+  expect(screen.queryByRole("heading", {name:"Badge earned"})).not.toBeInTheDocument();
+  await act(async () => finishSave());
+  expect(await screen.findByRole("heading", {name:"Badge earned"})).toBeVisible();
+  expect(screen.getByText("Welcome Aboard", {exact:true})).toBeVisible();
+  fireEvent.click(screen.getByRole("button", {name:"Back to your path"}));
+  fireEvent.click(screen.getByRole("button", {name:"Redo completed lesson: Welcome to Everwise"}));
+  await screen.findByRole("heading", {name:"How Everwise Works"});
+  await act(async () => fireEvent.click(screen.getByRole("button", {name:"Continue", exact:true})));
+  expect(await screen.findByRole("heading", {name:"Welcome Aboard!"})).toBeVisible();
+  expect(screen.queryByRole("heading", {name:"Badge earned"})).not.toBeInTheDocument();
+  expect(state.updateDoc).toHaveBeenCalledTimes(1);
+});
+
+test("a failed completion save shows recovery instead of an earned badge, then reveals it after retry", async () => {
+  prepareProgressTest();
+  state.updateDoc.mockRejectedValue(new Error("offline"));
+  await renderLearner("badge-retry"); await finishWelcome();
+  expect(await screen.findByRole("heading", {name:"Welcome Aboard!"})).toBeVisible();
+  expect(screen.queryByRole("heading", {name:"Badge earned"})).not.toBeInTheDocument();
+  expect(screen.getByRole("status")).toHaveTextContent("saved on this device");
+  state.updateDoc.mockResolvedValue();
+  await act(async () => fireEvent.click(screen.getByRole("button", {name:"Retry saving progress"})));
+  expect(await screen.findByRole("heading", {name:"Badge earned"})).toBeVisible();
 });
 
 test("pending completion survives App remount and synchronizes after a later retry", async () => {

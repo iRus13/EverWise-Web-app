@@ -1,4 +1,4 @@
-import { tr, useLocale } from '../i18n';
+import {useLearningText} from "../i18n/learning.js";
 import { useState } from "react";
 import BlockShell from "../components/blocks/BlockShell";
 import ReadAloud from "../components/ReadAloud";
@@ -12,7 +12,7 @@ function pickTier(results, score) {
 }
 
 export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPositionChange }) {
-  useLocale();
+  const t = useLearningText();
   const [position, setPosition] = useState(() =>
     restoreAssessmentPosition(exam, "exam", initialPosition) || {phase:"intro", answers:[], selected:null});
   const {phase, answers, selected} = position;
@@ -35,26 +35,24 @@ export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPo
   };
 
   if (phase === "intro") {
-    return <LearningSummary key="intro" className="exam-intro" eyebrow="Knowledge check" title={exam.title} icon={BookOpen} onBack={onBack}
-      subtitle={`Pass with ${passingScore} of ${total} correct.`}
-      actions={<button className="btn-primary" onClick={() => remember({phase:"quiz", answers:[], selected:null})}>Start exam</button>}>
-      <section className="summary-section"><h2>Topics covered</h2><ul>{exam.topics.map(topic => <li key={topic}>{topic}</li>)}</ul></section>
-      <p className="summary-next">Choose an answer, then select Next. You can change your choice before moving on.</p>
+    return <LearningSummary key="intro" className="exam-intro" eyebrow="Knowledge check" title={t(exam.title)} icon={BookOpen} tone="neutral" onBack={onBack}
+      subtitle={t("Pass with {score} of {total} correct.", {score:passingScore, total})}
+      actions={<button className="btn-primary" onClick={() => remember({phase:"quiz", answers:[], selected:null})}>{t("Start exam")}</button>}>
+      <section className="summary-section"><h2>{t("Topics covered")}</h2><ul>{exam.topics.map(topic => <li key={topic}>{t(topic)}</li>)}</ul></section>
+      <p className="summary-next">{t("Choose an answer, then select Next. You can change your choice before moving on.")}</p>
     </LearningSummary>;
   }
 
   if (phase === "results") {
-    return <LearningSummary key="results" className="exam-results" eyebrow="Your result" icon={canComplete ? Check : RotateCcw}
-      title={canComplete ? "Exam complete!" : "Keep practicing"} subtitle={`You scored ${score} of ${total}.`}
-      actions={canComplete ? <button className="btn-primary" onClick={() => onPass({score,tier,earnedPhaseBadge,phaseBadge:earnedPhaseBadge ? exam.phaseBadge : null})}>Back to your path</button>
-        : <><button className="btn-primary" onClick={restart}>{exam.phaseBadge ? "Retake exam" : "Try again"}</button><button className="btn-secondary" onClick={onBack}>Back to path</button></>}>
+    return <LearningSummary key="results" className="exam-results" eyebrow="Your result" icon={canComplete ? Check : RotateCcw} tone={canComplete ? "success" : "neutral"}
+      title={t(canComplete ? "Passing score" : "Keep practicing")} subtitle={t("You scored {score} of {total}.", {score, total})}
+      actions={canComplete ? <button className="btn-primary" onClick={() => onPass({score,tier,earnedPhaseBadge,phaseBadge:earnedPhaseBadge ? exam.phaseBadge : null})}>{t("Back to your path")}</button>
+        : <><button className="btn-primary" onClick={restart}>{t("Retake exam")}</button><button className="btn-secondary" onClick={onBack}>{t("Back to your path")}</button></>}>
       {tier ? <section className="summary-section">
-        <h2>{canComplete && tier.trophy ? "Trophy earned" : "Result"}</h2>
-        <p className="summary-key-point">{tier.title}</p>
-        {tier.message && <p>{tier.message}</p>}
-        {exam.nextPhase && canComplete && <p>Unlocks next: <strong>{exam.nextPhase}</strong></p>}
-      </section> : <section className="summary-section"><h2>Not quite there yet</h2><p>You need {passingScore} correct to pass. Review the topics and try again.</p></section>}
-      {earnedPhaseBadge && <section className="summary-section summary-award"><h2>Phase achievement</h2><p className="summary-key-point">{exam.phaseBadge}</p></section>}
+        <h2>{t("Result")}</h2>
+        <p className="summary-key-point">{t(tier.title)}</p>
+        {tier.message && <p>{t(tier.message)}</p>}
+      </section> : <section className="summary-section"><h2>{t("Not quite there yet")}</h2><p>{t("You need {score} correct to pass. Review the topics and try again.", {score:passingScore})}</p></section>}
     </LearningSummary>;
   }
 
@@ -81,20 +79,20 @@ export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPo
       onSkip={next}
       footer={
           <button className="btn-primary" disabled={selected == null}
-            aria-label={selected == null ? "Choose an answer before continuing" : undefined} onClick={next}>
-            {qIndex + 1 < exam.questions.length ? "Next" : "See results"}
+            aria-label={selected == null ? t("Choose an answer before continuing") : undefined} onClick={next}>
+            {t(qIndex + 1 < exam.questions.length ? "Next" : "See results")}
           </button>
       }
     >
       <p className="text-lg font-semibold text-ink-faint">
-        Question {progress} {tr("of")} {total}
+        {t("Question {number} of {total}", {number:progress, total})}
       </p>
       <h1 className="page-title mt-3">
-        {q.question}
+        {t(q.question)}
       </h1>
 
       <div className="mt-5">
-        <ReadAloud text={q.question} label="Read this aloud" />
+        <ReadAloud text={t(q.question)} label="Read this aloud" />
       </div>
 
       <div className="mt-8 space-y-4">
@@ -108,7 +106,7 @@ export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPo
               aria-pressed={active}
               className="lesson-answer exam-answer"
             >
-              <span>{option}</span>
+              <span>{t(option)}</span>
               <span className="exam-selection" aria-hidden="true">{active && <Check size={20}/>}</span>
             </button>
           );

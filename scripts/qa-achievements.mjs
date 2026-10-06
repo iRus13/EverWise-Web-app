@@ -4,6 +4,8 @@ import {mkdir,writeFile} from "node:fs/promises";
 import path from "node:path";
 import assert from "node:assert/strict";
 import {allLessons} from "../src/data/lessons.js";
+import {lessonsByOrder, challengesByOrder, examsByOrder} from "../src/data/course-catalog.js";
+import {courseSuccessor} from "../src/utils/courseProgress.js";
 import {checkAssessments} from "./qa-assessments.mjs";
 import {checkBadgeGallery} from "./qa-badges.mjs";
 import {checkHeadingWrapping} from "./qa-heading-layout.mjs";
@@ -52,11 +54,12 @@ try {
       while((item=queue.shift())) {
         const {lesson,width,height,textSize}=item;
         await page.setViewportSize({width,height});
-        await page.goto(`${base}/tests/fixtures/app-layout.html?view=complete&lesson=${encodeURIComponent(lesson.id)}&textSize=${textSize}`);
+        await page.goto(`${base}/tests/fixtures/app-layout.html?view=complete&lesson=${encodeURIComponent(lesson.id)}&textSize=${textSize}&award=new&language=en`);
         await page.waitForSelector('body[data-geometry-ready="true"]',{state:"attached"});
         const text=await page.locator(".complete-screen").textContent();
         const info=lesson.complete || {};
-        for(const value of [lesson.badge,info.title,info.subtitle,info.habit,info.warningSign,...(info.skills||[]),...(info.learned||[]),info.next].filter(Boolean)) assert.ok(text.includes(value),`Preserve authored completion text for ${lesson.id}`);
+        const next=courseSuccessor(lesson.id,{lessons:lessonsByOrder,challenges:challengesByOrder,exams:examsByOrder});
+        for(const value of [lesson.badge,info.title,info.subtitle,info.habit,info.warningSign,...(info.skills||[]),...(info.learned||[]),next?.title].filter(Boolean)) assert.ok(text.includes(value),`Preserve takeaways and canonical next step for ${lesson.id}`);
         await capture(page,{kind:"lesson",id:lesson.id,state:"complete",width,height,textSize});
       }
     }));

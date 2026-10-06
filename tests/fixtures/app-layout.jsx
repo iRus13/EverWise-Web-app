@@ -24,8 +24,10 @@ import {lessonsByOrder as catalogLessons, challengesByOrder, examsByOrder} from 
 import {requiredCourseIds, nextCourseActivity} from "../../src/utils/courseProgress.js";
 import {getPhase} from "../../src/data/phases";
 import {accountDeletionErrorMessage} from "../../src/utils/authErrors.js";
+import {setLocale} from "../../src/i18n";
 import "../../src/index.css";
 const query = new URLSearchParams(location.search);
+if (query.has("language")) setLocale(query.get("language"));
 if (query.get("settingsPlatform") === "native") Capacitor.isNativePlatform = () => true;
 if (query.get("mutation") === "unscrollable-sidebar") {
   const style = document.createElement("style");
@@ -79,7 +81,9 @@ const screens = {
     onSelectExam={exam => recordCourse("exam",exam.id)} onSelectChallenge={challenge => recordCourse("challenge",challenge.id)}
     onTestOutLesson={index => recordCourse("quick-check",catalogLessons[index].id)}/>,
   lesson: <LessonPlayer lesson={lesson} onBack={noop} onExit={noop} onComplete={noop}/>,
-  complete: <Complete lesson={lesson} onDone={noop}/>,
+  complete: <Complete lesson={lesson} earnedBadge={query.get("award") === "new" ? lesson.badge : null}
+    progressStatus={view === "complete-pending" ? {pending:true,saving:false,durable:false} : null}
+    onRetryProgress={noop} onDone={() => recordCourse("path")}/>,
   "scam-checker": <ScamChecker onBack={() => recordCourse("home")}/>,
   "billing-error": <BillingAccessError onRetry={noop} onBack={noop}/>,
   "billing-inactive": <BillingAccessError kind="inactive" onRetry={noop} onBack={noop}/>,
@@ -105,7 +109,7 @@ function MeasuredScreen() {
   }, []);
   const screen = view.startsWith("settings-") ? "settings" : view.replace(/-pending$/, "");
   return <AppShell screen={screen} isAuthenticated={!["landing","login","password-reset","interview","signup"].includes(screen)} partner={query.get("navigationPartner") ? {name:query.get("navigationPartner")} : null} textSize={textSize} onTextSizeChange={noop} onHome={noop} onCourse={noop} onScamChecker={noop} onBadges={noop} onSettings={noop}>
-    {["home-pending", "complete-pending"].includes(view) && <ProgressSaveNotice status={{pending:true,saving:false,durable:screen==="home"}} onRetry={noop}/>}
+    {view === "home-pending" && <ProgressSaveNotice status={{pending:true,saving:false,durable:true}} onRetry={noop}/>}
     <div className="screen-content-frame flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden">{screens[screen]}</div>
   </AppShell>;
 }
@@ -153,7 +157,7 @@ async function measure() {
   const images = Array.from(document.images).filter(img => img.complete && !img.naturalWidth).map(img => img.getAttribute("src"));
   const notice=document.querySelector('[data-testid="progress-save-notice"]');
   let noticeReachable=true, contentHeight=null;
-  if(notice){
+  if(notice && notice.dataset.placement !== "summary"){
     notice.scrollTop=notice.scrollHeight;
     const button=notice.querySelector("button").getBoundingClientRect();
     noticeReachable=button.bottom <= notice.getBoundingClientRect().bottom + 1 && button.bottom <= innerHeight + 1;

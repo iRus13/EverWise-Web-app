@@ -1,24 +1,27 @@
 .app-screen-complete, .app-screen-badges { --everwise-screen-background: var(--surface-grouped); --everwise-safe-top: var(--surface-grouped); --everwise-safe-bottom: var(--surface-grouped); }
 .learning-summary { display: flex; flex: 1; flex-direction: column; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 24px 24px max(28px,env(safe-area-inset-bottom)); color: var(--text-primary); background: var(--surface-grouped); }
-.learning-summary .summary-back { align-self: flex-start; min-height: 44px; margin-bottom: 24px; color: var(--accent); font-size: calc(17px * var(--text-scale)); font-weight: 600; padding: 8px 0; }
+.learning-summary .summary-back { align-self: flex-start; min-height: 44px; margin-bottom: 24px; color: var(--accent); font-size: calc(17px * var(--text-scale)); font-weight: 600; padding: 8px 0; text-align: left; }
 .summary-header { container-type: inline-size; }
-.summary-symbol { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: var(--success-subtle); color: var(--success); margin-bottom: 20px; }
+.summary-symbol { display: flex; align-items: center; width: 32px; height: 32px; color: var(--success); margin-bottom: 16px; }
+.learning-summary[data-tone="neutral"] .summary-symbol { color: var(--accent); }
+.learning-summary > * { width: 100%; max-width: 640px; margin-inline: auto; }
 .summary-eyebrow { color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); line-height: 1.4; margin-bottom: 8px; }
 html[data-text-size] .learning-summary .page-title { font-size: min(calc(28px * var(--heading-scale)),12cqi); font-weight: 650; line-height: 1.2; letter-spacing: -.02em; text-wrap: initial; }
 html[data-system-text-category] .learning-summary .page-title { font-size: calc(28px * var(--heading-scale)); }
 .summary-subtitle { margin-top: 12px; font-size: calc(17px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }
-.summary-sections { display: grid; gap: 20px; margin-top: 28px; }
-.summary-section { padding: 20px; border: 0; border-radius: var(--radius-group); background: var(--surface); }
-.summary-section h2 { font-size: calc(17px * var(--heading-scale)); font-weight: 650; line-height: 1.4; color: var(--text-secondary); }
+.summary-sections { display: grid; gap: 24px; margin-top: 24px; }
+.summary-section { padding: 20px 0 0; border-top: 1px solid var(--separator); }
+.summary-section h2 { font-size: calc(17px * var(--text-scale)); font-weight: 600; line-height: 1.4; color: var(--text-secondary); }
 .summary-section p, .summary-section li { font-size: calc(17px * var(--text-scale)); line-height: 1.5; }
 .summary-section p { margin-top: 12px; }
 .summary-section .summary-key-point { font-weight: 600; color: var(--text-primary); }
 .summary-section ul { padding-left: 24px; list-style: disc; margin-top: 12px; }
 .summary-section li + li { margin-top: 10px; }
 .summary-section li::marker { color: var(--success); }
-.summary-highlight, .summary-award { background: var(--success-subtle); border-color: #cbd4c3; }
 .summary-next { font-size: calc(17px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }
-.summary-actions { display: grid; gap: 12px; margin-top: auto; padding-top: 28px; }
+.summary-actions { display: grid; gap: 12px; margin-top: 28px; }
+.summary-save-notice { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--separator); color: var(--text-primary); font-size: calc(17px * var(--text-scale)); line-height: 1.5; }
+.summary-save-notice button { text-align: left; font: inherit; font-weight: 600; }
 .learning-summary .summary-actions button { font-size: calc(17px * var(--text-scale)); line-height: 1.4; border-radius: 12px; }
 .badges-screen { width: 100%; min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; background: var(--surface-grouped); color: var(--text-primary); }
 .badges-header, .badges-screen .badges-content { width: 100%; max-width: 1080px; margin-inline: auto; padding: 16px 24px; }
@@ -55,7 +58,6 @@ html[data-system-text-category] .learning-summary .page-title { font-size: calc(
 html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .badges-screen .badges-grid { grid-template-columns: minmax(0,1fr); }
 @media(max-width:500px) {
   html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .badge-tile { grid-template-columns: minmax(0,1fr); }
-  html:is([data-expanded-text="true"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .summary-section { padding: 16px; }
 }
 .lesson-experience .lesson-answer.exam-answer { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .exam-answer > span:first-child { min-width: 0; }
@@ -118,22 +120,8 @@ html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="s
 .badges-header > .badges-total { margin-top: 12px; font-size: calc(17px * var(--text-scale)); font-variant-numeric: tabular-nums; }
 .badges-language-note { margin-bottom: 24px; color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); line-height: 1.5; }
 .badges-header { padding-top: 28px; }
-.summary-symbol { width: 64px; height: 64px; border-radius: 20px; margin-bottom: 24px; }
-.summary-section { padding: 24px; }
-.summary-section h2 { font-size: calc(13px * var(--heading-scale)); font-weight: 500; }
-.summary-header { padding-top: 16px; }
-.summary-section ul { margin-top: 16px; }
-.summary-section li + li { margin-top: 16px; }
-.summary-award { display: flex; flex-direction: column; border: 0; }
-.summary-award p { margin-top: 6px; font-weight: 600; }
 .badge-symbol { border-radius: 12px; background: var(--surface-grouped); }
 @media(min-width:1024px) {
   .badges-header { padding-top: 48px; }
   .badges-header, .badges-screen .badges-content { padding-inline: 48px; }
 }
-/* A completion summary should reveal its next action on a typical iPhone. */
-.learning-summary .summary-header { padding-top: 0; }
-.learning-summary .summary-symbol { width: 56px; height: 56px; margin-bottom: 20px; }
-.learning-summary .summary-sections { gap: 16px; margin-top: 24px; }
-.learning-summary .summary-section { padding: 20px; }
-.learning-summary .summary-section li + li { margin-top: 12px; }

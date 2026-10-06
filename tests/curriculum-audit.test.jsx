@@ -45,8 +45,8 @@ test.each(allLessons.filter(l => l.quiz?.length))("lesson $id can complete every
 test.each(examsByOrder)("exam $id supports passing and failing without inflating a score", (exam) => {
   expect(exam.questions).toHaveLength(exam.totalQuestions);
   for (const pass of [true, false]) {
-    const onPass = vi.fn();
-    render(<ExamPlayer exam={exam} onBack={() => {}} onPass={onPass} />);
+    const onPass = vi.fn(), onBack = vi.fn();
+    render(<ExamPlayer exam={exam} onBack={onBack} onPass={onPass} />);
     fireEvent.click(screen.getByRole("button", {name: "Start exam"}));
     for (const question of exam.questions) {
       const index = pass ? question.correctIndex : (question.correctIndex + 1) % question.options.length;
@@ -66,8 +66,8 @@ test.each(examsByOrder)("exam $id supports passing and failing without inflating
 
 test.each(examsByOrder)("exam $id honors its stated passing-score boundary", (exam) => {
   for (const score of [exam.passingScore - 1, exam.passingScore]) {
-    const onPass = vi.fn();
-    render(<ExamPlayer exam={exam} onBack={() => {}} onPass={onPass} />);
+    const onPass = vi.fn(), onBack = vi.fn();
+    render(<ExamPlayer exam={exam} onBack={onBack} onPass={onPass} />);
     fireEvent.click(screen.getByRole("button", { name: "Start exam" }));
     for (const [index, question] of exam.questions.entries()) {
       const answer = index < score ? question.correctIndex : (question.correctIndex + 1) % question.options.length;
@@ -76,8 +76,9 @@ test.each(examsByOrder)("exam $id honors its stated passing-score boundary", (ex
     }
     expect(screen.getByText(`You scored ${score} of ${exam.totalQuestions}.`)).toBeVisible();
     if (score < exam.passingScore) {
-      expect(screen.queryByRole("button", { name: "Back to your path" })).not.toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /Retake exam|Try again/ })).toBeVisible();
+      expect(screen.getByRole("button", { name: "Retake exam" })).toBeVisible();
+      fireEvent.click(screen.getByRole("button", { name: "Back to your path" }));
+      expect(onBack).toHaveBeenCalledOnce();
       expect(onPass).not.toHaveBeenCalled();
     } else {
       fireEvent.click(screen.getByRole("button", { name: "Back to your path" }));

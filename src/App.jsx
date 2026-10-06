@@ -973,6 +973,7 @@ function LearnerApp({ initialPartnerFragment }) {
   }, [user]);
   const [paywallVariant, setPaywallVariant] = useState("subscribe");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lessonCompletion, setLessonCompletion] = useState(null);
   // Set when the learner chose the quick check from the course path, so the
   // lesson opens on it instead of its first teaching block.
   const [startInTestOut, setStartInTestOut] = useState(false);
@@ -3919,7 +3920,14 @@ function LearnerApp({ initialPartnerFragment }) {
 
   const finishLesson = () => {
     if (!canRecordProgress() || !activeLesson) return;
-    if (!completedLessons.includes(activeLesson.id)) {
+    const firstCompletion = !completedLessons.includes(activeLesson.id);
+    setLessonCompletion({
+      uid: user.uid,
+      lessonId: activeLesson.id,
+      badge: firstCompletion && !(profile.badges ?? []).includes(activeLesson.badge)
+        ? activeLesson.badge : null,
+    });
+    if (firstCompletion) {
       progressSync.record({
         completedLessons: [activeLesson.id],
         badges: activeLesson.badge ? [activeLesson.badge] : [],
@@ -4487,6 +4495,13 @@ function LearnerApp({ initialPartnerFragment }) {
           kind="complete"
           itemId={activeLesson.id}
           key={`complete:${activeLesson.id}`}
+          progressStatus={progressSync.status}
+          onRetryProgress={progressSync.retry}
+          earnedBadge={lessonCompletion?.uid === user?.uid &&
+            lessonCompletion?.lessonId === activeLesson.id &&
+            !progressSync.status?.pending &&
+            (profile?.badges ?? []).includes(lessonCompletion?.badge)
+              ? lessonCompletion.badge : null}
           onBack={goPath}
           onDone={goPath}
         />
@@ -4511,7 +4526,7 @@ function LearnerApp({ initialPartnerFragment }) {
       onTextSizeChange={setTextSize}
       courseProgress={courseProgress}
     >
-      <ProgressSaveNotice status={progressSync.status} onRetry={progressSync.retry} />
+      {screen !== "complete" && <ProgressSaveNotice status={progressSync.status} onRetry={progressSync.retry} />}
       <div
         key={screen}
         className="screen-content-frame flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden"

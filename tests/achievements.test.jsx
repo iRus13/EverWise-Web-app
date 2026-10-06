@@ -5,6 +5,7 @@ import Badges from "../src/screens/Badges.jsx";
 import Complete from "../src/screens/Complete.jsx";
 import ExamPlayer from "../src/screens/ExamPlayer.jsx";
 import {badgeCatalog} from "../src/utils/badges.js";
+import {lessonsByOrder} from "../src/data/lessons.js";
 vi.mock("../src/components/ReadAloud", () => ({default: () => null}));
 Element.prototype.scrollTo = () => {};
 afterEach(cleanup);
@@ -24,9 +25,12 @@ test("exam choices can be changed before Next, only the submitted answers are sc
   expect(screen.getByRole("heading",{name:"Second question"})).toHaveFocus();
   fireEvent.click(screen.getByRole("button",{name:"Correct second"}));
   fireEvent.click(screen.getByRole("button",{name:"See results"}));
-  expect(screen.getByRole("heading",{name:"Exam complete!"})).toHaveFocus();
+  expect(screen.getByRole("heading",{name:"Passing score"})).toHaveFocus();
   expect(screen.getByText("You scored 2 of 2.")).toBeVisible();
   expect(pass).not.toHaveBeenCalled();
+  expect(screen.queryByText("Trophy earned")).not.toBeInTheDocument();
+  expect(screen.queryByText("Phase achievement")).not.toBeInTheDocument();
+  expect(screen.queryByText(/Unlocks next/)).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button",{name:"Back to your path"}));
   expect(pass).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({score:2,earnedPhaseBadge:true,phaseBadge:"Phase completed"}));
 });
@@ -74,11 +78,25 @@ test("completion preserves authored takeaways, does not fabricate a badge, and w
   const done=vi.fn();
   render(<Complete lesson={{complete:{title:"Lesson finished",habit:"Pause first",warningSign:"Pressure",skills:["Verify"],learned:["Use trusted contacts"],next:"Next topic"}}} onDone={done}/>);
   expect(screen.getByRole("heading",{name:"Lesson finished"})).toHaveFocus();
-  for(const text of ["Pause first","Pressure","Verify","Use trusted contacts","Next topic"]) expect(screen.getByText(text,{exact:true})).toBeVisible();
+  for(const text of ["Pause first","Pressure","Verify","Use trusted contacts"]) expect(screen.getByText(text,{exact:true})).toBeVisible();
+  expect(screen.queryByText("Next topic")).not.toBeInTheDocument();
   expect(screen.queryByText("Badge earned")).not.toBeInTheDocument();
   expect(done).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole("button",{name:"Back to your path"}));
   expect(done).toHaveBeenCalledOnce();
+});
+
+test("real App lesson summary names VPN next and only displays an explicitly earned badge", () => {
+  const lesson=lessonsByOrder.find(item=>item.id==="app");
+  const {rerender}=render(<Complete lesson={lesson} onDone={vi.fn()}/>);
+  expect(screen.getByText("What is a VPN?",{exact:true})).toBeVisible();
+  expect(screen.queryByText("What is Wi-Fi?",{exact:true})).not.toBeInTheDocument();
+  expect(screen.queryByText("Badge earned")).not.toBeInTheDocument();
+  rerender(<Complete lesson={lesson} earnedBadge={lesson.badge} onDone={vi.fn()}/>);
+  expect(screen.getByText("Badge earned")).toBeVisible();
+  expect(screen.getByText(lesson.badge,{exact:true})).toBeVisible();
+  rerender(<Complete lesson={lesson} earnedBadge="Unrelated badge" onDone={vi.fn()}/>);
+  expect(screen.queryByText("Badge earned")).not.toBeInTheDocument();
 });
 
 

@@ -8,9 +8,23 @@ import {
   isPlayableUnlocked,
   findCurrentPlayableId,
   nextCourseActivity,
+  courseSuccessor,
   labelFinalLessonsForChallenges,
   getChallengeCompletionContent,
 } from "../src/utils/courseProgress.js";
+
+test("summary successors follow lessons, challenges and exams across phase boundaries", () => {
+  const curriculum = {
+    lessons:[{id:"b",phase:1,order:2},{id:"a",phase:1,order:1},{id:"c",phase:2,order:1}],
+    challenges:[{id:"review",phase:1,order:1}],
+    exams:[{id:"exam",phase:1,order:1}],
+  };
+  for(const [id,next] of [["a","b"],["b","review"],["review","exam"],["exam","c"]]) {
+    assert.equal(courseSuccessor(id,curriculum)?.id,next);
+  }
+  assert.equal(courseSuccessor("c",curriculum),null);
+  assert.equal(courseSuccessor("unknown",curriculum),null);
+});
 
 const lessons = [
   {

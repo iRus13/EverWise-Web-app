@@ -4,7 +4,8 @@ import BlockRenderer from "../components/blocks/BlockRenderer";
 import {Check} from "lucide-react";
 import LearningSummary from "../components/LearningSummary";
 import {assessmentRevision, restoreAssessmentPosition} from "../utils/assessmentProgress.js";
-import { getChallengeCompletionContent } from "../utils/courseProgress.js";
+import { courseSuccessor, getChallengeCompletionContent } from "../utils/courseProgress.js";
+import {lessonsByOrder, challengesByOrder, examsByOrder} from "../data/course-catalog.js";
 
 // Ungraded phase review: play each block in order, then a simple complete screen.
 export default function ChallengePlayer({ challenge, onBack, onComplete, initialPosition, onPositionChange }) {
@@ -25,10 +26,13 @@ export default function ChallengePlayer({ challenge, onBack, onComplete, initial
   };
 
   if (finished) {
-    return <LearningSummary eyebrow="Review complete" title={t(completion.title)} subtitle={challenge.nextKind === "course"
-        ? t("You completed the Everwise course.")
-        : t("Nice work reviewing Phase {phase}. Next: {next}.",{phase:challenge.phase,next:t(challenge.nextLabel)})} icon={Check}
-      actions={<button className="btn-primary" onClick={onComplete}>{t("Back to your path")}</button>}/>;
+    const next = courseSuccessor(challenge.id, {lessons:lessonsByOrder, challenges:challengesByOrder, exams:examsByOrder});
+    return <LearningSummary eyebrow="Review complete" title={t(completion.title)} subtitle={t("You finished this phase review.")} icon={Check}
+      actions={<button className="btn-primary" onClick={onComplete}>{t("Back to your path")}</button>}>
+      {next && <section className="summary-section summary-next-step">
+        <h2>{t("Up next")}</h2><p className="summary-key-point">{t(next.title)}</p>
+      </section>}
+    </LearningSummary>;
   }
 
   return (

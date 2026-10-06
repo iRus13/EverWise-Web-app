@@ -168,6 +168,16 @@ export function nextCourseActivity(completed, curriculum) {
   return byId.get(currentId) ?? null;
 }
 
+// Summary copy follows the same ordered curriculum as the path. Authored
+// `complete.next` text may refer to an older course order.
+export function courseSuccessor(itemId, { lessons, challenges, exams }) {
+  const ordered = requiredCourseIds(lessons, challenges, exams);
+  const index = ordered.indexOf(itemId);
+  if (index < 0 || index + 1 >= ordered.length) return null;
+  const nextId = ordered[index + 1];
+  return [...lessons, ...challenges, ...exams].find(item => item.id === nextId) ?? null;
+}
+
 export function labelFinalLessonsForChallenges(lessons, challenges) {
   const challengePhases = new Set(
     challenges.map((challenge) => challenge.phase),
