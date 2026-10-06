@@ -98,6 +98,7 @@ html[data-expanded-text="true"] .lesson-step-caption > span:last-child { white-s
 /* Questions can be several sentences; use a reading headline, not a page's
    large title. Short lesson titles retain the stronger title hierarchy. */
 html[data-text-size] .lesson-experience .page-title.lesson-question { font-size: calc(22px * var(--heading-scale)); font-weight: 600; line-height: 1.35; letter-spacing: -.3px; }
+.lesson-scenario-story { margin: 0 0 24px; font-size: calc(18px * var(--text-scale)); line-height: 1.55; color: #39362f; white-space: pre-line; overflow-wrap: anywhere; }
 
 /* Activity controls share the same selection and spacing grammar. */
 .lesson-experience .lesson-option { display: flex; align-items: center; gap: 12px; background: var(--surface); }

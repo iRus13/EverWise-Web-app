@@ -530,5 +530,15 @@
   "What is Cybersecurity?": "¿Qué es la ciberseguridad?",
   "What is Personal Information?": "¿Qué es la información personal?",
   "Phase 1 Final Challenge": "Desafío final de la etapa 1",
-  "Opening {kind}": "Abriendo {kind}"
+  "Opening {kind}": "Abriendo {kind}",
+  "Strong Passwords": "Contraseñas seguras",
+  "Password Protector": "Protección con contraseñas",
+  "What is a Password Manager?": "¿Qué es un gestor de contraseñas?",
+  "Password Managers": "Gestores de contraseñas",
+  "Password Organizer": "Organización de contraseñas",
+  "What is Two-Factor Authentication (2FA)?": "¿Qué es la verificación en dos pasos (2FA)?",
+  "Two-Factor Authentication": "Verificación en dos pasos",
+  "Security Shield": "Protección adicional",
+  "Foundations and the first three Safe Internet Habits lessons are available in Spanish. Other lessons and AI results are currently in English.": "Fundamentos y las tres primeras lecciones de Hábitos seguros en Internet están disponibles en español. Las demás lecciones y los resultados de IA siguen en inglés.",
+  "The first three lessons are available in Spanish. The rest of this phase is currently in English.": "Las tres primeras lecciones están disponibles en español. El resto de esta etapa sigue en inglés."
 }

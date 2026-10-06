@@ -4,6 +4,7 @@ import { useState } from "react";
 import ReadAloud from "../ReadAloud";
 import AnswerFeedback from "./AnswerFeedback";
 import BlockShell from "./BlockShell";
+import scenarioPresentations from "../../data/scenario-presentations.json";
 
 // Shared multiple-choice UI used by scenario, choice, and quiz questions.
 export function MultipleChoiceBody({
@@ -12,6 +13,7 @@ export function MultipleChoiceBody({
   options,
   correctIndex,
   explanation,
+  presentation,
   selected,
   onSelect,
 }) {
@@ -26,11 +28,12 @@ export function MultipleChoiceBody({
           {t(title)}
         </p>
       )}
+      {presentation && <p className="lesson-scenario-story">{t(presentation.story)}</p>}
       <h1 className="page-title lesson-question mt-2">
-        {t(text)}
+        {t(presentation?.question || text)}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={t(text)} label="Read this aloud" />
+        <ReadAloud text={presentation ? [t(presentation.story), t(presentation.question)].join("\n\n") : t(text)} label="Read this aloud" />
       </div>
 
       <div className="mt-8 space-y-4">
@@ -89,6 +92,7 @@ export default function ScenarioBlock({
     >
       <MultipleChoiceBody
         text={block.text}
+        presentation={Object.hasOwn(scenarioPresentations, block.text) ? scenarioPresentations[block.text] : undefined}
         options={block.options}
         correctIndex={block.correctIndex}
         explanation={block.explanation}

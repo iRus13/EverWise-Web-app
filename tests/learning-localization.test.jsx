@@ -3,6 +3,7 @@ import {act, cleanup, fireEvent, render, screen} from "@testing-library/react";
 import {afterEach, beforeEach, expect, test, vi} from "vitest";
 import {setLocale} from "../src/i18n";
 import spanish from "../src/i18n/learning-es.json";
+import scenarioPresentations from "../src/data/scenario-presentations.json";
 import {fillBlankParts, learningText} from "../src/i18n/learning.js";
 import {lessonsByOrder, challengesByOrder} from "../src/data/lessons.js";
 import BlockRenderer from "../src/components/blocks/BlockRenderer.jsx";
@@ -15,12 +16,104 @@ import {assessmentRevision} from "../src/utils/assessmentProgress.js";
 
 const lessons = lessonsByOrder.filter(item => item.phase === 1);
 const challenge = challengesByOrder.find(item => item.phase === 1);
+const accountLessons = lessonsByOrder.filter(item => ["strong-passwords","password-managers","two-factor-auth"].includes(item.id));
 const internet = lessons.find(item => item.id === "internet");
 const t = (text, values) => learningText(text, "es", values);
 const blockOf = type => internet.blocks.find(block => block.type === type);
 const renderBlock = (block, props = {}) => render(<BlockRenderer block={block} progress={1} progressTotal={2} onBack={vi.fn()} onContinue={vi.fn()} {...props} />);
 beforeEach(() => setLocale("es"));
 afterEach(() => {cleanup(); setLocale("en"); vi.unstubAllGlobals();});
+
+test("three account safety lessons have complete Spanish copy and distinct answers", () => {
+  const keys=new Set();
+  const metadata=new Set(["id","type","track","variant","nextKind","textRole","tier","url","videoUrl","videoId","color","accent","lessonId"]);
+  function collect(value) {
+    if(typeof value==="string") keys.add(value);
+    else if(Array.isArray(value)) value.forEach(collect);
+    else if(value && typeof value==="object") Object.entries(value).filter(([key])=>!metadata.has(key)).forEach(([,child])=>collect(child));
+  }
+  accountLessons.forEach(collect);
+  expect(accountLessons).toHaveLength(3);
+  expect(keys.size).toBe(332);
+  for(const key of keys) {
+    expect(spanish[key],key).toBeTruthy();
+    expect(spanish[key].split("______").length,key).toBe(key.split("______").length);
+  }
+  for(const lesson of accountLessons) for(const block of lesson.blocks) {
+    const options=(block.options ?? block.wordBank ?? []).map(option=>typeof option==="string"?option:option.text);
+    expect(new Set(options.map(option=>t(option).toLowerCase())).size).toBe(options.length);
+  }
+});
+
+test("every separated scenario preserves the complete authored text", () => {
+  for(const [source,presentation] of Object.entries(scenarioPresentations)) {
+    expect(`${presentation.story} ${presentation.question}`).toBe(source);
+    expect(presentation.story.trim()).toBeTruthy();
+    expect(presentation.question.trim()).toBeTruthy();
+  }
+  for(const lesson of [...lessons,...accountLessons]) for(const block of lesson.blocks) {
+    if(block.type !== "scenario") continue;
+    const presentation=scenarioPresentations[block.text];
+    if(presentation) for(const field of Object.values(presentation)) expect(spanish[field],field).toBeTruthy();
+  }
+});
+
+test.each(["en","es"])("scenario stories have body hierarchy and a focused question in %s", language => {
+  setLocale(language);
+  const block=accountLessons[2].blocks.find(block=>block.text?.startsWith("Robert receives a text:"));
+  renderBlock(block);
+  const presentation=scenarioPresentations[block.text];
+  expect(screen.getByRole("heading",{level:1})).toHaveTextContent(learningText(presentation.question,language));
+  expect(screen.getByText(learningText(presentation.story,language))).toHaveClass("lesson-scenario-story");
+  expect(screen.queryByRole("heading",{name:learningText(block.text,language)})).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button",{name:learningText(block.options[block.correctIndex],language),exact:true}));
+  expect(screen.getByRole("status")).toHaveClass("lesson-feedback-positive");
+});
+
+test("unmapped scenarios keep their full question and literal examples", () => {
+  renderBlock({type:"scenario",title:"Example",text:"An unfamiliar example at https://example.com. What next?",options:["Pause","Proceed"],correctIndex:0});
+  expect(screen.getByRole("heading",{level:1})).toHaveTextContent("An unfamiliar example at https://example.com. What next?");
+  expect(screen.queryByRole("link")).not.toBeInTheDocument();
+});
+
+test.each(accountLessons)("$id opens and completes with Spanish course copy", lesson => {
+  const {unmount}=render(<LessonPlayer lesson={lesson} onBack={vi.fn()} onComplete={vi.fn()} />);
+  expect(screen.getByRole("heading",{level:1})).toHaveTextContent(t(lesson.blocks[0].heading));
+  expect(screen.getByRole("button",{name:"Continuar",exact:true})).toBeVisible();
+  unmount();
+  render(<Complete lesson={lesson} onDone={vi.fn()} />);
+  expect(screen.getByText(t(lesson.complete.subtitle),{exact:true})).toBeVisible();
+});
+
+test("translated password choices and result survive a language change", () => {
+  const block=accountLessons[0].blocks.find(block=>block.type==="builder");
+  const onContinue=vi.fn();
+  renderBlock(block,{onContinue});
+  for(const column of block.columns) fireEvent.click(screen.getByRole("button",{name:t(column.items[0]),exact:true}));
+  expect(screen.getAllByText("Bosque!42Café")).toHaveLength(2);
+  act(()=>setLocale("en"));
+  expect(screen.getAllByText("Forest!42Coffee")).toHaveLength(2);
+  for(const column of block.columns) expect(screen.getByRole("button",{name:column.items[0],exact:true})).toHaveAttribute("aria-pressed","true");
+  act(()=>setLocale("es"));
+  fireEvent.click(screen.getByRole("button",{name:"Continuar",exact:true}));
+  expect(screen.getByRole("status")).toHaveTextContent(t(block.feedback));
+  fireEvent.click(screen.getByRole("button",{name:"Continuar",exact:true}));
+  expect(onContinue).toHaveBeenCalledOnce();
+  expect(block.columns[0].items[0]).toBe("Forest");
+});
+
+test("verification practice inserts Spanish phrases and scores canonical answers", () => {
+  const block=accountLessons[2].blocks.find(block=>block.type==="fillblank");
+  renderBlock(block);
+  fireEvent.click(screen.getByRole("button",{name:"Verificación en dos pasos",exact:true}));
+  expect(screen.getByRole("heading",{level:1})).toHaveTextContent("La verificación en dos pasos añade una capa de seguridad a tu cuenta.");
+  expect(screen.getByRole("status")).toHaveClass("lesson-feedback-positive");
+  fireEvent.click(screen.getByRole("button",{name:"Siguiente",exact:true}));
+  fireEvent.click(screen.getByRole("button",{name:t("Password"),exact:true}));
+  expect(screen.getByRole("status")).toHaveClass("lesson-feedback-caution");
+  expect(screen.getByRole("status")).toHaveTextContent("código de verificación");
+  expect(block.questions[0].answer).toBe("2FA");
+});
 
 test("all Foundations display strings have Spanish copy without changing canonical answers", () => {
   const keys = new Set();
@@ -202,7 +295,9 @@ test("Spanish path search matches accented translated titles and original Englis
 
 test("Spanish settings and later phases disclose the actual translation boundary", () => {
   render(<><LanguageSelect showContentNotice /><LessonPath completedLessons={[]} onSelectLesson={vi.fn()} onBack={vi.fn()} /></>);
-  expect(screen.getByRole("status")).toHaveTextContent("Fundamentos está disponible en español.");
+  expect(screen.getByRole("status")).toHaveTextContent("Fundamentos y las tres primeras lecciones");
   fireEvent.click(screen.getByRole("button",{name:/Etapa 2 Hábitos seguros en Internet/}));
+  expect(screen.getByText("Las tres primeras lecciones están disponibles en español. El resto de esta etapa sigue en inglés.")).toBeVisible();
+  fireEvent.click(screen.getByRole("button",{name:/Etapa 3 Comunicación/}));
   expect(screen.getByText("Las lecciones de esta etapa están actualmente en inglés.")).toBeVisible();
 });

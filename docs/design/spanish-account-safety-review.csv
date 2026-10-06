@@ -1,0 +1,358 @@
+English source,Spanish presentation,Native curriculum locations
+!,!,strong-passwords.blocks[6].columns[1].items[0]
+"""password123"" is a strong password.",«password123» es una contraseña segura.,strong-passwords.blocks[11].questions[3].text
+123456,123456,strong-passwords.blocks[2].bullets[0]; strong-passwords.quiz[1].options[0]
+15,15,strong-passwords.blocks[6].columns[2].items[2]
+2.1,2.1,strong-passwords.lessonNumber
+2.2,2.2,password-managers.lessonNumber
+2.3,2.3,two-factor-auth.lessonNumber
+2FA,Verificación en dos pasos,two-factor-auth.blocks[5].wordBank[0]; two-factor-auth.blocks[5].questions[0].answer; two-factor-auth.quiz[3].options[0]
+2FA helps protect your accounts by requiring your password plus a second security step. Turn on 2FA whenever it's available. Keep your phone secure. Never share verification codes.,La verificación en dos pasos protege tus cuentas al pedir tu contraseña y una segunda comprobación. Actívala cuando esté disponible. Protege tu teléfono y nunca compartas códigos de verificación.,two-factor-auth.blocks[13].text
+42,42,strong-passwords.blocks[6].columns[2].items[0]
+87,87,strong-passwords.blocks[6].columns[2].items[1]
+87654321,87654321,strong-passwords.blocks[3].options[0].text
+@,@,strong-passwords.blocks[6].columns[1].items[1]
+A ______ helps protect your online account.,Una ______ ayuda a proteger tu cuenta en línea.,strong-passwords.quiz[3].question
+A different password for each account.,Una contraseña diferente para cada cuenta.,password-managers.blocks[4].cards[4].back
+A feature that automatically enters your saved username and password.,Una función que introduce automáticamente tu nombre de usuario y tu contraseña guardados.,password-managers.blocks[4].cards[3].back
+"A friend asks for your email password so they can ""check something for you."" What should you do?",Un amigo te pide la contraseña de tu correo para «revisar algo por ti». ¿Qué deberías hacer?,strong-passwords.quiz[6].question
+"A long, unique password that is difficult for others to guess.","Una contraseña larga, única y difícil de adivinar.",strong-passwords.blocks[5].cards[1].back
+A notebook for passwords,Una libreta para contraseñas,password-managers.quiz[0].options[0]
+"A password is a secret code that helps protect your online accounts. Think of a password like the key to your front door. If someone has your key, they can enter your house. If someone has your password, they may be able to access your email, bank account, photos, or other personal information. Passwords help keep your information private.","Una contraseña es un código secreto que ayuda a proteger tus cuentas en línea. Es como la llave de tu casa. Si alguien tiene tu llave, puede entrar. Si alguien tiene tu contraseña, podría acceder a tu correo, tu cuenta bancaria, tus fotos u otra información personal. Las contraseñas ayudan a mantener tu información privada.",strong-passwords.blocks[0].text
+A password manager helps remember your passwords.,Un gestor de contraseñas te ayuda a recordar tus contraseñas.,password-managers.blocks[10].questions[0].text
+"A password manager helps you store passwords securely, create strong passwords, remember many passwords, and use a different password for every account. Protect your master password and never share it with anyone.","Un gestor de contraseñas te ayuda a guardarlas de forma segura, crear contraseñas fuertes, recordar muchas contraseñas y usar una diferente para cada cuenta. Protege tu contraseña maestra y no la compartas con nadie.",password-managers.blocks[11].text
+"A password manager is a secure app that stores your passwords in one protected place. Instead of remembering dozens of passwords, you only need to remember one strong master password. The password manager securely stores the rest.
+
+Think of it like a locked key cabinet. Your passwords are the keys. The password manager is the locked cabinet. The master password is the only key to open it.","Un gestor de contraseñas es una aplicación segura que guarda tus contraseñas en un lugar protegido. En vez de recordar decenas de contraseñas, solo necesitas recordar una contraseña maestra segura. El gestor guarda las demás.
+
+Imagínalo como un armario de llaves cerrado con llave. Tus contraseñas son las llaves. El gestor es el armario. La contraseña maestra es la única llave que lo abre.",password-managers.blocks[0].text
+A password manager is much safer.,Un gestor de contraseñas es mucho más seguro.,password-managers.blocks[2].footer
+A password used for only one account.,Una contraseña que se usa para una sola cuenta.,strong-passwords.blocks[5].cards[2].back
+A personal profile or service you sign in to online.,Un perfil personal o un servicio al que accedes en línea.,strong-passwords.blocks[5].cards[4].back
+A random word,Una palabra al azar,strong-passwords.quiz[5].options[0]
+A search engine,Un buscador,password-managers.quiz[0].options[1]
+A secret code that protects your account.,Un código secreto que protege tu cuenta.,strong-passwords.blocks[5].cards[0].back
+A secure app that stores and protects your passwords.,Una aplicación segura que guarda y protege tus contraseñas.,password-managers.blocks[4].cards[0].back
+A secure app that stores your passwords,Una aplicación segura que guarda tus contraseñas,password-managers.quiz[0].options[2]
+A social media account,Una cuenta de redes sociales,password-managers.quiz[0].options[3]
+A special character like ! @ # $ % & *,"Un carácter especial, como ! @ # $ % & *",strong-passwords.blocks[5].cards[3].back
+A stranger who calls you,Un desconocido que te llama,two-factor-auth.blocks[10].options[2]
+"A strong password is long (at least 12 characters), easy for you to remember, and hard for other people to guess.","Una contraseña segura es larga (al menos 12 caracteres), fácil de recordar para ti y difícil de adivinar para otras personas.",strong-passwords.blocks[1].text
+A strong password should be long.,Una contraseña segura debe ser larga.,strong-passwords.blocks[11].questions[0].text
+A temporary code used to confirm your identity.,Un código temporal que se usa para confirmar tu identidad.,two-factor-auth.blocks[4].cards[1].back
+A text message with a login code is usually sent to your ______.,Un mensaje de texto con un código de acceso suele llegar a tu ______.,two-factor-auth.blocks[5].questions[2].text
+"A verification code is like the key to your front door, but it only works for a short time. Never share verification codes, one-time passwords, or security codes. Even if someone says they're from your bank, Amazon, Apple, or the police. Real organizations generally won't ask you to read a one-time verification code over the phone or by text.","Un código de verificación es como la llave de tu casa, pero solo funciona durante un tiempo breve. Nunca compartas códigos de verificación, contraseñas de un solo uso ni códigos de seguridad, aunque alguien diga que trabaja para tu banco, Amazon, Apple o la policía. Las organizaciones legítimas generalmente no te piden que les leas un código de un solo uso por teléfono ni que se lo envíes por mensaje.",two-factor-auth.blocks[9].text
+Account,Cuenta,strong-passwords.blocks[5].cards[4].front
+Add an extra layer of protection to your important accounts.,Añadir una capa de protección a tus cuentas importantes.,two-factor-auth.complete.learned[3]
+Adds an extra security step when signing in.,Añade una comprobación de seguridad al iniciar sesión.,two-factor-auth.quiz[0].options[2]
+"After entering your password, you may receive a ______ on your phone.","Después de introducir tu contraseña, puedes recibir un ______ en tu teléfono.",two-factor-auth.blocks[5].questions[1].text
+All of them,Todas,password-managers.quiz[1].options[0]
+An app that creates temporary security codes.,Una aplicación que genera códigos de seguridad temporales.,two-factor-auth.blocks[4].cards[2].back
+An extra security step after entering your password.,Una comprobación de seguridad adicional después de introducir tu contraseña.,two-factor-auth.blocks[4].cards[0].back
+An unexpected code may mean someone is trying to access your account.,Un código inesperado puede indicar que alguien intenta acceder a tu cuenta.,two-factor-auth.blocks[12].explanation
+Anyone nearby could easily see your passwords.,Cualquier persona cercana podría ver tus contraseñas fácilmente.,password-managers.blocks[5].questions[2].explanation
+Approving a sign-in on your phone,Aprobar un inicio de sesión en tu teléfono,two-factor-auth.blocks[3].options[2].text
+Ask if they promise to delete it.,Preguntar si promete borrarlo.,two-factor-auth.blocks[11].options[1]
+Authenticator App,Aplicación de autenticación,two-factor-auth.blocks[4].cards[2].front
+Authenticator App - an app creates a new security code every 30 seconds,Aplicación de autenticación: genera un código de seguridad nuevo cada 30 segundos.,two-factor-auth.blocks[1].bullets[2]
+AutoFill,Autorrelleno,password-managers.blocks[4].cards[3].front
+Avoid common password mistakes.,Evitar errores comunes con las contraseñas.,strong-passwords.complete.learned[1]
+Avoid passwords like:,Evita contraseñas como estas:,strong-passwords.blocks[2].text
+Bicycle,Bicicleta,strong-passwords.blocks[6].columns[0].items[2]
+Blocks all scam emails.,Bloquea todos los correos fraudulentos.,two-factor-auth.quiz[0].options[3]
+Browser,Navegador,strong-passwords.quiz[3].options[1]; two-factor-auth.quiz[3].options[2]
+Browsing the internet,Navegar por Internet,strong-passwords.quiz[0].options[3]
+Build a Strong Password,Crea una contraseña segura,strong-passwords.blocks[6].title
+Camera,Cámara,strong-passwords.quiz[3].options[2]; two-factor-auth.quiz[3].options[1]
+Changes your password.,Cambia tu contraseña.,two-factor-auth.quiz[0].options[1]
+Choose the safest option.,Elige la opción más segura.,password-managers.blocks[3].text
+Coffee,Café,strong-passwords.blocks[6].columns[3].items[0]
+Common Mistakes,Errores comunes,password-managers.blocks[2].heading
+Common Password Mistakes,Errores comunes con las contraseñas,strong-passwords.blocks[2].heading
+Common Types of 2FA,Tipos habituales de verificación en dos pasos,two-factor-auth.blocks[1].heading
+Connecting to Wi-Fi,Conectarse a Wi-Fi,strong-passwords.quiz[0].options[1]
+Create a strong password.,Crear una contraseña segura.,strong-passwords.goals[1]
+Create stronger passwords.,Crear contraseñas más seguras.,strong-passwords.complete.learned[0]
+Creating a password,Crear una contraseña,two-factor-auth.quiz[1].options[1]
+Creating strong passwords,Crear contraseñas seguras,password-managers.blocks[1].bullets[1]
+Delete your email account immediately.,Eliminar tu cuenta de correo inmediatamente.,two-factor-auth.blocks[12].options[3]
+Do not send it.,No enviarlo.,two-factor-auth.blocks[11].options[2]
+Do not share or use the code. Check your account if you're concerned.,No compartir ni usar el código. Revisar tu cuenta si te preocupa.,two-factor-auth.quiz[6].options[2]
+"Do not use or share the code. If you're concerned, change your password and check your account activity.","No uses ni compartas el código. Si te preocupa, cambia tu contraseña y revisa la actividad de tu cuenta.",two-factor-auth.blocks[12].options[2]
+Does 2FA help protect her account?,¿La verificación en dos pasos ayuda a proteger su cuenta?,two-factor-auth.blocks[8].presentation.question
+Email Code - a code is sent to your email,Código por correo: recibes un código en tu correo electrónico.,two-factor-auth.blocks[1].bullets[1]
+"Email, banking, social media, and medical portals","Correo, banca, redes sociales y portales médicos",two-factor-auth.quiz[5].options[1]
+"Email, online banking, shopping websites, and medical portals","Correo, banca en línea, sitios de compras y portales médicos",password-managers.quiz[5].options[1]
+Enter it anyway.,Introducirlo de todos modos.,two-factor-auth.quiz[6].options[1]
+Enter the code anyway.,Introducir el código de todos modos.,two-factor-auth.blocks[12].options[0]
+Entering a 6-digit code sent to your phone,Introducir un código de seis dígitos enviado a tu teléfono,two-factor-auth.quiz[1].options[2]
+"Even a strong password shouldn't be reused. If one website has a security breach, scammers may try that same password on your other accounts.","No debes reutilizar ni siquiera una contraseña segura. Si un sitio web sufre una filtración, los estafadores pueden probar esa misma contraseña en tus otras cuentas.",password-managers.blocks[7].explanation
+"Example: password123 is very simple, making it weak. Linda092611 (a name and birthday) would be extremely easy to guess. Blue!River28Coffee is long, unique, and easier to remember than a random string of characters.","Por ejemplo, password123 es muy sencilla y poco segura. Linda092611 (un nombre y una fecha de nacimiento) sería muy fácil de adivinar. Blue!River28Coffee es larga, única y más fácil de recordar que una secuencia de caracteres al azar.",strong-passwords.blocks[1].footer
+Excellent! All of these add a second step to verify it's really you.,¡Bien! Todas estas opciones añaden un segundo paso para comprobar que eres tú.,two-factor-auth.blocks[3].feedback
+Excellent! Password managers securely store your passwords and help create unique passwords for every account.,¡Bien! Los gestores guardan tus contraseñas de forma segura y te ayudan a crear una diferente para cada cuenta.,password-managers.blocks[3].explanation
+"Excellent! Strong passwords are long, unique, and difficult to guess.","¡Bien! Las contraseñas seguras son largas, únicas y difíciles de adivinar.",strong-passwords.blocks[3].feedback
+Explain what 2FA is.,Explicar qué es la verificación en dos pasos.,two-factor-auth.complete.learned[0]
+Explain what Two-Factor Authentication (2FA) is.,"Explicar qué es la autenticación de dos factores, también llamada verificación en dos pasos.",two-factor-auth.goals[0]
+Explain what a password manager is.,Explicar qué es un gestor de contraseñas.,password-managers.goals[0]; password-managers.complete.learned[0]
+Explain why passwords are important.,Explicar por qué son importantes las contraseñas.,strong-passwords.goals[0]
+Face ID,Face ID,two-factor-auth.blocks[4].cards[3].front
+False,Falso,strong-passwords.quiz[2].options[1]; password-managers.quiz[2].options[1]; two-factor-auth.quiz[2].options[1]
+Fill in the Blank,Completa la frase,two-factor-auth.blocks[5].title
+Filling in passwords for you,Rellenar tus contraseñas por ti,password-managers.blocks[1].bullets[2]
+Fingerprint,Huella digital,two-factor-auth.blocks[4].cards[4].front
+Fingerprint or Face ID - some devices use your fingerprint or face as the second step,Huella digital o Face ID: algunos dispositivos usan tu huella o tu rostro como segundo paso.,two-factor-auth.blocks[1].bullets[3]
+Five,Cinco,password-managers.quiz[1].options[1]
+Flashcards,Tarjetas,strong-passwords.blocks[5].title; password-managers.blocks[4].title; two-factor-auth.blocks[4].title
+Forest,Bosque,strong-passwords.blocks[6].columns[0].items[0]
+Forest!42Coffee,Bosque!42Café,strong-passwords.blocks[6].example; strong-passwords.quiz[1].options[3]
+Garden,Jardín,strong-passwords.blocks[6].columns[3].items[3]
+Give them the code if they sound friendly.,Darle el código si parece amable.,two-factor-auth.blocks[7].options[3]
+Great Job!,¡Muy bien!,strong-passwords.complete.title; password-managers.complete.title; two-factor-auth.complete.title
+Great! Long passwords made from random words are often easier to remember and harder for others to guess.,¡Bien! Las contraseñas largas formadas por palabras al azar suelen ser más fáciles de recordar y más difíciles de adivinar.,strong-passwords.blocks[6].feedback
+Hang up and do not share the code.,Colgar y no compartir el código.,two-factor-auth.blocks[7].options[2]
+How many passwords do you usually need to remember when using a password manager?,¿Cuántas contraseñas sueles tener que recordar cuando usas un gestor de contraseñas?,password-managers.quiz[1].question
+"If one account is hacked, the others could also be at risk.","Si alguien accede a una cuenta sin permiso, las demás también podrían estar en riesgo.",strong-passwords.blocks[8].explanation
+"If one password is stolen, your other accounts are better protected.","Si alguien roba una contraseña, tus otras cuentas estarán mejor protegidas.",strong-passwords.quiz[4].options[2]
+"If someone discovers one password, they could access both accounts.","Si alguien descubre una contraseña, podría acceder a ambas cuentas.",password-managers.blocks[5].questions[0].explanation
+"If you are signing in, it's normal to enter the code.","Si estás iniciando sesión, es normal introducir el código.",two-factor-auth.blocks[6].explanation
+Ignore it and post it online.,Ignorarlo y publicarlo en Internet.,two-factor-auth.quiz[6].options[3]
+"Imagine someone learns your password. Without 2FA, they can log in. With 2FA, they still need the security code sent to your phone or trusted device. 2FA makes it much harder for someone else to access your account.","Imagina que alguien descubre tu contraseña. Sin verificación en dos pasos, podría iniciar sesión. Con ella, también necesita el código de seguridad enviado a tu teléfono o a otro dispositivo de confianza. Esto dificulta mucho que otra persona acceda a tu cuenta.",two-factor-auth.blocks[2].text
+Is this a good password?,¿Es una buena contraseña?,strong-passwords.blocks[7].presentation.question
+Is this a strong password?,¿Es una contraseña segura?,strong-passwords.blocks[9].presentation.question
+Is this the safest choice?,¿Es la opción más segura?,strong-passwords.blocks[8].presentation.question; password-managers.blocks[7].presentation.question
+It helps protect your account even if someone learns your password.,Ayuda a proteger tu cuenta aunque alguien descubra tu contraseña.,two-factor-auth.quiz[4].options[2]
+"It is long, unique, and difficult to guess.","Es larga, única y difícil de adivinar.",strong-passwords.blocks[9].explanation
+It is one of the most commonly guessed passwords.,Es una de las contraseñas que se adivinan con más frecuencia.,strong-passwords.blocks[7].explanation
+It lets you use more apps.,Te permite usar más aplicaciones.,strong-passwords.quiz[4].options[3]
+It makes your internet faster.,Hace que Internet vaya más rápido.,two-factor-auth.quiz[4].options[1]
+It makes your phone faster.,Hace que tu teléfono funcione más rápido.,strong-passwords.quiz[4].options[0]
+It prevents every online scam.,Evita todas las estafas en línea.,two-factor-auth.quiz[4].options[3]
+It replaces your password.,Sustituye a tu contraseña.,two-factor-auth.quiz[4].options[0]
+It saves battery life.,Ahorra batería.,strong-passwords.quiz[4].options[1]
+It's okay to use the same password for every account.,Está bien usar la misma contraseña para todas las cuentas.,strong-passwords.blocks[11].questions[1].text
+It's safest to use the same password for every account.,Lo más seguro es usar la misma contraseña para todas las cuentas.,password-managers.blocks[10].questions[1].text
+Keep it private.,Mantenerla privada.,password-managers.quiz[6].options[2]
+Keep passwords in a notebook,Guardar las contraseñas en una libreta,password-managers.blocks[2].bullets[1]
+Keep your online accounts more secure.,Proteger mejor tus cuentas en línea.,password-managers.complete.learned[3]
+Keep your password private and log in yourself if needed.,Mantener tu contraseña privada e iniciar sesión tú mismo si hace falta.,strong-passwords.quiz[6].options[2]
+Keeping passwords in a trusted password manager.,Guardar las contraseñas en un gestor de confianza.,password-managers.blocks[5].questions[1].text
+Keeping passwords organized,Mantener tus contraseñas organizadas,password-managers.blocks[1].bullets[3]
+Know how a password manager works.,Saber cómo funciona un gestor de contraseñas.,password-managers.goals[2]
+Know how to use 2FA safely and avoid common scams.,Saber usar la verificación en dos pasos y evitar estafas comunes.,two-factor-auth.goals[3]
+Library,Biblioteca,strong-passwords.blocks[6].columns[3].items[2]
+Linda accidentally gives someone her password. She has 2FA turned on.,Linda le da su contraseña a alguien por accidente. Tiene activada la verificación en dos pasos.,two-factor-auth.blocks[8].presentation.story
+Linda accidentally gives someone her password. She has 2FA turned on. Does 2FA help protect her account?,Linda le da su contraseña a alguien por accidente. Tiene activada la verificación en dos pasos. ¿Esto ayuda a proteger su cuenta?,two-factor-auth.blocks[8].text
+Linda creates this password: Blue!River28Coffee.,Linda crea esta contraseña: Blue!River28Coffee.,strong-passwords.blocks[9].presentation.story
+Linda creates this password: Blue!River28Coffee. Is this a strong password?,Linda crea esta contraseña: Blue!River28Coffee. ¿Es una contraseña segura?,strong-passwords.blocks[9].text
+Linda forgets one of her shopping website passwords. Her password manager has it saved.,Linda olvida la contraseña de un sitio de compras. Su gestor de contraseñas la tiene guardada.,password-managers.blocks[8].presentation.story
+Linda forgets one of her shopping website passwords. Her password manager has it saved. Should she use it?,Linda olvida la contraseña de un sitio de compras. Su gestor de contraseñas la tiene guardada. ¿Debería usarlo?,password-managers.blocks[8].text
+Linda1955,Linda1955,strong-passwords.blocks[3].options[2].text; strong-passwords.quiz[1].options[1]
+"Long, unique, difficult to guess, and uses a mix of letters, numbers, and symbols","Larga, única, difícil de adivinar y con una combinación de letras, números y símbolos",strong-passwords.quiz[7].options[1]
+Lowercase letters (a-z),Letras minúsculas (a-z),strong-passwords.blocks[1].bullets[1]
+Makes your phone charge faster.,Hace que tu teléfono se cargue más rápido.,two-factor-auth.quiz[0].options[0]
+"Many people have email, online banking, shopping websites, social media, and medical portals. Each account should have a different password. A password manager helps by:","Muchas personas usan correo, banca en línea, sitios de compras, redes sociales y portales médicos. Cada cuenta debe tener una contraseña diferente. Un gestor te ayuda a:",password-managers.blocks[1].text
+Many people:,Muchas personas:,password-managers.blocks[2].text
+Many websites and apps use one of these methods:,Muchos sitios web y aplicaciones usan uno de estos métodos:,two-factor-auth.blocks[1].text
+Margaret has 18 online accounts. She can't remember all of her passwords.,Margaret tiene 18 cuentas en línea. No puede recordar todas sus contraseñas.,password-managers.blocks[6].presentation.story
+Margaret has 18 online accounts. She can't remember all of her passwords. What should she do?,Margaret tiene 18 cuentas en línea. No puede recordar todas sus contraseñas. ¿Qué debería hacer?,password-managers.blocks[6].text
+"Margaret signs into her email. After entering her password, her phone receives a 6-digit code.","Margaret inicia sesión en su correo. Después de introducir su contraseña, recibe un código de seis dígitos en el teléfono.",two-factor-auth.blocks[6].presentation.story
+"Margaret signs into her email. After entering her password, her phone receives a 6-digit code. Should she enter it?","Margaret inicia sesión en su correo. Después de introducir su contraseña, recibe un código de seis dígitos en el teléfono. ¿Debería introducirlo?",two-factor-auth.blocks[6].text
+Margaret uses the password: 123456.,Margaret usa esta contraseña: 123456.,strong-passwords.blocks[7].presentation.story
+Margaret uses the password: 123456. Is this a good password?,Margaret usa esta contraseña: 123456. ¿Es una buena contraseña?,strong-passwords.blocks[7].text
+Master Password,Contraseña maestra,password-managers.blocks[4].cards[1].front; password-managers.quiz[3].options[0]
+Mountain,Montaña,strong-passwords.blocks[6].columns[3].items[1]
+No,No,strong-passwords.blocks[7].options[1]; strong-passwords.blocks[8].options[1]; strong-passwords.blocks[9].options[1]; password-managers.blocks[7].options[1]; password-managers.blocks[8].options[1]; two-factor-auth.blocks[6].options[1]; two-factor-auth.blocks[8].options[1]
+"Not quite! That password doesn't have any complexity. It would work better with symbols, capitalizing different letters, and just more!","Todavía no. Esa contraseña es demasiado sencilla. Prueba una más larga que combine letras mayúsculas y minúsculas, números y símbolos.",strong-passwords.blocks[3].incorrectFeedback
+Notebook,Libreta,password-managers.quiz[3].options[1]
+Number,Número,strong-passwords.blocks[6].columns[2].label
+Numbers (0-9),Números (0-9),strong-passwords.blocks[1].bullets[2]
+Ocean,Océano,strong-passwords.blocks[6].columns[0].items[3]
+One master password,Una contraseña maestra,password-managers.quiz[1].options[3]
+Only social media,Solo redes sociales,two-factor-auth.quiz[5].options[0]
+Only to save time,Solo para ahorrar tiempo,password-managers.quiz[7].options[0]
+Only you should use the verification code when signing into your own account.,Solo tú debes usar el código de verificación al iniciar sesión en tu propia cuenta.,two-factor-auth.blocks[10].explanation
+Only your email,Solo tu correo,password-managers.quiz[5].options[0]
+Only your username,Solo tu nombre de usuario,two-factor-auth.quiz[7].options[0]
+Opening your web browser,Abrir tu navegador,two-factor-auth.quiz[1].options[3]
+Password,Contraseña,strong-passwords.blocks[5].cards[0].front; strong-passwords.quiz[3].options[0]; two-factor-auth.blocks[5].wordBank[3]
+Password Manager,Gestor de contraseñas,password-managers.blocks[4].cards[0].front
+Password Managers,Gestores de contraseñas,password-managers.pathTitle
+Password Organizer,Organización de contraseñas,password-managers.badge
+Password Protector,Protección con contraseñas,strong-passwords.badge
+Password manager,Gestor de contraseñas,password-managers.quiz[4].options[3]
+Password managers are designed to securely store your passwords.,Los gestores de contraseñas están diseñados para guardarlas de forma segura.,password-managers.blocks[5].questions[1].explanation
+Password managers help organize many passwords without needing to memorize each one.,Los gestores ayudan a organizar muchas contraseñas sin tener que memorizar cada una.,password-managers.blocks[6].explanation
+Passwords should be kept private.,Las contraseñas deben mantenerse privadas.,strong-passwords.blocks[11].questions[2].text
+Phone,Teléfono,two-factor-auth.blocks[5].wordBank[2]; two-factor-auth.blocks[5].questions[2].answer
+Phone Number,Número de teléfono,password-managers.quiz[3].options[2]
+Pick one item from each column to create a strong password.,Elige una opción de cada grupo para crear una contraseña segura.,strong-passwords.blocks[6].prompt
+Post it in a group chat.,Publicarla en un chat de grupo.,strong-passwords.quiz[6].options[3]
+Post it online.,Publicarlo en Internet.,two-factor-auth.blocks[11].options[3]
+Protect your accounts by using unique passwords.,Proteger tus cuentas usando contraseñas únicas.,strong-passwords.complete.learned[2]
+Protecting your account,Proteger tu cuenta,strong-passwords.quiz[0].options[2]
+Purple!Tree82Sun,Purple!Tree82Sun,strong-passwords.blocks[3].options[3].text
+Quick Tip,Consejo breve,strong-passwords.blocks[10].heading; password-managers.blocks[9].heading; two-factor-auth.blocks[9].heading
+Read them the code.,Leerle el código.,two-factor-auth.blocks[7].options[0]
+Receiving a 6-digit text message code,Recibir un código de seis dígitos por mensaje de texto,two-factor-auth.blocks[3].options[0].text
+Recognize common types of 2FA.,Reconocer tipos habituales de verificación en dos pasos.,two-factor-auth.goals[2]
+Recognize common verification code scams.,Reconocer estafas comunes con códigos de verificación.,two-factor-auth.complete.learned[2]
+Recognize that a password manager is safer than reusing passwords or writing them down.,Reconocer que un gestor es más seguro que reutilizar contraseñas o anotarlas.,password-managers.goals[3]
+Recognize weak passwords.,Reconocer contraseñas poco seguras.,strong-passwords.goals[2]
+Remember,Recordar,strong-passwords.blocks[12].heading; password-managers.blocks[11].heading; two-factor-auth.blocks[13].heading
+Remembering your passwords,Recordar tus contraseñas,password-managers.blocks[1].bullets[0]
+Remembering your passwords is one of the main reasons people use password managers.,Recordar las contraseñas es uno de los principales motivos para usar un gestor.,password-managers.blocks[10].questions[0].explanation
+River&Books91,River&Books91,strong-passwords.blocks[3].options[4].text
+"Robert creates one strong password and uses it for his email, bank, shopping, and Facebook.","Robert crea una contraseña segura y la usa para su correo, su banco, sus compras y Facebook.",password-managers.blocks[7].presentation.story
+"Robert creates one strong password and uses it for his email, bank, shopping, and Facebook. Is this the safest choice?","Robert crea una contraseña segura y la usa para su correo, su banco, sus compras y Facebook. ¿Es la opción más segura?",password-managers.blocks[7].text
+"Robert receives a text: ""Your verification code is 483921."" A few seconds later, someone calls saying: ""I'm from your bank. Please read me the code.""","Robert recibe un mensaje: «Tu código de verificación es 483921». Segundos después, alguien lo llama y dice: «Soy de tu banco. Léeme el código, por favor».",two-factor-auth.blocks[7].presentation.story
+"Robert receives a text: ""Your verification code is 483921."" A few seconds later, someone calls saying: ""I'm from your bank. Please read me the code."" What should Robert do?","Robert recibe un mensaje: «Tu código de verificación es 483921». Segundos después, alguien lo llama y dice: «Soy de tu banco. Léeme el código, por favor». ¿Qué debería hacer Robert?",two-factor-auth.blocks[7].text
+"Robert uses the same password for his email, bank, and shopping websites.","Robert usa la misma contraseña para su correo, su banco y sus sitios de compras.",strong-passwords.blocks[8].presentation.story
+"Robert uses the same password for his email, bank, and shopping websites. Is this the safest choice?","Robert usa la misma contraseña para su correo, su banco y sus sitios de compras. ¿Es la opción más segura?",strong-passwords.blocks[8].text
+Safe or Unsafe?,¿Seguro o inseguro?,password-managers.blocks[5].title
+"Save passwords in a text document called ""Passwords.""",Guardar las contraseñas en un documento de texto llamado «Contraseñas».,password-managers.blocks[3].options[2]
+Save passwords on sticky notes,Guardar las contraseñas en notas adhesivas,password-managers.blocks[2].bullets[2]
+Scammers often pretend to be banks or companies to trick people into sharing verification codes. Real companies will not ask for your code this way.,Los estafadores suelen hacerse pasar por bancos o empresas para conseguir tus códigos de verificación. Las empresas legítimas no te pedirán el código de esta manera.,two-factor-auth.blocks[7].explanation
+Scammers often try these first. Scammers find this information from social media and your interactions online.,Los estafadores suelen probar primero estas opciones. Encuentran esa información en las redes sociales y en tus interacciones en línea.,strong-passwords.blocks[2].footer
+Scenario 1,Situación 1,strong-passwords.blocks[7].title; password-managers.blocks[6].title; two-factor-auth.blocks[6].title
+Scenario 2,Situación 2,strong-passwords.blocks[8].title; password-managers.blocks[7].title; two-factor-auth.blocks[7].title
+Scenario 3,Situación 3,strong-passwords.blocks[9].title; password-managers.blocks[8].title; two-factor-auth.blocks[8].title
+Security Shield,Protección adicional,two-factor-auth.badge
+Send it.,Enviarlo.,two-factor-auth.blocks[11].options[0]
+Sending emails,Enviar correos,strong-passwords.quiz[0].options[0]
+Share it because they're your friend.,Compartirla porque es tu amigo.,strong-passwords.quiz[6].options[0]
+Share it with a friend.,Compartirlo con un amigo.,two-factor-auth.blocks[12].options[1]
+Share it with the caller.,Compartirlo con quien llama.,two-factor-auth.quiz[6].options[0]
+Share it.,Compartirla.,password-managers.quiz[6].options[0]
+Short and simple,Corta y sencilla,strong-passwords.quiz[7].options[0]
+Should she enter it?,¿Debería introducirlo?,two-factor-auth.blocks[6].presentation.question
+Should she use it?,¿Debería usarlo?,password-managers.blocks[8].presentation.question
+Software Updates,Actualizaciones de software,two-factor-auth.complete.next
+Someone claiming to be tech support,Alguien que dice ser del servicio técnico,two-factor-auth.blocks[10].options[3]
+"Someone texts: ""I'm locked out of your account. Please send me the code you just received.""","Alguien te escribe: «No puedo entrar en tu cuenta. Envíame el código que acabas de recibir, por favor».",two-factor-auth.blocks[11].text
+Sticky note,Nota adhesiva,password-managers.quiz[4].options[0]
+Sticky notes can be easily seen by other people. A trusted password manager encrypts and protects your passwords.,Otras personas pueden ver fácilmente las notas adhesivas. Un gestor de confianza cifra y protege tus contraseñas.,password-managers.blocks[10].questions[3].explanation
+Stop using passwords altogether.,Dejar de usar contraseñas por completo.,password-managers.blocks[6].options[3]
+Strong Password,Contraseña segura,strong-passwords.blocks[5].cards[1].front
+Strong Passwords,Contraseñas seguras,strong-passwords.title
+"Strong passwords should be long, unique, hard to guess, and different for each important account. Never share your passwords with someone who contacts you unexpectedly, even if they claim to be from your bank or another company.","Las contraseñas seguras deben ser largas, únicas, difíciles de adivinar y diferentes para cada cuenta importante. Nunca las compartas con alguien que te contacte sin que lo esperes, aunque diga que trabaja para tu banco u otra empresa.",strong-passwords.blocks[12].text
+Sunny,Soleado,strong-passwords.blocks[6].columns[0].items[1]
+Symbol,Símbolo,strong-passwords.blocks[5].cards[3].front; strong-passwords.blocks[6].columns[1].label
+"Symbols (!, ?, #, &, *)","Símbolos (!, ?, #, &, *)",strong-passwords.blocks[1].bullets[3]
+Tap every example.,Toca todos los ejemplos.,two-factor-auth.blocks[3].prompt
+Tap every strong password.,Toca todas las contraseñas seguras.,strong-passwords.blocks[3].prompt
+Ten,Diez,password-managers.quiz[1].options[2]
+Text Message Code (SMS) - a 6-digit code is sent to your phone,Código por mensaje de texto (SMS): recibes un código de seis dígitos en tu teléfono.,two-factor-auth.blocks[1].bullets[0]
+Text file on your computer,Archivo de texto en tu computadora,password-managers.quiz[4].options[1]
+Text it to them.,Enviársela por mensaje de texto.,password-managers.quiz[6].options[3]
+Text them the code.,Enviarle el código por mensaje de texto.,two-factor-auth.blocks[7].options[1]
+Text them the password.,Enviarle la contraseña por mensaje de texto.,strong-passwords.quiz[6].options[1]
+That's one of the main benefits of a password manager.,Esa es una de las principales ventajas de un gestor de contraseñas.,password-managers.blocks[8].explanation
+"The master password protects everything inside your password manager, so it should be strong and unique.","La contraseña maestra protege todo lo que hay dentro de tu gestor, por eso debe ser segura y única.",password-managers.blocks[10].questions[2].explanation
+The one password you remember to unlock your password manager.,La contraseña que recuerdas para abrir tu gestor de contraseñas.,password-managers.blocks[4].cards[1].back
+The password that unlocks your password manager is called the ______.,La contraseña que abre tu gestor se llama ______.,password-managers.quiz[3].question
+The scammer would usually still need the second verification step.,"Por lo general, el estafador todavía necesitaría superar la segunda comprobación.",two-factor-auth.blocks[8].explanation
+The secure place inside a password manager where passwords are stored.,El espacio protegido del gestor donde se guardan las contraseñas.,password-managers.blocks[4].cards[2].back
+Think About Your House Keys,Piensa en las llaves de tu casa,strong-passwords.blocks[4].heading
+This is a common scam. Never share one-time security codes.,Es una estafa común. Nunca compartas códigos de seguridad de un solo uso.,two-factor-auth.blocks[11].explanation
+This is one of the best ways to protect your online accounts.,Es una de las mejores formas de proteger tus cuentas en línea.,password-managers.blocks[5].questions[3].explanation
+"To remember passwords, create strong ones, stay organized, and avoid reusing passwords","Para recordar contraseñas, crear otras seguras, mantenerlas organizadas y no reutilizarlas",password-managers.quiz[7].options[1]
+True,Verdadero,strong-passwords.quiz[2].options[0]; password-managers.quiz[2].options[0]; two-factor-auth.quiz[2].options[0]
+True or False: A password manager can help create strong passwords.,Verdadero o falso: un gestor puede ayudar a crear contraseñas seguras.,password-managers.quiz[2].question
+True or False: You should share your verification code if someone says they work for your bank.,Verdadero o falso: debes compartir tu código de verificación si alguien dice que trabaja para tu banco.,two-factor-auth.quiz[2].question
+True or False: You should use the same password for all of your accounts.,Verdadero o falso: debes usar la misma contraseña para todas tus cuentas.,strong-passwords.quiz[2].question
+True or False?,¿Verdadero o falso?,strong-passwords.blocks[11].title; password-managers.blocks[10].title
+Two-Factor Authentication,Verificación en dos pasos,two-factor-auth.pathTitle
+Two-Factor Authentication (2FA),Verificación en dos pasos (2FA),two-factor-auth.blocks[4].cards[0].front
+"Two-Factor Authentication (2FA) is an extra layer of security that helps protect your online accounts. Normally you sign in using one thing: your password. With 2FA, you need two things: something you know (your password) and something you have (your phone or another trusted device).
+
+Even if someone steals your password, they usually can't sign in without the second step. Think of it like entering a locked building. First you unlock the front door with a key. Then a security guard asks to see your ID.","La autenticación de dos factores (2FA), también llamada verificación en dos pasos, añade una capa de seguridad a tus cuentas. Normalmente, inicias sesión con una sola cosa: tu contraseña. Con esta protección necesitas dos cosas: algo que sabes (tu contraseña) y algo que tienes (tu teléfono u otro dispositivo de confianza).
+
+Aunque alguien robe tu contraseña, normalmente no podrá iniciar sesión sin el segundo paso. Imagínalo como la entrada a un edificio cerrado: primero abres la puerta con una llave y después un guardia te pide una identificación.",two-factor-auth.blocks[0].text
+Two-factor authentication uses...,La verificación en dos pasos usa…,two-factor-auth.quiz[7].question
+Typing your username,Escribir tu nombre de usuario,two-factor-auth.blocks[3].options[5].text; two-factor-auth.quiz[1].options[0]
+Understand why 2FA adds extra security.,Entender por qué la verificación en dos pasos añade seguridad.,two-factor-auth.goals[1]
+Understand why every important account should have a unique password.,Entender por qué cada cuenta importante debe tener una contraseña única.,strong-passwords.goals[3]
+Understand why it is safer than reusing passwords.,Entender por qué es más seguro que reutilizar contraseñas.,password-managers.complete.learned[1]
+Understand why password managers are useful.,Entender para qué sirven los gestores de contraseñas.,password-managers.goals[1]
+Understand why strong passwords are one of the most important parts of online safety.,Entender por qué las contraseñas seguras son una parte fundamental de la seguridad en línea.,strong-passwords.complete.learned[3]
+Unique Password,Contraseña única,strong-passwords.blocks[5].cards[2].front; password-managers.blocks[4].cards[4].front
+Uppercase letters (A-Z),Letras mayúsculas (A-Z),strong-passwords.blocks[1].bullets[0]
+"Use ""Password123"" for every account.",Usar «Password123» para todas las cuentas.,password-managers.blocks[6].options[0]
+Use a trusted password manager to store unique passwords.,Usar un gestor de confianza para guardar contraseñas únicas.,password-managers.blocks[6].options[2]
+Use a trusted password manager with one strong master password.,Usar un gestor de confianza con una contraseña maestra segura.,password-managers.blocks[3].options[3]
+Use easy passwords they won't forget,Usar contraseñas sencillas para no olvidarlas,password-managers.blocks[2].bullets[3]
+Use one strong master password to protect many accounts.,Usar una contraseña maestra segura para proteger muchas cuentas.,password-managers.complete.learned[2]
+Use the same password everywhere,Usar la misma contraseña en todas partes,password-managers.blocks[2].bullets[0]
+Use the same password for every account.,Usar la misma contraseña para todas las cuentas.,password-managers.blocks[3].options[0]
+Use verification codes safely.,Usar los códigos de verificación de forma segura.,two-factor-auth.complete.learned[1]
+Use your fingerprint as a security check.,Usar tu huella digital como comprobación de seguridad.,two-factor-auth.blocks[4].cards[4].back
+Uses your face to help verify your identity.,Usa tu rostro para ayudar a verificar tu identidad.,two-factor-auth.blocks[4].cards[3].back
+Using Face ID after entering your password,Usar Face ID después de introducir tu contraseña,two-factor-auth.blocks[3].options[3].text
+Using a different strong password for every account.,Usar una contraseña segura y diferente para cada cuenta.,password-managers.blocks[5].questions[3].text
+Using an authenticator app,Usar una aplicación de autenticación,two-factor-auth.blocks[3].options[1].text
+Using different passwords helps protect your accounts if one password is stolen.,Usar contraseñas diferentes ayuda a proteger tus cuentas si alguien roba una de ellas.,password-managers.blocks[10].questions[1].explanation
+Using only a password,Usar solo una contraseña,two-factor-auth.blocks[3].options[4].text
+Using the same password everywhere,Usar la misma contraseña en todas partes,password-managers.quiz[4].options[2]
+Using the same password for your email and bank account.,Usar la misma contraseña para tu correo y tu cuenta bancaria.,password-managers.blocks[5].questions[0].text
+Vault,Caja fuerte,password-managers.blocks[4].cards[2].front
+Verification Code,Código de verificación,two-factor-auth.blocks[4].cards[1].front; two-factor-auth.blocks[5].wordBank[1]; two-factor-auth.blocks[5].questions[1].answer
+What Is a Password Manager?,¿Qué es un gestor de contraseñas?,strong-passwords.complete.next
+What Is a Password?,¿Qué es una contraseña?,strong-passwords.blocks[0].heading
+What Makes a Strong Password?,¿Qué hace que una contraseña sea segura?,strong-passwords.blocks[1].heading
+What does 2FA do?,¿Qué hace la verificación en dos pasos?,two-factor-auth.quiz[0].question
+What is Two-Factor Authentication (2FA)?,¿Qué es la verificación en dos pasos (2FA)?,password-managers.complete.next; two-factor-auth.title
+What is Two-Factor Authentication?,¿Qué es la verificación en dos pasos?,two-factor-auth.blocks[0].heading
+What is a Password Manager?,¿Qué es un gestor de contraseñas?,password-managers.title; password-managers.blocks[0].heading
+What is a password manager?,¿Qué es un gestor de contraseñas?,password-managers.quiz[0].question
+What is a password used for?,¿Para qué sirve una contraseña?,strong-passwords.quiz[0].question
+What makes a password strong?,¿Qué hace que una contraseña sea segura?,strong-passwords.quiz[7].question
+What should Robert do?,¿Qué debería hacer Robert?,two-factor-auth.blocks[7].presentation.question
+What should she do?,¿Qué debería hacer?,password-managers.blocks[6].presentation.question
+Which Password Storage Method Is Safest?,¿Cuál es la forma más segura de guardar contraseñas?,password-managers.blocks[3].title
+Which Passwords Are Strong?,¿Cuáles de estas contraseñas son seguras?,strong-passwords.blocks[3].title
+Which accounts should have 2FA enabled if it's available?,¿En qué cuentas deberías activar la verificación en dos pasos si está disponible?,two-factor-auth.quiz[5].question
+Which is an example of 2FA?,¿Cuál es un ejemplo de verificación en dos pasos?,two-factor-auth.quiz[1].question
+Which is the safest way to store passwords?,¿Cuál es la forma más segura de guardar contraseñas?,password-managers.quiz[4].question
+Which of These Are Examples of 2FA?,¿Cuáles son ejemplos de verificación en dos pasos?,two-factor-auth.blocks[3].title
+Which of these should have its own unique password?,¿Cuáles de estas cuentas deberían tener una contraseña única?,password-managers.quiz[5].question
+Which of these should you avoid using in a password?,¿Qué deberías evitar al crear una contraseña?,strong-passwords.quiz[5].question
+Which password is the strongest?,¿Cuál es la contraseña más segura?,strong-passwords.quiz[1].question
+Who Should Receive the Verification Code?,¿Quién debe recibir el código de verificación?,two-factor-auth.blocks[10].title; two-factor-auth.blocks[11].title; two-factor-auth.blocks[12].title
+Why Is 2FA Helpful?,¿Para qué sirve la verificación en dos pasos?,two-factor-auth.blocks[2].heading
+Why Use a Password Manager?,¿Por qué usar un gestor de contraseñas?,password-managers.blocks[1].heading
+Why do people use password managers?,¿Por qué se usan los gestores de contraseñas?,password-managers.quiz[7].question
+Why is 2FA helpful?,¿Para qué sirve la verificación en dos pasos?,two-factor-auth.quiz[4].question
+Why is it important to use different passwords for different accounts?,¿Por qué es importante usar contraseñas diferentes para cada cuenta?,strong-passwords.quiz[4].question
+Word 1,Palabra 1,strong-passwords.blocks[6].columns[0].label
+Word 2,Palabra 2,strong-passwords.blocks[6].columns[3].label
+"Would you use the same key for your house, your car, and your office? Probably not. Your online accounts should also have different passwords. If one password is stolen, your other accounts stay protected.","¿Usarías la misma llave para tu casa, tu auto y tu oficina? Probablemente no. Tus cuentas en línea también deben tener contraseñas diferentes. Si alguien roba una, tus otras cuentas seguirán protegidas.",strong-passwords.blocks[4].text
+Write all passwords on a sticky note next to your computer.,Escribir todas las contraseñas en una nota adhesiva junto a tu computadora.,password-managers.blocks[3].options[1]
+Write every password on a sticky note.,Escribir cada contraseña en una nota adhesiva.,password-managers.blocks[6].options[1]
+Write it on a sticky note for them.,Escribírsela en una nota adhesiva.,password-managers.quiz[6].options[1]
+Writing passwords on a sticky note attached to your monitor.,Escribir las contraseñas en una nota adhesiva pegada a la pantalla.,password-managers.blocks[5].questions[2].text
+Writing passwords on sticky notes is more secure than using a password manager.,Escribir las contraseñas en notas adhesivas es más seguro que usar un gestor.,password-managers.blocks[10].questions[3].text
+Yes,Sí,strong-passwords.blocks[7].options[0]; strong-passwords.blocks[8].options[0]; strong-passwords.blocks[9].options[0]; password-managers.blocks[7].options[0]; password-managers.blocks[8].options[0]; two-factor-auth.blocks[6].options[0]; two-factor-auth.blocks[8].options[0]
+You,Tú,two-factor-auth.blocks[10].options[0]
+You are signing into your email. Who should enter the code?,Estás iniciando sesión en tu correo. ¿Quién debe introducir el código?,two-factor-auth.blocks[10].text
+You completed Lesson 1: Strong Passwords!,¡Completaste la lección 1: Contraseñas seguras!,strong-passwords.complete.subtitle
+You completed Lesson 2: What is a Password Manager?,¡Completaste la lección 2: Qué es un gestor de contraseñas!,password-managers.complete.subtitle
+You completed Lesson 3: Two-Factor Authentication (2FA)!,¡Completaste la lección 3: Verificación en dos pasos!,two-factor-auth.complete.subtitle
+"You don't have to memorize dozens of complicated passwords. Next lesson, you'll learn about password managers, which can safely store your passwords for you.","No tienes que memorizar decenas de contraseñas complicadas. En la siguiente lección conocerás los gestores, que pueden guardarlas por ti de forma segura.",strong-passwords.blocks[10].text
+"You only have to remember one strong master password. Make it long, unique, and memorable. Never share your master password with anyone.","Solo tienes que recordar una contraseña maestra segura. Hazla larga, única y fácil de recordar. No la compartas con nadie.",password-managers.blocks[9].text
+"You receive a login code, but you weren't trying to sign in. What should you do?","Recibes un código de acceso, pero no estabas intentando iniciar sesión. ¿Qué deberías hacer?",two-factor-auth.blocks[12].text
+You receive a verification code but aren't signing in. What should you do?,"Recibes un código de verificación, pero no estás iniciando sesión. ¿Qué deberías hacer?",two-factor-auth.quiz[6].question
+You should create one strong master password.,Debes crear una contraseña maestra segura.,password-managers.blocks[10].questions[2].text
+Your address,Tu dirección,strong-passwords.blocks[2].bullets[6]
+Your birthday,Tu fecha de nacimiento,strong-passwords.blocks[2].bullets[3]
+"Your birthday, your name, ""123456"", or ""password""","Tu fecha de nacimiento, tu nombre, «123456» o «password»",strong-passwords.quiz[5].options[1]
+"Your friend asks for your master password so they can ""help organize your accounts."" What should you do?",Un amigo te pide tu contraseña maestra para «ayudarte a organizar tus cuentas». ¿Qué deberías hacer?,password-managers.quiz[6].question
+Your neighbor,Tu vecino,two-factor-auth.blocks[10].options[1]
+Your password plus a second security step such as a code or your fingerprint,"Tu contraseña y una segunda comprobación, como un código o tu huella digital",two-factor-auth.quiz[7].options[1]
+Your pet's name,El nombre de tu mascota,strong-passwords.blocks[2].bullets[4]
+Your phone number,Tu número de teléfono,strong-passwords.blocks[2].bullets[5]
+______ adds an extra layer of protection to your account.,La ______ añade una capa de protección a tu cuenta.,two-factor-auth.quiz[3].question
+______ adds an extra layer of security to your account.,La ______ añade una capa de seguridad a tu cuenta.,two-factor-auth.blocks[5].questions[0].text
+abc123,abc123,strong-passwords.blocks[3].options[5].text
+password,contraseña,strong-passwords.blocks[2].bullets[1]; strong-passwords.quiz[1].options[2]
+password1,password1,strong-passwords.blocks[3].options[1].text
+qwerty,qwerty,strong-passwords.blocks[2].bullets[2]
