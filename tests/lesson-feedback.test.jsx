@@ -127,3 +127,38 @@ test('missing a correct choice does not show a correction meant for a wrong answ
   expect(screen.getByRole('status')).not.toHaveTextContent('Calculator is not a browser.');
   expect(screen.getByRole('status')).not.toHaveTextContent('Great job!');
 });
+
+test("choice examples keep the decision heading, readable story and narration in the same order", async () => {
+  const {default:ChoiceBlock}=await import("../src/components/blocks/ChoiceBlock.jsx");
+  const {lessonsByOrder}=await import("../src/data/lessons.js");
+  const block=lessonsByOrder.find(item=>item.id==='deepfakes').blocks[16];
+  render(<ChoiceBlock {...props} block={block}/>);
+  const story=screen.getByText(block.text,{exact:true,selector:'p'});
+  expect(story).toHaveClass('lesson-scenario-story');
+  const heading=screen.getByRole('heading',{level:1});
+  expect(heading).toHaveTextContent('What Can You Conclude?');
+  expect(story.compareDocumentPosition(heading)&Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  expect(screen.getByTestId('narration').textContent).toBe(block.text+'\n\n'+block.title);
+  fireEvent.click(screen.getByRole('button',{name:block.options[1],exact:true}));
+  expect(screen.getByRole('status')).toHaveTextContent("That's right");
+});
+
+test("direct choice questions remain headings and unknown content keeps its complete prompt", async () => {
+  const {default:ChoiceBlock}=await import("../src/components/blocks/ChoiceBlock.jsx");
+  const {lessonsByOrder}=await import("../src/data/lessons.js");
+  const direct=lessonsByOrder.flatMap(item=>item.blocks).find(block=>block.text==='Which activity does NOT use the internet?');
+  const view=render(<ChoiceBlock {...props} block={direct}/>);
+  expect(screen.getByRole('heading',{level:1})).toHaveTextContent(direct.text);
+  view.unmount();
+  render(<ChoiceBlock {...props} block={{title:'Choose carefully',text:'A future prompt that has not been classified.',options:['Yes','No'],correctIndex:0}}/>);
+  expect(screen.getByRole('heading',{level:1})).toHaveTextContent('A future prompt that has not been classified.');
+});
+
+test("every published choice block has a deliberate reading role and a decision title when needed", async () => {
+  const {default:roles}=await import("../src/data/choice-text-roles.json");
+  const {lessonsByOrder}=await import("../src/data/lessons.js");
+  const blocks=lessonsByOrder.flatMap(item=>item.blocks).filter(block=>block.type==='choice');
+  expect(blocks).toHaveLength(175);
+  expect(blocks.filter(block=>roles[block.text]==='supporting')).toHaveLength(173);
+  for(const block of blocks){expect(['supporting','question']).toContain(roles[block.text]);if(roles[block.text]==='supporting')expect(block.title?.trim()).toBeTruthy();}
+});
