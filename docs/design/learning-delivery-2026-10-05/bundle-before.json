@@ -1,0 +1,21 @@
+{
+  "index.html": {
+    "file": "assets/index-RejR2d2w.js",
+    "imports": [],
+    "dynamicImports": [
+      "index.html",
+      "src/screens/learningScreens.jsx"
+    ],
+    "bytes": 1071928,
+    "gzipBytes": 313399
+  },
+  "src/screens/learningScreens.jsx": {
+    "file": "assets/learningScreens-tDBtGD6x.js",
+    "imports": [
+      "index.html"
+    ],
+    "dynamicImports": [],
+    "bytes": 950389,
+    "gzipBytes": 231285
+  }
+}

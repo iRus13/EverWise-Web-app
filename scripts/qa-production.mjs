@@ -89,10 +89,10 @@ try {
     const items = [["lesson", lessonsByOrder[0].id], ["challenge", challengesByOrder[0].id], ["exam", examsByOrder[0].id]];
     const inventory = await page.evaluate(async ({url, items}) => {
       const module = await import(url);
-      return items.map(([kind, id]) => {
-        const {item, Player} = module.learningItem(kind, id);
+      return Promise.all(items.map(async ([kind, id]) => {
+        const {item, Player} = await module.learningItem(kind, id);
         return {kind, id:item.id, hasContent:(item.blocks || item.questions).length > 0, hasPlayer:typeof Player === "function"};
-      });
+      }));
     }, {url:`${origin}${base}assets/${chunk}`, items});
     assert.deepEqual(inventory, items.map(([kind,id]) => ({kind, id, hasContent:true, hasPlayer:true})));
     assert.deepEqual(errors, []);

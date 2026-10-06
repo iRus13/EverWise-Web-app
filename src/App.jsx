@@ -85,7 +85,6 @@ import { profileForRecreation } from "./utils/profileRecovery.js";
 import { readStartupProfile } from "./utils/startupProfile.js";
 import { readWithDeadline } from "./utils/readWithDeadline.js";
 import { verifyDeletionPassword } from "./utils/verifyDeletionPassword.js";
-import Complete from "./screens/Complete";
 import ScamChecker from "./screens/ScamChecker";
 import PartnerAccessError from "./screens/PartnerAccessError";
 import PartnerDashboard from "./screens/PartnerDashboard";
@@ -4484,8 +4483,11 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "complete":
       content = (
-        <Complete
-          lesson={activeLesson}
+        <LearningContent
+          kind="complete"
+          itemId={activeLesson.id}
+          key={`complete:${activeLesson.id}`}
+          onBack={goPath}
           onDone={goPath}
         />
       );

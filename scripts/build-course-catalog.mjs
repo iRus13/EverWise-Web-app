@@ -4,7 +4,7 @@ import { lessonsByOrder, challengesByOrder, examsByOrder } from "../src/data/les
 
 // Keep the authored curriculum as the only source of truth. The small catalog
 // supports navigation/progress without downloading every exercise at startup.
-export function courseMetadata({ blocks: _blocks, goals: _goals, quiz, questions, ...metadata }) {
+export function courseMetadata({ blocks: _blocks, goals: _goals, complete: _complete, quiz, questions, ...metadata }) {
   return { ...metadata, quizCount: quiz?.length ?? 0, questionCount: questions?.length ?? 0 };
 }
 

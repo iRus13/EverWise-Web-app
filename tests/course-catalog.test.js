@@ -16,7 +16,7 @@ test("deferred content preserves course order, completion requirements and badge
     catalog[name].forEach((item, index) => {
       assert.equal(item.badge, content[name][index].badge);
       assert.equal(item.phaseBadge, content[name][index].phaseBadge);
-      assert.deepEqual(item.complete, content[name][index].complete);
+      assert.equal(item.complete, undefined);
       assert.equal(item.blocks, undefined);
       assert.equal(item.quiz, undefined);
       assert.equal(item.questions, undefined);

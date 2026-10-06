@@ -1,0 +1,47 @@
+[
+  {
+    "file": "error-after.png",
+    "sha256": "ccd99df94688d384faf7abd362a4a29bb8e3591d6998765fd3c614ccc3a19d13",
+    "viewport": [
+      375,
+      667
+    ],
+    "capture": "Codex in-app browser; actual LearningContent in isolated fixture; synthetic failures"
+  },
+  {
+    "file": "error-before.png",
+    "sha256": "eebcc375594efacb6bee07db3646bdddf5264e0011914493ed3e8107bde7a754",
+    "viewport": [
+      375,
+      667
+    ],
+    "capture": "Codex in-app browser; actual LearningContent in isolated fixture; synthetic failures"
+  },
+  {
+    "file": "error-spanish-max-small.png",
+    "sha256": "84666f9bd24a07f4eec3e1f0ea3051d2d8cf70962be94604dc562039c3c704d5",
+    "viewport": [
+      320,
+      568
+    ],
+    "capture": "Codex in-app browser; actual LearningContent in isolated fixture; synthetic failures"
+  },
+  {
+    "file": "loading-after.png",
+    "sha256": "5ead36b15242a55845b2f68b50d337e6dd50b8639bab8644c418581d38b88752",
+    "viewport": [
+      375,
+      667
+    ],
+    "capture": "Codex in-app browser; actual LearningContent in isolated fixture; synthetic failures"
+  },
+  {
+    "file": "loading-before.png",
+    "sha256": "8b1ca44a0246c3dc482947d7c9994514509e149e8a72c329bcdf5fc9fe884879",
+    "viewport": [
+      375,
+      667
+    ],
+    "capture": "Codex in-app browser; actual LearningContent in isolated fixture; synthetic failures"
+  }
+]

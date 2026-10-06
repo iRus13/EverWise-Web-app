@@ -379,5 +379,19 @@
   "{earned} of {total} earned": "{earned} de {total} obtenidas",
   "Course titles and badge names are in English.": "Los títulos y los nombres de las insignias están en inglés.",
   "Final exam": "Examen final",
-  "Badge earned": "Insignia obtenida"
+  "Badge earned": "Insignia obtenida",
+  "Opening your lesson": "Abriendo tu lección",
+  "Opening your practice": "Abriendo tu práctica",
+  "Opening your exam": "Abriendo tu examen",
+  "Your lesson couldn’t load": "No se pudo abrir tu lección",
+  "Your practice couldn’t load": "No se pudo abrir tu práctica",
+  "Your exam couldn’t load": "No se pudo abrir tu examen",
+  "Getting your next activity ready…": "Preparando tu próxima actividad…",
+  "Check your connection and try again, or return to your path.": "Comprueba tu conexión e inténtalo de nuevo, o vuelve a tu recorrido.",
+  "Back to your path": "Volver a tu recorrido",
+  "Reload app": "Volver a cargar la app",
+  "Opening your summary": "Abriendo tu resumen",
+  "Your summary couldn’t load": "No se pudo abrir tu resumen",
+  "Getting your summary ready…": "Preparando tu resumen…",
+  "Your lesson is complete. Try opening the summary again, or return to your path.": "Has completado tu lección. Intenta abrir el resumen de nuevo o vuelve a tu recorrido."
 }

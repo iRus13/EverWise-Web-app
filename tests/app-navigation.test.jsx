@@ -111,7 +111,7 @@ test("pending progress advances immediately and a late save cannot navigate a di
   let finishSave;
   state.updateDoc.mockImplementation(() => new Promise(resolve => {finishSave=resolve;}));
   await renderLearner("alice"); await finishWelcome();
-  expect(screen.getByRole("heading", {name:"Welcome Aboard!"})).toBeVisible();
+  expect(await screen.findByRole("heading", {name:"Welcome Aboard!"})).toBeVisible();
   expect(screen.getByRole("status")).toHaveTextContent("Saving your progress");
   expect(state.updateDoc).toHaveBeenCalledWith({collection:"users",uid:"alice"}, {
     completedLessons:{operation:"arrayUnion",values:["welcome"]},
@@ -149,7 +149,7 @@ test("blocked local storage does not freeze completion or falsely claim durable 
   vi.spyOn(Storage.prototype,"setItem").mockImplementation(()=>{throw new Error("quota");});
   state.updateDoc.mockRejectedValue(new Error("offline"));
   await renderLearner("no-storage"); await finishWelcome();
-  expect(screen.getByRole("heading", {name:"Welcome Aboard!"})).toBeVisible();
+  expect(await screen.findByRole("heading", {name:"Welcome Aboard!"})).toBeVisible();
   expect(screen.getByRole("status")).toHaveTextContent("Keep this app open");
   expect(screen.getByRole("status")).not.toHaveTextContent("saved on this device");
   await act(async()=>state.authCallback(testUser("no-storage")));
@@ -199,7 +199,7 @@ test("real screens complete free learning, save progress, open settings/paywall 
   await act(async () => fireEvent.click(screen.getByRole("button", {name: "Start lesson: Welcome to Everwise"})));
   expect(await screen.findByRole("heading", {name: "How Everwise Works"})).toBeVisible();
   await act(async () => fireEvent.click(screen.getByRole("button", {name: "Continue", exact:true})));
-  expect(screen.getByRole("heading", {name: "Welcome Aboard!"})).toBeVisible();
+  expect(await screen.findByRole("heading", {name: "Welcome Aboard!"})).toBeVisible();
   expect(state.updateDoc).toHaveBeenCalledWith(expect.objectContaining({uid:"qa-user"}), expect.objectContaining({completedLessons:{operation:"arrayUnion", values:["welcome"]}}));
   fireEvent.click(screen.getByRole("button", {name: "Back to your path"}));
   fireEvent.click(screen.getByRole("button", {name: "Back to home"}));
