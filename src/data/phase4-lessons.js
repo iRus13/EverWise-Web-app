@@ -44,7 +44,7 @@ export const phase4Lessons = [
       {
         type: "learn",
         heading: "Logging In Safely",
-        text: "Always access your bank through the bank's official mobile app, or the bank's official website that you type into your browser yourself or access from a saved bookmark.\n\nBefore logging in: make sure the website address is correct, look for the padlock icon in your browser, and avoid logging in from links in unexpected emails or text messages."
+        text: "Use your bank's official app, or type its verified website address yourself or use a trusted bookmark.\n\nCheck the full address before signing in. HTTPS encrypts the connection; it does not prove the site belongs to your bank. Browser security icons vary. Avoid unexpected email or text links, and do not continue past a security warning."
       },
       {
         type: "learn",
@@ -231,7 +231,7 @@ export const phase4Lessons = [
     quiz: [
       { question: "What is online banking?", options: ["Shopping online.", "Sending text messages.", "Managing your bank account over the internet.", "Using social media."], correctIndex: 2 },
       { question: "Which are safe ways to access your bank?", options: ["Clicking unexpected banking links in texts", "Using the official app, typing the website yourself, or using a trusted bookmark"], correctIndex: 1 },
-      { question: "True or False: A bank may call unexpectedly and ask you to read them your password or one-time verification code.", options: ["True", "False"], correctIndex: 1 },
+      { question: "True or False: It is safe to read a one-time verification code to someone who unexpectedly calls claiming to be your bank.", options: ["True", "False"], correctIndex: 1 },
       { question: "Bank ______ can notify you when money enters or leaves your account.", options: ["Alerts", "Games", "Photos"], correctIndex: 0 },
       { question: "You notice a purchase you don't recognize. What should you do?", options: ["Ignore it.", "Wait until next year.", "Contact your bank using its official phone number or app as soon as possible.", "Reply to the suspicious email about it."], correctIndex: 2 },
       { question: "Which information should you never share with someone who unexpectedly contacts you claiming to be your bank?", options: ["Your favorite color", "Your password, one-time verification codes, debit card PIN, and security question answers"], correctIndex: 1 },
@@ -275,7 +275,7 @@ export const phase4Lessons = [
       {
         type: "learn",
         heading: "What Is a Credit Card?",
-        text: "A credit card lets you borrow money from a bank or credit card company to make purchases. You agree to pay the money back later.\n\nEvery month, you'll receive a statement showing what you bought, how much you owe, and when your payment is due. If you don't pay the full balance by the due date, you may be charged interest, which is an extra fee for borrowing money."
+        text: "A credit card lets you borrow money for purchases and repay it later. Your monthly statement shows what you owe and the payment due date.\n\nInterest is the cost of borrowing. If your card offers a purchase grace period and you are not carrying a balance, paying the full statement balance by the due date can avoid interest on new purchases. Cash advances usually start accruing interest immediately. Check your card's terms."
       },
       {
         type: "learn",
@@ -329,7 +329,7 @@ export const phase4Lessons = [
           { front: "Credit Card", back: "A card that lets you borrow money to make purchases." },
           { front: "Debit Card", back: "A card that uses money directly from your bank account." },
           { front: "Statement", back: "A monthly record of your purchases and payments." },
-          { front: "Interest", back: "An extra fee charged if you don't pay your full credit card balance by the due date." },
+          { front: "Interest", back: "The cost of borrowing money. When interest starts depends on the type of transaction and your card's terms." },
           { front: "Fraud", back: "When someone uses your card without your permission." }
         ]
       },
@@ -528,7 +528,7 @@ export const phase4Lessons = [
           "Device passcode",
           "Encrypted payment information"
         ],
-        footer: "Even if someone picks up your phone, they usually cannot make a payment without unlocking it first."
+        footer: "Most wallet purchases require you to confirm with your face, fingerprint or passcode. Some transit payments using Express Mode work without unlocking. Review those settings and mark a missing phone as lost promptly."
       },
       {
         type: "learn",
@@ -748,7 +748,7 @@ export const phase4Lessons = [
       {
         type: "learn",
         heading: "Only Send Money to People You Trust",
-        text: "These apps are designed for sending money to family, friends, and people you know personally. Always double-check the person's name, their email address, and their phone number. Once money is sent, you may not be able to get it back."
+        text: "Use personal transfers for people you know and trust. Confirm unexpected requests through a phone number you already know, even if the account looks familiar.\n\nFor purchases, check whether the service and payment type offer buyer protection and whether your purchase qualifies. Personal transfers are not a substitute for protected checkout. Double-check the recipient before sending."
       },
       {
         type: "learn",
@@ -876,7 +876,7 @@ export const phase4Lessons = [
         options: [
           "Send the money immediately.",
           "Send half now and half later.",
-          "Be cautious. If something feels suspicious, don't send money before you've verified the seller.",
+          "Do not send a deposit to an unverified seller. Check the seller and the payment's buyer protection before deciding whether to buy.",
           "Give them your debit card PIN."
         ],
         correctIndex: 2
@@ -1013,7 +1013,7 @@ export const phase4Lessons = [
         title: "Flashcards",
         cards: [
           { front: "Online Shopping", back: "Buying products through a website or app." },
-          { front: "HTTPS", back: "A secure website connection." },
+          { front: "HTTPS", back: "An encrypted connection. It does not prove the seller is trustworthy." },
           { front: "Receipt", back: "Proof that you made a purchase." },
           { front: "Order Confirmation", back: "A message confirming your purchase." },
           { front: "Fake Website", back: "A website pretending to be a real store." }
@@ -1035,7 +1035,7 @@ export const phase4Lessons = [
         title: "Fill in the Blank",
         wordBank: ["HTTPS", "Price", "Receipt", "Official"],
         questions: [
-          { text: "A secure shopping website usually begins with ______.", answer: "HTTPS" },
+          { text: "An encrypted website connection begins with ______.", answer: "HTTPS" },
           { text: "Always review the final ______ before paying.", answer: "Price" },
           { text: "After buying something online, save your ______.", answer: "Receipt" }
         ]
