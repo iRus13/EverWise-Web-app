@@ -138,3 +138,9 @@ html[data-text-size] .lesson-experience .flashcard-copy { font-size: calc(22px *
 .lesson-memory-list { margin-top: 24px; }
 .lesson-memory-item { padding: 20px 0; border-top: 1px solid var(--separator); }
 .lesson-memory-item:first-child { padding-top: 0; border-top: 0; }
+
+/* Simulated messages are readable evidence, with no false button affordance. */
+.lesson-message-example { margin-top: 12px; padding: 20px; border: 1px solid var(--separator); border-radius: 8px; background: var(--surface-grouped); overflow-wrap: anywhere; }
+.lesson-example-link { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--separator); }
+.lesson-example-link > p:first-child { font-size: calc(17px * var(--text-scale)); line-height: 1.55; color: var(--text-primary); }
+.lesson-example-notice { margin-top: 8px; font-size: calc(15px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }

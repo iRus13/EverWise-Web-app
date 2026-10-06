@@ -950,7 +950,7 @@ export const scamPhase10Lessons = [
               {
                 text: "Click because the email says the account will close today.",
                 tier: "unsafe",
-                feedback: "Password pages are the most commonly faked pages of all."
+                feedback: "A link in an unexpected email may lead to a fake password page. Open the official app or a website you already trust instead."
               }
             ]
           },

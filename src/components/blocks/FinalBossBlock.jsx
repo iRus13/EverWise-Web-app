@@ -25,10 +25,11 @@ export default function FinalBossBlock({
   const reviewCopy = "It's worth replaying this lesson or reviewing the flashcards before moving on. Your answer does not prevent you from continuing.";
 
   const messages = block.messages || [];
+  const exampleNotice = "Example only — this cannot be tapped.";
   const speakText = [
     t(block.title || "Final challenge"),
     t(block.setup || ""),
-    ...messages.map((m) => [t(m.from), t(m.body), m.fakeButton && t("{label} (not a real button)", {label: t(m.fakeButton)})].filter(Boolean).join(". ")),
+    ...messages.map((m) => [t(m.from), t(m.body), m.fakeButton && t("Link shown: {label}", {label: t(m.fakeButton)}), m.fakeButton && t(exampleNotice)].filter(Boolean).join(". ")),
     t(block.question),
     t("Options:"),
     ...block.options.map(option => t(option.text)),
@@ -64,22 +65,23 @@ export default function FinalBossBlock({
           </p>
         )}
 
+        {messages.length > 0 && <h2 className="lesson-section-label mt-6">{t("Examples to review")}</h2>}
         {messages.map((m, i) => (
           <div
             key={i}
-            className="lesson-reading-section"
+            className="lesson-message-example"
           >
             <p className="lesson-section-label">
               {t(m.from)}
             </p>
             <p className="mt-2 text-xl leading-relaxed text-ink">{t(m.body)}</p>
             {m.fakeButton && (
-              <span
-                className="mt-4 inline-block rounded-xl bg-ink/10 px-5 py-3 text-lg font-bold text-ink-faint"
-                aria-label={t("{label} (not a real button)", {label: t(m.fakeButton)})}
-              >
-                {t(m.fakeButton)}
-              </span>
+              <div className="lesson-example-link">
+                <p>
+                  {t("Link shown: {label}", {label: t(m.fakeButton)})}
+                </p>
+                <p className="lesson-example-notice">{t(exampleNotice)}</p>
+              </div>
             )}
           </div>
         ))}

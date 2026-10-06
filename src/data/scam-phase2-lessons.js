@@ -38,7 +38,7 @@ export const scamPhase2Lessons = [
         question: "They called me, so they must be real… right?",
         objective:
           "Learn that an unexpected phone call should never be trusted simply because it sounds professional or mentions a familiar company.",
-        text: "Scammers often pretend to be people you already trust, such as your bank, a government agency, a utility company, or a technology company. They may sound friendly and professional, but remember this: you did not start the conversation — they did. An unexpected phone call is never proof that someone is who they claim to be. Whenever a call involves money, personal information, or your accounts, the safest choice is to end the call and contact the organization yourself using an official phone number."
+        text: "Scammers often pretend to be people you already trust, such as your bank, a government agency, a utility company, or a technology company. They may sound friendly and professional, but remember this: you did not start the conversation — they did. An unexpected phone call is never proof that someone is who they claim to be.\n\nWhenever a call involves money, personal information, or your accounts, the safest choice is to end the call and contact the organization yourself using an official phone number."
       },
       {
         type: "tiered",
@@ -89,7 +89,7 @@ export const scamPhase2Lessons = [
             text: "Give them your account number first.",
             tier: "unsafe",
             feedback:
-              "Never hand account details to someone who called you. If they were real, they wouldn't need you to prove yourself."
+              "Do not give account details to an unverified caller. End the call and use the number on your bank card; the bank may then ask you to verify your identity."
           }
         ]
       },
@@ -143,7 +143,7 @@ export const scamPhase2Lessons = [
             text: "Stay on the phone until they finish.",
             tier: "unsafe",
             feedback:
-              "Being asked to stay on the line is itself a warning sign. It exists to stop you thinking."
+              "Pressure to stay on the line instead of checking independently is a warning sign. You can end the call and use a trusted number."
           }
         ]
       },
@@ -182,7 +182,7 @@ export const scamPhase2Lessons = [
               {
                 text: "Contact the company yourself using a trusted phone number.",
                 tier: "best",
-                feedback: "The safest conversations are the ones that you start."
+                feedback: "Start the conversation using a number you already trust, such as the one printed on your internet bill."
               },
               {
                 text: "Continue the conversation because they knew your name.",
@@ -204,7 +204,7 @@ export const scamPhase2Lessons = [
         links: [
           {
             lesson: "Lesson 1.4 — Stop, Verify, Then Decide",
-            note: "You already know the answer to an unexpected call: hang up and use a number you chose."
+            note: "For an unexpected account request, end the call and use the number on your bank card or statement, not a number the caller supplies."
           }
         ]
       },
@@ -225,13 +225,13 @@ export const scamPhase2Lessons = [
             text: "Hang up and call your bank using the phone number on your debit or credit card.",
             tier: "best",
             feedback:
-              "It doesn't matter who someone claims to be if they called you unexpectedly. By ending the call and contacting your bank yourself, you stayed in control and verified the situation safely."
+              "A claimed identity is not proof. Ending the call and dialing the number on your bank card gives you an independent way to check the request."
           },
           {
             text: "Stay on the phone and hear them out.",
             tier: "unsafe",
             feedback:
-              "The longer the call runs, the more convincing it gets — that's how it's designed. Real fraud departments are perfectly happy for you to call them back."
+              "Staying on an unexpected call can increase the pressure to act. End it and contact your bank through the number on your card or statement."
           }
         ],
         spotted: ["Unexpected contact", "Refusing independent verification"]
@@ -276,7 +276,7 @@ export const scamPhase2Lessons = [
         question: "Why would someone tell me not to tell anyone else?",
         objective:
           "Learn that anyone asking you to keep a financial or personal situation secret is creating a major warning sign.",
-        text: "Honest people understand that you may want to talk with your family or someone you trust before making an important decision. Scammers know that another person may recognize the scam immediately, so they often tell people to keep the conversation secret. If someone asks you not to tell your family, friends, or bank about what is happening, treat that request as a warning sign. Asking for advice is never something you should feel embarrassed about."
+        text: "Honest people understand that you may want to talk with your family or someone you trust before making an important decision. Scammers know that another person may recognize the scam immediately, so they often tell people to keep the conversation secret.\n\nIf someone asks you not to tell your family, friends, or bank about what is happening, treat that request as a warning sign. Asking for advice is never something you should feel embarrassed about."
       },
       {
         type: "tiered",
@@ -327,7 +327,7 @@ export const scamPhase2Lessons = [
             text: "Keep it secret as requested.",
             tier: "unsafe",
             feedback:
-              "Secrecy is what makes the scam work. Real investigations never depend on you hiding things from your family."
+              "A request to hide an unexpected financial demand can stop you from getting help. Pause, speak with someone you trust, and verify the request independently."
           }
         ]
       },
@@ -367,7 +367,7 @@ export const scamPhase2Lessons = [
             text: "Speak with someone you trust before continuing.",
             tier: "best",
             feedback:
-              "A trustworthy person will never discourage you from asking for advice."
+              "You can ask someone you trust for advice. Pressure to stop you from checking an unexpected financial request is a warning sign."
           },
           {
             text: "Follow their instructions until everything is finished.",
@@ -401,7 +401,7 @@ export const scamPhase2Lessons = [
               {
                 text: "Keep it private.",
                 tier: "unsafe",
-                feedback: "Privacy here means isolation, which is what they want."
+                feedback: "Privacy does not require acting alone under pressure. Check this unexpected request with someone you trust before sending money."
               },
               {
                 text: "Wait until they call back.",
@@ -452,7 +452,7 @@ export const scamPhase2Lessons = [
             text: "Keep the conversation private until they finish.",
             tier: "unsafe",
             feedback:
-              "That secrecy request was the loudest warning sign in the call. Real investigators do not ask you to hide things from your own bank."
+              "The request for secrecy made this unexpected financial demand more suspicious. Contact your bank through a trusted number before taking action."
           }
         ],
         spotted: ["Unexpected contact", "Requests for secrecy", "Refusing independent verification"]
@@ -462,7 +462,7 @@ export const scamPhase2Lessons = [
     complete: {
       title: "Lesson complete!",
       subtitle: "You completed Keep It a Secret.",
-      habit: "If someone asks you to keep a secret, talk to someone you trust.",
+      habit: "If someone pressures you to keep a financial request secret, pause and talk to someone you trust.",
       warningSign: "\"Don't tell anyone.\"",
       skills: [
         "Recognized a request for secrecy",
@@ -497,7 +497,7 @@ export const scamPhase2Lessons = [
         question: "Why are they trying to make me hurry?",
         objective:
           "Learn that when someone tries to make you act quickly, it is a warning sign that you should slow down and think.",
-        text: "Honest businesses understand that important decisions take time. Scammers often do the opposite — they create deadlines, pressure, or emergencies to keep you from thinking clearly. Whether someone says \"right now,\" \"today only,\" or \"don't wait,\" remember that rushing is a warning sign, not a reason to act faster. Slowing down gives you time to think, verify the situation, and make a better decision."
+        text: "Honest businesses understand that important decisions take time. Scammers often do the opposite — they create deadlines, pressure, or emergencies to keep you from thinking clearly.\n\nWhether someone says \"right now,\" \"today only,\" or \"don't wait,\" remember that rushing is a warning sign, not a reason to act faster. Slowing down gives you time to think, verify the situation, and make a better decision."
       },
       {
         type: "tiered",
@@ -669,7 +669,7 @@ export const scamPhase2Lessons = [
             text: "Accept the offer before it expires.",
             tier: "unsafe",
             feedback:
-              "An investment that can't survive you thinking about it overnight was never a real investment."
+              "A short deadline does not prove that an investment is genuine. Do not send money under pressure; check the offer and who is making it independently."
           }
         ],
         spotted: ["Unexpected contact", "Pressure to hurry", "Refusing independent verification"]
@@ -714,7 +714,7 @@ export const scamPhase2Lessons = [
         question: "Why are they asking me to pay that way?",
         objective:
           "Learn that unusual payment methods are one of the strongest warning signs of a scam.",
-        text: "Most honest businesses let you pay using familiar methods, such as a credit card, debit card, check, or payment through your normal account. Scammers often ask for unusual payment methods because they are difficult to trace or reverse. If someone insists on gift cards, cryptocurrency, wire transfers, or asks you to send money in an unusual way, stop and think. The payment method itself can be a warning sign, even if the story sounds believable."
+        text: "Most honest businesses let you pay using familiar methods, such as a credit card, debit card, check, or payment through your normal account. Scammers often ask for unusual payment methods because they are difficult to trace or reverse.\n\nIf someone insists on gift cards, cryptocurrency, wire transfers, or asks you to send money in an unusual way, stop and think. The payment method itself can be a warning sign, even if the story sounds believable."
       },
       {
         type: "tiered",
@@ -727,13 +727,13 @@ export const scamPhase2Lessons = [
             text: "They want to be paid with gift cards.",
             tier: "best",
             feedback:
-              "Gift cards are almost never used to pay legitimate bills. This is one of the most common scam payment methods."
+              "A demand to buy gift cards and share their numbers to pay a bill is a scam warning. Do not buy cards for this caller."
           },
           {
             text: "They asked for four cards.",
             tier: "unsafe",
             feedback:
-              "The number doesn't matter. Any bill paid by gift card is a scam."
+              "The number of cards does not matter. A caller demanding gift card numbers to settle a bill is asking for a scam payment."
           },
           {
             text: "They sounded friendly.",
@@ -759,13 +759,13 @@ export const scamPhase2Lessons = [
             text: "Send a small amount first.",
             tier: "unsafe",
             feedback:
-              "A small amount is still gone forever, and it marks you as someone who pays."
+              "Even a small cryptocurrency payment can be difficult to recover. Verify an unexpected demand before sending any money."
           },
           {
             text: "Ask which cryptocurrency they prefer.",
             tier: "unsafe",
             feedback:
-              "The question to ask isn't which one — it's why any legitimate bill would be paid this way."
+              "Check why this unexpected caller is demanding cryptocurrency. End the conversation and contact the organization through a source you already trust."
           }
         ]
       },
@@ -785,7 +785,7 @@ export const scamPhase2Lessons = [
             text: "They mentioned your savings.",
             tier: "unsafe",
             feedback:
-              "Mentioning your savings is meant to worry you. The wire transfer is the clue."
+              "A wire transfer can be legitimate, but an unexpected demand to move savings for protection is a warning sign. Contact your bank independently."
           },
           {
             text: "They called in the morning.",
@@ -817,7 +817,7 @@ export const scamPhase2Lessons = [
             text: "Buy the gift cards.",
             tier: "unsafe",
             feedback:
-              "Once the numbers are read out, the money is spent and cannot be recovered."
+              "Sharing gift card numbers lets the recipient use the balance. If you already shared them, contact the card company immediately and ask whether it can stop the payment or return the money."
           }
         ]
       },
@@ -839,12 +839,12 @@ export const scamPhase2Lessons = [
                 text: "Wire transfers are always faster.",
                 tier: "unsafe",
                 feedback:
-                  "Speed is the appeal for the scammer, because it beats second thoughts."
+                  "Speed is not proof that a request is safe. Before wiring money, verify who is asking through contact information you already trust."
               },
               {
                 text: "They must know what they're doing.",
                 tier: "unsafe",
-                feedback: "They do. That's the problem."
+                feedback: "Sounding knowledgeable does not prove who contacted you. Verify the request independently before sending money."
               }
             ]
           },
@@ -862,13 +862,13 @@ export const scamPhase2Lessons = [
               {
                 text: "Follow the instructions immediately.",
                 tier: "unsafe",
-                feedback: "Crypto payments cannot be reversed once sent."
+                feedback: "Cryptocurrency payments usually cannot be reversed. Pause and verify the request before sending money."
               },
               {
                 text: "Send a small payment first.",
                 tier: "unsafe",
                 feedback:
-                  "Small payments are still unrecoverable, and they invite bigger requests."
+                  "A small payment can still be difficult to recover. Do not test an unexpected request by sending money; verify it independently."
               }
             ]
           }
@@ -940,7 +940,7 @@ export const scamPhase2Lessons = [
         question: "How do I know if it's really them?",
         objective:
           "Learn that the safest way to know if something is real is to verify it yourself using trusted contact information.",
-        text: "Scammers can copy company logos, create convincing emails, and pretend to be trusted organizations. Even caller ID, email addresses, and official-looking websites can sometimes be faked. Instead of asking, \"Do they look real?\" ask yourself, \"How can I verify this myself?\" Calling a trusted phone number, visiting an official website, or asking someone you trust are simple ways to make sure you're dealing with the real organization."
+        text: "Scammers can copy logos, create convincing emails, and impersonate organizations. Caller ID and official-looking websites can be misleading. Instead of asking, “Does this look real?”, ask, “How can I check this myself?”\n\nUse contact information you already trust, such as the number on your bank card, a saved official website, or the company’s app. Someone you trust can help you check, but a convincing appearance alone does not prove who contacted you."
       },
       {
         type: "tiered",
@@ -1064,12 +1064,12 @@ export const scamPhase2Lessons = [
                 text: "Continue asking them questions.",
                 tier: "unsafe",
                 feedback:
-                  "They will have answers ready. Questions are not verification."
+                  "An unverified caller can have convincing answers. End the call and contact the organization using a number you already trust."
               },
               {
                 text: "Let them verify themselves.",
                 tier: "unsafe",
-                feedback: "Nobody can verify their own identity to you."
+                feedback: "A caller’s own reassurance is not an independent check. Use contact information you already trust to confirm the request."
               }
             ]
           },
@@ -1087,12 +1087,12 @@ export const scamPhase2Lessons = [
                 text: "Click the link in the email.",
                 tier: "unsafe",
                 feedback:
-                  "Password pages are the most commonly faked pages of all."
+                  "A link in an unexpected email may lead to a fake password page. Open the official app or a website you already trust instead."
               },
               {
                 text: "Reply asking if the email is real.",
                 tier: "unsafe",
-                feedback: "The sender will always say yes."
+                feedback: "A reply goes back to the sender, so it does not independently verify the message. Check through the official app or a trusted number."
               }
             ]
           }
@@ -1103,7 +1103,7 @@ export const scamPhase2Lessons = [
         links: [
           {
             lesson: "Lesson 2.1 — The Unexpected Call",
-            note: "They contacted you, so the burden of proof is theirs."
+            note: "An unexpected call does not prove identity. End it and use a number you already trust."
           },
           {
             lesson: "Lesson 2.3 — Rushing Is a Warning",
@@ -1140,7 +1140,7 @@ export const scamPhase2Lessons = [
             text: "Click the link to learn more.",
             tier: "unsafe",
             feedback:
-              "The logo and your name cost the sender nothing. The page behind that button is built to collect your login."
+              "A logo and your name do not prove that this email came from your bank. Its link could lead to a fake sign-in page; check through the bank’s app or a trusted number."
           }
         ],
         spotted: ["Unexpected contact", "Refusing independent verification"]

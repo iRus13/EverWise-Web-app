@@ -747,17 +747,17 @@ test("Spanish path search matches accented translated titles and original Englis
 
 test("Spanish settings and later phases disclose the actual translation boundary", () => {
   render(<><LanguageSelect showContentNotice /><LessonPath completedLessons={[]} onSelectLesson={vi.fn()} onBack={vi.fn()} /></>);
-  expect(screen.getByRole("status")).toHaveTextContent("Las lecciones hasta la primera fase de Protección contra estafas están disponibles en español. Las lecciones posteriores y los resultados de IA siguen en inglés.");
+  expect(screen.getByRole("status")).toHaveTextContent("Las lecciones hasta la fase Señales de alerta están disponibles en español. Las lecciones posteriores y los resultados de IA siguen en inglés.");
   fireEvent.click(screen.getByRole("button",{name:/Etapa 2 Hábitos seguros en Internet/}));
   expect(screen.queryByText("Las tres primeras lecciones están disponibles en español. El resto de esta etapa sigue en inglés.")).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button",{name:/Etapa 3 Comunicación/}));
   expect(screen.queryByText("Las lecciones de esta etapa están actualmente en inglés.")).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button",{name:/Etapa 4/}));
   expect(screen.queryByText("Las lecciones de esta etapa están actualmente en inglés.")).not.toBeInTheDocument();
-  for (const phase of [5, 6, 7, 8]) {
+  for (const phase of [5, 6, 7, 8, 9]) {
     fireEvent.click(screen.getByRole("button",{name:new RegExp(`Etapa ${phase} `)}));
     expect(screen.queryByText("Las lecciones de esta etapa están actualmente en inglés.")).not.toBeInTheDocument();
   }
-  fireEvent.click(screen.getByRole("button",{name:/Etapa 9 /}));
+  fireEvent.click(screen.getByRole("button",{name:/Etapa 10 /}));
   expect(screen.getByText("Las lecciones de esta etapa están actualmente en inglés.")).toBeVisible();
 });

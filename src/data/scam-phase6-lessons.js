@@ -1130,7 +1130,7 @@ export const scamPhase6Lessons = [
           {
             text: "Reply and ask whether the email is real.",
             tier: "unsafe",
-            feedback: "The sender will always say yes."
+            feedback: "A reply goes back to the sender, so it does not independently verify the message. Check through the official app or a trusted number."
           }
         ]
       },
