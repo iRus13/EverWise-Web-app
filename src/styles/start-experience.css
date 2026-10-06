@@ -54,7 +54,7 @@
 .today-open-error { color: var(--danger) !important; }
 @media (hover:hover) { .today-checker:hover, .today-badges:hover { color: var(--accent); } .today-course-link:hover { text-decoration: underline; } }
 @media (min-width:768px) {
-  .welcome-content { display: grid; grid-template-columns: 1.1fr 1fr; align-content: center; gap: 28px 64px; padding: 48px; min-height: 100dvh; }
+  .welcome-content { display: grid; grid-template-columns: 1.1fr 1fr; align-content: center; gap: 28px 64px; padding: 48px; min-height: var(--app-viewport-height, 100vh); }
   .welcome-brand { grid-column: 1 / -1; margin-bottom: 8px; }
   .welcome-intro { grid-column: 1; grid-row: 2; }
   .welcome-intro h1 { font-size: calc(48px * var(--heading-scale)); }

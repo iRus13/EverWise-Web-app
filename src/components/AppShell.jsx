@@ -16,6 +16,7 @@ import TextSizeControl from "./TextSizeControl";
 import CourseProgressCard from "./CourseProgressCard";
 import useNativeWindowInsets from "../hooks/useNativeWindowInsets";
 import useVisibleFormFocus from "../hooks/useVisibleFormFocus";
+import useViewportHeight from "../hooks/useViewportHeight";
 import useNativeTextMetrics from "../hooks/useNativeTextMetrics";
 
 const iconByDestination = {
@@ -45,6 +46,7 @@ export default function AppShell({
   const canvas = useRef(null);
   const viewport = useRef(null);
   useNativeWindowInsets(viewport);
+  useViewportHeight();
   useNativeTextMetrics();
   useVisibleFormFocus(canvas);
   useLayoutEffect(() => {
@@ -93,7 +95,7 @@ export default function AppShell({
   const partnerName = partner?.name?.trim();
 
   return (
-    <div ref={viewport} className={`app-viewport app-screen-${screen}${Capacitor.isNativePlatform() ? " is-native-app" : ""}`}>
+    <div ref={viewport} className={`app-viewport app-screen-${screen}${showNavigation ? " has-primary-navigation" : ""}${Capacitor.isNativePlatform() ? " is-native-app" : ""}`}>
       <div
         className={`app-shell ${
           showNavigation ? "has-app-navigation" : "is-focus-shell"

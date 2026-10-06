@@ -1,4 +1,4 @@
-.app-viewport:has(.status-screen), .app-viewport:has(.personal-plan) {
+.app-viewport:is(.app-screen-loading, .app-screen-personal-plan, .app-screen-partner-error, .app-screen-billing-error, .app-screen-billing-confirmation) {
   --everwise-screen-background: var(--surface-grouped);
   --everwise-safe-top: var(--surface-grouped);
   --everwise-safe-bottom: var(--surface-grouped);
@@ -31,9 +31,9 @@
 @keyframes status-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .status-spinner { animation: none; } }
 @media (min-width: 768px) {
-  .status-content, .personal-plan-content { padding-top: 32px; padding-bottom: 40px; min-height: calc(100dvh - 3rem); }
+  .status-content, .personal-plan-content { padding-top: 32px; padding-bottom: 40px; min-height: calc(var(--app-viewport-height, 100vh) - 3rem); }
 }
-@media (min-width: 1024px) { .status-content, .personal-plan-content { min-height: 100dvh; } }
+@media (min-width: 1024px) { .status-content, .personal-plan-content { min-height: var(--app-viewport-height, 100vh); } }
 @media (min-width: 768px) {
   .is-native-app .status-content, .is-native-app .personal-plan-content { min-height: var(--native-available-height); }
 }

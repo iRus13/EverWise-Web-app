@@ -6,7 +6,7 @@
 .learning-summary[data-tone="neutral"] .summary-symbol { color: var(--accent); }
 .learning-summary > * { width: 100%; max-width: 640px; margin-inline: auto; }
 .summary-eyebrow { color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); line-height: 1.4; margin-bottom: 8px; }
-html[data-text-size] .learning-summary .page-title { font-size: min(calc(28px * var(--heading-scale)),12cqi); font-weight: 650; line-height: 1.2; letter-spacing: -.02em; text-wrap: initial; }
+html[data-text-size] .learning-summary .page-title { font-size: calc(28px * var(--heading-scale)); font-weight: 650; line-height: 1.2; letter-spacing: -.02em; text-wrap: initial; }
 html[data-system-text-category] .learning-summary .page-title { font-size: calc(28px * var(--heading-scale)); }
 .summary-subtitle { margin-top: 12px; font-size: calc(17px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }
 .summary-sections { display: grid; gap: 24px; margin-top: 24px; }
@@ -126,4 +126,9 @@ html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="s
 @media(min-width:1024px) {
   .badges-header { padding-top: 48px; }
   .badges-header, .badges-screen .badges-content { padding-inline: 48px; }
+}
+
+/* Keep unsupported container units out of variable-bearing declarations. */
+@supports (font-size: 1cqi) {
+  html[data-text-size]:not([data-system-text-category]) .learning-summary .page-title { font-size: min(calc(28px * var(--heading-scale)),12cqi); }
 }

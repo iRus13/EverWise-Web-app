@@ -1,3 +1,4 @@
+import { hasOwn } from "../../utils/hasOwn.js";
 import {useLearningText} from "../../i18n/learning.js";
 import AnswerOption from "./AnswerOption";
 import { useState } from "react";
@@ -92,7 +93,7 @@ export default function ScenarioBlock({
     >
       <MultipleChoiceBody
         text={block.text}
-        presentation={Object.hasOwn(scenarioPresentations, block.text) ? scenarioPresentations[block.text] : undefined}
+        presentation={hasOwn(scenarioPresentations, block.text) ? scenarioPresentations[block.text] : undefined}
         options={block.options}
         correctIndex={block.correctIndex}
         explanation={block.explanation}

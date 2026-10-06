@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import { tr, useLocale } from '../i18n';
 import { useEffect, useMemo, useRef, useState } from "react";
 import UtilityScreen from "../components/UtilityScreen";
@@ -31,7 +32,7 @@ const verdictDetails = {
 };
 
 function validAssessment(value) {
-  return value && Object.hasOwn(verdictDetails, value.verdict)
+  return value && hasOwn(verdictDetails, value.verdict)
     && typeof value.summary === "string" && value.summary.trim().length > 0
     && value.summary.length <= 6000
     && [value.warning_signs, value.next_steps].every((items) => Array.isArray(items)

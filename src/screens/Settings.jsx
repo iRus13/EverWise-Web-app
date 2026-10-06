@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import LanguageSelect from "../components/LanguageSelect";
 import { tr, useLocale } from '../i18n';
 import Field from "../components/Field";
@@ -39,7 +40,7 @@ function Row({ label, value, onClick, hint, disabled = false, destructive = fals
       aria-label={interactive ? label : undefined}
       aria-describedby={interactive ? [hint && hintId, describedBy].filter(Boolean).join(" ") || undefined : undefined}
       aria-busy={interactive && busy ? true : undefined}
-      className={`settings-row ${destructive ? "settings-row-destructive" : ""}`}
+      className={`settings-row ${value != null ? "has-row-value " : ""}${destructive ? "settings-row-destructive" : ""}`}
     >
       <span className="settings-row-copy">
         <span className="settings-row-label">{label}</span>
@@ -231,7 +232,7 @@ function normalizeBillingViewModel(billing, legacy) {
   }
   if (snapshot.provider === "sponsor" && snapshot.status === "active") {
     if (
-      !Object.hasOwn(snapshot, "partnerName") ||
+      !hasOwn(snapshot, "partnerName") ||
       snapshot.plan !== null ||
       snapshot.trialEndsAt !== null ||
       snapshot.currentPeriodEndsAt !== null ||
@@ -253,7 +254,7 @@ function normalizeBillingViewModel(billing, legacy) {
   }
   if (snapshot.provider === "none" && snapshot.status === "none") {
     if (
-      Object.hasOwn(snapshot, "partnerName") ||
+      hasOwn(snapshot, "partnerName") ||
       snapshot.plan !== null ||
       snapshot.trialEndsAt !== null ||
       snapshot.currentPeriodEndsAt !== null ||
@@ -275,7 +276,7 @@ function normalizeBillingViewModel(billing, legacy) {
     };
   }
   if (
-    Object.hasOwn(snapshot, "partnerName") ||
+    hasOwn(snapshot, "partnerName") ||
     (snapshot.provider !== "stripe" && snapshot.provider !== "apple")
   ) {
     return unavailableBilling(busy);

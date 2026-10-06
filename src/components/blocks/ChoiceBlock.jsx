@@ -1,3 +1,4 @@
+import { hasOwn } from "../../utils/hasOwn.js";
 import {useLearningText} from "../../i18n/learning.js";
 import { useState } from "react";
 import BlockShell from "./BlockShell";
@@ -16,7 +17,7 @@ export default function ChoiceBlock({
   const [selected, setSelected] = useState(null);
   // Match the authored native distinction: an example is reading material,
   // while the short decision is the heading. Unknown content keeps its prompt.
-  const isSupporting = block.title && Object.hasOwn(choiceTextRoles, block.text)
+  const isSupporting = block.title && hasOwn(choiceTextRoles, block.text)
     && choiceTextRoles[block.text] === "supporting";
 
   return (

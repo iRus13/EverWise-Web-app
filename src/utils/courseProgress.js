@@ -59,7 +59,7 @@ export function courseStanding(completedIds, requiredIds, curriculum) {
           challenges,
           exams,
         }),
-    ) ?? phases.at(-1) ?? null;
+    ) ?? phases[phases.length - 1] ?? null;
 
   return {
     completed,

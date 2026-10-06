@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import { lessonsByOrder, challengesByOrder, examsByOrder } from "../data/course-catalog.js";
 import { labelFinalLessonsForChallenges } from "../utils/courseProgress.js";
 
@@ -31,7 +32,7 @@ const players = {
 const catalogs = {lesson: lessonsByOrder, complete: lessonsByOrder, challenge: challengesByOrder, exam: examsByOrder};
 
 export async function learningItem(kind, itemId) {
-  const metadata = Object.hasOwn(catalogs, kind) && catalogs[kind].find(item => item.id === itemId);
+  const metadata = hasOwn(catalogs, kind) && catalogs[kind].find(item => item.id === itemId);
   if (!metadata) throw new Error("Learning content unavailable");
 
   const [content, {default: Player}] = await Promise.all([

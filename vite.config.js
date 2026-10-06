@@ -280,6 +280,9 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
+    // The Swift app targets iOS 15. Keep browser syntax compatible with that
+    // generation too; API and layout fallbacks live in the shared app code.
+    build: { target: ['safari15', 'ios15', 'chrome96', 'edge96', 'firefox91'] },
     plugins: [
       sites(),
       react(),

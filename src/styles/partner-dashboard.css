@@ -52,3 +52,13 @@
   .partner-dashboard tbody td { padding: 0; border: 0; text-align: left; white-space: normal; overflow-wrap: anywhere; }
   .partner-dashboard-cell-label { display: block; margin-bottom: 4px; color: var(--text-secondary); font-size: .875em; }
 }
+
+/* Preserve readable row labels when container queries are unavailable. */
+@supports not (container-type: inline-size) {
+  .partner-dashboard table, .partner-dashboard tbody { display: block; }
+  .partner-dashboard thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .partner-dashboard tbody tr { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px 16px; padding-block: 16px; border-bottom: 1px solid var(--separator); }
+  .partner-dashboard tbody th { grid-column: 1 / -1; padding: 0; border: 0; }
+  .partner-dashboard tbody td { padding: 0; border: 0; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+  .partner-dashboard-cell-label { display: block; margin-bottom: 4px; color: var(--text-secondary); font-size: .875em; }
+}

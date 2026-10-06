@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import {useCallback} from "react";
 import {translate, useLocale} from "./index.js";
 import spanish from "./learning-es.json";
@@ -6,7 +7,7 @@ import spanish from "./learning-es.json";
 // of startup/navigation; canonical content and saved answers are never changed.
 export function learningText(text, language, values = {}) {
   if (text === "Card back" && language !== "es") return "Back";
-  const translated = language === "es" && Object.hasOwn(spanish, text) ? spanish[text] : text;
+  const translated = language === "es" && hasOwn(spanish, text) ? spanish[text] : text;
   return translate(translated, language, values);
 }
 

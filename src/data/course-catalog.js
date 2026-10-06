@@ -142,5 +142,6 @@ export const examsByOrder = [
 ];
 
 export function pathOrderForPhase(phase) {
-  return lessonsByOrder.filter(item => item.phase === phase).at(-1)?.pathOrder ?? -1;
+  const phaseLessons = lessonsByOrder.filter(item => item.phase === phase);
+  return phaseLessons[phaseLessons.length - 1]?.pathOrder ?? -1;
 }

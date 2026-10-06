@@ -5,7 +5,7 @@
 .app-navigation-item.is-active { color: var(--accent); background: var(--accent-subtle); }
 @media (max-width:1023px) {
   .app-shell.has-app-navigation { height: 100%; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
-  .app-viewport:has(.has-app-navigation) { height: 100dvh; overflow: hidden; }
+  .app-viewport.has-primary-navigation { height: var(--app-viewport-height, 100vh); overflow: hidden; }
   .has-app-navigation .app-canvas { min-height: 0; overflow-y: auto; }
   .has-app-navigation .app-navigation {
     order: 2; position: relative; inset: auto; display: flex; flex: none; z-index: 40;
@@ -28,7 +28,7 @@
   .has-app-navigation .today-content { padding-top: 28px; }
 }
 @media (min-width:768px) and (max-width:1023px) {
-  .app-viewport:has(.has-app-navigation) { display: block; }
+  .app-viewport.has-primary-navigation { display: block; }
   .is-native-app .app-shell.has-app-navigation { height: var(--native-available-height); }
   .has-app-navigation .app-canvas > :is(.today-screen,.badges-screen,.course-outline) { flex: 1 0 auto; overflow: visible; }
   .has-app-navigation .utility-screen { display: flex; flex: 1 0 auto; }
@@ -48,5 +48,5 @@
    content keeps its full Dynamic Type and in-app text preference. */
 @media (max-width:1023px) {
   .app-navigation .app-navigation-item > span { white-space: nowrap; }
-  .app-navigation .app-navigation-item:focus-visible { outline-offset: -3px; }
+  .app-navigation .app-navigation-item:focus { outline-offset: -3px; }
 }

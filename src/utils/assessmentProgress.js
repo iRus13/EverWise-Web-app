@@ -1,3 +1,4 @@
+import { hasOwn } from "./hasOwn.js";
 // Device-local unfinished work, scoped to the learner. Never grants access or
 // awards completion; those still go through the normal application checks.
 const STORAGE_KEY = "everwise.assessmentPosition.v1";
@@ -55,7 +56,7 @@ function readStore(storage) {
 export function readAssessmentPosition({uid, itemId, storage} = {}) {
   if (!identity(uid, itemId)) return null;
   const values = readStore(storage), key = keyFor(uid, itemId);
-  return Object.hasOwn(values, key) ? normalize(values[key]) : null;
+  return hasOwn(values, key) ? normalize(values[key]) : null;
 }
 
 export function saveAssessmentPosition({uid, itemId, position, storage} = {}) {

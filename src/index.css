@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Safari before 15.4 uses the measured height from useViewportHeight. */
+:root { --app-viewport-height: 100vh; }
+@supports (height: 100dvh) { :root { --app-viewport-height: 100dvh; } }
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
@@ -79,10 +83,16 @@
   }
 
   /* Clear, visible focus outline for keyboard users */
-  *:focus-visible {
+  *:focus {
     outline: 3px solid var(--text-primary);
     outline-offset: 3px;
     border-radius: 6px;
+  }
+
+  /* Older browsers keep the visible focus ring. Modern browsers suppress it
+     only when their own focus-visible heuristic says it is unnecessary. */
+  @supports selector(:focus-visible) {
+    *:focus:not(:focus-visible) { outline: none; }
   }
 
   /* Headings/landmarks receive focus for page announcements, not interaction.
@@ -126,8 +136,8 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  height: 100dvh;
-  min-height: 100dvh;
+  height: var(--app-viewport-height, 100vh);
+  min-height: var(--app-viewport-height, 100vh);
   overflow: hidden;
   padding-top: env(safe-area-inset-top);
   background: var(--everwise-screen-background, #efe9dc);
@@ -202,7 +212,7 @@
     display: flex;
     width: 100%;
     height: auto;
-    min-height: 100dvh;
+    min-height: var(--app-viewport-height, 100vh);
     align-items: flex-start;
     justify-content: center;
     overflow: visible;
@@ -214,7 +224,7 @@
     width: 100%;
     max-width: 920px;
     height: auto;
-    min-height: calc(100dvh - 3rem);
+    min-height: calc(var(--app-viewport-height, 100vh) - 3rem);
     overflow: visible;
     border: 1px solid rgb(34 32 28 / 8%);
     border-radius: 32px;
@@ -352,12 +362,12 @@
   }
 
   .app-canvas {
-    min-height: calc(100dvh - 3rem);
+    min-height: calc(var(--app-viewport-height, 100vh) - 3rem);
     overflow: visible;
   }
 
   .has-app-navigation .app-canvas {
-    min-height: calc(100dvh - 8rem);
+    min-height: calc(var(--app-viewport-height, 100vh) - 8rem);
   }
 
   .screen-content-frame {
@@ -460,7 +470,7 @@
   .app-shell {
     max-width: none;
     width: 100%;
-    min-height: 100dvh;
+    min-height: var(--app-viewport-height, 100vh);
     border-radius: 0;
   }
 
@@ -472,7 +482,7 @@
 
   .app-navigation {
     top: 0;
-    height: 100dvh;
+    height: var(--app-viewport-height, 100vh);
     min-height: 0;
     overflow-y: auto;
     overscroll-behavior-y: contain;
@@ -626,7 +636,7 @@
 
   .app-canvas,
   .has-app-navigation .app-canvas {
-    min-height: 100dvh;
+    min-height: var(--app-viewport-height, 100vh);
   }
 
   .home-dashboard {

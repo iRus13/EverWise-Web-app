@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import { useSyncExternalStore } from 'react';
 import spanish from './es.json';
 
@@ -31,6 +32,6 @@ export function tr(text, values = {}) {
   return translate(text, locale, values);
 }
 export function translate(text, language, values = {}) {
-  const translated = language === 'es' && Object.hasOwn(spanish, text) ? spanish[text] : text;
-  return typeof translated === 'string' ? translated.replace(/\{(\w+)\}/g, (match, key) => Object.hasOwn(values, key) ? String(values[key]) : match) : translated;
+  const translated = language === 'es' && hasOwn(spanish, text) ? spanish[text] : text;
+  return typeof translated === 'string' ? translated.replace(/\{(\w+)\}/g, (match, key) => hasOwn(values, key) ? String(values[key]) : match) : translated;
 }

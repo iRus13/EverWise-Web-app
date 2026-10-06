@@ -88,7 +88,7 @@ button.settings-row:disabled { cursor: not-allowed; opacity: .6; }
   .settings-section h2 { margin: 18px 0 0; }
 }
 html:is([data-expanded-text="true"],[data-text-size="size-6"], [data-text-size="size-7"], [data-text-size="size-8"], [data-text-size="size-9"], [data-text-size="size-10"]) .settings-screen .settings-section { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-html:is([data-expanded-text="true"],[data-text-size="size-6"], [data-text-size="size-7"], [data-text-size="size-8"], [data-text-size="size-9"], [data-text-size="size-10"]) .settings-row:has(.settings-row-value) { flex-wrap: wrap; }
+html:is([data-expanded-text="true"],[data-text-size="size-6"], [data-text-size="size-7"], [data-text-size="size-8"], [data-text-size="size-9"], [data-text-size="size-10"]) .settings-row.has-row-value { flex-wrap: wrap; }
 html:is([data-expanded-text="true"],[data-text-size="size-6"], [data-text-size="size-7"], [data-text-size="size-8"], [data-text-size="size-9"], [data-text-size="size-10"]) .settings-row-value { max-width: 100%; flex-basis: 100%; text-align: left; }
 
 .settings-profile { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--surface); border-radius: var(--radius-group); }
@@ -100,6 +100,11 @@ html:is([data-expanded-text="true"],[data-text-size="size-6"], [data-text-size="
 .settings-header { max-width: 680px; }
 @media(min-width:1200px) { .settings-screen .settings-section { display: block; } .settings-section h2 { margin: 0 0 10px 16px; } }
 .settings-header { container-type: inline-size; }
-.settings-header h1 { font-size: min(calc(34px * var(--heading-scale)),17cqi); }
+.settings-header h1 { font-size: calc(34px * var(--heading-scale)); }
 html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .settings-profile { align-items: flex-start; flex-direction: column; }
 html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .settings-profile h2 { overflow-wrap: normal; hyphens: auto; }
+
+/* Keep unsupported container units out of variable-bearing declarations. */
+@supports (font-size: 1cqi) {
+  .settings-header h1 { font-size: min(calc(34px * var(--heading-scale)),17cqi); }
+}

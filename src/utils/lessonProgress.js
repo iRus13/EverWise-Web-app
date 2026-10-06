@@ -1,3 +1,4 @@
+import { hasOwn } from "./hasOwn.js";
 // Remembers where a learner had reached inside a lesson so leaving part-way
 // through and coming back does not restart the lesson. Position is kept per
 // learner and per lesson, and is cleared once the lesson is finished.
@@ -75,7 +76,7 @@ export function readLessonPosition({ uid, lessonId, storage } = {}) {
   if (typeof lessonId !== "string" || !lessonId) return null;
   const store = readStore(storage);
   const key = entryKey(uid, lessonId);
-  return Object.hasOwn(store, key) ? validPosition(store[key]) : null;
+  return hasOwn(store, key) ? validPosition(store[key]) : null;
 }
 
 export function saveLessonPosition({ uid, lessonId, position, storage } = {}) {
@@ -93,7 +94,7 @@ export function clearLessonPosition({ uid, lessonId, storage } = {}) {
   if (typeof lessonId !== "string" || !lessonId) return false;
   const store = readStore(storage);
   const key = entryKey(uid, lessonId);
-  if (!Object.hasOwn(store, key)) return false;
+  if (!hasOwn(store, key)) return false;
   delete store[key];
   return writeStore(storage, store);
 }

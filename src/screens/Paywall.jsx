@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import { tr, useLocale } from '../i18n';
 import { useEffect, useRef, useState } from "react";
 import {
@@ -131,7 +132,7 @@ function verifiedWebPlans(plans) {
     if (
       !expected ||
       !WEB_OFFER_KEYS.every((key) => plan[key] === expected[key]) ||
-      Object.hasOwn(normalized, plan.key)
+      hasOwn(normalized, plan.key)
     ) {
       return null;
     }

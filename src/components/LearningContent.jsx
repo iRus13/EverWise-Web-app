@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import { useEffect, useState } from "react";
 import { tr, useLocale } from "../i18n";
 import StatusScreen from "./StatusScreen.jsx";
@@ -37,7 +38,7 @@ export default function LearningContent({ kind, itemId, onBack, load = loadLearn
   }
   return (
     <StatusScreen
-      title={tr((Object.hasOwn(titles, kind) ? titles[kind] : titles.lesson)[ready?.error ? 1 : 0])}
+      title={tr((hasOwn(titles, kind) ? titles[kind] : titles.lesson)[ready?.error ? 1 : 0])}
       progressLabel={ready?.error ? undefined : tr(kind === "complete" ? "Getting your summary ready…" : "Getting your next activity ready…")}
       focusKey={`${kind}:${itemId}:${attempt}`}
       actions={<>

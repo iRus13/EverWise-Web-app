@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import { readWithDeadline } from "../utils/readWithDeadline.js";
 
 export const MAX_BILLING_RESPONSE_BYTES = 25_000;
@@ -61,7 +62,7 @@ const GRANTING_STATUSES = new Set(["trialing", "active"]);
 
 export class BillingAccessError extends Error {
   constructor(code = "BILLING_UNAVAILABLE", status = null, canManage = false) {
-    const safeCode = Object.hasOwn(SAFE_MESSAGES, code)
+    const safeCode = hasOwn(SAFE_MESSAGES, code)
       ? code
       : "BILLING_UNAVAILABLE";
     super(SAFE_MESSAGES[safeCode]);
@@ -452,7 +453,7 @@ const normalizedApiError = ({ payload, status }) => {
   if (
     typeof code !== "string" ||
     typeof message !== "string" ||
-    !Object.hasOwn(ERROR_STATUSES, code) ||
+    !hasOwn(ERROR_STATUSES, code) ||
     ERROR_STATUSES[code] !== status
   ) {
     return unavailable();

@@ -1,3 +1,4 @@
+import { hasOwn } from "./hasOwn.js";
 import { minimizeResearchSnapshot } from "../../server/partnerResearch.mjs";
 import { buildResearchSnapshot } from "./partnerResearch.js";
 import { isValidEmail, normalizeEmail } from "./validation.js";
@@ -130,7 +131,7 @@ function snapshotOwnData(value, state = { nodes: 0 }, depth = 0) {
       const descriptor = Reflect.getOwnPropertyDescriptor(value, key);
       if (
         !descriptor ||
-        !Object.hasOwn(descriptor, "value") ||
+        !hasOwn(descriptor, "value") ||
         descriptor.enumerable !== true
       ) {
         throw new TypeError("Recovery arrays cannot contain accessors.");
@@ -148,7 +149,7 @@ function snapshotOwnData(value, state = { nodes: 0 }, depth = 0) {
     const descriptor = Reflect.getOwnPropertyDescriptor(value, key);
     if (
       !descriptor ||
-      !Object.hasOwn(descriptor, "value") ||
+      !hasOwn(descriptor, "value") ||
       descriptor.enumerable !== true
     ) {
       throw new TypeError("Recovery objects cannot contain accessors.");
@@ -173,7 +174,7 @@ function normalizePartner(value) {
     return null;
   }
   const normalized = { name: value.name };
-  if (Object.hasOwn(value, "logoPath")) {
+  if (hasOwn(value, "logoPath")) {
     if (
       value.logoPath !== null &&
       (typeof value.logoPath !== "string" ||

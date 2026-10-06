@@ -13,7 +13,7 @@ export function catalogSource() {
   const arrays = Object.entries({ lessonsByOrder, challengesByOrder, examsByOrder })
     .map(([name, items]) => `export const ${name} = [\n${items.map(item => `  ${JSON.stringify(courseMetadata(item))}`).join(",\n")}\n];\n`)
     .join("\n");
-  return header + arrays + `\nexport function pathOrderForPhase(phase) {\n  return lessonsByOrder.filter(item => item.phase === phase).at(-1)?.pathOrder ?? -1;\n}\n`;
+  return header + arrays + `\nexport function pathOrderForPhase(phase) {\n  const phaseLessons = lessonsByOrder.filter(item => item.phase === phase);\n  return phaseLessons[phaseLessons.length - 1]?.pathOrder ?? -1;\n}\n`;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

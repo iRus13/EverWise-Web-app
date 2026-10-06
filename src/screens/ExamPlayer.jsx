@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 import {useLearningText} from "../i18n/learning.js";
 import { useState } from "react";
 import BlockShell from "../components/blocks/BlockShell";
@@ -59,7 +60,7 @@ export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPo
 
   // Quiz phase — one question at a time, no explanations until the end.
   const q = exam.questions[qIndex];
-  const reading = Object.hasOwn(examPresentations, q.question) ? examPresentations[q.question] : {question:q.question};
+  const reading = hasOwn(examPresentations, q.question) ? examPresentations[q.question] : {question:q.question};
   const statement = reading.question === "True or false?";
   const narration = (statement ? [reading.question, reading.story] : [reading.story, reading.question]).filter(Boolean).map(text => t(text)).join("\n\n");
   const progress = qIndex + 1;

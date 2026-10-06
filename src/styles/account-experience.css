@@ -54,7 +54,7 @@ html:is([data-expanded-text="true"], [data-text-size="size-6"], [data-text-size=
 @media (min-width: 768px) {
   .account-content { padding-top: 32px; }
   .account-intro { margin-top: 48px; }
-  .profile-flow.onboarding-focus { min-height: calc(100dvh - 3rem); }
+  .profile-flow.onboarding-focus { min-height: calc(var(--app-viewport-height, 100vh) - 3rem); }
   .profile-flow .interview-body { overflow: visible; }
   .profile-flow > header { padding-top: 32px; }
 }
