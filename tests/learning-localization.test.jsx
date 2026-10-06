@@ -22,12 +22,68 @@ const lessons = lessonsByOrder.filter(item => item.phase === 1);
 const challenge = challengesByOrder.find(item => item.phase === 1);
 const accountLessons = lessonsByOrder.filter(item => ["strong-passwords","password-managers","two-factor-auth"].includes(item.id));
 const safeInternetItems = [...lessonsByOrder, ...challengesByOrder].filter(item => item.phase === 2);
+const communicationItems = [...lessonsByOrder, ...challengesByOrder].filter(item => item.phase === 3);
 const internet = lessons.find(item => item.id === "internet");
 const t = (text, values) => learningText(text, "es", values);
 const blockOf = type => internet.blocks.find(block => block.type === type);
 const renderBlock = (block, props = {}) => render(<BlockRenderer block={block} progress={1} progressTotal={2} onBack={vi.fn()} onContinue={vi.fn()} {...props} />);
 beforeEach(() => setLocale("es"));
 afterEach(() => {cleanup(); setLocale("en"); vi.unstubAllGlobals();});
+
+test("all Communication display copy and word banks have Spanish without changing choice identity", () => {
+  const keys = new Set();
+  const metadata = new Set(["id","type","track","variant","nextKind","textRole","tier","url","videoUrl","videoId","color","accent","lessonId"]);
+  function collect(value) {
+    if (typeof value === "string") keys.add(value);
+    else if (Array.isArray(value)) value.forEach(collect);
+    else if (value && typeof value === "object") Object.entries(value).filter(([key]) => !metadata.has(key)).forEach(([,child]) => collect(child));
+  }
+  communicationItems.forEach(collect);
+  expect(communicationItems).toHaveLength(8);
+  expect(keys.size).toBe(869);
+  for (const key of keys) {
+    expect(spanish[key] || t(key) !== key, key).toBeTruthy();
+    expect(t(key).split("______").length, key).toBe(key.split("______").length);
+  }
+  for (const item of communicationItems) for (const block of item.blocks) {
+    const options = (block.options ?? block.wordBank ?? []).map(option => typeof option === "string" ? option : option.text);
+    expect(new Set(options.map(option => t(option).toLowerCase())).size).toBe(options.length);
+    for (const word of block.wordBank ?? []) expect(spanish[`fillblank.word.${word}`], word).toBeTruthy();
+  }
+});
+
+test.each(communicationItems.filter(item => item.quiz))("$id opens and completes with Spanish Communication copy", lesson => {
+  const {unmount} = render(<LessonPlayer lesson={lesson} onBack={vi.fn()} onComplete={vi.fn()} />);
+  expect(screen.getByRole("heading", {level:1})).toHaveTextContent(t(lesson.blocks[0].heading));
+  expect(screen.getByRole("button", {name:"Leer en voz alta",exact:true})).toBeVisible();
+  unmount();
+  render(<Complete lesson={lesson} onDone={vi.fn()} />);
+  expect(screen.getByText(t(lesson.complete.subtitle), {exact:true})).toBeVisible();
+});
+
+test.each(communicationItems)("$id fill practice scores canonical answers and inserts translated words", item => {
+  const block = item.blocks.find(block => block.type === "fillblank");
+  const onContinue = vi.fn();
+  renderBlock(block, {onContinue});
+  for (const [index, question] of block.questions.entries()) {
+    fireEvent.click(screen.getByRole("button", {name:t(question.answer),exact:true}));
+    const {before, word, after} = fillBlankParts(question.text, question.answer, t);
+    expect(screen.getByRole("heading", {level:1})).toHaveTextContent(before + word + after);
+    expect(screen.getByRole("status")).toHaveClass("lesson-feedback-positive");
+    fireEvent.click(screen.getByRole("button", {name:index === block.questions.length - 1 ? "Continuar" : "Siguiente",exact:true}));
+  }
+  expect(onContinue).toHaveBeenCalledOnce();
+});
+
+test("Communication challenge completion leads to the translated exam", () => {
+  const challenge = communicationItems.find(item => item.id === "phase3-challenge");
+  const onComplete = vi.fn();
+  render(<ChallengePlayer challenge={challenge} onBack={vi.fn()} onComplete={onComplete}
+    initialPosition={{kind:"challenge",revision:assessmentRevision(challenge),blockIndex:4,finished:true}} />);
+  expect(screen.getByText("Evaluación final de la etapa 3: Comunicación", {exact:true})).toBeVisible();
+  fireEvent.click(screen.getByRole("button", {name:"Volver a tu recorrido",exact:true}));
+  expect(onComplete).toHaveBeenCalledOnce();
+});
 
 test("all Safe Internet Habits lessons and the final challenge have translated copy and distinct answers", () => {
   const keys = new Set();
@@ -455,9 +511,11 @@ test("Spanish path search matches accented translated titles and original Englis
 
 test("Spanish settings and later phases disclose the actual translation boundary", () => {
   render(<><LanguageSelect showContentNotice /><LessonPath completedLessons={[]} onSelectLesson={vi.fn()} onBack={vi.fn()} /></>);
-  expect(screen.getByRole("status")).toHaveTextContent("Fundamentos y Hábitos seguros en Internet están disponibles en español");
+  expect(screen.getByRole("status")).toHaveTextContent("Fundamentos, Hábitos seguros en Internet y Comunicación están disponibles en español");
   fireEvent.click(screen.getByRole("button",{name:/Etapa 2 Hábitos seguros en Internet/}));
   expect(screen.queryByText("Las tres primeras lecciones están disponibles en español. El resto de esta etapa sigue en inglés.")).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button",{name:/Etapa 3 Comunicación/}));
+  expect(screen.queryByText("Las lecciones de esta etapa están actualmente en inglés.")).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button",{name:/Etapa 4/}));
   expect(screen.getByText("Las lecciones de esta etapa están actualmente en inglés.")).toBeVisible();
 });

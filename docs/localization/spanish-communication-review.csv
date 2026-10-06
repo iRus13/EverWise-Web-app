@@ -1,0 +1,956 @@
+English key,Spanish presentation,Native locations
+3.1,3.1,safe-texting/lessonNumber
+Safe Texting,Mensajes de texto seguros,safe-texting/title; sharing-location/complete/learned/0
+Smart Texter,Mensajes seguros,safe-texting/badge
+Explain what text messages (SMS) are.,Explicar qué son los mensajes de texto (SMS).,safe-texting/goals/0
+Recognize common text message scams.,Reconocer las estafas habituales por mensaje de texto.,safe-texting/goals/1; safe-texting/complete/learned/0
+Identify suspicious links and requests.,Identificar enlaces y solicitudes sospechosos.,safe-texting/goals/2
+Know how to respond safely to unexpected messages.,Saber cómo responder de forma segura a mensajes inesperados.,safe-texting/goals/3
+What is Texting?,¿Qué son los mensajes de texto?,safe-texting/blocks/0/heading
+"Texting is one of the easiest ways to stay connected with family and friends. You can use it to say hello, share photos, share your location with trusted people, and keep in touch every day.","Los mensajes de texto son una forma sencilla de mantenerte en contacto con familiares y amistades. Puedes saludar, enviar fotos, compartir tu ubicación con personas de confianza y conversar cada día.",safe-texting/blocks/0/text
+Remember: only text people you know. Be careful with messages from unknown numbers.,Recuerda: escribe solo a personas que conozcas. Ten cuidado con los mensajes de números desconocidos.,safe-texting/blocks/0/footer
+Understanding the Screen,Conoce la pantalla,safe-texting/blocks/1/heading
+Every texting app has the same basic parts:,Las aplicaciones de mensajes tienen estos elementos básicos:,safe-texting/blocks/1/text
+Contact Name - the person you're texting,Nombre del contacto: la persona con la que conversas,safe-texting/blocks/1/bullets/0
+Message Bubbles - each bubble is one text message,Burbujas: cada una contiene un mensaje,safe-texting/blocks/1/bullets/1
+Text Box - where you type your message,Campo de texto: donde escribes tu mensaje,safe-texting/blocks/1/bullets/2
+Send Button - sends your message,Botón Enviar: envía tu mensaje,safe-texting/blocks/1/bullets/3
+Emoji Button - adds smiley faces and other emojis,Botón de emojis: añade caritas y otros símbolos,safe-texting/blocks/1/bullets/4
+"Attachment Button - lets you send photos, files, or your location","Botón Adjuntar: permite enviar fotos, archivos o tu ubicación",safe-texting/blocks/1/bullets/5
+"What Do ""Sent,"" ""Delivered,"" and ""Read"" Mean?","¿Qué significan «Enviado», «Entregado» y «Leído»?",safe-texting/blocks/2/heading
+"When you send a text, you may see a small word underneath it.","Al enviar un mensaje, puede aparecer una palabra debajo.",safe-texting/blocks/2/text
+Sending - your phone is working to send the message,Enviando: tu teléfono está intentando enviar el mensaje,safe-texting/blocks/2/bullets/0
+Sent - your message left your phone,Enviado: el mensaje ya salió de tu teléfono,safe-texting/blocks/2/bullets/1
+"Delivered - their phone received it, but they may not have opened it yet","Entregado: el teléfono de la otra persona lo recibió, pero quizá aún no lo haya abierto",safe-texting/blocks/2/bullets/2
+Read - the person has opened and read your message (if they have Read Receipts turned on),"Leído: la persona abrió y leyó tu mensaje, si tiene activadas las confirmaciones de lectura",safe-texting/blocks/2/bullets/3
+"Not everyone shares read receipts. If you don't see ""Read,"" it doesn't mean they are ignoring you.","No todo el mundo comparte confirmaciones de lectura. Si no aparece «Leído», no significa que te estén ignorando.",safe-texting/blocks/2/footer
+Blue vs. Green Text Bubbles (iPhone),Burbujas azules y verdes en el iPhone,safe-texting/blocks/3/heading
+"Blue bubbles mean the message uses iMessage between Apple devices over Wi-Fi or mobile data. Delivery and read receipts may appear.
+
+Green bubbles mean the message uses RCS or SMS/MMS. RCS can also show delivery and read receipts, depending on support and settings. Available features depend on your phone, carrier and the other person's service.
+
+Bubble color tells you the message type. It does not prove that the sender or a link is trustworthy.","Las burbujas azules indican que el mensaje usa iMessage entre dispositivos Apple, por wifi o datos móviles. Pueden aparecer confirmaciones de entrega y lectura.
+
+Las burbujas verdes indican que el mensaje usa RCS o SMS/MMS. RCS también puede mostrar confirmaciones de entrega y lectura, según la compatibilidad y los ajustes. Las funciones disponibles dependen de tu teléfono, tu compañía telefónica y el servicio de la otra persona.
+
+El color de la burbuja indica el tipo de mensaje. No demuestra que el remitente o un enlace sean de confianza.",safe-texting/blocks/3/text
+Quick Tip,Consejo breve,safe-texting/blocks/4/heading; safe-texting/blocks/14/heading; video-calls/blocks/10/heading; email-basics/blocks/10/heading; blocking-numbers/blocks/10/heading; reporting-spam/blocks/10/heading; sharing-photos/blocks/10/heading; sharing-location/blocks/10/heading
+"Don't worry if someone doesn't reply right away. A message marked Delivered or Read doesn't mean the person is available to respond immediately. They may be driving, busy, or simply waiting until later to reply.","No te preocupes si alguien tarda en responder. Que un mensaje aparezca como entregado o leído no significa que la persona pueda contestar en ese momento. Puede estar conduciendo, ocupada o esperando a tener tiempo.",safe-texting/blocks/4/text
+Not Every Text Message Is Real,No todos los mensajes son auténticos,safe-texting/blocks/5/heading
+"Unfortunately, scammers also send text messages. Their goal is often to steal money, passwords, credit card numbers, or personal information. Scam texts often try to make you panic or act quickly.","Los estafadores también envían mensajes de texto. Suelen intentar robar dinero, contraseñas, números de tarjeta o información personal. A menudo buscan asustarte o hacerte actuar con prisa.",safe-texting/blocks/5/text
+The S.T.O.P. Method,El método S.T.O.P.,safe-texting/blocks/6/heading
+Pause before responding to any unexpected message.,Haz una pausa antes de responder a un mensaje inesperado.,safe-texting/blocks/6/text
+S - Stop. Don't rush or click any links.,S: Sin prisa. Detente y no abras enlaces.,safe-texting/blocks/6/bullets/0
+T - Think. Does this message make sense? Were you expecting it?,T: Tómate un momento. ¿Tiene sentido el mensaje? ¿Lo esperabas?,safe-texting/blocks/6/bullets/1
+"O - Observe. Look for warning signs like urgency, strange links, requests for money, or spelling mistakes.","O: Observa. Busca señales de alerta: urgencia, enlaces extraños, solicitudes de dinero o faltas de ortografía.",safe-texting/blocks/6/bullets/2
+"P - Protect. If you're unsure, delete the message or contact the company or person using a trusted phone number or official website, not the information in the text.","P: Protégete. Si tienes dudas, elimina el mensaje o contacta con la empresa o la persona mediante un número de confianza o su sitio web oficial. No uses los datos del mensaje.",safe-texting/blocks/6/bullets/3
+Common Scam Text Messages,Estafas habituales por mensaje,safe-texting/blocks/7/heading
+Examples include:,Algunos ejemplos:,safe-texting/blocks/7/text
+"""Your package couldn't be delivered. Click here.""",«No pudimos entregar tu paquete. Pulsa aquí».,safe-texting/blocks/7/bullets/0
+"""Your bank account has been locked. Verify now.""",«Tu cuenta bancaria está bloqueada. Verifícala ahora».,safe-texting/blocks/7/bullets/1
+"""Congratulations! You won a free iPhone!""",«¡Felicidades! ¡Has ganado un iPhone gratis!»,safe-texting/blocks/7/bullets/2
+"""You owe unpaid toll fees. Pay immediately.""",«Tienes peajes pendientes. Paga inmediatamente».,safe-texting/blocks/7/bullets/3
+"""The IRS is texting you about unpaid taxes.""",«El IRS te escribe por impuestos sin pagar».,safe-texting/blocks/7/bullets/4
+These messages often include a link that asks you to click.,Estos mensajes suelen incluir un enlace que te piden abrir.,safe-texting/blocks/7/footer
+Which Text Messages Look Suspicious?,¿Qué mensajes parecen sospechosos?,safe-texting/blocks/8/title
+Tap every message that seems suspicious.,Toca todos los mensajes que te parezcan sospechosos.,safe-texting/blocks/8/prompt
+"""Congratulations! You won a free vacation. Click here to claim it.""",«¡Felicidades! Has ganado unas vacaciones gratis. Pulsa aquí para reclamarlas».,safe-texting/blocks/8/options/0/text
+"""Your bank account is locked. Verify your information now.""",«Tu cuenta bancaria está bloqueada. Verifica tus datos ahora».,safe-texting/blocks/8/options/1/text
+"""Unpaid toll detected. Pay immediately using this link.""",«Hay un peaje sin pagar. Paga inmediatamente con este enlace».,safe-texting/blocks/8/options/2/text
+"""Package delivery failed. Click here to reschedule.""",«La entrega del paquete falló. Pulsa aquí para programarla de nuevo».,safe-texting/blocks/8/options/3/text
+"""Hi Grandma! Are we still having lunch tomorrow?""","«¡Hola, abuela! ¿Seguimos con el almuerzo de mañana?»",safe-texting/blocks/8/options/4/text
+"""Your dentist appointment is tomorrow at 2:00 PM.""",«Tu cita con el dentista es mañana a las 2:00 p. m.»,safe-texting/blocks/8/options/5/text
+"""Can you pick up milk on your way home?""",«¿Puedes comprar leche de camino a casa?»,safe-texting/blocks/8/options/6/text
+Excellent! Messages that create urgency or ask you to click links unexpectedly are common scam tactics.,¡Bien hecho! Crear urgencia o pedirte que abras enlaces inesperados son tácticas habituales de las estafas.,safe-texting/blocks/8/feedback
+Not quite. Legitimate businesses usually won't pressure you to click a link immediately or ask for sensitive information by text.,Repasémoslo. Las empresas legítimas no suelen presionarte para abrir un enlace de inmediato ni pedirte datos sensibles por mensaje de texto.,safe-texting/blocks/8/incorrectFeedback
+Flashcards,Tarjetas,safe-texting/blocks/9/title; video-calls/blocks/5/title; email-basics/blocks/5/title; blocking-numbers/blocks/5/title; reporting-spam/blocks/5/title; sharing-photos/blocks/5/title; sharing-location/blocks/5/title
+Text Message (SMS),Mensaje de texto (SMS),safe-texting/blocks/9/cards/0/front
+A short message sent between phones.,Un mensaje breve que se envía entre teléfonos.,safe-texting/blocks/9/cards/0/back
+Scam Text,Mensaje de estafa,safe-texting/blocks/9/cards/1/front
+A fake text message that tries to steal money or personal information.,Un mensaje falso que intenta robar dinero o información personal.,safe-texting/blocks/9/cards/1/back
+Suspicious Link,Enlace sospechoso,safe-texting/blocks/9/cards/2/front
+A web link that may lead to a fake or unsafe website.,Un enlace que puede llevar a un sitio web falso o inseguro.,safe-texting/blocks/9/cards/2/back
+Verification Code,Código de verificación,safe-texting/blocks/9/cards/3/front
+A temporary code used to confirm it's really you signing in.,Un código temporal que confirma que eres tú quien está iniciando sesión.,safe-texting/blocks/9/cards/3/back
+Unknown Sender,Remitente desconocido,safe-texting/blocks/9/cards/4/front
+Someone you don't recognize or weren't expecting to hear from.,Alguien que no reconoces o de quien no esperabas recibir un mensaje.,safe-texting/blocks/9/cards/4/back
+Fill in the Blank,Completa la frase,safe-texting/blocks/10/title; video-calls/blocks/6/title; email-basics/blocks/6/title; blocking-numbers/blocks/6/title; reporting-spam/blocks/6/title; sharing-photos/blocks/6/title; sharing-location/blocks/6/title
+Link,Enlace,safe-texting/blocks/10/wordBank/0; safe-texting/blocks/10/questions/0/answer
+Official,Oficial,safe-texting/blocks/10/wordBank/1; safe-texting/blocks/10/questions/1/answer; safe-texting/quiz/3/options/0
+Scam,Estafa,safe-texting/blocks/10/wordBank/2; safe-texting/blocks/10/questions/2/answer
+Unknown,Desconocido,safe-texting/blocks/10/wordBank/3
+"If you receive a suspicious text, don't click the ______.","Si recibes un mensaje sospechoso, no abras el ______.",safe-texting/blocks/10/questions/0/text
+"If you're unsure whether a text is real, contact the company using its ______ website or app.","Si dudas de un mensaje, contacta con la empresa mediante su aplicación o sitio web ______.",safe-texting/blocks/10/questions/1/text
+A fake text designed to steal information is called a ______.,Un mensaje falso que intenta robar información se llama ______.,safe-texting/blocks/10/questions/2/text
+Scenario 1,Situación 1,safe-texting/blocks/11/title; video-calls/blocks/7/title; email-basics/blocks/7/title; blocking-numbers/blocks/7/title; reporting-spam/blocks/7/title; sharing-photos/blocks/7/title; sharing-location/blocks/7/title
+"Margaret receives this text: ""FedEx: Your package could not be delivered. Click here immediately to avoid a return fee."" She isn't expecting a package. What should she do?",Margaret recibe este mensaje: «FedEx: No pudimos entregar tu paquete. Pulsa aquí de inmediato para evitar un cargo por devolución». No espera ningún paquete. ¿Qué debería hacer?,safe-texting/blocks/11/text
+Click the link.,Pulsar el enlace.,safe-texting/blocks/11/options/0; safe-texting/blocks/15/options/0; safe-texting/quiz/4/options/0; email-basics/blocks/11/options/0; email-basics/blocks/12/options/1; email-basics/blocks/13/options/1; blocking-numbers/blocks/7/options/1; reporting-spam/quiz/5/options/1
+Reply with her address.,Responder con su dirección.,safe-texting/blocks/11/options/1
+Ignore the link and check directly with the shipping company if she has concerns.,No abrir el enlace y consultar directamente con la empresa de envíos si tiene dudas.,safe-texting/blocks/11/options/2
+Send the message to friends.,Enviar el mensaje a sus amistades.,safe-texting/blocks/11/options/3
+"If you're not expecting a package, this message may be a scam. Checking with the shipping company directly is safer.","Si no esperas un paquete, este mensaje podría ser una estafa. Es más seguro consultar directamente con la empresa de envíos.",safe-texting/blocks/11/explanation
+"Margaret receives this text: ""FedEx: Your package could not be delivered. Click here immediately to avoid a return fee."" She isn't expecting a package.",Margaret recibe este mensaje: «FedEx: No pudimos entregar tu paquete. Pulsa aquí de inmediato para evitar un cargo por devolución». No espera ningún paquete.,safe-texting/blocks/11/presentation/story
+What should she do?,¿Qué debería hacer?,safe-texting/blocks/11/presentation/question; safe-texting/blocks/13/presentation/question; video-calls/blocks/7/presentation/question; email-basics/blocks/7/presentation/question; email-basics/blocks/9/presentation/question; blocking-numbers/blocks/7/presentation/question; blocking-numbers/blocks/9/presentation/question; reporting-spam/blocks/7/presentation/question; reporting-spam/blocks/9/presentation/question; sharing-photos/blocks/7/presentation/question; sharing-photos/blocks/9/presentation/question; sharing-location/blocks/9/presentation/question
+Scenario 2,Situación 2,safe-texting/blocks/12/title; video-calls/blocks/8/title; email-basics/blocks/8/title; blocking-numbers/blocks/8/title; reporting-spam/blocks/8/title; sharing-photos/blocks/8/title; sharing-location/blocks/8/title
+"Robert receives a text that says: ""Your bank account has been frozen. Click here to unlock it."" What should he do?",Robert recibe un mensaje: «Tu cuenta bancaria está congelada. Pulsa aquí para desbloquearla». ¿Qué debería hacer?,safe-texting/blocks/12/text
+Click the link immediately.,Abrir el enlace de inmediato.,safe-texting/blocks/12/options/0; email-basics/blocks/7/options/0; reporting-spam/blocks/8/options/1
+Reply with his password.,Responder con su contraseña.,safe-texting/blocks/12/options/1; reporting-spam/blocks/8/options/0
+Open his bank's official app or call the bank using the phone number on the back of his debit or credit card.,Abrir la aplicación oficial de su banco o llamar al número del reverso de su tarjeta de débito o crédito.,safe-texting/blocks/12/options/2
+Send the text to his family.,Enviar el mensaje a su familia.,safe-texting/blocks/12/options/3
+"Always contact your bank using trusted contact information, not the link in the text.","Contacta siempre con tu banco mediante datos de confianza, sin usar el enlace del mensaje.",safe-texting/blocks/12/explanation
+"Robert receives a text that says: ""Your bank account has been frozen. Click here to unlock it.""",Robert recibe un mensaje: «Tu cuenta bancaria está congelada. Pulsa aquí para desbloquearla».,safe-texting/blocks/12/presentation/story
+What should he do?,¿Qué debería hacer?,safe-texting/blocks/12/presentation/question; video-calls/blocks/8/presentation/question; blocking-numbers/blocks/8/presentation/question; reporting-spam/blocks/8/presentation/question; sharing-photos/blocks/8/presentation/question; sharing-location/blocks/8/presentation/question
+Scenario 3,Situación 3,safe-texting/blocks/13/title; video-calls/blocks/9/title; email-basics/blocks/9/title; blocking-numbers/blocks/9/title; reporting-spam/blocks/9/title; sharing-photos/blocks/9/title; sharing-location/blocks/9/title
+"Linda receives a text from her granddaughter: ""Hi Grandma! Can you call me when you have time?"" She recognizes the phone number. What should she do?","Linda recibe un mensaje de su nieta: «¡Hola, abuela! ¿Me llamas cuando puedas?». Reconoce el número. ¿Qué debería hacer?",safe-texting/blocks/13/text
+Call or reply if she wants to.,Llamar o responder si quiere.,safe-texting/blocks/13/options/0
+Report it as spam.,Marcarlo como mensaje no deseado.,safe-texting/blocks/13/options/1; blocking-numbers/quiz/4/options/1
+Delete the message immediately.,Eliminar el mensaje de inmediato.,safe-texting/blocks/13/options/2
+Give her banking password.,Dar su contraseña bancaria.,safe-texting/blocks/13/options/3
+This is a normal conversation with someone she knows. Not every text is a scam.,Es una conversación normal con alguien que conoce. No todos los mensajes son estafas.,safe-texting/blocks/13/explanation
+"Linda receives a text from her granddaughter: ""Hi Grandma! Can you call me when you have time?"" She recognizes the phone number.","Linda recibe un mensaje de su nieta: «¡Hola, abuela! ¿Me llamas cuando puedas?». Reconoce el número.",safe-texting/blocks/13/presentation/story
+"STOP before you tap a link. Ask yourself: Was I expecting this message? Does the sender make sense? Is the message creating pressure or fear? Can I check another way? If something feels wrong, pause and verify first.","DETENTE antes de abrir un enlace. Pregúntate: ¿Esperaba este mensaje? ¿Reconozco al remitente? ¿El mensaje intenta presionarme o asustarme? ¿Puedo comprobarlo de otra forma? Si algo no encaja, haz una pausa y verifica primero.",safe-texting/blocks/14/text
+What Should You Do?,¿Qué deberías hacer?,safe-texting/blocks/15/title; safe-texting/blocks/16/title; safe-texting/blocks/17/title; safe-texting/blocks/18/title; video-calls/blocks/11/title; video-calls/blocks/12/title; video-calls/blocks/13/title; email-basics/blocks/11/title; email-basics/blocks/12/title; email-basics/blocks/13/title; blocking-numbers/blocks/11/title; blocking-numbers/blocks/12/title; blocking-numbers/blocks/13/title; reporting-spam/blocks/11/title; reporting-spam/blocks/12/title; reporting-spam/blocks/13/title; sharing-photos/blocks/11/title; sharing-photos/blocks/12/title; sharing-photos/blocks/13/title; sharing-location/blocks/11/title; sharing-location/blocks/12/title; sharing-location/blocks/13/title
+"You receive: ""Congratulations! You've won a $500 gift card!""",Recibes: «¡Felicidades! ¡Has ganado una tarjeta de regalo de 500 dólares!»,safe-texting/blocks/15/text
+Reply with your address.,Responder con tu dirección.,safe-texting/blocks/15/options/1; email-basics/blocks/11/options/1
+Ignore or delete the message unless you know it's legitimate.,"Ignorar o eliminar el mensaje, salvo que sepas que es legítimo.",safe-texting/blocks/15/options/2
+Send your bank information.,Enviar tus datos bancarios.,safe-texting/blocks/15/options/3
+You receive a text asking you to confirm your Social Security number.,Recibes un mensaje que pide confirmar tu número del Seguro Social.,safe-texting/blocks/16/text
+Reply with the number.,Responder con el número.,safe-texting/blocks/16/options/0
+Call the number in the text.,Llamar al número del mensaje.,safe-texting/blocks/16/options/1
+Do not reply. Contact the organization through its official website or phone number if needed.,"No responder. Si hace falta, contactar con la organización mediante su sitio web o teléfono oficial.",safe-texting/blocks/16/options/2
+Share the message online.,Publicar el mensaje en internet.,safe-texting/blocks/16/options/3
+A friend sends you a link to funny photos. You weren't expecting it. What should you do?,Una amistad te envía un enlace a unas fotos divertidas. No lo esperabas. ¿Qué deberías hacer?,safe-texting/blocks/17/text
+Click it immediately.,Pulsarlo inmediatamente.,safe-texting/blocks/17/options/0
+"If it seems unusual, ask your friend if they really sent it before opening the link.","Si te parece extraño, preguntarle si de verdad lo envió antes de abrir el enlace.",safe-texting/blocks/17/options/1
+Forward it to everyone.,Reenviarlo a todo el mundo.,safe-texting/blocks/17/options/2
+Enter your password.,Introducir tu contraseña.,safe-texting/blocks/17/options/3
+"You receive a text with a verification code, but you didn't request one.","Recibes un código de verificación por mensaje, pero no lo solicitaste.",safe-texting/blocks/18/text
+Share it with whoever asks.,Compartirlo con quien lo pida.,safe-texting/blocks/18/options/0
+Reply to the text.,Responder al mensaje.,safe-texting/blocks/18/options/1
+"Do not share the code. If you're concerned, check your account security.","No compartir el código. Si te preocupa, revisar la seguridad de tu cuenta.",safe-texting/blocks/18/options/2
+Post the code on social media.,Publicar el código en redes sociales.,safe-texting/blocks/18/options/3
+Remember,Recordar,safe-texting/blocks/19/heading; video-calls/blocks/14/heading; email-basics/blocks/14/heading; blocking-numbers/blocks/14/heading; reporting-spam/blocks/14/heading; sharing-photos/blocks/14/heading; sharing-location/blocks/14/heading
+"Safe texting habits include: think before you click, verify unexpected messages, use official apps and websites, and never share passwords or verification codes by text. Scammers often create urgency. Legitimate organizations generally won't ask for sensitive information through unexpected text messages.","Para usar los mensajes con seguridad: piensa antes de abrir enlaces, verifica los mensajes inesperados, usa aplicaciones y sitios web oficiales, y nunca compartas contraseñas ni códigos de verificación por mensaje. Los estafadores suelen crear urgencia. Las organizaciones legítimas no suelen pedir datos sensibles mediante mensajes inesperados.",safe-texting/blocks/19/text
+What is a text message (SMS)?,¿Qué es un mensaje de texto (SMS)?,safe-texting/quiz/0/question
+A phone call,Una llamada telefónica,safe-texting/quiz/0/options/0
+A short message sent between phones,Un mensaje breve que se envía entre teléfonos,safe-texting/quiz/0/options/1
+A social media post,Una publicación en redes sociales,safe-texting/quiz/0/options/2
+An email,Un correo electrónico,safe-texting/quiz/0/options/3
+Which is a common scam text?,¿Cuál es un mensaje de estafa habitual?,safe-texting/quiz/1/question
+"""Dinner at 6 tonight.""",«Cenamos a las 6».,safe-texting/quiz/1/options/0
+"""Your bank account is locked. Click here.""",«Tu cuenta bancaria está bloqueada. Pulsa aquí».,safe-texting/quiz/1/options/1
+"""Happy birthday!""",«¡Feliz cumpleaños!»,safe-texting/quiz/1/options/2
+"True or False: If a text creates urgency and asks you to click a link, you should stop and think before clicking.","Verdadero o falso: si un mensaje crea urgencia y te pide abrir un enlace, conviene detenerse y pensar antes de hacerlo.",safe-texting/quiz/2/question
+False,Falso,safe-texting/quiz/2/options/0; video-calls/quiz/2/options/1; email-basics/quiz/2/options/1; blocking-numbers/quiz/2/options/1; reporting-spam/quiz/2/options/0; sharing-photos/quiz/2/options/0; sharing-location/quiz/2/options/1
+True,Verdadero,safe-texting/quiz/2/options/1; video-calls/quiz/2/options/0; email-basics/quiz/2/options/0; blocking-numbers/quiz/2/options/0; reporting-spam/quiz/2/options/1; sharing-photos/quiz/2/options/1; sharing-location/quiz/2/options/0
+"If you're unsure about a text from a company, contact them using their ______ website or app.","Si dudas de un mensaje de una empresa, contacta con ella mediante su aplicación o sitio web ______.",safe-texting/quiz/3/question
+Password,Contraseña,safe-texting/quiz/3/options/1
+Camera,Cámara,safe-texting/quiz/3/options/2; video-calls/blocks/5/cards/1/front; video-calls/blocks/6/wordBank/1; video-calls/blocks/6/questions/1/answer; video-calls/quiz/7/options/0; email-basics/quiz/3/options/1; blocking-numbers/quiz/3/options/1; sharing-location/quiz/3/options/1
+A text says you won a prize you never entered. What should you do?,Un mensaje dice que ganaste un premio en un sorteo en el que no participaste. ¿Qué deberías hacer?,safe-texting/quiz/4/question
+Reply with your information.,Responder con tus datos.,safe-texting/quiz/4/options/1
+Ignore or delete the message unless you can verify it's legitimate.,"Ignorar o eliminar el mensaje, salvo que puedas verificar que es legítimo.",safe-texting/quiz/4/options/2
+Send money to claim it.,Enviar dinero para reclamarlo.,safe-texting/quiz/4/options/3
+Which information should you never send in response to an unexpected text?,¿Qué información nunca deberías enviar en respuesta a un mensaje inesperado?,safe-texting/quiz/5/question
+Your favorite color,Tu color favorito,safe-texting/quiz/5/options/0
+"Passwords, verification codes, Social Security numbers, and bank account information","Contraseñas, códigos de verificación, números del Seguro Social y datos bancarios",safe-texting/quiz/5/options/1
+A message from your granddaughter asking about dinner arrives from her usual phone number. What should you do?,Tu nieta te pregunta por la cena desde su número habitual. ¿Qué deberías hacer?,safe-texting/quiz/6/question
+Assume it's a scam automatically.,Dar por hecho que es una estafa.,safe-texting/quiz/6/options/0
+"Reply or call if you want to, since you recognize the sender.","Responder o llamar si quieres, ya que reconoces a la persona.",safe-texting/quiz/6/options/1
+Report her as spam.,Marcar a tu nieta como remitente no deseado.,safe-texting/quiz/6/options/2
+Send your banking password.,Enviar tu contraseña bancaria.,safe-texting/quiz/6/options/3
+"If you're unsure whether a text is real, what's the safest next step?","Si dudas de un mensaje, ¿cuál es el siguiente paso más seguro?",safe-texting/quiz/7/question
+Click the link to check.,Abrir el enlace para comprobarlo.,safe-texting/quiz/7/options/0
+Reply asking if it's a scam.,Responder para preguntar si es una estafa.,safe-texting/quiz/7/options/1; reporting-spam/quiz/7/options/1
+"Contact the company using its official website, app, or phone number.","Contactar con la empresa mediante su sitio web, aplicación o teléfono oficial.",safe-texting/quiz/7/options/2
+Ignore every text forever.,Ignorar todos los mensajes para siempre.,safe-texting/quiz/7/options/3
+Great Job!,¡Muy bien!,safe-texting/complete/title; video-calls/complete/title; email-basics/complete/title; blocking-numbers/complete/title; reporting-spam/complete/title; sharing-photos/complete/title
+You completed Lesson 1: Safe Texting!,¡Completaste la lección 1: Mensajes seguros!,safe-texting/complete/subtitle
+Avoid suspicious links.,Evitar enlaces sospechosos.,safe-texting/complete/learned/1
+Verify messages safely.,Verificar mensajes de forma segura.,safe-texting/complete/learned/2
+Communicate confidently through text.,Comunicarte por mensajes con confianza.,safe-texting/complete/learned/3
+Video Calls,Videollamadas,safe-texting/complete/next; video-calls/title; sharing-location/complete/learned/1
+3.2,3.2,video-calls/lessonNumber
+Video Call Pro,Experto en videollamadas,video-calls/badge
+Explain what a video call is.,Explicar qué es una videollamada.,video-calls/goals/0
+Join a video call safely.,Unirte a una videollamada de forma segura.,video-calls/goals/1
+Turn the camera and microphone on or off.,Activar o desactivar la cámara y el micrófono.,video-calls/goals/2
+Recognize fake meeting invitations.,Reconocer invitaciones falsas a reuniones.,video-calls/goals/3
+Know basic video call etiquette.,Conocer las normas básicas para una videollamada.,video-calls/goals/4
+What Is a Video Call?,¿Qué es una videollamada?,video-calls/blocks/0/heading
+"A video call lets you see and talk to another person over the internet. People use video calls to talk with family and friends, meet with doctors (telehealth), attend meetings, take online classes, and join community or religious groups.","Una videollamada permite ver y hablar con otra persona por internet. Sirve para conversar con familiares y amistades, tener consultas médicas a distancia, asistir a reuniones, tomar clases y participar en grupos comunitarios o religiosos.",video-calls/blocks/0/text
+Zoom,Zoom,video-calls/blocks/0/bullets/0
+FaceTime,FaceTime,video-calls/blocks/0/bullets/1
+Google Meet,Google Meet,video-calls/blocks/0/bullets/2
+Microsoft Teams,Microsoft Teams,video-calls/blocks/0/bullets/3
+Camera and Microphone,Cámara y micrófono,video-calls/blocks/1/heading
+"During a video call, the camera controls whether people can see you. The microphone controls whether they can hear you. Most apps let you turn either on or off at any time.
+
+Camera off: people cannot see you. They can still hear you if your microphone is on.
+Microphone muted: people cannot hear you. They can still see you if your camera is on.","Durante una videollamada, puedes elegir si los demás te ven (cámara) o te oyen (micrófono). La mayoría de las aplicaciones permiten activar o desactivar ambos cuando quieras.
+
+Cámara apagada: pueden oírte si el micrófono está activo, pero no verte.
+Micrófono silenciado: pueden verte si la cámara está activa, pero no oírte.",video-calls/blocks/1/text
+Joining a Video Call Safely,Unirte a una videollamada con seguridad,video-calls/blocks/2/heading
+Before joining:,Antes de unirte:,video-calls/blocks/2/text
+Make sure you know who invited you,Comprueba que conoces a quien te invitó,video-calls/blocks/2/bullets/0
+Double-check the meeting link,Revisa el enlace de la reunión,video-calls/blocks/2/bullets/1
+Join from the official app if possible,Entra desde la aplicación oficial si puedes,video-calls/blocks/2/bullets/2
+"If you're unsure, contact the organizer first","Si tienes dudas, contacta primero con quien organiza la reunión",video-calls/blocks/2/bullets/3
+Avoid joining meetings from unexpected links sent by strangers.,Evita entrar en reuniones mediante enlaces inesperados de personas desconocidas.,video-calls/blocks/2/footer
+Watch Out for Fake Meeting Invitations,Cuidado con las invitaciones falsas,video-calls/blocks/3/heading
+"Scammers sometimes send fake invitations that say things like ""Your doctor's appointment has moved. Click here"" or ""Your bank wants to meet with you. Join now.""
+
+Before clicking, ask: Were you expecting this meeting? Do you recognize the sender? Can you confirm another way? If something feels suspicious, don't click the link.","Los estafadores a veces envían invitaciones falsas como «Tu cita médica ha cambiado. Pulsa aquí» o «Tu banco quiere hablar contigo. Únete ahora».
+
+Antes de abrir el enlace, pregúntate: ¿Esperaba esta reunión? ¿Reconozco al remitente? ¿Puedo confirmarlo de otra forma? Si algo parece sospechoso, no abras el enlace.",video-calls/blocks/3/text
+Which Invitations Look Safe?,¿Qué invitaciones parecen seguras?,video-calls/blocks/4/title
+Tap every invitation that seems trustworthy.,Toca todas las invitaciones que parezcan de confianza.,video-calls/blocks/4/prompt
+Your daughter sends a FaceTime invitation you were expecting.,Tu hija te envía una invitación de FaceTime que esperabas.,video-calls/blocks/4/options/0/text
+Your doctor's office emails a Zoom link after you scheduled an appointment.,Tu consultorio médico te envía un enlace de Zoom después de concertar una cita.,video-calls/blocks/4/options/1/text
+Your community center sends its weekly meeting link.,Tu centro comunitario envía el enlace de su reunión semanal.,video-calls/blocks/4/options/2/text
+"A stranger texts, ""Click here to join your bank meeting.""",Una persona desconocida escribe: «Pulsa aquí para la reunión con tu banco».,video-calls/blocks/4/options/3/text
+"An unknown email says, ""Urgent! Join immediately.""",Un correo desconocido dice: «¡Urgente! Únete inmediatamente».,video-calls/blocks/4/options/4/text
+Someone you don't know invites you to a meeting with a cash prize.,Alguien que no conoces te invita a una reunión con un premio en efectivo.,video-calls/blocks/4/options/5/text
+Excellent! Trusted invitations come from people or organizations you know and were expecting.,¡Bien hecho! Las invitaciones de confianza vienen de personas u organizaciones que conoces y de las que esperabas noticias.,video-calls/blocks/4/feedback
+Video Call,Videollamada,video-calls/blocks/5/cards/0/front
+A conversation where people can see and hear each other using the internet.,Una conversación por internet en la que las personas pueden verse y oírse.,video-calls/blocks/5/cards/0/back
+Lets others see you during a video call.,Permite que los demás te vean durante una videollamada.,video-calls/blocks/5/cards/1/back
+Microphone,Micrófono,video-calls/blocks/5/cards/2/front; video-calls/blocks/6/wordBank/3
+Lets others hear your voice.,Permite que los demás oigan tu voz.,video-calls/blocks/5/cards/2/back
+Mute,Silenciar,video-calls/blocks/5/cards/3/front; video-calls/blocks/6/wordBank/0; video-calls/blocks/6/questions/0/answer; video-calls/quiz/3/options/0; video-calls/quiz/7/options/2
+Turns your microphone off so others cannot hear you.,Desactiva tu micrófono para que los demás no te oigan.,video-calls/blocks/5/cards/3/back
+Meeting Link,Enlace de reunión,video-calls/blocks/5/cards/4/front
+A web link used to join a video call.,Un enlace para entrar en una videollamada.,video-calls/blocks/5/cards/4/back
+Meeting,Reunión,video-calls/blocks/6/wordBank/2; video-calls/blocks/6/questions/2/answer
+"If you don't want people to hear you, press ______.","Si no quieres que te oigan, pulsa ______.",video-calls/blocks/6/questions/0/text
+The ______ lets other people see you.,La ______ permite que otras personas te vean.,video-calls/blocks/6/questions/1/text
+A video call invitation usually contains a ______ link.,Una invitación a una videollamada suele incluir un enlace de ______.,video-calls/blocks/6/questions/2/text
+Margaret receives a Zoom invitation from her doctor's office after scheduling an appointment. What should she do?,Margaret recibe una invitación de Zoom de su consultorio médico después de concertar una cita. ¿Qué debería hacer?,video-calls/blocks/7/text
+Join using the official Zoom link she expected.,Entrar mediante el enlace oficial de Zoom que esperaba.,video-calls/blocks/7/options/0
+Ignore it forever.,Ignorarla para siempre.,video-calls/blocks/7/options/1
+Send her Social Security number first.,Enviar primero su número del Seguro Social.,video-calls/blocks/7/options/2
+Forward the meeting to strangers.,Reenviar la reunión a personas desconocidas.,video-calls/blocks/7/options/3
+This matches an appointment she expected.,La invitación corresponde a una cita que esperaba.,video-calls/blocks/7/explanation
+Margaret receives a Zoom invitation from her doctor's office after scheduling an appointment.,Margaret recibe una invitación de Zoom de su consultorio médico después de concertar una cita.,video-calls/blocks/7/presentation/story
+"Robert receives this text: ""URGENT! Your bank meeting starts now! Click here!"" He wasn't expecting any meeting. What should he do?",Robert recibe este mensaje: «¡URGENTE! ¡La reunión con tu banco empieza ahora! ¡Pulsa aquí!». No esperaba ninguna reunión. ¿Qué debería hacer?,video-calls/blocks/8/text
+Click immediately.,Abrir el enlace de inmediato.,video-calls/blocks/8/options/0
+Enter his banking password.,Introducir su contraseña bancaria.,video-calls/blocks/8/options/1
+Ignore the link and contact the bank through its official phone number or app if he has concerns.,Ignorar el enlace y contactar con el banco mediante su teléfono o aplicación oficial si tiene dudas.,video-calls/blocks/8/options/2
+Forward the message to everyone.,Reenviar el mensaje a todo el mundo.,video-calls/blocks/8/options/3
+Banks generally don't invite customers to unexpected meetings by text message.,Los bancos no suelen invitar a sus clientes a reuniones inesperadas por mensaje de texto.,video-calls/blocks/8/explanation
+"Robert receives this text: ""URGENT! Your bank meeting starts now! Click here!"" He wasn't expecting any meeting.",Robert recibe este mensaje: «¡URGENTE! ¡La reunión con tu banco empieza ahora! ¡Pulsa aquí!». No esperaba ninguna reunión.,video-calls/blocks/8/presentation/story
+Linda joins a family video call. Everyone is talking at once. What's the best thing to do?,Linda entra en una videollamada familiar. Todos hablan a la vez. ¿Qué conviene hacer?,video-calls/blocks/9/text
+Leave immediately.,Salir de inmediato.,video-calls/blocks/9/options/0
+Shout louder.,Gritar más fuerte.,video-calls/blocks/9/options/1
+Mute your microphone when you're not speaking and unmute when it's your turn.,Silenciar el micrófono cuando no estés hablando y activarlo cuando te toque.,video-calls/blocks/9/options/2
+Turn off everyone's camera.,Apagar las cámaras de todos.,video-calls/blocks/9/options/3
+Muting when you're not speaking helps reduce background noise and makes it easier for everyone to hear.,Silenciar el micrófono cuando no hablas reduce el ruido de fondo y ayuda a que todos oigan mejor.,video-calls/blocks/9/explanation
+Linda joins a family video call. Everyone is talking at once.,Linda entra en una videollamada familiar. Todos hablan a la vez.,video-calls/blocks/9/presentation/story
+What's the best thing to do?,¿Qué conviene hacer?,video-calls/blocks/9/presentation/question
+"Before joining any video call, ask: Is this a meeting I expected? Do I recognize who sent the invitation? Is the link from a trusted source? Am I comfortable joining? If you're unsure, call the person or organization using a trusted phone number to confirm.","Antes de entrar en una videollamada, pregúntate: ¿Esperaba esta reunión? ¿Reconozco a quien me invitó? ¿El enlace viene de una fuente de confianza? ¿Me siento a gusto participando? Si tienes dudas, llama a la persona u organización mediante un número de confianza para confirmar.",video-calls/blocks/10/text
+You receive an email with a Zoom link from someone you don't know.,Recibes un correo con un enlace de Zoom de alguien que no conoces.,video-calls/blocks/11/text
+Join immediately.,Entrar de inmediato.,video-calls/blocks/11/options/0; video-calls/quiz/5/options/0
+Reply with your personal information.,Responder con tus datos personales.,video-calls/blocks/11/options/1
+Don't join unless you can verify who sent it and why.,No entrar a menos que puedas verificar quién lo envió y por qué.,video-calls/blocks/11/options/2
+Forward it to your contacts.,Reenviarlo a tus contactos.,video-calls/blocks/11/options/3
+Unknown meeting invitations should be verified before you join.,Verifica las invitaciones desconocidas antes de entrar en la reunión.,video-calls/blocks/11/explanation
+Your dog starts barking loudly during a video call. What should you do?,Tu perro empieza a ladrar durante una videollamada. ¿Qué deberías hacer?,video-calls/blocks/12/text
+Keep talking over the noise.,Hablar por encima del ruido.,video-calls/blocks/12/options/0
+Mute your microphone until the barking stops.,Silenciar el micrófono hasta que deje de ladrar.,video-calls/blocks/12/options/1
+End the call forever.,No volver a hacer videollamadas.,video-calls/blocks/12/options/2
+Turn off your internet.,Desconectar internet.,video-calls/blocks/12/options/3
+Muting helps everyone hear the conversation without background noise.,Silenciar el micrófono ayuda a oír la conversación sin ruido de fondo.,video-calls/blocks/12/explanation
+You accidentally turned your camera off. What happens?,Apagaste la cámara por accidente. ¿Qué ocurre?,video-calls/blocks/13/text
+The meeting ends.,La reunión termina.,video-calls/blocks/13/options/0
+Your internet disconnects.,Se desconecta internet.,video-calls/blocks/13/options/1
+"People can still hear you (if you're not muted), but they can't see you.","Pueden seguir oyéndote si el micrófono está activo, pero no verte.",video-calls/blocks/13/options/2
+Everyone else is removed from the meeting.,Las demás personas salen de la reunión.,video-calls/blocks/13/options/3
+Turning off your camera only stops others from seeing you. Your microphone still works unless it's muted.,Apagar la cámara solo impide que te vean. El micrófono sigue funcionando si no está silenciado.,video-calls/blocks/13/explanation
+"Video calls are a great way to stay connected. Join meetings you expect, verify unexpected invitations, use the mute button when you're not speaking, and turn your camera on or off whenever you're comfortable. Never click suspicious meeting links, share meeting passwords publicly, or give personal information to someone just because they're on a video call.","Las videollamadas ayudan a mantener el contacto. Entra en reuniones que esperas, verifica invitaciones inesperadas y silencia el micrófono cuando no hables. Puedes activar o apagar la cámara cuando quieras. No abras enlaces sospechosos, no publiques contraseñas de reuniones ni des información personal solo porque alguien esté en una videollamada.",video-calls/blocks/14/text
+What is a video call?,¿Qué es una videollamada?,video-calls/quiz/0/question
+A text message.,Un mensaje de texto.,video-calls/quiz/0/options/0
+An email.,Un correo electrónico.,video-calls/quiz/0/options/1
+A conversation where people can see and hear each other over the internet.,Una conversación por internet en la que las personas pueden verse y oírse.,video-calls/quiz/0/options/2
+A password manager.,Un gestor de contraseñas.,video-calls/quiz/0/options/3
+Which are good video call habits?,¿Qué hábitos son útiles en las videollamadas?,video-calls/quiz/1/question
+Joining every link you get,Entrar en todos los enlaces que recibas,video-calls/quiz/1/options/0
+"Muting when not speaking, verifying invitations, joining from trusted people, and using the official app","Silenciar el micrófono cuando no hables, verificar invitaciones, reunirte con personas de confianza y usar la aplicación oficial",video-calls/quiz/1/options/1
+True or False: You should join every meeting link you receive.,Verdadero o falso: debes entrar en todos los enlaces de reunión que recibas.,video-calls/quiz/2/question
+"If you don't want others to hear you, press ______.","Si no quieres que los demás te oigan, pulsa ______.",video-calls/quiz/3/question
+Speaker,Altavoz,video-calls/quiz/3/options/1; sharing-photos/quiz/3/options/2
+Photo,Foto,video-calls/quiz/3/options/2; reporting-spam/quiz/3/options/1
+Your camera is turned off. What happens?,Tu cámara está apagada. ¿Qué ocurre?,video-calls/quiz/4/question
+The call ends.,La llamada termina.,video-calls/quiz/4/options/0
+People can't hear you.,No pueden oírte.,video-calls/quiz/4/options/1
+"People can't see you, but they can still hear you if your microphone isn't muted.","No pueden verte, pero sí oírte si el micrófono no está silenciado.",video-calls/quiz/4/options/2
+Your phone turns off.,Tu teléfono se apaga.,video-calls/quiz/4/options/3
+You receive an unexpected video meeting invitation from someone you don't know. What should you do?,Recibes una invitación inesperada a una videollamada de alguien que no conoces. ¿Qué deberías hacer?,video-calls/quiz/5/question
+Reply with your password.,Responder con tu contraseña.,video-calls/quiz/5/options/1; email-basics/blocks/13/options/3; blocking-numbers/quiz/6/options/0; reporting-spam/quiz/5/options/0
+"Verify who sent it before joining, or ignore it if it seems suspicious.","Verificar quién la envió antes de entrar, o ignorarla si parece sospechosa.",video-calls/quiz/5/options/2
+Share the meeting with friends.,Compartir la reunión con tus amistades.,video-calls/quiz/5/options/3
+What is the safest way to confirm an unexpected meeting invitation?,¿Cuál es la forma más segura de confirmar una invitación inesperada?,video-calls/quiz/6/question
+Click the link to see what happens.,Abrir el enlace para ver qué pasa.,video-calls/quiz/6/options/0
+Reply with your Social Security number.,Responder con tu número de Seguro Social.,video-calls/quiz/6/options/1
+"Contact the person or organization using their official phone number, website, or app.","Contactar con la persona u organización mediante su teléfono, sitio web o aplicación oficial.",video-calls/quiz/6/options/2
+Forward the invitation to everyone you know.,Reenviar la invitación a todas las personas que conoces.,video-calls/quiz/6/options/3
+Which button turns your microphone off during a video call?,¿Qué botón desactiva el micrófono durante una videollamada?,video-calls/quiz/7/question
+End Call,Finalizar llamada,video-calls/quiz/7/options/1
+Chat,Chat,video-calls/quiz/7/options/3
+You completed Lesson 2: Video Calls!,¡Completaste la lección 2: Videollamadas!,video-calls/complete/subtitle
+Join video calls safely.,Unirte a videollamadas con seguridad.,video-calls/complete/learned/0
+Use your camera and microphone.,Usar tu cámara y tu micrófono.,video-calls/complete/learned/1
+Recognize suspicious meeting invitations.,Reconocer invitaciones sospechosas.,video-calls/complete/learned/2
+Practice good video call etiquette.,Seguir buenos hábitos en las videollamadas.,video-calls/complete/learned/3
+Email Basics,Conceptos básicos del correo electrónico,video-calls/complete/next; email-basics/title; sharing-location/complete/learned/2
+3.3,3.3,email-basics/lessonNumber
+Email Expert,Experto en correo electrónico,email-basics/badge
+Explain what email is.,Explicar qué es el correo electrónico.,email-basics/goals/0
+Identify the parts of an email.,Identificar las partes de un correo.,email-basics/goals/1
+Recognize phishing (fake) emails.,Reconocer correos fraudulentos (phishing).,email-basics/goals/2
+Know when it is safe to open links and attachments.,Saber cuándo es seguro abrir enlaces y archivos adjuntos.,email-basics/goals/3
+Organize their inbox safely.,Organizar tu bandeja de entrada con seguridad.,email-basics/goals/4
+What Is Email?,¿Qué es el correo electrónico?,email-basics/blocks/0/heading
+"Email is a way to send and receive messages over the internet. People use email to talk with family and friends, receive messages from doctors, get shopping receipts, receive travel confirmations, communicate with businesses, and receive appointment reminders. Unlike text messages, emails are usually longer and can include files like photos or documents.","El correo electrónico permite enviar y recibir mensajes por internet. Sirve para conversar con familiares y amistades, recibir mensajes del consultorio médico, comprobantes de compra, confirmaciones de viaje y recordatorios de citas, o contactar con empresas. Los correos suelen ser más largos que los mensajes de texto y pueden incluir archivos, como fotos o documentos.",email-basics/blocks/0/text
+Parts of an Email,Partes de un correo,email-basics/blocks/1/heading
+Every email has several important parts:,Cada correo tiene varias partes importantes:,email-basics/blocks/1/text
+From - shows who sent the email,De: muestra quién envió el correo,email-basics/blocks/1/bullets/0
+Subject - a short title that explains what the email is about,Asunto: un título breve que explica de qué trata,email-basics/blocks/1/bullets/1
+Message - the main content of the email,Mensaje: el contenido principal del correo,email-basics/blocks/1/bullets/2
+Attachment - a file sent with the email (such as a PDF or photo),"Archivo adjunto: un archivo que acompaña al correo, como un PDF o una foto",email-basics/blocks/1/bullets/3
+Link - a button or web address you can click to visit a website,Enlace: un botón o una dirección que puedes abrir para visitar un sitio web,email-basics/blocks/1/bullets/4
+"Before clicking anything, always check who sent the email.","Antes de abrir cualquier elemento, comprueba quién envió el correo.",email-basics/blocks/1/footer
+What Is Phishing?,¿Qué es el phishing?,email-basics/blocks/2/heading
+"Phishing is when scammers send fake emails pretending to be someone you trust. They may pretend to be your bank, UPS, FedEx, USPS, Amazon, the IRS, Medicare, or Netflix. The goal is often to trick you into giving away passwords, credit card numbers, Social Security numbers, or money.","El phishing consiste en enviar correos falsos haciéndose pasar por alguien de confianza. Los estafadores pueden fingir ser tu banco, UPS, FedEx, USPS, Amazon, el IRS, Medicare o Netflix. Suelen intentar que entregues contraseñas, números de tarjeta, tu número del Seguro Social o dinero.",email-basics/blocks/2/text
+Warning Signs of a Phishing Email,Señales de un correo fraudulento,email-basics/blocks/3/heading
+Watch for emails that:,Ten cuidado con los correos que:,email-basics/blocks/3/text
+"Say ""Act immediately!""",Dicen «¡Actúa de inmediato!»,email-basics/blocks/3/bullets/0
+Ask for passwords or personal information,Piden contraseñas o información personal,email-basics/blocks/3/bullets/1
+Contain spelling or grammar mistakes,Tienen faltas de ortografía o gramática,email-basics/blocks/3/bullets/2
+Come from strange email addresses,Vienen de direcciones de correo extrañas,email-basics/blocks/3/bullets/3
+Promise prizes you didn't enter to win,Prometen premios de sorteos en los que no participaste,email-basics/blocks/3/bullets/4
+Ask you to click a link right away,Piden que abras un enlace enseguida,email-basics/blocks/3/bullets/5
+"If something feels wrong, don't click. Verify first.","Si algo no encaja, no abras el enlace. Verifica primero.",email-basics/blocks/3/footer
+Which Emails Look Suspicious?,¿Qué correos parecen sospechosos?,email-basics/blocks/4/title
+Tap every email that seems suspicious.,Toca todos los correos que parezcan sospechosos.,email-basics/blocks/4/prompt
+"""Your account will be deleted today! Click here immediately.""",«¡Tu cuenta se eliminará hoy! Pulsa aquí de inmediato».,email-basics/blocks/4/options/0/text
+"""Congratulations! You won $5,000!""",«¡Felicidades! ¡Has ganado 5.000 dólares!»,email-basics/blocks/4/options/1/text
+"""Verify your Social Security number now.""",«Verifica ahora tu número del Seguro Social».,email-basics/blocks/4/options/2/text
+"""Your password has expired. Enter it here.""",«Tu contraseña ha caducado. Introdúcela aquí».,email-basics/blocks/4/options/3/text
+"""Your dentist appointment is tomorrow at 10:00 AM.""",«Tu cita con el dentista es mañana a las 10:00 a. m.»,email-basics/blocks/4/options/4/text
+"""Family Reunion Photos""",«Fotos de la reunión familiar»,email-basics/blocks/4/options/5/text
+"""Your grocery pickup is ready.""",«Tu compra de alimentos está lista para recoger».,email-basics/blocks/4/options/6/text
+Excellent! Scam emails often create urgency or ask for sensitive information.,¡Bien hecho! Los correos de estafa suelen crear urgencia o pedir datos sensibles.,email-basics/blocks/4/feedback
+Email,Correo electrónico,email-basics/blocks/5/cards/0/front
+A message sent over the internet.,Un mensaje que se envía por internet.,email-basics/blocks/5/cards/0/back; email-basics/quiz/0/options/2
+Phishing,Phishing,email-basics/blocks/5/cards/1/front; email-basics/blocks/6/wordBank/1; email-basics/blocks/6/questions/1/answer
+A fake email that tries to steal your information.,Un correo falso que intenta robar tu información.,email-basics/blocks/5/cards/1/back
+Attachment,Archivo adjunto,email-basics/blocks/5/cards/2/front; email-basics/blocks/6/wordBank/2; email-basics/blocks/6/questions/2/answer; email-basics/quiz/3/options/0
+A file sent with an email.,Un archivo que se envía con un correo.,email-basics/blocks/5/cards/2/back
+Subject Line,Línea de asunto,email-basics/blocks/5/cards/3/front
+The title of an email.,El título de un correo.,email-basics/blocks/5/cards/3/back
+Sender,Remitente,email-basics/blocks/5/cards/4/front; email-basics/blocks/6/wordBank/0; email-basics/blocks/6/questions/0/answer
+The person or organization that sent the email.,La persona u organización que envió el correo.,email-basics/blocks/5/cards/4/back
+Subject,Asunto,email-basics/blocks/6/wordBank/3
+"Before opening an email, check the ______.","Antes de abrir un correo, revisa el ______.",email-basics/blocks/6/questions/0/text
+A fake email designed to steal information is called ______.,Un correo falso que intenta robar información es una forma de ______.,email-basics/blocks/6/questions/1/text
+A PDF or photo sent with an email is called an ______.,Un PDF o una foto que acompaña a un correo es un ______.,email-basics/blocks/6/questions/2/text
+"Margaret receives an email from amazon-support247@gmail.com. The subject says ""URGENT! Your Amazon account is locked."" What should she do?",Margaret recibe un correo de amazon-support247@gmail.com. El asunto dice «¡URGENTE! Tu cuenta de Amazon está bloqueada». ¿Qué debería hacer?,email-basics/blocks/7/text
+Reply with her password.,Responder con su contraseña.,email-basics/blocks/7/options/1
+Open the official Amazon app or type amazon.com into her browser to check her account instead.,Abrir la aplicación oficial de Amazon o escribir amazon.com en el navegador para revisar su cuenta.,email-basics/blocks/7/options/2
+Send the email to all her friends.,Enviar el correo a todas sus amistades.,email-basics/blocks/7/options/3
+The sender's address looks suspicious. Scammers often use email addresses that look similar to real companies.,La dirección del remitente parece sospechosa. Los estafadores suelen usar direcciones parecidas a las de empresas reales.,email-basics/blocks/7/explanation
+"Margaret receives an email from amazon-support247@gmail.com. The subject says ""URGENT! Your Amazon account is locked.""",Margaret recibe un correo de amazon-support247@gmail.com. El asunto dice «¡URGENTE! Tu cuenta de Amazon está bloqueada».,email-basics/blocks/7/presentation/story
+Robert receives an email from his doctor's office reminding him about an appointment he scheduled last week. Should he open it?,Robert recibe un correo de su consultorio médico que le recuerda una cita que concertó la semana pasada. ¿Debería abrirlo?,email-basics/blocks/8/text
+Yes,Sí,email-basics/blocks/8/options/0
+No,No,email-basics/blocks/8/options/1
+This is an expected email from a trusted source.,Es un correo esperado de una fuente de confianza.,email-basics/blocks/8/explanation
+Robert receives an email from his doctor's office reminding him about an appointment he scheduled last week.,Robert recibe un correo de su consultorio médico que le recuerda una cita que concertó la semana pasada.,email-basics/blocks/8/presentation/story
+Should he open it?,¿Debería abrirlo?,email-basics/blocks/8/presentation/question
+"Linda receives an email with an attachment from someone she doesn't know. The message says ""Open immediately to receive your prize."" What should she do?",Linda recibe un correo con un archivo adjunto de alguien que no conoce. Dice «Ábrelo de inmediato para recibir tu premio». ¿Qué debería hacer?,email-basics/blocks/9/text
+Open the attachment.,Abrir el archivo adjunto.,email-basics/blocks/9/options/0
+Reply asking for more prizes.,Responder para pedir más premios.,email-basics/blocks/9/options/1
+Do not open the attachment. Delete or report the email if it seems suspicious.,No abrir el archivo. Eliminar o denunciar el correo si parece sospechoso.,email-basics/blocks/9/options/2
+Forward it to family.,Reenviarlo a la familia.,email-basics/blocks/9/options/3
+Unexpected attachments can contain malware.,Los archivos adjuntos inesperados pueden contener malware.,email-basics/blocks/9/explanation
+"Linda receives an email with an attachment from someone she doesn't know. The message says ""Open immediately to receive your prize.""",Linda recibe un correo con un archivo adjunto de alguien que no conoce. Dice «Ábrelo de inmediato para recibir tu premio».,email-basics/blocks/9/presentation/story
+"Before clicking a link or opening an attachment, ask yourself: Do I recognize the sender? Was I expecting this email? Is the sender's email address spelled correctly? Is the email asking for personal information? If you're unsure, go directly to the company's official website or app instead of using the email link.","Antes de abrir un enlace o archivo adjunto, pregúntate: ¿Reconozco al remitente? ¿Esperaba este correo? ¿La dirección está bien escrita? ¿Me pide información personal? Si tienes dudas, ve directamente al sitio web o la aplicación oficial de la empresa, sin usar el enlace del correo.",email-basics/blocks/10/text
+"You receive an email saying ""You won a free cruise! Click here to claim your prize!""",Recibes un correo: «¡Has ganado un crucero gratis! ¡Pulsa aquí para reclamar tu premio!»,email-basics/blocks/11/text
+Ignore or delete the email unless you can verify it's legitimate.,"Ignorar o eliminar el correo, salvo que puedas verificar que es legítimo.",email-basics/blocks/11/options/2
+Enter your credit card information.,Introducir los datos de tu tarjeta de crédito.,email-basics/blocks/11/options/3
+Unexpected prizes are a common phishing scam.,Los premios inesperados son una estafa de phishing habitual.,email-basics/blocks/11/explanation
+Your bank emails you asking for your online banking password.,Tu banco te envía un correo pidiendo tu contraseña de banca en línea.,email-basics/blocks/12/text
+Send the password.,Enviar la contraseña.,email-basics/blocks/12/options/0
+Do not reply with your password. Contact your bank using its official phone number or app if you have questions.,"No responder con tu contraseña. Si tienes dudas, contactar con tu banco mediante su teléfono o aplicación oficial.",email-basics/blocks/12/options/2
+Email your Social Security number instead.,Enviar por correo tu número del Seguro Social en su lugar.,email-basics/blocks/12/options/3
+Legitimate banks generally do not ask for your password by email.,Los bancos legítimos no suelen pedir tu contraseña por correo.,email-basics/blocks/12/explanation
+You notice the sender's email is support-paypal@gmail.com and the email says it's from PayPal. What should you do?,"Un correo dice ser de PayPal, pero viene de support-paypal@gmail.com. ¿Qué deberías hacer?",email-basics/blocks/13/text
+"Trust it because it says ""PayPal.""",Confiar porque dice «PayPal».,email-basics/blocks/13/options/0
+Be cautious. Check your PayPal account using the official app or website instead.,Tener cuidado. Revisar tu cuenta de PayPal en su aplicación o sitio web oficial.,email-basics/blocks/13/options/2
+Scammers often use free email addresses to pretend they're a trusted company.,Los estafadores suelen usar direcciones de correo gratuitas para hacerse pasar por empresas de confianza.,email-basics/blocks/13/explanation
+"Good email habits include: check the sender, read the subject carefully, be cautious with links and attachments, and verify unexpected emails through official websites or apps. Never email your passwords, open unexpected attachments, or click links just because an email looks official.","Para usar el correo con seguridad: revisa el remitente, lee el asunto con atención, ten cuidado con enlaces y archivos adjuntos, y verifica los correos inesperados en sitios web o aplicaciones oficiales. No envíes contraseñas por correo, no abras archivos inesperados ni confíes en un enlace solo porque el correo parezca oficial.",email-basics/blocks/14/text
+What is email?,¿Qué es el correo electrónico?,email-basics/quiz/0/question
+A phone call.,Una llamada telefónica.,email-basics/quiz/0/options/0
+A text message only.,Solo un mensaje de texto.,email-basics/quiz/0/options/1
+A search engine.,Un buscador.,email-basics/quiz/0/options/3
+Which is a common sign of a phishing email?,¿Cuál es una señal habitual de un correo fraudulento?,email-basics/quiz/1/question
+It arrives on a Tuesday,Llega un martes,email-basics/quiz/1/options/0
+"It creates urgency, asks for passwords, offers unexpected prizes, or comes from a strange sender address","Crea urgencia, pide contraseñas, ofrece premios inesperados o viene de una dirección extraña",email-basics/quiz/1/options/1
+True or False: It's always safe to click links in emails because they have company logos.,Verdadero o falso: siempre es seguro abrir los enlaces de un correo si tiene el logotipo de una empresa.,email-basics/quiz/2/question
+A file sent with an email is called an ______.,Un archivo que se envía con un correo se llama ______.,email-basics/quiz/3/question
+Keyboard,Teclado,email-basics/quiz/3/options/2
+An email asks for your online banking password. What should you do?,Un correo pide tu contraseña de banca en línea. ¿Qué deberías hacer?,email-basics/quiz/4/question
+Reply with the password.,Responder con la contraseña.,email-basics/quiz/4/options/0
+Click the link and sign in.,Abrir el enlace e iniciar sesión.,email-basics/quiz/4/options/1
+Do not send your password. Contact your bank through its official phone number or app if needed.,No enviar tu contraseña. Contactar con el banco mediante su teléfono o aplicación oficial si hace falta.,email-basics/quiz/4/options/2
+Send your credit card number instead.,Enviar tu número de tarjeta en su lugar.,email-basics/quiz/4/options/3
+What should you check first before opening an email attachment?,¿Qué debes comprobar antes de abrir un archivo adjunto?,email-basics/quiz/5/question
+The weather.,El tiempo que hace.,email-basics/quiz/5/options/0
+Your battery level.,El nivel de batería.,email-basics/quiz/5/options/1
+Whether you recognize the sender and were expecting the attachment.,Si reconoces al remitente y esperabas el archivo.,email-basics/quiz/5/options/2
+The color of the email.,El color del correo.,email-basics/quiz/5/options/3
+"You receive an email from a company you use, but the sender's address looks unusual. What should you do?","Recibes un correo de una empresa que usas, pero la dirección del remitente parece extraña. ¿Qué deberías hacer?",email-basics/quiz/6/question
+Trust it because the logo looks real.,Confiar porque el logotipo parece real.,email-basics/quiz/6/options/0
+Reply asking if it's fake.,Responder para preguntar si es falso.,email-basics/quiz/6/options/1
+Don't use the email's links. Visit the company's official website or app to check your account.,No usar los enlaces del correo. Revisar tu cuenta en el sitio web o la aplicación oficial de la empresa.,email-basics/quiz/6/options/2
+Send your personal information.,Enviar tus datos personales.,email-basics/quiz/6/options/3
+Which habits help keep your email safe?,¿Qué hábitos ayudan a mantener seguro tu correo?,email-basics/quiz/7/question
+Clicking everything quickly,Abrir todo deprisa,email-basics/quiz/7/options/0
+"Checking the sender, opening attachments only when expected, verifying through official sites, and reporting phishing","Revisar el remitente, abrir solo archivos esperados, verificar en sitios oficiales y denunciar el phishing",email-basics/quiz/7/options/1
+You completed Lesson 3: Email Basics!,¡Completaste la lección 3: Correo electrónico!,email-basics/complete/subtitle
+Understand the parts of an email.,Conocer las partes de un correo.,email-basics/complete/learned/0
+Recognize phishing emails.,Reconocer correos fraudulentos.,email-basics/complete/learned/1
+Open attachments safely.,Abrir archivos adjuntos con seguridad.,email-basics/complete/learned/2
+Avoid dangerous links.,Evitar enlaces peligrosos.,email-basics/complete/learned/3
+Blocking Numbers,Bloquear números,email-basics/complete/next; blocking-numbers/title; sharing-location/complete/learned/3
+3.4,3.4,blocking-numbers/lessonNumber
+Call Control Expert,Control de llamadas,blocking-numbers/badge
+Explain what blocking a phone number does.,Explicar qué ocurre al bloquear un número.,blocking-numbers/goals/0
+Know when it's appropriate to block a number.,Saber cuándo conviene bloquear un número.,blocking-numbers/goals/1
+Understand what happens after a number is blocked.,Entender qué pasa después de bloquearlo.,blocking-numbers/goals/2
+"Differentiate between blocking, reporting spam, and deleting a message.","Distinguir entre bloquear, denunciar como no deseado y eliminar un mensaje.",blocking-numbers/goals/3
+"What Does ""Block"" Mean?",¿Qué significa «Bloquear»?,blocking-numbers/blocks/0/heading
+"Blocking a number helps stop its calls and messages from reaching you. On iPhone, messages from that number are not delivered. The caller can still leave voicemail, but you will not receive a notification. Other phones and apps may behave differently.
+
+Blocking does not stop every scam: scammers can use other numbers.","Bloquear un número ayuda a impedir que te lleguen sus llamadas y mensajes. En el iPhone, los mensajes de ese número no se entregan. La persona puede dejar un mensaje de voz, pero no recibirás una notificación. El funcionamiento puede variar según el teléfono o la aplicación.
+
+Bloquear no detiene todas las estafas: los estafadores pueden usar otros números.",blocking-numbers/blocks/0/text
+When Should You Block Someone?,¿Cuándo conviene bloquear a alguien?,blocking-numbers/blocks/1/heading
+Blocking is a good choice if someone:,Bloquear es una buena opción si alguien:,blocking-numbers/blocks/1/text
+Keeps sending scam messages,Envía mensajes de estafa una y otra vez,blocking-numbers/blocks/1/bullets/0
+Calls repeatedly after you've ignored them,Llama repetidamente aunque no respondas,blocking-numbers/blocks/1/bullets/1
+Harasses or threatens you,Te acosa o amenaza,blocking-numbers/blocks/1/bullets/2
+Continues contacting you after you've asked them to stop,Sigue contactándote después de que le pidas que pare,blocking-numbers/blocks/1/bullets/3
+When Should You Think Before Blocking?,¿Cuándo conviene pensarlo antes?,blocking-numbers/blocks/2/heading
+"Before blocking, consider whether this is someone you want to hear from, such as a trusted person, your doctor's office, or a business you use. You can block anyone who harasses or threatens you, even if you know them.
+
+If you do not know who is calling, let it go to voicemail. You can confirm the reason for the call using a number you already trust.","Antes de bloquear, piensa si es alguien de quien quieres recibir noticias, como una persona de confianza, tu consultorio médico o una empresa que usas. Puedes bloquear a cualquiera que te acose o amenace, aunque lo conozcas.
+
+Si no sabes quién llama, deja que salte el buzón de voz. Después puedes confirmar el motivo con un número que ya conozcas.",blocking-numbers/blocks/2/text
+Blocking vs. Deleting vs. Reporting,"Bloquear, eliminar y denunciar",blocking-numbers/blocks/3/heading
+These actions are different.,Estas acciones son diferentes.,blocking-numbers/blocks/3/text
+Block - stops future calls and texts from that number,Bloquear: impide futuras llamadas y mensajes de ese número,blocking-numbers/blocks/3/bullets/0
+"Delete - removes the message from your phone, but the sender can still contact you later","Eliminar: borra el mensaje de tu teléfono, pero la persona puede volver a contactarte",blocking-numbers/blocks/3/bullets/1
+Report Spam - tells your phone carrier or messaging app that the message may be spam,Denunciar como no deseado: avisa a tu compañía telefónica o aplicación de que el mensaje podría ser spam,blocking-numbers/blocks/3/bullets/2
+Many phones let you Report Spam and Block at the same time.,Muchos teléfonos permiten denunciar y bloquear a la vez.,blocking-numbers/blocks/3/footer
+Which Numbers Would You Block?,¿Qué números bloquearías?,blocking-numbers/blocks/4/title
+Tap every number that would be reasonable to block.,Toca todos los números que sería razonable bloquear.,blocking-numbers/blocks/4/prompt
+A number sending fake lottery messages every day,Un número que envía mensajes de lotería falsos todos los días,blocking-numbers/blocks/4/options/0/text
+A robocaller calling five times a day,Una llamada automática que se repite cinco veces al día,blocking-numbers/blocks/4/options/1/text
+Someone repeatedly asking for your banking password,Alguien que pide tu contraseña bancaria una y otra vez,blocking-numbers/blocks/4/options/2/text
+A stranger sending threatening messages,Una persona desconocida que envía amenazas,blocking-numbers/blocks/4/options/3/text
+Your daughter,Tu hija,blocking-numbers/blocks/4/options/4/text
+Your doctor's office,Tu consultorio médico,blocking-numbers/blocks/4/options/5/text
+Your pharmacy,Tu farmacia,blocking-numbers/blocks/4/options/6/text; blocking-numbers/quiz/1/options/0
+"Excellent! Blocking is helpful for unwanted or scam contacts, not trusted people.","¡Bien hecho! Bloquear ayuda con contactos no deseados o fraudulentos, en lugar de bloquear a personas de confianza.",blocking-numbers/blocks/4/feedback
+Block,Bloquear,blocking-numbers/blocks/5/cards/0/front; blocking-numbers/blocks/6/wordBank/0; blocking-numbers/blocks/6/questions/0/answer; reporting-spam/blocks/6/wordBank/3; phase3-challenge/blocks/1/cards/1/front
+Stops future calls and texts from a specific number.,Impide futuras llamadas y mensajes de un número concreto.,blocking-numbers/blocks/5/cards/0/back
+Spam,Spam,blocking-numbers/blocks/5/cards/1/front; blocking-numbers/blocks/6/wordBank/3; reporting-spam/blocks/5/cards/0/front; reporting-spam/blocks/6/wordBank/0; reporting-spam/blocks/6/questions/0/answer; reporting-spam/quiz/3/options/0; phase3-challenge/blocks/1/cards/0/front
+Unwanted or fraudulent messages.,Mensajes no deseados o fraudulentos.,blocking-numbers/blocks/5/cards/1/back
+Robocall,Llamada automática,blocking-numbers/blocks/5/cards/2/front
+"An automated phone call, often used for advertising or scams.","Una llamada grabada o automatizada, que suele usarse para publicidad o estafas.",blocking-numbers/blocks/5/cards/2/back
+Voicemail,Mensaje de voz,blocking-numbers/blocks/5/cards/3/front; blocking-numbers/blocks/6/wordBank/2; blocking-numbers/blocks/6/questions/2/answer; blocking-numbers/quiz/3/options/0
+A recorded message someone leaves if you don't answer.,Una grabación que alguien deja cuando no contestas.,blocking-numbers/blocks/5/cards/3/back
+Report Spam,Denunciar como no deseado,blocking-numbers/blocks/5/cards/4/front; reporting-spam/blocks/5/cards/1/front
+Reports suspicious messages to help reduce spam.,Denuncia mensajes sospechosos para ayudar a reducir el spam.,blocking-numbers/blocks/5/cards/4/back
+Delete,Eliminar,blocking-numbers/blocks/6/wordBank/1; blocking-numbers/blocks/6/questions/1/answer
+"If someone keeps sending scam texts, you can ______ their number.","Si alguien sigue enviando mensajes de estafa, puedes ______ su número.",blocking-numbers/blocks/6/questions/0/text
+Removing a text from your phone is called ______.,La acción de borrar un mensaje de tu teléfono se llama ______.,blocking-numbers/blocks/6/questions/1/text
+"If you don't answer a call, the caller may leave a ______.","Si no contestas una llamada, pueden dejarte un ______.",blocking-numbers/blocks/6/questions/2/text; blocking-numbers/quiz/3/question
+"Margaret receives six scam texts in one week from the same phone number saying ""You've won a prize! Click here!"" What should she do?",Margaret recibe seis mensajes de estafa en una semana desde el mismo número: «¡Has ganado un premio! ¡Pulsa aquí!». ¿Qué debería hacer?,blocking-numbers/blocks/7/text
+"Reply ""Stop.""",Responder «Basta».,blocking-numbers/blocks/7/options/0
+Block the number and report the messages as spam.,Bloquear el número y denunciar los mensajes como no deseados.,blocking-numbers/blocks/7/options/2
+Send them her address.,Enviar su dirección.,blocking-numbers/blocks/7/options/3
+Replying to scam texts can sometimes confirm your number is active. It's usually better to block and report them.,Responder a mensajes de estafa puede confirmar que tu número está activo. Suele ser mejor bloquearlos y denunciarlos.,blocking-numbers/blocks/7/explanation
+"Margaret receives six scam texts in one week from the same phone number saying ""You've won a prize! Click here!""",Margaret recibe seis mensajes de estafa en una semana desde el mismo número: «¡Has ganado un premio! ¡Pulsa aquí!».,blocking-numbers/blocks/7/presentation/story
+"Robert misses a call from an unknown number. The caller leaves a voicemail saying ""Hello Robert, this is Dr. Smith's office confirming tomorrow's appointment."" What should he do?","Robert pierde una llamada de un número desconocido. Le dejan un mensaje: «Hola, Robert. Llamamos del consultorio del Dr. Smith para confirmar tu cita de mañana». ¿Qué debería hacer?",blocking-numbers/blocks/8/text
+"Listen to the voicemail and, if needed, call the doctor's office using a number he already knows.","Escuchar el mensaje y, si hace falta, llamar al consultorio con un número que ya conozca.",blocking-numbers/blocks/8/options/0
+Block the number immediately.,Bloquear el número de inmediato.,blocking-numbers/blocks/8/options/1; blocking-numbers/quiz/4/options/0
+Report the doctor's office as spam.,Denunciar al consultorio como spam.,blocking-numbers/blocks/8/options/2
+Delete the voicemail without listening.,Eliminar el mensaje de voz sin escucharlo.,blocking-numbers/blocks/8/options/3
+Not every unknown number is a scam. Voicemail can help you decide whether a call is legitimate.,No todos los números desconocidos son estafas. El mensaje de voz puede ayudarte a decidir si la llamada es legítima.,blocking-numbers/blocks/8/explanation
+"Robert misses a call from an unknown number. The caller leaves a voicemail saying ""Hello Robert, this is Dr. Smith's office confirming tomorrow's appointment.""","Robert pierde una llamada de un número desconocido. Le dejan un mensaje: «Hola, Robert. Llamamos del consultorio del Dr. Smith para confirmar tu cita de mañana».",blocking-numbers/blocks/8/presentation/story
+Linda keeps receiving robocalls selling products. The same number calls every afternoon. What should she do?,Linda recibe llamadas automáticas que venden productos. El mismo número llama cada tarde. ¿Qué debería hacer?,blocking-numbers/blocks/9/text
+Keep answering every call.,Seguir contestando todas las llamadas.,blocking-numbers/blocks/9/options/0
+Give them her credit card number.,Darles su número de tarjeta.,blocking-numbers/blocks/9/options/1
+"Block the number. If her phone offers it, report it as spam too.",Bloquear el número y denunciarlo como spam si su teléfono lo permite.,blocking-numbers/blocks/9/options/2
+Call the number back repeatedly.,Devolver la llamada una y otra vez.,blocking-numbers/blocks/9/options/3
+There's usually no benefit to answering repeated robocalls. Blocking is a good option.,Contestar llamadas automáticas repetidas no suele ayudar. Bloquear el número es una buena opción.,blocking-numbers/blocks/9/explanation
+Linda keeps receiving robocalls selling products. The same number calls every afternoon.,Linda recibe llamadas automáticas que venden productos. El mismo número llama cada tarde.,blocking-numbers/blocks/9/presentation/story
+"Before you block, ask yourself: Is this someone I know? Have they left a legitimate voicemail? Is this a repeated scam or unwanted contact? If the answer is yes to the last question, blocking is often the right choice.","Antes de bloquear, pregúntate: ¿Conozco a esta persona? ¿Ha dejado un mensaje de voz legítimo? ¿Es una estafa repetida o un contacto no deseado? Si la respuesta a la última pregunta es sí, bloquear suele ser una buena opción.",blocking-numbers/blocks/10/text
+An unknown number calls once but leaves no voicemail.,"Un número desconocido llama una vez, pero no deja mensaje.",blocking-numbers/blocks/11/text
+Block it immediately.,Bloquearlo de inmediato.,blocking-numbers/blocks/11/options/0
+Wait to see if they call again or leave a voicemail before deciding.,Esperar a ver si vuelve a llamar o deja un mensaje antes de decidir.,blocking-numbers/blocks/11/options/1
+Send them your address.,Enviar tu dirección.,blocking-numbers/blocks/11/options/2
+Call back and give your Social Security number.,Devolver la llamada y dar tu número del Seguro Social.,blocking-numbers/blocks/11/options/3
+One missed call isn't always a scam. Waiting for a voicemail or repeated pattern can help you decide.,Una llamada perdida no siempre es una estafa. Esperar un mensaje de voz o ver si las llamadas se repiten puede ayudarte a decidir.,blocking-numbers/blocks/11/explanation
+A family member accidentally calls several times while trying to reach you.,Un familiar llama varias veces por error mientras intenta hablar contigo.,blocking-numbers/blocks/12/text
+Block them.,Bloquearlo.,blocking-numbers/blocks/12/options/0
+Call or text them back if you'd like.,Devolverle la llamada o escribirle si quieres.,blocking-numbers/blocks/12/options/1
+Report them as spam.,Denunciarlo como spam.,blocking-numbers/blocks/12/options/2
+Delete their contact.,Eliminar su contacto.,blocking-numbers/blocks/12/options/3
+Someone keeps sending threatening messages. What should you do?,Alguien sigue enviándote amenazas. ¿Qué deberías hacer?,blocking-numbers/blocks/13/text
+Continue responding.,Seguir respondiendo.,blocking-numbers/blocks/13/options/0
+Give them more personal information.,Dar más información personal.,blocking-numbers/blocks/13/options/1
+"Block the number. If you ever feel you're in immediate danger or receive credible threats, contact your local law enforcement.","Bloquear el número. Si estás en peligro inmediato o recibes amenazas creíbles, contactar con las autoridades locales.",blocking-numbers/blocks/13/options/2
+Send them money.,Enviar dinero.,blocking-numbers/blocks/13/options/3
+"Blocking helps stop future calls and texts from a specific number. Block scam callers, repeated robocalls, and people who harass you. Report spam when possible. Deleting a message is not the same as blocking the sender, and blocking one scam number doesn't stop scammers from using new numbers, so continue to stay alert.","Bloquear ayuda a impedir llamadas y mensajes de un número concreto. Puedes bloquear a estafadores, llamadas automáticas repetidas y personas que te acosan. Denuncia el spam cuando puedas. Eliminar un mensaje no bloquea al remitente. Bloquear un número tampoco impide que un estafador use otro, así que mantente alerta.",blocking-numbers/blocks/14/text
+What does blocking a phone number do?,¿Qué ocurre al bloquear un número?,blocking-numbers/quiz/0/question
+Deletes every contact on your phone.,Se eliminan todos tus contactos.,blocking-numbers/quiz/0/options/0
+Turns off your phone.,Se apaga tu teléfono.,blocking-numbers/quiz/0/options/1
+Stops future calls and texts from that number.,Se impiden futuras llamadas y mensajes de ese número.,blocking-numbers/quiz/0/options/2
+Changes your phone number.,Cambia tu número de teléfono.,blocking-numbers/quiz/0/options/3
+Which numbers might be appropriate to block?,¿Qué números puede ser adecuado bloquear?,blocking-numbers/quiz/1/question
+"Repeated scam callers, robocalls, and people sending threatening messages","Estafadores que llaman repetidamente, llamadas automáticas y personas que envían amenazas",blocking-numbers/quiz/1/options/1
+True or False: Deleting a text message also blocks the sender.,Verdadero o falso: eliminar un mensaje también bloquea al remitente.,blocking-numbers/quiz/2/question
+Battery,Batería,blocking-numbers/quiz/3/options/2; sharing-photos/quiz/3/options/1
+An unknown caller leaves a voicemail confirming your doctor's appointment. What should you do?,Un número desconocido deja un mensaje para confirmar tu cita médica. ¿Qué deberías hacer?,blocking-numbers/quiz/4/question
+Listen to the voicemail and confirm by contacting your doctor's office using a trusted phone number.,Escuchar el mensaje y confirmar la cita llamando al consultorio mediante un número de confianza.,blocking-numbers/quiz/4/options/2
+Ignore all future calls.,Ignorar todas las llamadas futuras.,blocking-numbers/quiz/4/options/3
+What is one advantage of reporting spam?,¿Cuál es una ventaja de denunciar el spam?,blocking-numbers/quiz/5/question
+It charges the caller money.,Se cobra dinero a quien llama.,blocking-numbers/quiz/5/options/0
+It changes your phone number.,Cambia tu número de teléfono.,blocking-numbers/quiz/5/options/1
+It helps your phone carrier or messaging app identify unwanted messages.,Ayuda a la compañía telefónica o a la aplicación a identificar mensajes no deseados.,blocking-numbers/quiz/5/options/2
+It automatically deletes all messages forever.,Se eliminan todos los mensajes para siempre.,blocking-numbers/quiz/5/options/3
+You receive repeated scam texts from the same number. What's the best response?,Recibes mensajes de estafa repetidos del mismo número. ¿Qué conviene hacer?,blocking-numbers/quiz/6/question
+Keep clicking the links.,Seguir abriendo los enlaces.,blocking-numbers/quiz/6/options/1
+Block the number and report it as spam if possible.,Bloquear el número y denunciarlo como spam si es posible.,blocking-numbers/quiz/6/options/2
+Save the number as a contact.,Guardar el número como contacto.,blocking-numbers/quiz/6/options/3
+"If you're unsure whether a caller is legitimate, what is a good first step?","Si dudas de quién llama, ¿cuál es un buen primer paso?",blocking-numbers/quiz/7/question
+Give them your credit card number.,Dar tu número de tarjeta.,blocking-numbers/quiz/7/options/0; reporting-spam/quiz/4/options/3
+Block them immediately without listening.,Bloquear el número de inmediato sin escuchar.,blocking-numbers/quiz/7/options/1
+Let the call go to voicemail and listen to the message before deciding what to do.,Dejar que salte el buzón de voz y escuchar el mensaje antes de decidir.,blocking-numbers/quiz/7/options/2
+Answer every call no matter what.,Contestar todas las llamadas sin excepción.,blocking-numbers/quiz/7/options/3
+You completed Lesson 4: Blocking Numbers!,¡Completaste la lección 4: Bloquear números!,blocking-numbers/complete/subtitle
+Block unwanted callers and texters.,Bloquear llamadas y mensajes no deseados.,blocking-numbers/complete/learned/0
+"Understand the difference between blocking, deleting, and reporting spam.","Distinguir entre bloquear, eliminar y denunciar el spam.",blocking-numbers/complete/learned/1
+Use voicemail to help identify legitimate callers.,Usar los mensajes de voz para ayudar a identificar llamadas legítimas.,blocking-numbers/complete/learned/2
+Protect yourself from repeated scam calls and messages.,Protegerte de llamadas y mensajes de estafa repetidos.,blocking-numbers/complete/learned/3
+Reporting Spam,Denunciar mensajes no deseados,blocking-numbers/complete/next; reporting-spam/title; sharing-location/complete/learned/4
+3.5,3.5,reporting-spam/lessonNumber
+Spam Stopper,Protector frente al correo no deseado,reporting-spam/badge
+Explain what spam is.,Explicar qué es el spam.,reporting-spam/goals/0
+"Recognize spam calls, texts, and emails.","Reconocer llamadas, mensajes y correos no deseados.",reporting-spam/goals/1
+Know how to report spam.,Saber cómo denunciar el spam.,reporting-spam/goals/2
+Understand why reporting spam helps protect others.,Entender por qué denunciar el spam ayuda a proteger a otras personas.,reporting-spam/goals/3
+Know what to do after reporting spam.,Saber qué hacer después de denunciarlo.,reporting-spam/goals/4
+What Is Spam?,¿Qué es el spam?,reporting-spam/blocks/0/heading
+"Spam is an unwanted message or call. Spam can arrive as emails, text messages, phone calls, or social media messages.
+
+Some spam is simply annoying advertisements. Other spam is designed to steal money, steal passwords, steal personal information, or install harmful software (malware). Reporting spam helps phone companies and email providers identify and reduce these unwanted messages.","El spam es una llamada o un mensaje no deseado. Puede llegar por correo electrónico, mensaje de texto, llamada o redes sociales.
+
+A veces es publicidad molesta. Otras veces intenta robar dinero, contraseñas o datos personales, o instalar programas dañinos. Denunciarlo ayuda a las compañías telefónicas y a los servicios de correo a identificar y reducir estos mensajes.",reporting-spam/blocks/0/text
+How Can You Recognize Spam?,¿Cómo reconocer el spam?,reporting-spam/blocks/1/heading
+Common warning signs include:,Estas son algunas señales de alerta:,reporting-spam/blocks/1/text
+You weren't expecting the message,No esperabas el mensaje,reporting-spam/blocks/1/bullets/0
+It says you won a prize you never entered,Dice que ganaste un sorteo en el que no participaste,reporting-spam/blocks/1/bullets/1
+"It creates urgency like ""Act now!""",Crea urgencia con frases como «¡Actúa ahora!»,reporting-spam/blocks/1/bullets/2
+It asks for personal or financial information,Pide datos personales o financieros,reporting-spam/blocks/1/bullets/3
+It contains suspicious links,Incluye enlaces sospechosos,reporting-spam/blocks/1/bullets/4
+The sender's information looks strange or unfamiliar,Los datos del remitente parecen extraños o desconocidos,reporting-spam/blocks/1/bullets/5
+"If you're unsure, pause before responding.","Si tienes dudas, haz una pausa antes de responder.",reporting-spam/blocks/1/footer
+How to Report Spam,Cómo denunciar el spam,reporting-spam/blocks/2/heading
+"Many apps have a Report Spam or Report Junk button. Reporting may send the message and sender details to Apple, your carrier or your email provider for review. Read the app's notice. Reports help improve filtering.
+
+In iPhone Messages, reporting does not block the sender; block separately if you want to. Other apps may combine these actions. Scammers can also use new numbers or addresses.","Muchas aplicaciones tienen un botón para denunciar mensajes no deseados. Al usarlo, el mensaje y los datos del remitente pueden enviarse a Apple, a tu compañía telefónica o a tu servicio de correo para su revisión. Lee lo que indica la aplicación. Denunciar ayuda a mejorar los filtros.
+
+En Mensajes del iPhone, denunciar un mensaje no bloquea al remitente. Si quieres bloquearlo, hazlo por separado. Otras aplicaciones pueden combinar ambas acciones. Los estafadores también pueden usar nuevos números o direcciones.",reporting-spam/blocks/2/text
+What About Spam Calls?,¿Y las llamadas no deseadas?,reporting-spam/blocks/3/heading
+If you receive a spam call:,Si recibes una llamada no deseada:,reporting-spam/blocks/3/text
+Let it go to voicemail if you don't recognize the number,Deja que salte el buzón de voz si no reconoces el número,reporting-spam/blocks/3/bullets/0
+Hang up if the caller asks for personal information or pressures you,Cuelga si te piden datos personales o te presionan,reporting-spam/blocks/3/bullets/1
+Block the number if the calls continue,Bloquea el número si las llamadas continúan,reporting-spam/blocks/3/bullets/2
+Report the number as spam if your phone offers that option,Denuncia el número como spam si tu teléfono ofrece esa opción,reporting-spam/blocks/3/bullets/3
+Never feel obligated to stay on the phone with a suspicious caller.,No tienes obligación de seguir hablando con alguien que te parezca sospechoso.,reporting-spam/blocks/3/footer
+Which Messages Should You Report as Spam?,¿Qué mensajes conviene denunciar?,reporting-spam/blocks/4/title
+Tap every message that should probably be reported.,Toca todos los mensajes que probablemente debas denunciar.,reporting-spam/blocks/4/prompt
+"""Congratulations! You've won $10,000!""",«¡Felicidades! ¡Has ganado 10.000 dólares!»,reporting-spam/blocks/4/options/0/text
+"""Your Social Security number has been suspended. Click here.""",«Tu número del Seguro Social está suspendido. Pulsa aquí».,reporting-spam/blocks/4/options/1/text
+"""Pay this overdue toll immediately.""",«Paga este peaje pendiente de inmediato».,reporting-spam/blocks/4/options/2/text
+"""Verify your banking password.""",«Verifica tu contraseña bancaria».,reporting-spam/blocks/4/options/3/text
+"""Your eye doctor's appointment is tomorrow.""",«Tu cita con el oculista es mañana».,reporting-spam/blocks/4/options/4/text
+"""Happy Birthday! Love, Sarah.""","«¡Feliz cumpleaños! Con cariño, Sarah».",reporting-spam/blocks/4/options/5/text
+"""Dinner is at 6 tonight.""",«Cenamos hoy a las 6».,reporting-spam/blocks/4/options/6/text
+Excellent! Messages asking for personal information or creating fake emergencies are common spam.,¡Bien hecho! Pedir información personal o inventar emergencias son tácticas habituales del spam.,reporting-spam/blocks/4/feedback
+An unwanted message or call.,Una llamada o un mensaje no deseado.,reporting-spam/blocks/5/cards/0/back
+Marks a message as unwanted or suspicious.,Marca un mensaje como no deseado o sospechoso.,reporting-spam/blocks/5/cards/1/back
+Spam Filter,Filtro de spam,reporting-spam/blocks/5/cards/2/front
+A tool that helps move unwanted messages out of your inbox.,Una herramienta que ayuda a separar los mensajes no deseados de tu bandeja de entrada.,reporting-spam/blocks/5/cards/2/back
+Scam Call,Llamada de estafa,reporting-spam/blocks/5/cards/3/front
+A phone call that tries to steal money or information.,Una llamada que intenta robar dinero o información.,reporting-spam/blocks/5/cards/3/back
+Junk Email,Correo no deseado,reporting-spam/blocks/5/cards/4/front
+Another name for spam email.,Otra forma de llamar al correo spam.,reporting-spam/blocks/5/cards/4/back
+Report,Denunciar,reporting-spam/blocks/6/wordBank/1; reporting-spam/blocks/6/questions/1/answer
+Filter,Filtro,reporting-spam/blocks/6/wordBank/2; reporting-spam/blocks/6/questions/2/answer
+An unwanted text or email is called ______.,Un mensaje de texto o correo no deseado se llama ______.,reporting-spam/blocks/6/questions/0/text
+Many email apps have a ______ Spam button.,Muchas aplicaciones de correo tienen un botón para ______ el spam.,reporting-spam/blocks/6/questions/1/text
+A spam ______ helps move unwanted emails out of your inbox.,Un ______ de spam ayuda a separar los correos no deseados de tu bandeja de entrada.,reporting-spam/blocks/6/questions/2/text
+"Margaret receives this text: ""You owe $6.99 in toll fees. Pay immediately or your license will be suspended."" She hasn't driven on a toll road. What should she do?","Margaret recibe: «Debes 6,99 dólares de peaje. Paga de inmediato o suspenderemos tu licencia». No ha usado ninguna carretera de peaje. ¿Qué debería hacer?",reporting-spam/blocks/7/text
+Click the payment link.,Abrir el enlace de pago.,reporting-spam/blocks/7/options/0
+Reply with her credit card number.,Responder con su número de tarjeta.,reporting-spam/blocks/7/options/1
+"Report the text as spam, delete it, and visit the toll agency's official website herself if she has questions.","Denunciar el mensaje, eliminarlo y visitar por su cuenta el sitio oficial de la agencia de peajes si tiene dudas.",reporting-spam/blocks/7/options/2
+Send the message to all her contacts.,Enviar el mensaje a todos sus contactos.,reporting-spam/blocks/7/options/3
+Going directly to the official website is much safer than using the link in the message.,Es mucho más seguro ir directamente al sitio oficial que usar el enlace del mensaje.,reporting-spam/blocks/7/explanation
+"Margaret receives this text: ""You owe $6.99 in toll fees. Pay immediately or your license will be suspended."" She hasn't driven on a toll road.","Margaret recibe: «Debes 6,99 dólares de peaje. Paga de inmediato o suspenderemos tu licencia». No ha usado ninguna carretera de peaje.",reporting-spam/blocks/7/presentation/story
+"Robert receives an email saying ""Your account will be closed today unless you verify your password."" What should he do?",Robert recibe un correo: «Tu cuenta se cerrará hoy si no verificas tu contraseña». ¿Qué debería hacer?,reporting-spam/blocks/8/text
+"Report it as spam or phishing, then check his account by going directly to the company's official website or app.",Denunciarlo como spam o phishing y revisar su cuenta directamente en el sitio web o la aplicación oficial.,reporting-spam/blocks/8/options/2
+Ignore it but forward it to everyone.,"Ignorarlo, pero reenviarlo a todo el mundo.",reporting-spam/blocks/8/options/3
+Legitimate companies generally don't ask for passwords by email.,Las empresas legítimas no suelen pedir contraseñas por correo.,reporting-spam/blocks/8/explanation
+"Robert receives an email saying ""Your account will be closed today unless you verify your password.""",Robert recibe un correo: «Tu cuenta se cerrará hoy si no verificas tu contraseña».,reporting-spam/blocks/8/presentation/story
+"Linda answers a phone call. The caller says ""This is the IRS. You must pay immediately with gift cards."" What should she do?",Linda contesta una llamada. Le dicen: «Somos el IRS. Debes pagar de inmediato con tarjetas de regalo». ¿Qué debería hacer?,reporting-spam/blocks/9/text
+Buy the gift cards.,Comprar las tarjetas de regalo.,reporting-spam/blocks/9/options/0; reporting-spam/quiz/4/options/0
+Stay on the phone.,Seguir hablando.,reporting-spam/blocks/9/options/1; reporting-spam/blocks/11/options/0; reporting-spam/quiz/4/options/1
+"Hang up. If she's concerned, she can contact the IRS using the official phone number from irs.gov.","Colgar. Si le preocupa, puede contactar con el IRS mediante el teléfono oficial que aparece en irs.gov.",reporting-spam/blocks/9/options/2
+Give the caller her Social Security number.,Dar su número del Seguro Social.,reporting-spam/blocks/9/options/3
+Government agencies don't demand immediate payment with gift cards.,Las agencias del gobierno no exigen pagos inmediatos con tarjetas de regalo.,reporting-spam/blocks/9/explanation
+"Linda answers a phone call. The caller says ""This is the IRS. You must pay immediately with gift cards.""",Linda contesta una llamada. Le dicen: «Somos el IRS. Debes pagar de inmediato con tarjetas de regalo».,reporting-spam/blocks/9/presentation/story
+"Pause before responding. An unexpected message that pressures you to pay or reveal personal information may be a scam. Verify it using an app, website or phone number you trust. Report unwanted or suspicious messages; you do not need a particular number of warning signs.","Haz una pausa antes de responder. Un mensaje inesperado que te presiona para pagar o revelar datos personales puede ser una estafa. Compruébalo mediante una aplicación, un sitio web o un número de confianza. Denuncia los mensajes no deseados o sospechosos; no hace falta cumplir un número concreto de señales de alerta.",reporting-spam/blocks/10/text
+An unknown caller demands immediate payment using gift cards.,Una persona desconocida llama y exige un pago inmediato con tarjetas de regalo.,reporting-spam/blocks/11/text
+Give your payment information.,Dar tus datos de pago.,reporting-spam/blocks/11/options/1
+Hang up and block the number if the calls continue.,Colgar y bloquear el número si las llamadas continúan.,reporting-spam/blocks/11/options/2
+Drive to the nearest store to buy gift cards.,Ir a la tienda más cercana a comprar tarjetas de regalo.,reporting-spam/blocks/11/options/3
+"Your email app asks: ""Report Spam?"" What happens?",Tu aplicación de correo pregunta: «¿Denunciar como no deseado?». ¿Qué ocurre?,reporting-spam/blocks/12/text
+Your computer is deleted.,Se borra tu computadora.,reporting-spam/blocks/12/options/0
+Your phone breaks.,Se rompe tu teléfono.,reporting-spam/blocks/12/options/1
+"The message is marked as spam, helping improve spam filtering. It may also move to your Spam or Junk folder.",El mensaje se marca como no deseado y ayuda a mejorar el filtro. También puede pasar a la carpeta de spam o correo no deseado.,reporting-spam/blocks/12/options/2
+Your contacts disappear.,Desaparecen tus contactos.,reporting-spam/blocks/12/options/3
+You accidentally opened a spam email but didn't click any links or download attachments. What should you do?,"Abriste un correo no deseado por accidente, pero no abriste enlaces ni descargaste archivos. ¿Qué deberías hacer?",reporting-spam/blocks/13/text
+Panic because your device is definitely infected.,Entrar en pánico porque el dispositivo está infectado con certeza.,reporting-spam/blocks/13/options/0
+Reply to the scammer.,Responder al estafador.,reporting-spam/blocks/13/options/1
+"Close the email, report it as spam if possible, and delete it. Simply opening an email usually isn't enough to infect your device.","Cerrar el correo, denunciarlo si es posible y eliminarlo. Abrir un correo por sí solo no suele bastar para infectar un dispositivo.",reporting-spam/blocks/13/options/2
+Send the email to your friends.,Enviar el correo a tus amistades.,reporting-spam/blocks/13/options/3
+"The bigger risks usually come from clicking malicious links, downloading attachments, or entering personal information.","Los mayores riesgos suelen venir de abrir enlaces dañinos, descargar archivos o introducir datos personales.",reporting-spam/blocks/13/explanation
+"When you see spam: report it, delete it, block the sender if appropriate, and never share passwords or financial information. Don't click suspicious links, don't call phone numbers listed in suspicious messages, and don't respond just to tell scammers to stop.","Cuando veas spam: denúncialo, elimínalo y bloquea al remitente si corresponde. Nunca compartas contraseñas ni datos financieros. No abras enlaces sospechosos, no llames a números incluidos en esos mensajes ni respondas solo para pedir al estafador que pare.",reporting-spam/blocks/14/text
+What is spam?,¿Qué es el spam?,reporting-spam/quiz/0/question
+A trusted family message.,Un mensaje familiar de confianza.,reporting-spam/quiz/0/options/0
+A weather alert.,Una alerta del tiempo.,reporting-spam/quiz/0/options/1
+An unwanted or suspicious message or call.,Una llamada o un mensaje no deseado o sospechoso.,reporting-spam/quiz/0/options/2
+A video call.,Una videollamada.,reporting-spam/quiz/0/options/3
+Which messages should you report?,¿Qué mensajes conviene denunciar?,reporting-spam/quiz/1/question
+Appointment reminders,Recordatorios de citas,reporting-spam/quiz/1/options/0
+"Prize scams, fake banking alerts, suspicious toll requests, and emails asking for passwords","Premios falsos, alertas bancarias falsas, solicitudes de peaje sospechosas y correos que piden contraseñas",reporting-spam/quiz/1/options/1
+True or False: Reporting spam can help improve spam filters.,Verdadero o falso: denunciar el spam puede ayudar a mejorar los filtros.,reporting-spam/quiz/2/question
+An unwanted message is often called ______.,Un mensaje no deseado suele llamarse ______.,reporting-spam/quiz/3/question
+Music,Música,reporting-spam/quiz/3/options/2
+A caller demands payment with gift cards. What should you do?,Alguien llama y exige pagar con tarjetas de regalo. ¿Qué deberías hacer?,reporting-spam/quiz/4/question
+Hang up immediately.,Colgar de inmediato.,reporting-spam/quiz/4/options/2
+You receive a suspicious email asking for your password. What should you do?,Recibes un correo sospechoso que pide tu contraseña. ¿Qué deberías hacer?,reporting-spam/quiz/5/question
+Report it as spam or phishing and visit the company's official website or app if you want to check your account.,Denunciarlo como spam o phishing y visitar el sitio web o la aplicación oficial si quieres revisar tu cuenta.,reporting-spam/quiz/5/options/2
+Forward it to your family.,Reenviarlo a tu familia.,reporting-spam/quiz/5/options/3
+What should you do after reporting a spam message?,¿Qué deberías hacer después de denunciar un mensaje no deseado?,reporting-spam/quiz/6/question
+Keep replying to it.,Seguir respondiendo.,reporting-spam/quiz/6/options/0
+Send it to your contacts.,Enviarlo a tus contactos.,reporting-spam/quiz/6/options/1
+Delete it if you no longer need it.,Eliminarlo si ya no lo necesitas.,reporting-spam/quiz/6/options/2
+Give the sender your personal information.,Dar tus datos personales al remitente.,reporting-spam/quiz/6/options/3
+You accidentally opened a spam email but didn't click anything. What is the best next step?,"Abriste un correo no deseado por accidente, pero no tocaste nada. ¿Cuál es el mejor siguiente paso?",reporting-spam/quiz/7/question
+Assume your device is infected.,Dar por hecho que tu dispositivo está infectado.,reporting-spam/quiz/7/options/0
+"Close the email, report it as spam if possible, and delete it.","Cerrar el correo, denunciarlo si es posible y eliminarlo.",reporting-spam/quiz/7/options/2
+"Enter your password to ""protect"" your account.",Introducir tu contraseña para «proteger» la cuenta.,reporting-spam/quiz/7/options/3
+You completed Lesson 5: Reporting Spam!,¡Completaste la lección 5: Denunciar el spam!,reporting-spam/complete/subtitle
+Recognize spam messages and calls.,Reconocer llamadas y mensajes no deseados.,reporting-spam/complete/learned/0
+Report spam on your phone or email.,Denunciar el spam en tu teléfono o correo.,reporting-spam/complete/learned/1
+Handle suspicious messages safely.,Tratar los mensajes sospechosos con seguridad.,reporting-spam/complete/learned/2
+Avoid responding to scammers.,Evitar responder a estafadores.,reporting-spam/complete/learned/3
+Sharing Photos Safely,Compartir fotos de forma segura,reporting-spam/complete/next; sharing-photos/title; sharing-location/complete/learned/5
+3.6,3.6,sharing-photos/lessonNumber
+Photo Privacy Protector,Protector de las fotos,sharing-photos/badge
+Share photos safely with family and friends.,Compartir fotos con familiares y amistades de forma segura.,sharing-photos/goals/0
+Decide who should be able to see their photos.,Decidir quién puede ver tus fotos.,sharing-photos/goals/1
+Recognize personal information that may appear in photos.,Reconocer datos personales que pueden aparecer en las fotos.,sharing-photos/goals/2
+Avoid common photo-sharing scams.,Evitar estafas habituales al compartir fotos.,sharing-photos/goals/3
+Protect their privacy before posting pictures online.,Proteger tu privacidad antes de publicar imágenes.,sharing-photos/goals/4
+Why Do People Share Photos?,¿Por qué compartimos fotos?,sharing-photos/blocks/0/heading
+"Photos help us share memories and stay connected. People often share photos with family, for birthdays and celebrations, of pets, from vacations, and of children and grandchildren (with permission from parents or guardians). Sharing photos can be fun, but it's important to think about who can see them.","Las fotos nos permiten compartir recuerdos y mantener el contacto. Compartimos fotos familiares, de cumpleaños, mascotas, vacaciones y celebraciones. Para compartir fotos de niños o nietos, pide permiso a sus padres o tutores. Compartir fotos puede ser agradable, pero conviene pensar quién podrá verlas.",sharing-photos/blocks/0/text
+Not Every Photo Should Be Public,No todas las fotos deben ser públicas,sharing-photos/blocks/1/heading
+"Some photos are fine to share with everyone. Others should only be shared with people you trust.
+
+Good to share: family gatherings, flowers, pets, birthday cake, nature.
+
+Be careful sharing: photos showing your home address, credit cards, prescription bottles, medical paperwork, boarding passes, driver's license or ID, mail with your address, or screenshots showing passwords or private messages.
+
+Even if you trust your friends, remember that online posts can sometimes be copied or shared by others.","Algunas fotos se pueden compartir con todo el mundo. Otras conviene mostrarlas solo a personas de confianza.
+
+Suelen ser apropiadas: flores, mascotas, pasteles, paisajes o reuniones familiares con permiso.
+
+Ten cuidado con las fotos que muestran tu dirección, tarjetas bancarias, envases de medicamentos, documentos médicos, tarjetas de embarque, identificación, cartas o capturas con contraseñas o mensajes privados.
+
+Aunque confíes en tus amistades, recuerda que otras personas pueden copiar o compartir lo que publiques.",sharing-photos/blocks/1/text
+Who Can See Your Photos?,¿Quién puede ver tus fotos?,sharing-photos/blocks/2/heading
+"Many apps let you choose who can see your pictures. You may be able to share with family only, friends only, specific people, or everyone (public). When possible, choose the smallest audience that fits your goal.","Muchas aplicaciones permiten elegir quién ve tus fotos: familiares, amistades, personas concretas o todo el mundo. Siempre que puedas, compártelas con el menor número de personas necesario para lo que quieres hacer.",sharing-photos/blocks/2/text
+Photo Scams,Estafas con fotos,sharing-photos/blocks/3/heading
+"Scammers sometimes use photos to trick people. Examples include fake giveaway posts, fake profiles using stolen pictures, someone asking you to send pictures of your ID or credit card, or someone requesting a photo of your debit card to ""verify"" your account.
+
+Never send photos of your driver's license, passport, Social Security card, credit or debit cards, or banking documents, unless you are using a trusted, secure process with an organization you know.","Los estafadores pueden usar fotos para engañar: sorteos falsos, perfiles con imágenes robadas o solicitudes de fotos de tu identificación o tarjeta para «verificar» una cuenta.
+
+No envíes fotos de tu licencia, pasaporte, tarjeta del Seguro Social, tarjetas bancarias ni documentos del banco, salvo mediante un proceso seguro y de confianza con una organización que conozcas.",sharing-photos/blocks/3/text
+Which Photos Are Safe to Share Publicly?,¿Qué fotos suelen ser seguras para publicar?,sharing-photos/blocks/4/title
+Tap every photo that is generally safe to post publicly.,Toca todas las fotos que generalmente se pueden publicar sin revelar datos privados.,sharing-photos/blocks/4/prompt
+A picture of your dog playing in the park,Tu perro jugando en el parque,sharing-photos/blocks/4/options/0/text
+A sunset at the beach,Un atardecer en la playa,sharing-photos/blocks/4/options/1/text
+Flowers in your garden,Flores de tu jardín,sharing-photos/blocks/4/options/2/text
+A homemade birthday cake,Un pastel de cumpleaños casero,sharing-photos/blocks/4/options/3/text
+A photo of your driver's license,Tu licencia de conducir,sharing-photos/blocks/4/options/4/text
+A picture of your credit card,Tu tarjeta de crédito,sharing-photos/blocks/4/options/5/text
+Mail showing your address,Una carta con tu dirección,sharing-photos/blocks/4/options/6/text
+Your prescription bottle,El envase de tu medicamento,sharing-photos/blocks/4/options/7/text
+"Excellent! Everyday photos of pets, nature, and celebrations are usually much safer to share than photos containing personal information.","¡Bien hecho! Las fotos de mascotas, naturaleza y celebraciones suelen ser mucho más seguras para compartir que las que contienen datos personales.",sharing-photos/blocks/4/feedback
+Public Post,Publicación pública,sharing-photos/blocks/5/cards/0/front
+A post that anyone can see.,Una publicación que cualquiera puede ver.,sharing-photos/blocks/5/cards/0/back
+Private Photo,Foto privada,sharing-photos/blocks/5/cards/1/front
+A photo shared only with selected people.,Una foto compartida solo con personas seleccionadas.,sharing-photos/blocks/5/cards/1/back
+Personal Information,Información personal,sharing-photos/blocks/5/cards/2/front
+"Information that identifies you, such as your address or driver's license number.","Datos que te identifican, como tu dirección o número de licencia.",sharing-photos/blocks/5/cards/2/back
+Privacy Settings,Ajustes de privacidad,sharing-photos/blocks/5/cards/3/front
+Controls who can see your posts and photos.,Controla quién puede ver tus publicaciones y fotos.,sharing-photos/blocks/5/cards/3/back
+Photo Scam,Estafa con fotos,sharing-photos/blocks/5/cards/4/front
+A scam that asks for pictures containing personal or financial information.,Una estafa que pide imágenes con información personal o financiera.,sharing-photos/blocks/5/cards/4/back
+Privacy,Privacidad,sharing-photos/blocks/6/wordBank/0; sharing-photos/blocks/6/questions/0/answer; sharing-photos/quiz/3/options/0
+Credit Card,Tarjeta de crédito,sharing-photos/blocks/6/wordBank/1; sharing-photos/blocks/6/questions/1/answer
+Address,Dirección,sharing-photos/blocks/6/wordBank/2; sharing-photos/blocks/6/questions/2/answer
+Public,Público,sharing-photos/blocks/6/wordBank/3; sharing-photos/quiz/5/options/0
+"Before posting online, check your ______ settings.","Antes de publicar, revisa los ajustes de ______.",sharing-photos/blocks/6/questions/0/text
+Never post a photo showing your ______.,Nunca publiques una foto que muestre tu ______.,sharing-photos/blocks/6/questions/1/text
+A picture showing your home ______ could put your privacy at risk.,Una foto que muestre tu ______ puede poner en riesgo tu privacidad.,sharing-photos/blocks/6/questions/2/text
+Margaret wants to post a picture of her new puppy on Facebook. The photo only shows the puppy playing in the yard. What should she do?,Margaret quiere publicar en Facebook una foto de su cachorro jugando en el jardín. La imagen solo muestra al cachorro. ¿Qué debería hacer?,sharing-photos/blocks/7/text
+Share it if she's comfortable and chooses the audience she wants.,"Compartirla si quiere, eligiendo quién puede verla.",sharing-photos/blocks/7/options/0
+Include a photo of her driver's license too.,Añadir una foto de su licencia de conducir.,sharing-photos/blocks/7/options/1
+Post her full home address with the picture.,Publicar su dirección completa junto a la foto.,sharing-photos/blocks/7/options/2
+Share her banking information in the comments.,Compartir sus datos bancarios en los comentarios.,sharing-photos/blocks/7/options/3
+Sharing a pet photo is generally fine. Choosing who can see it adds another layer of privacy.,Compartir una foto de tu mascota suele estar bien. Elegir quién puede verla añade privacidad.,sharing-photos/blocks/7/explanation
+Margaret wants to post a picture of her new puppy on Facebook. The photo only shows the puppy playing in the yard.,Margaret quiere publicar en Facebook una foto de su cachorro jugando en el jardín. La imagen solo muestra al cachorro.,sharing-photos/blocks/7/presentation/story
+"Robert receives this message: ""To claim your prize, send us a picture of your driver's license."" What should he do?","Robert recibe: «Para reclamar tu premio, envíanos una foto de tu licencia de conducir». ¿Qué debería hacer?",sharing-photos/blocks/8/text
+Send the photo.,Enviar la foto.,sharing-photos/blocks/8/options/0
+Send a picture of his credit card too.,Enviar también una foto de su tarjeta de crédito.,sharing-photos/blocks/8/options/1
+Do not send photos of personal documents. Ignore or report the message if it appears to be a scam.,No enviar fotos de documentos personales. Ignorar o denunciar el mensaje si parece una estafa.,sharing-photos/blocks/8/options/2
+Reply asking how many prizes he won.,Responder para preguntar cuántos premios ganó.,sharing-photos/blocks/8/options/3
+Legitimate giveaways generally don't ask for sensitive personal documents this way.,Los sorteos legítimos no suelen pedir documentos sensibles de esta forma.,sharing-photos/blocks/8/explanation
+"Robert receives this message: ""To claim your prize, send us a picture of your driver's license.""","Robert recibe: «Para reclamar tu premio, envíanos una foto de tu licencia de conducir».",sharing-photos/blocks/8/presentation/story
+Linda takes a photo of her birthday cake. In the background is a letter showing her home address. What should she do?,Linda fotografía su pastel de cumpleaños. Detrás aparece una carta con su dirección. ¿Qué debería hacer?,sharing-photos/blocks/9/text
+Post it without looking.,Publicarla sin revisar.,sharing-photos/blocks/9/options/0
+Zoom in on the address.,Ampliar la dirección.,sharing-photos/blocks/9/options/1
+Crop or retake the photo so the address isn't visible before sharing.,Recortar la foto o hacer otra para ocultar la dirección antes de compartirla.,sharing-photos/blocks/9/options/2
+Write her address in the caption too.,Escribir también su dirección en el pie de foto.,sharing-photos/blocks/9/options/3
+Looking at the background before posting is a great habit.,Revisar el fondo de una foto antes de publicarla es un buen hábito.,sharing-photos/blocks/9/explanation
+Linda takes a photo of her birthday cake. In the background is a letter showing her home address.,Linda fotografía su pastel de cumpleaños. Detrás aparece una carta con su dirección.,sharing-photos/blocks/9/presentation/story
+"Before you share a photo, ask yourself: Does it show my address? Does it show my credit card or ID? Does it show private paperwork? Am I comfortable with the people who will see it? If you're unsure, don't post it until you've checked carefully.","Antes de compartir una foto, pregúntate: ¿Muestra mi dirección? ¿Aparecen mi tarjeta o identificación? ¿Hay documentos privados? ¿Me siento a gusto con quienes la verán? Si tienes dudas, revísala con calma antes de publicarla.",sharing-photos/blocks/10/text
+You notice your prescription bottle is visible in a picture you're about to post.,Ves que aparece el envase de tu medicamento en una foto que vas a publicar.,sharing-photos/blocks/11/text
+Ignore it.,Ignorarla.,sharing-photos/blocks/11/options/0
+Zoom in on it.,Ampliar esa parte.,sharing-photos/blocks/11/options/1
+Retake or crop the photo before sharing.,Hacer otra foto o recortarla antes de compartirla.,sharing-photos/blocks/11/options/2
+Write the medication name in the caption.,Escribir el nombre del medicamento en el pie de foto.,sharing-photos/blocks/11/options/3
+"Someone on social media you've never met asks you to send a picture of your driver's license to ""prove you're real.""",Alguien de una red social a quien nunca has visto pide una foto de tu licencia para «demostrar que eres real».,sharing-photos/blocks/12/text
+Send it.,Enviarlo.,sharing-photos/blocks/12/options/0; sharing-photos/quiz/4/options/0
+Send your passport too.,Enviar también tu pasaporte.,sharing-photos/blocks/12/options/1; sharing-photos/quiz/4/options/1
+"Do not send personal identification. Ignore, block, or report the account if it seems suspicious.","No enviar tu identificación. Ignorar, bloquear o denunciar la cuenta si parece sospechosa.",sharing-photos/blocks/12/options/2
+Ask them for your bank account number.,Pedirle tu número de cuenta bancaria.,sharing-photos/blocks/12/options/3
+You're posting a picture from your front yard. Your house number is clearly visible. What should you do?,Vas a publicar una foto de tu jardín y se ve claramente el número de tu casa. ¿Qué deberías hacer?,sharing-photos/blocks/13/text
+Leave it exactly as it is.,Dejarla tal cual.,sharing-photos/blocks/13/options/0
+Add your street name in the caption.,Añadir el nombre de tu calle en el pie de foto.,sharing-photos/blocks/13/options/1
+Crop or retake the picture so your house number isn't visible if you don't want to share that information.,Recortarla o hacer otra sin el número si no quieres compartir esa información.,sharing-photos/blocks/13/options/2
+Tag your home location publicly.,Etiquetar públicamente la ubicación de tu casa.,sharing-photos/blocks/13/options/3
+House numbers and addresses can reveal where you live.,El número de tu casa y tu dirección pueden revelar dónde vives.,sharing-photos/blocks/13/explanation
+"Before sharing any photo: check the background, protect personal information, choose who can see your photo, and think before you post. Never share pictures of IDs, credit or debit cards, or medical documents publicly, and never feel pressured to send personal photos to strangers.","Antes de compartir una foto, revisa el fondo, protege los datos personales y elige quién puede verla. No publiques imágenes de identificaciones, tarjetas bancarias ni documentos médicos. No tienes obligación de enviar fotos personales a desconocidos.",sharing-photos/blocks/14/text
+What should you do before posting a photo online?,¿Qué conviene hacer antes de publicar una foto?,sharing-photos/quiz/0/question
+Post it immediately.,Publicarla de inmediato.,sharing-photos/quiz/0/options/0
+Check whether it contains personal information.,Revisar si contiene información personal.,sharing-photos/quiz/0/options/1
+Send it to strangers first.,Enviarla primero a personas desconocidas.,sharing-photos/quiz/0/options/2
+Turn off your phone.,Apagar tu teléfono.,sharing-photos/quiz/0/options/3
+Which photos should generally not be shared publicly?,¿Qué fotos conviene evitar publicar?,sharing-photos/quiz/1/question
+Photos of flowers,Fotos de flores,sharing-photos/quiz/1/options/0
+"Driver's license, credit card, mail showing your address, and prescription bottles","Tu licencia, tarjeta de crédito, cartas con tu dirección y envases de medicamentos",sharing-photos/quiz/1/options/1
+True or False: It's a good idea to check the background of a photo before posting it.,Verdadero o falso: conviene revisar el fondo de una foto antes de publicarla.,sharing-photos/quiz/2/question
+"Before posting online, review your ______ settings.","Antes de publicar, revisa tus ajustes de ______.",sharing-photos/quiz/3/question
+Someone online asks you to send a picture of your driver's license to claim a prize. What should you do?,Alguien en internet te pide una foto de tu licencia para reclamar un premio. ¿Qué deberías hacer?,sharing-photos/quiz/4/question
+Do not send personal identification. Ignore or report the request if it seems suspicious.,No enviar tu identificación. Ignorar o denunciar la solicitud si parece sospechosa.,sharing-photos/quiz/4/options/2
+Post it publicly.,Publicarla para que todos la vean.,sharing-photos/quiz/4/options/3
+Which sharing option usually gives you the most control?,¿Qué opción suele darte más control al compartir?,sharing-photos/quiz/5/question
+Everyone,Todos,sharing-photos/quiz/5/options/1
+Share only with trusted people or a specific audience.,Compartir solo con personas de confianza o un grupo concreto.,sharing-photos/quiz/5/options/2
+Anyone on the internet.,Cualquiera en internet.,sharing-photos/quiz/5/options/3
+Why is it important to check the background of a photo?,¿Por qué conviene revisar el fondo de una foto?,sharing-photos/quiz/6/question
+To make the photo brighter.,Para que la foto sea más luminosa.,sharing-photos/quiz/6/options/0
+To count how many people are in it.,Para contar cuántas personas aparecen.,sharing-photos/quiz/6/options/1
+It may accidentally reveal private information like your address or documents.,"Puede revelar sin querer datos privados, como tu dirección o documentos.",sharing-photos/quiz/6/options/2
+It changes the weather.,Cambia el tiempo que hace.,sharing-photos/quiz/6/options/3
+Which habit helps protect your privacy when sharing photos?,¿Qué hábito protege tu privacidad al compartir fotos?,sharing-photos/quiz/7/question
+Posting quickly,Publicar deprisa,sharing-photos/quiz/7/options/0
+"Reviewing the picture, cropping out personal information, choosing who can see it, and thinking before posting","Revisar la imagen, recortar los datos personales, elegir quién puede verla y pensar antes de publicar",sharing-photos/quiz/7/options/1
+You completed Lesson 6: Sharing Photos Safely!,¡Completaste la lección 6: Compartir fotos con seguridad!,sharing-photos/complete/subtitle
+Share photos more safely.,Compartir fotos con más seguridad.,sharing-photos/complete/learned/0
+Protect personal information in pictures.,Proteger los datos personales en las imágenes.,sharing-photos/complete/learned/1
+Check backgrounds before posting.,Revisar el fondo antes de publicar.,sharing-photos/complete/learned/2
+Recognize photo-related scams.,Reconocer estafas relacionadas con fotos.,sharing-photos/complete/learned/3
+Sharing Your Location,Compartir tu ubicación,sharing-photos/complete/next; sharing-location/title; sharing-location/complete/learned/6
+3.7,3.7,sharing-location/lessonNumber
+Communication Champion,Comunicación segura,sharing-location/badge
+Explain what location sharing is.,Explicar qué significa compartir la ubicación.,sharing-location/goals/0
+Know when it is appropriate to share their location.,Saber cuándo conviene compartir tu ubicación.,sharing-location/goals/1
+Understand the difference between sharing your location once and continuously.,Distinguir entre enviar tu ubicación una vez y compartirla en tiempo real.,sharing-location/goals/2
+Safely stop location sharing.,Dejar de compartir tu ubicación de forma segura.,sharing-location/goals/3
+Recognize location-sharing scams.,Reconocer estafas que piden tu ubicación.,sharing-location/goals/4
+What Is Location Sharing?,¿Qué significa compartir la ubicación?,sharing-location/blocks/0/heading
+"Location sharing allows your phone to tell another person where you are. Many apps let you share your location, including Messages, Find My (Apple), Google Maps, and family safety apps. Location sharing can be very helpful when used with people you trust.","Compartir tu ubicación permite que tu teléfono indique a otra persona dónde estás. Puedes hacerlo con aplicaciones como Mensajes, Buscar de Apple, Google Maps y aplicaciones de seguridad familiar. Puede ser muy útil si lo haces con personas de confianza.",sharing-location/blocks/0/text
+When Is It Helpful?,¿Cuándo resulta útil?,sharing-location/blocks/1/heading
+Sharing your location can make life easier. Examples include:,"Compartir tu ubicación puede ayudarte, por ejemplo, a:",sharing-location/blocks/1/text
+Letting your family know you're on your way home,Avisar a tu familia de que vas de camino a casa,sharing-location/blocks/1/bullets/0
+Meeting friends at a park or event,Encontrarte con amistades en un parque o evento,sharing-location/blocks/1/bullets/1
+Helping family find you during an emergency,Ayudar a tu familia a encontrarte en una emergencia,sharing-location/blocks/1/bullets/2
+Finding each other in a large parking lot,Encontrarse en un estacionamiento grande,sharing-location/blocks/1/bullets/3
+When Should You NOT Share?,¿Cuándo conviene no compartirla?,sharing-location/blocks/2/heading
+"Never share your location with someone you just met online, a person asking for your address to claim a prize, someone pretending to be customer support, or anyone who makes you uncomfortable. Remember: you are always in control of your location.","No compartas tu ubicación con alguien que acabas de conocer en internet, quien pida tu dirección para darte un premio, quien finja ser soporte técnico ni quien te haga sentir incómodo. Tú decides cuándo compartirla y con quién.",sharing-location/blocks/2/text
+One-Time vs. Continuous Sharing,Enviar una vez o compartir en tiempo real,sharing-location/blocks/3/heading
+"Sending your location once shows where you are at that moment. It does not follow your movements.
+
+Live sharing updates your location as you move. Depending on the app, you can choose a time limit or share until you turn it off.
+
+Choose the shortest time you need and review who can see your location. When finished, use the app's stop-sharing control; closing the app is not enough.","Enviar tu ubicación una vez muestra dónde estás en ese momento. No sigue tus movimientos.
+
+Compartir en tiempo real actualiza tu ubicación mientras te mueves. Puedes elegir una duración limitada o compartir hasta que lo desactives, según la aplicación.
+
+Elige la duración más corta que necesites y revisa quién puede ver tu ubicación. Cuando termines, usa la opción para dejar de compartirla; no basta con cerrar la aplicación.",sharing-location/blocks/3/text
+Who Would You Share Your Location With?,¿Con quién compartirías tu ubicación?,sharing-location/blocks/4/title
+Tap everyone it would usually be appropriate to share your location with.,Toca todas las personas con las que normalmente sería apropiado compartir tu ubicación.,sharing-location/blocks/4/prompt
+Your spouse or partner,Tu cónyuge o pareja,sharing-location/blocks/4/options/0/text
+Your adult child,Tu hijo o hija mayor de edad,sharing-location/blocks/4/options/1/text
+A trusted friend you're meeting,Una amistad de confianza con la que vas a encontrarte,sharing-location/blocks/4/options/2/text
+A caregiver (if you choose),"Una persona que te cuida, si tú quieres",sharing-location/blocks/4/options/3/text
+Someone you met on social media yesterday,Alguien que conociste ayer en redes sociales,sharing-location/blocks/4/options/4/text
+A stranger claiming you won a prize,Una persona desconocida que dice que ganaste un premio,sharing-location/blocks/4/options/5/text
+Someone asking for your address online,Alguien que pide tu dirección en internet,sharing-location/blocks/4/options/6/text
+Excellent! Share your location only with people you know and trust.,¡Bien hecho! Comparte tu ubicación solo con personas que conozcas y en quienes confíes.,sharing-location/blocks/4/feedback
+Location Sharing,Compartir tu ubicación,sharing-location/blocks/5/cards/0/front
+Allowing someone to see where you are.,Permitir que alguien vea dónde estás.,sharing-location/blocks/5/cards/0/back
+One-Time Location,Ubicación enviada una vez,sharing-location/blocks/5/cards/1/front
+Shows where you were when you sent it; does not follow your movements.,Muestra dónde estabas al enviarla; no sigue tus movimientos.,sharing-location/blocks/5/cards/1/back
+Continuous Sharing,Ubicación en tiempo real,sharing-location/blocks/5/cards/2/front
+Updates your location until the chosen time ends or you stop sharing.,Actualiza tu ubicación hasta que termina la duración elegida o dejas de compartirla.,sharing-location/blocks/5/cards/2/back
+Trusted Contact,Contacto de confianza,sharing-location/blocks/5/cards/3/front
+Someone you know personally and trust.,Alguien que conoces personalmente y en quien confías.,sharing-location/blocks/5/cards/3/back
+Stop Sharing,Dejar de compartir,sharing-location/blocks/5/cards/4/front
+Turns off location sharing.,Desactiva el uso compartido de tu ubicación.,sharing-location/blocks/5/cards/4/back
+Location,Ubicación,sharing-location/blocks/6/wordBank/0; sharing-location/blocks/6/questions/0/answer
+Stop,Detener,sharing-location/blocks/6/wordBank/1; sharing-location/blocks/6/questions/1/answer; sharing-location/quiz/3/options/0
+Temporary,Temporal,sharing-location/blocks/6/wordBank/2; sharing-location/blocks/6/questions/2/answer
+Trusted,De confianza,sharing-location/blocks/6/wordBank/3
+Only share your ______ with people you know and trust.,Comparte tu ______ solo con personas que conozcas y en quienes confíes.,sharing-location/blocks/6/questions/0/text
+"When you no longer need location sharing, you should ______ sharing.","Cuando ya no sea necesario, puedes ______ de compartir tu ubicación.",sharing-location/blocks/6/questions/1/text; sharing-location/quiz/3/question
+Sharing your location while someone picks you up is usually ______.,Compartir tu ubicación mientras alguien te recoge suele ser algo ______.,sharing-location/blocks/6/questions/2/text
+Margaret is meeting her daughter at a shopping mall. Her daughter can't find the entrance she's using. What should Margaret do?,Margaret va a encontrarse con su hija en un centro comercial. Su hija no encuentra la entrada donde está. ¿Qué debería hacer Margaret?,sharing-location/blocks/7/text
+Post her location publicly on Facebook.,Publicar su ubicación para todo el mundo en Facebook.,sharing-location/blocks/7/options/0
+Tell everyone at the mall where she is.,Decir a todas las personas del centro comercial dónde está.,sharing-location/blocks/7/options/1
+Share her location directly with her daughter for a short time.,Compartir su ubicación directamente con su hija durante un tiempo breve.,sharing-location/blocks/7/options/2
+Send her banking password.,Enviar su contraseña bancaria.,sharing-location/blocks/7/options/3
+Temporary location sharing is helpful for meeting someone you trust.,Compartir tu ubicación de forma temporal ayuda a encontrarte con alguien de confianza.,sharing-location/blocks/7/explanation
+Margaret is meeting her daughter at a shopping mall. Her daughter can't find the entrance she's using.,Margaret va a encontrarse con su hija en un centro comercial. Su hija no encuentra la entrada donde está.,sharing-location/blocks/7/presentation/story
+What should Margaret do?,¿Qué debería hacer Margaret?,sharing-location/blocks/7/presentation/question
+"Robert receives this message: ""To receive your prize, send your live location immediately."" What should he do?","Robert recibe: «Para recibir tu premio, envía tu ubicación en tiempo real de inmediato». ¿Qué debería hacer?",sharing-location/blocks/8/text
+Share it.,Compartirla.,sharing-location/blocks/8/options/0; sharing-location/quiz/4/options/0
+Share his home address too.,Compartir también su dirección.,sharing-location/blocks/8/options/1
+Ignore the message and report it if it appears to be a scam.,Ignorar el mensaje y denunciarlo si parece una estafa.,sharing-location/blocks/8/options/2
+Ask for a bigger prize.,Pedir un premio mayor.,sharing-location/blocks/8/options/3
+Legitimate prizes don't require your live location.,Los premios legítimos no requieren tu ubicación en tiempo real.,sharing-location/blocks/8/explanation
+"Robert receives this message: ""To receive your prize, send your live location immediately.""","Robert recibe: «Para recibir tu premio, envía tu ubicación en tiempo real de inmediato».",sharing-location/blocks/8/presentation/story
+Linda shared her location with her son while traveling. She has safely arrived home. What should she do?,Linda compartió su ubicación con su hijo durante un viaje. Ya llegó a casa. ¿Qué debería hacer?,sharing-location/blocks/9/text
+Leave location sharing on forever without checking.,Dejarla activada para siempre sin revisarla.,sharing-location/blocks/9/options/0
+Share her location with everyone else.,Compartir su ubicación con todo el mundo.,sharing-location/blocks/9/options/1
+Stop sharing if she no longer wants her son to see her location.,Dejar de compartirla si ya no quiere que su hijo la vea.,sharing-location/blocks/9/options/2
+Post her home address online.,Publicar la dirección de su casa.,sharing-location/blocks/9/options/3
+It's a good habit to turn off location sharing when you no longer need it.,Conviene dejar de compartir tu ubicación cuando ya no sea necesario.,sharing-location/blocks/9/explanation
+Linda shared her location with her son while traveling. She has safely arrived home.,Linda compartió su ubicación con su hijo durante un viaje. Ya llegó a casa.,sharing-location/blocks/9/presentation/story
+"Before you share your location, ask yourself: Do I know this person? Do I trust them? Do they really need my location? Can I share it temporarily instead of continuously? If you're unsure, don't share until you're confident it's the right choice.","Antes de compartir tu ubicación, pregúntate: ¿Conozco a esta persona? ¿Confío en ella? ¿Necesita saber dónde estoy? ¿Puedo compartirla solo durante un tiempo limitado? Si tienes dudas, espera hasta tenerlo claro.",sharing-location/blocks/10/text
+You're meeting a friend at a concert and can't find each other.,Vas a encontrarte con una amistad en un concierto y no se encuentran.,sharing-location/blocks/11/text
+Post your location publicly.,Publicar tu ubicación para todo el mundo.,sharing-location/blocks/11/options/0
+Share your location directly with your friend for a short time.,Compartir tu ubicación directamente con esa persona durante un tiempo breve.,sharing-location/blocks/11/options/1
+Give your home address instead.,Dar la dirección de tu casa en su lugar.,sharing-location/blocks/11/options/2
+Share your location with everyone in your contacts.,Compartir tu ubicación con todos tus contactos.,sharing-location/blocks/11/options/3
+You've been sharing your location with your daughter during a road trip. The trip is over. What should you do?,Compartiste tu ubicación con tu hija durante un viaje por carretera. El viaje terminó. ¿Qué deberías hacer?,sharing-location/blocks/12/text
+Leave sharing on forever.,Dejarla activada para siempre.,sharing-location/blocks/12/options/0
+Share your location with more people.,Compartir tu ubicación con más personas.,sharing-location/blocks/12/options/1
+Stop sharing if you no longer need it.,Dejar de compartirla si ya no hace falta.,sharing-location/blocks/12/options/2; sharing-location/quiz/6/options/2
+Delete your phone.,Borrar tu teléfono.,sharing-location/blocks/12/options/3
+An app asks to share your location with all users. What should you do?,Una aplicación pide compartir tu ubicación con todos sus usuarios. ¿Qué deberías hacer?,sharing-location/blocks/13/text
+Automatically allow it.,Permitirlo automáticamente.,sharing-location/blocks/13/options/0
+Share your location because everyone else does.,Compartirla porque todo el mundo lo hace.,sharing-location/blocks/13/options/1
+Read why the app needs your location and only share if it makes sense.,Leer por qué necesita tu ubicación y compartirla solo si tiene sentido.,sharing-location/blocks/13/options/2
+Give the app your Social Security number too.,Dar también tu número del Seguro Social.,sharing-location/blocks/13/options/3
+Always understand why an app wants your location before allowing access.,Entiende siempre por qué una aplicación quiere tu ubicación antes de permitir el acceso.,sharing-location/blocks/13/explanation
+"Sharing your location can be very helpful, but only when you choose. Share with trusted people, use temporary sharing when possible, stop sharing when you're finished, and review your location settings regularly. Never share your location with strangers, feel pressured to share, or post your live location publicly.","Compartir tu ubicación puede ser útil, pero tú decides. Compártela con personas de confianza, limita la duración cuando puedas, deja de compartirla al terminar y revisa los ajustes con frecuencia. No la compartas con desconocidos, no lo hagas por presión ni publiques tu ubicación en tiempo real para todo el mundo.",sharing-location/blocks/14/text
+What is location sharing?,¿Qué significa compartir la ubicación?,sharing-location/quiz/0/question
+Sending a text message.,Enviar un mensaje de texto.,sharing-location/quiz/0/options/0
+Taking a picture.,Hacer una foto.,sharing-location/quiz/0/options/1
+Allowing another person or app to know where you are.,Permitir que otra persona o aplicación sepa dónde estás.,sharing-location/quiz/0/options/2
+Connecting to Wi-Fi.,Conectarse a una red wifi.,sharing-location/quiz/0/options/3
+Who is it usually appropriate to share your location with?,¿Con quién suele ser apropiado compartir tu ubicación?,sharing-location/quiz/1/question
+Anyone who asks,Con cualquiera que la pida,sharing-location/quiz/1/options/0
+"A trusted family member, a trusted friend you're meeting, a caregiver if you choose, or your spouse","Un familiar de confianza, una amistad con quien te reunirás, tu pareja o una persona que te cuida si tú quieres",sharing-location/quiz/1/options/1
+True or False: You should share your location with anyone who asks politely online.,Verdadero o falso: debes compartir tu ubicación con cualquiera que la pida amablemente en internet.,sharing-location/quiz/2/question
+Weather,Tiempo,sharing-location/quiz/3/options/2
+A stranger online asks for your live location. What should you do?,Una persona desconocida pide tu ubicación en tiempo real por internet. ¿Qué deberías hacer?,sharing-location/quiz/4/question
+Send your address too.,Enviar también tu dirección.,sharing-location/quiz/4/options/1
+Do not share your location. Ignore or block the person if needed.,No compartirla. Ignorar o bloquear a la persona si hace falta.,sharing-location/quiz/4/options/2
+Call them immediately.,Llamarle de inmediato.,sharing-location/quiz/4/options/3
+What's one benefit of temporary location sharing?,¿Cuál es una ventaja de compartir tu ubicación de forma temporal?,sharing-location/quiz/5/question
+It shares your location forever.,La comparte para siempre.,sharing-location/quiz/5/options/0
+It lets someone see your location only for a limited time.,Permite verla solo durante un tiempo limitado.,sharing-location/quiz/5/options/1
+It gives everyone access to your location.,Da acceso a todo el mundo.,sharing-location/quiz/5/options/2
+It cannot be turned off.,No se puede desactivar.,sharing-location/quiz/5/options/3
+You shared your location with your daughter while she picked you up. You're home now. What should you do?,Compartiste tu ubicación con tu hija mientras te recogía. Ya estás en casa. ¿Qué deberías hacer?,sharing-location/quiz/6/question
+Leave location sharing on forever.,Dejarla activada para siempre.,sharing-location/quiz/6/options/0
+Share your location with your neighbors too.,Compartirla también con tus vecinos.,sharing-location/quiz/6/options/1
+Delete your contacts.,Eliminar tus contactos.,sharing-location/quiz/6/options/3
+"Before sharing your location, what should you ask yourself?",¿Qué debes preguntarte antes de compartir tu ubicación?,sharing-location/quiz/7/question
+"Nothing, just share",Nada; compartirla sin pensar,sharing-location/quiz/7/options/0
+Do I trust this person? Do they really need it? Can I share temporarily? Am I comfortable?,¿Confío en esta persona? ¿La necesita? ¿Puedo limitar la duración? ¿Me siento a gusto?,sharing-location/quiz/7/options/1
+Phase 3 Complete!,¡Fase 3 completada!,sharing-location/complete/title
+"You completed Lesson 7: Sharing Your Location, and all of Phase 3: Communication!","¡Completaste la lección 7: Compartir tu ubicación, y toda la fase 3: Comunicación!",sharing-location/complete/subtitle
+Phase 3 Final Challenge,Reto final de la fase 3,sharing-location/complete/next; phase3-challenge/title
+Phase 3 Final Exam,Evaluación final de la fase 3,phase3-challenge/nextLabel
+Quick review,Repaso breve,phase3-challenge/blocks/0/title
+Which communication choices are safer?,¿Qué formas de comunicarte son más seguras?,phase3-challenge/blocks/0/prompt
+Block repeated unwanted calls,Bloquear llamadas no deseadas repetidas,phase3-challenge/blocks/0/options/0/text
+Confirm unexpected requests another way,Confirmar solicitudes inesperadas por otro medio,phase3-challenge/blocks/0/options/1/text
+Limit who can see your location,Limitar quién puede ver tu ubicación,phase3-challenge/blocks/0/options/2/text
+Accept every unknown video call,Aceptar todas las videollamadas desconocidas,phase3-challenge/blocks/0/options/3/text
+Good review. These choices help you stay informed and in control.,Buen repaso. Estas opciones te ayudan a estar informado y mantener el control.,phase3-challenge/blocks/0/feedback
+Take another look at the highlighted choices. Safe actions give you time to verify.,Vuelve a mirar las opciones resaltadas. Las acciones seguras te dan tiempo para comprobar.,phase3-challenge/blocks/0/incorrectFeedback
+Key ideas,Ideas clave,phase3-challenge/blocks/1/title
+"Unwanted messages or calls, often sent to many people.","Llamadas o mensajes no deseados, que suelen enviarse a muchas personas.",phase3-challenge/blocks/1/cards/0/back
+Stop a person or account from contacting you again.,Impedir que una persona o cuenta vuelva a contactarte.,phase3-challenge/blocks/1/cards/1/back
+Location sharing,Compartir ubicación,phase3-challenge/blocks/1/cards/2/front
+Allow selected people or apps to see where you are.,Permitir que personas o aplicaciones seleccionadas vean dónde estás.,phase3-challenge/blocks/1/cards/2/back
+Recall practice,Práctica de memoria,phase3-challenge/blocks/2/title
+block,bloquear,phase3-challenge/blocks/2/wordBank/0; phase3-challenge/blocks/2/questions/0/answer
+reply,responder,phase3-challenge/blocks/2/wordBank/1
+forward,reenviar,phase3-challenge/blocks/2/wordBank/2
+share,compartir,phase3-challenge/blocks/2/wordBank/3
+Use ______ to stop an unwanted caller from contacting you again.,Puedes ______ para impedir que un número no deseado vuelva a llamarte.,phase3-challenge/blocks/2/questions/0/text
+Real-life decision,Decisión de la vida real,phase3-challenge/blocks/3/title
+An unknown caller asks you to move a video call to a secret app. What should you do?,Una persona desconocida te pide cambiar la videollamada a una aplicación secreta. ¿Qué deberías hacer?,phase3-challenge/blocks/3/text
+End the call and verify the person independently,Finalizar la llamada y verificar su identidad por otro medio,phase3-challenge/blocks/3/options/0
+Install the app immediately,Instalar la aplicación de inmediato,phase3-challenge/blocks/3/options/1
+Share your location before deciding,Compartir tu ubicación antes de decidir,phase3-challenge/blocks/3/options/2
+An unexpected request for secrecy is a warning sign. Verify through a number or account you already trust.,Una petición inesperada de guardar secretos es una señal de alerta. Verifica la identidad mediante un número o una cuenta de confianza.,phase3-challenge/blocks/3/explanation
+An unknown caller asks you to move a video call to a secret app.,Una persona desconocida te pide cambiar la videollamada a una aplicación secreta.,phase3-challenge/blocks/3/presentation/story
+What should you do?,¿Qué deberías hacer?,phase3-challenge/blocks/3/presentation/question
+Final confidence check,Comprobación final de confianza,phase3-challenge/blocks/4/title
+It is safe to share your live location with every new online contact.,Es seguro compartir tu ubicación en tiempo real con cada nuevo contacto de internet.,phase3-challenge/blocks/4/questions/0/text
+Share live location only with people you trust and only when it is useful.,Comparte tu ubicación en tiempo real solo con personas de confianza y cuando sea útil.,phase3-challenge/blocks/4/questions/0/explanation

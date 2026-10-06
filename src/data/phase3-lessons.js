@@ -59,7 +59,7 @@ export const phase3Lessons = [
       {
         type: "learn",
         heading: "Blue vs. Green Text Bubbles (iPhone)",
-        text: "A blue bubble means you're texting another iPhone user. The message is sent using iMessage, through the internet, and you may see Delivered or Read underneath.\n\nA green bubble means the message is sent as a regular text (SMS/MMS). The other person may have an Android phone, or iMessage may not be available. You usually won't see Read receipts.\n\nBoth blue and green messages work. The color does not mean one is better than the other."
+        text: "Blue bubbles mean the message uses iMessage between Apple devices over Wi-Fi or mobile data. Delivery and read receipts may appear.\n\nGreen bubbles mean the message uses RCS or SMS/MMS. RCS can also show delivery and read receipts, depending on support and settings. Available features depend on your phone, carrier and the other person's service.\n\nBubble color tells you the message type. It does not prove that the sender or a link is trustworthy."
       },
       {
         type: "match",
@@ -69,7 +69,7 @@ export const phase3Lessons = [
           { word: "Delivered", match: "Arrived on their phone" },
           { word: "Read", match: "They opened the message" },
           { word: "Blue Bubble", match: "iMessage between Apple devices" },
-          { word: "Green Bubble", match: "Regular text message (SMS/MMS)" }
+          { word: "Green Bubble", match: "RCS or regular text (SMS/MMS)" }
         ]
       },
       {
@@ -329,7 +329,7 @@ export const phase3Lessons = [
       {
         type: "learn",
         heading: "Camera and Microphone",
-        text: "During a video call, you can choose whether people can see you (Camera) or hear you (Microphone). Most apps let you turn both on or off at any time.\n\nCamera Off: people can hear you, but cannot see you.\nMicrophone Muted: people can see you, but cannot hear you."
+        text: "During a video call, the camera controls whether people can see you. The microphone controls whether they can hear you. Most apps let you turn either on or off at any time.\n\nCamera off: people cannot see you. They can still hear you if your microphone is on.\nMicrophone muted: people cannot hear you. They can still see you if your camera is on."
       },
       {
         type: "learn",
@@ -789,7 +789,7 @@ export const phase3Lessons = [
       {
         type: "learn",
         heading: "What Does \"Block\" Mean?",
-        text: "Blocking a phone number tells your phone that you no longer want to receive calls or text messages from that number. After you block someone, they usually cannot call you successfully, their text messages usually won't be delivered to you, and you stop receiving notifications from that number.\n\nBlocking can help reduce unwanted calls and messages, although it may not stop every spam call because scammers sometimes use different phone numbers."
+        text: "Blocking a number helps stop its calls and messages from reaching you. On iPhone, messages from that number are not delivered. The caller can still leave voicemail, but you will not receive a notification. Other phones and apps may behave differently.\n\nBlocking does not stop every scam: scammers can use other numbers."
       },
       {
         type: "learn",
@@ -804,8 +804,8 @@ export const phase3Lessons = [
       },
       {
         type: "learn",
-        heading: "When Should You NOT Block?",
-        text: "You probably shouldn't block family members, your doctor's office, your bank (if you've confirmed the number is legitimate), emergency contacts, or businesses you regularly use.\n\nIf you're unsure who is calling, let the call go to voicemail. If it's important, the caller will often leave a message."
+        heading: "When Should You Think Before Blocking?",
+        text: "Before blocking, consider whether this is someone you want to hear from, such as a trusted person, your doctor's office, or a business you use. You can block anyone who harasses or threatens you, even if you know them.\n\nIf you do not know who is calling, let it go to voicemail. You can confirm the reason for the call using a number you already trust."
       },
       {
         type: "learn",
@@ -1042,7 +1042,7 @@ export const phase3Lessons = [
       {
         type: "learn",
         heading: "How to Report Spam",
-        text: "Many phones and email apps include a Report Spam or Report Junk button. When you report spam, the message may be sent to your phone carrier or email provider for review, the sender may also be blocked depending on your device, and reporting helps improve spam filters for everyone.\n\nReporting spam doesn't guarantee you'll never hear from that scammer again. Scammers often use new phone numbers and email addresses."
+        text: "Many apps have a Report Spam or Report Junk button. Reporting may send the message and sender details to Apple, your carrier or your email provider for review. Read the app's notice. Reports help improve filtering.\n\nIn iPhone Messages, reporting does not block the sender; block separately if you want to. Other apps may combine these actions. Scammers can also use new numbers or addresses."
       },
       {
         type: "learn",
@@ -1145,7 +1145,7 @@ export const phase3Lessons = [
       {
         type: "learn",
         heading: "Quick Tip",
-        text: "Before reporting, ask yourself: Was I expecting this message? Does it ask for money or personal information? Is it creating urgency? Can I verify it another way? If several answers are yes, it's a good candidate to report as spam."
+        text: "Pause before responding. An unexpected message that pressures you to pay or reveal personal information may be a scam. Verify it using an app, website or phone number you trust. Report unwanted or suspicious messages; you do not need a particular number of warning signs."
       },
       {
         type: "sort",
@@ -1486,7 +1486,7 @@ export const phase3Lessons = [
       {
         type: "learn",
         heading: "One-Time vs. Continuous Sharing",
-        text: "Some apps let you choose how long to share your location.\n\nOne-Time Location: your location is shared once or for a short period. Example: \"I'll share my location while you come pick me up.\"\n\nContinuous Location Sharing: someone can see your location until you turn it off. This is useful for family members, caregivers (if you choose), and trusted friends during travel.\n\nReview who can see your location from time to time and stop sharing when you no longer need it."
+        text: "Sending your location once shows where you are at that moment. It does not follow your movements.\n\nLive sharing updates your location as you move. Depending on the app, you can choose a time limit or share until you turn it off.\n\nChoose the shortest time you need and review who can see your location. When finished, use the app's stop-sharing control; closing the app is not enough."
       },
       {
         type: "multiselect",
@@ -1508,8 +1508,8 @@ export const phase3Lessons = [
         title: "Flashcards",
         cards: [
           { front: "Location Sharing", back: "Allowing someone to see where you are." },
-          { front: "One-Time Location", back: "Shares your location only once or for a short period." },
-          { front: "Continuous Sharing", back: "Shares your location until you turn it off." },
+          { front: "One-Time Location", back: "Shows where you were when you sent it; does not follow your movements." },
+          { front: "Continuous Sharing", back: "Updates your location until the chosen time ends or you stop sharing." },
           { front: "Trusted Contact", back: "Someone you know personally and trust." },
           { front: "Stop Sharing", back: "Turns off location sharing." }
         ]
