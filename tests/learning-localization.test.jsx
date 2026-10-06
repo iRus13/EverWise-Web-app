@@ -21,12 +21,51 @@ import {assessmentRevision} from "../src/utils/assessmentProgress.js";
 const lessons = lessonsByOrder.filter(item => item.phase === 1);
 const challenge = challengesByOrder.find(item => item.phase === 1);
 const accountLessons = lessonsByOrder.filter(item => ["strong-passwords","password-managers","two-factor-auth"].includes(item.id));
+const safeInternetItems = [...lessonsByOrder, ...challengesByOrder].filter(item => item.phase === 2);
 const internet = lessons.find(item => item.id === "internet");
 const t = (text, values) => learningText(text, "es", values);
 const blockOf = type => internet.blocks.find(block => block.type === type);
 const renderBlock = (block, props = {}) => render(<BlockRenderer block={block} progress={1} progressTotal={2} onBack={vi.fn()} onContinue={vi.fn()} {...props} />);
 beforeEach(() => setLocale("es"));
 afterEach(() => {cleanup(); setLocale("en"); vi.unstubAllGlobals();});
+
+test("all Safe Internet Habits lessons and the final challenge have translated copy and distinct answers", () => {
+  const keys = new Set();
+  const metadata = new Set(["id","type","track","variant","nextKind","textRole","tier","url","videoUrl","videoId","color","accent","lessonId"]);
+  function collect(value) {
+    if (typeof value === "string") keys.add(value);
+    else if (Array.isArray(value)) value.forEach(collect);
+    else if (value && typeof value === "object") Object.entries(value).filter(([key]) => !metadata.has(key)).forEach(([,child]) => collect(child));
+  }
+  safeInternetItems.forEach(collect);
+  expect(safeInternetItems).toHaveLength(10);
+  expect(keys.size).toBeGreaterThan(950);
+  for (const key of keys) {
+    expect(t(key), key).toBeTruthy();
+    expect(spanish[key] || t(key) !== key, key).toBeTruthy();
+    expect(t(key).split("______").length, key).toBe(key.split("______").length);
+  }
+  for (const item of safeInternetItems) for (const block of item.blocks) {
+    const options = (block.options ?? block.wordBank ?? []).map(option => typeof option === "string" ? option : option.text);
+    expect(new Set(options.map(option => t(option).toLowerCase())).size).toBe(options.length);
+  }
+});
+
+test("Spanish location sentences preserve product names and grammatical context", () => {
+  const sentence = (source, answer) => { const {before, after, word} = fillBlankParts(source, answer, t); return before + word + after; };
+  expect(sentence("Google ______ uses your location to give directions.", "Maps")).toBe("Google Maps usa tu ubicación para darte indicaciones.");
+  expect(sentence("Only share your live location with people you ______.", "Trusted")).toBe("Comparte tu ubicación en tiempo real solo con personas de confianza.");
+  expect(sentence("Many updates repair ______ problems.", "Security")).toBe("Muchas actualizaciones corrigen problemas de seguridad.");
+});
+
+test("connection-security assessment teaches encryption without equating it with trust", () => {
+  const wifi = safeInternetItems.find(item => item.id === "public-wifi");
+  const question = wifi.quiz.find(item => item.question.startsWith("What does HTTPS"));
+  expect(question.correctIndex).toBe(2);
+  expect(question.options[question.correctIndex]).toBe("Data is encrypted in transit");
+  expect(question.options.indexOf("The website is automatically trustworthy")).not.toBe(question.correctIndex);
+  expect(new Set(question.options.map(t)).size).toBe(question.options.length);
+});
 
 test("all 50 exam questions preserve distinct translated answers and literal examples", () => {
   const questions=examsByOrder.flatMap(exam=>exam.questions);
@@ -416,9 +455,9 @@ test("Spanish path search matches accented translated titles and original Englis
 
 test("Spanish settings and later phases disclose the actual translation boundary", () => {
   render(<><LanguageSelect showContentNotice /><LessonPath completedLessons={[]} onSelectLesson={vi.fn()} onBack={vi.fn()} /></>);
-  expect(screen.getByRole("status")).toHaveTextContent("Fundamentos y las tres primeras lecciones");
+  expect(screen.getByRole("status")).toHaveTextContent("Fundamentos y Hábitos seguros en Internet están disponibles en español");
   fireEvent.click(screen.getByRole("button",{name:/Etapa 2 Hábitos seguros en Internet/}));
-  expect(screen.getByText("Las tres primeras lecciones están disponibles en español. El resto de esta etapa sigue en inglés.")).toBeVisible();
+  expect(screen.queryByText("Las tres primeras lecciones están disponibles en español. El resto de esta etapa sigue en inglés.")).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button",{name:/Etapa 3 Comunicación/}));
   expect(screen.getByText("Las lecciones de esta etapa están actualmente en inglés.")).toBeVisible();
 });

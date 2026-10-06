@@ -3,10 +3,12 @@ import { createRoot } from "react-dom/client";
 import AppShell from "../../src/components/AppShell.jsx";
 import LessonPlayer from "../../src/screens/LessonPlayer.jsx";
 import { allLessons } from "../../src/data/lessons.js";
+import { setLocale } from "../../src/i18n";
 import "../../src/index.css";
 
 // Actual authored content and player, with isolated navigation callbacks.
 const query=new URLSearchParams(location.search);
+if(query.has("language")) setLocale(query.get("language"));
 const type=query.get("type") || "learn";
 const textSize=query.get("textSize") || "size-2";
 document.documentElement.dataset.textSize=textSize;
