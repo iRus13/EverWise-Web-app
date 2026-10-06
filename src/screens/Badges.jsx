@@ -1,25 +1,26 @@
 import { tr, useLocale } from '../i18n';
 import {useState} from "react";
-import {Award, Check, ChevronDown, Lock} from "lucide-react";
+import {Award, Badge, Check, ChevronDown} from "lucide-react";
 import {badgeCatalog, badgeCounts, extraEarnedBadges} from "../utils/badges";
 import {phaseLabel} from "../data/phases";
 import {ArrowLeftIcon} from "../components/Icons";
 import "../styles/achievements.css";
 
 function BadgeTile({badge, earned}) {
-  const Icon = earned ? badge.source === "exam" ? Award : Check : Lock;
+  const Icon = earned ? badge.source === "exam" ? Award : Check : Badge;
+  const activity = tr(badge.source === "exam" ? badge.subtitle === "Exam result" ? "Exam result" : "Final exam" : badge.subtitle);
+  const description = tr(earned ? "Earned · {activity}" : badge.source === "exam" ? "Pass {activity} to earn" : "Complete {activity} to earn", {activity});
   return <li className="badge-tile" data-earned={earned}>
     <span className="badge-symbol" aria-hidden="true"><Icon size={24}/></span>
     <div className="badge-copy">
-      <h3 lang="en">{badge.name}</h3>
-      <p lang={badge.source === "lesson" ? "en" : undefined}>{badge.source === "exam" ? tr(badge.subtitle === "Exam result" ? "Exam result" : "Final exam") : badge.subtitle}</p>
-      <p className="badge-state">{tr(earned ? "Badge earned" : "Not earned yet")}</p>
+      <h3>{tr(badge.name)}</h3>
+      <p className="badge-state">{description}</p>
     </div>
   </li>;
 }
 
-export default function Badges({badges = [], onBack}) {
-  const locale = useLocale();
+export default function Badges({badges = [], onBack, onLearn}) {
+  useLocale();
   const [filter, setFilter] = useState(() => badges.length ? "earned" : "all");
   const [expanded, setExpanded] = useState(() => new Set(badges.length ? [] : [badgeCatalog()[0]?.phase.number]));
   const earnedSet = new Set(badges);
@@ -40,10 +41,10 @@ export default function Badges({badges = [], onBack}) {
         <button type="button" aria-pressed={filter === "earned"} onClick={() => setFilter("earned")}>{tr("Earned")}</button>
         <button type="button" aria-pressed={filter === "all"} onClick={() => setFilter("all")}>{tr("All badges")}</button>
       </div>
+      {onLearn && <button type="button" className="badges-learning-path" onClick={onLearn}>{tr("Your learning path")}</button>}
     </header>
     <div className="badges-content">
       {earnedCount === 0 && bonus.length === 0 && <p className="badges-empty" role="status">{tr("Finish your first lesson to earn your first badge.")}</p>}
-      {locale === "es" && <p className="badges-language-note">{tr("Some course titles and badge names are still in English.")}</p>}
       {bonus.length > 0 && <section className="badge-section">
         <div className="badge-section-heading"><div><p>{tr("Additional awards")}</p><h2>{tr("Exam honors")}</h2></div></div>
         <ul className="badges-grid">{bonus.map(name => <BadgeTile key={name} badge={{name,source:"exam",subtitle:"Exam result"}} earned/>)}</ul>

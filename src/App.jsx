@@ -4237,7 +4237,7 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "badges":
       content = (
-        <Badges badges={profile?.badges ?? []} onBack={goHome} />
+        <Badges badges={profile?.badges ?? []} onBack={goHome} onLearn={goPath} />
       );
       break;
     case "settings":

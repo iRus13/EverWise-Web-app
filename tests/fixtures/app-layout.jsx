@@ -75,7 +75,7 @@ const screens = {
     billing={view === "settings-trial" ? settingsBilling : view === "settings-billing-error" ? { ...settingsBilling, provider: "unavailable", status: "unavailable", plan: null, trialEndsAt: null, currentPeriodEndsAt: null, canManage: false, error: "Unavailable" } : undefined}
     sponsored={view === "settings-sponsored"} partner={{name:"A Community Partner With a Longer Name"}} onManageSubscription={noop} onRetryBilling={noop}
     onResetPassword={() => view === "settings-reset-error" ? new Promise((_, reject) => setTimeout(() => reject({code:"auth/network-request-failed"}), Number(query.get("resetDelay")) || 0)) : new Promise(() => {})}/>,
-  badges: <Badges badges={query.get("awards") === "earned" ? [allLessons[0].badge, "Communication Champion", "Communication Master"] : query.get("awards") === "honors" ? ["Communication Master"] : []} onBack={noop}/>,
+  badges: <Badges badges={query.get("awards") === "earned" ? [allLessons[0].badge, "Communication Champion", "Communication Master"] : query.get("awards") === "honors" ? ["Communication Master"] : []} onBack={noop} onLearn={() => recordCourse("path")}/>,
   path: <LessonPath textSize={textSize} completedLessons={pathCompleted} hasSavedLessonPosition={id => query.get("resume") === id} hasSavedAssessmentPosition={id => query.get("resumeAssessment") === id}
     onBack={() => recordCourse("home")} onSelectLesson={index => recordCourse("lesson",catalogLessons[index].id)}
     onSelectExam={exam => recordCourse("exam",exam.id)} onSelectChallenge={challenge => recordCourse("challenge",challenge.id)}

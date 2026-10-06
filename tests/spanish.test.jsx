@@ -63,25 +63,42 @@ test('badge filters and counts translate without changing saved award identities
   expect(screen.getByRole('heading', {name:'Tus insignias'})).toBeVisible();
   expect(screen.getByRole('progressbar', {name:'Insignias del curso obtenidas'})).toHaveAttribute('aria-valuenow','1');
   expect(screen.getByRole('button', {name:'Obtenidas',exact:true})).toHaveAttribute('aria-pressed','true');
-  expect(screen.getByRole('heading', {name:savedName,exact:true})).toHaveAttribute('lang','en');
+  expect(screen.getByRole('heading', {name:tr(savedName),exact:true})).toBeVisible();
+  expect(screen.getByText('Conseguida · Bienvenida')).toBeVisible();
   expect(screen.getByRole('heading', {name:'Saved exam honor'})).toBeVisible();
-  expect(screen.getByText('Resultado del examen')).toBeVisible();
+  expect(screen.getByText('Conseguida · Resultado del examen')).toBeVisible();
   fireEvent.click(screen.getByRole('button', {name:'Todas',exact:true}));
   const phase = screen.getByRole('button', {name:'Etapa 1: Fundamentos'});
   fireEvent.click(phase);
   expect(phase).toHaveAttribute('aria-expanded','true');
-  expect(screen.getByRole('heading', {name:catalog[0].badges[1].name,exact:true})).toBeVisible();
+  expect(screen.getByRole('heading', {name:tr(catalog[0].badges[1].name),exact:true})).toBeVisible();
   act(() => setLocale('en'));
   expect(screen.getByRole('button', {name:'Phase 1: Foundations'})).toHaveAttribute('aria-expanded','true');
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow','1');
 });
 
-test('new learners get a translated empty state and an honest course-language notice', () => {
+test('new learners get a translated empty state and a fully translated badge collection', () => {
   setLocale('es');
   render(<Badges badges={[]} />);
   fireEvent.click(screen.getByRole('button', {name:'Obtenidas',exact:true}));
   expect(screen.getByRole('status')).toHaveTextContent('Completa tu primera lección');
-  expect(screen.getByText('Algunos títulos del curso y nombres de insignias siguen en inglés.')).toBeVisible();
+  expect(screen.queryByText('Algunos títulos del curso y nombres de insignias siguen en inglés.')).not.toBeInTheDocument();
   expect(screen.queryByRole('heading', {name:'Foundations'})).not.toBeInTheDocument();
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow','0');
+});
+
+
+test('all canonical badge names and lesson labels are translated while saved names remain unchanged', () => {
+  setLocale('es');
+  const original=badgeCatalog();
+  expect(original.flatMap(group=>group.badges)).toHaveLength(114);
+  for (const group of original) for (const badge of group.badges) {
+    expect(tr(badge.name),badge.name).not.toBe(badge.name);
+    expect(tr(badge.name)).not.toBe('');
+  }
+  const saved=['Welcome Aboard','Communication Master'];
+  render(<Badges badges={saved}/>);
+  expect(screen.getByRole('heading',{name:'Dominio de la comunicación'})).toBeVisible();
+  expect(saved).toEqual(['Welcome Aboard','Communication Master']);
+  expect(badgeCatalog()).toEqual(original);
 });

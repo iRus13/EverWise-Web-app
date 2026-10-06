@@ -124,3 +124,12 @@ test("new learners can see the first phase immediately and filters preserve phas
   fireEvent.click(screen.getByRole("button",{name:"Earned",exact:true}));expect(screen.getByRole("status")).toHaveTextContent("Finish your first lesson");
   fireEvent.click(screen.getByRole("button",{name:"All badges"}));expect(screen.getByRole("button",{name:"Phase 2: Safe Internet Habits"})).toHaveAttribute("aria-expanded","true");
 });
+
+
+test("upcoming badges explain earning requirements and learning action navigates once", () => {
+  const onLearn=vi.fn(); render(<Badges badges={[]} onLearn={onLearn}/>);
+  const first=badgeCatalog()[0].badges[0];
+  expect(screen.getByText(`Complete ${first.subtitle} to earn`)).toBeVisible();
+  fireEvent.click(screen.getByRole("button",{name:"Your learning path"}));
+  expect(onLearn).toHaveBeenCalledOnce();
+});
