@@ -155,7 +155,6 @@
   "You notice three purchases on your debit card that you didn't make.": "supporting",
   "Someone changed the password to your email account.": "supporting",
   "Someone pretending to be your grandson asks for money. You aren't sure if it's real.": "supporting",
-  "Someone breaks into your house and steals your computer.": "supporting",
   "You receive a suspicious call claiming to be from your bank.": "supporting",
   "Someone sends you a message saying they're a family member in trouble and asks you not to call them.": "supporting",
   "A company tells you your Social Security number may have been exposed in a data breach.": "supporting",
@@ -169,5 +168,6 @@
   "Someone pretending to be the IRS asked you to buy gift cards.": "supporting",
   "You accidentally clicked a suspicious link but didn't lose money.": "supporting",
   "You paid $250 to a fake online store.": "supporting",
-  "You want to report an online scam. Which information would be helpful?": "supporting"
+  "You want to report an online scam. Which information would be helpful?": "supporting",
+  "You discover that someone stole your computer while you were away. You are safe and there is no immediate danger.": "supporting"
 }

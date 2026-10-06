@@ -18,7 +18,7 @@ test('Spanish is selectable, persisted, and updates document language', () => {
   expect(screen.getByText('Lecciones breves, con palabras sencillas.')).toBeVisible();
   expect(localStorage.getItem('everwise.language')).toBe('es');
   expect(document.documentElement.lang).toBe('es');
-  expect(screen.getByRole('status')).toHaveTextContent('Las demás lecciones y los resultados de IA siguen en inglés.');
+  expect(screen.getByRole('status')).toHaveTextContent('Las lecciones posteriores y los resultados de IA siguen en inglés.');
   act(() => setLocale('unsupported'));
   expect(document.documentElement.lang).toBe('es');
   expect(tr('Untranslated text')).toBe('Untranslated text');

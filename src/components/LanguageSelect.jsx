@@ -11,6 +11,6 @@ export default function LanguageSelect({ showContentNotice = false }) {
         <option value="es" lang="es">Español</option>
       </select>
     </label>
-    {showContentNotice && locale === 'es' && <p className="language-content-note" role="status">{tr('Foundations, Safe Internet Habits, Communication, Digital Finance, Health & Government and Social Media are available in Spanish. Later lessons and AI results are currently in English.')}</p>}
+    {showContentNotice && locale === 'es' && <p className="language-content-note" role="status">{tr('Lessons through Emergency Skills are available in Spanish. Later lessons and AI results are currently in English.')}</p>}
   </div>;
 }
