@@ -6,9 +6,10 @@ import PartnerAccessError from "../src/screens/PartnerAccessError";
 import { PartnerReleaseRecovery, PartnerDeletionReconciliation } from "../src/screens/Settings";
 import PersonalPlan from "../src/screens/PersonalPlan";
 import Loading from "../src/screens/Loading";
+import { setLocale } from "../src/i18n/index.js";
 
 globalThis.React = React;
-afterEach(() => { cleanup(); vi.useRealTimers(); });
+afterEach(() => { cleanup(); setLocale("en"); vi.useRealTimers(); });
 
 test("confirmation changes restore the heading without making actions a live region", () => {
   const back = vi.fn();
@@ -68,13 +69,68 @@ test("terminal release recovery removes retry and exposes the support path", () 
 test("personal recommendations are immediately ready with no simulated progress delay", async () => {
   vi.useFakeTimers(); const next=vi.fn();
   render(<PersonalPlan sponsored profile={{profileInterview:{concerns:["Suspicious links"],scamFrequency:"never"}}} onContinue={next} />);
-  expect(screen.getByRole("heading", {name:"Your personal learning plan"})).toHaveFocus();
+  expect(screen.getByRole("heading", {name:"A good place to start"})).toHaveFocus();
   expect(screen.getAllByRole("listitem")).toHaveLength(3);
   expect(screen.getByText("Check links before opening them")).toBeVisible();
   expect(screen.queryByRole("progressbar")).toBeNull();
   fireEvent.click(screen.getByRole("button", {name:"Start learning"})); expect(next).toHaveBeenCalledOnce();
   await act(async()=>vi.advanceTimersByTimeAsync(3000));
   expect(next).toHaveBeenCalledOnce();
+});
+
+test.each([
+  ["Scam calls and messages", "Reconoce las llamadas fraudulentas y los mensajes urgentes"],
+  ["Money or bank-card theft", "Protege tus tarjetas, aplicaciones bancarias y pagos"],
+  ["Suspicious links", "Revisa los enlaces antes de abrirlos"],
+  ["Account hacking", "Refuerza tus contraseñas y la seguridad de tus cuentas"],
+  ["Fake news", "Comprueba si la información en internet es fiable"],
+  ["Knowing what to trust", "Verifica lo que lees en internet con fuentes fiables"],
+])("Spanish personal plan translates the %s recommendation and keeps its action", (concern, recommendation) => {
+  setLocale("es"); const next = vi.fn();
+  const profile = {profileInterview:{concerns:[concern],scamFrequency:"never",aiExperience:"I don’t know what it is yet"}};
+  render(<PersonalPlan sponsored profile={profile} onContinue={next}/>);
+  expect(screen.getByRole("heading", {name:"Un buen punto de partida"})).toHaveFocus();
+  expect(screen.getByText(recommendation)).toBeVisible();
+  expect(screen.getByText("Protege tu información personal")).toBeVisible();
+  expect(screen.getByText("Entiende qué puede y qué no puede hacer la IA")).toBeVisible();
+  expect(screen.getByRole("heading", {name:"Tu punto de partida"})).toBeVisible();
+  expect(screen.getByText("Has dado un paso para usar internet con más seguridad y comodidad.")).toBeVisible();
+  fireEvent.click(screen.getByRole("button",{name:"Empezar a aprender"}));
+  expect(next).toHaveBeenCalledOnce();
+  expect(profile.profileInterview.concerns).toEqual([concern]);
+});
+
+test.each([
+  [{scamScenario:"Call the bank using its official number"}, "Ya sabes que debes verificar los mensajes bancarios urgentes llamando a un número oficial."],
+  [{confidence:"Confident"}, "Ya tienes experiencia en internet para seguir aprendiendo."],
+  [{confidence:"Sometimes I need help"}, "Ya tienes experiencia en internet para seguir aprendiendo."],
+])("Spanish personal plan translates prior-experience guidance %#", (answers, strength) => {
+  setLocale("es");
+  render(<PersonalPlan profile={{profileInterview:{...answers,scamFrequency:"often",aiExperience:"I use AI"}}} onContinue={()=>{}}/>);
+  expect(screen.getByText(strength)).toBeVisible();
+  expect(screen.getByText("Aprende qué hacer si sospechas una estafa")).toBeVisible();
+  expect(screen.getByText("Haz preguntas útiles a la IA y comprueba sus respuestas")).toBeVisible();
+  expect(screen.getByRole("button",{name:"Ver mis opciones de plan"})).toBeVisible();
+});
+
+test("missing interview answers use introductory guidance without assuming AI experience", () => {
+  render(<PersonalPlan profile={{}} onContinue={()=>{}}/>);
+  expect(screen.getByText("Keep your personal information protected")).toBeVisible();
+  expect(screen.getByText("Understand what AI can and cannot do")).toBeVisible();
+});
+
+test("changing language updates the personal plan without changing answers or continuing", () => {
+  const profile = {profileInterview:{concerns:["Suspicious links"],confidence:"Confident"}};
+  const next = vi.fn();
+  render(<PersonalPlan profile={profile} onContinue={next}/>);
+  expect(screen.getByText("Check links before opening them")).toBeVisible();
+  act(()=>setLocale("es"));
+  expect(screen.getByText("Revisa los enlaces antes de abrirlos")).toBeVisible();
+  expect(screen.queryByText("Check links before opening them")).toBeNull();
+  act(()=>setLocale("en"));
+  expect(screen.getByText("Check links before opening them")).toBeVisible();
+  expect(next).not.toHaveBeenCalled();
+  expect(profile.profileInterview.concerns).toEqual(["Suspicious links"]);
 });
 
 test("startup activity has an indeterminate accessible progress label", () => {

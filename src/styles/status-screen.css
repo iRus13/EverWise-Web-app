@@ -57,5 +57,5 @@
 .status-description { max-width: 40ch; }
 .status-actions { margin-top: 32px; }
 .personal-plan-strength { padding-left: 16px; border-left: 3px solid var(--accent); }
-.personal-plan-strength h2 { font-size: calc(15px * var(--heading-scale)); }
-.personal-plan-strength p { font-size: calc(15px * var(--text-scale)); }
+.personal-plan-strength h2 { font-size: calc(18px * var(--heading-scale)); }
+.personal-plan-strength p { font-size: calc(17px * var(--text-scale)); }

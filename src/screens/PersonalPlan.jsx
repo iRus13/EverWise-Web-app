@@ -31,11 +31,11 @@ function getPlan(profile) {
   }[firstConcern];
 
   const safetyLesson =
-    interview.scamFrequency === "never"
+    !interview.scamFrequency || interview.scamFrequency === "never"
       ? "Keep your personal information protected"
       : "Know what to do after a suspected scam";
   const aiLesson =
-    interview.aiExperience === "I don’t know what it is yet"
+    !interview.aiExperience || interview.aiExperience === "I don’t know what it is yet"
       ? "Understand what AI can and cannot do"
       : "Ask AI useful questions and check its answers";
 
@@ -62,20 +62,20 @@ export default function PersonalPlan({ profile, sponsored = false, onContinue })
         <div className="status-brand"><img src={`${import.meta.env.BASE_URL}everwise-logo-192.png`} alt="" /><span>Everwise</span></div>
         <header>
           <p className="status-context">{tr("Your plan is ready")}</p>
-          <h1 ref={heading} tabIndex={-1}>{tr("Your personal learning plan")}</h1>
-          <p className="personal-plan-intro">{tr("We recommend starting with these three topics:")}</p>
+          <h1 ref={heading} tabIndex={-1}>{tr("A good place to start")}</h1>
+          <p className="personal-plan-intro">{tr("Three useful topics to explore at your own pace.")}</p>
         </header>
         <ol className="personal-plan-topics">
           {plan.recommendations.map((recommendation, index) => (
             <li key={recommendation}>
               <span className="personal-plan-number" aria-hidden="true">{index + 1}.</span>
-              <span>{recommendation}</span>
+              <span>{tr(recommendation)}</span>
             </li>
           ))}
         </ol>
         <section className="personal-plan-strength" aria-labelledby="plan-strength">
-          <h2 id="plan-strength">A strength to build on</h2>
-          <p>{plan.strength}</p>
+          <h2 id="plan-strength">{tr("Your starting point")}</h2>
+          <p>{tr(plan.strength)}</p>
         </section>
         <p className="personal-plan-note">{tr("Your answers are saved. You can change accessibility preferences later.")}</p>
         <div className="personal-plan-actions">
