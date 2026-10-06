@@ -78,6 +78,7 @@
 .course-step-meta { min-height: 32px; }
 
 .course-resume-note { display: block; margin-top: 6px; color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); line-height: 1.4; font-weight: 400; }
+.course-language-note { padding: 0 20px 16px; color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); line-height: 1.5; }
 
 @media (min-width: 768px) {
   .course-path-toolbar { position: sticky; top: calc(var(--native-top-inset, 0px) + var(--course-nav-height, 0px)); }

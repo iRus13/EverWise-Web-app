@@ -1,3 +1,4 @@
+import {useLearningText} from "../../i18n/learning.js";
 import { useState } from "react";
 import { X } from "lucide-react";
 import ReadAloud from "../ReadAloud";
@@ -13,6 +14,7 @@ export default function MultiselectBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const [picked, setPicked] = useState(() => new Set());
   const [checked, setChecked] = useState(false);
 
@@ -38,7 +40,7 @@ export default function MultiselectBlock({
 
   return (
     <BlockShell
-      label={block.title || "Select"}
+      label={t(block.title || "Select")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -48,7 +50,7 @@ export default function MultiselectBlock({
       footer={
         checked ? (
           <button className="btn-primary" onClick={onContinue}>
-            Continue
+            {t("Continue")}
           </button>
         ) : (
           <button
@@ -56,16 +58,16 @@ export default function MultiselectBlock({
             onClick={() => setChecked(true)}
             disabled={picked.size === 0}
           >
-            Check
+            {t("Check")}
           </button>
         )
       }
     >
       <h1 className="page-title lesson-question">
-        {block.prompt || block.title}
+        {t(block.prompt || block.title)}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={block.prompt || block.title} />
+        <ReadAloud text={t(block.prompt || block.title)} />
       </div>
 
       <div className="mt-8 space-y-3">
@@ -92,15 +94,15 @@ export default function MultiselectBlock({
                   ? <X className="h-5 w-5" />
                   : (picked.has(i) || (checked && opt.correct)) && <CheckIcon className="h-5 w-5" />}
               </span>
-              {opt.text}
+              {t(opt.text)}
             </button>
           );
         })}
       </div>
 
       {checked && <AnswerFeedback positive={fullyCorrect} title={fullyCorrect ? "That's right" : "Let's review your choices"}>
-        {resultMessage && <p>{resultMessage}</p>}
-        {!fullyCorrect && <p className="lesson-correction">Correct choices: {block.options.filter(option => option.correct).map(option => option.text).join("; ")}</p>}
+        {resultMessage && <p>{t(resultMessage)}</p>}
+        {!fullyCorrect && <p className="lesson-correction">{t("Correct choices: {answers}", {answers:block.options.filter(option => option.correct).map(option => t(option.text)).join("; ")})}</p>}
       </AnswerFeedback>}
 
     </BlockShell>

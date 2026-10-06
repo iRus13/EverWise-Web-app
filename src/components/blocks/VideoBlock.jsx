@@ -1,3 +1,4 @@
+import {useLearningText} from "../../i18n/learning.js";
 import BlockShell from "./BlockShell";
 
 // Embeds a YouTube video. `block.videoId` is the part of a YouTube URL after
@@ -10,11 +11,12 @@ export default function VideoBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const hasVideo = Boolean(block.videoId);
 
   return (
     <BlockShell
-      label={block.label || "Watch"}
+      label={t(block.label || "Watch")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -22,19 +24,19 @@ export default function VideoBlock({
       onSkip={onContinue}
       footer={
         <button className="btn-primary" onClick={onContinue}>
-          {block.continueLabel || "Continue"}
+          {t(block.continueLabel || "Continue")}
         </button>
       }
     >
       <div className="animate-fade-up">
         {block.heading && (
           <h1 className="page-title">
-            {block.heading}
+            {t(block.heading)}
           </h1>
         )}
         {block.text && (
           <p className="mt-4 text-2xl leading-relaxed text-ink-soft">
-            {block.text}
+            {t(block.text)}
           </p>
         )}
 
@@ -42,7 +44,7 @@ export default function VideoBlock({
           <div className="mt-6 overflow-hidden rounded-3xl bg-ink/5 shadow-card">
             <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
               <iframe
-                title={block.heading || "Video"}
+                title={t(block.heading || "Video")}
                 src={`https://www.youtube.com/embed/${block.videoId}?rel=0`}
                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -54,7 +56,7 @@ export default function VideoBlock({
 
         {block.footer && (
           <p className="mt-6 text-xl leading-relaxed text-ink-soft">
-            {block.footer}
+            {t(block.footer)}
           </p>
         )}
       </div>

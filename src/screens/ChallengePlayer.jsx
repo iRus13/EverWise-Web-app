@@ -1,3 +1,4 @@
+import {useLearningText} from "../i18n/learning.js";
 import { useState } from "react";
 import BlockRenderer from "../components/blocks/BlockRenderer";
 import {Check} from "lucide-react";
@@ -7,6 +8,7 @@ import { getChallengeCompletionContent } from "../utils/courseProgress.js";
 
 // Ungraded phase review: play each block in order, then a simple complete screen.
 export default function ChallengePlayer({ challenge, onBack, onComplete, initialPosition, onPositionChange }) {
+  const t = useLearningText();
   const [position, setPosition] = useState(() =>
     restoreAssessmentPosition(challenge, "challenge", initialPosition) || {blockIndex:0, finished:false});
   const {blockIndex, finished} = position;
@@ -23,8 +25,10 @@ export default function ChallengePlayer({ challenge, onBack, onComplete, initial
   };
 
   if (finished) {
-    return <LearningSummary eyebrow="Review complete" title={completion.title} subtitle={completion.body} icon={Check}
-      actions={<button className="btn-primary" onClick={onComplete}>Back to your path</button>}/>;
+    return <LearningSummary eyebrow="Review complete" title={t(completion.title)} subtitle={challenge.nextKind === "course"
+        ? t("You completed the Everwise course.")
+        : t("Nice work reviewing Phase {phase}. Next: {next}.",{phase:challenge.phase,next:t(challenge.nextLabel)})} icon={Check}
+      actions={<button className="btn-primary" onClick={onComplete}>{t("Back to your path")}</button>}/>;
   }
 
   return (

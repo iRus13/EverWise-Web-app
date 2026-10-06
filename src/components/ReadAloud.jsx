@@ -1,3 +1,4 @@
+import {tr, useLocale} from "../i18n";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SpeakerIcon, StopIcon } from "./Icons";
 import { apiEndpoint } from "../utils/apiEndpoint";
@@ -34,6 +35,7 @@ async function getAudioBlob(text, signal) {
 }
 
 export default function ReadAloud({ text, label = "Read aloud" }) {
+  const language = useLocale();
   const [speaking, setSpeaking] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -69,7 +71,7 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
     setLoading(false);
     setError("");
     return releasePlayback;
-  }, [text, releasePlayback]);
+  }, [text, language, releasePlayback]);
 
   const stop = () => {
     releasePlayback();
@@ -90,6 +92,7 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
     }
     try {
       const utterance = new SpeechSynthesisUtterance(speakText);
+      utterance.lang = language === "es" ? "es" : "en";
       utterance.rate = 0.9;
       utterance.pitch = 1;
       utterance.onend = () => {
@@ -160,9 +163,9 @@ export default function ReadAloud({ text, label = "Read aloud" }) {
       }`}
     >
       {speaking || loading ? <StopIcon /> : <SpeakerIcon />}
-      {loading ? "Starting…" : speaking ? "Stop" : label}
+      {tr(loading ? "Starting…" : speaking ? "Stop" : label)}
     </button>
-    {error && <p ref={errorRef} className="read-aloud-error" role="status">{error}</p>}
+    {error && <p ref={errorRef} className="read-aloud-error" role="status">{tr(error)}</p>}
     </div>
   );
 }

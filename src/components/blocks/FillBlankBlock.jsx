@@ -1,3 +1,4 @@
+import {fillBlankParts, useLearningText} from "../../i18n/learning.js";
 import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
@@ -12,6 +13,7 @@ export default function FillBlankBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const questions = block.questions || [];
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -25,7 +27,7 @@ export default function FillBlankBlock({
   // connects millions of devices around the world."), which is the opposite
   // of what the blank is meant to teach.
   const filledWord = revealed ? q.answer : null;
-  const [beforeBlank, afterBlank] = q.text.split("______");
+  const {before:beforeBlank, after:afterBlank, word:answerLabel} = fillBlankParts(q.text, q.answer, t);
 
   const pick = (word) => {
     if (revealed) return;
@@ -45,7 +47,7 @@ export default function FillBlankBlock({
 
   return (
     <BlockShell
-      label={block.title || "Fill in the blank"}
+      label={t(block.title || "Fill in the blank")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -55,13 +57,13 @@ export default function FillBlankBlock({
       footer={
         revealed ? (
           <button className="btn-primary" onClick={next}>
-            {qIndex + 1 < questions.length ? "Next" : "Continue"}
+            {t(qIndex + 1 < questions.length ? "Next" : "Continue")}
           </button>
         ) : null
       }
     >
       <p className="text-lg font-semibold text-ink-faint">
-        Question {qIndex + 1} of {questions.length}
+        {t("Question {current} of {total}", {current:qIndex+1,total:questions.length})}
       </p>
       <h1 className="page-title lesson-question mt-3">
         {beforeBlank}
@@ -71,13 +73,13 @@ export default function FillBlankBlock({
           // Underlined so the answer is obvious in the sentence itself, which
           // is what makes the correction land for someone who chose wrongly.
           <span className="underline decoration-2 underline-offset-4">
-            {filledWord}
+            {answerLabel}
           </span>
         )}
         {afterBlank}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={q.text.replace("______", "blank")} />
+        <ReadAloud text={`${beforeBlank}${revealed ? answerLabel : t("blank")}${afterBlank}`} />
       </div>
 
       <div className="lesson-answer-grid mt-8">
@@ -92,14 +94,14 @@ export default function FillBlankBlock({
               state={revealed ? word === q.answer ? "correct" : word === selected ? "incorrect" : "other" : undefined}
 
             >
-              {word}
+              {t(word)}
             </AnswerOption>
           );
         })}
       </div>
 
-      {revealed && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right." : `Not quite — the answer is “${q.answer}”.`}>
-        {!isCorrect && (q.why || q.wrong?.[selected]) ? <p>{q.wrong?.[selected] || q.why}</p> : null}
+      {revealed && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right." : t("Not quite — the answer is “{answer}”.", {answer:answerLabel})}>
+        {!isCorrect && (q.why || q.wrong?.[selected]) ? <p>{t(q.wrong?.[selected] || q.why)}</p> : null}
       </AnswerFeedback>}
 
     </BlockShell>

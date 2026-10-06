@@ -1,3 +1,4 @@
+import {useLearningText} from "../../i18n/learning.js";
 import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
@@ -13,13 +14,14 @@ export default function BuilderBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const columns = block.columns || [];
   // selection per column index
   const [picks, setPicks] = useState(() => columns.map(() => null));
   const [revealed, setRevealed] = useState(false);
 
   const allPicked = picks.every((p) => p != null);
-  const combined = picks.filter(Boolean).join("");
+  const combined = picks.filter(Boolean).map(item => t(item)).join("");
 
   const pick = (colIndex, item) => {
     if (revealed) return;
@@ -32,7 +34,7 @@ export default function BuilderBlock({
 
   return (
     <BlockShell
-      label={block.title || "Build"}
+      label={t(block.title || "Build")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -42,7 +44,7 @@ export default function BuilderBlock({
       footer={
         revealed ? (
           <button className="btn-primary" onClick={onContinue}>
-            Continue
+            {t("Continue")}
           </button>
         ) : (
           <button
@@ -50,19 +52,19 @@ export default function BuilderBlock({
             disabled={!allPicked}
             onClick={() => setRevealed(true)}
           >
-            Continue
+            {t("Continue")}
           </button>
         )
       }
     >
       <h1 className="page-title">
-        {block.title || "Build"}
+        {t(block.title || "Build")}
       </h1>
       {block.prompt && (
-        <p className="mt-3 text-xl leading-relaxed text-ink-soft">{block.prompt}</p>
+        <p className="mt-3 text-xl leading-relaxed text-ink-soft">{t(block.prompt)}</p>
       )}
       <div className="mt-4">
-        <ReadAloud text={`${block.title || ""}. ${block.prompt || ""}`} />
+        <ReadAloud text={`${t(block.title || "")}. ${t(block.prompt || "")}`} />
       </div>
 
       {/* Stack on narrow screens so every choice remains readable and reachable. */}
@@ -70,7 +72,7 @@ export default function BuilderBlock({
         {columns.map((col, ci) => (
           <div key={col.label} className="min-w-0">
             <p className="lesson-builder-label">
-              {col.label}
+              {t(col.label)}
             </p>
             <div className="space-y-2">
               {col.items.map((item) => {
@@ -82,7 +84,7 @@ export default function BuilderBlock({
                     onClick={() => pick(ci, item)}
                     selected={active}
                   >
-                    {item}
+                    {t(item)}
                   </AnswerOption>
                 );
               })}
@@ -94,21 +96,21 @@ export default function BuilderBlock({
       {/* Combined result */}
       <div className="lesson-reading-section lesson-builder-result mt-8">
         <p className="lesson-section-label">
-          Practice password
+          {t("Practice password")}
         </p>
         <p className="mt-2 break-all font-sans text-3xl font-semibold text-ink">
           {combined || "—"}
         </p>
         {block.example && (
           <p className="mt-3 text-lg text-ink-soft">
-            Example: <span className="font-semibold text-ink">{block.example}</span>
+            {t("Example:")} <span className="font-semibold text-ink">{t(block.example)}</span>
           </p>
         )}
       </div>
 
       {revealed && block.feedback && (
         <AnswerFeedback positive title="Your example is ready">
-          <p>{block.feedback}</p>
+          <p>{t(block.feedback)}</p>
         </AnswerFeedback>
       )}
     </BlockShell>

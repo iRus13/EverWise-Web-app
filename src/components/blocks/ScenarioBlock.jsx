@@ -1,3 +1,4 @@
+import {useLearningText} from "../../i18n/learning.js";
 import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
@@ -14,6 +15,7 @@ export function MultipleChoiceBody({
   selected,
   onSelect,
 }) {
+  const t = useLearningText();
   const answered = selected != null;
   const isCorrect = answered && selected === correctIndex;
 
@@ -21,14 +23,14 @@ export function MultipleChoiceBody({
     <>
       {title && (
         <p className="lesson-kicker">
-          {title}
+          {t(title)}
         </p>
       )}
       <h1 className="page-title lesson-question mt-2">
-        {text}
+        {t(text)}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={text} label="Read this aloud" />
+        <ReadAloud text={t(text)} label="Read this aloud" />
       </div>
 
       <div className="mt-8 space-y-4">
@@ -43,15 +45,15 @@ export function MultipleChoiceBody({
               state={answered ? i === correctIndex ? "correct" : i === selected ? "incorrect" : "other" : undefined}
 
             >
-              {option}
+              {t(option)}
             </AnswerOption>
           );
         })}
       </div>
 
       {answered && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right" : "Not quite"}>
-        {!isCorrect && <p className="lesson-correction">The correct answer is: {options[correctIndex]}</p>}
-        {explanation && <p>{explanation}</p>}
+        {!isCorrect && <p className="lesson-correction">{t("The correct answer is: {answer}", {answer:t(options[correctIndex])})}</p>}
+        {explanation && <p>{t(explanation)}</p>}
       </AnswerFeedback>}
 
     </>
@@ -66,11 +68,12 @@ export default function ScenarioBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const [selected, setSelected] = useState(null);
 
   return (
     <BlockShell
-      label={block.title || "Scenario"}
+      label={t(block.title || "Scenario")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -79,7 +82,7 @@ export default function ScenarioBlock({
       footer={
         selected != null ? (
           <button className="btn-primary" onClick={onContinue}>
-            Continue
+            {t("Continue")}
           </button>
         ) : null
       }

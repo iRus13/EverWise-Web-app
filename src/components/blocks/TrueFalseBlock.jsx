@@ -1,3 +1,4 @@
+import {useLearningText} from "../../i18n/learning.js";
 import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
@@ -12,6 +13,7 @@ export default function TrueFalseBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const questions = block.questions || [];
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState(null); // true | false | null
@@ -39,7 +41,7 @@ export default function TrueFalseBlock({
 
   return (
     <BlockShell
-      label={block.title || (safeUnsafe ? "Safe or Unsafe" : "True or False")}
+      label={t(block.title || (safeUnsafe ? "Safe or Unsafe" : "True or False"))}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -49,19 +51,19 @@ export default function TrueFalseBlock({
       footer={
         answered ? (
           <button className="btn-primary" onClick={next}>
-            {qIndex + 1 < questions.length ? "Next" : "Continue"}
+            {t(qIndex + 1 < questions.length ? "Next" : "Continue")}
           </button>
         ) : null
       }
     >
       <p className="text-lg font-semibold text-ink-faint">
-        Question {qIndex + 1} of {questions.length}
+        {t("Question {current} of {total}", {current:qIndex+1,total:questions.length})}
       </p>
       <h1 className="page-title lesson-question mt-3">
-        {q.text}
+        {t(q.text)}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={q.text} />
+        <ReadAloud text={t(q.text)} />
       </div>
 
       <div className="lesson-answer-grid mt-8">
@@ -79,15 +81,15 @@ export default function TrueFalseBlock({
               state={answered ? value === q.answer ? "correct" : value === selected ? "incorrect" : "other" : undefined}
 
             >
-              {label}
+              {t(label)}
             </AnswerOption>
           );
         })}
       </div>
 
       {answered && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right" : "Not quite"}>
-        {!isCorrect && <p className="lesson-correction">The correct answer is: {q.answer ? yesLabel : noLabel}</p>}
-        {q.explanation && <p>{q.explanation}</p>}
+        {!isCorrect && <p className="lesson-correction">{t("The correct answer is: {answer}", {answer:t(q.answer ? yesLabel : noLabel)})}</p>}
+        {q.explanation && <p>{t(q.explanation)}</p>}
       </AnswerFeedback>}
 
     </BlockShell>

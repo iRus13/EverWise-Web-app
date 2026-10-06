@@ -43,7 +43,7 @@ export default function Badges({badges = [], onBack}) {
     </header>
     <div className="badges-content">
       {earnedCount === 0 && bonus.length === 0 && <p className="badges-empty" role="status">{tr("Finish your first lesson to earn your first badge.")}</p>}
-      {locale === "es" && <p className="badges-language-note">{tr("Course titles and badge names are in English.")}</p>}
+      {locale === "es" && <p className="badges-language-note">{tr("Some course titles and badge names are still in English.")}</p>}
       {bonus.length > 0 && <section className="badge-section">
         <div className="badge-section-heading"><div><p>{tr("Additional awards")}</p><h2>{tr("Exam honors")}</h2></div></div>
         <ul className="badges-grid">{bonus.map(name => <BadgeTile key={name} badge={{name,source:"exam",subtitle:"Exam result"}} earned/>)}</ul>
@@ -64,12 +64,12 @@ export default function Badges({badges = [], onBack}) {
                 if (next.has(phase.number)) next.delete(phase.number); else next.add(phase.number);
                 return next;
               })}>
-              <span><span className="badge-phase-number">{tr("Phase")} {phaseLabel(phase)}:</span><span className="badge-phase-title" lang="en">{phase.title}</span></span>
+              <span><span className="badge-phase-number">{tr("Phase")} {phaseLabel(phase)}:</span><span className="badge-phase-title">{tr(phase.title)}</span></span>
               <ChevronDown aria-hidden="true" size={20}/>
             </button></h2>
             <p id={countId}>{tr("{earned} of {total} earned", {earned:earned.length, total:list.length})}</p>
           </div> : <div className="badge-section-heading">
-            <div><p>{tr("Phase")} {phaseLabel(phase)}</p><h2 lang="en">{phase.title}</h2></div>
+            <div><p>{tr("Phase")} {phaseLabel(phase)}</p><h2>{tr(phase.title)}</h2></div>
             <p>{tr("{earned} of {total} earned", {earned:earned.length, total:list.length})}</p>
           </div>}
           <div id={contentId} hidden={!open}>

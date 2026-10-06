@@ -11,6 +11,7 @@ const playables = [
   ...lessons.map((lesson, lessonIndex) => ({
     kind: "lesson", id: lesson.id, order: lesson.pathOrder ?? lesson.order,
     phase: lesson.phase, title: lesson.title, lessonIndex, quizCount: lesson.quizCount,
+    lessonNumber: lessons.slice(0, lessonIndex + 1).filter(item => item.phase === lesson.phase).length,
     label: `Lesson ${lessons.slice(0, lessonIndex + 1).filter(item => item.phase === lesson.phase).length}`,
   })),
   ...challengesByOrder.map(challenge => ({
@@ -32,7 +33,7 @@ export default function LessonPath({
   completedLessons = [], onSelectLesson, onSelectExam, onSelectChallenge,
   onTestOutLesson, onBack, hasSavedLessonPosition, hasSavedAssessmentPosition,
 }) {
-  useLocale();
+  const locale = useLocale();
   const doneSet = new Set(completedLessons);
   const currentId = findCurrentPlayableId(playables, completedLessons, curriculum);
   const current = playables.find(item => item.id === currentId);
@@ -50,7 +51,7 @@ export default function LessonPath({
   const displayedPhases = searching ? phaseGroups.map(phase => ({
     ...phase,
     steps: terms.length ? phase.steps.filter(step => {
-      const text = searchText(`${step.title} ${step.kind} ${step.label} Phase ${phaseLabel(phase)} ${phase.title}`);
+      const text = searchText(`${step.title} ${tr(step.title)} ${step.kind} ${tr(step.kind)} ${step.label} ${step.kind === "lesson" ? tr("Lesson {number}",{number:step.lessonNumber}) : tr(step.label)} Phase ${tr("Phase")} ${phaseLabel(phase)} ${phase.title} ${tr(phase.title)}`);
       return terms.every(term => text.includes(term));
     }) : [],
   })).filter(phase => phase.steps.length) : phaseGroups;
@@ -190,13 +191,13 @@ export default function LessonPath({
         </button>
         <div className="course-toolbar-actions">
         <button ref={searchButton} type="button" className="course-search-toggle" onClick={toggleSearch}
-          aria-label={searching ? "Close course search" : "Search course"} title={searching ? "Close search" : "Search course"}
+          aria-label={tr(searching ? "Close course search" : "Search course")} title={tr(searching ? "Close search" : "Search course")}
           aria-expanded={searching} aria-controls={searching ? "course-search" : undefined}>
           {searching ? <X size={24} aria-hidden="true" /> : <Search size={24} aria-hidden="true" />}
         </button>
         {current ? <button type="button" className="course-locate" onClick={locateCurrentStep}
-          aria-label="Find your current step" title="Current step">
-          <span>Current step</span><ArrowDown size={20} aria-hidden="true" />
+          aria-label={tr("Find your current step")} title={tr("Current step")}>
+          <span>{tr("Current step")}</span><ArrowDown size={20} aria-hidden="true" />
         </button> : null}
         </div>
       </div>
@@ -204,30 +205,30 @@ export default function LessonPath({
     <div className="path-scroll">
       <div className="course-path-content">
         {searching && <div id="course-search" className="course-search">
-          <h1>Search course</h1>
+          <h1>{tr("Search course")}</h1>
           <form role="search" aria-label={tr("Course")} onSubmit={event => {event.preventDefault(); searchInput.current?.blur();}}>
-            <label htmlFor="course-search-input">Lesson or topic</label>
+            <label htmlFor="course-search-input">{tr("Lesson or topic")}</label>
             <div className="course-search-field">
               <Search size={22} aria-hidden="true" />
               <input ref={searchInput} id="course-search-input" type="search" value={query}
                 onChange={event => setQuery(event.target.value)} autoComplete="off" autoCapitalize="none" spellCheck={false}
-                enterKeyHint="search" placeholder="e.g. passwords, banking" aria-describedby="course-search-help"
+                enterKeyHint="search" placeholder={tr("e.g. passwords, banking")} aria-describedby="course-search-help"
                 onKeyDown={event => {if (event.key === "Escape") {event.preventDefault(); toggleSearch();}}} />
-              {query && <button type="button" aria-label="Clear search" onClick={() => {setQuery(""); searchInput.current?.focus();}}><X size={22} aria-hidden="true" /></button>}
+              {query && <button type="button" aria-label={tr("Clear search")} onClick={() => {setQuery(""); searchInput.current?.focus();}}><X size={22} aria-hidden="true" /></button>}
             </div>
           </form>
-          <p id="course-search-help">Search lesson titles and course topics.</p>
-          <p className="course-search-count" role="status">{terms.length ? `${resultCount} ${resultCount === 1 ? "result" : "results"}` : "Type a lesson name or topic to begin."}</p>
-          {terms.length > 0 && resultCount === 0 && <p className="course-search-empty">Try a shorter phrase or a broader topic, like “internet” or “money”.</p>}
-          {terms.length > 0 && displayedPhases.some(phase => phase.steps.some(step => !doneSet.has(step.id) && step.id !== currentId)) && <p className="course-search-access">Locked steps open as you progress through the course.</p>}
+          <p id="course-search-help">{tr("Search lesson titles and course topics.")}</p>
+          <p className="course-search-count" role="status">{terms.length ? tr(resultCount === 1 ? "{count} result" : "{count} results",{count:resultCount}) : tr("Type a lesson name or topic to begin.")}</p>
+          {terms.length > 0 && resultCount === 0 && <p className="course-search-empty">{tr("Try a shorter phrase or a broader topic, like “internet” or “money”.")}</p>}
+          {terms.length > 0 && displayedPhases.some(phase => phase.steps.some(step => !doneSet.has(step.id) && step.id !== currentId)) && <p className="course-search-access">{tr("Locked steps open as you progress through the course.")}</p>}
         </div>}
         <div className={`course-path-layout${searching ? " course-search-layout" : ""}`}>
           {!searching && <div className="course-overview">
-            <h1>Your path</h1>
-            <p>{allDone ? "You've finished every step. Return to any lesson whenever you need a refresher." : "Build your confidence, one small step at a time."}</p>
+            <h1>{tr("Your path")}</h1>
+            <p>{tr(allDone ? "You've finished every step. Return to any lesson whenever you need a refresher." : "Build your confidence, one small step at a time.")}</p>
             <div className="course-progress">
-              <p><strong>{completed}</strong> {tr("of")} {playables.length} steps complete</p>
-              <div role="progressbar" aria-label="Course progress" aria-valuemin={0} aria-valuemax={playables.length} aria-valuenow={completed}>
+              <p>{tr("{completed} of {total} steps complete",{completed,total:playables.length})}</p>
+              <div role="progressbar" aria-label={tr("Course progress")} aria-valuemin={0} aria-valuemax={playables.length} aria-valuenow={completed}>
                 <span style={{width: `${completed / playables.length * 100}%`}} />
               </div>
             </div>
@@ -240,27 +241,28 @@ export default function LessonPath({
               return <section key={phase.number} className={`course-phase${isCurrent ? " course-phase-current" : ""}`}>
                 {searching ? <h2 id={`course-phase-${phase.number}`} className="course-search-phase-heading">
                   <span className="course-phase-number">{tr("Phase")} {phaseLabel(phase)}</span>
-                  <span className="course-phase-title">{phase.title}</span>
+                  <span className="course-phase-title">{tr(phase.title)}</span>
                 </h2> : <h2>
                   <button id={`course-phase-${phase.number}`} type="button" className="course-phase-toggle"
                     aria-expanded={isOpen} aria-controls={`course-phase-steps-${phase.number}`}
                     onClick={() => togglePhase(phase.number)}>
                     <span className="course-phase-description">
-                      <span className="course-phase-number">{tr("Phase")} {phaseLabel(phase)}{isCurrent ? " · In progress" : ""}</span>
-                      <span className="course-phase-title">{phase.title}</span>
-                      <span className="course-phase-progress">{phaseDone === phase.steps.length ? "Completed" : `${phaseDone} of ${phase.steps.length} steps complete`}</span>
+                      <span className="course-phase-number">{tr("Phase")} {phaseLabel(phase)}{isCurrent ? ` · ${tr("In progress")}` : ""}</span>
+                      <span className="course-phase-title">{tr(phase.title)}</span>
+                      <span className="course-phase-progress">{phaseDone === phase.steps.length ? tr("Completed") : tr("{completed} of {total} steps complete",{completed:phaseDone,total:phase.steps.length})}</span>
                     </span>
                     <ChevronDown size={22} className="course-disclosure" aria-hidden="true" />
                   </button>
                 </h2>}
                 <div id={`course-phase-steps-${phase.number}`} hidden={!isOpen} aria-labelledby={`course-phase-${phase.number}`}>
+                  {locale === "es" && phase.number > 1 && isOpen && <p className="course-language-note">{tr("Lessons in this phase are currently in English.")}</p>}
                   <ol className="course-steps">
                     {phase.steps.map((step, stepIndex) => {
                       const done = doneSet.has(step.id);
                       const ready = step.id === currentId;
                       const enabled = ready || done;
                       const resumable = ready && !done && (step.kind === "lesson" ? Boolean(hasSavedLessonPosition?.(step.id)) : Boolean(hasSavedAssessmentPosition?.(step.id)));
-                      const name = done ? step.kind === "lesson" ? `Redo completed lesson: ${step.title}` : `Redo ${step.kind}: ${step.title}` : resumable ? `Resume ${step.kind}: ${step.title}` : `Start ${step.kind}: ${step.title}`;
+                      const name = tr(done ? step.kind === "lesson" ? "Redo completed lesson: {title}" : "Redo {kind}: {title}" : resumable ? "Resume {kind}: {title}" : "Start {kind}: {title}", {kind:tr(step.kind),title:tr(step.title)});
                       const offsets = [0, 32, 0, -32];
                       const offset = offsets[stepIndex % offsets.length];
                       const nextOffset = offsets[(stepIndex + 1) % offsets.length];
@@ -269,14 +271,14 @@ export default function LessonPath({
                           {done ? <Check size={28} /> : ready ? <ArrowRight size={28} /> : <Lock size={25} />}
                         </span>}
                         <span className="course-step-copy">
-                          <span className="course-step-title">{step.title}</span>
+                          <span className="course-step-title">{tr(step.title)}</span>
                           <span className="course-step-details">
-                            <span className="course-step-meta">{step.label} · {done ? "Completed" : resumable ? "In progress" : ready ? "Ready to start" : "Locked"}</span>
+                            <span className="course-step-meta">{step.kind === "lesson" ? tr("Lesson {number}",{number:step.lessonNumber}) : tr(step.label)} · {tr(done ? "Completed" : resumable ? "In progress" : ready ? "Ready to start" : "Locked")}</span>
                             <span className="course-step-indicator" aria-hidden="true">
                               {done ? <Check size={22} /> : ready ? <ArrowRight size={22} /> : <Lock size={20} />}
                             </span>
                           </span>
-                          {resumable && <span className="course-resume-note">Continue where you left off</span>}
+                          {resumable && <span className="course-resume-note">{tr("Continue where you left off")}</span>}
                         </span>
                       </>;
                       return <li key={step.id} data-course-step={step.id} ref={ready ? currentRef : null}
@@ -291,9 +293,9 @@ export default function LessonPath({
                           : <div className="course-step-action">{content}</div>}
                         {onTestOutLesson && step.kind === "lesson" && ready && !resumable && step.quizCount > 0 ?
                           <button type="button" className="path-test-out course-quick-check"
-                            aria-label={`Already know this? Take a quick check: ${step.title}`}
+                            aria-label={tr("Already know this? Take a quick check: {title}",{title:tr(step.title)})}
                             onClick={() => onTestOutLesson(step.lessonIndex)}>
-                            Already know this? Take a quick check <ChevronRight size={18} aria-hidden="true" />
+                            {tr("Already know this? Take a quick check")} <ChevronRight size={18} aria-hidden="true" />
                           </button> : null}
                       </li>;
                     })}

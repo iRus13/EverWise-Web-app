@@ -249,20 +249,20 @@ export default function LessonPlayer({
           selected != null ? (
             <button className="btn-primary" onClick={continueTestOut}>
               {testOutFailed
-                ? "Go through the lesson"
+                ? tr("Go through the lesson")
                 : isLast
-                  ? "Finish"
-                  : "Next"}
+                  ? tr("Finish")
+                  : tr("Next")}
             </button>
           ) : null
         }
       >
         <p className="text-lg font-semibold text-ink-faint">
-          Question {testOutIndex + 1} {tr("of")} {testOutQuestions.length}
+          {tr("Question {current} of {total}",{current:testOutIndex+1,total:testOutQuestions.length})}
         </p>
         {testOutFailed ? (
           <p className="mt-1 text-lg leading-snug text-ink-soft">
-            No problem — we'll go through this one together.
+            {tr("No problem — we'll go through this one together.")}
           </p>
         ) : null}
         <MultipleChoiceBody
@@ -308,19 +308,19 @@ export default function LessonPlayer({
           selected != null ? (
             <button className="btn-primary" onClick={continueReview}>
               {answeredCorrectly && reviewQueue.length === 1
-                ? "Finish lesson"
-                : "Next"}
+                ? tr("Finish lesson")
+                : tr("Next")}
             </button>
           ) : null
         }
       >
         <p className="text-lg font-semibold text-ink-faint">
           {reviewQueue.length === 1
-            ? "One to go"
-            : `${reviewQueue.length} to go`}
+            ? tr("One to go")
+            : tr("{count} to go",{count:reviewQueue.length})}
         </p>
         <p className="mt-1 text-lg text-ink-soft">
-          Let's take another look at this one.
+          {tr("Let's take another look at this one.")}
         </p>
         <MultipleChoiceBody
           text={reviewQuestion.question}
@@ -347,13 +347,13 @@ export default function LessonPlayer({
       footer={
         selected != null ? (
           <button className="btn-primary" onClick={continueQuiz}>
-            {quizIndex + 1 < quizTotal ? "Next" : "See results"}
+            {tr(quizIndex + 1 < quizTotal ? "Next" : "See results")}
           </button>
         ) : null
       }
     >
       <p className="text-lg font-semibold text-ink-faint">
-        Quiz {quizIndex + 1} {tr("of")} {quizTotal}
+        {tr("Quiz {current} of {total}",{current:quizIndex+1,total:quizTotal})}
       </p>
       <MultipleChoiceBody
         text={q.question}

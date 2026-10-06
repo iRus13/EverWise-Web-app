@@ -1,3 +1,4 @@
+import {useLearningText} from "../../i18n/learning.js";
 import { useId, useState } from "react";
 import { ChevronLeft, ChevronRight, RotateCw } from "lucide-react";
 import ReadAloud from "../ReadAloud";
@@ -11,6 +12,7 @@ export default function FlashcardsBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const cardId = useId();
   const cards = block.cards || [];
   const [index, setIndex] = useState(0);
@@ -33,7 +35,7 @@ export default function FlashcardsBlock({
 
   return (
     <BlockShell
-      label={block.title || "Flashcards"}
+      label={t(block.title || "Flashcards")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -42,19 +44,19 @@ export default function FlashcardsBlock({
       scrollKey={index}
       footer={
         <button className="btn-primary" onClick={continueFromCard}>
-          Continue
+          {t("Continue")}
         </button>
       }
     >
-      <h1 className="page-title">{block.title || "Flashcards"}</h1>
+      <h1 className="page-title">{t(block.title || "Flashcards")}</h1>
       <p className="lesson-card-count">
-        Card {index + 1} of {cards.length}
+        {t("Card {current} of {total}", {current:index+1,total:cards.length})}
       </p>
 
       <button
         type="button"
         onClick={() => setFlipped((f) => !f)}
-        aria-label={flipped ? "Show front of card" : "Show back of card"}
+        aria-label={t(flipped ? "Show front of card" : "Show back of card")}
         aria-pressed={flipped}
         aria-describedby={`${cardId}-${flipped ? "back" : "front"}`}
         className="flashcard-button mt-6 w-full shrink-0 overflow-hidden text-center"
@@ -70,10 +72,10 @@ export default function FlashcardsBlock({
             className="flashcard-face col-start-1 row-start-1 flex min-h-[220px] w-full flex-col items-center justify-center px-6 py-8"
           >
             <span className="lesson-card-side">
-              Front
+              {t("Front")}
             </span>
             <span id={`${cardId}-front`} className="flashcard-copy mt-4 w-full break-words font-sans text-2xl font-semibold leading-snug text-ink">
-              {card.front}
+              {t(card.front)}
             </span>
           </span>
 
@@ -82,18 +84,18 @@ export default function FlashcardsBlock({
             className="flashcard-face flashcard-back col-start-1 row-start-1 flex min-h-[220px] w-full flex-col items-center justify-center px-6 py-8"
           >
             <span className="lesson-card-side">
-              Back
+              {t("Card back")}
             </span>
             <span id={`${cardId}-back`} className="flashcard-copy mt-4 w-full break-words font-sans text-2xl font-semibold leading-snug text-ink">
-              {card.back}
+              {t(card.back)}
             </span>
           </span>
         </span>
-        <span className="lesson-card-hint" aria-hidden="true"><RotateCw size={16} /> Tap to turn over</span>
+        <span className="lesson-card-hint" aria-hidden="true"><RotateCw size={16} /> {t("Tap to turn over")}</span>
       </button>
 
       <div className="lesson-card-audio">
-        <ReadAloud text={flipped ? card.back : card.front} />
+        <ReadAloud text={t(flipped ? card.back : card.front)} />
       </div>
 
       <div className="lesson-card-navigation">
@@ -101,19 +103,19 @@ export default function FlashcardsBlock({
           type="button"
           onClick={() => go(index - 1)}
           disabled={index === 0}
-          aria-label="Previous card"
+          aria-label={t("Previous card")}
           className="lesson-card-step"
         >
-          <ChevronLeft size={20} aria-hidden="true" /><span>Previous</span>
+          <ChevronLeft size={20} aria-hidden="true" /><span>{t("Previous")}</span>
         </button>
         <button
           type="button"
           onClick={() => go(index + 1)}
           disabled={index >= cards.length - 1}
-          aria-label="Next card"
+          aria-label={t("Next card")}
           className="lesson-card-step"
         >
-          <span>Next</span><ChevronRight size={20} aria-hidden="true" />
+          <span>{t("Next")}</span><ChevronRight size={20} aria-hidden="true" />
         </button>
       </div>
     </BlockShell>

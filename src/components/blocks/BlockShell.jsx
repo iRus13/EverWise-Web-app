@@ -1,3 +1,4 @@
+import {tr, useLocale} from "../../i18n";
 import { useEffect, useRef } from "react";
 import LessonTopBar from "../LessonTopBar";
 import "../../styles/lesson-experience.css";
@@ -45,6 +46,7 @@ export default function BlockShell({
   scrollKey,
   revealKey,
 }) {
+  useLocale();
   const contentRef = useRef(null);
   const hadFooterRef = useRef(Boolean(footer));
 
@@ -105,9 +107,9 @@ export default function BlockShell({
             type="button"
             className="btn-primary"
             disabled
-            aria-label="Choose an answer before continuing"
+            aria-label={tr("Choose an answer before continuing")}
           >
-            Continue
+            {tr("Continue")}
           </button>
         )}
       </div>

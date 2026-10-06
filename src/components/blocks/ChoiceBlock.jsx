@@ -1,3 +1,4 @@
+import {useLearningText} from "../../i18n/learning.js";
 import { useState } from "react";
 import BlockShell from "./BlockShell";
 import { MultipleChoiceBody } from "./ScenarioBlock";
@@ -10,11 +11,12 @@ export default function ChoiceBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const [selected, setSelected] = useState(null);
 
   return (
     <BlockShell
-      label={block.title || "Choose"}
+      label={t(block.title || "Choose")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -23,7 +25,7 @@ export default function ChoiceBlock({
       footer={
         selected != null ? (
           <button className="btn-primary" onClick={onContinue}>
-            Continue
+            {t("Continue")}
           </button>
         ) : null
       }

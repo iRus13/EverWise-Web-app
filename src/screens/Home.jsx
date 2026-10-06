@@ -71,12 +71,12 @@ export default function Home({
         <div className="today-dashboard">
           <section className="today-learning" aria-labelledby="today-learning-title">
             <div className="today-section-label"><BookIcon className="start-icon" /><span>{activity ? activity.resumable ? tr("Ready to continue") : tr("Up next") : tr("Your learning")}</span></div>
-            <h2 id="today-learning-title">{allDone ? tr("Course complete.") : activity?.title || tr("Your course")}</h2>
-            {activity ? <p className="today-activity-phase">{tr("Phase")} {activity.phaseNumber}{activity.phaseTitle ? ` · ${activity.phaseTitle}` : ""}</p> : null}
+            <h2 id="today-learning-title">{allDone ? tr("Course complete.") : tr(activity?.title) || tr("Your course")}</h2>
+            {activity ? <p className="today-activity-phase">{tr("Phase")} {activity.phaseNumber}{activity.phaseTitle ? ` · ${tr(activity.phaseTitle)}` : ""}</p> : null}
             <p>{tr(learningDescription(activity, allDone))}</p>
             {activity ? <>
               <button type="button" className="btn-primary" onClick={openNext} disabled={opening}
-                aria-busy={opening} aria-label={`${opening ? `Opening ${activity.kind}` : actionLabel}: ${activity.title}`}>
+                aria-busy={opening} aria-label={`${opening ? tr("Opening {kind}",{kind:tr(activity.kind)}) : actionLabel}: ${tr(activity.title)}`}>
                 {opening ? tr("Opening {kind}…", { kind: tr(activity.kind) }) : actionLabel}
               </button>
               {openError ? <p ref={errorMessage} className="today-open-error" role="alert">{tr(openError)}</p> : null}

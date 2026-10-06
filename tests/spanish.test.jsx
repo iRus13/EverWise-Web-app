@@ -18,7 +18,7 @@ test('Spanish is selectable, persisted, and updates document language', () => {
   expect(screen.getByText('Lecciones breves, con palabras sencillas.')).toBeVisible();
   expect(localStorage.getItem('everwise.language')).toBe('es');
   expect(document.documentElement.lang).toBe('es');
-  expect(screen.getByRole('status')).toHaveTextContent('actualmente en inglés');
+  expect(screen.getByRole('status')).toHaveTextContent('Las lecciones posteriores y los resultados de IA siguen en inglés.');
   act(() => setLocale('unsupported'));
   expect(document.documentElement.lang).toBe('es');
   expect(tr('Untranslated text')).toBe('Untranslated text');
@@ -67,7 +67,7 @@ test('badge filters and counts translate without changing saved award identities
   expect(screen.getByRole('heading', {name:'Saved exam honor'})).toBeVisible();
   expect(screen.getByText('Resultado del examen')).toBeVisible();
   fireEvent.click(screen.getByRole('button', {name:'Todas',exact:true}));
-  const phase = screen.getByRole('button', {name:'Etapa 1: Foundations'});
+  const phase = screen.getByRole('button', {name:'Etapa 1: Fundamentos'});
   fireEvent.click(phase);
   expect(phase).toHaveAttribute('aria-expanded','true');
   expect(screen.getByRole('heading', {name:catalog[0].badges[1].name,exact:true})).toBeVisible();
@@ -81,7 +81,7 @@ test('new learners get a translated empty state and an honest course-language no
   render(<Badges badges={[]} />);
   fireEvent.click(screen.getByRole('button', {name:'Obtenidas',exact:true}));
   expect(screen.getByRole('status')).toHaveTextContent('Completa tu primera lección');
-  expect(screen.getByText('Los títulos y los nombres de las insignias están en inglés.')).toBeVisible();
+  expect(screen.getByText('Algunos títulos del curso y nombres de insignias siguen en inglés.')).toBeVisible();
   expect(screen.queryByRole('heading', {name:'Foundations'})).not.toBeInTheDocument();
   expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow','0');
 });

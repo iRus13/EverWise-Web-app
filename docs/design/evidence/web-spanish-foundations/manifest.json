@@ -1,0 +1,75 @@
+{
+  "baselineWebCommit": "a4757c84a24e564757406eee3d947766ed6ec7be",
+  "nativeCatalogCommit": "e3902750ce44ad4ae5aeaf8f3d0e82a236205dc6",
+  "nativeCatalogSHA256": "743489e283ad24513db7eaf0fa0a7d1b9aa84a37a162e859aeea529005c9468c",
+  "translationEntries": 922,
+  "identicalNativeTranslations": 877,
+  "scope": "Nine Foundations lessons and phase-one final challenge. Later course content remains incompletely translated.",
+  "screenshots": [
+    {
+      "file": "phone-path-after.jpg",
+      "width": 375,
+      "height": 667,
+      "format": "JPEG",
+      "bytes": 20730,
+      "sha256": "313a845295fa5a75f15d0f915efdca512cc7a7b6fd20f9a48f36e9a25d4b8f03"
+    },
+    {
+      "file": "phone-path-before.jpg",
+      "width": 375,
+      "height": 667,
+      "format": "JPEG",
+      "bytes": 21416,
+      "sha256": "6c234c833d59fdc8300ccec112232f6bbe62712d85d9337469ad47db5dd3f45c"
+    },
+    {
+      "file": "phone-path-maximum.jpg",
+      "width": 320,
+      "height": 568,
+      "format": "JPEG",
+      "bytes": 19932,
+      "sha256": "f8e6aae7175395ac5cc9dfe37cdc95c8226edb13ab05745be6f368b36f598c9d"
+    },
+    {
+      "file": "phone-welcome-after.jpg",
+      "width": 375,
+      "height": 667,
+      "format": "JPEG",
+      "bytes": 32365,
+      "sha256": "2af6c4569e68b7aa25c1f7ceb20036e00a18a96bcc0f950eb1d279efc454931e"
+    },
+    {
+      "file": "phone-welcome-before.jpg",
+      "width": 375,
+      "height": 667,
+      "format": "JPEG",
+      "bytes": 29903,
+      "sha256": "861eec8f2370a0b300926fb906643b9800bf9cbcd7bf6c949e0d8cddcc94f513"
+    },
+    {
+      "file": "tablet-conversation-after.jpg",
+      "width": 834,
+      "height": 1187,
+      "format": "JPEG",
+      "bytes": 44058,
+      "sha256": "fe78fc4cffdd559487a410c7571dca439c259deeee75d80986ac091aca92d101"
+    },
+    {
+      "file": "tablet-conversation-before.jpg",
+      "width": 834,
+      "height": 1187,
+      "format": "JPEG",
+      "bytes": 41815,
+      "sha256": "6d04e32bda10814baa7d93c270b2354cd0b3d7d4d211dded7f6b720607a74bae"
+    },
+    {
+      "file": "tablet-flashcard-maximum.jpg",
+      "width": 834,
+      "height": 1187,
+      "format": "JPEG",
+      "bytes": 50821,
+      "sha256": "32c751206f0eb6cee0d622121a3abef09402abc5dfbccb2c6b12d8131fb306b2"
+    }
+  ],
+  "captureNote": "Real built components with synthetic callbacks. Welcome before uses the prior build. Path before was captured before its translation changes; lesson translations were already present elsewhere. Conversation before already has Spanish copy and precedes the speaker-turn layout. Viewport overrides are browser checks, not physical iOS devices."
+}
