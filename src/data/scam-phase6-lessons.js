@@ -317,7 +317,7 @@ export const scamPhase6Lessons = [
           {
             text: "Leave the link unopened until you know more.",
             tier: "safe",
-            feedback: "Nothing is lost by waiting."
+            feedback: "Check your order directly before responding. The message alone does not verify the package’s status or deadline."
           },
           {
             text: "Open it immediately because it came from a friend's account.",

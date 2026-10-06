@@ -255,7 +255,7 @@ export default function LessonPath({
                   </button>
                 </h2>}
                 <div id={`course-phase-steps-${phase.number}`} hidden={!isOpen} aria-labelledby={`course-phase-${phase.number}`}>
-                  {locale === "es" && phase.number > 9 && isOpen && <p className="course-language-note">{tr("Lessons in this phase are currently in English.")}</p>}
+                  {locale === "es" && phase.number > 10 && isOpen && <p className="course-language-note">{tr("Lessons in this phase are currently in English.")}</p>}
                   <ol className="course-steps">
                     {phase.steps.map((step, stepIndex) => {
                       const done = doneSet.has(step.id);

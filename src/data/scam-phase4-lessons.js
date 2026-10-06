@@ -632,7 +632,7 @@ export const scamPhase4Lessons = [
           {
             text: "Wait until trusted news or your bank confirms the information.",
             tier: "safe",
-            feedback: "Nothing is lost by waiting."
+            feedback: "Check your order directly before responding. The message alone does not verify the package’s status or deadline."
           },
           {
             text: "Use the link because the picture looks convincing.",

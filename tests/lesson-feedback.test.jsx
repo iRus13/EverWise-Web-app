@@ -37,10 +37,10 @@ test("multiple selection identifies all correct choices even if authored feedbac
   expect(screen.getByRole("button", {name:"Firefox Correct choice · Not selected"})).toBeDisabled();
 });
 
-test("scam reading narration includes the heading and every visible warning sign", () => {
+test("scam reading narration includes visible content with a collapsed reminder", () => {
   const block={heading:"Recognize a scam",objective:"Spot the warning signs",question:"Does it feel rushed?",warningSigns:["Pressure to act","Requests for secrecy"],text:"Pause and check the message."};
   render(<ReadingBlock {...props} block={block}/>);
-  for(const text of [block.heading,block.objective,block.question,...block.warningSigns,block.text]) expect(screen.getByTestId("narration")).toHaveTextContent(text);
+  for(const text of [block.heading,block.objective,block.question,block.text,"Review warning signs"]) expect(screen.getByTestId("narration")).toHaveTextContent(text);
 });
 
 test("builder announces selection state, requires every column, and keeps its result until continuing", () => {

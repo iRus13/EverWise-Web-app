@@ -78,6 +78,14 @@ html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="s
 .lesson-conversation .conversation-speaker { color: var(--text-primary); font-size: calc(15px * var(--text-scale)); font-weight: 650; line-height: 1.4; }
 .lesson-conversation .conversation-message { margin-top: 8px; color: var(--text-secondary); font-size: calc(17px * var(--text-scale)); line-height: 1.65; overflow-wrap: break-word; white-space: pre-line; }
 .lesson-warning-signs { background: var(--surface-grouped); }
+.lesson-warning-reminder { margin-top: 24px; border-top: 1px solid var(--separator); }
+.lesson-warning-reminder > summary {
+  min-height: 56px; padding: 16px 0; cursor: pointer;
+  color: var(--text-primary); font-size: calc(17px * var(--text-scale)); line-height: 1.5;
+}
+.lesson-warning-reminder > summary::marker { color: var(--text-secondary); }
+.lesson-warning-reminder > summary:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 4px; border-radius: 4px; }
+.lesson-warning-reminder > ul { margin: 8px 0 16px; }
 
 .lesson-experience .lesson-answer:not(:disabled):active { background: var(--accent-subtle); border-color: var(--accent); }
 .lesson-experience :is(.lesson-top-actions button,.lesson-back):active { background: var(--separator); }
