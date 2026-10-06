@@ -1940,8 +1940,8 @@ export const scamPhase8Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 15 complete!",
-      subtitle: "You completed the Phase 15 Big Review — and all of AI in Everyday Life.",
+      title: "Lesson complete!",
+      subtitle: "You completed Phase 15 Big Review.",
       habit: "Use AI to help you think, prepare, organize, and practice — then review, verify, and decide for yourself.",
       warningSign: "AI can help, but you decide.",
       skills: [

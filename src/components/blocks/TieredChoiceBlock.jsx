@@ -3,6 +3,7 @@ import { useState } from "react";
 import ReadAloud from "../ReadAloud";
 import BlockShell from "./BlockShell";
 import AnswerFeedback from "./AnswerFeedback";
+import { useLearningText } from "../../i18n/learning.js";
 
 // Quiz where answers are graded rather than simply right/wrong:
 //   tier: "best"   ⭐ strongest protection
@@ -18,15 +19,19 @@ export function TieredChoiceBody({
   selected,
   onSelect,
 }) {
+  const t = useLearningText();
   const answered = selected != null;
   const chosen = answered ? options[selected] : null;
   const bestIndex = options.findIndex((o) => o.tier === "best");
+  const feedbackTitle = chosen?.tier === "best" ? "Best choice!" : chosen?.tier === "safe" ? "That's a safe choice" : "Let's look again";
 
   const speakText = [
-    scenario,
-    question,
-    "Options:",
-    options.map((o) => o.text).join(". "),
+    t(scenario || ""),
+    t(question),
+    t("Options:"),
+    options.map((o) => t(o.text)).join(". "),
+    ...(answered ? [t(feedbackTitle), t(chosen.feedback)] : []),
+    ...(answered && chosen.tier !== "best" && bestIndex >= 0 ? [t("Best answer"), t(options[bestIndex].text)] : []),
   ]
     .filter(Boolean)
     .join(". ");
@@ -35,22 +40,20 @@ export function TieredChoiceBody({
     <>
       {title && (
         <p className="lesson-kicker">
-          {title}
+            {t(title)}
         </p>
       )}
 
       {scenario && (
-        <div className="lesson-reading-section mt-3">
-          <p className="text-xl leading-relaxed text-ink">{scenario}</p>
-        </div>
+        <p className="lesson-scenario-story mt-3">{t(scenario)}</p>
       )}
 
       <h1 className="page-title lesson-question mt-5">
-        {question}
+        {t(question)}
       </h1>
 
       <div className="mt-4">
-        <ReadAloud text={speakText} label="Read this aloud" />
+        <ReadAloud text={speakText} label={t("Read this aloud")} />
       </div>
 
       <div className="mt-7 space-y-4">
@@ -62,19 +65,19 @@ export function TieredChoiceBody({
               disabled={answered}
               onClick={() => onSelect(i)}
               selected={selected === i}
-              state={answered ? option.tier === "best" ? "correct" : option.tier === "safe" ? "safe" : i === selected ? "incorrect" : "other" : undefined}
+              state={answered ? i !== selected ? "other" : option.tier === "best" ? "correct" : option.tier === "safe" ? "safe" : "incorrect" : undefined}
 
             >
-              {option.text}
+              {t(option.text)}
             </AnswerOption>
           );
         })}
       </div>
 
       {answered && <AnswerFeedback positive={chosen.tier !== "unsafe"}
-        title={chosen.tier === "best" ? "Best choice!" : chosen.tier === "safe" ? "That's a safe choice" : "Let's look again"}>
-        <p>{chosen.feedback}</p>
-        {chosen.tier !== "best" && bestIndex >= 0 && <p><strong>The strongest first step:</strong> {options[bestIndex].text}</p>}
+        title={t(feedbackTitle)}>
+        <p>{t(chosen.feedback)}</p>
+        {chosen.tier !== "best" && bestIndex >= 0 && <p><strong>{t("Best answer")}: </strong>{t(options[bestIndex].text)}</p>}
       </AnswerFeedback>}
 
     </>
@@ -89,11 +92,12 @@ export default function TieredChoiceBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const [selected, setSelected] = useState(null);
 
   return (
     <BlockShell
-      label={block.label || "Practice"}
+      label={t(block.label || "Practice")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -101,7 +105,7 @@ export default function TieredChoiceBlock({
       footer={
         selected != null ? (
           <button className="btn-primary" onClick={onContinue}>
-            Continue
+            {t("Continue")}
           </button>
         ) : null
       }

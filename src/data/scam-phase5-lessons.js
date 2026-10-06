@@ -1695,8 +1695,8 @@ export const scamPhase5Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 12 complete!",
-      subtitle: "You completed If Something Goes Wrong — and all of Phase 12.",
+      title: "Lesson complete!",
+      subtitle: "You completed If Something Goes Wrong.",
       habit: "If something doesn't look right, stay calm and act quickly.",
       warningSign: "Account activity you don't recognize.",
       skills: [

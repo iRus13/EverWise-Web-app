@@ -1,5 +1,6 @@
 import ReadAloud from "../ReadAloud";
 import BlockShell from "./BlockShell";
+import { useLearningText } from "../../i18n/learning.js";
 
 // Opening screen of a scam-protection lesson: the objective, the question the
 // lesson answers, the five universal warning signs reminder, and the reading.
@@ -11,76 +12,71 @@ export default function ReadingBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
+  const paragraphs = t(block.text || "").split(/\n\s*\n/).filter(part => part.trim());
   const speakText = [
     block.heading,
-    block.objective && `Learning goal. ${block.objective}`,
     block.question,
-    ...(block.warningSigns?.length ? ["Warning signs", ...block.warningSigns] : []),
     block.text,
+    ...(block.warningSigns?.length ? ["Warning signs", ...block.warningSigns] : []),
+    ...(block.objective ? ["Learning goal", block.objective] : []),
   ]
     .filter(Boolean)
+    .map(part => t(part))
     .join(". ");
 
   return (
     <BlockShell
-      label={block.label || "Learn"}
+      label={t(block.label || "Learn")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
       onExit={onExit}
       footer={
         <button className="btn-primary" onClick={onContinue}>
-          Continue
+          {t("Continue")}
         </button>
       }
     >
       <div className="lesson-reading">
         {block.heading && (
           <h1 className="page-title">
-            {block.heading}
+            {t(block.heading)}
           </h1>
+        )}
+
+        {block.question && (
+          <p className="lesson-reading-question">
+            {t(block.question)}
+          </p>
         )}
 
         <div className="lesson-audio"><ReadAloud text={speakText} /></div>
 
-        {block.question && (
-          <p className="lesson-reading-question">
-            {block.question}
-          </p>
-        )}
-
-        {block.objective && (
-          <div className="lesson-reading-section">
-            <p className="lesson-section-label">
-              What you'll learn
-            </p>
-            <p className="mt-2 text-xl leading-relaxed text-ink">
-              {block.objective}
-            </p>
-          </div>
-        )}
+        <div className="lesson-prose">
+          {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+        </div>
 
         {block.warningSigns?.length > 0 && (
           <div className="lesson-reading-section lesson-warning-signs">
-            <p className="lesson-section-label">
-              Warning signs
-            </p>
+            <h2 className="lesson-section-label">{t("Warning signs")}</h2>
             <ul className="lesson-reading-list">
               {block.warningSigns.map((sign) => (
                 <li
                   key={sign}
                   className="text-lg"
                 >
-                  {sign}
+                  {t(sign)}
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        <p className="mt-6 text-2xl leading-relaxed text-ink-soft">
-          {block.text}
-        </p>
+        {block.objective && <section className="lesson-learning-goal">
+          <h2 className="lesson-section-label">{t("Learning goal")}</h2>
+          <p>{t(block.objective)}</p>
+        </section>}
 
       </div>
     </BlockShell>

@@ -1305,8 +1305,8 @@ export const scamPhase6Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 13 complete!",
-      subtitle: "You completed Stop, Save, Block, and Report — and all of Phase 13.",
+      title: "Lesson complete!",
+      subtitle: "You completed Stop, Save, Block, and Report.",
       habit: "When communication feels unsafe: stop, save, block, report, and verify.",
       warningSign: "You do not have to continue a conversation to solve the problem.",
       skills: [

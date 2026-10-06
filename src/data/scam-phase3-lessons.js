@@ -1960,8 +1960,8 @@ export const scamPhase3Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 10 complete!",
-      subtitle: "You completed Medicare & Healthcare — and all of Phase 10.",
+      title: "Lesson complete!",
+      subtitle: "You completed Medicare & Healthcare.",
       habit: "Protect your health information the same way you protect your money — verify first.",
       warningSign: "Unexpected health requests for personal information.",
       skills: [

@@ -60,7 +60,12 @@ html[data-text-size] .lesson-experience .text-lg { font-size: calc(17px * var(--
 html:is([data-expanded-text="true"],[data-text-size="size-6"],[data-text-size="size-7"],[data-text-size="size-8"],[data-text-size="size-9"],[data-text-size="size-10"]) .lesson-experience .lesson-answer-grid { grid-template-columns: minmax(0,1fr); }
 
 .lesson-audio { margin-top: 20px; }
-.lesson-reading-question { margin-top: 24px; font-size: calc(20px * var(--text-scale)); line-height: 1.45; font-weight: 600; color: #39362f; }
+.lesson-reading-question { margin-top: 12px; font-size: calc(17px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }
+.lesson-prose { margin-top: 24px; font-size: calc(18px * var(--text-scale)); line-height: 1.6; color: var(--text-primary); }
+.lesson-prose > p { white-space: pre-line; overflow-wrap: break-word; }
+.lesson-prose > p + p { margin-top: 24px; }
+.lesson-learning-goal { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--separator); }
+.lesson-learning-goal > p { margin-top: 8px; font-size: calc(17px * var(--text-scale)); line-height: 1.5; color: var(--text-secondary); }
 .lesson-reading-section { margin-top: 24px; padding: 20px; border: 0; border-radius: 12px; background: var(--surface-grouped); }
 .lesson-section-label { font-size: calc(17px * var(--text-scale)); line-height: 1.45; font-weight: 650; color: #39362f; }
 .lesson-reading-list { margin-top: 20px; padding-left: 24px; list-style: disc; }
@@ -105,6 +110,7 @@ html[data-expanded-text="true"] .lesson-step-caption > span:last-child { white-s
    large title. Short lesson titles retain the stronger title hierarchy. */
 html[data-text-size] .lesson-experience .page-title.lesson-question { font-size: calc(22px * var(--heading-scale)); font-weight: 600; line-height: 1.35; letter-spacing: -.3px; }
 .lesson-scenario-story { margin: 0 0 24px; font-size: calc(18px * var(--text-scale)); line-height: 1.55; color: #39362f; white-space: pre-line; overflow-wrap: anywhere; }
+.lesson-kicker + .lesson-scenario-story { margin-top: 12px; }
 
 /* Activity controls share the same selection and spacing grammar. */
 .lesson-experience .lesson-option { display: flex; align-items: center; gap: 12px; background: var(--surface); }

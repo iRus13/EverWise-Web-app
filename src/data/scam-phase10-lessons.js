@@ -1074,8 +1074,8 @@ export const scamPhase10Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "🎓 Congratulations — you've graduated!",
-      subtitle: "You completed Your Online Safety Graduation and the entire Scam Protection course.",
+      title: "Lesson complete!",
+      subtitle: "You completed Your Online Safety Graduation.",
       habit: "Use your full toolkit: pause, protect, verify, record, ask, decide.",
       warningSign: "You don't need to be perfect. You need habits you can trust.",
       skills: [

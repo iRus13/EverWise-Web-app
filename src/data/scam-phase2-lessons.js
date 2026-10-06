@@ -1148,8 +1148,8 @@ export const scamPhase2Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 9 complete!",
-      subtitle: "You completed Always Verify — and all of Phase 9.",
+      title: "Lesson complete!",
+      subtitle: "You completed Always Verify.",
       habit: "Verify first. Trust second.",
       warningSign: "A request that can't be independently checked.",
       skills: [

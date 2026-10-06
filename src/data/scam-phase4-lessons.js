@@ -1924,8 +1924,8 @@ export const scamPhase4Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 11 complete!",
-      subtitle: "You completed Making AI Your Helper — and all of Phase 11.",
+      title: "Lesson complete!",
+      subtitle: "You completed Making AI Your Helper.",
       habit: "Let AI help you think. Let yourself make the final decision.",
       warningSign: "Letting a tool make a decision that's yours to make.",
       skills: [

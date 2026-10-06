@@ -41,5 +41,7 @@ test("confidence practice retains the same lesson exit", () => {
   expect(sample.lesson.blocks[sample.blockIndex].practice.length).toBeGreaterThan(0);
   const callbacks=openActivity(sample);
   fireEvent.click(screen.getByRole("button", { name:/I'd like more practice/ }));
+  fireEvent.click(screen.getByRole("button", { name:"Continue", exact:true }));
+  expect(screen.getByText(/Practice 1 of/)).toBeVisible();
   expectExitWithoutAdvancing(callbacks);
 });
