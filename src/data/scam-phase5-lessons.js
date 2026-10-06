@@ -40,32 +40,33 @@ export const scamPhase5Lessons = [
         objective:
           "Learn that personal information has value, and sharing too much can make it easier for scammers to target you.",
         warningSigns: PRIVACY_HABITS,
-        text: "Your personal information is valuable because it helps prove who you are. Things like your full name, home address, birthday, phone number, and account numbers can be useful to banks, doctors, and other trusted organizations. Unfortunately, scammers want this information too. The more they know about you, the easier it becomes for them to pretend to be someone you trust. A good habit is to ask yourself, \"Does this person really need this information?\" before sharing it."
+        reminderTitle: "Review privacy habits",
+        text: "Your name, address, birthday, phone number, and account details can help identify you. Banks, clinics, and other services may need some of this information. Scammers can also use it to impersonate you or make a request seem familiar.\n\nBefore sharing, check who is asking, why they need it, and whether the request fits the situation. For unexpected requests, contact the organization through a route you already trust. Share only what is needed."
       },
       {
         type: "tiered",
         title: "What's personal?",
-        scenario: "A website asks you to create an account.",
+        scenario: "A website offering a free newsletter asks for your full home address and phone number.",
         question:
-          "Which piece of information should you think carefully about before sharing?",
+          "Which response best protects your information?",
         options: [
           {
-            text: "Your home address.",
+            text: "Check who runs the site and why it needs these details before sharing.",
             tier: "best",
             feedback:
               "Addresses and phone numbers are personal information. Before sharing them, make sure you know why they're being requested."
           },
           {
-            text: "Your phone number.",
+            text: "Leave optional address and phone fields blank.",
             tier: "safe",
             feedback:
-              "Also worth pausing over — a phone number is often used to reach you later."
+              "A newsletter may only need an email address. Leave unnecessary details out while you check the request."
           },
           {
-            text: "Your favorite color.",
+            text: "Enter every detail because the form asks for it.",
             tier: "unsafe",
             feedback:
-              "Harmless on its own — though be careful, because it's sometimes a security question answer."
+              "A form does not prove that every request is necessary. Check the site and the purpose before sharing."
           }
         ]
       },
@@ -77,15 +78,15 @@ export const scamPhase5Lessons = [
         question: "Which response is the best?",
         options: [
           {
-            text: "Ask who they are and why they need your information before sharing it.",
+            text: "End the call and verify the request using a number you already trust before sharing.",
             tier: "best",
             feedback:
-              "Even if someone sounds friendly, you should understand why they're asking before sharing personal information."
+              "A caller can invent a convincing explanation. A trusted contact route helps you check who is really asking."
           },
           {
             text: "Tell them you'll call the organization back using an official phone number.",
             tier: "safe",
-            feedback: "An excellent move — you control who you're speaking to."
+            feedback: "Calling a trusted number helps you verify the request independently."
           },
           {
             text: "Give your birthday because they asked politely.",
@@ -111,7 +112,7 @@ export const scamPhase5Lessons = [
           {
             text: "Think about whether the information is really necessary.",
             tier: "safe",
-            feedback: "That pause is the whole habit."
+            feedback: "Pause to understand the purpose before sharing information."
           },
           {
             text: "Fill in every blank because it's on the form.",
@@ -137,13 +138,13 @@ export const scamPhase5Lessons = [
           {
             text: "Verify whether the request is real before sharing any information.",
             tier: "safe",
-            feedback: "The right instinct."
+            feedback: "Check the request through a contact route you already trust."
           },
           {
             text: "Click the link and provide the information because the email looks official.",
             tier: "unsafe",
             feedback:
-              "Your bank already has all three of those details. Being asked to \"confirm\" them is the tell."
+              "Banks may legitimately update records, but this email does not verify the request. Open the official app or contact the bank through a trusted number."
           }
         ]
       },
@@ -163,7 +164,7 @@ export const scamPhase5Lessons = [
               {
                 text: "It's okay to politely decline.",
                 tier: "safe",
-                feedback: "\"Oh, just nearby\" is a complete answer."
+                feedback: "You can give a general answer or decline without explaining."
               },
               {
                 text: "Tell them your full address because they seem friendly.",
@@ -173,19 +174,19 @@ export const scamPhase5Lessons = [
             ]
           },
           {
-            scenario: "A website asks for your phone number to send security codes.",
+            scenario: "You opened a service you trust to set up two-step verification. It asks for a phone number for security codes.",
             question: "Which response is the best?",
             options: [
               {
                 text: "Think about whether the request makes sense before sharing it.",
                 tier: "best",
                 feedback:
-                  "This one often does make sense — security codes are a real protection."
+                  "Some services use phone numbers for sign-in codes. Check that you are using the official service and review its explanation."
               },
               {
                 text: "Read why the website is asking for the information.",
                 tier: "safe",
-                feedback: "Reading the reason is exactly the habit."
+                feedback: "Check why the number is needed and whether another verification method is available."
               },
               {
                 text: "Share it automatically without reading anything.",
@@ -216,7 +217,7 @@ export const scamPhase5Lessons = [
           "You visit a new medical clinic for your first appointment. While filling out the paperwork, you notice one page asking for your Social Security number, driver's license number, the name of your bank, and your bank account number. You expected to provide contact and insurance details.",
         messages: [
           {
-            from: "The receptionist, smiling",
+            from: "Example conversation · Reception desk",
             body: "Just fill out everything on every page."
           }
         ],
@@ -226,7 +227,7 @@ export const scamPhase5Lessons = [
             text: "Ask the receptionist why the banking information is needed, and only provide information that's necessary for your care.",
             tier: "best",
             feedback:
-              "This wasn't about refusing to share information — it was about understanding why it was being requested. Trusted organizations sometimes need personal information, but it's always okay to ask questions first."
+              "A clinic may need some personal information. Ask which fields are required, why they are needed, and how they will be protected before sharing."
           },
           {
             text: "Skip the question until someone explains why it's required.",
@@ -238,7 +239,7 @@ export const scamPhase5Lessons = [
             text: "Fill out every blank because it came from a medical office.",
             tier: "unsafe",
             feedback:
-              "A legitimate clinic may genuinely need some of this — but a bank account number is unusual for medical care, and asking costs nothing."
+              "Being at a clinic does not make every field necessary. Ask about the banking request and other sensitive details before completing them."
           }
         ],
         spotted: ["A request that doesn't match the situation"]
@@ -284,7 +285,8 @@ export const scamPhase5Lessons = [
         objective:
           "Learn that your password is like the key to your home — it protects what belongs to you and shouldn't be shared.",
         warningSigns: PRIVACY_HABITS,
-        text: "Think of your password like the key to your house. You wouldn't hand your house key to a stranger just because they asked politely. Your password works the same way. It protects things that belong to you, like your email, bank account, and photos. If someone else gets your password, they may be able to enter your account just like someone using your house key. A trusted company will almost never ask you to tell them your password."
+        reminderTitle: "Review privacy habits",
+        text: "A password helps protect access to your email, bank account, and photos, much like a key protects your home. Someone who gets it may be able to enter your account.\n\nKeep it private. Do not send it in a message or read it to an unexpected caller. Enter it only in the official app or website you intended to use. If a request worries you, contact the service through a trusted route."
       },
       {
         type: "tiered",
@@ -300,7 +302,7 @@ export const scamPhase5Lessons = [
           {
             text: "Losing a password can let someone into my account.",
             tier: "safe",
-            feedback: "That's the practical consequence."
+            feedback: "Someone who knows your password may be able to access your account."
           },
           {
             text: "Passwords aren't important because I can always make a new one.",
@@ -321,18 +323,18 @@ export const scamPhase5Lessons = [
             text: "Never reply with your password.",
             tier: "best",
             feedback:
-              "Legitimate companies almost never ask you to send your password by email, text message, or phone."
+              "Do not send your password by email or text, or read it to a caller. Use the official sign-in page yourself."
           },
           {
             text: "Contact the company through its official website or phone number if you're unsure.",
             tier: "safe",
-            feedback: "Good — and they'll confirm they never send such emails."
+            feedback: "Contact the service independently to check an unexpected request."
           },
           {
             text: "Reply because the email sounds professional.",
             tier: "unsafe",
             feedback:
-              "No professional company asks for passwords by reply. That request alone identifies it."
+              "A request to reply with your password is a warning sign, even when the message looks professional."
           }
         ]
       },
@@ -347,13 +349,13 @@ export const scamPhase5Lessons = [
             text: "Keep your password private and log in yourself if possible.",
             tier: "best",
             feedback:
-              "Most neighbors are honest, but passwords should remain private whenever possible."
+              "You can accept help without saying your password aloud. Type it yourself and stay in control of the account."
           },
           {
-            text: "If you truly need help, stay with the person and change your password afterward if you shared it.",
+            text: "Ask them to explain the steps while you sign in privately.",
             tier: "safe",
             feedback:
-              "A practical compromise when you genuinely need assistance."
+              "A trusted helper can guide you without learning your password. If you already shared it, change it through the official service."
           },
           {
             text: "Tell them your password because they're your neighbor.",
@@ -379,7 +381,7 @@ export const scamPhase5Lessons = [
           {
             text: "Hang up and verify the call independently.",
             tier: "safe",
-            feedback: "The same move, equally effective."
+            feedback: "End the call and use a trusted bank number to check the request."
           },
           {
             text: "Share the password because they already knew your personal information.",
@@ -413,7 +415,7 @@ export const scamPhase5Lessons = [
                 text: "Never type your password anywhere.",
                 tier: "unsafe",
                 feedback:
-                  "That would make your accounts unusable. The rule is about who asks, not about typing it at all."
+                  "You may need to enter a password to sign in. Check the official app or site first; do not tell it to someone else."
               }
             ]
           },
@@ -423,9 +425,9 @@ export const scamPhase5Lessons = [
             question: "Which response is the best?",
             options: [
               {
-                text: "Legitimate companies do not ask for your password over the phone.",
+                text: "Keep the password private and verify through the official service.",
                 tier: "best",
-                feedback: "\"For security purposes\" is doing a lot of work in that sentence."
+                feedback: "Saying a request is for security does not prove it is safe. Do not disclose the password."
               },
               {
                 text: "End the call and contact the company yourself if you're concerned.",
@@ -462,7 +464,7 @@ export const scamPhase5Lessons = [
           "You receive a phone call from someone claiming to work for your email provider. They already know your full name, email address, and phone number. They sound calm and professional, and they never ask for money.",
         messages: [
           {
-            from: "Incoming call · \"Email Support\"",
+            from: "Example call transcript · \"Email Support\"",
             body:
               "We're fixing a security problem on your account. Before we continue, I just need you to confirm your password."
           }
@@ -478,13 +480,13 @@ export const scamPhase5Lessons = [
           {
             text: "Remember that knowing some of your personal information doesn't prove someone is legitimate.",
             tier: "safe",
-            feedback: "Precisely the reasoning that protects you here."
+            feedback: "Personal details can be obtained elsewhere. Verify who is asking through a trusted route."
           },
           {
             text: "Tell them your password because they're helping secure your account.",
             tier: "unsafe",
             feedback:
-              "Notice there was no money involved and no urgency — that's what made it convincing. But no real support team ever needs your password."
+              "A request for your password is a warning sign even without pressure or a demand for money. End the call and contact the provider yourself."
           }
         ],
         spotted: [
@@ -534,7 +536,8 @@ export const scamPhase5Lessons = [
         objective:
           "Learn that a good password is difficult for other people to guess, even if they know you well.",
         warningSigns: PRIVACY_HABITS,
-        text: "Many people choose passwords using information that's easy to remember, like a birthday, a pet's name, or \"123456.\" The problem is that this information is often easy for someone else to guess, especially if they know you or can find details about you online. A safer password is unique and doesn't include obvious personal information. The harder it is to guess, the better it protects your account."
+        reminderTitle: "Review privacy habits",
+        text: "Names, birthdays, pet names, and short number patterns are easy to guess. Adding a familiar year or symbol does not fix a predictable password. Aim for at least 16 characters when the service allows it, and use a different password for each account.\n\nA trusted password manager can create a long, random password. Another option is a long phrase of several unrelated, randomly chosen words. The passwords shown in this lesson are public examples; never use them for your own accounts."
       },
       {
         type: "tiered",
@@ -563,19 +566,19 @@ export const scamPhase5Lessons = [
       {
         type: "tiered",
         title: "Which password is safer?",
-        scenario: "Compare these three passwords.",
+        scenario: "Compare these practice passwords. They are public examples, not passwords to use.",
         question: "Which would usually be harder for someone to guess?",
         options: [
           {
-            text: "BlueChair!River29",
+            text: "BlueChair!River29Maple",
             tier: "best",
             feedback:
-              "Longer passwords with unrelated words are usually much harder to guess than names or simple number patterns."
+              "This is the longest option shown. For your own account, generate a new long, random password rather than copying an example."
           },
           {
-            text: "Maple$Train88",
+            text: "Maple$Train88Garden",
             tier: "safe",
-            feedback: "Also good — unrelated words with a symbol and numbers."
+            feedback: "This is less predictable than a name and number pattern. Length, randomness, and using it on only one account all matter."
           },
           {
             text: "John123",
@@ -607,7 +610,7 @@ export const scamPhase5Lessons = [
             text: "GreenLamp!River84",
             tier: "unsafe",
             feedback:
-              "This one is actually a good password — nothing about it connects to you."
+              "This is not the weakest example here. For real accounts, create a fresh, long, random password instead of using any public example."
           }
         ]
       },
@@ -622,12 +625,12 @@ export const scamPhase5Lessons = [
             text: "Cloud!Pencil74Garden",
             tier: "best",
             feedback:
-              "You remembered that personal information shouldn't become part of your password."
+              "This is the longest option and avoids personal details. Use a newly generated password for your own account."
           },
           {
             text: "River$Coffee82",
             tier: "safe",
-            feedback: "Also unrelated to you, which is what matters."
+            feedback: "Avoiding personal details helps, but this option is shorter. Aim for a long, random password used only once."
           },
           {
             text: "Chicago1960",
@@ -660,7 +663,7 @@ export const scamPhase5Lessons = [
               {
                 text: "Mountain!Apple92",
                 tier: "unsafe",
-                feedback: "This one is actually strong. Unrelated words work well."
+                feedback: "This is harder to guess than the two predictable choices, but a real password should be longer, random, unique, and not copied from this lesson."
               }
             ]
           },
@@ -677,7 +680,7 @@ export const scamPhase5Lessons = [
               {
                 text: "A password shouldn't contain obvious personal information.",
                 tier: "safe",
-                feedback: "The general rule, well stated."
+                feedback: "Use a long, random password with no obvious personal details."
               },
               {
                 text: "Birthdays make excellent passwords.",
@@ -712,12 +715,12 @@ export const scamPhase5Lessons = [
             text: "Create a password that doesn't use your personal information and is much harder for someone else to guess.",
             tier: "best",
             feedback:
-              "You thought like a scammer for a moment — and that helped you make a safer choice. Instead of only asking \"Will I remember this?\", you also asked \"Could someone else guess this?\""
+              "You checked whether someone else could guess it. A password manager can help create and save a new, long, random password."
           },
           {
             text: "Choose a longer password with unrelated words instead.",
             tier: "safe",
-            feedback: "That's exactly the practical fix."
+            feedback: "Choose several unrelated, randomly selected words, and do not reuse the phrase on another account."
           },
           {
             text: "Use your name and birth year because you'll remember them.",
@@ -738,7 +741,7 @@ export const scamPhase5Lessons = [
       skills: [
         "Identified weak passwords",
         "Avoided personal information",
-        "Thought like a scammer to stay ahead"
+        "Chose less predictable passwords"
       ],
       next: "One Password Isn't Enough"
     }
@@ -769,7 +772,8 @@ export const scamPhase5Lessons = [
         objective:
           "Learn why every important account should have its own unique password.",
         warningSigns: PRIVACY_HABITS,
-        text: "Imagine using the same key for your house, car, mailbox, and office. If someone copied that one key, they could unlock everything you own. Passwords work the same way. If you use the same password for several accounts and one website has a security problem, someone could try that same password on your email, bank account, or shopping accounts. Giving your most important accounts their own passwords helps keep one mistake from becoming many."
+        reminderTitle: "Review privacy habits",
+        text: "If you use the same password for several accounts, a leak at one service can put the others at risk. Someone can try the stolen password on your email, banking, and shopping accounts.\n\nGive each account a different password. Start with email, banking, and other sensitive accounts, then work through the rest. A password manager can help. If a password is exposed, replace it everywhere you used it through each service’s official app or website."
       },
       {
         type: "tiered",
@@ -786,12 +790,12 @@ export const scamPhase5Lessons = [
           {
             text: "Someone only needs to learn one password.",
             tier: "safe",
-            feedback: "The same point, put simply."
+            feedback: "A stolen password can be tried on every account where it was reused."
           },
           {
             text: "Using one password makes his accounts faster.",
             tier: "unsafe",
-            feedback: "Convenience isn't the concern here — the shared risk is."
+            feedback: "The concern is that one stolen password may open several accounts."
           }
         ]
       },
@@ -812,12 +816,12 @@ export const scamPhase5Lessons = [
             text: "Your bank account.",
             tier: "safe",
             feedback:
-              "Extremely important too — though whoever controls your email can often reset your bank password."
+              "Banking is also a high priority. Email often receives reset links for other accounts, so protect both with unique passwords."
           },
           {
             text: "A website where you read the news.",
             tier: "unsafe",
-            feedback: "Low risk — there's little to lose there."
+            feedback: "A news account may still hold payment or personal details. Give every account a unique password, starting with the most sensitive."
           }
         ]
       },
@@ -837,7 +841,7 @@ export const scamPhase5Lessons = [
           {
             text: "Review your other important accounts for password reuse.",
             tier: "safe",
-            feedback: "Exactly the follow-up step."
+            feedback: "Check for reuse and replace every copy of the exposed password."
           },
           {
             text: "Do nothing because it wasn't your bank.",
@@ -891,12 +895,12 @@ export const scamPhase5Lessons = [
               {
                 text: "Important accounts should have different passwords.",
                 tier: "safe",
-                feedback: "A realistic middle ground."
+                feedback: "Start with sensitive accounts and work toward a different password for every account."
               },
               {
                 text: "That's the safest approach.",
                 tier: "unsafe",
-                feedback: "It's the most convenient and the least safe."
+                feedback: "Reusing a password may feel easier, but one leak can put several accounts at risk."
               }
             ]
           },
@@ -912,7 +916,7 @@ export const scamPhase5Lessons = [
               {
                 text: "Review your important accounts.",
                 tier: "safe",
-                feedback: "A sensible sweep."
+                feedback: "Check which accounts shared the password and secure each one."
               },
               {
                 text: "Ignore it because you don't use that website often.",
@@ -941,7 +945,7 @@ export const scamPhase5Lessons = [
         type: "finalboss",
         title: "The security alert",
         setup:
-          "You receive a legitimate email from an online store explaining that customer passwords may have been exposed in a security breach. You remember using the same password for the shopping website, your email, and your photo storage account.",
+          "An email says an online store had a password leak. You open the store’s official website yourself and confirm the notice. You used that password for the store, your email, and your photo storage account.",
         messages: [
           {
             from: "Email · Online store",
@@ -955,12 +959,12 @@ export const scamPhase5Lessons = [
             text: "Change the password for the shopping website and every other account where you used that same password, starting with your email.",
             tier: "best",
             feedback:
-              "You recognized that the real risk wasn't the shopping website — it was reusing the same password elsewhere. Starting with email is right, because email can reset everything else."
+              "The exposed password puts every account where it was reused at risk. Email is a priority because it often receives password-reset links for other services."
           },
           {
             text: "Create a new, unique password for each important account.",
             tier: "safe",
-            feedback: "The thorough fix, and worth the effort."
+            feedback: "Create a different password for each affected account and review its security settings."
           },
           {
             text: "Change only the shopping website password because that's where the problem happened.",
@@ -1002,7 +1006,7 @@ export const scamPhase5Lessons = [
     xp: 20,
     goals: [
       "Understand what a password manager does.",
-      "Protect one strong master password."
+      "Protect the password or device passcode that unlocks your password manager."
     ],
     blocks: [
       {
@@ -1012,7 +1016,8 @@ export const scamPhase5Lessons = [
         objective:
           "Learn how a password manager can safely help you remember unique passwords without memorizing each one.",
         warningSigns: PRIVACY_HABITS,
-        text: "Remembering a different password for every account can feel impossible. A password manager is a tool that securely stores your passwords in one place, much like a locked keychain holds many keys. Instead of remembering dozens of passwords, you only need to remember one strong master password. The password manager helps you create strong, unique passwords and fills them in when you need them. It's designed to make good security habits easier — not harder."
+        reminderTitle: "Review privacy habits",
+        text: "A password manager creates and stores different passwords so you do not have to memorize them all. Some unlock with a master password; others use your device passcode, Face ID, or Touch ID. Protect the way you unlock it and keep its recovery options current.\n\nOn iPhone and iPad with iOS or iPadOS 18 or later, open the Passwords app. On versions 15–17, open Settings, then Passwords. Use a trusted tool you chose yourself, not one promoted by an unexpected message."
       },
       {
         type: "tiered",
@@ -1027,15 +1032,15 @@ export const scamPhase5Lessons = [
               "Password managers make it much easier to use different passwords without memorizing them all."
           },
           {
-            text: "Writing every password on sticky notes around the computer.",
+            text: "Keep a written backup in a private, secure place.",
             tier: "unsafe",
             feedback:
-              "Anyone visiting your home can read them. A written list kept somewhere private is safer than sticky notes on the screen."
+              "A securely stored backup can help with recovery. Avoid passwords on display or in an unprotected note that others can access."
           },
           {
             text: "Using one password everywhere.",
             tier: "unsafe",
-            feedback: "That's the exact problem you learned about in the last lesson."
+            feedback: "Reusing one password can put several accounts at risk. A manager makes unique passwords easier to use."
           }
         ]
       },
@@ -1054,13 +1059,13 @@ export const scamPhase5Lessons = [
             text: "It should be strong and memorable.",
             tier: "safe",
             feedback:
-              "Both matter — this is the one password you'll actually need to remember."
+              "For a manager that uses a master password, choose one that is long, unique, and hard to guess. Follow its recovery guidance too."
           },
           {
             text: "It should be the same password you already use everywhere else.",
             tier: "unsafe",
             feedback:
-              "That would hand over every account at once. The master password must be unique."
+              "A reused master password could expose the passwords stored inside. Choose a unique one and protect recovery access."
           }
         ]
       },
@@ -1079,13 +1084,13 @@ export const scamPhase5Lessons = [
           {
             text: "Save the new password in the password manager.",
             tier: "safe",
-            feedback: "The important part — it's stored and you don't have to recall it."
+            feedback: "Check that the new password is saved for the correct account."
           },
           {
             text: "Reuse your old password because you'll remember it.",
             tier: "unsafe",
             feedback:
-              "The manager exists precisely so you don't have to make that trade."
+              "A manager can save a new password, so you do not need to reuse an old one."
           }
         ]
       },
@@ -1102,14 +1107,14 @@ export const scamPhase5Lessons = [
               "You solved the biggest problem with unique passwords: remembering them."
           },
           {
-            text: "Remember your master password carefully.",
+            text: "Protect the master password or device passcode that unlocks them.",
             tier: "safe",
-            feedback: "That's the one to protect."
+            feedback: "The unlock method and recovery options protect access to your saved passwords."
           },
           {
             text: "Change every password back to the same one.",
             tier: "unsafe",
-            feedback: "That undoes everything Lesson 5.4 was about."
+            feedback: "Using one password again would expose several accounts if that password leaked."
           }
         ]
       },
@@ -1124,17 +1129,17 @@ export const scamPhase5Lessons = [
               {
                 text: "Save the password in your password manager.",
                 tier: "best",
-                feedback: "One step, and it's handled."
+                feedback: "Check that it is saved for the correct site so you can find it later."
               },
               {
                 text: "Let it generate a strong password if available.",
                 tier: "safe",
-                feedback: "Generated passwords are far stronger than invented ones."
+                feedback: "A long, randomly generated password helps avoid predictable personal details. Save it before you need it again."
               },
               {
                 text: "Reuse an old password.",
                 tier: "unsafe",
-                feedback: "The manager removes the reason to do that."
+                feedback: "Generate and save a unique password instead of reusing one."
               }
             ]
           },
@@ -1145,7 +1150,7 @@ export const scamPhase5Lessons = [
               {
                 text: "A password manager helps you safely use different passwords without memorizing them all.",
                 tier: "best",
-                feedback: "That's the entire purpose of it."
+                feedback: "The manager stores different passwords so you can find and use them when needed."
               },
               {
                 text: "It reduces the temptation to reuse passwords.",
@@ -1156,7 +1161,7 @@ export const scamPhase5Lessons = [
                 text: "Everyone can easily remember dozens of strong passwords.",
                 tier: "unsafe",
                 feedback:
-                  "Almost nobody can, which is why people reuse them."
+                  "Remembering many strong passwords can be difficult. A manager helps you use unique ones without memorizing them all."
               }
             ]
           }
@@ -1191,13 +1196,13 @@ export const scamPhase5Lessons = [
           {
             text: "Use a strong password that isn't based on personal information.",
             tier: "safe",
-            feedback: "Strong and impersonal — two of the three boxes ticked."
+            feedback: "Use a long, random password, keep it unique, and save it securely."
           },
           {
             text: "Reuse your email password because you'll remember it.",
             tier: "unsafe",
             feedback:
-              "Your email password is the single worst one to reuse, since email can reset your other accounts."
+              "Protect your email with a unique password. It often receives password-reset links for other accounts."
           }
         ],
         spotted: []
@@ -1211,7 +1216,7 @@ export const scamPhase5Lessons = [
       warningSign: "Reusing a password because it's easier to recall.",
       skills: [
         "Learned what a password manager is",
-        "Protected a master password",
+        "Protected access to saved passwords",
         "Built a practical password system"
       ],
       next: "A Second Lock on Your Account"
@@ -1243,13 +1248,14 @@ export const scamPhase5Lessons = [
         objective:
           "Learn how two-step verification adds another layer of protection to your accounts.",
         warningSigns: PRIVACY_HABITS,
-        text: "Imagine locking your front door and then placing a second lock behind it. Even if someone somehow got your house key, they'd still have another lock to get through. Two-step verification works the same way. After you enter your password, the website may send a one-time code to your phone. You enter that code to prove it's really you. If someone steals your password but doesn't have your phone, they usually can't get into your account. Just remember: those codes are only for you. Never share them with anyone."
+        reminderTitle: "Review privacy habits",
+        text: "Two-step verification adds another check when you sign in. Depending on the service, you may use a code, an authenticator app, a security key, or an approval on a trusted device. This makes a stolen password less useful on its own.\n\nOnly enter a sign-in code in the official app or site for an action you started. Do not share it with a caller or approve an unexpected sign-in. Keep recovery details current so you can regain access if you lose your device."
       },
       {
         type: "tiered",
         title: "Why two locks?",
         scenario:
-          "You log into your email account. After entering your password, you're asked to enter a six-digit code sent to your phone.",
+          "You opened your email provider’s official sign-in page. After your password, it asks for a six-digit code sent to your phone.",
         question: "Why is the website asking for the code?",
         options: [
           {
@@ -1261,7 +1267,7 @@ export const scamPhase5Lessons = [
           {
             text: "To add another layer of security.",
             tier: "safe",
-            feedback: "Exactly what it is."
+            feedback: "The second step adds protection beyond your password."
           },
           {
             text: "Because your password stopped working.",
@@ -1282,7 +1288,7 @@ export const scamPhase5Lessons = [
             text: "Never share the verification code.",
             tier: "best",
             feedback:
-              "Verification codes are meant only for you. Legitimate companies won't ask you to read them over the phone."
+              "Keep sign-in and password-reset codes private. Do not read them to an unexpected caller, even someone claiming to be support."
           },
           {
             text: "End the call if you didn't request help.",
@@ -1293,7 +1299,7 @@ export const scamPhase5Lessons = [
             text: "Read them the code because they already know your name.",
             tier: "unsafe",
             feedback:
-              "That code is the second lock. Reading it aloud opens it for them — and the timing of the call proves they're trying to log in right now."
+              "Sharing the code could let someone complete a sign-in or reset. Its arrival does not prove who requested it."
           }
         ]
       },
@@ -1307,17 +1313,17 @@ export const scamPhase5Lessons = [
             text: "Don't share the code and check whether someone may be trying to access your account.",
             tier: "best",
             feedback:
-              "An unexpected verification code may mean someone knows your password and is trying to log in."
+              "An unexpected code can have several causes, including an attempted sign-in. Do not share it; check account activity through the official service."
           },
           {
-            text: "Change your password if you're concerned.",
+            text: "Open the official service yourself and review its security settings.",
             tier: "safe",
-            feedback: "A sensible protective step."
+            feedback: "If you find unfamiliar activity or a compromised password, secure the account and update its recovery details."
           },
           {
             text: "Send the code to anyone who asks for it.",
             tier: "unsafe",
-            feedback: "That completes the login they were attempting."
+            feedback: "The code may give another person access. Keep it private and check through a trusted route."
           }
         ]
       },
@@ -1337,7 +1343,7 @@ export const scamPhase5Lessons = [
           {
             text: "The second step makes it much harder to sign in.",
             tier: "safe",
-            feedback: "The practical effect."
+            feedback: "The extra check makes unauthorized access harder, but you still need to verify requests."
           },
           {
             text: "Your password no longer matters.",
@@ -1363,7 +1369,7 @@ export const scamPhase5Lessons = [
               {
                 text: "Learn how it works before using it.",
                 tier: "safe",
-                feedback: "Understanding it first is perfectly reasonable."
+                feedback: "Learn how sign-in and recovery work, then enable the protection through the official account settings."
               },
               {
                 text: "Ignore it because passwords are enough.",
@@ -1383,10 +1389,10 @@ export const scamPhase5Lessons = [
                 feedback: "Not with anyone — including people you know."
               },
               {
-                text: "Ask why they would need it before responding.",
+                text: "Contact your friend through a trusted route without sending the code.",
                 tier: "safe",
                 feedback:
-                  "Worth asking — and note their account may have been taken over."
+                  "Their account may be compromised. Verify the message separately and keep the sign-in code private."
               },
               {
                 text: "Send the code because they're your friend.",
@@ -1422,7 +1428,7 @@ export const scamPhase5Lessons = [
             body: "Your verification code is 481 293. Do not share this code with anyone."
           },
           {
-            from: "Incoming call · \"Support\"",
+            from: "Example call transcript · \"Support\"",
             body:
               "Don't worry. Our system accidentally sent you a code. Could you please read it to me so I can cancel it?"
           }
@@ -1438,13 +1444,13 @@ export const scamPhase5Lessons = [
           {
             text: "Remember that verification codes are only meant for you.",
             tier: "safe",
-            feedback: "The message itself said so."
+            feedback: "The message says not to share it. Only use it for an action you started on the official service."
           },
           {
             text: "Read the code because they sounded professional.",
             tier: "unsafe",
             feedback:
-              "Notice the timing — the code arrived because someone was already trying to log in with your password. The call existed only to get the second lock opened."
+              "The code may be for a sign-in or account reset; the timing alone does not prove the caller’s story. Keep it private and check through the official service."
           }
         ],
         spotted: [
@@ -1494,7 +1500,8 @@ export const scamPhase5Lessons = [
         objective:
           "Learn what to do if you think one of your accounts has been compromised or you've shared information by mistake.",
         warningSigns: PRIVACY_HABITS,
-        text: "Even careful people sometimes click the wrong link, share information by mistake, or discover that an account has been affected by a security problem. The important thing is not to panic. Acting quickly can often reduce the risk. If you think an account has been compromised, change its password, especially if it was reused elsewhere. If the issue involves your bank or another important service, contact them using their official phone number or website — not information from a suspicious message."
+        reminderTitle: "Review privacy habits",
+        text: "Mistakes and account break-ins can happen. If you shared a password, open the official service yourself on a device you trust and change it promptly. If you cannot sign in, use the provider’s official recovery steps. If money is at risk, contact your bank through a trusted number right away.\n\nReplace the password anywhere you reused it. Sign out other sessions, review recovery details and unfamiliar activity, and enable two-step verification if available. Your provider can guide you through these steps; you do not need to handle it alone."
       },
       {
         type: "tiered",
@@ -1503,9 +1510,9 @@ export const scamPhase5Lessons = [
         question: "What should you do first?",
         options: [
           {
-            text: "Change your password as soon as possible.",
+            text: "Open the official service on a trusted device and change the password promptly.",
             tier: "best",
-            feedback: "Acting quickly gives you the best chance to protect your account."
+            feedback: "If you cannot sign in, use the provider’s official recovery process. Change the same password anywhere else you used it."
           },
           {
             text: "Stop using that password on any other accounts.",
@@ -1527,9 +1534,9 @@ export const scamPhase5Lessons = [
         question: "Which response is the best?",
         options: [
           {
-            text: "Stay calm and start securing your accounts.",
+            text: "Close the suspicious page. Do not enter information or open downloads; check what happened.",
             tier: "best",
-            feedback: "Quick action is much more helpful than panic."
+            feedback: "If you entered a password, change it through the official service. If something downloaded or installed, get help checking the device."
           },
           {
             text: "Contact the organization directly if needed.",
@@ -1540,7 +1547,7 @@ export const scamPhase5Lessons = [
             text: "Panic because nothing can be done.",
             tier: "unsafe",
             feedback:
-              "A great deal can be done, and clicking a link alone often causes no harm at all."
+              "There are steps you can take. Clicking alone does not confirm harm; the right response depends on what you entered, downloaded, or installed."
           }
         ]
       },
@@ -1577,21 +1584,21 @@ export const scamPhase5Lessons = [
         question: "Which response is safe?",
         options: [
           {
-            text: "Change your password immediately and check your account for unusual activity.",
+            text: "Open the official service, change the password, sign out other sessions, and review account activity.",
             tier: "best",
             feedback:
-              "Mistakes happen. The important thing is acting quickly and using the safety habits you've practiced."
+              "Act promptly through a trusted route. Check recovery settings and replace the password wherever it was reused."
           },
           {
             text: "Contact the company through its official website or phone number if needed.",
             tier: "safe",
-            feedback: "They can also check for unusual access."
+            feedback: "If you cannot sign in, follow the provider’s official recovery instructions."
           },
           {
             text: "Assume everything is fine because they sounded trustworthy.",
             tier: "unsafe",
             feedback:
-              "Sounding trustworthy was the whole method. Change the password now."
+              "A convincing voice does not verify the caller. Secure the account through the official service now."
           }
         ]
       },
@@ -1601,13 +1608,13 @@ export const scamPhase5Lessons = [
           "How confident do you feel responding if one of your accounts is at risk?",
         practice: [
           {
-            scenario: "A website tells you your password may have been exposed.",
+            scenario: "You open a service’s official security settings and see a warning that your password may have been exposed.",
             question: "Which response is the best?",
             options: [
               {
                 text: "Change your password immediately.",
                 tier: "best",
-                feedback: "Fast action limits the risk."
+                feedback: "Change it through the official service and check for unfamiliar activity."
               },
               {
                 text: "Change it anywhere else you reused it.",
@@ -1622,23 +1629,23 @@ export const scamPhase5Lessons = [
             ]
           },
           {
-            scenario: "You notice a login notification from another city.",
+            scenario: "You see a login notification from a city you do not recognize.",
             question: "Which response is the best?",
             options: [
               {
                 text: "Secure your account and change your password if you don't recognize the login.",
                 tier: "best",
-                feedback: "An unfamiliar login is worth treating seriously."
+                feedback: "Locations can be approximate. Check the device, time, and account activity through the official service; secure it if the sign-in was not yours."
               },
               {
                 text: "Review recent account activity.",
                 tier: "safe",
-                feedback: "It will show you what, if anything, happened."
+                feedback: "Activity records can help, but may not show everything. Follow the provider’s security guidance if you remain unsure."
               },
               {
                 text: "Assume it's a computer error.",
                 tier: "unsafe",
-                feedback: "It may be — but checking costs a minute."
+                feedback: "It could be an inaccurate location, but check the device and activity before dismissing it."
               }
             ]
           }
@@ -1672,22 +1679,22 @@ export const scamPhase5Lessons = [
         question: "What should you do?",
         options: [
           {
-            text: "Sign in using the official website, change your password, review your account activity, and contact the provider if needed.",
+            text: "Open the official service yourself, review the sign-in, and secure the account if it was not yours. Use official recovery if you cannot sign in.",
             tier: "best",
             feedback:
-              "This lesson wasn't about avoiding mistakes — it was about knowing how to respond when something seems wrong. The faster you act, the better you protect your accounts."
+              "Check the device and activity through the official service. For unauthorized access, change the password, sign out other sessions, and check recovery details."
           },
           {
             text: "Check that your recovery phone number and email address are still correct.",
             tier: "safe",
             feedback:
-              "An excellent detail — attackers often change recovery details to lock you out."
+              "Make sure recovery details still belong to you. Remove unfamiliar ones using the provider’s security guidance."
           },
           {
             text: "Ignore the message because it might go away on its own.",
             tier: "unsafe",
             feedback:
-              "Note that you should reach your account by typing the address yourself rather than using a link in the email — but ignoring a genuine alert leaves someone inside your account."
+              "An alert is worth checking through the official app or known website. Do not use a suspicious link or assume the location alone proves a break-in."
           }
         ],
         spotted: ["Unfamiliar account access", "A situation needing quick action"]
