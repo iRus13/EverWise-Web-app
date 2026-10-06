@@ -3379,7 +3379,7 @@ describe("sponsored signup orchestration", () => {
     const navigation = screen.getByRole("navigation", {
       name: "Primary navigation",
     });
-    for (const label of ["Home", "Course", "Scam Checker", "Badges", "Settings"]) {
+    for (const label of ["Home", "Course", "Message Checker", "Badges", "Settings"]) {
       expect(within(navigation).getByRole("button", { name: label })).toBeDisabled();
     }
     await user.click(within(navigation).getByRole("button", { name: "Home" }));

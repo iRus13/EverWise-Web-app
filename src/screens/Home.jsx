@@ -88,7 +88,7 @@ export default function Home({
             <h2 id="today-tools-title" className="sr-only">{tr("Tools")}</h2>
             <button type="button" className="today-checker" onClick={onOpenScamChecker}>
               <span className="today-tool-symbol"><MessageSearchIcon className="start-icon" /></span>
-              <span><strong>{tr("Scam checker")}</strong><span>{tr("Look for warning signs and get clear next steps.")}</span></span>
+              <span><strong>{tr("Message Checker")}</strong><span>{tr("Look for warning signs and get clear next steps.")}</span></span>
               <ArrowUpRight className="start-chevron" aria-hidden="true" />
             </button>
           </section>

@@ -2,12 +2,15 @@ import { tr, useLocale } from '../i18n';
 import { useEffect, useMemo, useRef, useState } from "react";
 import UtilityScreen from "../components/UtilityScreen";
 import ReadAloud from "../components/ReadAloud";
+import { ShieldIcon } from "../components/Icons";
 import "../styles/scam-checker.css";
 import { apiEndpoint } from "../utils/apiEndpoint";
 
 const CHECK_MESSAGE_ENDPOINT = apiEndpoint("/api/check-message");
 const MAX_MESSAGE_LENGTH = 6000;
 const RESULT_SAFETY_REMINDER = "Never use a link, phone number, or contact detail from a suspicious message. Find the organization’s official website, app, card, or statement yourself.";
+
+const RESULT_LIMITATION = "This is an AI assessment, not a guarantee.";
 
 const verdictDetails = {
   likely_scam: {
@@ -17,12 +20,12 @@ const verdictDetails = {
   },
   uncertain: {
     eyebrow: "Be careful",
-    title: "Uncertain — verify before acting",
+    title: "Verify before deciding",
     className: "scam-risk-uncertain",
   },
   likely_legitimate: {
     eyebrow: "Lower risk",
-    title: "Likely legitimate — still verify sensitive requests",
+    title: "Fewer warning signs. Still verify.",
     className: "scam-risk-lower",
   },
 };
@@ -41,14 +44,14 @@ function ResultSection({ title, items, ordered = false }) {
   const List = ordered ? "ol" : "ul";
   return (
     <section className="scam-result-section">
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       <List>{items.map((item, index) => <li key={index}>{item}</li>)}</List>
     </section>
   );
 }
 
 export default function ScamChecker({ onBack }) {
-  useLocale();
+  const locale = useLocale();
   const [message, setMessage] = useState("");
   const [result, setResult] = useState(null);
   const [status, setStatus] = useState("idle");
@@ -81,16 +84,16 @@ export default function ScamChecker({ onBack }) {
 
   const readAloudText = useMemo(() => {
     if (!result || !details) return "";
-    const urgentAction = result.urgent_action ? `Act now: ${result.urgent_action}` : "";
+    const urgentAction = result.urgent_action ? `${tr("Act now")}: ${result.urgent_action}` : "";
     const warningSigns = result.warning_signs?.length
-      ? `Warning signs: ${result.warning_signs.join(". ")}.`
+      ? `${tr("Warning signs")}: ${result.warning_signs.join(". ")}.`
       : "";
     const nextSteps = result.next_steps?.length
-      ? `What to do next: ${result.next_steps.join(". ")}.`
+      ? `${tr("What to do next")}: ${result.next_steps.join(". ")}.`
       : "";
-    return [`${tr(details.title)}.`, result.summary, urgentAction, warningSigns, nextSteps, RESULT_SAFETY_REMINDER]
+    return [tr(details.eyebrow), tr(details.title), result.summary, tr(RESULT_LIMITATION), urgentAction, nextSteps, warningSigns, tr(RESULT_SAFETY_REMINDER)]
       .filter(Boolean).join(" ");
-  }, [details, result]);
+  }, [details, result, locale]);
 
   const checkMessage = async (event) => {
     event.preventDefault();
@@ -143,7 +146,7 @@ export default function ScamChecker({ onBack }) {
       console.error("[Everwise][scam-checker]", err);
       setError(
         err.message === "not_configured"
-          ? "Scam Checker is currently unavailable. Do not click links, send money, or share a code until you verify this message another way."
+          ? "Message checking is currently unavailable. Do not click links, send money, or share a code until you verify this message another way."
           : "We could not check this message right now. Do not click links, send money, or share a code until you verify it another way.",
       );
       setStatus("error");
@@ -179,9 +182,11 @@ export default function ScamChecker({ onBack }) {
     <div className="scam-checker-screen">
       <div className="scam-checker-content">
         <header className="scam-header">
-          <p className="scam-eyebrow">{tr("PAUSE. CHECK. DECIDE.")}</p>
-          <h1>{tr("Scam checker")}</h1>
-          <p>{tr("Get a second opinion on a text, email, or social media message.")}</p>
+          <p className="scam-context">{tr("Message Checker")}</p>
+          {status !== "success" && <>
+            <h1>{tr("Check before you reply")}</h1>
+            <p>{tr("Look for warning signs in a text, email, or social message.")}</p>
+          </>}
         </header>
 
         {status !== "success" ? (
@@ -219,14 +224,16 @@ export default function ScamChecker({ onBack }) {
         ) : (
           <div className="scam-result">
             <section className={`scam-verdict ${details.className}`}>
-              <p className="scam-risk-label">{tr(details.eyebrow)}</p>
-              <h2 ref={resultRef} tabIndex={-1}>{tr(details.title)}</h2>
+              <p className="scam-risk-label"><ShieldIcon className="scam-risk-icon" />{tr(details.eyebrow)}</p>
+              <h1 ref={resultRef} tabIndex={-1}>{tr(details.title)}</h1>
               <p>{result.summary}</p>
+              <p className="scam-help">{tr(RESULT_LIMITATION)}</p>
             </section>
             <ReadAloud text={readAloudText} label={tr("Read this result aloud")} />
-            {result.urgent_action && <section className="scam-urgent"><h3>{tr("Act now")}</h3><p>{result.urgent_action}</p></section>}
-            <ResultSection title={tr("Warning signs")} items={result.warning_signs} />
+            {result.urgent_action && <section className="scam-urgent"><h2>{tr("Act now")}</h2><p>{result.urgent_action}</p></section>}
             <ResultSection title={tr("What to do next")} items={result.next_steps} ordered />
+            <ResultSection title={tr("Warning signs")} items={result.warning_signs} />
+            <details className="scam-original"><summary>{tr("Message you checked")}</summary><p>{message}</p></details>
             <p className="scam-safety">{tr(RESULT_SAFETY_REMINDER)}</p>
             <div className="scam-actions">
               <button type="button" className="btn-primary" onClick={() => returnToMessage(true)}>{tr("Check another message")}</button>

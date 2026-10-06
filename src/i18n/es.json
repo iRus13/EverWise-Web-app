@@ -19,7 +19,7 @@
   "Today": "Hoy",
   "Hello": "Hola",
   "Course": "Curso",
-  "Checker": "Estafas",
+  "Checker": "Revisor",
   "Scam checker": "Detector de estafas",
   "Scam Checker": "Detector de estafas",
   "Badges": "Insignias",
@@ -807,5 +807,13 @@
   "You took time to build a safer and more comfortable online routine.": "Has dado un paso para usar internet con más seguridad y comodidad.",
   "You already know to verify urgent bank messages using an official phone number.": "Ya sabes que debes verificar los mensajes bancarios urgentes llamando a un número oficial.",
   "You already have online experience to build on.": "Ya tienes experiencia en internet para seguir aprendiendo.",
-  "Foundations, Safe Internet Habits, Communication and Digital Finance are available in Spanish. Later lessons and AI results are currently in English.": "Fundamentos, Hábitos seguros en Internet, Comunicación y Finanzas digitales están disponibles en español. Las demás lecciones y los resultados de IA siguen en inglés."
+  "Foundations, Safe Internet Habits, Communication and Digital Finance are available in Spanish. Later lessons and AI results are currently in English.": "Fundamentos, Hábitos seguros en Internet, Comunicación y Finanzas digitales están disponibles en español. Las demás lecciones y los resultados de IA siguen en inglés.",
+  "Message Checker": "Revisor de mensajes",
+  "Check before you reply": "Comprueba antes de responder",
+  "Look for warning signs in a text, email, or social message.": "Busca señales de alerta en un mensaje de texto, correo o redes sociales.",
+  "This is an AI assessment, not a guarantee.": "Esta es una evaluación de IA, no una garantía.",
+  "Verify before deciding": "Verifica antes de decidir",
+  "Fewer warning signs. Still verify.": "Menos señales de alerta. Verifica de todos modos.",
+  "Message you checked": "Mensaje que revisaste",
+  "Message checking is currently unavailable. Do not click links, send money, or share a code until you verify this message another way.": "La revisión de mensajes no está disponible. No abras enlaces, envíes dinero ni compartas códigos hasta verificar el mensaje por otra vía."
 }

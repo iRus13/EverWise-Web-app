@@ -21,6 +21,22 @@ test("valid results render warning signs and next steps", async () => {
   submit();
   expect(await screen.findByText("This is likely a scam")).toBeVisible();
   expect(screen.getByText("Call your bank")).toBeVisible();
+  expect(screen.getAllByRole("heading").map(item => item.textContent)).toEqual([
+    "This is likely a scam", "What to do next", "Warning signs",
+  ]);
+  expect(screen.getByText("This is an AI assessment, not a guarantee.")).toBeVisible();
+  const disclosure = screen.getByText("Message you checked").closest("details");
+  expect(disclosure).not.toHaveAttribute("open");
+  expect(disclosure).toHaveTextContent("Send money now");
+  expect(disclosure.querySelector("a")).toBeNull();
+});
+
+test.each([["uncertain", "Verify before deciding"], ["likely_legitimate", "Fewer warning signs. Still verify."]])("%s result keeps the limitation alongside its cautious title", async (verdict, title) => {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ok: true, json: async () => ({...valid, verdict})}));
+  submit();
+  expect(await screen.findByRole("heading", {name:title,level:1})).toBeVisible();
+  expect(screen.getByText("This is an AI assessment, not a guarantee.")).toBeVisible();
+  expect(screen.queryByRole("heading", {name:"Check before you reply"})).not.toBeInTheDocument();
 });
 test("a stalled request aborts and offers retry within 30 seconds", async () => {
   vi.useFakeTimers();

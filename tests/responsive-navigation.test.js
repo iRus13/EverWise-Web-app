@@ -6,7 +6,7 @@ import { primaryNavigationState } from "../src/utils/responsiveNavigation.js";
 const expectedLabels = [
   "Home",
   "Course",
-  "Scam Checker",
+  "Message Checker",
   "Badges",
   "Settings",
 ];

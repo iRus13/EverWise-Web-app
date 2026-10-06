@@ -44,7 +44,7 @@ test("Home preserves each destination after reorganizing the learning and tools 
   render(<Home name="Jane Smith" lessonsCompleted={12} badgesEarned={1} textSize="size-2" {...actions} />);
   expect(screen.getByRole("heading", {level: 1, name: "Today"})).toBeVisible();
   await user.click(screen.getByRole("button", {name: "View course"}));
-  await user.click(screen.getByRole("button", {name: /Scam checker/}));
+  await user.click(screen.getByRole("button", {name: /Message Checker/}));
   await user.click(screen.getByRole("button", {name: /View your badges/}));
   await user.click(screen.getByRole("button", {name: "Settings"}));
   for (const action of [actions.onStart, actions.onOpenBadges, actions.onOpenSettings, actions.onOpenScamChecker]) expect(action).toHaveBeenCalledTimes(1);
