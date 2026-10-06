@@ -33,7 +33,8 @@ test("multiple selection identifies all correct choices even if authored feedbac
   render(<MultiselectBlock {...props} block={{prompt:"Choose web browsers",options:[{text:"Safari",correct:true},{text:"Calculator",correct:false},{text:"Firefox",correct:true}]}}/>);
   fireEvent.click(screen.getByRole("button",{name:"Calculator"}));
   fireEvent.click(screen.getByRole("button",{name:"Check",exact:true}));
-  expect(screen.getByRole("status")).toHaveTextContent("Correct choices: Safari; Firefox");
+  expect(screen.getByRole("button", {name:"Safari Correct choice · Not selected"})).toHaveAttribute("aria-pressed", "false");
+  expect(screen.getByRole("button", {name:"Firefox Correct choice · Not selected"})).toBeDisabled();
 });
 
 test("scam reading narration includes the heading and every visible warning sign", () => {
@@ -74,7 +75,9 @@ test.each([[['Calculator']], [['Safari']], [['Safari', 'Firefox', 'Calculator']]
   for (const label of selections) fireEvent.click(screen.getByRole('button',{name:label,exact:true}));
   fireEvent.click(screen.getByRole('button',{name:'Check',exact:true}));
   expect(screen.getByRole('status')).toHaveTextContent("Let's review your choices");
-  expect(screen.getByRole('status')).toHaveTextContent('Correct choices: Safari; Firefox');
+  for (const name of ['Safari','Firefox']) {
+    expect(screen.getByRole('button', {name: name + (selections.includes(name) ? ' Your choice · Correct' : ' Correct choice · Not selected')})).toBeDisabled();
+  }
   expect(screen.getByRole('status')).not.toHaveTextContent('Great job!');
 });
 
@@ -91,5 +94,36 @@ test('incorrect multiple selection retains specific authored correction', () => 
   fireEvent.click(screen.getByRole('button',{name:'Calculator',exact:true}));
   fireEvent.click(screen.getByRole('button',{name:'Check',exact:true}));
   expect(screen.getByRole('status')).toHaveTextContent('A calculator works with numbers. A browser opens websites.');
+  expect(screen.getByRole('status')).not.toHaveTextContent('Great job!');
+});
+
+test('review keeps checkboxes tied to choices, labels missed answers, and narrates the visible review', () => {
+  render(<MultiselectBlock {...props} block={{prompt:'Choose browsers',options:[{text:'Safari',correct:true},{text:'Calculator',correct:false},{text:'Firefox',correct:true}]}} />);
+  const safari=screen.getByRole('button',{name:'Safari',exact:true});
+  fireEvent.click(safari);
+  fireEvent.click(safari);
+  expect(screen.getByRole('button',{name:'Check',exact:true})).toBeDisabled();
+  fireEvent.click(safari);
+  fireEvent.click(screen.getByRole('button',{name:'Calculator',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:'Check',exact:true}));
+  const selected=screen.getByRole('button',{name:'Safari Your choice · Correct'});
+  const missed=screen.getByRole('button',{name:'Firefox Correct choice · Not selected'});
+  expect(selected).toHaveAttribute('aria-pressed','true');
+  expect(missed).toHaveAttribute('aria-pressed','false');
+  expect(missed.querySelector('.lesson-multiple-mark svg')).toBeNull();
+  expect(selected.querySelector('.lesson-multiple-mark svg')).not.toBeNull();
+  expect(screen.getByRole('button',{name:'Calculator Your choice · Not correct'})).toBeDisabled();
+  expect(screen.getByRole('status').compareDocumentPosition(selected) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  for(const text of ['Your choice · Correct','Your choice · Not correct','Correct choice · Not selected','Some choices need another look']) {
+    expect(screen.getByTestId('narration')).toHaveTextContent(text);
+  }
+});
+
+test('missing a correct choice does not show a correction meant for a wrong answer', () => {
+  render(<MultiselectBlock {...props} block={{prompt:'Choose browsers',feedback:'Great job!',incorrectFeedback:'Calculator is not a browser.',options:[{text:'Safari',correct:true},{text:'Calculator',correct:false},{text:'Firefox',correct:true}]}} />);
+  fireEvent.click(screen.getByRole('button',{name:'Safari',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:'Check',exact:true}));
+  expect(screen.getByRole('status')).toHaveTextContent('You found some correct choices. Review the others below.');
+  expect(screen.getByRole('status')).not.toHaveTextContent('Calculator is not a browser.');
   expect(screen.getByRole('status')).not.toHaveTextContent('Great job!');
 });

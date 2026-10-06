@@ -1,0 +1,25 @@
+{
+  "baseCommit": "1060d4a7aff7c1f559c9994934c1174615478f6f",
+  "sourceSHA256": {
+    "src/components/blocks/MultiselectBlock.jsx": "be873cd89b72f336a80238c0e87edeb9bf7efe21dadcf4cb2a03014e2a7ffaf6",
+    "src/i18n/learning-es.json": "81501051e6c5947b82e78bb7880689ab3d646701dd5bfb11b7ebdeec89b0f202",
+    "src/styles/lesson-experience.css": "0ea8b856eed0f26ec288d7067613a5d746561b2ebd4d6a7ea9038a7d8d16874c",
+    "tests/learning-localization.test.jsx": "8974cba8a762f0103acb34b4a5fca495d52118f9f554fe9efb1f47543e95ee68",
+    "tests/lesson-feedback.test.jsx": "1d283bb9449a9d1b398c6692060cf60eb8d73ddaf58bf9f8aa7f106e14536b46"
+  },
+  "captures": [
+    {
+      "file": "web-phone-after-choices.jpg",
+      "sha256": "2785ab67026d5e6fea896585c57725c589b65fa2108f97c7d07c74e186e6ef1f"
+    },
+    {
+      "file": "web-phone-maximum-review.jpg",
+      "sha256": "e65efdb24a5a218ea4640b7493ae6bb9ac2fdc26a9cfa62f2ee026cb1fb39696"
+    },
+    {
+      "file": "web-ipad-missing-choice.jpg",
+      "sha256": "fcb46dddb9d0d2bd0113a2653512aef2e65bb34b8f8838f78bf4bbfd3610018f"
+    }
+  ],
+  "scope": "Real authored activities with local test callbacks, Spanish. Phone 375x667 at app sizes 4 and 10; tablet capture 834x1187 at size 4. No backend account or spoken audio acceptance."
+}

@@ -24,6 +24,17 @@ const renderBlock = (block, props = {}) => render(<BlockRenderer block={block} p
 beforeEach(() => setLocale("es"));
 afterEach(() => {cleanup(); setLocale("en"); vi.unstubAllGlobals();});
 
+test("Spanish multiple-answer review distinguishes selection and correctness", () => {
+  renderBlock(blockOf("multiselect"));
+  fireEvent.click(screen.getByRole("button",{name:"Leer un periódico impreso",exact:true}));
+  fireEvent.click(screen.getByRole("button",{name:"Ver Netflix",exact:true}));
+  fireEvent.click(screen.getByRole("button",{name:"Comprobar",exact:true}));
+  expect(screen.getByRole("status")).toHaveTextContent("Hay algunas opciones que debes revisar.");
+  expect(screen.getByRole("button",{name:"Leer un periódico impreso Tu elección · Incorrecta"})).toHaveAttribute("aria-pressed","true");
+  expect(screen.getByRole("button",{name:"Ver Netflix Tu elección · Correcta"})).toHaveAttribute("aria-pressed","true");
+  expect(screen.getByRole("button",{name:"Enviar un correo electrónico Opción correcta · No seleccionada"})).toHaveAttribute("aria-pressed","false");
+});
+
 test("three account safety lessons have complete Spanish copy and distinct answers", () => {
   const keys=new Set();
   const metadata=new Set(["id","type","track","variant","nextKind","textRole","tier","url","videoUrl","videoId","color","accent","lessonId"]);

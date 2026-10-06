@@ -28,6 +28,9 @@ html[data-text-size] .lesson-experience .text-lg { font-size: calc(17px * var(--
 .lesson-experience .lesson-answer-multiple { display: flex; align-items: flex-start; gap: 12px; }
 .lesson-experience .lesson-answer-multiple > span:first-child { width: 24px; height: 24px; margin-top: 2px; border-width: 1.5px; border-color: var(--control-border); border-radius: 5px; }
 .lesson-multiple-mark { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.lesson-multiple-copy { display: flex; flex-direction: column; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
+.lesson-answer-review { font-size: calc(15px * var(--text-scale)); line-height: 1.45; font-weight: 600; }
+.lesson-answer[data-answer-state=correct] .lesson-multiple-mark { border-color: var(--success); }
 .lesson-experience .lesson-multiple-mark.is-selected { background: var(--accent); border-color: var(--accent); color: var(--surface); }
 .lesson-experience .lesson-multiple-mark.is-correct { background: var(--success); border-color: var(--success); color: var(--surface); }
 .lesson-experience .lesson-multiple-mark.is-incorrect { background: var(--danger); border-color: var(--danger); color: var(--surface); }

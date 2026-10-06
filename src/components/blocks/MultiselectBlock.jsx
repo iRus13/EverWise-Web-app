@@ -1,6 +1,5 @@
 import {useLearningText} from "../../i18n/learning.js";
 import { useState } from "react";
-import { X } from "lucide-react";
 import ReadAloud from "../ReadAloud";
 import { CheckIcon } from "../Icons";
 import BlockShell from "./BlockShell";
@@ -24,9 +23,19 @@ export default function MultiselectBlock({
       opt.correct ? picked.has(i) : !picked.has(i)
     );
 
-  const resultMessage = fullyCorrect
-    ? block.feedback
-    : block.incorrectFeedback;
+  const hasIncorrectChoice = block.options.some((option, index) => picked.has(index) && !option.correct);
+  const resultTitle = fullyCorrect ? "That's right" : "Let's review your choices";
+  const resultMessage = fullyCorrect ? block.feedback
+    : !hasIncorrectChoice && picked.size > 0
+      ? "You found some correct choices. Review the others below."
+      : block.incorrectFeedback?.trim() || "Some choices need another look. Review the answers below.";
+  const reviewLabel = (option, index) => !checked ? null
+    : picked.has(index) ? option.correct ? "Your choice · Correct" : "Your choice · Not correct"
+    : option.correct ? "Correct choice · Not selected" : null;
+  const narration = [block.prompt || block.title,
+    ...(checked ? [resultTitle, resultMessage] : []),
+    ...block.options.flatMap((option, index) => [option.text, reviewLabel(option, index)])
+  ].filter(Boolean).map(text => t(text)).join("\n\n");
 
   const toggle = (i) => {
     if (checked) return;
@@ -67,8 +76,12 @@ export default function MultiselectBlock({
         {t(block.prompt || block.title)}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={t(block.prompt || block.title)} />
+        <ReadAloud text={narration} />
       </div>
+
+      {checked && <AnswerFeedback positive={fullyCorrect} title={resultTitle}>
+        {resultMessage && <p>{t(resultMessage)}</p>}
+      </AnswerFeedback>}
 
       <div className="mt-8 space-y-3">
         {block.options.map((opt, i) => {
@@ -84,26 +97,22 @@ export default function MultiselectBlock({
             >
               <span
                 className={`lesson-multiple-mark ${
-                  checked && opt.correct ? "is-correct"
+                  checked && picked.has(i) && opt.correct ? "is-correct"
                     : checked && picked.has(i) ? "is-incorrect"
                     : picked.has(i) ? "is-selected" : ""
                 }`}
                 aria-hidden="true"
               >
-                {checked && picked.has(i) && !opt.correct
-                  ? <X className="h-5 w-5" />
-                  : (picked.has(i) || (checked && opt.correct)) && <CheckIcon className="h-5 w-5" />}
+                {picked.has(i) && <CheckIcon className="h-5 w-5" />}
               </span>
-              {t(opt.text)}
+              <span className="lesson-multiple-copy">
+                <span>{t(opt.text)}</span>
+                {reviewLabel(opt, i) && <span className="lesson-answer-review">{t(reviewLabel(opt, i))}</span>}
+              </span>
             </button>
           );
         })}
       </div>
-
-      {checked && <AnswerFeedback positive={fullyCorrect} title={fullyCorrect ? "That's right" : "Let's review your choices"}>
-        {resultMessage && <p>{t(resultMessage)}</p>}
-        {!fullyCorrect && <p className="lesson-correction">{t("Correct choices: {answers}", {answers:block.options.filter(option => option.correct).map(option => t(option.text)).join("; ")})}</p>}
-      </AnswerFeedback>}
 
     </BlockShell>
   );
