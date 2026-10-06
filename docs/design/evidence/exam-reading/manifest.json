@@ -1,0 +1,31 @@
+{
+  "baselineCommit": "dcfb7151d19f81ea725ea18831754a63a8a55331",
+  "evidenceType": "development; synthetic services; not App Store release",
+  "sourceSha256": {
+    "src/components/LessonTopBar.jsx": "032242be79008fb8621741f6ead84a9c1fb9b1720450b002bc02d1100822b129",
+    "src/components/blocks/BlockShell.jsx": "9c4cec46cddf68e6b4e7064f1d68b00b9e7f97ee98b6a1263326be3d8bac0769",
+    "src/i18n/learning-es.json": "e8ec58df9a2c9a47aa582ba8587ac7190223a8bd2210982c3c64d53e12745b58",
+    "src/screens/ExamPlayer.jsx": "0d3ea1a6ca0bcbd11fbb2c6b8ec81e0bea9cd4d98e6c5c43960279a36e4e502b",
+    "src/styles/lesson-experience.css": "2e1af0196f0c30744a1001bd522dc9e7e0cda811f68d8f8bba77ed1b7ddee15c",
+    "tests/learning-localization.test.jsx": "1fbab21cb0d0a2a819b797bd6fca0f2c8498029855c99510be3c045a4a3099eb",
+    "src/data/exam-presentations.json": "5721d438b08ca2279736ac423139680650c332b5a9efb2478f5b512e91f7ccf5"
+  },
+  "screenshotSha256": {
+    "web-question-before.jpg": "4a21d9edd5017afe6a22d2e5b514c37c6bc8475f1e6ff408ba574058f727115e",
+    "web-question-after.jpg": "1c4d5b8d8fb8a9f2ce681dec5020a1c569396a04a2b144ea975d62c5d3029cdb",
+    "web-phone-question-after.jpg": "fe6cad256b0b4b71fab7f5469dfbe27519a27d050412c64737b40a052b87fbac",
+    "web-maximum-answer.jpg": "0fdd3041169d3766f42ea7659f332826752eeada65e8e0742dd784da0089876a",
+    "web-tablet-true-false.jpg": "4cd5b2ffc03e7848a1827b24069021317b8f3a92a5e71919d0e7281a3ec84b71",
+    "web-tablet-true-false-after.jpg": "f159eb7701d5c8363de147600e7b9ac8ab50f9be9013e53f2c1fc22275b4c7d5",
+    "web-tablet-domain-after.jpg": "132cbd04ffa48263216543e97a53545ce5948db1aaf8356c91cf59a8810fd38c",
+    "web-tablet-practice-after.jpg": "8983f538e5accadfda7370f1c2ffb2ff436bc8c286e40bb0a191a9ebda347ba0"
+  },
+  "examQuestions": 50,
+  "newSpanishKeys": 236,
+  "readingPresentations": 26,
+  "checks": [
+    "2322 component tests before final CSS-only spacing",
+    "final lint and build",
+    "browser phone and tablet review"
+  ]
+}

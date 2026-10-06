@@ -4,6 +4,7 @@ import {afterEach, beforeEach, expect, test, vi} from "vitest";
 import {setLocale} from "../src/i18n";
 import spanish from "../src/i18n/learning-es.json";
 import scenarioPresentations from "../src/data/scenario-presentations.json";
+import examPresentations from "../src/data/exam-presentations.json";
 import {fillBlankParts, learningText} from "../src/i18n/learning.js";
 import {lessonsByOrder, challengesByOrder, examsByOrder} from "../src/data/lessons.js";
 import {courseSuccessor} from "../src/utils/courseProgress.js";
@@ -26,6 +27,62 @@ const blockOf = type => internet.blocks.find(block => block.type === type);
 const renderBlock = (block, props = {}) => render(<BlockRenderer block={block} progress={1} progressTotal={2} onBack={vi.fn()} onContinue={vi.fn()} {...props} />);
 beforeEach(() => setLocale("es"));
 afterEach(() => {cleanup(); setLocale("en"); vi.unstubAllGlobals();});
+
+test("all 50 exam questions preserve distinct translated answers and literal examples", () => {
+  const questions=examsByOrder.flatMap(exam=>exam.questions);
+  expect(questions).toHaveLength(50);
+  for(const question of questions) {
+    const reading=examPresentations[question.question] ?? {question:question.question};
+    for(const key of [question.question,...question.options,question.explanation,reading.story,reading.question].filter(Boolean)) {
+      expect(spanish[key],key).toBeTruthy();
+      expect(spanish[key].split("______").length,key).toBe(key.split("______").length);
+    }
+    expect(new Set(question.options.map(option=>t(option).toLowerCase())).size).toBe(question.options.length);
+    for(const option of question.options.filter(value=>/^(?:[a-z0-9-]+\.)+(?:com|net|gov)$/.test(value) || ["gov","DMV","USPS","password123","Linda1950","Sunshine2025","BlueRiver$Garden88"].includes(value))) expect(t(option)).toBe(option);
+    if(reading.story) {
+      expect([`${reading.story} ${reading.question}`,`True or False: ${reading.story}`,reading.story]).toContain(question.question);
+    } else if(reading.question!==question.question) {
+      expect(question.question).toBe("Which email address looks more trustworthy?");
+      expect(reading.question).toBe("Which website address is the official PayPal domain?");
+    }
+  }
+});
+
+test.each(examsByOrder.flatMap(exam=>exam.questions.map((question,index)=>({exam,question,index,name:`${exam.id} question ${index+1}`}))))("$name renders Spanish question and every answer without changing its canonical selection", ({exam,question,index}) => {
+  const onPositionChange=vi.fn();
+  render(<ExamPlayer exam={exam} onBack={vi.fn()} onPass={vi.fn()} onPositionChange={onPositionChange}
+    initialPosition={{kind:"exam",revision:assessmentRevision(exam),phase:"quiz",answers:Array(index).fill(null),selected:null}} />);
+  const reading=examPresentations[question.question] ?? {question:question.question};
+  expect(screen.getByRole("heading",{level:1})).toHaveTextContent(t(reading.question));
+  if(reading.story) expect(screen.getByText(t(reading.story))).toHaveClass("lesson-scenario-story");
+  expect(screen.getAllByText(`Pregunta ${index+1} de ${exam.questions.length}`)).toHaveLength(1);
+  expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuetext",`Pregunta ${index+1} de ${exam.questions.length}`);
+  for(const option of question.options) expect(screen.getByRole("button",{name:t(option),exact:true})).toBeVisible();
+  fireEvent.click(screen.getByRole("button",{name:t(question.options[question.correctIndex]),exact:true}));
+  expect(onPositionChange).toHaveBeenLastCalledWith(expect.objectContaining({selected:question.correctIndex,answers:Array(index).fill(null)}));
+});
+
+test.each([["phase7-exam",0],["phase3-exam",2],["phase7-exam",7]])("exam narration follows the displayed %s question %s", (id,index) => {
+  const exam=examsByOrder.find(exam=>exam.id===id);
+  const fetch=vi.fn(()=>new Promise(()=>{}));
+  vi.stubGlobal("fetch",fetch);
+  render(<ExamPlayer exam={exam} onBack={vi.fn()} onPass={vi.fn()}
+    initialPosition={{kind:"exam",revision:assessmentRevision(exam),phase:"quiz",answers:Array(index).fill(null),selected:null}} />);
+  fireEvent.click(screen.getByRole("button",{name:"Leer esto en voz alta",exact:true}));
+  const reading=examPresentations[exam.questions[index].question];
+  expect(fetch).toHaveBeenCalledOnce();
+  const fields=reading.question === "True or false?" ? [reading.question,reading.story] : [reading.story,reading.question];
+  expect(JSON.parse(fetch.mock.calls[0][1].body).text).toBe(fields.filter(Boolean).map(text=>t(text)).join("\n\n"));
+  if(reading.question === "True or false?") expect(screen.getByRole("heading",{level:1}).compareDocumentPosition(screen.getByText(t(reading.story)))).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+});
+
+test("an unknown exam question keeps its complete wording", () => {
+  const exam={...examsByOrder[0],questions:[{question:"A future question with its complete context?",options:["Alpha","Beta"],correctIndex:0}]};
+  render(<ExamPlayer exam={exam} onBack={vi.fn()} onPass={vi.fn()}
+    initialPosition={{kind:"exam",revision:assessmentRevision(exam),phase:"quiz",answers:[],selected:null}} />);
+  expect(screen.getByRole("heading",{level:1})).toHaveTextContent(exam.questions[0].question);
+  expect(screen.getByRole("button",{name:"Alpha",exact:true})).toBeVisible();
+});
 
 test("Spanish multiple-answer review distinguishes selection and correctness", () => {
   renderBlock(blockOf("multiselect"));

@@ -38,6 +38,7 @@ export default function BlockShell({
   label,
   progress,
   progressTotal,
+  progressKind = "step",
   onBack,
   onSkip,
   onExit,
@@ -91,6 +92,7 @@ export default function BlockShell({
         label={label}
         progress={progress}
         progressTotal={progressTotal}
+        progressKind={progressKind}
         onBack={onBack}
         onSkip={onSkip}
         onExit={onExit}

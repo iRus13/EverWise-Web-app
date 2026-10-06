@@ -5,6 +5,7 @@ import ReadAloud from "../components/ReadAloud";
 import {BookOpen, Check, RotateCcw} from "lucide-react";
 import LearningSummary from "../components/LearningSummary";
 import {assessmentRevision, restoreAssessmentPosition} from "../utils/assessmentProgress.js";
+import examPresentations from "../data/exam-presentations.json";
 
 function pickTier(results, score) {
   const sorted = [...(results || [])].sort((a, b) => b.minScore - a.minScore);
@@ -58,6 +59,9 @@ export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPo
 
   // Quiz phase — one question at a time, no explanations until the end.
   const q = exam.questions[qIndex];
+  const reading = Object.hasOwn(examPresentations, q.question) ? examPresentations[q.question] : {question:q.question};
+  const statement = reading.question === "True or false?";
+  const narration = (statement ? [reading.question, reading.story] : [reading.story, reading.question]).filter(Boolean).map(text => t(text)).join("\n\n");
   const progress = qIndex + 1;
 
   const choose = (i) => {
@@ -75,6 +79,7 @@ export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPo
       label="Exam"
       progress={progress}
       progressTotal={total}
+      progressKind="question"
       onBack={onBack}
       onSkip={next}
       footer={
@@ -84,15 +89,14 @@ export default function ExamPlayer({ exam, onBack, onPass, initialPosition, onPo
           </button>
       }
     >
-      <p className="text-lg font-semibold text-ink-faint">
-        {t("Question {number} of {total}", {number:progress, total})}
-      </p>
-      <h1 className="page-title mt-3">
-        {t(q.question)}
+      {reading.story && !statement && <p className="lesson-scenario-story">{t(reading.story)}</p>}
+      <h1 className="page-title lesson-question mt-2">
+        {t(reading.question)}
       </h1>
+      {reading.story && statement && <p className="lesson-scenario-story mt-5">{t(reading.story)}</p>}
 
       <div className="mt-5">
-        <ReadAloud text={t(q.question)} label="Read this aloud" />
+        <ReadAloud text={narration} label="Read this aloud" />
       </div>
 
       <div className="mt-8 space-y-4">
