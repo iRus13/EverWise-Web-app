@@ -6,6 +6,7 @@ import {
   MAX_BILLING_RESPONSE_BYTES,
   BillingAccessError,
   createBillingCheckout,
+  cancelBillingSubscription,
   createBillingPortal,
   fetchBillingAccess,
   fetchBillingPlans,
@@ -1150,3 +1151,29 @@ test("billing requests abort at the exported timeout and always clear their time
   );
   assert.deepEqual(normalClears, [52]);
 });
+
+for (const [name, operation] of [
+  ["plans", (account, options) => fetchBillingPlans(account, options)],
+  ["access", (account, options) => fetchBillingAccess(account, options)],
+  ["checkout", (account, options) => createBillingCheckout(account, "monthly", options)],
+  ["portal", (account, options) => createBillingPortal(account, options)],
+  ["cancellation", (account, options) => cancelBillingSubscription(account, options)],
+]) {
+  test(`${name}: a stalled token becomes temporary unavailability and never sends a late request`, async (t) => {
+    t.mock.timers.enable({apis: ["setTimeout"]});
+    let resolveToken, calls = 0, settled = false;
+    const token = new Promise(resolve => { resolveToken = resolve; });
+    const result = operation(user(() => token), clientOptions(async () => { calls += 1; throw new Error("Unexpected request"); }));
+    result.then(() => { settled = true; }, () => { settled = true; });
+    await Promise.resolve();
+    t.mock.timers.tick(14_999);
+    await Promise.resolve();
+    assert.equal(settled, false);
+    assert.equal(calls, 0);
+    t.mock.timers.tick(1);
+    await assert.rejects(result, error => error instanceof BillingAccessError && error.code === "BILLING_UNAVAILABLE");
+    resolveToken(TOKEN);
+    for (let i = 0; i < 5; i += 1) await Promise.resolve();
+    assert.equal(calls, 0);
+  });
+}

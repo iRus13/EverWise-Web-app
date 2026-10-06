@@ -29,7 +29,7 @@ export const scamPhase4Lessons = [
     badge: "Message Reader",
     xp: 20,
     goals: [
-      "Understand that good grammar no longer proves a message is real.",
+      "Understand that good grammar does not prove a message is genuine.",
       "Judge a message by what it asks you to do."
     ],
     blocks: [
@@ -38,9 +38,10 @@ export const scamPhase4Lessons = [
         heading: "When Words Aren't Written by People",
         question: "How do I know if this message was written by a person or AI?",
         objective:
-          "Learn that messages can now be written by artificial intelligence, making them sound more natural and convincing than ever before.",
+          "Learn that AI can write convincing messages, so the writing alone cannot tell you whether a request is safe.",
         warningSigns: AI_HABITS,
-        text: "Years ago, scam messages were often easy to spot because they contained spelling mistakes or awkward wording. Today, artificial intelligence can write clear, friendly, and professional messages in just a few seconds. That means a message can sound convincing whether it was written by a person or by AI. Instead of judging a message by how well it's written, focus on what it's asking you to do."
+        reminderTitle: "Review safe AI habits",
+        text: "Scam messages can have spelling mistakes, but some have always been well written. Artificial intelligence, or AI, can now help produce clear, friendly, professional messages quickly.\n\nA convincing message may come from a person or AI. You do not need to identify how it was written: focus on what it asks you to do, and verify unexpected requests through a trusted contact route."
       },
       {
         type: "tiered",
@@ -53,19 +54,19 @@ export const scamPhase4Lessons = [
             text: "A well-written message can still be fake.",
             tier: "best",
             feedback:
-              "AI can write messages that sound professional. The quality of the writing is no longer a reliable clue."
+              "AI can write professional messages. Good spelling and grammar do not verify the sender or the request."
           },
           {
             text: "I should verify the request before responding.",
             tier: "safe",
             feedback:
-              "Exactly the right action — and the reason is that good writing no longer proves anything."
+              "Verify through a trusted route before responding. Good writing alone does not establish trust."
           },
           {
             text: "Good grammar means the message is trustworthy.",
             tier: "unsafe",
             feedback:
-              "That used to be a useful rule. AI has retired it."
+              "Good grammar has never guaranteed that a message is genuine. Check the request through a trusted route."
           }
         ]
       },
@@ -85,13 +86,13 @@ export const scamPhase4Lessons = [
           {
             text: "Wait until you can verify the request yourself.",
             tier: "safe",
-            feedback: "Waiting costs nothing and keeps you in control."
+            feedback: "Pause the conversation and check your account through the official app or a trusted bank number."
           },
           {
             text: "Click the link because the email looks official.",
             tier: "unsafe",
             feedback:
-              "Looking official is now trivially easy. The request is what matters."
+              "Logos and professional writing can be copied. Use a trusted route to check what the message asks you to do."
           }
         ]
       },
@@ -110,7 +111,7 @@ export const scamPhase4Lessons = [
           {
             text: "Ignore the message until you know it's real.",
             tier: "safe",
-            feedback: "Ignoring is perfectly safe — a real prize will wait."
+            feedback: "You do not need to respond to an unverified prize message. Check the offer independently before sharing information or money."
           },
           {
             text: "Trust the message because it sounds friendly.",
@@ -141,7 +142,7 @@ export const scamPhase4Lessons = [
             text: "Click the email link because it looks professional.",
             tier: "unsafe",
             feedback:
-              "Professionalism is exactly what AI added to these messages. The warning signs didn't change."
+              "AI can make messages look professional. Urgency and pressure to use an unexpected link are still reasons to verify."
           }
         ]
       },
@@ -168,7 +169,7 @@ export const scamPhase4Lessons = [
               {
                 text: "Trust it because it was written well.",
                 tier: "unsafe",
-                feedback: "Writing quality proves nothing now."
+                feedback: "Writing quality does not verify a sender or an unexpected request."
               }
             ]
           },
@@ -215,12 +216,12 @@ export const scamPhase4Lessons = [
         type: "finalboss",
         title: "The perfect email",
         setup:
-          "An email arrives. It uses your name, has perfect grammar, and includes the bank's logo. Nothing looks suspicious.",
+          "An unexpected email uses your name, correct grammar, and your bank's logo. It asks you to use a link immediately instead of contacting the bank yourself.",
         messages: [
           {
             from: "Email · Your Bank",
             body:
-              "Dear [your name], our systems detected unusual activity on your account. For your protection, please review and confirm your recent transactions.",
+              "Dear [your name], we detected unusual activity. Confirm your transactions using this link within 30 minutes or your account will be locked. Do not call the bank; this link is the only way to secure your account.",
             fakeButton: "Secure your account"
           }
         ],
@@ -241,7 +242,7 @@ export const scamPhase4Lessons = [
             text: "Click the \"Secure Your Account\" button because the email looks authentic.",
             tier: "unsafe",
             feedback:
-              "There was nothing to spot — and that's the point. The old clues are gone, so the habit of verifying independently is what remains."
+              "The logo and wording do not verify the email. The deadline and instruction not to call are warning signs. Check through the number on your card or the official bank app."
           }
         ],
         spotted: ["Unexpected contact", "Pressure to act", "Refusing independent verification"]
@@ -287,7 +288,8 @@ export const scamPhase4Lessons = [
         objective:
           "Learn that AI can copy a person's voice, so a familiar voice alone is no longer proof of someone's identity.",
         warningSigns: AI_HABITS,
-        text: "AI can now create voices that sound surprisingly similar to real people. A scammer might use technology to imitate a family member, a friend, or even someone famous. Hearing a familiar voice can make you feel like you should act quickly, but your ears alone are no longer enough to confirm who is speaking. If a call feels unusual, end the conversation and contact the person using a phone number you already know."
+        reminderTitle: "Review safe AI habits",
+        text: "AI can create audio that sounds like a real person. A scammer may imitate a relative, friend, or public figure to make a request feel believable.\n\nIf an unexpected call asks for money or secrecy, end it and call a number you already trust. If you cannot reach the person, try another trusted relative or friend. A familiar voice alone does not verify who is calling."
       },
       {
         type: "tiered",
@@ -311,7 +313,7 @@ export const scamPhase4Lessons = [
             text: "If I recognize the voice, I know it's really him.",
             tier: "unsafe",
             feedback:
-              "This was true for most of history. It isn't anymore, and scammers know it."
+              "Voices can be imitated. Verify an unusual request through a trusted contact route, even when the voice sounds familiar."
           }
         ]
       },
@@ -370,7 +372,7 @@ export const scamPhase4Lessons = [
         type: "tiered",
         title: "Connect previous lessons",
         scenario:
-          "The caller sounds exactly like your granddaughter. She asks you to buy gift cards immediately and read the numbers over the phone.",
+          "The caller sounds like your granddaughter. She asks you to keep the call secret, buy gift cards immediately, and read the numbers over the phone.",
         question: "Which response is safe?",
         options: [
           {
@@ -388,7 +390,7 @@ export const scamPhase4Lessons = [
             text: "Buy the gift cards because the voice sounds real.",
             tier: "unsafe",
             feedback:
-              "The gift cards give it away regardless of the voice. No real emergency is solved that way."
+              "An urgent request for gift card numbers is a scam warning. End the call and contact your granddaughter through a number you already trust."
           }
         ]
       },
@@ -404,7 +406,7 @@ export const scamPhase4Lessons = [
               {
                 text: "End the call and contact your daughter yourself.",
                 tier: "best",
-                feedback: "One call to her real number settles it."
+                feedback: "Call her known number. If you cannot reach her, try another trusted relative or friend before sending money."
               },
               {
                 text: "Verify with another trusted family member.",
@@ -463,7 +465,7 @@ export const scamPhase4Lessons = [
           "Your phone rings. The caller sounds exactly like your grandson, and his voice is shaky. You can hear traffic in the background.",
         messages: [
           {
-            from: "Incoming call · Unknown number",
+            from: "Example call transcript · Unknown number",
             body:
               "Grandma... it's me. I was in a small car accident. I'm okay, but I need help right now. My phone is almost dead, so please don't hang up. I don't want Mom and Dad to worry until I figure this out. Can you send money through a payment app so I can get home?"
           }
@@ -486,7 +488,7 @@ export const scamPhase4Lessons = [
             text: "Send the money because the voice sounds exactly like him.",
             tier: "unsafe",
             feedback:
-              "The voice was the bait, and it can be cloned from a few seconds of audio. Everything else was a warning sign: don't hang up, don't tell your parents, send money now."
+              "The voice may be imitated. The requests to stay on the line, keep the call secret, and send money urgently are reasons to end the call and verify independently."
           }
         ],
         spotted: [
@@ -537,7 +539,8 @@ export const scamPhase4Lessons = [
         objective:
           "Learn that AI can create realistic images that never actually happened, so a convincing picture alone is not proof that something is real.",
         warningSigns: AI_HABITS,
-        text: "For many years, people believed that \"seeing is believing.\" Today, artificial intelligence can create pictures of people, places, and events that never happened. Some AI images are harmless, like artwork or imaginary animals, while others are made to trick people into believing something is true. Before believing or sharing an unexpected image, take a moment to ask where it came from and whether a trusted source confirms it."
+        reminderTitle: "Review safe AI habits",
+        text: "AI can create realistic pictures of people, places, and events that never happened. Some are made for art or entertainment; others are used to mislead. Even a real photo can be shared with the wrong date or description.\n\nBefore sharing an unexpected image or acting on it, check its source and context. For a possible local emergency, check official alerts and follow safety instructions. A convincing picture alone does not verify the claim."
       },
       {
         type: "tiered",
@@ -573,14 +576,14 @@ export const scamPhase4Lessons = [
         question: "Which response is the best?",
         options: [
           {
-            text: "Check a trusted local news source before believing or sharing it.",
+            text: "Check official local alerts and trusted local reporting before sharing the image or changing your plans.",
             tier: "best",
             feedback: "Lots of shares don't make a picture true."
           },
           {
             text: "Wait until you can learn more before sharing it.",
             tier: "safe",
-            feedback: "Not sharing is always safe."
+            feedback: "Pause before sharing unverified images. For a possible emergency, check official alerts promptly and follow safety instructions."
           },
           {
             text: "Share it immediately because everyone else is.",
@@ -632,7 +635,7 @@ export const scamPhase4Lessons = [
           {
             text: "Wait until trusted news or your bank confirms the information.",
             tier: "safe",
-            feedback: "Nothing is lost by waiting."
+            feedback: "Check your order directly before responding. The message alone does not verify the package’s status or deadline."
           },
           {
             text: "Use the link because the picture looks convincing.",
@@ -653,14 +656,14 @@ export const scamPhase4Lessons = [
             question: "Which response is the best?",
             options: [
               {
-                text: "Check trusted local news before believing or sharing it.",
+                text: "Check official local alerts and trusted local news before sharing the claim.",
                 tier: "best",
-                feedback: "Local emergencies are always reported by local news."
+                feedback: "News reports may take time. Check official local alerts and follow any safety instructions; a missing news report does not prove there is no emergency."
               },
               {
                 text: "Wait for more information.",
                 tier: "safe",
-                feedback: "Perfectly reasonable."
+                feedback: "Use the pause to check official alerts. Do not ignore a direct safety warning while waiting for news coverage."
               },
               {
                 text: "Share it immediately because it looks real.",
@@ -723,7 +726,7 @@ export const scamPhase4Lessons = [
             text: "Go immediately because the picture looks convincing.",
             tier: "unsafe",
             feedback:
-              "Notice that the person showing you the photo was completely sincere. Sincerity doesn't verify an image — and a real fire would be all over local news."
+              "Your neighbor may sincerely believe the image. Check the store or official local sources; a real event may not yet have appeared in the news."
           }
         ],
         spotted: ["An image used as proof", "Pressure to hurry", "No independent verification"]
@@ -769,7 +772,8 @@ export const scamPhase4Lessons = [
         objective:
           "Learn that AI can create videos of people appearing to say or do things that never actually happened.",
         warningSigns: AI_HABITS,
-        text: "Videos have always felt like strong evidence because they let us both see and hear someone. Today, AI can create or change videos so that people appear to say words they never spoke. These videos are sometimes called deepfakes. Some are created for entertainment, while others are designed to spread false information or trick people. If a surprising video asks you to believe something important or take action, verify it before trusting or sharing it."
+        reminderTitle: "Review safe AI habits",
+        text: "AI can create or alter video so that someone appears to say or do something they never did. This is often called a deepfake. Real footage can also be edited or shared out of context.\n\nSeeing a face and hearing a voice do not verify an important claim. Check the original source and trusted independent information before sharing or sending money. For possible emergencies, check official alerts promptly and follow safety instructions."
       },
       {
         type: "tiered",
@@ -787,12 +791,12 @@ export const scamPhase4Lessons = [
           {
             text: "I should look for trusted sources reporting the same event.",
             tier: "safe",
-            feedback: "Anything genuinely shocking would be widely reported."
+            feedback: "Look for independent, reliable reporting or the original source. A lack of immediate coverage does not prove the video is false."
           },
           {
             text: "If it's on video, it must be true.",
             tier: "unsafe",
-            feedback: "Video used to be strong evidence. AI weakened that."
+            feedback: "Video can be altered or taken out of context. Check an important claim through a trusted source."
           }
         ]
       },
@@ -812,7 +816,7 @@ export const scamPhase4Lessons = [
           {
             text: "Wait until you know more about where the video came from.",
             tier: "safe",
-            feedback: "Source matters more than content."
+            feedback: "Check both who published the video and whether its claims match reliable, independent information."
           },
           {
             text: "Share it immediately because it looks convincing.",
@@ -838,7 +842,7 @@ export const scamPhase4Lessons = [
           {
             text: "Look for multiple trusted sources reporting the same story.",
             tier: "safe",
-            feedback: "Multiple sources is the standard test."
+            feedback: "Look for sources that checked the event independently, rather than several sites repeating the same unverified post."
           },
           {
             text: "Act immediately because the video feels convincing.",
@@ -889,9 +893,9 @@ export const scamPhase4Lessons = [
                 feedback: "Official sources handle real public-safety notices."
               },
               {
-                text: "Wait until trusted news confirms the story.",
+                text: "Check official water-safety alerts and follow the instructions while you verify the video.",
                 tier: "safe",
-                feedback: "Sensible."
+                feedback: "Use official safety guidance promptly; do not wait for several news reports before following a public-health warning."
               },
               {
                 text: "Share the video immediately to warn everyone.",
@@ -945,31 +949,31 @@ export const scamPhase4Lessons = [
           "While watching videos online, you see what appears to be an emergency announcement from your city's mayor. The video looks professional and the voice sounds natural. Thousands of comments say things like \"I just registered!\" and \"Everyone do this now!\"",
         messages: [
           {
-            from: "Video · \"Office of the Mayor\"",
+            from: "Example video transcript · \"Office of the Mayor\"",
             body:
-              "There has been a dangerous chemical spill in our city. All residents must click the link below to register for emergency assistance before the end of the day.",
+              "A dangerous chemical spill has occurred in our city. Use this link to register for assistance before the end of the day. Do not call city offices or check other sites; only this link will work.",
             fakeButton: "Register for assistance"
           }
         ],
         question: "What should you do first?",
         options: [
           {
-            text: "Check your city's official website or trusted local news before believing the announcement or clicking any links.",
+            text: "Open your city's official alert page yourself or contact local authorities through a trusted number. Follow official safety instructions without using the video's link.",
             tier: "best",
             feedback:
               "This scenario combined everything you've learned: the message sounded convincing, the voice sounded real, and the video looked authentic. But instead of trusting appearances, you slowed down, verified independently, and didn't let urgency control your decision."
           },
           {
-            text: "Wait for confirmation from multiple official sources.",
+            text: "Check another official emergency channel without using the link, and follow any safety instructions.",
             tier: "safe",
             feedback:
-              "A genuine emergency would be announced through many channels at once."
+              "Official alerts can help you verify the claim. You do not need to wait for every channel to repeat an alert before following official safety guidance."
           },
           {
             text: "Click the link because the video looks like an official emergency announcement.",
             tier: "unsafe",
             feedback:
-              "Every layer here was manufactured — the face, the voice, the professional look, even the comments. Real emergency information never lives behind a single link."
+              "The face, voice, and comments do not verify this request. The pressure to use only one link is a warning sign. Check official alerts through a trusted route and follow safety instructions."
           }
         ],
         spotted: [
@@ -1021,7 +1025,8 @@ export const scamPhase4Lessons = [
         objective:
           "Learn that AI chatbots can be helpful for everyday questions, but they can sometimes give incorrect or incomplete answers.",
         warningSigns: AI_HABITS,
-        text: "AI chatbots can answer questions, explain ideas, help write letters, and even suggest recipes or vacation plans. They can be useful everyday tools. However, AI doesn't always know when it's wrong. Sometimes it gives outdated, incomplete, or incorrect information while sounding very confident. For everyday questions, AI can be a great helper. For important decisions involving your health, money, or personal information, it's always smart to double-check with a trusted source."
+        reminderTitle: "Review safe AI habits",
+        text: "An AI chatbot is software you can ask questions in everyday language. It can explain ideas, help draft a letter, or suggest recipes and travel plans.\n\nIts answers can be outdated, incomplete, or wrong, even when they sound certain. Review anything you plan to send or act on. Check important health, money, safety, and personal-information decisions with an appropriate trusted source."
       },
       {
         type: "tiered",
@@ -1070,7 +1075,7 @@ export const scamPhase4Lessons = [
             text: "Make the investment immediately because AI sounds confident.",
             tier: "unsafe",
             feedback:
-              "Confidence isn't accuracy — and your retirement is not the place to find that out."
+              "A confident answer may be wrong or unsuitable for you. Verify financial advice before changing retirement investments."
           }
         ]
       },
@@ -1111,7 +1116,7 @@ export const scamPhase4Lessons = [
             text: "Read the email before sending it and make sure it's accurate.",
             tier: "best",
             feedback:
-              "AI can save time, but you're still responsible for what gets sent. Always review important messages."
+              "Review the facts and recipient before sending. Keep passwords and full account details out of an AI draft or ordinary email."
           },
           {
             text: "Edit the message so it clearly reflects what you want to say.",
@@ -1122,7 +1127,7 @@ export const scamPhase4Lessons = [
             text: "Send it without reading because AI wrote it.",
             tier: "unsafe",
             feedback:
-              "It goes out under your name, so it needs your eyes first."
+              "Read the draft first so you can correct errors and remove information you do not want to share."
           }
         ]
       },
@@ -1147,7 +1152,7 @@ export const scamPhase4Lessons = [
               {
                 text: "AI is always correct.",
                 tier: "unsafe",
-                feedback: "It is not, and it rarely says so."
+                feedback: "AI can make mistakes and may not flag them. Check advice before acting on it."
               }
             ]
           },
@@ -1164,7 +1169,7 @@ export const scamPhase4Lessons = [
               {
                 text: "Ask AI where you can find the official information.",
                 tier: "safe",
-                feedback: "A good use — let it point you to the real source."
+                feedback: "AI may suggest a source, but links and citations can also be wrong. Check that the address belongs to the real agency."
               },
               {
                 text: "Apply immediately because AI told you.",
@@ -1197,7 +1202,7 @@ export const scamPhase4Lessons = [
             text: "Book the hotel immediately because the AI gave a detailed answer.",
             tier: "unsafe",
             feedback:
-              "Prices, availability, and cancellation policies change constantly — exactly the kind of detail AI is most likely to have wrong."
+              "Even an AI tool with web access may use outdated or incorrect details. Confirm prices, availability, and cancellation terms with the hotel or booking provider."
           }
         ],
         spotted: []
@@ -1243,7 +1248,8 @@ export const scamPhase4Lessons = [
         objective:
           "Learn that AI can give incorrect information with confidence, so confidence is never proof that an answer is correct.",
         warningSigns: AI_HABITS,
-        text: "One surprising thing about AI is that it often gives answers confidently — even when those answers are incomplete or incorrect. Unlike a person, AI usually doesn't know when it has made a mistake. That's why an answer can sound convincing even if it isn't accurate. When the information could affect your money, health, safety, or personal information, always take a moment to verify it with a trusted source."
+        reminderTitle: "Review safe AI habits",
+        text: "An AI answer may sound certain while being incomplete or wrong. A confident tone does not show that the information has been checked.\n\nFor decisions about money, health, safety, or personal information, verify the important details with a trusted source. You can ask AI for an explanation or sources, but check those sources too."
       },
       {
         type: "tiered",
@@ -1275,14 +1281,14 @@ export const scamPhase4Lessons = [
         type: "tiered",
         title: "Choose the safest response",
         scenario:
-          "You ask AI when your driver's license expires. It gives you a date, but renewing on time is important.",
+          "You ask AI when your driver's license expires without showing it your license or connecting any records. It gives you a date, but renewing on time is important.",
         question: "Which response is the best?",
         options: [
           {
             text: "Check your driver's license or your state's official DMV website to confirm the date.",
             tier: "best",
             feedback:
-              "AI has no way to know your personal document details. For important information, verify."
+              "In this example, AI has not been given your license details. Check the document or your official DMV account instead of relying on its answer."
           },
           {
             text: "Use the AI answer as a reminder to verify the information yourself.",
@@ -1293,7 +1299,7 @@ export const scamPhase4Lessons = [
             text: "Trust the date because AI answered confidently.",
             tier: "unsafe",
             feedback:
-              "AI cannot see your licence. Any date it gives is a guess."
+              "AI has not been given the information needed to know your expiration date. Check the license or official record yourself."
           }
         ]
       },
@@ -1318,7 +1324,7 @@ export const scamPhase4Lessons = [
             text: "Follow the AI's instructions without checking.",
             tier: "unsafe",
             feedback:
-              "Medication schedules depend on your history, other medicines, and dosage. Only a professional can weigh those."
+              "Medication timing can depend on your health, dose, and other medicines. Confirm changes with your prescriber or pharmacist."
           }
         ]
       },
@@ -1344,7 +1350,7 @@ export const scamPhase4Lessons = [
             text: "Invest because the answer sounded confident.",
             tier: "unsafe",
             feedback:
-              "No one can be certain about future returns — and an AI stating certainty is a sign to slow down, not speed up."
+              "A confident prediction does not guarantee an investment return. Check the risks and seek qualified advice before acting."
           }
         ]
       },
@@ -1365,7 +1371,7 @@ export const scamPhase4Lessons = [
               {
                 text: "Compare it with another source.",
                 tier: "safe",
-                feedback: "Two sources agreeing is reassuring."
+                feedback: "Check that the sources are reliable and independent; two sites may repeat the same error."
               },
               {
                 text: "Assume the directions are correct because AI sounded certain.",
@@ -1414,7 +1420,7 @@ export const scamPhase4Lessons = [
         type: "finalboss",
         title: "The tax refund",
         setup:
-          "You're curious whether you qualify for a tax credit, so you ask an AI chatbot. You were planning to file your taxes based on this information.",
+          "You ask an AI chatbot whether you qualify for a tax credit without providing your tax records or full circumstances. You are considering filing based on its answer.",
         messages: [
           {
             from: "AI chatbot",
@@ -1439,7 +1445,7 @@ export const scamPhase4Lessons = [
             text: "File your taxes based only on the AI's answer because it sounded confident.",
             tier: "unsafe",
             feedback:
-              "Note the word \"definitely\" — AI has no access to your income, filing status, or circumstances, so it cannot possibly know. Filing on that basis could cost you."
+              "The chatbot has not been given the facts needed to establish eligibility or a refund amount. Check current official tax guidance or a qualified tax professional before filing."
           }
         ],
         spotted: []
@@ -1474,7 +1480,7 @@ export const scamPhase4Lessons = [
     badge: "Source Finder",
     xp: 20,
     goals: [
-      "Understand that AI doesn't know current, local, or personal information.",
+      "Understand that AI may lack accurate current, local, or personal information.",
       "Use official sources for anything time-sensitive."
     ],
     blocks: [
@@ -1485,7 +1491,8 @@ export const scamPhase4Lessons = [
         objective:
           "Learn that AI doesn't have access to every fact or every event, so it may not know the answer to every question.",
         warningSigns: AI_HABITS,
-        text: "AI has learned from a huge amount of information, but that doesn't mean it knows everything. It may not know about recent events, personal details, or information that isn't available to it. Sometimes it may even guess instead of saying it doesn't know. That's why AI is a great place to start learning, but it shouldn't be your only source when the answer is important."
+        reminderTitle: "Review safe AI habits",
+        text: "Some AI tools can search the web or use information you choose to share. Others cannot. Access does not guarantee accuracy: an answer may use an old source, miss context, or invent details.\n\nCheck current schedules and important local information with the organization itself. Do not assume AI knows a private event or your personal circumstances. It can help you start a search, but important answers still need verification."
       },
       {
         type: "tiered",
@@ -1532,24 +1539,24 @@ export const scamPhase4Lessons = [
             text: "Assume AI knows today's office hours.",
             tier: "unsafe",
             feedback:
-              "AI has no live connection to your doctor's schedule."
+              "The answer may be based on old or incomplete information, even with web access. Confirm today's hours with the doctor's office."
           }
         ]
       },
       {
         type: "tiered",
         title: "Apply the lesson",
-        scenario: "You ask AI, \"Did my granddaughter arrive home safely?\"",
+        scenario: "You ask an AI chatbot, \"Did my granddaughter arrive home safely?\" You have not shared a recent message or connected a source that could confirm it.",
         question: "Which response is the best?",
         options: [
           {
             text: "Contact your granddaughter or another family member directly.",
             tier: "best",
             feedback:
-              "AI doesn't know what's happening in your personal life, and it can't verify personal events."
+              "In this example, AI has no information that confirms her arrival. Contact her or another trusted family member directly."
           },
           {
-            text: "Remember that AI doesn't know personal events like this.",
+            text: "Remember that AI cannot confirm this event without a reliable, current source.",
             tier: "safe",
             feedback: "Understanding the limit is half the skill."
           },
@@ -1557,7 +1564,7 @@ export const scamPhase4Lessons = [
             text: "Ask AI again because it might know now.",
             tier: "unsafe",
             feedback:
-              "Asking twice may produce a confident guess, which is worse than no answer."
+              "Asking again does not provide new evidence. Contact someone who can confirm what happened."
           }
         ]
       },
@@ -1608,7 +1615,7 @@ export const scamPhase4Lessons = [
               {
                 text: "Assume the hours are correct.",
                 tier: "unsafe",
-                feedback: "AI can't see today's opening hours."
+                feedback: "AI may show old or incorrect hours. Check with the restaurant for today’s schedule."
               }
             ]
           },
@@ -1619,17 +1626,17 @@ export const scamPhase4Lessons = [
               {
                 text: "Check a trusted weather service before making important outdoor plans.",
                 tier: "best",
-                feedback: "Weather is exactly the kind of live data AI may not have."
+                feedback: "Some AI tools can retrieve forecasts; others cannot. Check the location, update time, and official weather source."
               },
               {
-                text: "Use AI as a general guide.",
+                text: "Use AI to explain weather terms, then check the current forecast before making plans.",
                 tier: "safe",
-                feedback: "Fine for casual purposes."
+                feedback: "An explanation can be useful, but current conditions and alerts need a reliable weather source."
               },
               {
                 text: "Assume the forecast is always correct.",
                 tier: "unsafe",
-                feedback: "It may be describing a typical day, not today."
+                feedback: "Even a current forecast can change. Check a trusted weather service and official warnings for your location."
               }
             ]
           }
@@ -1676,7 +1683,7 @@ export const scamPhase4Lessons = [
             text: "Leave immediately because the AI gave you a specific answer.",
             tier: "unsafe",
             feedback:
-              "A specific answer feels reliable, but AI has no way to know this year's schedule for your town's fair. An 80-minute round trip deserves one quick check."
+              "A specific time may still be wrong or outdated. Confirm this year’s schedule with the organizer before making the trip."
           }
         ],
         spotted: []
@@ -1722,7 +1729,8 @@ export const scamPhase4Lessons = [
         objective:
           "Learn how to use AI as a helpful everyday assistant while continuing to verify important information.",
         warningSigns: AI_HABITS,
-        text: "AI can be a helpful tool for everyday life. It can suggest recipes, explain unfamiliar words, help write emails, plan trips, organize shopping lists, and answer questions about hobbies. These are great ways to save time and learn something new. Just remember that AI is your helper, not your decision-maker. When a question involves your health, money, safety, or personal information, always verify the answer before acting."
+        reminderTitle: "Review safe AI habits",
+        text: "AI can suggest recipes, explain unfamiliar words, draft messages, or help organize a trip. You can use these ideas as a starting point and adjust them to suit you.\n\nReview the details before acting or sending a message. Verify decisions about health, money, safety, and personal information with trusted sources. You choose what to use and make the final decision."
       },
       {
         type: "tiered",
@@ -1796,7 +1804,7 @@ export const scamPhase4Lessons = [
             text: "Copy and send the first response without reading it.",
             tier: "unsafe",
             feedback:
-              "A card in someone else's words isn't much of a card."
+              "Read the suggestion so you can check the names, tone, and meaning before sending it."
           }
         ]
       },
@@ -1868,7 +1876,7 @@ export const scamPhase4Lessons = [
               {
                 text: "Follow the schedule without checking whether it works for you.",
                 tier: "unsafe",
-                feedback: "It doesn't know your appointments or your energy."
+                feedback: "Check that the plan fits your appointments, travel time, and energy, even if you have shared those details with AI."
               }
             ]
           }
@@ -1916,7 +1924,7 @@ export const scamPhase4Lessons = [
             text: "Follow the plan exactly because AI organized everything for you.",
             tier: "unsafe",
             feedback:
-              "\"No reservations needed\" is precisely the sort of detail AI cannot actually know — and an anniversary dinner is a poor place to discover that."
+              "Reservation rules and opening hours may be wrong or outdated. Check with the venues before relying on the plan."
           }
         ],
         spotted: []
@@ -1924,8 +1932,8 @@ export const scamPhase4Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 11 complete!",
-      subtitle: "You completed Making AI Your Helper — and all of Phase 11.",
+      title: "Lesson complete!",
+      subtitle: "You completed Making AI Your Helper.",
       habit: "Let AI help you think. Let yourself make the final decision.",
       warningSign: "Letting a tool make a decision that's yours to make.",
       skills: [

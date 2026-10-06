@@ -1,7 +1,7 @@
 const PRIMARY_NAVIGATION = [
   { id: "home", label: "Home" },
   { id: "course", label: "Course" },
-  { id: "scam-checker", label: "Scam Checker" },
+  { id: "scam-checker", label: "Message Checker" },
   { id: "badges", label: "Badges" },
   { id: "settings", label: "Settings" },
 ];

@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-06",
+  "syntheticData": true,
+  "screenshots": [
+    {
+      "file": "web-phone-reading.png",
+      "sha256": "52b73061c3131e12d9658bac3139a757f1ad0afd4e52fc253613275f6023e445",
+      "source": "actual component browser harness"
+    },
+    {
+      "file": "web-phone-fill-maximum.png",
+      "sha256": "75d59411b15224083ddde72febb259c3679cf1ba9b6b4e292cbeef4cbd69b209",
+      "source": "actual component browser harness"
+    },
+    {
+      "file": "web-ipad-credit-reading.png",
+      "sha256": "78b697f04e14a3b465d2f223ac903652a4cd0f85fb7c7191dbcbe4abf90ad142",
+      "source": "actual component browser harness"
+    },
+    {
+      "file": "web-ipad-challenge-review.png",
+      "sha256": "09071968ce2f12ee29a9fad924d068066d748c82480317bb785afe5f76b1169b",
+      "source": "actual component browser harness"
+    },
+    {
+      "file": "web-ipad-completion.png",
+      "sha256": "9603a15cf5d306bdf148a85ac63543d7b664f02f6042f89b09edf90da57980a0",
+      "source": "actual component browser harness"
+    }
+  ]
+}

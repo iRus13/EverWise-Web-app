@@ -1,7 +1,11 @@
+import { hasOwn } from "../../utils/hasOwn.js";
+import {useLearningText} from "../../i18n/learning.js";
+import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
-import { CheckIcon } from "../Icons";
+import AnswerFeedback from "./AnswerFeedback";
 import BlockShell from "./BlockShell";
+import scenarioPresentations from "../../data/scenario-presentations.json";
 
 // Shared multiple-choice UI used by scenario, choice, and quiz questions.
 export function MultipleChoiceBody({
@@ -10,82 +14,52 @@ export function MultipleChoiceBody({
   options,
   correctIndex,
   explanation,
+  presentation,
   selected,
   onSelect,
 }) {
+  const t = useLearningText();
   const answered = selected != null;
   const isCorrect = answered && selected === correctIndex;
 
   return (
     <>
       {title && (
-        <p className="text-lg font-bold uppercase tracking-wide text-ink-faint">
-          {title}
+        <p className="lesson-kicker">
+          {t(title)}
         </p>
       )}
-      <h1 className="page-title mt-2">
-        {text}
+      {presentation && <p className="lesson-scenario-story">{t(presentation.story)}</p>}
+      <h1 className="page-title lesson-question mt-2">
+        {t(presentation?.question || text)}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={text} label="Read this aloud" />
+        <ReadAloud text={presentation ? [t(presentation.story), t(presentation.question)].join("\n\n") : t(text)} label="Read this aloud" />
       </div>
 
       <div className="mt-8 space-y-4">
         {options.map((option, i) => {
-          let style =
-            "border-ink/15 bg-cream-card text-ink hover:border-clay hover:bg-clay/5";
-          if (answered) {
-            if (i === correctIndex) style = "border-sage bg-sage/15 text-sage-dark";
-            else if (i === selected) style = "border-alert bg-alert/12 text-alert";
-            else style = "border-ink/10 bg-cream-card text-ink-faint";
-          }
           return (
-            <button
+            <AnswerOption
               key={i}
-              type="button"
+
               disabled={answered}
               onClick={() => onSelect(i)}
-              className={`w-full rounded-2xl border-2 px-6 py-6 text-left text-2xl font-semibold transition-colors ${style}`}
+              selected={selected === i}
+              state={answered ? i === correctIndex ? "correct" : i === selected ? "incorrect" : "other" : undefined}
+
             >
-              {option}
-            </button>
+              {t(option)}
+            </AnswerOption>
           );
         })}
       </div>
 
-      {answered && (
-        <div
-          className={`mt-8 animate-pop-in rounded-3xl p-6 ${
-            isCorrect ? "bg-sage/15" : "bg-alert/12"
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <div
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-cream-card ${
-                isCorrect ? "bg-sage" : "bg-alert"
-              }`}
-            >
-              {isCorrect ? (
-                <CheckIcon className="h-8 w-8" />
-              ) : (
-                <span className="font-sans text-2xl font-bold">!</span>
-              )}
-            </div>
-            <p
-              className={`font-sans text-2xl font-bold ${
-                isCorrect ? "text-sage-dark" : "text-alert"
-              }`}
-            >
-              {isCorrect ? "That's right" : "Not quite"}
-            </p>
-          </div>
-          {explanation && (
-            <p className="mt-3 text-xl leading-relaxed text-ink-soft">
-              {explanation}
-            </p>
-          )}
-        </div>
-      )}
+      {answered && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right" : "Not quite"}>
+        {!isCorrect && <p className="lesson-correction">{t("The correct answer is: {answer}", {answer:t(options[correctIndex])})}</p>}
+        {explanation && <p>{t(explanation)}</p>}
+      </AnswerFeedback>}
+
     </>
   );
 }
@@ -98,11 +72,12 @@ export default function ScenarioBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const [selected, setSelected] = useState(null);
 
   return (
     <BlockShell
-      label={block.title || "Scenario"}
+      label={t(block.title || "Scenario")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -111,14 +86,14 @@ export default function ScenarioBlock({
       footer={
         selected != null ? (
           <button className="btn-primary" onClick={onContinue}>
-            Continue
+            {t("Continue")}
           </button>
         ) : null
       }
     >
       <MultipleChoiceBody
-        title={block.title}
         text={block.text}
+        presentation={hasOwn(scenarioPresentations, block.text) ? scenarioPresentations[block.text] : undefined}
         options={block.options}
         correctIndex={block.correctIndex}
         explanation={block.explanation}

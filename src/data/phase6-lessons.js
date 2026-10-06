@@ -45,12 +45,12 @@ export const phase6Lessons = [
         heading: "Who Can See Your Posts?",
         text: "Facebook lets you choose who sees what you post. Common options include:",
         bullets: [
-          "Friends - only people you've accepted as friends",
+          "Friends - people on your friends list; check the audience again when tagging someone",
           "Public - anyone on or off Facebook",
           "Only Me - only you",
           "Specific Friends - only people you choose"
         ],
-        footer: "For most personal updates, Friends is usually the safest choice."
+        footer: "Choose the smallest audience that needs to see your update. Specific Friends limits it further; Only Me keeps it to you. Check tags and the audience before posting."
       },
       {
         type: "learn",
@@ -99,7 +99,7 @@ export const phase6Lessons = [
         cards: [
           { front: "Privacy Settings", back: "Controls who can see your information on Facebook." },
           { front: "Public", back: "Anyone can see your post." },
-          { front: "Friends", back: "Only people you've accepted as Facebook friends can see your post." },
+          { front: "Friends", back: "Shares with your Facebook friends. Tags can expand the audience, so review it before posting." },
           { front: "Personal Information", back: "Information like your address, phone number, birthday, or Social Security number." },
           { front: "Oversharing", back: "Posting more personal information than is safe." }
         ]
@@ -120,7 +120,7 @@ export const phase6Lessons = [
         title: "Fill in the Blank",
         wordBank: ["Friends", "Information", "Private", "Public"],
         questions: [
-          { text: "For most personal posts, choosing ______ is usually the safest option.", answer: "Friends" },
+          { text: "To share a personal post with your Facebook friends instead of everyone, choose ______.", answer: "Friends" },
           { text: "Your home address is personal ______.", answer: "Information" },
           { text: "Privacy settings help keep your account ______.", answer: "Private" }
         ]
@@ -167,7 +167,7 @@ export const phase6Lessons = [
       {
         type: "learn",
         heading: "Quick Tip",
-        text: "Before posting anything, ask yourself: Would I share this with a stranger? Does this reveal where I live? Does it include my phone number or birthday? Could someone use this information to scam me? If you're unsure, it's okay not to post it.\n\nRemember: the internet never forgets, unlike where we left our reading glasses."
+        text: "Before posting, check the audience and consider what the post reveals about you or other people. Keep sensitive information private. If you are unsure, wait.\n\nPeople who can see a post may save or share a copy, even if you delete it later."
       },
       {
         type: "sort",
@@ -224,7 +224,7 @@ export const phase6Lessons = [
       { question: "What do privacy settings do?", options: ["Make your phone charge faster.", "Create new Facebook friends.", "Control who can see your information.", "Change your password automatically."], correctIndex: 2 },
       { question: "Which information should you avoid posting publicly?", options: ["Your favorite hobby", "Home address, phone number, banking information, and Social Security number"], correctIndex: 1 },
       { question: "True or False: It's usually safer to share personal posts with Friends instead of Public.", options: ["True", "False"], correctIndex: 0 },
-      { question: "For most personal Facebook posts, choosing ______ is usually the safest option.", options: ["Friends", "Public", "Camera"], correctIndex: 0 },
+      { question: "To share a Facebook post with your friends instead of everyone, choose ______.", options: ["Friends", "Public", "Camera"], correctIndex: 0 },
       { question: "You're going on vacation for two weeks. What is the safest choice?", options: ["Announce you're leaving tomorrow.", "Post your travel plans publicly.", "Wait until you return home before posting vacation photos.", "Share your hotel room number."], correctIndex: 2 },
       { question: "Someone you don't know asks for your phone number through Facebook Messenger. What should you do?", options: ["Give them your number.", "Give them your address too.", "Don't share your personal information and ignore or block the message if it seems suspicious.", "Ask for their phone number first."], correctIndex: 2 }
     ],
@@ -264,7 +264,7 @@ export const phase6Lessons = [
       {
         type: "learn",
         heading: "What Is a Friend Request Scam?",
-        text: "On Facebook, anyone can send you a friend request. Most are from real people, but some are fake accounts created by scammers. Scammers create fake profiles to:",
+        text: "You may receive friend requests from people you know or from strangers, depending on your settings. Some requests come from fake profiles. Scammers may use them to:",
         bullets: [
           "Start conversations",
           "See your personal photos",
@@ -287,7 +287,7 @@ export const phase6Lessons = [
           "They immediately send private messages",
           "They quickly ask for money or personal information"
         ],
-        footer: "One warning sign alone doesn't always mean it's fake, but several together should make you cautious."
+        footer: "A warning sign is a reason to pause and verify. A familiar name, photo or mutual friend does not prove an account is genuine."
       },
       {
         type: "learn",
@@ -297,7 +297,7 @@ export const phase6Lessons = [
       {
         type: "choice",
         title: "Should You Accept the Friend Request?",
-        text: "Mary receives a friend request from her granddaughter. She recognizes the profile.",
+        text: "Mary receives a friend request from her granddaughter and confirms it with her using a phone number she already knows.",
         options: ["Accept", "Decline"],
         correctIndex: 0
       },
@@ -330,7 +330,7 @@ export const phase6Lessons = [
           { front: "Friend Request", back: "An invitation to connect with someone on Facebook." },
           { front: "Fake Profile", back: "A profile pretending to be someone else or created for scams." },
           { front: "Mutual Friends", back: "People who are friends with both you and another person." },
-          { front: "Block", back: "Prevent someone from contacting or viewing your profile." },
+          { front: "Block", back: "Limit contact from that profile. Shared spaces and other accounts can still allow some contact or visibility." },
           { front: "Report", back: "Tell Facebook about fake or suspicious accounts." }
         ]
       },
@@ -819,7 +819,7 @@ export const phase6Lessons = [
           "Share it without reading it."
         ],
         correctIndex: 0,
-        explanation: "Seeing the same information from multiple trusted sources increases confidence in its accuracy."
+        explanation: "Look for independent reporting and original evidence. Several websites may repeat the same unverified claim, so repetition alone is not confirmation."
       },
       {
         type: "scenario",
@@ -1007,7 +1007,7 @@ export const phase6Lessons = [
         title: "Flashcards",
         cards: [
           { front: "Political Misinformation", back: "False or misleading information about politics, elections, or government." },
-          { front: "Official Source", back: "A trusted government agency or reliable news organization." },
+          { front: "Official Source", back: "The agency or organization responsible for the information. For voting details, use your state or local election office." },
           { front: "Election Information", back: "Official details about voting dates, locations, and registration." },
           { front: "Verify", back: "To check whether information is accurate before believing or sharing it." },
           { front: "Reliable Source", back: "A source with a reputation for checking facts before publishing information." }
@@ -1225,7 +1225,7 @@ export const phase6Lessons = [
         text: "The person's face flickers and looks blurry throughout the video.",
         options: ["Possible deepfake", "Definitely real"],
         correctIndex: 0,
-        explanation: "Deepfakes often have visual or audio clues that something isn't right."
+        explanation: "Visual or audio clues can prompt a closer check, but convincing quality is not proof of authenticity. Verify the source and context."
       },
       {
         type: "flashcards",
@@ -1234,7 +1234,7 @@ export const phase6Lessons = [
           { front: "Deepfake", back: "A photo, video, or audio recording altered with AI to appear real." },
           { front: "AI", back: "Technology that can create or change images, videos, voices, and text." },
           { front: "Verify", back: "Check whether information is true before believing or sharing it." },
-          { front: "Original Source", back: "The first trusted place where a video or story was published." },
+          { front: "Original Source", back: "Where the image, video or claim first appeared. Finding its origin helps check context, but does not by itself prove it is true." },
           { front: "Misinformation", back: "False or misleading information that can spread online." }
         ]
       },
@@ -1345,8 +1345,8 @@ export const phase6Lessons = [
       },
       {
         type: "learn",
-        heading: "Spot the Difference: Real vs. AI-Generated",
-        text: "Sometimes it's difficult to tell if an image or video is real. AI has become very good at creating realistic-looking people and scenes. Small details in hands, jewelry, teeth, and backgrounds often reveal that an image isn't real.",
+        heading: "Visual Clues Are Not Proof",
+        text: "AI can create convincing images without obvious mistakes. Odd details may be a reason to investigate, but they do not prove how an image was made. Watch for possible clues such as:",
         bullets: [
           "Extra or missing fingers",
           "Earrings that don't match",
@@ -1357,36 +1357,36 @@ export const phase6Lessons = [
           "Strange lighting or shadows",
           "Objects or clothing blending together"
         ],
-        footer: "Not every AI image has these mistakes, and some real photos have unusual angles or lighting. Look for multiple clues rather than relying on just one."
+        footer: "Real photos can also have blur, unusual lighting or editing. Whether or not you see a visual clue, check the original source and independent evidence before acting."
       },
       {
         type: "choice",
-        title: "Real or AI-Generated?",
+        title: "What Can You Conclude?",
         text: "Picture A: A smiling woman standing in a garden. Five fingers on each hand, natural lighting, clear background, normal facial features.",
-        options: ["AI-generated", "Likely real"],
+        options: ["Natural details prove it was made with AI", "Appearance alone cannot confirm it is real"],
         correctIndex: 1
       },
       {
         type: "choice",
-        title: "Real or AI-Generated?",
+        title: "What Can You Conclude?",
         text: "Picture B: A man holding a coffee mug. Six fingers, the mug handle blends into his hand, and his watch looks blurry.",
-        options: ["AI-generated", "Real"],
+        options: ["Possible manipulation; check the source", "Definitely authentic"],
         correctIndex: 0
       },
       {
         type: "choice",
-        title: "Real or AI-Generated?",
+        title: "What Can You Conclude?",
         text: "Picture C: A family taking a selfie. Everyone looks natural, shadows match the sunlight, and the background looks consistent.",
-        options: ["AI-generated", "Likely real"],
+        options: ["Natural details prove it was made with AI", "Appearance alone cannot confirm it is real"],
         correctIndex: 1
       },
       {
         type: "choice",
-        title: "Real or AI-Generated?",
+        title: "What Can You Conclude?",
         text: "Picture D: A businessman shaking someone's hand. Fingers overlap unnaturally, his tie blends into his jacket, and one ear disappears.",
-        options: ["AI-generated", "Real"],
+        options: ["Possible manipulation; check the source", "Definitely authentic"],
         correctIndex: 0,
-        explanation: "You looked for multiple clues, not just one - check hands, fingers, jewelry, clothing, shadows, and the background, not only the face."
+        explanation: "Unusual details are a reason to check the source, not proof of AI. Natural-looking images also need verification; appearance alone cannot establish authenticity."
       },
       {
         type: "learn",
@@ -1450,7 +1450,7 @@ export const phase6Lessons = [
       {
         type: "learn",
         heading: "Block vs. Report",
-        text: "Blocking means: they can't message you, they can't see much of your profile, and they can't send you another friend request. Use Block when you don't want someone contacting you.\n\nReporting means: the platform reviews the account, checks whether it is fake or breaking the rules, and may take action if necessary. You can report and block the same account."
+        text: "Blocking limits contact from a particular profile. You may still encounter the person in shared groups or through another account. Review the platform's blocking details.\n\nReporting asks the platform to review possible rule violations; it does not guarantee removal. You can report and block the same account."
       },
       {
         type: "learn",
@@ -1500,7 +1500,7 @@ export const phase6Lessons = [
         title: "Flashcards",
         cards: [
           { front: "Report", back: "Tell the social media platform about suspicious or fake accounts." },
-          { front: "Block", back: "Prevent someone from contacting or viewing your profile." },
+          { front: "Block", back: "Limit contact from that profile. Shared spaces and other accounts can still allow some contact or visibility." },
           { front: "Impersonation", back: "Pretending to be another person online." },
           { front: "Scam Account", back: "A fake profile created to steal money or information." },
           { front: "Suspicious Link", back: "A link that may lead to a scam or fake website." }
@@ -1551,7 +1551,7 @@ export const phase6Lessons = [
           "Share it with friends."
         ],
         correctIndex: 2,
-        explanation: "Blocking stops future messages, and reporting helps protect others."
+        explanation: "Blocking limits contact from that profile. Reporting asks the platform to investigate; neither guarantees that the person cannot use another account."
       },
       {
         type: "scenario",

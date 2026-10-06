@@ -1,0 +1,34 @@
+{
+  "captured": "2026-10-06",
+  "source": "Actual web components; synthetic service responses",
+  "screenshots": [
+    {
+      "file": "web-phone-before-form.png",
+      "sha256": "de85f4f731dd5e08c68baef747f7559e017296cb9701866e8b81442c77d4d3e4"
+    },
+    {
+      "file": "web-phone-before-result.png",
+      "sha256": "af7ab76eb19e2486dd5ae0f1411aa390229325433bebd066754bdc1cc905cc49"
+    },
+    {
+      "file": "web-phone-shell-form.png",
+      "sha256": "f4af0e1de5de913d1645c92536a3abb02b3aac408cc903dcc05a9c6b2625ab54"
+    },
+    {
+      "file": "web-phone-shell-result.png",
+      "sha256": "dc13d016f530dd69b57275c2fc790e24edc32a53e97872276761e795d5b8f4e7"
+    },
+    {
+      "file": "web-phone-spanish-max-advice.png",
+      "sha256": "c1cc6b68e7b13870a490913d671a55e51f857d45cb75dac7ad958cdf4b5304dd"
+    },
+    {
+      "file": "web-ipad-shell-result.png",
+      "sha256": "319f6df2d3a9d1d32bf7ca66f05f383b86c90b03c89f460c7aa786d9c22287ce"
+    },
+    {
+      "file": "web-ipad-max-shell-error.png",
+      "sha256": "8ebd6f38339e87052ccb54fb3e41fe67bff15c72bc24c37153ed95936845df74"
+    }
+  ]
+}

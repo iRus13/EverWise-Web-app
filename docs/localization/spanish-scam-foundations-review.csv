@@ -1,0 +1,339 @@
+English key,Spanish presentation,Native locations
+1.1,1.1,scam-pause-button/lessonNumber
+The Pause Button,El botón de pausa,scam-pause-button/title; scam-pause-button/pathTitle; scam-pause-button/blocks/0/heading
+Pause Button,Saber hacer una pausa,scam-pause-button/badge
+Recognize when someone is trying to rush you.,Reconoce cuándo alguien intenta apresurarte.,scam-pause-button/goals/0
+Remember that you always have time to think before deciding.,Recuerda que puedes tomarte tiempo para pensar antes de decidir.,scam-pause-button/goals/1
+Why are they trying to make me hurry?,¿Por qué intentan meterme prisa?,scam-pause-button/blocks/0/question
+"Learn to recognize when someone is trying to rush you, and remember that you always have time to think before making a decision.",Aprende a reconocer cuándo alguien intenta meterte prisa y recuerda que siempre tienes tiempo para pensar antes de decidir.,scam-pause-button/blocks/0/objective
+"Many scams begin with one simple trick: making you feel like you must act immediately. Whether it is a phone call, email, or text message, an unexpected request does not become more trustworthy just because it sounds urgent.
+
+Honest businesses and organizations will give you time to verify information before making an important decision. Taking a moment to slow down is often the first step toward staying safe.","Muchas estafas empiezan con un truco sencillo: hacerte sentir que debes actuar de inmediato. Ya sea por teléfono, correo o mensaje de texto, una solicitud inesperada no es más confiable solo porque parezca urgente.
+
+Las empresas y organizaciones honestas te darán tiempo para verificar la información antes de tomar una decisión importante. Hacer una pausa suele ser el primer paso para protegerte.",scam-pause-button/blocks/0/text
+Spot the red flag,Reconoce la señal de alerta,scam-pause-button/blocks/1/title; scam-you-are-in-control/blocks/1/title; scam-stay-calm/blocks/1/title
+"A caller says, ""You only have two minutes to fix this problem.""",Alguien te llama y dice: «Solo tienes dos minutos para resolver este problema».,scam-pause-button/blocks/1/scenario
+Which part of the message should make you stop and think?,¿Qué parte del mensaje debería hacerte parar y pensar?,scam-pause-button/blocks/1/question
+They gave you a short deadline.,Te dieron muy poco tiempo.,scam-pause-button/blocks/1/options/0/text
+Creating urgency is one of the most common ways scammers pressure people into making quick decisions.,Crear una sensación de urgencia es una de las formas más habituales de presionar a alguien para que decida deprisa.,scam-pause-button/blocks/1/options/0/feedback
+They sounded polite.,Parecía una persona amable.,scam-pause-button/blocks/1/options/1/text
+Politeness is easy to fake and tells you nothing about whether someone is honest. The short deadline is the real warning sign.,Es fácil fingir amabilidad y eso no demuestra que alguien sea honesto. El plazo tan corto es la verdadera señal de alerta.,scam-pause-button/blocks/1/options/1/feedback
+They called during the afternoon.,Llamaron por la tarde.,scam-pause-button/blocks/1/options/2/text
+The time of day doesn't matter. What matters is that they gave you a deadline to stop you from thinking.,La hora del día no importa. Lo importante es que te dieron un plazo para impedir que pensaras con calma.,scam-pause-button/blocks/1/options/2/feedback
+Choose the safest response,Elige la respuesta más segura,scam-pause-button/blocks/2/title; scam-you-are-in-control/blocks/2/title; scam-stay-calm/blocks/2/title; scam-stop-verify-decide/blocks/2/title
+"Someone says, ""Please don't take time to think. We need to finish this right now.""","Alguien dice: «Por favor, no te detengas a pensar. Tenemos que terminar esto ahora mismo».",scam-pause-button/blocks/2/scenario
+What is the safest response?,¿Cuál es la respuesta más segura?,scam-pause-button/blocks/2/question; scam-you-are-in-control/blocks/4/question
+Take a moment before making any decision.,Tomarte un momento antes de decidir.,scam-pause-button/blocks/2/options/0/text
+"When someone rushes you, slowing down helps you make better decisions. Anyone discouraging you from thinking deserves extra caution.","Cuando alguien te apresura, hacer una pausa te ayuda a decidir mejor. Si no quiere darte tiempo para pensar, conviene tener más cuidado.",scam-pause-button/blocks/2/options/0/feedback
+Continue listening because they sound helpful.,Seguir escuchando porque parece querer ayudarte.,scam-pause-button/blocks/2/options/1/text
+Sounding helpful is part of the approach. Someone who won't let you think is showing you a warning sign.,"Parecer amable puede ser parte del engaño. Si alguien no te deja pensar, está mostrando una señal de alerta.",scam-pause-button/blocks/2/options/1/feedback
+Answer as quickly as possible.,Responder lo más rápido posible.,scam-pause-button/blocks/2/options/2/text
+"Answering quickly is exactly what they want. Speed is the scammer's advantage, not yours.","Responder rápido es justo lo que busca esa persona. La prisa beneficia a quien intenta estafarte, no a ti.",scam-pause-button/blocks/2/options/2/feedback
+Apply the lesson,Pon en práctica lo aprendido,scam-pause-button/blocks/3/title; scam-you-are-in-control/blocks/3/title; scam-stay-calm/blocks/3/title; scam-stop-verify-decide/blocks/3/title
+"You receive an email saying, ""Your account will be closed today unless you respond immediately.""",Recibes un correo que dice: «Cerraremos tu cuenta hoy si no respondes de inmediato».,scam-pause-button/blocks/3/scenario
+What is the biggest warning sign?,¿Cuál es la principal señal de alerta?,scam-pause-button/blocks/3/question; scam-you-are-in-control/blocks/1/question
+It is creating urgency.,Intenta crear una sensación de urgencia.,scam-pause-button/blocks/3/options/0/text
+"Scammers use urgency in phone calls, emails, text messages, and even websites. The pressure itself is the clue.","Las estafas pueden usar la urgencia en llamadas, correos, mensajes e incluso sitios web. La presión en sí es una pista.",scam-pause-button/blocks/3/options/0/feedback
+It uses your name.,Usa tu nombre.,scam-pause-button/blocks/3/options/1/text
+Your name is easy to find and doesn't prove anything. The deadline is what should make you pause.,Tu nombre puede ser fácil de encontrar y no demuestra quién envía el mensaje. El plazo es lo que debe hacerte pausar.,scam-pause-button/blocks/3/options/1/feedback
+It has bold text.,Tiene texto en negrita.,scam-pause-button/blocks/3/options/2/text
+Formatting isn't the issue. The demand for an immediate response is the warning sign.,El formato no es el problema. Exigir una respuesta inmediata es la señal de alerta.,scam-pause-button/blocks/3/options/2/feedback
+Real-life decision,Decisión de la vida real,scam-pause-button/blocks/4/title; scam-you-are-in-control/blocks/4/title; scam-stay-calm/blocks/4/title; scam-stop-verify-decide/blocks/4/title; phase8-challenge/blocks/3/title
+A company contacts you about your account but tells you the issue can also be handled tomorrow.,"Una empresa te contacta sobre tu cuenta, pero dice que también puedes resolver el asunto mañana.",scam-pause-button/blocks/4/scenario
+What is the best choice?,¿Cuál es la mejor opción?,scam-pause-button/blocks/4/question
+Take a little time to think before responding.,Tomarte un poco de tiempo para pensar antes de responder.,scam-pause-button/blocks/4/options/0/text
+Taking time to think helps you check a request. A relaxed deadline does not prove who contacted you; verify through a source you trust.,Tomarte tiempo para pensar te ayuda a comprobar una solicitud. Un plazo flexible no demuestra quién te contactó; verifica por un medio confiable.,scam-pause-button/blocks/4/options/0/feedback
+Reply immediately because they contacted you first.,Responder de inmediato porque te contactaron primero.,scam-pause-button/blocks/4/options/1/text
+Replying immediately can keep you in an unverified conversation. Pause and check the request before sharing information or taking action.,Responder de inmediato puede mantenerte en una conversación sin verificar. Pausa y comprueba la solicitud antes de compartir información o actuar.,scam-pause-button/blocks/4/options/1/feedback
+Ignore them forever.,Ignorarlos para siempre.,scam-pause-button/blocks/4/options/2/text
+Slowing down doesn't mean avoiding everything. You can verify a request and then deal with it properly.,Hacer una pausa no significa evitarlo todo. Puedes verificar una solicitud y después resolverla de forma adecuada.,scam-pause-button/blocks/4/options/2/feedback
+How confident do you feel about recognizing when someone is trying to rush you?,¿Qué tanta confianza tienes para reconocer cuándo alguien intenta apresurarte?,scam-pause-button/blocks/5/question
+"A stranger tells you, ""This offer expires in five minutes.""",Una persona desconocida dice: «Esta oferta vence en cinco minutos».,scam-pause-button/blocks/5/practice/0/scenario
+What should you notice first?,¿En qué debes fijarte primero?,scam-pause-button/blocks/5/practice/0/question
+The short deadline.,En el plazo tan corto.,scam-pause-button/blocks/5/practice/0/options/0/text
+A short deadline is often used to pressure people into acting before they think.,Un plazo corto suele usarse para presionar a las personas a actuar antes de pensar.,scam-pause-button/blocks/5/practice/0/options/0/feedback
+They sound friendly.,Parece amable.,scam-pause-button/blocks/5/practice/0/options/1/text
+Friendliness is easy to perform. The deadline is the clue.,Es fácil parecer amable. El plazo es la pista.,scam-pause-button/blocks/5/practice/0/options/1/feedback
+The offer seems exciting.,La oferta parece emocionante.,scam-pause-button/blocks/5/practice/0/options/2/text
+Excitement is part of the pressure. Look at the deadline instead.,La emoción es parte de la presión. Fíjate en el plazo.,scam-pause-button/blocks/5/practice/0/options/2/feedback
+Someone asks you to make an important decision immediately.,Alguien te pide que tomes una decisión importante de inmediato.,scam-pause-button/blocks/5/practice/1/scenario
+What is the safest habit?,¿Cuál es el hábito más seguro?,scam-pause-button/blocks/5/practice/1/question; scam-you-are-in-control/blocks/5/practice/1/question
+Take a moment before deciding.,Tomarte un momento antes de decidir.,scam-pause-button/blocks/5/practice/1/options/0/text
+You always have the right to slow down before making an important decision.,Siempre tienes derecho a hacer una pausa antes de tomar una decisión importante.,scam-pause-button/blocks/5/practice/1/options/0/feedback
+Decide as quickly as possible.,Decidir lo más rápido posible.,scam-pause-button/blocks/5/practice/1/options/1/text
+Quick decisions are what scams depend on. Give yourself time.,Las estafas se aprovechan de las decisiones apresuradas. Date tiempo.,scam-pause-button/blocks/5/practice/1/options/1/feedback
+Let the caller decide for you.,Dejar que quien llama decida por ti.,scam-pause-button/blocks/5/practice/1/options/2/text
+The decision is always yours. Nobody gets to make it on your behalf.,La decisión es tuya. Nadie puede tomarla en tu nombre.,scam-pause-button/blocks/5/practice/1/options/2/feedback
+The two-minute caller,La llamada de dos minutos,scam-pause-button/blocks/6/title
+Your phone rings from an unknown number. The caller says there is a problem with one of your accounts and asks you to stay on the phone while they explain what happened.,Te llama un número desconocido. La persona dice que hay un problema con una de tus cuentas y te pide que no cuelgues mientras explica qué pasó.,scam-pause-button/blocks/6/setup
+What should you do first?,¿Qué deberías hacer primero?,scam-pause-button/blocks/6/question; scam-you-are-in-control/blocks/6/question; scam-stay-calm/blocks/5/practice/1/question; scam-stay-calm/blocks/6/question; scam-stop-verify-decide/blocks/7/question
+Hang up.,Colgar.,scam-pause-button/blocks/6/options/0/text; scam-you-are-in-control/blocks/6/options/0/text
+"Hanging up gives you time to think, verify the situation yourself, and decide what to do next. You can always call the organization back on a number you trust.","Colgar te da tiempo para pensar, verificar la situación por tu cuenta y decidir qué hacer. Puedes volver a llamar a la organización usando un número confiable.",scam-pause-button/blocks/6/options/0/feedback
+Stay on the phone.,Seguir hablando.,scam-pause-button/blocks/6/options/1/text
+"Staying on the line is exactly what the caller wants, because it keeps you from stopping to think. Ending the call costs you nothing.",Quien llama quiere que sigas en la línea para que no te detengas a pensar. Puedes terminar la llamada.,scam-pause-button/blocks/6/options/1/feedback
+Unexpected contact,Contacto inesperado,scam-pause-button/blocks/6/spotted/0; scam-you-are-in-control/blocks/6/spotted/0; scam-stay-calm/blocks/6/spotted/0; scam-stop-verify-decide/blocks/7/spotted/0
+Pressure to stay on the line,Presión para seguir en la línea,scam-pause-button/blocks/6/spotted/1; scam-you-are-in-control/blocks/6/spotted/1
+Lesson complete!,¡Lección completada!,scam-pause-button/complete/title; scam-you-are-in-control/complete/title; scam-stay-calm/complete/title; scam-stop-verify-decide/complete/title
+You completed The Pause Button.,Completaste El botón de pausa.,scam-pause-button/complete/subtitle
+"If someone rushes you, slow yourself down.","Si alguien te apresura, haz una pausa.",scam-pause-button/complete/habit; scam-stop-verify-decide/complete/learned/0
+A deadline you didn't ask for.,Un plazo que no pediste.,scam-pause-button/complete/warningSign
+Recognized manufactured urgency,Reconociste una urgencia inventada,scam-pause-button/complete/skills/0
+Gave yourself time to think,Te diste tiempo para pensar,scam-pause-button/complete/skills/1
+Ended a pressured conversation,Terminaste una conversación que te presionaba,scam-pause-button/complete/skills/2
+You Are In Control,Tú tienes el control,scam-pause-button/complete/next; scam-you-are-in-control/title; scam-you-are-in-control/blocks/0/heading
+1.2,1.2,scam-you-are-in-control/lessonNumber
+You're In Control,Tú tienes el control,scam-you-are-in-control/pathTitle
+In Control,Tú tienes el control,scam-you-are-in-control/badge
+"Understand that your phone, computer, and accounts belong to you.","Comprende que tu teléfono, tu computadora y tus cuentas te pertenecen.",scam-you-are-in-control/goals/0
+"Know you can hang up, close a page, or ask for help at any time.","Recuerda que puedes colgar, cerrar una página o pedir ayuda en cualquier momento.",scam-you-are-in-control/goals/1
+Do I have to do what they say?,¿Tengo que hacer lo que me dicen?,scam-you-are-in-control/blocks/0/question
+"Learn that you are always in control of your phone, computer, and online accounts. No one can force you to act immediately.","Aprende que tú tienes el control de tu teléfono, tu computadora y tus cuentas. Nadie puede obligarte a actuar de inmediato.",scam-you-are-in-control/blocks/0/objective
+"Scammers often try to sound like they are in charge by telling you exactly what to do. They may ask you to click a link, download a program, or stay on the phone while they give instructions.
+
+Remember, your phone and computer belong to you. You can hang up, close a website, or ask someone you trust for help at any time. Staying in control is one of the best ways to stay safe online.","Quienes intentan estafarte suelen dar órdenes para parecer que están a cargo. Pueden pedirte que abras un enlace, descargues un programa o sigas en la línea mientras te dan instrucciones.
+
+Recuerda que tu teléfono y tu computadora te pertenecen. Puedes colgar, cerrar un sitio web o pedir ayuda a alguien de confianza en cualquier momento. Mantener el control es una buena forma de protegerte en internet.",scam-you-are-in-control/blocks/0/text
+"A caller says, ""Don't hang up. Just follow every step I tell you.""",Alguien te llama y dice: «No cuelgues. Solo sigue cada paso que te indique».,scam-you-are-in-control/blocks/1/scenario
+They want to control what you do.,Quiere controlar lo que haces.,scam-you-are-in-control/blocks/1/options/0/text
+Scammers often try to keep people from stopping to think by controlling the conversation.,Quienes intentan estafarte suelen controlar la conversación para impedir que te detengas a pensar.,scam-you-are-in-control/blocks/1/options/0/feedback
+They are speaking clearly.,Habla con claridad.,scam-you-are-in-control/blocks/1/options/1/text
+Speaking clearly is not a warning sign. Being told not to hang up is.,Hablar con claridad no es una señal de alerta. Decirte que no cuelgues sí lo es.,scam-you-are-in-control/blocks/1/options/1/feedback
+They know how to use computers.,Sabe usar computadoras.,scam-you-are-in-control/blocks/1/options/2/text
+Technical knowledge proves nothing. The attempt to control your actions is the clue.,Saber de tecnología no demuestra que alguien sea confiable. La pista es el intento de controlar tus acciones.,scam-you-are-in-control/blocks/1/options/2/feedback
+Someone asks you to download a program before explaining why.,Alguien te pide que descargues un programa antes de explicar para qué sirve.,scam-you-are-in-control/blocks/2/scenario
+What should you do?,¿Qué deberías hacer?,scam-you-are-in-control/blocks/2/question; scam-stay-calm/blocks/2/question; scam-stop-verify-decide/blocks/2/question; scam-stop-verify-decide/blocks/4/question; phase8-challenge/blocks/3/presentation/question
+Ask questions and decide later.,Hacer preguntas y decidir después.,scam-you-are-in-control/blocks/2/options/0/text
+You never have to install software or follow instructions just because someone asks.,No tienes que instalar programas ni seguir instrucciones solo porque alguien te lo pida.,scam-you-are-in-control/blocks/2/options/0/feedback
+Download it immediately.,Descargar de inmediato.,scam-you-are-in-control/blocks/2/options/1/text
+A remote-access program can let another person control your device. Do not install one at an unexpected caller’s request; seek help through support you already trust.,Un programa de acceso remoto puede permitir que otra persona controle tu dispositivo. No lo instales por petición de una llamada inesperada; busca ayuda en un servicio técnico confiable.,scam-you-are-in-control/blocks/2/options/1/feedback
+Leave the program running overnight.,Dejar el programa abierto toda la noche.,scam-you-are-in-control/blocks/2/options/2/text
+This gives a stranger even more time with your device. Don't install it in the first place.,Esto le da a una persona desconocida aún más tiempo con tu dispositivo. Lo mejor es no instalarlo.,scam-you-are-in-control/blocks/2/options/2/feedback
+"A pop-up appears saying, ""Call this number immediately so we can fix your computer.""",Aparece una ventana que dice: «Llama a este número de inmediato para que podamos arreglar tu computadora».,scam-you-are-in-control/blocks/3/scenario
+What should you remember?,¿Qué debes recordar?,scam-you-are-in-control/blocks/3/question; scam-you-are-in-control/blocks/5/practice/0/question
+You are still in control of what you do.,Tú sigues teniendo el control de lo que haces.,scam-you-are-in-control/blocks/3/options/0/text
+Unexpected pop-ups can be fake. You can close the page and decide what to do next.,Las ventanas inesperadas pueden ser falsas. Puedes cerrar la página y decidir qué hacer después.,scam-you-are-in-control/blocks/3/options/0/feedback
+The message knows your computer.,El mensaje conoce tu computadora.,scam-you-are-in-control/blocks/3/options/1/text
+"A website may know limited details about your browser, but a pop-up does not prove that your computer has a problem. Use official support to check.","Un sitio web puede conocer algunos datos de tu navegador, pero una ventana emergente no demuestra que tu computadora tenga un problema. Compruébalo con el soporte oficial.",scam-you-are-in-control/blocks/3/options/1/feedback
+Every warning message is an emergency.,Todos los avisos son emergencias.,scam-you-are-in-control/blocks/3/options/2/text
+Alarming messages are designed to feel like emergencies. That feeling is the trick.,Los mensajes alarmantes están diseñados para parecer emergencias. Esa sensación es parte del engaño.,scam-you-are-in-control/blocks/3/options/2/feedback
+"Someone online says, ""If you leave this page, your computer could stop working.""","Alguien en internet dice: «Si sales de esta página, tu computadora podría dejar de funcionar».",scam-you-are-in-control/blocks/4/scenario
+Remember that you decide what happens next.,Recordar que tú decides qué hacer después.,scam-you-are-in-control/blocks/4/options/0/text
+"No stranger gets to control your computer. You decide when to continue, leave a page, or ask for help.","Ninguna persona desconocida tiene derecho a controlar tu computadora. Tú decides cuándo seguir, cerrar una página o pedir ayuda.",scam-you-are-in-control/blocks/4/options/0/feedback
+Stay because they told you to.,Quedarte porque te lo dijeron.,scam-you-are-in-control/blocks/4/options/1/text
+"This threat is meant to keep you on the page. Close the browser tab or app using its own controls, not buttons inside the warning.","Esta amenaza busca que sigas en la página. Cierra la pestaña del navegador o la app con sus propios controles, no con botones dentro del aviso.",scam-you-are-in-control/blocks/4/options/1/feedback
+Click every button until the message disappears.,Pulsar todos los botones hasta que el mensaje desaparezca.,scam-you-are-in-control/blocks/4/options/2/text
+Clicking around a suspicious page can make things worse. Close the whole page instead.,Pulsar botones en una página sospechosa puede empeorar la situación. Cierra la página completa.,scam-you-are-in-control/blocks/4/options/2/feedback
+How confident do you feel about staying in control when someone tells you what to do online?,¿Qué tanta confianza tienes para mantener el control cuando alguien te dice qué hacer en internet?,scam-you-are-in-control/blocks/5/question
+"Someone says, ""Don't ask anyone else. Just follow my instructions.""",Alguien dice: «No le preguntes a nadie más. Solo sigue mis instrucciones».,scam-you-are-in-control/blocks/5/practice/0/scenario
+You can stop and decide for yourself.,Puedes detenerte y decidir por tu cuenta.,scam-you-are-in-control/blocks/5/practice/0/options/0/text
+You always have the right to stop and think before following instructions.,Siempre tienes derecho a parar y pensar antes de seguir instrucciones.,scam-you-are-in-control/blocks/5/practice/0/options/0/feedback
+They must know more than you.,Debe saber más que tú.,scam-you-are-in-control/blocks/5/practice/0/options/1/text
+"Confidence isn't expertise, and it certainly isn't honesty.",Hablar con seguridad no demuestra conocimiento ni honestidad.,scam-you-are-in-control/blocks/5/practice/0/options/1/feedback
+It is rude to ask questions.,Hacer preguntas es de mala educación.,scam-you-are-in-control/blocks/5/practice/0/options/2/text
+Asking questions is never rude. Anyone discouraging it is showing you a warning sign.,"Hacer preguntas no es de mala educación. Si alguien intenta impedírtelo, es una señal de alerta.",scam-you-are-in-control/blocks/5/practice/0/options/2/feedback
+A website tells you to download a file immediately.,Un sitio web te dice que descargues un archivo de inmediato.,scam-you-are-in-control/blocks/5/practice/1/scenario
+Decide for yourself before downloading anything.,Decidir por tu cuenta antes de descargar algo.,scam-you-are-in-control/blocks/5/practice/1/options/0/text
+You are always in control of what you download or install.,Tú decides qué descargas o instalas.,scam-you-are-in-control/blocks/5/practice/1/options/0/feedback
+Download it because the website asked.,Descargarlo porque el sitio web lo pide.,scam-you-are-in-control/blocks/5/practice/1/options/1/text
+A website asking is not a reason. You choose what goes on your device.,Que un sitio lo pida no es motivo suficiente. Tú eliges qué entra en tu dispositivo.,scam-you-are-in-control/blocks/5/practice/1/options/1/feedback
+Download it and ask questions later.,Descargarlo y hacer preguntas después.,scam-you-are-in-control/blocks/5/practice/1/options/2/text
+"Once something is installed, the damage may already be done. Ask first.",Un programa instalado podría causar daños antes de que preguntes. Consulta primero.,scam-you-are-in-control/blocks/5/practice/1/options/2/feedback
+The helpful technician,El técnico servicial,scam-you-are-in-control/blocks/6/title
+"Your computer displays a message saying there is a problem. A phone number appears on the screen. When you call, the person asks you to stay on the line and download a program so they can ""fix"" your computer.","Tu computadora muestra un mensaje que avisa de un problema e incluye un teléfono. Cuando llamas, la persona te pide que sigas en la línea y descargues un programa para «arreglar» tu computadora.",scam-you-are-in-control/blocks/6/setup
+"You stayed in control. If someone unexpectedly tells you to download software or follow instructions, you can always end the conversation and decide what to do next on your own.","Mantuviste el control. Si alguien te pide de forma inesperada que descargues un programa o sigas instrucciones, puedes terminar la conversación y decidir por tu cuenta qué hacer.",scam-you-are-in-control/blocks/6/options/0/feedback
+Download the program.,Descargar el programa.,scam-you-are-in-control/blocks/6/options/1/text
+"That program would give a stranger control of your computer. The message and the phone number both came from the same unexpected source, so neither can be trusted.",Ese programa daría a una persona desconocida control sobre tu computadora. El aviso y el teléfono vienen de la misma fuente inesperada; ninguno confirma que sea confiable.,scam-you-are-in-control/blocks/6/options/1/feedback
+Request for remote access,Solicitud de acceso remoto,scam-you-are-in-control/blocks/6/spotted/2
+You completed You Are In Control.,Completaste Tú tienes el control.,scam-you-are-in-control/complete/subtitle
+"You are always in control of your phone, computer, and accounts.","Tú tienes el control de tu teléfono, tu computadora y tus cuentas.",scam-you-are-in-control/complete/habit
+Someone telling you exactly what to do.,Alguien que te dice exactamente qué hacer.,scam-you-are-in-control/complete/warningSign
+Refused unwanted instructions,Rechazaste instrucciones no deseadas,scam-you-are-in-control/complete/skills/0
+Ended a controlling conversation,Terminaste una conversación controladora,scam-you-are-in-control/complete/skills/1
+Protected your device from remote access,Protegiste tu dispositivo del acceso remoto,scam-you-are-in-control/complete/skills/2
+"Stay Calm, Think Clearly","Mantén la calma, piensa con claridad",scam-you-are-in-control/complete/next; scam-stay-calm/title; scam-stay-calm/blocks/0/heading
+1.3,1.3,scam-stay-calm/lessonNumber
+Stay Calm,Mantén la calma,scam-stay-calm/pathTitle
+Clear Thinker,Pensar con claridad,scam-stay-calm/badge
+Notice when a message is creating a strong emotion.,Nota cuándo un mensaje provoca una emoción intensa.,scam-stay-calm/goals/0
+Treat strong feelings as a signal to slow down.,Usa las emociones intensas como una señal para hacer una pausa.,scam-stay-calm/goals/1
+Why do I suddenly feel worried or excited?,¿Por qué de repente siento preocupación o emoción?,scam-stay-calm/blocks/0/question
+"Learn that strong emotions can make it harder to make good decisions, and that taking a moment to stay calm helps you think clearly.",Aprende que las emociones intensas pueden dificultar las decisiones y que hacer una pausa para calmarte te ayuda a pensar con claridad.,scam-stay-calm/blocks/0/objective
+"Scammers often try to create strong emotions because emotional decisions are usually faster than careful ones. They may try to make you feel worried, excited, guilty, or even curious.
+
+Whenever a message or phone call causes a strong emotional reaction, treat it as a reminder to slow down and think. Staying calm gives you a better chance to recognize scams and make safe choices.","Las estafas suelen provocar emociones intensas porque es más fácil actuar rápido cuando sentimos algo fuerte. Pueden intentar causarte preocupación, entusiasmo, culpa o curiosidad.
+
+Si un mensaje o una llamada te provoca una emoción intensa, tómalo como un recordatorio de hacer una pausa y pensar. Mantener la calma te ayuda a reconocer estafas y tomar decisiones más seguras.",scam-stay-calm/blocks/0/text
+"You receive a text message saying, ""Congratulations! You've won a brand-new smartphone. Claim your prize today!""",Recibes un mensaje que dice: «¡Felicidades! Ganaste un teléfono nuevo. ¡Reclama tu premio hoy!».,scam-stay-calm/blocks/1/scenario
+What should make you stop and think?,¿Qué debe hacerte parar y pensar?,scam-stay-calm/blocks/1/question
+The message is trying to make you feel excited.,El mensaje intenta entusiasmarte.,scam-stay-calm/blocks/1/options/0/text
+Scammers often use excitement to encourage quick decisions without careful thinking.,"Las estafas suelen usar el entusiasmo para provocar decisiones rápidas, sin pensar con cuidado.",scam-stay-calm/blocks/1/options/0/feedback
+The phone is new.,El teléfono es nuevo.,scam-stay-calm/blocks/1/options/1/text
+What's being offered isn't the issue. The rush of excitement is what's being used on you.,"El problema no es lo que ofrecen, sino la emoción que usan para impulsarte a actuar.",scam-stay-calm/blocks/1/options/1/feedback
+The text arrived in the morning.,El mensaje llegó por la mañana.,scam-stay-calm/blocks/1/options/2/text
+Timing is irrelevant. The emotional pull is the warning sign.,La hora no es la pista. La presión emocional es la señal de alerta.,scam-stay-calm/blocks/1/options/2/feedback
+An unexpected message promises a reward if you act immediately.,Un mensaje inesperado promete una recompensa si actúas de inmediato.,scam-stay-calm/blocks/2/scenario
+Stop and think before responding.,Parar y pensar antes de responder.,scam-stay-calm/blocks/2/options/0/text
+Exciting offers can wait. Taking a moment to think helps protect you from scams.,Las ofertas emocionantes pueden esperar. Tomarte un momento para pensar te ayuda a protegerte de las estafas.,scam-stay-calm/blocks/2/options/0/feedback
+Claim the reward immediately.,Reclamar la recompensa de inmediato.,scam-stay-calm/blocks/2/options/1/text
+An urgent deadline does not prove that an offer is genuine. Pause and verify it independently before clicking or sharing information.,Un plazo urgente no demuestra que una oferta sea real. Haz una pausa y verifícala por tu cuenta antes de pulsar un enlace o compartir información.,scam-stay-calm/blocks/2/options/1/feedback
+Forward the message to your friends.,Reenviar el mensaje a tus amistades.,scam-stay-calm/blocks/2/options/2/text
+Forwarding an unverified offer can expose people who trust you to the same risk. Check it independently first.,Reenviar una oferta sin verificar puede exponer al mismo riesgo a personas que confían en ti. Compruébala por tu cuenta primero.,scam-stay-calm/blocks/2/options/2/feedback
+"A caller says, ""Your account has a serious problem, and we need to fix it today.""",Alguien llama y dice: «Tu cuenta tiene un problema grave y debemos resolverlo hoy».,scam-stay-calm/blocks/3/scenario
+Which emotion is the caller most likely trying to create?,¿Qué emoción intenta provocar probablemente?,scam-stay-calm/blocks/3/question
+Worry.,Preocupación.,scam-stay-calm/blocks/3/options/0/text
+Scammers often use fear to encourage quick decisions. Worry and excitement are two sides of the same tactic.,Las estafas suelen usar el miedo para provocar decisiones rápidas. La preocupación y el entusiasmo son dos versiones de la misma táctica.,scam-stay-calm/blocks/3/options/0/feedback
+Happiness.,Alegría.,scam-stay-calm/blocks/3/options/1/text
+"This message is built to alarm you, not to please you.","Este mensaje busca alarmarte, no alegrarte.",scam-stay-calm/blocks/3/options/1/feedback
+Curiosity.,Curiosidad.,scam-stay-calm/blocks/3/options/2/text
+"Curiosity is sometimes used, but a ""serious problem"" is aimed squarely at fear.","A veces se usa la curiosidad, pero hablar de un «problema grave» busca sobre todo provocar miedo.",scam-stay-calm/blocks/3/options/2/feedback
+You receive an unexpected message that makes you feel excited or worried.,Recibes un mensaje inesperado que te entusiasma o te preocupa.,scam-stay-calm/blocks/4/scenario
+What is the best first step?,¿Cuál es el mejor primer paso?,scam-stay-calm/blocks/4/question
+Take a moment to think before responding.,Tomarte un momento para pensar antes de responder.,scam-stay-calm/blocks/4/options/0/text
+"Whether the message creates excitement, worry, or curiosity, slowing down helps you make better decisions.","Ya sea entusiasmo, preocupación o curiosidad, hacer una pausa te ayuda a decidir mejor.",scam-stay-calm/blocks/4/options/0/feedback
+Reply immediately.,Responder de inmediato.,scam-stay-calm/blocks/4/options/1/text
+The strong feeling is exactly why you shouldn't reply yet.,Esa emoción intensa es precisamente una razón para no responder todavía.,scam-stay-calm/blocks/4/options/1/feedback
+Ignore every message forever.,Ignorar todos los mensajes para siempre.,scam-stay-calm/blocks/4/options/2/text
+You don't need to avoid everything. Just pause long enough to think clearly.,No necesitas evitarlo todo. Solo haz una pausa suficiente para pensar con claridad.,scam-stay-calm/blocks/4/options/2/feedback
+How confident do you feel about recognizing when emotions are affecting your decisions?,¿Qué tanta confianza tienes para reconocer cuándo las emociones influyen en tus decisiones?,scam-stay-calm/blocks/5/question
+"An email says, ""This is your last chance to receive a special reward.""",Un correo dice: «Esta es tu última oportunidad para recibir una recompensa especial».,scam-stay-calm/blocks/5/practice/0/scenario
+What emotion is the message trying to create?,¿Qué emoción intenta provocar el mensaje?,scam-stay-calm/blocks/5/practice/0/question
+Excitement.,Entusiasmo.,scam-stay-calm/blocks/5/practice/0/options/0/text
+Scammers often promise rewards to encourage quick decisions.,Las estafas suelen prometer recompensas para provocar decisiones rápidas.,scam-stay-calm/blocks/5/practice/0/options/0/feedback
+Confusion.,Confusión.,scam-stay-calm/blocks/5/practice/0/options/1/text
+"The message is designed to attract you, not confuse you.","El mensaje está diseñado para atraerte, no para confundirte.",scam-stay-calm/blocks/5/practice/0/options/1/feedback
+Relaxation.,Tranquilidad.,scam-stay-calm/blocks/5/practice/0/options/2/text
+"""Last chance"" is built to raise your pulse, not lower it.","«Última oportunidad» busca ponerte en alerta, no tranquilizarte.",scam-stay-calm/blocks/5/practice/0/options/2/feedback
+A phone call makes you feel worried about one of your accounts.,Una llamada te hace sentir preocupación por una de tus cuentas.,scam-stay-calm/blocks/5/practice/1/scenario
+Stay calm and think before acting.,Mantener la calma y pensar antes de actuar.,scam-stay-calm/blocks/5/practice/1/options/0/text
+Staying calm helps you make safer decisions.,Mantener la calma te ayuda a tomar decisiones más seguras.,scam-stay-calm/blocks/5/practice/1/options/0/feedback
+Follow every instruction immediately.,Seguir todas las instrucciones de inmediato.,scam-stay-calm/blocks/5/practice/1/options/1/text
+Worry makes instructions feel urgent. That's the point of the worry.,La preocupación hace que las instrucciones parezcan urgentes. Eso es lo que busca el mensaje.,scam-stay-calm/blocks/5/practice/1/options/1/feedback
+Make a decision as quickly as possible.,Tomar una decisión lo más rápido posible.,scam-stay-calm/blocks/5/practice/1/options/2/text
+Pressure can make a suspicious request harder to judge. Pause and verify it before acting.,La presión puede dificultar que evalúes una solicitud sospechosa. Haz una pausa y verifícala antes de actuar.,scam-stay-calm/blocks/5/practice/1/options/2/feedback
+The lucky winner,El premio inesperado,scam-stay-calm/blocks/6/title
+"You receive a text message saying you've won an expensive vacation. To claim it, you only need to click a link and complete a short form today.","Recibes un mensaje que dice que ganaste unas vacaciones costosas. Para reclamarlas, solo tienes que abrir un enlace y completar un formulario hoy.",scam-stay-calm/blocks/6/setup
+Take a moment to think before doing anything.,Tomarte un momento para pensar antes de hacer nada.,scam-stay-calm/blocks/6/options/0/text
+"The message tried to make you feel excited so you would act quickly. By slowing down first, you gave yourself time to decide whether the message could be trusted.","El mensaje intentó entusiasmarte para que actuaras rápido. Al hacer una pausa, te diste tiempo para decidir si era confiable.",scam-stay-calm/blocks/6/options/0/feedback
+Click the link.,Pulsar el enlace.,scam-stay-calm/blocks/6/options/1/text
+The excitement and the deadline were both there to get you clicking before you thought. A prize you never entered to win is rarely a prize at all.,La emoción y el plazo buscaban que abrieras el enlace sin pensar. Un premio de un sorteo en el que no participaste rara vez es un premio real.,scam-stay-calm/blocks/6/options/1/feedback
+Emotional pressure,Presión emocional,scam-stay-calm/blocks/6/spotted/1
+A deadline you didn't ask for,Un plazo que no pediste,scam-stay-calm/blocks/6/spotted/2
+"You completed Stay Calm, Think Clearly.","Completaste Mantén la calma, piensa con claridad.",scam-stay-calm/complete/subtitle
+"Strong emotions are a reason to slow down, not speed up.","Las emociones intensas son una razón para pausar, no para apresurarte.",scam-stay-calm/complete/habit; scam-stop-verify-decide/complete/learned/2
+A message that makes you feel a sudden strong emotion.,Un mensaje que te provoca una emoción intensa de repente.,scam-stay-calm/complete/warningSign
+Noticed emotional pressure,Reconociste la presión emocional,scam-stay-calm/complete/skills/0
+Stayed calm under excitement and worry,Mantuviste la calma ante el entusiasmo y la preocupación,scam-stay-calm/complete/skills/1
+Paused before responding,Hiciste una pausa antes de responder,scam-stay-calm/complete/skills/2
+"Stop, Verify, Then Decide","Para, verifica y después decide",scam-stay-calm/complete/next; scam-stop-verify-decide/title; scam-stop-verify-decide/blocks/0/heading
+1.4,1.4,scam-stop-verify-decide/lessonNumber
+Stop & Verify,Detente y verifica,scam-stop-verify-decide/pathTitle
+Verifier,Saber verificar,scam-stop-verify-decide/badge
+Verify unexpected requests before trusting them.,Verifica las solicitudes inesperadas antes de confiar en ellas.,scam-stop-verify-decide/goals/0
+"Use contact information you found yourself, not what you were given.","Usa datos de contacto que encontraste por tu cuenta, no los que te dieron.",scam-stop-verify-decide/goals/1
+How do I know if this is really them?,¿Cómo sé si realmente son quienes dicen ser?,scam-stop-verify-decide/blocks/0/question
+Learn that unexpected requests should always be verified before you trust them or take action.,Aprende a verificar las solicitudes inesperadas antes de confiar en ellas o actuar.,scam-stop-verify-decide/blocks/0/objective
+"Not every unexpected phone call, email, or text message is a scam, but every unexpected request deserves a moment to be verified.
+
+Instead of trusting someone because they sound convincing or use a familiar name, contact the company, bank, or person yourself using an official phone number or website. Taking a minute to verify can prevent hours of stress and protect your personal information.","No todas las llamadas, los correos o los mensajes inesperados son estafas, pero toda solicitud inesperada merece un momento para comprobarla.
+
+En lugar de confiar porque alguien suena convincente o usa un nombre conocido, contacta tú a la empresa, el banco o la persona por un teléfono o sitio web oficial. Un minuto de verificación puede evitar horas de preocupación y proteger tu información personal.",scam-stop-verify-decide/blocks/0/text
+Spot the safe choice,Reconoce la opción segura,scam-stop-verify-decide/blocks/1/title
+Someone calls and says they are from your bank.,Alguien te llama y dice que es de tu banco.,scam-stop-verify-decide/blocks/1/scenario
+What is the safest first step?,¿Cuál es el primer paso más seguro?,scam-stop-verify-decide/blocks/1/question; scam-stop-verify-decide/blocks/5/practice/1/question
+Hang up and call your bank using the phone number on your bank card.,Colgar y llamar al banco al número de tu tarjeta bancaria.,scam-stop-verify-decide/blocks/1/options/0/text
+"End the unexpected call and dial the number printed on your bank card. Do not use a number supplied by the caller or shown in caller ID, which can be faked.","Termina la llamada inesperada y marca el número impreso en tu tarjeta bancaria. No uses el número que te dé quien llama ni el que aparezca en el identificador de llamadas, que puede falsificarse.",scam-stop-verify-decide/blocks/1/options/0/feedback
+Continue talking because they knew your name.,Seguir hablando porque sabe tu nombre.,scam-stop-verify-decide/blocks/1/options/1/text
+Your name is easy to find. Knowing it proves nothing about who someone is.,Tu nombre puede ser fácil de encontrar. Saberlo no demuestra quién es la otra persona.,scam-stop-verify-decide/blocks/1/options/1/feedback
+Give them your account number so they can verify you.,Darle tu número de cuenta para que pueda verificar tu identidad.,scam-stop-verify-decide/blocks/1/options/2/text
+Do not give account details to an unverified caller. Contact the bank yourself through a trusted number; the bank may then ask you to verify your identity.,No des datos de tu cuenta a alguien que llama sin verificar quién es. Contacta tú al banco por un número confiable; entonces el banco puede pedirte que verifiques tu identidad.,scam-stop-verify-decide/blocks/1/options/2/feedback
+You receive a text message asking you to click a link to verify your account.,Recibes un mensaje que te pide abrir un enlace para verificar tu cuenta.,scam-stop-verify-decide/blocks/2/scenario
+Visit the company's official website or call them using an official number.,Visitar el sitio web oficial de la empresa o llamar a un número oficial.,scam-stop-verify-decide/blocks/2/options/0/text
+"Whenever possible, start the conversation yourself using trusted contact information.","Siempre que puedas, inicia tú la conversación con datos de contacto confiables.",scam-stop-verify-decide/blocks/2/options/0/feedback
+Reply to the text asking if it is real.,Responder al mensaje para preguntar si es real.,scam-stop-verify-decide/blocks/2/options/1/text
+"If the text is fake, the reply goes straight back to the scammer, who will happily tell you it's real.","Si el mensaje es falso, tu respuesta llegará a quien intenta estafarte, que puede decirte que es real.",scam-stop-verify-decide/blocks/2/options/1/feedback
+Open the link immediately.,Abrir el enlace de inmediato.,scam-stop-verify-decide/blocks/2/options/2/text
+Never let an unexpected message decide where you go online. The page it opens can look perfect and still be fake.,No dejes que un mensaje inesperado decida a qué sitio entras. La página puede parecer perfecta y aun así ser falsa.,scam-stop-verify-decide/blocks/2/options/2/feedback
+You receive an unexpected email saying there is a problem with one of your accounts.,Recibes un correo inesperado que avisa de un problema con una de tus cuentas.,scam-stop-verify-decide/blocks/3/scenario
+What is the safest way to find out if it is real?,¿Cuál es la forma más segura de saber si es real?,scam-stop-verify-decide/blocks/3/question
+Call the company using the phone number listed on your statement or official website.,Llamar a la empresa al número de tu estado de cuenta o de su sitio web oficial.,scam-stop-verify-decide/blocks/3/options/0/text
+Always use contact information that you found yourself.,Usa siempre datos de contacto que encontraste por tu cuenta.,scam-stop-verify-decide/blocks/3/options/0/feedback
+Reply to the email.,Responder al correo.,scam-stop-verify-decide/blocks/3/options/1/text
+Replying only reaches whoever sent it. That's no way to check whether they're genuine.,Responder solo te conecta con quien lo envió. Eso no comprueba su identidad.,scam-stop-verify-decide/blocks/3/options/1/feedback
+Click the email link to learn more.,Abrir el enlace del correo para saber más.,scam-stop-verify-decide/blocks/3/options/2/text
+The link is chosen by the sender. Choose your own route instead.,El enlace lo elige quien envía el mensaje. Elige tú cómo contactar a la empresa.,scam-stop-verify-decide/blocks/3/options/2/feedback
+An unexpected caller asks you to confirm personal information before they can help you.,Alguien te llama inesperadamente y te pide confirmar datos personales antes de ayudarte.,scam-stop-verify-decide/blocks/4/scenario
+Verify who they are by contacting the organization yourself.,Verificar quién es contactando tú a la organización.,scam-stop-verify-decide/blocks/4/options/0/text
+Pause before sharing personal details. Contact the organization through a number you already trust and check the request there.,Haz una pausa antes de compartir datos personales. Contacta a la organización por un número confiable y comprueba allí la solicitud.,scam-stop-verify-decide/blocks/4/options/0/feedback
+Answer their questions because they called first.,Responder a sus preguntas porque llamó primero.,scam-stop-verify-decide/blocks/4/options/1/text
+"Calling first gives someone no authority at all. If anything, it's the reason to be careful.",Llamar primero no da autoridad a nadie. Es una razón para tener cuidado.,scam-stop-verify-decide/blocks/4/options/1/feedback
+Stay on the phone until they finish explaining.,Seguir en la línea hasta que termine de explicar.,scam-stop-verify-decide/blocks/4/options/2/text
+"The longer the call runs, the more pressure builds. You can end it and check independently.","Cuanto más dura la llamada, más puede aumentar la presión. Puedes colgar y comprobarlo por tu cuenta.",scam-stop-verify-decide/blocks/4/options/2/feedback
+How confident do you feel about verifying unexpected requests before trusting them?,¿Qué tanta confianza tienes para verificar solicitudes inesperadas antes de confiar en ellas?,scam-stop-verify-decide/blocks/5/question
+Someone says they are calling from your insurance company.,Alguien dice que llama de tu aseguradora.,scam-stop-verify-decide/blocks/5/practice/0/scenario
+How can you verify they are really from your insurance company?,¿Cómo puedes verificar que realmente es de tu aseguradora?,scam-stop-verify-decide/blocks/5/practice/0/question
+Call the phone number on your insurance card.,Llamar al número de tu tarjeta del seguro.,scam-stop-verify-decide/blocks/5/practice/0/options/0/text
+Always use contact information you already trust.,Usa siempre datos de contacto que ya sabes que son confiables.,scam-stop-verify-decide/blocks/5/practice/0/options/0/feedback
+Ask them if they promise they are real.,Pedirle que prometa que es quien dice ser.,scam-stop-verify-decide/blocks/5/practice/0/options/1/text
+Someone willing to lie about who they are will happily promise anything.,Alguien dispuesto a mentir sobre su identidad también puede hacer una promesa falsa.,scam-stop-verify-decide/blocks/5/practice/0/options/1/feedback
+Continue talking until they convince you.,Seguir hablando hasta que te convenza.,scam-stop-verify-decide/blocks/5/practice/0/options/2/text
+Being convincing is the whole skill. Verification beats persuasion.,Convencerte es parte del engaño. Verificar es más útil que dejarte persuadir.,scam-stop-verify-decide/blocks/5/practice/0/options/2/feedback
+A text message says there is a problem with your package and asks you to click a link.,Un mensaje dice que hay un problema con tu paquete y te pide abrir un enlace.,scam-stop-verify-decide/blocks/5/practice/1/scenario
+Visit the shipping company's official website yourself.,Entrar por tu cuenta al sitio web oficial de la empresa de envíos.,scam-stop-verify-decide/blocks/5/practice/1/options/0/text
+Starting from the official website helps you avoid fake links.,Empezar desde el sitio oficial te ayuda a evitar enlaces falsos.,scam-stop-verify-decide/blocks/5/practice/1/options/0/feedback
+Click the link in the message.,Abrir el enlace del mensaje.,scam-stop-verify-decide/blocks/5/practice/1/options/1/text
+The link leads wherever the sender wants it to. Choose your own path.,El enlace lleva a donde quiere quien lo envía. Elige tu propio camino.,scam-stop-verify-decide/blocks/5/practice/1/options/1/feedback
+Reply to the text.,Responder al mensaje.,scam-stop-verify-decide/blocks/5/practice/1/options/2/text
+"A reply only reaches the sender, whoever they really are.","Tu respuesta solo llega a quien envió el mensaje, sea quien sea.",scam-stop-verify-decide/blocks/5/practice/1/options/2/feedback
+Lesson 1.1 — The Pause Button,Lección 1.1 — El botón de pausa,scam-stop-verify-decide/blocks/6/links/0/lesson
+"Verifying takes time, and you've already learned that you're allowed to take it.","Verificar lleva tiempo, y ya aprendiste que puedes tomártelo.",scam-stop-verify-decide/blocks/6/links/0/note
+Lesson 1.2 — You Are In Control,Lección 1.2 — Tú tienes el control,scam-stop-verify-decide/blocks/6/links/1/lesson
+"You choose the phone number, the website, and the moment. Not the caller.","Tú eliges el teléfono, el sitio web y el momento. No quien llama.",scam-stop-verify-decide/blocks/6/links/1/note
+"Lesson 1.3 — Stay Calm, Think Clearly","Lección 1.3 — Mantén la calma, piensa con claridad",scam-stop-verify-decide/blocks/6/links/2/lesson
+A calm mind is what makes verifying feel natural instead of rude.,"Mantener la calma te ayuda a ver la verificación como algo normal, no como una falta de respeto.",scam-stop-verify-decide/blocks/6/links/2/note
+The bank caller,La llamada del banco,scam-stop-verify-decide/blocks/7/title
+You receive an unexpected phone call from someone claiming to be from your bank. They explain that there may be unusual activity on your account and ask you to verify your identity before they can help.,Recibes una llamada inesperada de alguien que dice ser de tu banco. Explica que podría haber actividad inusual en tu cuenta y te pide verificar tu identidad antes de ayudarte.,scam-stop-verify-decide/blocks/7/setup
+Hang up and call your bank using the phone number on your debit or credit card.,Colgar y llamar al banco al número de tu tarjeta de débito o crédito.,scam-stop-verify-decide/blocks/7/options/0/text
+Ending the unexpected call and dialing the number printed on your bank card gives you an independent way to check the request.,Terminar la llamada inesperada y marcar el número impreso en tu tarjeta bancaria te permite comprobar la solicitud por un medio independiente.,scam-stop-verify-decide/blocks/7/options/0/feedback
+Give them the information they requested.,Dar la información que te pidió.,scam-stop-verify-decide/blocks/7/options/1/text
+"They called you, so they're the ones who need to be verified. Handing over personal details to an unexpected caller is exactly what the scam depends on.","Como esa persona te llamó, primero debes verificar quién es. La estafa busca que entregues tus datos a alguien que no has verificado.",scam-stop-verify-decide/blocks/7/options/1/feedback
+Request for personal information,Solicitud de información personal,scam-stop-verify-decide/blocks/7/spotted/1
+No independent verification,Sin verificación independiente,scam-stop-verify-decide/blocks/7/spotted/2
+"You completed Stop, Verify, Then Decide.","Completaste Para, verifica y después decide.",scam-stop-verify-decide/complete/subtitle
+Verify unexpected requests before you trust them.,Verifica las solicitudes inesperadas antes de confiar en ellas.,scam-stop-verify-decide/complete/habit; scam-stop-verify-decide/complete/learned/3
+Being asked to prove yourself to someone who contacted you.,Que te pidan demostrar tu identidad cuando te contactaron sin que lo solicitaras.,scam-stop-verify-decide/complete/warningSign
+Verified using contact information you chose,Verificaste con datos de contacto que elegiste,scam-stop-verify-decide/complete/skills/0
+Refused to confirm details to an unexpected caller,No confirmaste datos a alguien que llamó inesperadamente,scam-stop-verify-decide/complete/skills/1
+Started the conversation on your own terms,Iniciaste la conversación en tus propios términos,scam-stop-verify-decide/complete/skills/2
+You are always in control.,Tú tienes el control.,scam-stop-verify-decide/complete/learned/1
+Phase 8 Final Challenge,Desafío final de la fase 8,scam-stop-verify-decide/complete/next; phase8-challenge/title
+Phase 9 — The Warning Signs,Fase 9 — Las señales de alerta,phase8-challenge/nextLabel
+Quick review,Repaso breve,phase8-challenge/blocks/0/title
+Which actions help you stay in control?,¿Qué acciones te ayudan a mantener el control?,phase8-challenge/blocks/0/prompt
+Pause before responding,Haz una pausa antes de responder,phase8-challenge/blocks/0/options/0/text
+Verify through a separate trusted channel,Verificar por un medio independiente y confiable,phase8-challenge/blocks/0/options/1/text
+Choose only after checking,Elegir solo después de comprobar,phase8-challenge/blocks/0/options/2/text
+Act immediately because a message says so,Actuar de inmediato porque un mensaje lo exige,phase8-challenge/blocks/0/options/3/text
+Good review. These choices help you stay informed and in control.,Buen repaso. Estas opciones te ayudan a estar informado y mantener el control.,phase8-challenge/blocks/0/feedback
+Take another look at the highlighted choices. Safe actions give you time to verify.,Vuelve a mirar las opciones resaltadas. Las acciones seguras te dan tiempo para comprobar.,phase8-challenge/blocks/0/incorrectFeedback
+Key ideas,Ideas clave,phase8-challenge/blocks/1/title
+Pause,Pausar,phase8-challenge/blocks/1/cards/0/front
+Stop briefly so emotion and pressure do not control the decision.,Detente un momento para que la emoción y la presión no controlen tu decisión.,phase8-challenge/blocks/1/cards/0/back
+Verify,Verificar,phase8-challenge/blocks/1/cards/1/front
+Check a claim through a source you choose and trust.,Comprueba lo que te dicen mediante una fuente que tú elijas y en la que confíes.,phase8-challenge/blocks/1/cards/1/back
+Decide,Decide,phase8-challenge/blocks/1/cards/2/front
+Choose the next action after you have enough reliable information.,Elige qué hacer después de reunir suficiente información confiable.,phase8-challenge/blocks/1/cards/2/back
+Recall practice,Práctica de memoria,phase8-challenge/blocks/2/title
+pause,pausa,phase8-challenge/blocks/2/wordBank/0; phase8-challenge/blocks/2/questions/0/answer
+payment,pago,phase8-challenge/blocks/2/wordBank/1
+secret,secreto,phase8-challenge/blocks/2/wordBank/2
+password,contraseña,phase8-challenge/blocks/2/wordBank/3
+A short ______ gives you time to think before acting.,Una breve ______ te da tiempo para pensar antes de actuar.,phase8-challenge/blocks/2/questions/0/text
+A message creates panic and demands that you act now. What should you do?,Un mensaje provoca pánico y exige que actúes ahora. ¿Qué debes hacer?,phase8-challenge/blocks/3/text
+"Stop, breathe, and verify the request another way","Parar, respirar y verificar la solicitud por otro medio",phase8-challenge/blocks/3/options/0
+Follow the instructions before time runs out,Seguir las instrucciones antes de que se acabe el tiempo,phase8-challenge/blocks/3/options/1
+Forward the message to everyone without checking,Reenviar el mensaje a todo el mundo sin comprobarlo,phase8-challenge/blocks/3/options/2
+A pause breaks the pressure. Independent verification helps you make your own decision.,Una pausa interrumpe la presión. Verificar por un medio independiente te ayuda a tomar tu propia decisión.,phase8-challenge/blocks/3/explanation
+A message creates panic and demands that you act now.,Un mensaje provoca pánico y exige que actúes ahora.,phase8-challenge/blocks/3/presentation/story
+Final confidence check,Comprobación final de confianza,phase8-challenge/blocks/4/title
+You are allowed to end a suspicious conversation.,Puedes terminar una conversación sospechosa.,phase8-challenge/blocks/4/questions/0/text
+You never owe an unknown caller or sender continued attention.,No estás obligado a seguir prestando atención a una persona desconocida que llama o escribe.,phase8-challenge/blocks/4/questions/0/explanation

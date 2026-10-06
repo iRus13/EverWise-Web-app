@@ -1,0 +1,31 @@
+{
+  "baseline": "36f0917481b9d142c961035ec823047f24df2140",
+  "productFileSHA256": {
+    "src/components/LanguageSelect.jsx": "4e5ad5a0e08199f3fcf202647145b86fdd44dbda69033b0b4375a7006371c802",
+    "src/components/blocks/ScenarioBlock.jsx": "2385b9cbcae74a8b436e79aa9a60052912bd6d4badab35cd8c7d5d9f8504057a",
+    "src/i18n/es.json": "dfc4543c21c04a75cf452e4aa39ffb55cb91f13014ec728b267977477762a00b",
+    "src/i18n/learning-es.json": "f01e7f5cb790a439f68405db6f27b0869fe7ea335a08b66d46c968b8e167110a",
+    "src/screens/LessonPath.jsx": "38a5370decc8a01091fa079f2109605cccb424c03aafbd48ae9ed735cbbbd5ed",
+    "src/styles/lesson-experience.css": "6709508f0dd87ea25bec3d107f81195a2aa6d4e80ab44e31fb2a62ef34b7423e",
+    "src/data/scenario-presentations.json": "01c2ae0891fc770d63f59ddb15aa4bd5543e319474a33a2835d259ece0fa8ac3"
+  },
+  "images": [
+    {
+      "file": "web-phone-scenario-before.jpg",
+      "sha256": "956a98380ce85e5b38cdd3f33819b42451a39e8308e05b434f869d86ee35101e"
+    },
+    {
+      "file": "web-phone-scenario-after.jpg",
+      "sha256": "313f3c3cb31e71fef382ca01b14216197efd4419e2d83adac68b5eb0e1632eda"
+    },
+    {
+      "file": "web-phone-scenario-maximum.jpg",
+      "sha256": "6253c5e6560ac3a3407549f0e65d1017b409c55c13958972079dcabaa516f945"
+    },
+    {
+      "file": "web-ipad-builder.jpg",
+      "sha256": "ce0d862c3b1f38bdab70ee01fdf4a77e300647914be834910ed8ff5f71670f2d"
+    }
+  ],
+  "notes": "Native originals are simulator captures; web originals are browser captures. Native before source is 78d8fbd. Web before includes the new Spanish copy with the old scenario hierarchy; after adds the hierarchy. Web captures precede only the spoken-text assembly refinement; rendered markup and styles are identical."
+}

@@ -46,6 +46,21 @@ function renderSettings(overrides = {}) {
 afterEach(cleanup);
 
 describe("provider-aware Settings billing", () => {
+  test("a pending subscription check announces activity before offering failure recovery", () => {
+    const unavailable = billing({provider:"unavailable",status:"unavailable",plan:null,currentPeriodEndsAt:null,canManage:false,error:"Billing is temporarily unavailable."});
+    const {props,rerender} = renderSettings({billing:{...unavailable,busy:true}});
+    const back = screen.getByRole("button", {name:"Back to home"});back.focus();
+    expect(screen.getByRole("status")).toHaveTextContent("Checking your subscription…");
+    expect(screen.queryByRole("alert")).toBeNull();
+    expect(screen.getByRole("button", {name:"Retry"})).toBeDisabled();
+    expect(screen.getByRole("button", {name:"Log out"})).toBeEnabled();
+    rerender(<Settings {...props} billing={unavailable} />);
+    expect(screen.getByRole("alert")).toHaveTextContent("Billing is temporarily unavailable.");
+    expect(screen.queryByText("Checking your subscription…")).toBeNull();
+    expect(screen.getByRole("button", {name:"Retry"})).toBeEnabled();
+    expect(back).toHaveFocus();
+  });
+
   test("preserves a plain string partner name in the supported legacy sponsored branch", () => {
     renderSettings({
       billing: undefined,

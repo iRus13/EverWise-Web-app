@@ -1,0 +1,46 @@
+[
+  {
+    "file": "landing-before.png",
+    "sha256": "165f0764780d268de58044509353c370d281973ae3dd4572bd5768c8a992dd00",
+    "bytes": 27148,
+    "viewport": [
+      375,
+      667
+    ],
+    "capture": "Codex in-app browser",
+    "source": "Actual React components; Settings uses synthetic fixture props."
+  },
+  {
+    "file": "landing-after.png",
+    "sha256": "d859d8651dd60989a6229545ac65d58c337ee9ddcff5490ad1bdb5298f71241e",
+    "bytes": 24535,
+    "viewport": [
+      375,
+      667
+    ],
+    "capture": "Codex in-app browser",
+    "source": "Actual React components; Settings uses synthetic fixture props."
+  },
+  {
+    "file": "settings-before.png",
+    "sha256": "66ad7d9d86af237ad48b45a6a904d5e382e6674dd9fb3cff87da269809e031a5",
+    "bytes": 19741,
+    "viewport": [
+      375,
+      667
+    ],
+    "capture": "Codex in-app browser",
+    "source": "Actual React components; Settings uses synthetic fixture props."
+  },
+  {
+    "file": "settings-after.png",
+    "sha256": "f65b397f8ec77536c9abee9ca4eedc1dc0ea0557b6f25c4a96d53fdf89035da6",
+    "bytes": 19305,
+    "viewport": [
+      375,
+      667
+    ],
+    "capture": "Codex in-app browser",
+    "source": "Actual React components; Settings uses synthetic fixture props."
+  }
+]

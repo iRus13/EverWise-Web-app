@@ -1,80 +1,51 @@
-import React from "react";
+import LanguageSelect from "../components/LanguageSelect";
+import { tr, useLocale } from '../i18n';
+import { BookOpen, MessageCircle, Check } from "lucide-react";
 import PartnerBrand from "../components/PartnerBrand";
+import "../styles/start-experience.css";
 
-function Step({ n, name, children }) {
-  return (
-    <li className="flex items-center gap-3">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-clay font-sans text-lg font-bold text-cream-card">
-        {n}
-      </span>
-      <p className="text-base leading-snug text-ink">
-        <span className="font-semibold">{name}</span> — {children}
-      </p>
-    </li>
-  );
-}
+const steps = [
+  ["Learn", "Short lessons, in plain language.", BookOpen],
+  ["Practice", "Try real examples in a safe space.", MessageCircle],
+  ["Remember", "Build skills you can use every day.", Check],
+];
 
 export default function Landing({ partner = null, onGetStarted, onLogIn }) {
+  useLocale();
   return (
-    <div className="landing-screen flex h-full min-h-0 flex-1 flex-col overflow-y-auto px-7 pb-0 pt-5">
-      <div className="landing-layout flex min-h-full flex-1 flex-col">
-        <section className="landing-intro animate-fade-up">
-          {partner ? (
-            <PartnerBrand partner={partner} />
-          ) : (
-            <div className="flex items-center gap-3">
-              <img
-                src="/everwise-logo-192.png"
-                alt=""
-                aria-hidden="true"
-                className="h-10 w-10 object-contain"
-              />
-              <p className="font-sans text-3xl font-bold tracking-tight text-ink">
-                Everwise
-              </p>
+    <div className="welcome-screen">
+      <div className="welcome-content">
+        <header className="welcome-brand">
+          {partner ? <PartnerBrand partner={partner} /> : (
+            <div className="start-brand">
+              <img src={`${import.meta.env.BASE_URL}everwise-logo-192.png`} alt="" aria-hidden="true" />
+              <span>Everwise</span>
             </div>
           )}
-
-          <h1 className="page-title mt-4">
-            Learn to spot scams, one lesson a day.
-          </h1>
-          <p className="mt-3 text-lg leading-snug text-ink-soft">
-            Short, friendly lessons that help you use the internet with
-            confidence. One lesson at a time.
-          </p>
-          {partner ? (
-            <p className="mt-4 rounded-2xl bg-sage/10 px-5 py-4 text-lg font-bold leading-relaxed text-ink">
-              Your access is provided free by {partner.name}.
-            </p>
-          ) : null}
+        </header>
+        <section className="welcome-intro">
+          <p className="welcome-eyebrow">{tr("EVERYDAY DIGITAL CONFIDENCE")}</p>
+          <h1>{tr("A wiser way")} {tr("to be online.")}</h1>
+          <p>{tr("Feel more confident with the messages, links, and everyday decisions you make online.")}</p>
+          {partner ? <p className="welcome-sponsorship">{tr("Your access is provided free by")} {partner.name}.</p> : null}
         </section>
-
-        <section className="landing-guide mt-5 flex flex-1 flex-col">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-ink-faint">
-              How it works
-            </p>
-            <ol className="mt-2 space-y-2">
-              <Step n="1" name="Learn">
-                One quick lesson, in plain language.
-              </Step>
-              <Step n="2" name="Practice">
-                Spot a real scam example. One tap.
-              </Step>
-              <Step n="3" name="Remember">
-                Build the habit so you catch it for real.
-              </Step>
-            </ol>
+        <div className="welcome-entry">
+          <div className="welcome-language"><LanguageSelect showContentNotice /></div>
+          <div className="welcome-actions">
+            <button type="button" className="btn-primary" onClick={onGetStarted}>{tr("Get Started")}</button>
+            <button type="button" className="btn-secondary" onClick={onLogIn}>{tr("Log In")}</button>
           </div>
-
-          <div className="landing-actions mt-auto space-y-2 pt-3">
-            <button className="btn-primary" onClick={onGetStarted}>
-              Get Started
-            </button>
-            <button className="btn-secondary" onClick={onLogIn}>
-              Log In
-            </button>
-          </div>
+        </div>
+        <section className="welcome-guide" aria-labelledby="welcome-guide-title">
+          <h2 id="welcome-guide-title">{tr("Small steps. Useful skills.")}</h2>
+          <ol>
+            {steps.map(([title, description, Icon]) => (
+              <li key={title}>
+                <span className="welcome-step-number" aria-hidden="true"><Icon size={22} strokeWidth={1.7} /></span>
+                <div><h3>{tr(title)}</h3><p>{tr(description)}</p></div>
+              </li>
+            ))}
+          </ol>
         </section>
       </div>
     </div>

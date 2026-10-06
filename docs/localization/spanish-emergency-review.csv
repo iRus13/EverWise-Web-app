@@ -1,0 +1,756 @@
+English key,Spanish presentation,Native locations
+7.1,7.1,clicked-a-scam/lessonNumber
+What to Do If You Clicked a Scam,Qué hacer si pulsaste un enlace fraudulento,clicked-a-scam/title
+Quick Responder,Respuesta a tiempo,clicked-a-scam/badge
+Stay calm after clicking a suspicious link.,Mantener la calma después de abrir un enlace sospechoso.,clicked-a-scam/goals/0; clicked-a-scam/complete/learned/0
+Know the immediate steps to take.,Saber qué hacer de inmediato.,clicked-a-scam/goals/1; clicked-a-scam/complete/learned/1
+Understand when to change passwords.,Saber cuándo cambiar las contraseñas.,clicked-a-scam/goals/2
+Know when to contact their bank.,Saber cuándo contactar al banco.,clicked-a-scam/goals/3
+Know when to ask for help.,Saber cuándo pedir ayuda.,clicked-a-scam/goals/4; clicked-a-scam/complete/learned/3
+First Things First...,Lo primero es mantener la calma,clicked-a-scam/blocks/0/heading
+Accidentally clicking a scam link does not automatically mean you've been hacked. Many people accidentally click suspicious links every day. The important thing is what you do next. Instead of panicking:,Abrir un enlace fraudulento por error no significa automáticamente que alguien haya accedido a tu dispositivo. Le puede pasar a cualquiera. Lo importante es lo que haces después. Sigue estos pasos:,clicked-a-scam/blocks/0/text
+Stay calm,Mantén la calma,clicked-a-scam/blocks/0/bullets/0
+Stop interacting with the website,Deja de interactuar con el sitio,clicked-a-scam/blocks/0/bullets/1; clicked-a-scam/blocks/15/bullets/0
+Don't enter any personal information,No introduzcas datos personales,clicked-a-scam/blocks/0/bullets/2
+Close the webpage,Cierra la página,clicked-a-scam/blocks/0/bullets/3
+"The sooner you act, the better.","Cuanto antes actúes, mejor.",clicked-a-scam/blocks/0/footer
+Situation A: You Clicked but Didn't Type Anything,"Abriste el enlace, pero no escribiste nada",clicked-a-scam/blocks/1/heading
+This is usually less serious. You should:,Esto suele ser menos grave. Sigue estos pasos:,clicked-a-scam/blocks/1/text
+Close the page,Cierra la página,clicked-a-scam/blocks/1/bullets/0
+Don't click anything else,No pulses nada más,clicked-a-scam/blocks/1/bullets/1
+"Keep your device updated. If you downloaded something or allowed access, get help through the device maker’s official support.","Mantén tu dispositivo actualizado. Si descargaste algo o permitiste el acceso, pide ayuda al soporte oficial del fabricante.",clicked-a-scam/blocks/1/bullets/2
+Stay alert for unusual activity,Presta atención a cualquier actividad extraña,clicked-a-scam/blocks/1/bullets/3
+Situation B: You Entered a Password,Introdujiste una contraseña,clicked-a-scam/blocks/2/heading
+This is more serious. You should:,Esto requiere actuar pronto:,clicked-a-scam/blocks/2/text
+Open the real app or website yourself and change the exposed password immediately,Abre por tu cuenta la aplicación o el sitio auténtico y cambia de inmediato la contraseña que compartiste,clicked-a-scam/blocks/2/bullets/0
+Change it anywhere else you used the same password,Cámbiala también en las otras cuentas donde la usaste,clicked-a-scam/blocks/2/bullets/1
+Turn on two-factor authentication (2FA) if available,"Activar la autenticación de dos factores (2FA), si está disponible",clicked-a-scam/blocks/2/bullets/2
+Situation C: You Entered a Debit or Credit Card Number,Introdujiste el número de una tarjeta,clicked-a-scam/blocks/3/heading
+You should:,Sigue estos pasos:,clicked-a-scam/blocks/3/text; clicked-a-scam/blocks/4/text
+Contact your bank or credit card company immediately,Contacta de inmediato al banco o al emisor de la tarjeta,clicked-a-scam/blocks/3/bullets/0; money-stolen/blocks/13/bullets/0
+Explain what happened,Explica lo ocurrido,clicked-a-scam/blocks/3/bullets/1
+Ask if they recommend freezing or replacing your card,Pregunta si conviene bloquear o reemplazar la tarjeta,clicked-a-scam/blocks/3/bullets/2
+Watch your account for unfamiliar charges,Revisa tu cuenta para detectar cargos desconocidos,clicked-a-scam/blocks/3/bullets/3
+Situation D: You Entered Your Social Security Number or Other Sensitive Information,Compartiste tu número de Seguro Social u otros datos sensibles,clicked-a-scam/blocks/4/heading
+Monitor your accounts carefully,Revisa tus cuentas con atención,clicked-a-scam/blocks/4/bullets/0
+Consider placing a fraud alert or freezing your credit,Considera una alerta de fraude o un congelamiento de crédito,clicked-a-scam/blocks/4/bullets/1
+Use IdentityTheft.gov for recovery steps if your information was misused,Consulta IdentityTheft.gov para conocer los pasos de recuperación si usaron tus datos sin permiso,clicked-a-scam/blocks/4/bullets/2
+What NOT to Do,Qué debes evitar,clicked-a-scam/blocks/5/heading
+After clicking a scam:,Después de abrir un enlace fraudulento:,clicked-a-scam/blocks/5/text
+Don't keep clicking around the website,No sigas explorando el sitio,clicked-a-scam/blocks/5/bullets/0
+Don't download files from the page,No descargues archivos de la página,clicked-a-scam/blocks/5/bullets/1
+Don't enter more information,No introduzcas más datos,clicked-a-scam/blocks/5/bullets/2
+Don't ignore the situation if you shared sensitive information,No ignores lo ocurrido si compartiste datos sensibles,clicked-a-scam/blocks/5/bullets/3
+Taking action quickly can make a big difference.,Actuar pronto puede marcar una gran diferencia.,clicked-a-scam/blocks/5/footer
+What Should You Do?,¿Qué deberías hacer?,clicked-a-scam/blocks/6/title; clicked-a-scam/blocks/7/title; clicked-a-scam/blocks/8/title; clicked-a-scam/blocks/9/title; clicked-a-scam/blocks/16/title; clicked-a-scam/blocks/17/title; money-stolen/blocks/4/title; money-stolen/blocks/5/title; money-stolen/blocks/6/title; money-stolen/blocks/7/title; money-stolen/blocks/14/title; money-stolen/blocks/15/title; who-to-call/blocks/16/title; who-to-call/blocks/17/title; credit-freeze/blocks/11/title; credit-freeze/blocks/12/title; password-after-scam/blocks/8/title; password-after-scam/blocks/15/title; password-after-scam/blocks/16/title; reporting-ic3/blocks/14/title; reporting-ic3/blocks/15/title
+You accidentally click a suspicious link but immediately realize it's fake. What should you do first?,Abres un enlace sospechoso por error y enseguida te das cuenta de que es falso. ¿Qué debes hacer primero?,clicked-a-scam/blocks/6/text
+Close the webpage.,Cerrar la página.,clicked-a-scam/blocks/6/options/0; clicked-a-scam/quiz/0/options/2
+"Enter your email to ""unsubscribe.""",Introducir tu correo para «cancelar la suscripción».,clicked-a-scam/blocks/6/options/1
+Keep clicking to see what happens.,Seguir pulsando para ver qué pasa.,clicked-a-scam/blocks/6/options/2
+Download the file it offers.,Descargar el archivo que ofrece.,clicked-a-scam/blocks/6/options/3
+You accidentally typed your email password into a fake login page. What should you do?,Escribiste la contraseña de tu correo en una página falsa. ¿Qué debes hacer?,clicked-a-scam/blocks/7/text
+Wait a few days.,Esperar unos días.,clicked-a-scam/blocks/7/options/0; money-stolen/quiz/0/options/0
+Ignore it.,Ignorarla.,clicked-a-scam/blocks/7/options/1; clicked-a-scam/quiz/4/options/0; money-stolen/blocks/4/options/1; money-stolen/blocks/14/options/0; reporting-ic3/blocks/10/options/1
+Change your password immediately and enable 2FA if available.,Cambiar la contraseña de inmediato y activar la verificación en dos pasos si está disponible.,clicked-a-scam/blocks/7/options/2
+Use the same password everywhere.,Usar la misma contraseña en todas tus cuentas.,clicked-a-scam/blocks/7/options/3
+You entered your debit card number on a fake shopping website. What should you do?,Introdujiste el número de tu tarjeta de débito en una tienda falsa. ¿Qué debes hacer?,clicked-a-scam/blocks/8/text
+Buy another item.,Comprar otro artículo.,clicked-a-scam/blocks/8/options/0; reporting-ic3/blocks/14/options/0
+Wait until next month.,Esperar al mes que viene.,clicked-a-scam/blocks/8/options/1; money-stolen/blocks/4/options/0; money-stolen/blocks/14/options/1
+Contact your bank or card issuer immediately.,Contactar de inmediato al banco o al emisor de la tarjeta.,clicked-a-scam/blocks/8/options/2
+Post about it on social media first.,Publicarlo primero en redes sociales.,clicked-a-scam/blocks/8/options/3
+You clicked a suspicious link but didn't type any information. What is the safest next step?,"Abriste un enlace sospechoso, pero no introdujiste datos. ¿Cuál es el siguiente paso más seguro?",clicked-a-scam/blocks/9/text
+Click it again to double-check.,Volver a abrirlo para comprobarlo.,clicked-a-scam/blocks/9/options/0
+Close the page and monitor your device.,Cerrar la página y estar pendiente de tu dispositivo.,clicked-a-scam/blocks/9/options/1
+Enter your phone number to be safe.,Introducir tu teléfono por si acaso.,clicked-a-scam/blocks/9/options/2
+Ignore everything forever.,Ignorar todo de ahora en adelante.,clicked-a-scam/blocks/9/options/3
+Acting quickly helps reduce the chance that scammers can misuse your information.,Actuar pronto reduce las oportunidades de que usen tus datos sin permiso.,clicked-a-scam/blocks/9/explanation
+Flashcards,Tarjetas,clicked-a-scam/blocks/10/title; money-stolen/blocks/8/title; who-to-call/blocks/10/title; credit-freeze/blocks/5/title; password-after-scam/blocks/9/title; reporting-ic3/blocks/8/title
+Phishing Link,Enlace de phishing,clicked-a-scam/blocks/10/cards/0/front
+A fake link designed to steal your information.,Un enlace falso que intenta robar tus datos.,clicked-a-scam/blocks/10/cards/0/back
+Change Password,Cambiar la contraseña,clicked-a-scam/blocks/10/cards/1/front
+"Replace your old password with a new, strong one if you think it may have been stolen.",Reemplazar tu contraseña por una nueva y segura si crees que alguien la robó.,clicked-a-scam/blocks/10/cards/1/back
+Monitor Your Account,Revisar tu cuenta,clicked-a-scam/blocks/10/cards/2/front
+Regularly check for unusual charges or activity.,Comprobar con frecuencia si hay cargos o actividad extraña.,clicked-a-scam/blocks/10/cards/2/back
+Sensitive Information,Datos sensibles,clicked-a-scam/blocks/10/cards/3/front
+"Information like passwords, Social Security numbers, banking details, or credit card numbers.","Datos como contraseñas, números de Seguro Social, información bancaria o números de tarjeta.",clicked-a-scam/blocks/10/cards/3/back
+Stay Calm,Mantén la calma,clicked-a-scam/blocks/10/cards/4/front
+"Taking quick, thoughtful action is more effective than panicking.",Actuar pronto y con calma ayuda más que dejarse llevar por el miedo.,clicked-a-scam/blocks/10/cards/4/back
+Fill in the Blank,Completa la frase,clicked-a-scam/blocks/11/title; money-stolen/blocks/9/title; who-to-call/blocks/11/title; credit-freeze/blocks/6/title; password-after-scam/blocks/10/title; reporting-ic3/blocks/9/title
+Close,Cerrar,clicked-a-scam/blocks/11/wordBank/0; clicked-a-scam/blocks/11/questions/0/answer; clicked-a-scam/quiz/3/options/1
+Password,Contraseña,clicked-a-scam/blocks/11/wordBank/1; clicked-a-scam/blocks/11/questions/1/answer; money-stolen/blocks/9/wordBank/1; money-stolen/blocks/9/questions/1/answer; money-stolen/quiz/3/options/1; password-after-scam/blocks/10/wordBank/2
+Bank,Banco,clicked-a-scam/blocks/11/wordBank/2; clicked-a-scam/blocks/11/questions/2/answer; clicked-a-scam/quiz/3/options/0; money-stolen/blocks/9/wordBank/0; money-stolen/blocks/9/questions/0/answer; money-stolen/quiz/3/options/0; who-to-call/blocks/10/cards/0/front; who-to-call/blocks/11/wordBank/0; who-to-call/blocks/11/questions/0/answer; who-to-call/quiz/3/options/1; credit-freeze/quiz/3/options/1
+Calm,Calma,clicked-a-scam/blocks/11/wordBank/3
+"If you click a suspicious link, first ______ the webpage.","Si abres un enlace sospechoso, lo primero es ______ la página.",clicked-a-scam/blocks/11/questions/0/text
+"If you entered your login information, change your ______ immediately.","Si introdujiste tus datos de acceso, cambia tu ______ de inmediato.",clicked-a-scam/blocks/11/questions/1/text
+"If you entered your debit or credit card number, contact your ______.","Si introdujiste el número de tu tarjeta de débito o crédito, contacta a tu ______.",clicked-a-scam/blocks/11/questions/2/text
+Scenario 1,Situación 1,clicked-a-scam/blocks/12/title; money-stolen/blocks/10/title; who-to-call/blocks/12/title; credit-freeze/blocks/7/title; password-after-scam/blocks/11/title; reporting-ic3/blocks/10/title
+"Margaret receives an email saying: ""Your package couldn't be delivered. Click here to update your payment information."" She clicks the link but realizes the website looks strange before entering anything. What should she do?","Margaret recibe un correo: «No pudimos entregar tu paquete. Pulsa aquí para actualizar tus datos de pago». Abre el enlace, pero nota que el sitio es extraño antes de escribir nada. ¿Qué debería hacer?",clicked-a-scam/blocks/12/text
+Enter her credit card number anyway.,Introducir el número de su tarjeta de todos modos.,clicked-a-scam/blocks/12/options/0
+Keep exploring the website.,Seguir explorando el sitio.,clicked-a-scam/blocks/12/options/1
+Close the webpage and avoid interacting with it further.,Cerrar la página y dejar de interactuar con ella.,clicked-a-scam/blocks/12/options/2
+Share the link with friends.,Compartir el enlace con amigos.,clicked-a-scam/blocks/12/options/3
+"Since she didn't provide any information, closing the page is the safest first step.","Como no dio información, el primer paso más seguro es cerrar la página.",clicked-a-scam/blocks/12/explanation
+"Margaret receives an email saying: ""Your package couldn't be delivered. Click here to update your payment information."" She clicks the link but realizes the website looks strange before entering anything.","Margaret recibe un correo: «No pudimos entregar tu paquete. Pulsa aquí para actualizar tus datos de pago». Abre el enlace, pero nota que el sitio es extraño antes de escribir nada.",clicked-a-scam/blocks/12/presentation/story
+What should she do?,¿Qué debería hacer?,clicked-a-scam/blocks/12/presentation/question; clicked-a-scam/blocks/14/presentation/question; money-stolen/blocks/12/presentation/question; credit-freeze/blocks/9/presentation/question; reporting-ic3/blocks/10/presentation/question; reporting-ic3/blocks/12/presentation/question
+Scenario 2,Situación 2,clicked-a-scam/blocks/13/title; money-stolen/blocks/11/title; who-to-call/blocks/13/title; credit-freeze/blocks/8/title; password-after-scam/blocks/12/title; reporting-ic3/blocks/11/title
+Robert accidentally enters his email password into a fake website. What should he do first?,Robert escribe por error la contraseña de su correo en un sitio falso. ¿Qué debería hacer primero?,clicked-a-scam/blocks/13/text
+Wait until tomorrow.,Esperar hasta mañana.,clicked-a-scam/blocks/13/options/0; password-after-scam/blocks/11/options/0
+Continue browsing.,Seguir navegando.,clicked-a-scam/blocks/13/options/1
+Change his password immediately and enable 2FA if available.,Cambiar la contraseña de inmediato y activar la verificación en dos pasos si está disponible.,clicked-a-scam/blocks/13/options/2
+Create another email account and ignore the old one.,Crear otro correo e ignorar la cuenta anterior.,clicked-a-scam/blocks/13/options/3
+"The faster you change your password, the less time scammers have to misuse it.","Cuanto antes cambies la contraseña, menos tiempo tendrán para usarla.",clicked-a-scam/blocks/13/explanation
+Robert accidentally enters his email password into a fake website.,Robert escribe por error la contraseña de su correo en un sitio falso.,clicked-a-scam/blocks/13/presentation/story
+What should he do first?,¿Qué debería hacer primero?,clicked-a-scam/blocks/13/presentation/question; who-to-call/blocks/13/presentation/question
+Scenario 3,Situación 3,clicked-a-scam/blocks/14/title; money-stolen/blocks/12/title; who-to-call/blocks/14/title; credit-freeze/blocks/9/title; password-after-scam/blocks/13/title; reporting-ic3/blocks/12/title
+Linda accidentally enters her credit card number into a fake shopping website. She notices a few minutes later. What should she do?,Linda introduce por error el número de su tarjeta de crédito en una tienda falsa. Se da cuenta unos minutos después. ¿Qué debería hacer?,clicked-a-scam/blocks/14/text
+Wait to see if anything happens.,Esperar a ver si ocurre algo.,clicked-a-scam/blocks/14/options/0
+Buy another item from the website.,Comprar otro artículo en el sitio.,clicked-a-scam/blocks/14/options/1
+Contact her credit card company or bank immediately to report what happened.,Contactar de inmediato al emisor de la tarjeta o al banco para explicar lo ocurrido.,clicked-a-scam/blocks/14/options/2
+Delete her browser history and do nothing else.,Borrar el historial del navegador y no hacer nada más.,clicked-a-scam/blocks/14/options/3
+Reporting it quickly gives your bank the best chance to protect your account.,Avisar pronto le da al banco más posibilidades de proteger tu cuenta.,clicked-a-scam/blocks/14/explanation
+Linda accidentally enters her credit card number into a fake shopping website. She notices a few minutes later.,Linda introduce por error el número de su tarjeta de crédito en una tienda falsa. Se da cuenta unos minutos después.,clicked-a-scam/blocks/14/presentation/story
+Quick Tip,Consejo breve,clicked-a-scam/blocks/15/heading; money-stolen/blocks/13/heading; who-to-call/blocks/15/heading; credit-freeze/blocks/10/heading; password-after-scam/blocks/14/heading; reporting-ic3/blocks/13/heading
+"If you clicked a scam, remember these four steps:","Si abriste un enlace fraudulento, recuerda estos cuatro pasos:",clicked-a-scam/blocks/15/text
+Think about what information you shared,Piensa qué información compartiste,clicked-a-scam/blocks/15/bullets/1
+Protect your accounts by changing passwords or contacting your bank if needed,Protege tus cuentas: cambia las contraseñas o contacta al banco si hace falta,clicked-a-scam/blocks/15/bullets/2
+Ask for help if you're unsure what to do,Pide ayuda si no sabes qué hacer,clicked-a-scam/blocks/15/bullets/3
+Mistakes happen. What matters most is responding quickly and calmly.,Cualquiera puede equivocarse. Lo importante es actuar pronto y con calma.,clicked-a-scam/blocks/15/footer
+You click a suspicious email link but don't enter any information.,"Abres un enlace sospechoso de un correo, pero no introduces datos.",clicked-a-scam/blocks/16/text
+Keep browsing the website.,Seguir explorando el sitio.,clicked-a-scam/blocks/16/options/0; clicked-a-scam/quiz/0/options/0
+Download a file.,Descargar un archivo.,clicked-a-scam/blocks/16/options/1
+Close the webpage and monitor for any unusual activity.,Cerrar la página y prestar atención a cualquier actividad extraña.,clicked-a-scam/blocks/16/options/2
+Click the link again.,Abrir el enlace otra vez.,clicked-a-scam/blocks/16/options/3
+Closing the page limits further interaction with the suspicious site.,Cerrar la página evita seguir interactuando con el sitio sospechoso.,clicked-a-scam/blocks/16/explanation
+You aren't sure whether the website was fake.,No sabes si el sitio era falso.,clicked-a-scam/blocks/17/text
+Assume everything is fine.,Dar por hecho que todo está bien.,clicked-a-scam/blocks/17/options/0
+Enter more information to check.,Introducir más datos para comprobarlo.,clicked-a-scam/blocks/17/options/1
+"Stop using the website and ask a trusted family member, friend, or professional for help if you're unsure.","Dejar de usar el sitio y pedir ayuda a un familiar, amigo o profesional de confianza.",clicked-a-scam/blocks/17/options/2
+Download everything on the page.,Descargar todo lo que ofrece la página.,clicked-a-scam/blocks/17/options/3
+"When you're uncertain, it's always safer to stop and get help before taking any more actions.","Si tienes dudas, es más seguro detenerte y pedir ayuda antes de seguir.",clicked-a-scam/blocks/17/explanation
+What should you do first after realizing you've clicked a suspicious link?,¿Qué debes hacer primero al darte cuenta de que abriste un enlace sospechoso?,clicked-a-scam/quiz/0/question
+Download any files it offers.,Descargar los archivos que ofrece.,clicked-a-scam/quiz/0/options/1
+Share it with your friends.,Compartirlo con tus amigos.,clicked-a-scam/quiz/0/options/3
+Which actions are appropriate if you entered your password on a fake website?,¿Qué debes hacer si escribiste tu contraseña en un sitio falso?,clicked-a-scam/quiz/1/question
+Keep the same password to avoid confusion,Mantener la misma contraseña para evitar confusiones,clicked-a-scam/quiz/1/options/0
+"Change your password immediately, turn on 2FA, update it anywhere else you used it, and monitor your account","Cambiarla de inmediato, activar la verificación en dos pasos, cambiarla donde la hayas repetido y revisar la cuenta",clicked-a-scam/quiz/1/options/1
+True or False: Clicking a suspicious link always means your device has been hacked.,Verdadero o falso: Abrir un enlace sospechoso siempre significa que alguien accedió a tu dispositivo.,clicked-a-scam/quiz/2/question
+True,Verdadero,clicked-a-scam/quiz/2/options/0; money-stolen/quiz/2/options/0; who-to-call/quiz/2/options/0; credit-freeze/quiz/2/options/0; password-after-scam/quiz/2/options/0; reporting-ic3/quiz/2/options/0
+False,Falso,clicked-a-scam/quiz/2/options/1; money-stolen/quiz/2/options/1; who-to-call/quiz/2/options/1; credit-freeze/quiz/2/options/1; password-after-scam/quiz/2/options/1; reporting-ic3/quiz/2/options/1
+"If you entered your debit or credit card number into a scam website, contact your ______ immediately.","Si introdujiste el número de tu tarjeta en un sitio fraudulento, contacta a tu ______ de inmediato.",clicked-a-scam/quiz/3/question
+Camera,Cámara,clicked-a-scam/quiz/3/options/2; money-stolen/quiz/3/options/2; who-to-call/quiz/3/options/2; credit-freeze/quiz/3/options/2; password-after-scam/quiz/3/options/1; reporting-ic3/quiz/3/options/1
+Linda entered her Social Security number into a fake website. What should she consider doing?,Linda introdujo su número de Seguro Social en un sitio falso. ¿Qué debería considerar?,clicked-a-scam/quiz/4/question
+Keep entering more information.,Seguir introduciendo datos.,clicked-a-scam/quiz/4/options/1
+Monitor her accounts and consider placing a fraud alert or freezing her credit.,Revisar sus cuentas y considerar una alerta de fraude o un congelamiento de crédito.,clicked-a-scam/quiz/4/options/2
+Change her phone wallpaper.,Cambiar el fondo de pantalla del teléfono.,clicked-a-scam/quiz/4/options/3
+What is the best attitude to have after accidentally clicking a scam?,¿Qué actitud ayuda más después de abrir un enlace fraudulento por error?,clicked-a-scam/quiz/5/question
+Panic immediately.,Entrar en pánico.,clicked-a-scam/quiz/5/options/0
+Ignore the situation.,Ignorar lo ocurrido.,clicked-a-scam/quiz/5/options/1
+Stay calm and take the appropriate safety steps.,Mantener la calma y tomar las medidas de seguridad adecuadas.,clicked-a-scam/quiz/5/options/2
+Assume nothing can be done.,Suponer que no se puede hacer nada.,clicked-a-scam/quiz/5/options/3
+Great Job!,¡Muy bien!,clicked-a-scam/complete/title; money-stolen/complete/title; who-to-call/complete/title; credit-freeze/complete/title; password-after-scam/complete/title
+You completed Lesson 1: What to Do If You Clicked a Scam!,Completaste la lección 1: Qué hacer si abriste un enlace fraudulento.,clicked-a-scam/complete/subtitle
+Understand when to change passwords or contact your bank.,Saber cuándo cambiar contraseñas o contactar al banco.,clicked-a-scam/complete/learned/2
+What to Do If Money Was Stolen,Qué hacer si te robaron dinero,clicked-a-scam/complete/next; money-stolen/title
+7.2,7.2,money-stolen/lessonNumber
+Fraud Fighter,Defensa frente al fraude,money-stolen/badge
+Recognize signs that money has been stolen.,Reconocer señales de un posible robo de dinero.,money-stolen/goals/0; money-stolen/complete/learned/0
+Know what to do immediately.,Saber qué hacer de inmediato.,money-stolen/goals/1
+Contact their bank or credit card company.,Contactar al banco o al emisor de la tarjeta.,money-stolen/goals/2
+Protect their accounts from additional fraud.,Proteger tus cuentas de nuevos fraudes.,money-stolen/goals/3
+Understand why acting quickly is important.,Entender por qué conviene actuar pronto.,money-stolen/goals/4; money-stolen/complete/learned/3
+You Notice a Charge You Didn't Make...,Ves un cargo que no hiciste,money-stolen/blocks/0/heading
+Imagine you check your bank account and see a coffee shop charge for $4.50 that you didn't make. Then you notice an electronics store charge for $689.99 that you definitely didn't make. This is called an unauthorized transaction - a purchase or withdrawal you didn't approve.,"Al revisar tu cuenta, ves un cargo de $4.50 en una cafetería que no hiciste. Después encuentras otro de $689.99 en una tienda de electrónica que tampoco reconoces. Son posibles operaciones no autorizadas: compras o retiros que no aprobaste.",money-stolen/blocks/0/text
+"The faster you act, the easier it is for your bank to help protect your money. Don't wait to ""see if it fixes itself.""","Cuanto antes avises, antes podrá el banco ayudarte a proteger tu dinero. No esperes a que se solucione solo.",money-stolen/blocks/0/footer
+Step 1: Contact Your Bank Immediately,1. Contacta al banco de inmediato,money-stolen/blocks/1/heading
+"If you notice money missing, call your bank or credit card company using the phone number on the back of your card or from their official website. Tell them:","Si falta dinero, llama al banco o al emisor de la tarjeta. Usa el teléfono del reverso de la tarjeta o de su sitio oficial. Explica:",money-stolen/blocks/1/text
+You found a charge you didn't make,Qué cargo no reconoces,money-stolen/blocks/1/bullets/0
+When you noticed it,Cuándo lo notaste,money-stolen/blocks/1/bullets/1
+Whether your card is still in your possession,Si todavía tienes la tarjeta,money-stolen/blocks/1/bullets/2
+"The bank may lock your card, issue a replacement card, investigate the charges, or help recover your money if possible.","El banco puede bloquear la tarjeta, reemplazarla, investigar los cargos o intentar recuperar el dinero.",money-stolen/blocks/1/footer
+Step 2: Protect Your Accounts,2. Protege tus cuentas,money-stolen/blocks/2/heading
+After contacting your bank:,Después de contactar al banco:,money-stolen/blocks/2/text
+Change your online banking password,Cambia tu contraseña de banca en línea,money-stolen/blocks/2/bullets/0
+"Turn on two-factor authentication (2FA), if available",Activa la verificación en dos pasos si está disponible,money-stolen/blocks/2/bullets/1
+Review recent transactions,Revisa los movimientos recientes,money-stolen/blocks/2/bullets/2
+Check if any other accounts were affected,Comprueba si hay otras cuentas afectadas,money-stolen/blocks/2/bullets/3
+"If you used the same password elsewhere, change those passwords too.","Si repetiste esa contraseña en otras cuentas, cámbiala también allí.",money-stolen/blocks/2/footer
+Step 3: Monitor Your Accounts,3. Sigue revisando tus cuentas,money-stolen/blocks/3/heading
+Even after reporting the fraud:,Incluso después de denunciar el fraude:,money-stolen/blocks/3/text
+Check your account regularly for new charges,Revisa tu cuenta con frecuencia para detectar nuevos cargos,money-stolen/blocks/3/bullets/0
+Read your monthly bank statements,Lee los estados de cuenta mensuales,money-stolen/blocks/3/bullets/1
+Respond quickly if you notice anything unusual,Actúa pronto si notas algo extraño,money-stolen/blocks/3/bullets/2
+Sometimes scammers try a small purchase first (like $1.00 or $2.00) before attempting a larger one.,"A veces los estafadores prueban primero con una compra pequeña, de $1.00 o $2.00, antes de intentar una mayor.",money-stolen/blocks/3/footer
+You notice a $250 purchase you didn't make.,Ves una compra de $250 que no hiciste.,money-stolen/blocks/4/text
+Contact your bank immediately.,Contactar al banco de inmediato.,money-stolen/blocks/4/options/2
+Buy something else with your card.,Comprar otra cosa con tu tarjeta.,money-stolen/blocks/4/options/3; money-stolen/blocks/14/options/3
+"After reporting the fraud, what should you do?",¿Qué debes hacer después de denunciar el fraude?,money-stolen/blocks/5/text
+Never check your account again.,No volver a revisar tu cuenta.,money-stolen/blocks/5/options/0
+Continue using the same password.,Seguir usando la misma contraseña.,money-stolen/blocks/5/options/1
+Change your banking password and monitor your account.,Cambiar la contraseña del banco y seguir revisando la cuenta.,money-stolen/blocks/5/options/2
+Throw away your phone.,Tirar el teléfono.,money-stolen/blocks/5/options/3
+Your bank freezes your card after suspicious activity. What should you do?,El banco bloquea tu tarjeta por actividad sospechosa. ¿Qué debes hacer?,money-stolen/blocks/6/text
+Work with the bank to receive a replacement card.,Pedir al banco que te ayude a reemplazarla.,money-stolen/blocks/6/options/0
+Tell them to ignore the fraud.,Decirle que ignore el fraude.,money-stolen/blocks/6/options/1
+Post your card number online.,Publicar tu número de tarjeta en internet.,money-stolen/blocks/6/options/2
+Continue trying to use the frozen card.,Seguir intentando usar la tarjeta bloqueada.,money-stolen/blocks/6/options/3
+You notice a $1.00 charge you don't recognize.,Ves un cargo de $1.00 que no reconoces.,money-stolen/blocks/7/text
+Ignore it because it's only $1.,Ignorarlo porque es solo un dólar.,money-stolen/blocks/7/options/0
+Contact your bank if you don't recognize the charge.,Contactar al banco si no reconoces el cargo.,money-stolen/blocks/7/options/1
+Spend more money before your card stops working.,Gastar más antes de que la tarjeta deje de funcionar.,money-stolen/blocks/7/options/2
+Cancel your internet service.,Cancelar tu servicio de internet.,money-stolen/blocks/7/options/3
+Scammers sometimes test whether a card works by making very small purchases before attempting larger ones.,A veces los estafadores hacen compras muy pequeñas para comprobar si una tarjeta funciona antes de intentar cargos mayores.,money-stolen/blocks/7/explanation
+Unauthorized Transaction,Operación no autorizada,money-stolen/blocks/8/cards/0/front
+A purchase or withdrawal you didn't approve.,Una compra o un retiro que no aprobaste.,money-stolen/blocks/8/cards/0/back
+Fraud,Fraude,money-stolen/blocks/8/cards/1/front; money-stolen/blocks/9/wordBank/3
+Using someone else's money or information without permission.,Usar el dinero o los datos de otra persona sin permiso.,money-stolen/blocks/8/cards/1/back
+Bank Fraud Department,Departamento de fraude del banco,money-stolen/blocks/8/cards/2/front
+The team that investigates suspicious activity on your account.,El equipo que investiga la actividad sospechosa de tu cuenta.,money-stolen/blocks/8/cards/2/back
+Replacement Card,Tarjeta de reemplazo,money-stolen/blocks/8/cards/3/front
+A new debit or credit card issued after fraud or loss.,Una tarjeta nueva emitida después de un fraude o una pérdida.,money-stolen/blocks/8/cards/3/back
+Monitor,Revisar,money-stolen/blocks/8/cards/4/front; money-stolen/blocks/9/wordBank/2; money-stolen/blocks/9/questions/2/answer
+Check your account regularly for unusual activity.,Comprobar tu cuenta con frecuencia para detectar actividad extraña.,money-stolen/blocks/8/cards/4/back
+"If money is stolen from your account, contact your ______ immediately.","Si roban dinero de tu cuenta, contacta a tu ______ de inmediato.",money-stolen/blocks/9/questions/0/text
+"After fraud, change your online banking ______.","Después de un fraude, cambia tu ______ de banca en línea.",money-stolen/blocks/9/questions/1/text
+Continue to ______ your account after reporting the fraud.,Recuerda ______ tu cuenta después de denunciar el fraude.,money-stolen/blocks/9/questions/2/text
+Margaret checks her credit card statement and sees a $985 furniture purchase she didn't make. What should she do first?,Margaret ve en su estado de cuenta una compra de muebles de $985 que no hizo. ¿Qué debería hacer primero?,money-stolen/blocks/10/text
+Wait a week to see if it disappears.,Esperar una semana a ver si desaparece.,money-stolen/blocks/10/options/0
+Call the furniture store.,Llamar a la tienda de muebles.,money-stolen/blocks/10/options/1
+Contact her credit card company immediately.,Contactar de inmediato al emisor de su tarjeta.,money-stolen/blocks/10/options/2
+Close her email account.,Cerrar su cuenta de correo.,money-stolen/blocks/10/options/3; credit-freeze/blocks/9/options/3
+Your card issuer can stop additional charges and begin investigating right away.,El emisor puede impedir nuevos cargos y empezar a investigar de inmediato.,money-stolen/blocks/10/explanation
+Margaret checks her credit card statement and sees a $985 furniture purchase she didn't make.,Margaret ve en su estado de cuenta una compra de muebles de $985 que no hizo.,money-stolen/blocks/10/presentation/story
+What should she do first?,¿Qué debería hacer primero?,money-stolen/blocks/10/presentation/question; password-after-scam/blocks/11/presentation/question
+Robert notices two small charges - $1.25 and $2.00 - that he doesn't recognize. What should he do?,"Robert ve dos cargos pequeños, de $1.25 y $2.00, que no reconoce. ¿Qué debería hacer?",money-stolen/blocks/11/text
+Ignore them because they're small.,Ignorarlos porque son pequeños.,money-stolen/blocks/11/options/0
+Spend more money before his card is blocked.,Gastar más antes de que bloqueen su tarjeta.,money-stolen/blocks/11/options/1
+Contact his bank to ask about the unfamiliar charges.,Contactar al banco para consultar los cargos desconocidos.,money-stolen/blocks/11/options/2
+Delete his banking app.,Borrar la aplicación del banco.,money-stolen/blocks/11/options/3
+"Small charges can sometimes be ""test transactions"" made by scammers.",Los cargos pequeños pueden ser pruebas que hacen los estafadores.,money-stolen/blocks/11/explanation
+Robert notices two small charges - $1.25 and $2.00 - that he doesn't recognize.,"Robert ve dos cargos pequeños, de $1.25 y $2.00, que no reconoce.",money-stolen/blocks/11/presentation/story
+What should he do?,¿Qué debería hacer?,money-stolen/blocks/11/presentation/question; credit-freeze/blocks/8/presentation/question; password-after-scam/blocks/12/presentation/question; reporting-ic3/blocks/11/presentation/question
+Linda reports fraud to her bank. The bank cancels her debit card and says a new one will arrive in a few days. What should she do?,Linda denuncia un fraude al banco. Cancelan su tarjeta de débito y le dicen que la nueva llegará en unos días. ¿Qué debería hacer?,money-stolen/blocks/12/text
+Keep using the canceled card.,Seguir usando la tarjeta cancelada.,money-stolen/blocks/12/options/0
+Give her old card to a friend.,Darle la tarjeta anterior a un amigo.,money-stolen/blocks/12/options/1
+Wait for the new card and update any automatic payments when it arrives.,Esperar la nueva tarjeta y actualizar los pagos automáticos cuando llegue.,money-stolen/blocks/12/options/2
+Ignore messages from the bank.,Ignorar los mensajes del banco.,money-stolen/blocks/12/options/3
+"Once a card is canceled, it should no longer be used.",No debes seguir usando una tarjeta cancelada.,money-stolen/blocks/12/explanation
+Linda reports fraud to her bank. The bank cancels her debit card and says a new one will arrive in a few days.,Linda denuncia un fraude al banco. Cancelan su tarjeta de débito y le dicen que la nueva llegará en unos días.,money-stolen/blocks/12/presentation/story
+If you think money was stolen:,Si crees que te robaron dinero:,money-stolen/blocks/13/text
+Change your banking password,Cambiar la contraseña del banco,money-stolen/blocks/13/bullets/1
+Turn on 2FA if available,Activa la verificación en dos pasos si está disponible,money-stolen/blocks/13/bullets/2
+Check recent transactions,Revisa los movimientos recientes,money-stolen/blocks/13/bullets/3
+Continue monitoring your accounts,Sigue revisando tus cuentas,money-stolen/blocks/13/bullets/4
+"The sooner you report fraud, the sooner your bank can help protect your account.","Cuanto antes denuncies el fraude, antes podrá el banco ayudarte a proteger la cuenta.",money-stolen/blocks/13/footer
+You notice a $742.18 purchase you didn't make.,Ves una compra de $742.18 que no hiciste.,money-stolen/blocks/14/text
+Contact your bank or credit card company immediately.,Contactar de inmediato al banco o al emisor de la tarjeta.,money-stolen/blocks/14/options/2
+Large unauthorized purchases should be reported as soon as possible.,Denuncia las compras importantes que no autorizaste lo antes posible.,money-stolen/blocks/14/explanation
+You find a charge for $3.49 that you don't recognize.,Encuentras un cargo de $3.49 que no reconoces.,money-stolen/blocks/15/text
+Ignore it because it's a small amount.,Ignorar el cargo porque es una cantidad pequeña.,money-stolen/blocks/15/options/0
+Assume someone in your family made it.,Suponer que lo hizo alguien de tu familia.,money-stolen/blocks/15/options/1
+Contact your bank if you can't identify the charge.,Contactar al banco si no puedes identificar el cargo.,money-stolen/blocks/15/options/2
+Wait until more money disappears.,Esperar a que desaparezca más dinero.,money-stolen/blocks/15/options/3
+Even small unfamiliar charges can be warning signs of fraud.,Incluso los cargos pequeños desconocidos pueden ser señales de fraude.,money-stolen/blocks/15/explanation
+What should you do first if you notice a charge you didn't make?,¿Qué debes hacer primero si ves un cargo que no hiciste?,money-stolen/quiz/0/question
+Delete your banking app.,Borrar la aplicación del banco.,money-stolen/quiz/0/options/1
+Contact your bank or credit card company.,Contactar con tu banco o la compañía de tu tarjeta de crédito.,money-stolen/quiz/0/options/2
+Buy something with the same card.,Comprar algo con la misma tarjeta.,money-stolen/quiz/0/options/3
+Which actions should you take after reporting fraud?,¿Qué debes hacer después de denunciar un fraude?,money-stolen/quiz/1/question
+Keep using the same password everywhere,Seguir usando la misma contraseña en todas tus cuentas,money-stolen/quiz/1/options/0
+"Change your password, turn on 2FA, monitor your account, and review recent transactions","Cambiar la contraseña, activar la verificación en dos pasos y revisar la cuenta y los movimientos recientes",money-stolen/quiz/1/options/1
+True or False: Small unfamiliar charges should always be ignored because they aren't important.,Verdadero o falso: Siempre debes ignorar los cargos pequeños desconocidos porque no son importantes.,money-stolen/quiz/2/question
+"If you notice an unauthorized transaction, contact your ______ immediately.","Si ves una operación no autorizada, contacta a tu ______ de inmediato.",money-stolen/quiz/3/question
+Your bank cancels your debit card after fraud. What should you do?,El banco cancela tu tarjeta de débito por fraude. ¿Qué debes hacer?,money-stolen/quiz/4/question
+Continue using the canceled card.,Seguir usando la tarjeta cancelada.,money-stolen/quiz/4/options/0
+Ignore the bank.,Ignorar al banco.,money-stolen/quiz/4/options/1
+Activate the replacement card when it arrives and update your automatic payments.,Activar la tarjeta nueva cuando llegue y actualizar tus pagos automáticos.,money-stolen/quiz/4/options/2
+Give the canceled card to a friend.,Darle la tarjeta cancelada a un amigo.,money-stolen/quiz/4/options/3
+Why is it important to act quickly after discovering stolen money?,¿Por qué conviene actuar pronto si descubres que te robaron dinero?,money-stolen/quiz/5/question
+To get more reward points.,Para ganar más puntos de recompensa.,money-stolen/quiz/5/options/0
+So your phone charges faster.,Para que tu teléfono cargue más rápido.,money-stolen/quiz/5/options/1
+Because your bank can help stop additional fraud and begin investigating.,Porque el banco puede ayudar a detener nuevos fraudes y empezar a investigar.,money-stolen/quiz/5/options/2
+Because the charges disappear automatically.,Porque los cargos desaparecen solos.,money-stolen/quiz/5/options/3
+You completed Lesson 2: What to Do If Money Was Stolen!,Completaste la lección 2: Qué hacer si te robaron dinero.,money-stolen/complete/subtitle
+Contact your bank or credit card company quickly.,Contactar pronto al banco o al emisor de la tarjeta.,money-stolen/complete/learned/1
+Protect your accounts from additional fraud.,Proteger tus cuentas de nuevos fraudes.,money-stolen/complete/learned/2
+Who to Call,A quién llamar,money-stolen/complete/next; who-to-call/title
+7.3,7.3,who-to-call/lessonNumber
+Help Seeker,Saber pedir ayuda,who-to-call/badge
+Know who to contact after different types of scams.,Saber a quién contactar después de distintos tipos de estafa.,who-to-call/goals/0; who-to-call/complete/learned/0
+Choose the correct organization based on what happened.,Elegir la organización adecuada según lo ocurrido.,who-to-call/goals/1; who-to-call/complete/learned/1
+"Understand when to contact banks, companies, family members, or law enforcement.","Saber cuándo contactar al banco, a una empresa, a un familiar o a la policía.",who-to-call/goals/2
+Feel confident taking action instead of waiting.,Sentirte capaz de actuar sin esperar.,who-to-call/goals/3; who-to-call/complete/learned/3
+You're Not Alone,Puedes pedir ayuda,who-to-call/blocks/0/heading
+"If you've been scammed, you don't have to solve everything by yourself. Different scams require different people to help. The most important thing is to contact the right person as soon as possible. The faster you act, the more likely you can protect your money and personal information.","Si sufriste una estafa, no tienes que resolverlo todo por tu cuenta. Según lo ocurrido, distintas personas pueden ayudarte. Contacta a la persona u organización adecuada cuanto antes para proteger tu dinero y tus datos.",who-to-call/blocks/0/text
+Your Bank or Credit Card Company,Tu banco o el emisor de tu tarjeta,who-to-call/blocks/1/heading
+"Call immediately if you notice charges you didn't make, you gave someone your card number, or your banking account was accessed without permission.","Llama de inmediato si ves cargos que no hiciste, compartiste tu número de tarjeta o alguien accedió a tu cuenta bancaria sin permiso.",who-to-call/blocks/1/text
+Freeze your card,Bloquear tu tarjeta,who-to-call/blocks/1/bullets/0
+Stop new transactions,Detener nuevas operaciones,who-to-call/blocks/1/bullets/1
+Send a replacement card,Enviar una tarjeta de reemplazo,who-to-call/blocks/1/bullets/2
+Investigate the fraud,Investigar el fraude,who-to-call/blocks/1/bullets/3
+The Company That Owns Your Account,La empresa que ofrece tu cuenta,who-to-call/blocks/2/heading
+"Contact the company if someone accessed your email, your Facebook account was hacked, your Amazon account was compromised, or someone changed your password. The company can help you:","Contacta a la empresa si alguien entró en tu correo, Facebook o Amazon sin permiso, o cambió tu contraseña. Puede ayudarte a:",who-to-call/blocks/2/text
+Recover your account,Recuperar tu cuenta,who-to-call/blocks/2/bullets/0
+Secure your account,Proteger tu cuenta,who-to-call/blocks/2/bullets/1
+Change your password,Cambiar tu contraseña,who-to-call/blocks/2/bullets/2
+Log out unknown devices,Cerrar las sesiones de dispositivos desconocidos,who-to-call/blocks/2/bullets/3
+Trusted Family Member or Friend,Un familiar o amigo de confianza,who-to-call/blocks/3/heading
+"If you're unsure what happened: tell someone you trust, ask them to help review messages or websites, and ask them to stay with you while contacting your bank or changing passwords.","Si no sabes qué pasó, habla con alguien de confianza. Pídele ayuda para revisar mensajes o sitios web, y para acompañarte mientras contactas al banco o cambias contraseñas.",who-to-call/blocks/3/text
+Scammers often want you to feel rushed and isolated. Talking to someone you trust can help you make safe decisions.,Los estafadores suelen intentar que te sientas bajo presión y sin apoyo. Hablar con alguien de confianza te ayuda a decidir con calma.,who-to-call/blocks/3/footer
+Local Police,La policía local,who-to-call/blocks/4/heading; who-to-call/blocks/10/cards/3/front
+"For a past theft, identity theft or a threat without immediate danger, contact local police through their non-emergency number. If anyone is in immediate danger, call emergency services.","Para un robo pasado, un robo de identidad o una amenaza sin peligro inmediato, usa el número de la policía para asuntos no urgentes. Si alguien está en peligro inmediato, llama a los servicios de emergencia.",who-to-call/blocks/4/text
+Police reports may also help when working with banks or insurance companies.,Una denuncia policial también puede servir al tratar con bancos o aseguradoras.,who-to-call/blocks/4/footer
+Emergency Services (911),Servicios de emergencia: 911,who-to-call/blocks/5/heading
+"In the United States, call 911 for immediate danger or a medical or safety emergency. Outside the United States, use the local emergency number.","En Estados Unidos, llama al 911 ante un peligro inmediato o una emergencia médica o de seguridad. En otros países, usa el número local de emergencias.",who-to-call/blocks/5/text
+"Most online scams are not 911 emergencies, but they should still be reported to the appropriate organization.","La mayoría de las estafas por internet no requiere llamar al 911, pero conviene denunciarlas a la organización adecuada.",who-to-call/blocks/5/footer
+Who Should You Contact?,¿A quién debes contactar?,who-to-call/blocks/6/title; who-to-call/blocks/7/title; who-to-call/blocks/8/title; who-to-call/blocks/9/title
+You notice three purchases on your debit card that you didn't make.,Ves tres compras con tu tarjeta de débito que no hiciste.,who-to-call/blocks/6/text
+Your neighbor,Tu vecino,who-to-call/blocks/6/options/0
+Facebook,Facebook,who-to-call/blocks/6/options/1; who-to-call/blocks/9/options/1
+Your bank,A tu banco,who-to-call/blocks/6/options/2; who-to-call/blocks/7/options/1; who-to-call/quiz/0/options/2
+The grocery store,Al supermercado,who-to-call/blocks/6/options/3
+Someone changed the password to your email account.,Alguien cambió la contraseña de tu correo.,who-to-call/blocks/7/text
+The weather station,A la estación meteorológica,who-to-call/blocks/7/options/0
+Your email provider,A tu proveedor de correo,who-to-call/blocks/7/options/2
+Your dentist,A tu dentista,who-to-call/blocks/7/options/3
+Someone pretending to be your grandson asks for money. You aren't sure if it's real.,Alguien dice ser tu nieto y pide dinero. No sabes si es verdad.,who-to-call/blocks/8/text
+Send the money.,Enviar el dinero.,who-to-call/blocks/8/options/0; who-to-call/blocks/17/options/0
+Call your grandson using a phone number you already know.,Llamar a tu nieto a un número que ya conoces.,who-to-call/blocks/8/options/1
+Ignore it forever.,Ignorarla para siempre.,who-to-call/blocks/8/options/2; who-to-call/blocks/14/options/3
+Post about it online first.,Publicarlo primero en internet.,who-to-call/blocks/8/options/3
+You discover that someone stole your computer while you were away. You are safe and there is no immediate danger.,Descubres que alguien robó tu computadora mientras no estabas. Estás a salvo y no hay peligro inmediato.,who-to-call/blocks/9/text
+Your cable company,A tu compañía de cable,who-to-call/blocks/9/options/0
+Local police,A la policía local,who-to-call/blocks/9/options/2
+A restaurant,A un restaurante,who-to-call/blocks/9/options/3
+Knowing who to contact saves valuable time.,Saber a quién contactar ahorra tiempo valioso.,who-to-call/blocks/9/explanation
+Call if money or card information may have been stolen.,Llama si pudieron robarte dinero o datos de tu tarjeta.,who-to-call/blocks/10/cards/0/back
+Email Provider,Proveedor de correo,who-to-call/blocks/10/cards/1/front
+Helps recover hacked email accounts.,Ayuda a recuperar cuentas de correo a las que accedieron sin permiso.,who-to-call/blocks/10/cards/1/back
+Trusted Family Member,Familiar de confianza,who-to-call/blocks/10/cards/2/front
+Someone who can help you make safe decisions if you're unsure what to do.,Alguien que puede ayudarte a decidir con seguridad cuando tienes dudas.,who-to-call/blocks/10/cards/2/back
+Respond to crimes and identity theft situations.,Atienden delitos y casos de robo de identidad.,who-to-call/blocks/10/cards/3/back
+911,911,who-to-call/blocks/10/cards/4/front
+For immediate emergencies involving danger to people or property.,Para emergencias con peligro inmediato para personas o bienes.,who-to-call/blocks/10/cards/4/back
+Police,Policía,who-to-call/blocks/11/wordBank/1
+Provider,Proveedor,who-to-call/blocks/11/wordBank/2; who-to-call/blocks/11/questions/1/answer; who-to-call/quiz/3/options/0
+Family,Familia,who-to-call/blocks/11/wordBank/3; who-to-call/blocks/11/questions/2/answer
+"If someone steals money from your account, call your ______.","Si alguien roba dinero de tu cuenta, llama a tu ______.",who-to-call/blocks/11/questions/0/text
+"If your email account is hacked, contact your email ______.","Si alguien accede a tu correo sin permiso, contacta a tu ______ de correo.",who-to-call/blocks/11/questions/1/text; who-to-call/quiz/3/question
+"If you're confused about a suspicious message, talk to a trusted ______ member or friend.","Si un mensaje sospechoso te confunde, habla con alguien de tu ______ o con un amigo de confianza.",who-to-call/blocks/11/questions/2/text
+"Margaret receives a call from someone claiming to be her bank. They ask her to transfer all of her money to a ""safe account."" She hangs up because it sounds suspicious. What should she do next?",Margaret recibe una llamada de alguien que dice ser del banco. Le pide transferir todo su dinero a una «cuenta segura». Ella cuelga porque sospecha. ¿Qué debería hacer ahora?,who-to-call/blocks/12/text
+Call the number that just called her.,Devolver la llamada al mismo número.,who-to-call/blocks/12/options/0
+Transfer the money anyway.,Transferir el dinero de todos modos.,who-to-call/blocks/12/options/1
+Call her bank using the phone number on the back of her debit card or from the bank's official website.,Llamar al banco al teléfono del reverso de su tarjeta o de su sitio oficial.,who-to-call/blocks/12/options/2
+Wait a month to see what happens.,Esperar un mes a ver qué pasa.,who-to-call/blocks/12/options/3
+"Always contact your bank using a trusted phone number, not one provided by a suspicious caller.","Contacta al banco a un número de confianza, no al que te dé una persona sospechosa.",who-to-call/blocks/12/explanation
+"Margaret receives a call from someone claiming to be her bank. They ask her to transfer all of her money to a ""safe account."" She hangs up because it sounds suspicious.",Margaret recibe una llamada de alguien que dice ser del banco. Le pide transferir todo su dinero a una «cuenta segura». Ella cuelga porque sospecha.,who-to-call/blocks/12/presentation/story
+What should she do next?,¿Qué debería hacer ahora?,who-to-call/blocks/12/presentation/question
+Robert accidentally gives his email password to a scam website. What should he do first?,Robert da por error la contraseña de su correo a un sitio fraudulento. ¿Qué debería hacer primero?,who-to-call/blocks/13/text
+Buy a new computer.,Comprar una computadora nueva.,who-to-call/blocks/13/options/0
+Call the electric company.,Llamar a la compañía eléctrica.,who-to-call/blocks/13/options/1
+Contact his email provider and change his password immediately.,Contactar al proveedor de correo y cambiar la contraseña de inmediato.,who-to-call/blocks/13/options/2
+Delete all his emails.,Borrar todos sus correos.,who-to-call/blocks/13/options/3
+"Your email account is often connected to many other accounts, making it important to secure right away.",El correo suele estar vinculado a muchas otras cuentas. Por eso conviene protegerlo enseguida.,who-to-call/blocks/13/explanation
+Robert accidentally gives his email password to a scam website.,Robert da por error la contraseña de su correo a un sitio fraudulento.,who-to-call/blocks/13/presentation/story
+"Linda receives a text from her daughter asking for $800. The message says: ""Don't call me. My phone is broken."" What should Linda do?",Linda recibe un mensaje de su hija pidiendo $800. Dice: «No me llames. Mi teléfono está roto». ¿Qué debería hacer Linda?,who-to-call/blocks/14/text
+Send the money immediately.,Enviar el dinero inmediatamente.,who-to-call/blocks/14/options/0
+Reply asking for her bank account.,Responder pidiendo los datos bancarios.,who-to-call/blocks/14/options/1
+Call her daughter using the phone number she already has or contact another trusted family member to verify the message.,Llamar a su hija al número que ya tiene o consultar a otro familiar de confianza para comprobar el mensaje.,who-to-call/blocks/14/options/2
+Scammers often tell victims not to call because they don't want to be discovered.,Los estafadores suelen pedir que no llames para evitar que descubras el engaño.,who-to-call/blocks/14/explanation
+"Linda receives a text from her daughter asking for $800. The message says: ""Don't call me. My phone is broken.""",Linda recibe un mensaje de su hija pidiendo $800. Dice: «No me llames. Mi teléfono está roto».,who-to-call/blocks/14/presentation/story
+What should Linda do?,¿Qué debería hacer Linda?,who-to-call/blocks/14/presentation/question
+"Consider saving these contacts in your phone: your bank, credit card company, a trusted family member, your primary doctor, and the local police non-emergency number.","Considera guardar estos contactos en tu teléfono: banco, emisor de tu tarjeta, un familiar de confianza, tu médico y el número no urgente de la policía local.",who-to-call/blocks/15/text
+"If something happens, you'll already know who to call.",Así sabrás a quién llamar si ocurre algo.,who-to-call/blocks/15/footer
+You receive a suspicious call claiming to be from your bank.,Recibes una llamada sospechosa de alguien que dice ser del banco.,who-to-call/blocks/16/text
+Give them your account number.,Darle tu número de cuenta.,who-to-call/blocks/16/options/0
+Stay on the call.,Seguir en la llamada.,who-to-call/blocks/16/options/1
+Hang up and call your bank using the official number on your card or their official website.,Colgar y llamar al banco al número oficial de tu tarjeta o de su sitio web.,who-to-call/blocks/16/options/2
+Send them your password.,Enviarle tu contraseña.,who-to-call/blocks/16/options/3
+Always contact organizations using contact information you know is legitimate.,Usa siempre datos de contacto que sepas que son auténticos.,who-to-call/blocks/16/explanation
+Someone sends you a message saying they're a family member in trouble and asks you not to call them.,Recibes un mensaje de alguien que dice ser un familiar en apuros y pide que no le llames.,who-to-call/blocks/17/text
+Believe the message.,Creer el mensaje.,who-to-call/blocks/17/options/1
+Call the family member using a phone number you already know to verify the story.,Llamar al familiar a un número que ya conoces para comprobar lo ocurrido.,who-to-call/blocks/17/options/2
+Ignore all family messages forever.,Ignorar para siempre todos los mensajes de familiares.,who-to-call/blocks/17/options/3
+Verifying directly can stop many impersonation scams.,Verificar directamente puede evitar muchas estafas de suplantación.,who-to-call/blocks/17/explanation
+Who should you contact first if you notice unauthorized charges on your debit card?,¿A quién debes contactar primero si ves cargos no autorizados en tu tarjeta de débito?,who-to-call/quiz/0/question
+Your internet provider,A tu proveedor de internet,who-to-call/quiz/0/options/0
+A friend,A un amigo,who-to-call/quiz/0/options/1
+Your local library,A tu biblioteca local,who-to-call/quiz/0/options/3
+Which situations should be reported to your bank?,¿Qué situaciones debes comunicar al banco?,who-to-call/quiz/1/question
+A friend sharing vacation photos,Un amigo que comparte fotos de sus vacaciones,who-to-call/quiz/1/options/0
+"Unauthorized charges, sharing your card number with a scam site, or your account being accessed without permission","Cargos no autorizados, datos de tarjeta compartidos con un sitio fraudulento o acceso a tu cuenta sin permiso",who-to-call/quiz/1/options/1
+"True or False: If someone claiming to be your family member asks for money and tells you not to call them, you should verify the request by contacting them another way.","Verdadero o falso: Si alguien dice ser un familiar, pide dinero y te dice que no le llames, debes comprobar la petición por otra vía.",who-to-call/quiz/2/question
+"A caller says they're from your bank and asks you to move your money to a ""safe account."" What should you do?",Alguien dice ser del banco y te pide mover dinero a una «cuenta segura». ¿Qué debes hacer?,who-to-call/quiz/4/question
+Follow their instructions.,Seguir sus instrucciones.,who-to-call/quiz/4/options/0
+Give them your online banking password.,Darle tu contraseña de banca en línea.,who-to-call/quiz/4/options/1
+Hang up and call your bank using the official phone number on your debit or credit card.,Colgar y llamar al banco al número oficial de tu tarjeta.,who-to-call/quiz/4/options/2
+Send them your Social Security number.,Enviarle tu número de Seguro Social.,who-to-call/quiz/4/options/3
+What is the best reason to ask a trusted family member or friend for help after a possible scam?,¿Por qué ayuda hablar con un familiar o amigo de confianza después de una posible estafa?,who-to-call/quiz/5/question
+They can always recover your money.,Siempre puede recuperar tu dinero.,who-to-call/quiz/5/options/0
+They know every answer.,Sabe todas las respuestas.,who-to-call/quiz/5/options/1
+They can help you think through the situation and make safer decisions.,Puede ayudarte a pensar en lo ocurrido y a tomar decisiones más seguras.,who-to-call/quiz/5/options/2
+They should talk to the scammer for you.,Debe hablar con el estafador por ti.,who-to-call/quiz/5/options/3
+You completed Lesson 3: Who to Call!,Completaste la lección 3: A quién llamar.,who-to-call/complete/subtitle
+"Understand when to contact banks, companies, family, or police.","Saber cuándo contactar al banco, a una empresa, a un familiar o a la policía.",who-to-call/complete/learned/2
+Freezing Your Credit,Congelar tu crédito,who-to-call/complete/next; credit-freeze/title
+7.4,7.4,credit-freeze/lessonNumber
+Identity Protector,Protector de la identidad,credit-freeze/badge
+Understand what a credit freeze is.,Entender qué es un congelamiento de crédito.,credit-freeze/goals/0; credit-freeze/complete/learned/0
+Know when to freeze their credit.,Saber cuándo congelar tu crédito.,credit-freeze/goals/1
+Learn how a credit freeze protects them.,Entender cómo te protege.,credit-freeze/goals/2
+Know when to remove or temporarily lift a freeze.,Saber cuándo quitarlo o levantarlo temporalmente.,credit-freeze/goals/3
+Understand that a credit freeze is free.,Saber que es gratuito.,credit-freeze/goals/4; credit-freeze/complete/learned/3
+What Is a Credit Freeze?,¿Qué es un congelamiento de crédito?,credit-freeze/blocks/0/heading
+"Imagine someone steals your personal information, like your Social Security number, and tries to open a new credit card or loan in your name. A credit freeze helps stop this. A credit freeze prevents most lenders from viewing your credit report - if they can't view your credit, they usually won't approve a new credit card or loan. Think of it like putting a lock on your credit file. Even if someone has your information, a freeze makes it much harder for them to open new accounts in your name.","Si alguien roba tus datos, podría intentar abrir una tarjeta o pedir un préstamo a tu nombre. Congelar tu crédito ayuda a impedirlo: limita el acceso de los prestamistas a tu informe de crédito. Sin consultarlo, normalmente no aprueban nuevas cuentas. Es como poner un candado en tu expediente de crédito.",credit-freeze/blocks/0/text
+What a Credit Freeze Does,Cómo te protege,credit-freeze/blocks/1/heading
+"A credit freeze can help protect you if your Social Security number was stolen, your identity was stolen, you were part of a data breach, or you believe someone is trying to open accounts in your name.
+
+A credit freeze does NOT lock your bank account, cancel your credit cards, lower your credit score, or stop you from using your existing credit cards.","Puede ayudarte si robaron tu número de Seguro Social o tu identidad, expusieron tus datos o intentan abrir cuentas a tu nombre.
+
+No bloquea tu cuenta bancaria, no cancela tus tarjetas, no reduce tu puntaje de crédito y no impide usar las tarjetas que ya tienes.",credit-freeze/blocks/1/text
+When Should You Freeze Your Credit?,¿Cuándo conviene congelar el crédito?,credit-freeze/blocks/2/heading
+Consider freezing your credit if:,Considera hacerlo si:,credit-freeze/blocks/2/text
+You shared sensitive personal information with a scammer,Compartiste datos sensibles con un estafador,credit-freeze/blocks/2/bullets/0
+Your identity has been stolen,Robaron tu identidad,credit-freeze/blocks/2/bullets/1
+You receive bills for accounts you didn't open,Recibes facturas de cuentas que no abriste,credit-freeze/blocks/2/bullets/2
+A company tells you your information was exposed in a data breach,Una empresa te avisa de que tus datos quedaron expuestos,credit-freeze/blocks/2/bullets/3
+"In the United States, request a free credit freeze separately from Equifax, Experian and TransUnion. Use their official websites or phone numbers. A freeze protects new credit; keep checking your existing accounts for fraud.","En Estados Unidos, solicita un congelamiento gratuito por separado a Equifax, Experian y TransUnion. Usa sus sitios o teléfonos oficiales. El congelamiento protege el crédito nuevo; sigue revisando tus cuentas actuales para detectar fraudes.",credit-freeze/blocks/2/footer
+Can You Remove the Freeze?,¿Puedes levantar el congelamiento?,credit-freeze/blocks/3/heading
+"A freeze stays in place until you lift it. When you need new credit, ask the lender which credit bureau it uses and temporarily lift the freeze there. Set an end date or restore the freeze afterward.","Permanece hasta que lo levantes. Si necesitas crédito nuevo, pregunta al prestamista qué agencia consulta y levanta temporalmente el congelamiento allí. Pon una fecha de finalización o restablécelo después.",credit-freeze/blocks/3/text
+True or False?,¿Verdadero o falso?,credit-freeze/blocks/4/title
+A credit freeze lowers your credit score.,Un congelamiento reduce tu puntaje de crédito.,credit-freeze/blocks/4/questions/0/text
+A credit freeze helps prevent criminals from opening new credit accounts in your name.,Un congelamiento ayuda a impedir que delincuentes abran cuentas de crédito a tu nombre.,credit-freeze/blocks/4/questions/1/text
+A credit freeze cancels all of your credit cards.,Un congelamiento cancela todas tus tarjetas.,credit-freeze/blocks/4/questions/2/text
+You can remove or temporarily lift a credit freeze later.,Puedes quitarlo o levantarlo temporalmente más adelante.,credit-freeze/blocks/4/questions/3/text
+Credit Freeze,Congelamiento de crédito,credit-freeze/blocks/5/cards/0/front
+A free security tool that helps prevent new credit accounts from being opened in your name.,Una medida gratuita que ayuda a impedir que abran cuentas de crédito nuevas a tu nombre.,credit-freeze/blocks/5/cards/0/back
+Identity Theft,Robo de identidad,credit-freeze/blocks/5/cards/1/front
+When someone uses your personal information without your permission.,Cuando alguien usa tu información personal sin tu permiso.,credit-freeze/blocks/5/cards/1/back
+Credit Report,Informe de crédito,credit-freeze/blocks/5/cards/2/front
+A record of your borrowing and repayment history.,Un registro de tus préstamos y de cómo los has pagado.,credit-freeze/blocks/5/cards/2/back
+Data Breach,Filtración de datos,credit-freeze/blocks/5/cards/3/front; password-after-scam/blocks/9/cards/3/front
+When personal information is exposed because a company or organization was hacked or experienced a security incident.,Datos personales que quedan expuestos por un ataque o un incidente de seguridad de una organización.,credit-freeze/blocks/5/cards/3/back
+Lift a Freeze,Levantar el congelamiento,credit-freeze/blocks/5/cards/4/front
+Temporarily allow lenders to access your credit report when you apply for new credit.,Permitir temporalmente que los prestamistas consulten tu informe al solicitar crédito nuevo.,credit-freeze/blocks/5/cards/4/back
+Freeze,Congelamiento,credit-freeze/blocks/6/wordBank/0; credit-freeze/blocks/6/questions/0/answer; credit-freeze/quiz/3/options/0
+Credit,Crédito,credit-freeze/blocks/6/wordBank/1
+Score,Puntaje,credit-freeze/blocks/6/wordBank/2; credit-freeze/blocks/6/questions/1/answer
+Identity,Identidad,credit-freeze/blocks/6/wordBank/3; credit-freeze/blocks/6/questions/2/answer
+A credit ______ helps prevent new accounts from being opened in your name.,Un ______ de crédito ayuda a impedir que abran cuentas nuevas a tu nombre.,credit-freeze/blocks/6/questions/0/text
+A credit freeze does not lower your credit ______.,Congelar tu crédito no reduce tu ______ de crédito.,credit-freeze/blocks/6/questions/1/text
+A credit freeze helps protect you from ______ theft.,Un congelamiento de crédito ayuda a protegerte del robo de ______.,credit-freeze/blocks/6/questions/2/text
+Margaret learns that a large company where she has an account experienced a data breach. The company says her Social Security number may have been exposed. What should Margaret do?,Una empresa donde Margaret tiene una cuenta le avisa de una filtración. Su número de Seguro Social pudo quedar expuesto. ¿Qué debería hacer?,credit-freeze/blocks/7/text
+Ignore the notice.,Ignorar el aviso.,credit-freeze/blocks/7/options/0
+Apply for a new credit card.,Solicitar una tarjeta nueva.,credit-freeze/blocks/7/options/1
+Consider placing a credit freeze to help protect against identity theft.,Considerar un congelamiento de crédito para protegerse del robo de identidad.,credit-freeze/blocks/7/options/2
+Delete all her emails.,Borrar todos sus correos.,credit-freeze/blocks/7/options/3
+A credit freeze can help stop criminals from opening new credit accounts in your name.,Congelar el crédito puede ayudar a impedir que delincuentes abran cuentas de crédito nuevas a tu nombre.,credit-freeze/blocks/7/explanation
+Margaret learns that a large company where she has an account experienced a data breach. The company says her Social Security number may have been exposed.,Una empresa donde Margaret tiene una cuenta le avisa de una filtración. Su número de Seguro Social pudo quedar expuesto.,credit-freeze/blocks/7/presentation/story
+What should Margaret do?,¿Qué debería hacer Margaret?,credit-freeze/blocks/7/presentation/question
+"Robert wants to apply for a car loan, but his credit is frozen. What should he do?","Robert quiere un préstamo para un auto, pero su crédito está congelado. ¿Qué debería hacer?",credit-freeze/blocks/8/text
+Cancel all his credit cards.,Cancelar todas sus tarjetas.,credit-freeze/blocks/8/options/0
+Leave the freeze in place forever.,Mantener el congelamiento para siempre.,credit-freeze/blocks/8/options/1
+Temporarily lift the freeze so the lender can access his credit report.,Levantarlo temporalmente para que el prestamista consulte su informe.,credit-freeze/blocks/8/options/2
+Create a new Social Security number.,Crear un número de Seguro Social nuevo.,credit-freeze/blocks/8/options/3
+A credit freeze is flexible - you can lift it and freeze it again later.,Puedes levantar el congelamiento y volver a establecerlo más adelante.,credit-freeze/blocks/8/explanation
+"Robert wants to apply for a car loan, but his credit is frozen.","Robert quiere un préstamo para un auto, pero su crédito está congelado.",credit-freeze/blocks/8/presentation/story
+Linda notices a credit card account on her credit report that she never opened. What should she do?,Linda ve en su informe una cuenta de tarjeta que nunca abrió. ¿Qué debería hacer?,credit-freeze/blocks/9/text
+Ignore it because it might disappear.,Ignorarla porque quizá desaparezca.,credit-freeze/blocks/9/options/0
+Open another credit card.,Abrir otra tarjeta.,credit-freeze/blocks/9/options/1
+"Contact the credit card company, report the suspicious account, and consider freezing her credit.","Contactar al emisor, denunciar la cuenta sospechosa y considerar un congelamiento de crédito.",credit-freeze/blocks/9/options/2
+An account you don't recognize could be a sign of identity theft.,Una cuenta desconocida puede ser señal de robo de identidad.,credit-freeze/blocks/9/explanation
+Linda notices a credit card account on her credit report that she never opened.,Linda ve en su informe una cuenta de tarjeta que nunca abrió.,credit-freeze/blocks/9/presentation/story
+"A credit freeze is a smart safety tool. You should consider freezing your credit if your Social Security number was stolen, your identity was stolen, you were affected by a data breach, or you discover someone opened an account in your name.","Congelar el crédito es una medida de protección. Considérala si robaron tu número de Seguro Social o tu identidad, si expusieron tus datos o si abrieron una cuenta a tu nombre.",credit-freeze/blocks/10/text
+A credit freeze is free and can be lifted whenever you need to apply for new credit.,Es gratuito y puedes levantarlo cuando necesites solicitar crédito nuevo.,credit-freeze/blocks/10/footer
+A company tells you your Social Security number may have been exposed in a data breach.,Una empresa te avisa de que tu número de Seguro Social pudo quedar expuesto.,credit-freeze/blocks/11/text
+Do nothing.,No hacer nada.,credit-freeze/blocks/11/options/0
+Apply for several new credit cards.,Solicitar varias tarjetas nuevas.,credit-freeze/blocks/11/options/1
+Consider freezing your credit to help protect yourself.,Considerar un congelamiento de crédito para protegerte.,credit-freeze/blocks/11/options/2
+Share the email with strangers online.,Compartir el correo con desconocidos en internet.,credit-freeze/blocks/11/options/3
+A credit freeze can help stop criminals from opening new credit accounts using your information.,Un congelamiento puede ayudar a impedir que usen tus datos para abrir cuentas de crédito nuevas.,credit-freeze/blocks/11/explanation
+You already froze your credit but now need a new credit card.,"Congelaste tu crédito, pero ahora necesitas una tarjeta nueva.",credit-freeze/blocks/12/text
+You're permanently locked out of getting credit.,Ya no podrás obtener crédito nunca.,credit-freeze/blocks/12/options/0
+Your credit score will disappear.,Tu puntaje de crédito desaparecerá.,credit-freeze/blocks/12/options/1
+"Temporarily lift the freeze, apply for the card, then freeze it again if you choose.","Levantar el congelamiento temporalmente, solicitar la tarjeta y restablecerlo después si lo deseas.",credit-freeze/blocks/12/options/2
+Cancel every credit card you own.,Cancelar todas tus tarjetas.,credit-freeze/blocks/12/options/3
+A credit freeze is designed to be temporary when you need access to new credit.,Puedes levantar el congelamiento temporalmente cuando necesites crédito nuevo.,credit-freeze/blocks/12/explanation
+What is the main purpose of a credit freeze?,¿Para qué sirve principalmente congelar tu crédito?,credit-freeze/quiz/0/question
+To lower your credit card interest rate.,Para reducir el interés de tu tarjeta.,credit-freeze/quiz/0/options/0
+To improve your credit score.,Para mejorar tu puntaje de crédito.,credit-freeze/quiz/0/options/1
+To help prevent criminals from opening new credit accounts in your name.,Para ayudar a impedir que delincuentes abran cuentas de crédito nuevas a tu nombre.,credit-freeze/quiz/0/options/2
+To close all your bank accounts.,Para cerrar todas tus cuentas bancarias.,credit-freeze/quiz/0/options/3
+Which situations might make a credit freeze a good idea?,¿En qué situaciones conviene considerar un congelamiento?,credit-freeze/quiz/1/question
+Getting a routine credit card statement,Al recibir un estado de cuenta habitual,credit-freeze/quiz/1/options/0
+"Your identity was stolen, your Social Security number was exposed in a breach, or someone opened an account in your name","Si robaron tu identidad, expusieron tu número de Seguro Social o abrieron una cuenta a tu nombre",credit-freeze/quiz/1/options/1
+True or False: A credit freeze prevents you from using your existing credit cards.,Verdadero o falso: Congelar tu crédito te impide usar las tarjetas que ya tienes.,credit-freeze/quiz/2/question
+A credit ______ helps stop criminals from opening new accounts in your name.,Un ______ de crédito ayuda a impedir que delincuentes abran cuentas nuevas a tu nombre.,credit-freeze/quiz/3/question
+"You want to apply for a mortgage, but your credit is frozen. What should you do?","Quieres solicitar una hipoteca, pero tu crédito está congelado. ¿Qué debes hacer?",credit-freeze/quiz/4/question
+Cancel all your credit cards.,Cancelar todas tus tarjetas.,credit-freeze/quiz/4/options/0
+Leave the freeze in place and hope the lender can see your credit.,Mantenerlo congelado y esperar que el prestamista pueda consultarlo.,credit-freeze/quiz/4/options/1
+Temporarily lift the freeze so the lender can access your credit report.,Levantarlo temporalmente para que el prestamista consulte tu informe.,credit-freeze/quiz/4/options/2
+Open a new bank account instead.,Abrir una cuenta bancaria nueva en su lugar.,credit-freeze/quiz/4/options/3
+Which statement about a credit freeze is correct?,¿Qué afirmación sobre el congelamiento es correcta?,credit-freeze/quiz/5/question
+It lowers your credit score.,Reduce tu puntaje de crédito.,credit-freeze/quiz/5/options/0
+It costs hundreds of dollars.,Cuesta cientos de dólares.,credit-freeze/quiz/5/options/1
+It closes all your financial accounts.,Cierra todas tus cuentas financieras.,credit-freeze/quiz/5/options/2
+It is free and can be lifted when you need to apply for new credit.,Es gratuito y puedes levantarlo cuando necesites solicitar crédito nuevo.,credit-freeze/quiz/5/options/3
+You completed Lesson 4: Freezing Your Credit!,Completaste la lección 4: Congelar tu crédito.,credit-freeze/complete/subtitle
+Know when to freeze your credit.,Saber cuándo congelar tu crédito.,credit-freeze/complete/learned/1
+Know how to temporarily lift a freeze.,Saber cómo levantarlo temporalmente.,credit-freeze/complete/learned/2
+Changing Passwords After a Scam,Cambiar contraseñas después de una estafa,credit-freeze/complete/next; password-after-scam/title
+7.5,7.5,password-after-scam/lessonNumber
+Password Rebuilder,Recuperación de contraseñas,password-after-scam/badge
+Know when a password should be changed.,Saber cuándo cambiar una contraseña.,password-after-scam/goals/0; password-after-scam/complete/learned/0
+Create a new strong password.,Crear una contraseña nueva y segura.,password-after-scam/goals/1
+Avoid reusing old passwords.,Evitar reutilizar contraseñas anteriores.,password-after-scam/goals/2
+Turn on two-factor authentication (2FA).,Activar la verificación en dos pasos.,password-after-scam/goals/3; password-after-scam/complete/learned/2
+Understand which accounts should be updated first.,Saber qué cuentas proteger primero.,password-after-scam/goals/4; password-after-scam/complete/learned/3
+When Should You Change Your Password?,¿Cuándo debes cambiar la contraseña?,password-after-scam/blocks/0/heading
+"Change an exposed password immediately by opening the real app or website yourself. If a message reports an unfamiliar login or data breach, check through the official service, not the message’s link. Merely opening a fake page is different from entering your password there.","Si compartiste una contraseña, cámbiala de inmediato abriendo por tu cuenta la aplicación o el sitio auténtico. Si un mensaje avisa de un acceso desconocido o una filtración, compruébalo en el servicio oficial, sin usar el enlace del mensaje. Abrir una página falsa no es lo mismo que escribir tu contraseña en ella.",password-after-scam/blocks/0/text
+"The sooner you change it, the less time a scammer has to use it.","Cuanto antes la cambies, menos tiempo tendrá un estafador para usarla.",password-after-scam/blocks/0/footer
+Which Accounts Should You Change First?,¿Qué cuentas debes proteger primero?,password-after-scam/blocks/1/heading
+"Start with the accounts that are most important. First, your email account - your email is the master key to many other accounts. If someone controls your email, they may be able to reset passwords for your bank, shopping sites, and social media.
+
+Second, banking and financial accounts: online banking, credit card accounts, payment apps.
+
+Third, shopping and social media accounts: Amazon, Facebook, Instagram, YouTube.","Empieza por las cuentas más importantes. Primero, el correo: puede servir para recuperar el acceso a muchas otras cuentas. Si alguien lo controla, podría cambiar contraseñas del banco, de tiendas o de redes sociales.
+
+Después, protege las cuentas bancarias, tarjetas y aplicaciones de pago.
+
+Luego, las cuentas de compras y redes sociales, como Amazon, Facebook, Instagram o YouTube.",password-after-scam/blocks/1/text
+Create a Strong New Password,Crea una contraseña nueva y segura,password-after-scam/blocks/2/heading
+"Use a long password that is unique to that account. A password manager can create and save it for you.
+
+The examples in this lesson are for practice only. Do not use them on a real account. Avoid names, birthdays, common words and simple changes to an old password.","Usa una contraseña larga y exclusiva para esa cuenta. Un gestor de contraseñas puede crearla y guardarla.
+
+Los ejemplos de esta lección son solo para practicar. No los uses en cuentas reales. Evita nombres, cumpleaños, palabras comunes o cambios pequeños a una contraseña anterior.",password-after-scam/blocks/2/text
+Never Reuse Passwords,No reutilices contraseñas,password-after-scam/blocks/3/heading
+"If your old password was RoseGarden2025, don't change it to RoseGarden2026 or RoseGarden2027! Create a completely different password instead.","Si tu contraseña era RoseGarden2025, no la cambies a RoseGarden2026 o RoseGarden2027. Crea una completamente distinta.",password-after-scam/blocks/3/text
+Turn On Two-Factor Authentication (2FA),Activa la verificación en dos pasos,password-after-scam/blocks/4/heading
+"Two-factor authentication adds a second check, such as a code or a security key. It helps protect an account if its password is stolen, but scammers may also try to steal codes or get you to approve a sign-in. Never share a code or approve a sign-in you did not start.","La verificación en dos pasos añade una segunda comprobación, como un código o una llave de seguridad. Ayuda si roban tu contraseña, pero también pueden intentar robarte códigos o hacerte aprobar un acceso. Nunca compartas un código ni apruebes un acceso que no iniciaste.",password-after-scam/blocks/4/text
+"Whenever available, turn on 2FA.",Actívala siempre que esté disponible.,password-after-scam/blocks/4/footer
+Which Password Is Strongest?,¿Qué contraseña es más segura?,password-after-scam/blocks/5/title; password-after-scam/blocks/6/title; password-after-scam/blocks/7/title
+Choose the strongest password.,Elige la contraseña más segura.,password-after-scam/blocks/5/text; password-after-scam/blocks/6/text; password-after-scam/blocks/7/text
+password123,password123,password-after-scam/blocks/5/options/0
+12345678,12345678,password-after-scam/blocks/5/options/1
+Sunset!CoffeeTrain42,Sunset!CoffeeTrain42,password-after-scam/blocks/5/options/2
+mary1948,mary1948,password-after-scam/blocks/5/options/3
+qwerty,qwerty,password-after-scam/blocks/6/options/0
+abc123,abc123,password-after-scam/blocks/6/options/1
+football,football,password-after-scam/blocks/6/options/2
+BlueRiver$Garden88,BlueRiver$Garden88,password-after-scam/blocks/6/options/3
+your birthday,tu cumpleaños,password-after-scam/blocks/7/options/0
+your phone number,tu número de teléfono,password-after-scam/blocks/7/options/1
+your pet's name,el nombre de tu mascota,password-after-scam/blocks/7/options/2
+Piano#MapleCloud71,Piano#MapleCloud71,password-after-scam/blocks/7/options/3
+You used RoseGarden2025 on a fake website. What should you do?,Usaste RoseGarden2025 en un sitio falso. ¿Qué debes hacer?,password-after-scam/blocks/8/text
+Keep using it.,Seguir usándola.,password-after-scam/blocks/8/options/0; password-after-scam/blocks/15/options/0; password-after-scam/quiz/4/options/0
+Change it to RoseGarden2026.,Cambiarla a RoseGarden2026.,password-after-scam/blocks/8/options/1; password-after-scam/quiz/4/options/1
+Create a completely different password.,Crear una contraseña completamente distinta.,password-after-scam/blocks/8/options/2
+Add one exclamation mark and keep it.,Añadir un signo de exclamación y conservarla.,password-after-scam/blocks/8/options/3
+"Long, unique passwords are much harder for scammers to guess.",Las contraseñas largas y únicas son mucho más difíciles de adivinar.,password-after-scam/blocks/8/explanation
+Strong Password,Contraseña segura,password-after-scam/blocks/9/cards/0/front
+"A long, unique password that is hard to guess.","Una contraseña larga, única y difícil de adivinar.",password-after-scam/blocks/9/cards/0/back
+Unique Password,Contraseña única,password-after-scam/blocks/9/cards/1/front
+A password used for only one account.,Una contraseña que se usa para una sola cuenta.,password-after-scam/blocks/9/cards/1/back
+2FA,Verificación en dos pasos,password-after-scam/blocks/9/cards/2/front; password-after-scam/blocks/10/wordBank/3; password-after-scam/blocks/10/questions/2/answer
+"Two-factor authentication, an extra security step after entering your password.",Una comprobación adicional después de introducir tu contraseña.,password-after-scam/blocks/9/cards/2/back
+When a company's stored information is exposed or stolen.,Cuando los datos que guarda una empresa quedan expuestos o son robados.,password-after-scam/blocks/9/cards/3/back
+Password Reuse,Reutilizar contraseñas,password-after-scam/blocks/9/cards/4/front
+Using the same password on multiple accounts.,Usar la misma contraseña en varias cuentas.,password-after-scam/blocks/9/cards/4/back
+Email,Correo electrónico,password-after-scam/blocks/10/wordBank/0; password-after-scam/blocks/10/questions/0/answer; password-after-scam/quiz/0/options/2
+Unique,Única,password-after-scam/blocks/10/wordBank/1; password-after-scam/blocks/10/questions/1/answer; password-after-scam/quiz/3/options/0
+Your ______ account should usually be updated first.,Normalmente debes proteger primero tu cuenta de ______.,password-after-scam/blocks/10/questions/0/text
+A strong password should be ______ and not used on other accounts.,Una contraseña segura debe ser ______ y no usarse en otras cuentas.,password-after-scam/blocks/10/questions/1/text
+Turning on ______ adds an extra security step after entering your password.,Activar la ______ añade otra comprobación después de introducir tu contraseña.,password-after-scam/blocks/10/questions/2/text
+Margaret accidentally enters her email password on a fake website. What should she do first?,Margaret escribe por error la contraseña de su correo en un sitio falso. ¿Qué debería hacer primero?,password-after-scam/blocks/11/text
+Change her Facebook password first.,Cambiar primero la contraseña de Facebook.,password-after-scam/blocks/11/options/1
+Change her email password immediately and turn on 2FA if available.,Cambiar de inmediato la contraseña del correo y activar la verificación en dos pasos si está disponible.,password-after-scam/blocks/11/options/2
+Create a new email address and ignore the old one.,Crear otro correo e ignorar la cuenta anterior.,password-after-scam/blocks/11/options/3
+Your email account is often the most important account to secure first.,El correo suele ser la cuenta más importante que debes proteger primero.,password-after-scam/blocks/11/explanation
+Margaret accidentally enters her email password on a fake website.,Margaret escribe por error la contraseña de su correo en un sitio falso.,password-after-scam/blocks/11/presentation/story
+"Robert uses the same password for his email, bank, and shopping accounts. That password was exposed in a scam. What should he do?","Robert usa la misma contraseña para el correo, el banco y las compras. La compartió en una estafa. ¿Qué debería hacer?",password-after-scam/blocks/12/text
+Change only one account.,Cambiarla solo en una cuenta.,password-after-scam/blocks/12/options/0
+Keep using the password until something happens.,Seguir usándola hasta que pase algo.,password-after-scam/blocks/12/options/1
+Change the password on all accounts that used it and make each new password unique.,Cambiarla en todas las cuentas donde la usó y elegir una distinta para cada una.,password-after-scam/blocks/12/options/2
+"Add ""123"" to the end of the old password.",Añadir «123» al final de la anterior.,password-after-scam/blocks/12/options/3
+Reusing passwords means one stolen password can unlock multiple accounts.,Reutilizar contraseñas permite que una sola contraseña robada dé acceso a varias cuentas.,password-after-scam/blocks/12/explanation
+"Robert uses the same password for his email, bank, and shopping accounts. That password was exposed in a scam.","Robert usa la misma contraseña para el correo, el banco y las compras. La compartió en una estafa.",password-after-scam/blocks/12/presentation/story
+"Linda creates the new password ""Linda1955"". Is this a strong password?",Linda crea la contraseña «Linda1955». ¿Es segura?,password-after-scam/blocks/13/text
+Yes,Sí,password-after-scam/blocks/13/options/0
+No,No,password-after-scam/blocks/13/options/1
+"Her name and birth year are easy to guess. Use a long, unique password generated by a password manager. Do not copy a password from this lesson.",Su nombre y año de nacimiento son fáciles de adivinar. Usa una contraseña larga y única creada por un gestor. No copies contraseñas de esta lección.,password-after-scam/blocks/13/explanation
+"Linda creates the new password ""Linda1955"".",Linda crea la contraseña «Linda1955».,password-after-scam/blocks/13/presentation/story
+Is this a strong password?,¿Es una contraseña segura?,password-after-scam/blocks/13/presentation/question
+"Open the official service yourself. Change the exposed password and any other account that reused it, using a different password for each. Turn on 2FA. Review signed-in devices and recovery details, and sign out unfamiliar sessions. If you cannot sign in, use the service’s official account recovery.","Abre el servicio oficial por tu cuenta. Cambia la contraseña que compartiste y la de cualquier cuenta donde la repetiste; usa una distinta para cada una. Activa la verificación en dos pasos. Revisa dispositivos conectados y datos de recuperación, y cierra sesiones desconocidas. Si no puedes entrar, usa la recuperación oficial de la cuenta.",password-after-scam/blocks/14/text
+"Think of passwords like house keys: if a key is lost or copied, replace the lock, not just the keychain.","Piensa en una contraseña como en la llave de casa: si se pierde o alguien la copia, cambia la cerradura, no solo el llavero.",password-after-scam/blocks/14/footer
+You entered your banking password on a fake website.,Introdujiste la contraseña del banco en un sitio falso.,password-after-scam/blocks/15/text
+Wait until the bank contacts you.,Esperar a que el banco te contacte.,password-after-scam/blocks/15/options/1
+Change the password immediately and contact your bank if needed.,Cambiarla de inmediato y contactar al banco si hace falta.,password-after-scam/blocks/15/options/2
+Write the password on paper and keep it.,Escribirla en un papel y conservarla.,password-after-scam/blocks/15/options/3
+A stolen banking password should be changed right away.,Una contraseña bancaria robada debe cambiarse de inmediato.,password-after-scam/blocks/15/explanation
+You realize your email and Facebook use the same password.,Te das cuenta de que usas la misma contraseña en tu correo y en Facebook.,password-after-scam/blocks/16/text
+That's fine.,No pasa nada.,password-after-scam/blocks/16/options/0
+Change only Facebook.,Cambiar solo la de Facebook.,password-after-scam/blocks/16/options/1
+Change both passwords and make them different.,Cambiar ambas y usar contraseñas distintas.,password-after-scam/blocks/16/options/2
+Add one number to one of them.,Añadir un número a una de ellas.,password-after-scam/blocks/16/options/3
+Which account should you usually secure first after a password is exposed?,"¿Qué cuenta debes proteger primero, por lo general, si se expone una contraseña?",password-after-scam/quiz/0/question
+Social media,Redes sociales,password-after-scam/quiz/0/options/0
+Streaming services,Servicios de video o música,password-after-scam/quiz/0/options/1
+Weather app,Aplicación del tiempo,password-after-scam/quiz/0/options/3
+Which are signs that you should change a password?,¿Qué señales indican que debes cambiar una contraseña?,password-after-scam/quiz/1/question
+You received a routine newsletter,Recibir un boletín habitual,password-after-scam/quiz/1/options/0
+"You entered it on a suspicious website, shared it by mistake, got a data breach notice, or received an unfamiliar login alert","Escribirla en un sitio sospechoso, compartirla por error o recibir un aviso de filtración o de acceso desconocido",password-after-scam/quiz/1/options/1
+True or False: Using the same password on multiple accounts is a safe practice.,Verdadero o falso: Es seguro usar la misma contraseña en varias cuentas.,password-after-scam/quiz/2/question
+A strong password should be ______ and used for only one account.,Una contraseña segura debe ser ______ y usarse solo en una cuenta.,password-after-scam/quiz/3/question
+Browser,Navegador,password-after-scam/quiz/3/options/2
+You used the password RoseGarden2025 on a fake website. What should you do?,Usaste la contraseña RoseGarden2025 en un sitio falso. ¿Qué debes hacer?,password-after-scam/quiz/4/question
+Create a completely different password and update any accounts that used the old one.,Crear una completamente distinta y cambiarla en las cuentas donde usaste la anterior.,password-after-scam/quiz/4/options/2
+Add an exclamation mark and keep it.,Añadir un signo de exclamación y conservarla.,password-after-scam/quiz/4/options/3
+What is the main benefit of two-factor authentication (2FA)?,¿Cuál es la principal ventaja de la verificación en dos pasos?,password-after-scam/quiz/5/question
+It makes your internet faster.,Hace que Internet vaya más rápido.,password-after-scam/quiz/5/options/0
+It removes the need for a password.,Elimina la necesidad de una contraseña.,password-after-scam/quiz/5/options/1
+It adds an extra security step after entering your password.,Añade otra comprobación después de introducir la contraseña.,password-after-scam/quiz/5/options/2
+It automatically changes your password every day.,Cambia tu contraseña automáticamente cada día.,password-after-scam/quiz/5/options/3
+You completed Lesson 5: Changing Passwords After a Scam!,Completaste la lección 5: Cambiar contraseñas después de una estafa.,password-after-scam/complete/subtitle
+"Create a new strong, unique password.","Crear una contraseña nueva, segura y única.",password-after-scam/complete/learned/1
+Reporting Scams to the FBI IC3,Denunciar estafas al IC3 del FBI,password-after-scam/complete/next; reporting-ic3/title
+7.6,7.6,reporting-ic3/lessonNumber
+Scam Reporter,Saber denunciar estafas,reporting-ic3/badge
+Understand what the FBI Internet Crime Complaint Center (IC3) is.,"Entender qué es el Centro de Denuncias de Delitos por Internet del FBI, llamado IC3.",reporting-ic3/goals/0; reporting-ic3/complete/learned/0
+Know when a scam should be reported.,Saber cuándo denunciar una estafa.,reporting-ic3/goals/1; reporting-ic3/complete/learned/1
+Learn what information is helpful when making a report.,Saber qué información ayuda al presentar una denuncia.,reporting-ic3/goals/2; reporting-ic3/complete/learned/2
+Understand that reporting a scam can help protect others.,Entender cómo denunciar puede proteger a otras personas.,reporting-ic3/goals/3; reporting-ic3/complete/learned/3
+Know that reporting a scam does not guarantee lost money will be recovered.,Saber que una denuncia no garantiza recuperar el dinero.,reporting-ic3/goals/4
+What Is the FBI IC3?,¿Qué es el IC3 del FBI?,reporting-ic3/blocks/0/heading
+"The FBI’s Internet Crime Complaint Center (IC3) receives reports of internet-related crime at ic3.gov. Examples include online shopping fraud, phishing, investment and romance scams, and identity theft. This lesson covers U.S. reporting options; local reporting services differ elsewhere.","El Centro de Denuncias de Delitos por Internet del FBI, o IC3, recibe denuncias en ic3.gov. Abarca fraudes en compras, phishing, estafas de inversión o sentimentales y robo de identidad. Esta lección explica opciones de Estados Unidos; en otros países los servicios son distintos.",reporting-ic3/blocks/0/text
+"Reporting a scam helps law enforcement identify patterns and investigate criminals. Even if you didn't lose money, your report may help prevent someone else from becoming a victim.","Una denuncia ayuda a las autoridades a detectar patrones e investigar delitos. Aunque no hayas perdido dinero, podría ayudar a proteger a otra persona.",reporting-ic3/blocks/0/footer
+When Should You Report a Scam?,¿Cuándo conviene denunciar una estafa?,reporting-ic3/blocks/1/heading
+You should consider reporting a scam if:,Considera denunciar si:,reporting-ic3/blocks/1/text
+Someone tried to steal your money,Alguien intentó robar tu dinero,reporting-ic3/blocks/1/bullets/0
+You gave personal information to a scammer,Diste datos personales a un estafador,reporting-ic3/blocks/1/bullets/1
+You lost money online,Perdiste dinero por internet,reporting-ic3/blocks/1/bullets/2
+Someone pretended to be a government agency or business,Alguien se hizo pasar por una agencia pública o empresa,reporting-ic3/blocks/1/bullets/3
+You received a phishing email or text,Recibiste un correo o mensaje de phishing,reporting-ic3/blocks/1/bullets/4
+You don't need to know who the scammer is to file a report.,No necesitas saber quién es el estafador para denunciar.,reporting-ic3/blocks/1/footer
+What Information Should You Save?,¿Qué información conviene guardar?,reporting-ic3/blocks/2/heading
+"If it's safe to do so, keep the date the scam happened, emails or text messages, website addresses (URLs), phone numbers, the amount of money involved, and receipts or payment confirmations.","Si puedes hacerlo sin riesgo, guarda la fecha, correos o mensajes, direcciones de sitios web, teléfonos, la cantidad de dinero y los recibos o comprobantes de pago.",reporting-ic3/blocks/2/text
+Don't keep communicating with the scammer just to collect more information. Only save what you already have.,No sigas hablando con el estafador para reunir más información. Guarda solo lo que ya tienes.,reporting-ic3/blocks/2/footer
+What Happens After You Report?,¿Qué ocurre después de denunciar?,reporting-ic3/blocks/3/heading
+"After submitting a report, the FBI reviews the information, your report may be combined with similar reports, and the information may help investigators identify scam patterns.",El FBI revisa la información y puede relacionarla con otras denuncias para detectar patrones de estafa.,reporting-ic3/blocks/3/text
+"A report does not guarantee an investigation, a reply or the return of money. IC3 does not charge to file a report. Be wary of anyone who asks you to pay to recover lost funds or claims to work with IC3 on your recovery.","Una denuncia no garantiza una investigación, una respuesta ni recuperar dinero. Presentarla al IC3 es gratuito. Desconfía de quien cobre por recuperar fondos o diga colaborar con el IC3 para devolvértelos.",reporting-ic3/blocks/3/footer
+Should You Report It?,¿Deberías denunciarlo?,reporting-ic3/blocks/4/title; reporting-ic3/blocks/5/title; reporting-ic3/blocks/6/title; reporting-ic3/blocks/7/title
+You lost $800 in an online investment scam.,Perdiste $800 en una estafa de inversión por internet.,reporting-ic3/blocks/4/text
+"Yes, report it.","Sí, conviene denunciar.",reporting-ic3/blocks/4/options/0
+"No, it's too late.","No, ya es demasiado tarde.",reporting-ic3/blocks/4/options/1
+You received a phishing email asking for your password but deleted it without responding.,Recibiste un correo falso que pedía tu contraseña y lo borraste sin responder.,reporting-ic3/blocks/5/text
+You can still report it if you believe it was a scam.,Aun así puedes denunciarlo si crees que era una estafa.,reporting-ic3/blocks/5/options/0
+There's never a reason to report phishing attempts.,Nunca hay motivos para denunciar un intento de phishing.,reporting-ic3/blocks/5/options/1
+Someone pretending to be the IRS asked you to buy gift cards.,Alguien se hizo pasar por el IRS y te pidió comprar tarjetas de regalo.,reporting-ic3/blocks/6/text
+Report the scam.,Denunciar la estafa.,reporting-ic3/blocks/6/options/0
+Ignore it and tell no one.,Ignorarla y no contárselo a nadie.,reporting-ic3/blocks/6/options/1
+You accidentally clicked a suspicious link but didn't lose money.,"Abriste un enlace sospechoso por error, pero no perdiste dinero.",reporting-ic3/blocks/7/text
+You can still report suspicious online scams if appropriate.,También puedes denunciar una posible estafa por internet si corresponde.,reporting-ic3/blocks/7/options/0
+You must lose money before reporting.,Tienes que perder dinero antes de poder denunciar.,reporting-ic3/blocks/7/options/1
+Reporting suspicious activity helps law enforcement understand scam trends.,Denunciar actividad sospechosa ayuda a las autoridades a entender las estafas.,reporting-ic3/blocks/7/explanation
+IC3,IC3,reporting-ic3/blocks/8/cards/0/front; reporting-ic3/blocks/9/wordBank/0; reporting-ic3/blocks/9/questions/0/answer
+The FBI's Internet Crime Complaint Center for reporting internet-related crimes.,El centro del FBI que recibe denuncias de delitos por internet.,reporting-ic3/blocks/8/cards/0/back; reporting-ic3/quiz/0/options/2
+Phishing,Phishing,reporting-ic3/blocks/8/cards/1/front
+A scam that tries to steal your passwords or personal information.,Un engaño que intenta robar tus contraseñas o datos personales.,reporting-ic3/blocks/8/cards/1/back
+Evidence,Pruebas,reporting-ic3/blocks/8/cards/2/front; reporting-ic3/blocks/9/wordBank/1; reporting-ic3/blocks/9/questions/1/answer; reporting-ic3/quiz/3/options/0
+"Helpful information like emails, phone numbers, or receipts related to a scam.","Información útil sobre una estafa, como correos, teléfonos o recibos.",reporting-ic3/blocks/8/cards/2/back
+Internet Scam,Estafa por internet,reporting-ic3/blocks/8/cards/3/front
+"A scam that happens online through websites, emails, texts, or social media.","Un engaño mediante sitios web, correos, mensajes o redes sociales.",reporting-ic3/blocks/8/cards/3/back
+Report,Denunciar,reporting-ic3/blocks/8/cards/4/front; reporting-ic3/blocks/9/wordBank/3
+Tell the appropriate organization about suspicious or criminal activity.,Avisar a la organización adecuada de actividad sospechosa o delictiva.,reporting-ic3/blocks/8/cards/4/back
+Money,Dinero,reporting-ic3/blocks/9/wordBank/2; reporting-ic3/blocks/9/questions/2/answer
+The FBI's Internet Crime Complaint Center is called ______.,El Centro de Denuncias de Delitos por Internet del FBI se llama ______.,reporting-ic3/blocks/9/questions/0/text
+"Emails, receipts, and screenshots can be useful ______ when reporting a scam.","Los correos, recibos y capturas de pantalla pueden servir como ______ al denunciar una estafa.",reporting-ic3/blocks/9/questions/1/text
+"If you lose ______ in an online scam, contact your bank immediately and consider reporting it to IC3.","Si pierdes ______ en una estafa por internet, contacta al banco de inmediato y considera denunciar al IC3.",reporting-ic3/blocks/9/questions/2/text
+"Margaret buys a kitchen appliance from a website she's never used before. The item never arrives, and the website disappears a week later. What should she do?",Margaret compra un electrodoméstico en un sitio nuevo para ella. El pedido no llega y el sitio desaparece una semana después. ¿Qué debería hacer?,reporting-ic3/blocks/10/text
+Order another one from the same website.,Pedir otro en el mismo sitio.,reporting-ic3/blocks/10/options/0
+Contact her credit card company or bank and consider reporting the scam to IC3.,Contactar al emisor de su tarjeta o al banco y considerar denunciar al IC3.,reporting-ic3/blocks/10/options/2
+Keep emailing the scammer for months.,Seguir escribiendo al estafador durante meses.,reporting-ic3/blocks/10/options/3
+Reporting the scam and contacting your financial institution are important first steps.,Contactar a tu entidad financiera y denunciar son primeros pasos importantes.,reporting-ic3/blocks/10/explanation
+"Margaret buys a kitchen appliance from a website she's never used before. The item never arrives, and the website disappears a week later.",Margaret compra un electrodoméstico en un sitio nuevo para ella. El pedido no llega y el sitio desaparece una semana después.,reporting-ic3/blocks/10/presentation/story
+"Robert receives an email claiming to be from his bank asking him to ""verify"" his password. He realizes it's fake and deletes it. What should he do?",Robert recibe un correo que dice ser del banco y pide «verificar» su contraseña. Ve que es falso y lo borra. ¿Qué debería hacer?,reporting-ic3/blocks/11/text
+Reply with his password.,Responder con su contraseña.,reporting-ic3/blocks/11/options/0
+Ignore all future emails forever.,Ignorar para siempre todos los correos.,reporting-ic3/blocks/11/options/1
+Delete the email and consider reporting the phishing attempt.,Borrar el correo y considerar denunciar el intento de phishing.,reporting-ic3/blocks/11/options/2
+Click the link to make sure it's fake.,Abrir el enlace para asegurarse de que es falso.,reporting-ic3/blocks/11/options/3
+Never click links or provide information in suspicious emails.,No abras enlaces ni compartas datos en correos sospechosos.,reporting-ic3/blocks/11/explanation
+"Robert receives an email claiming to be from his bank asking him to ""verify"" his password. He realizes it's fake and deletes it.",Robert recibe un correo que dice ser del banco y pide «verificar» su contraseña. Ve que es falso y lo borra.,reporting-ic3/blocks/11/presentation/story
+Linda receives a phone call from someone pretending to be a government agency demanding payment with gift cards. She hangs up without paying. What should she do?,Linda recibe una llamada de alguien que dice ser de una agencia pública y exige tarjetas de regalo. Cuelga sin pagar. ¿Qué debería hacer?,reporting-ic3/blocks/12/text
+Call them back.,Devolver las llamadas.,reporting-ic3/blocks/12/options/0
+Buy the gift cards anyway.,Comprar las tarjetas de todos modos.,reporting-ic3/blocks/12/options/1
+Report the scam if appropriate and tell trusted family or friends so they're aware of the scam.,Denunciar si corresponde y avisar a familiares o amigos de confianza para que conozcan el engaño.,reporting-ic3/blocks/12/options/2
+Give the caller her address.,Dar su dirección a quien llama.,reporting-ic3/blocks/12/options/3
+Sharing information about scams with people you trust can help prevent others from becoming victims.,Avisar de las estafas a personas de confianza puede ayudar a protegerlas.,reporting-ic3/blocks/12/explanation
+Linda receives a phone call from someone pretending to be a government agency demanding payment with gift cards. She hangs up without paying.,Linda recibe una llamada de alguien que dice ser de una agencia pública y exige tarjetas de regalo. Cuelga sin pagar.,reporting-ic3/blocks/12/presentation/story
+"Before reporting a scam: save any emails or text messages, keep receipts or payment confirmations, write down dates and phone numbers if available, contact your bank immediately if money or financial information was involved, and don't continue communicating with the scammer.","Antes de denunciar, guarda los mensajes, recibos y comprobantes que ya tengas. Anota fechas y teléfonos si están disponibles. Si hay dinero o datos financieros afectados, contacta al banco de inmediato. No sigas comunicándote con el estafador.",reporting-ic3/blocks/13/text
+You paid $250 to a fake online store.,Pagaste $250 a una tienda falsa.,reporting-ic3/blocks/14/text
+Wait six months.,Esperar seis meses.,reporting-ic3/blocks/14/options/1
+Contact your bank or credit card company and consider reporting the scam to IC3.,Contactar al banco o al emisor de la tarjeta y considerar denunciar al IC3.,reporting-ic3/blocks/14/options/2
+Send the website more money.,Enviar más dinero al sitio.,reporting-ic3/blocks/14/options/3
+Acting quickly gives your financial institution the best chance to help.,Actuar pronto da a tu entidad financiera más posibilidades de ayudarte.,reporting-ic3/blocks/14/explanation
+You want to report an online scam. Which information would be helpful?,Quieres denunciar una estafa por internet. ¿Qué información serviría?,reporting-ic3/blocks/15/text
+Your favorite TV show.,Tu programa de televisión favorito.,reporting-ic3/blocks/15/options/0
+The weather that day.,El tiempo que hacía ese día.,reporting-ic3/blocks/15/options/1
+"Emails, text messages, website addresses, receipts, and phone numbers related to the scam.","Correos, mensajes, direcciones web, recibos y teléfonos relacionados con la estafa.",reporting-ic3/blocks/15/options/2
+Your grocery list.,Tu lista de compras.,reporting-ic3/blocks/15/options/3
+Details related to the scam can help investigators identify patterns and connect reports.,Estos datos pueden ayudar a relacionar denuncias y detectar patrones.,reporting-ic3/blocks/15/explanation
+What is IC3?,¿Qué es el IC3?,reporting-ic3/quiz/0/question
+A computer virus.,Un virus informático.,reporting-ic3/quiz/0/options/0
+A password manager.,Un gestor de contraseñas.,reporting-ic3/quiz/0/options/1
+A social media website.,Un sitio de redes sociales.,reporting-ic3/quiz/0/options/3
+Which situations should you consider reporting to IC3?,¿Qué situaciones conviene denunciar al IC3?,reporting-ic3/quiz/1/question
+Only crimes with a known suspect,Solo delitos donde se conoce al sospechoso,reporting-ic3/quiz/1/options/0
+"Online shopping scams, phishing emails, investment scams, and fake government impersonation scams","Estafas de compras, correos de phishing, fraudes de inversión o suplantaciones de agencias públicas",reporting-ic3/quiz/1/options/1
+True or False: You must lose money before you can report an internet scam.,Verdadero o falso: Tienes que perder dinero antes de denunciar una estafa por internet.,reporting-ic3/quiz/2/question
+"Emails, receipts, and screenshots can serve as ______ when reporting a scam.","Los correos, recibos y capturas de pantalla pueden servir como ______ al denunciar una estafa.",reporting-ic3/quiz/3/question
+Grocery,Compras,reporting-ic3/quiz/3/options/2
+What should you do if you paid money to a fake online store?,¿Qué debes hacer si pagaste a una tienda falsa?,reporting-ic3/quiz/4/question
+Keep shopping there.,Seguir comprando allí.,reporting-ic3/quiz/4/options/0
+Wait a year before taking action.,Esperar un año antes de actuar.,reporting-ic3/quiz/4/options/1
+Contact your bank or credit card company immediately and consider reporting the scam to IC3.,Contactar de inmediato al banco o al emisor de la tarjeta y considerar denunciar al IC3.,reporting-ic3/quiz/4/options/2
+Send another payment.,Enviar otro pago.,reporting-ic3/quiz/4/options/3
+Why is reporting internet scams important?,¿Por qué es importante denunciar las estafas por internet?,reporting-ic3/quiz/5/question
+It guarantees your money will be returned.,Garantiza que te devuelvan el dinero.,reporting-ic3/quiz/5/options/0
+It automatically arrests the scammer.,Hace que arresten automáticamente al estafador.,reporting-ic3/quiz/5/options/1
+It helps law enforcement identify scam patterns and may help protect others.,Ayuda a las autoridades a detectar patrones y puede proteger a otras personas.,reporting-ic3/quiz/5/options/2
+It permanently blocks the internet.,Bloquea internet para siempre.,reporting-ic3/quiz/5/options/3
+Congratulations!,¡Felicidades!,reporting-ic3/complete/title
+You completed Lesson 6: Reporting Scams to the FBI IC3!,Completaste la lección 6: Denunciar estafas al IC3 del FBI.,reporting-ic3/complete/subtitle
+Phase 7 Final Challenge,Reto final de la etapa 7,reporting-ic3/complete/next; phase7-challenge/title
+Phase 7 Final Exam,Evaluación final de la etapa 7,phase7-challenge/nextLabel
+Quick review,Repaso breve,phase7-challenge/blocks/0/title
+What should you do after a scam or account emergency?,¿Qué debes hacer después de una estafa o un problema de seguridad en tu cuenta?,phase7-challenge/blocks/0/prompt
+Contact the bank or service quickly,Contactar pronto al banco o al servicio,phase7-challenge/blocks/0/options/0/text
+Save messages and receipts,Guardar mensajes y recibos,phase7-challenge/blocks/0/options/1/text
+Ask a trusted person for help,Pedir ayuda a alguien de confianza,phase7-challenge/blocks/0/options/2/text
+Hide the problem and wait,Ocultar el problema y esperar,phase7-challenge/blocks/0/options/3/text
+Good review. These choices help you stay informed and in control.,Buen repaso. Estas opciones te ayudan a estar informado y mantener el control.,phase7-challenge/blocks/0/feedback
+Take another look at the highlighted choices. Safe actions give you time to verify.,Vuelve a mirar las opciones resaltadas. Las acciones seguras te dan tiempo para comprobar.,phase7-challenge/blocks/0/incorrectFeedback
+Key ideas,Ideas clave,phase7-challenge/blocks/1/title
+Trusted contact,Contacto de confianza,phase7-challenge/blocks/1/cards/0/front
+A person you can call for calm help and a second opinion.,Una persona a quien llamar para recibir ayuda con calma y otra opinión.,phase7-challenge/blocks/1/cards/0/back
+Credit freeze,Congelamiento de crédito,phase7-challenge/blocks/1/cards/1/front
+A free restriction that can make new credit harder to open in your name.,Una restricción gratuita que dificulta abrir crédito nuevo a tu nombre.,phase7-challenge/blocks/1/cards/1/back
+Account recovery,Recuperación de la cuenta,phase7-challenge/blocks/1/cards/2/front
+Official steps used to regain control of an account.,Pasos oficiales para recuperar el control de una cuenta.,phase7-challenge/blocks/1/cards/2/back
+Recall practice,Práctica de memoria,phase7-challenge/blocks/2/title
+evidence,pruebas,phase7-challenge/blocks/2/wordBank/0; phase7-challenge/blocks/2/questions/0/answer
+passwords,contraseñas,phase7-challenge/blocks/2/wordBank/1
+rumors,rumores,phase7-challenge/blocks/2/wordBank/2
+ads,anuncios,phase7-challenge/blocks/2/wordBank/3
+Save ______ such as messages and receipts before reporting a scam.,"Guarda ______, como mensajes y recibos, antes de denunciar una estafa.",phase7-challenge/blocks/2/questions/0/text
+Real-life decision,Decisión de la vida real,phase7-challenge/blocks/3/title
+You sent money to someone who now appears to be a scammer. What should you do first?,Enviaste dinero a alguien que ahora parece ser un estafador. ¿Qué debes hacer primero?,phase7-challenge/blocks/3/text
+Contact your bank or payment service immediately,Contactar de inmediato al banco o al servicio de pago,phase7-challenge/blocks/3/options/0
+Send more money to request a refund,Enviar más dinero para pedir un reembolso,phase7-challenge/blocks/3/options/1
+Delete every message before asking for help,Borrar todos los mensajes antes de pedir ayuda,phase7-challenge/blocks/3/options/2
+Fast contact may improve the chance of stopping a payment. Keep evidence for the bank and reports.,Contactar pronto puede aumentar las posibilidades de detener un pago. Guarda las pruebas para el banco y las denuncias.,phase7-challenge/blocks/3/explanation
+You sent money to someone who now appears to be a scammer.,Enviaste dinero a alguien que ahora parece ser un estafador.,phase7-challenge/blocks/3/presentation/story
+What should you do first?,¿Qué deberías hacer primero?,phase7-challenge/blocks/3/presentation/question
+Final confidence check,Comprobación final de confianza,phase7-challenge/blocks/4/title
+Asking a trusted person for help is a strong safety step.,Pedir ayuda a alguien de confianza es una buena medida de seguridad.,phase7-challenge/blocks/4/questions/0/text
+A calm second opinion can help you act quickly and avoid more harm.,Otra opinión con calma puede ayudarte a actuar pronto y evitar más daños.,phase7-challenge/blocks/4/questions/0/explanation

@@ -1,0 +1,64 @@
+.app-screen-partner-dashboard { --everwise-screen-background: var(--surface-grouped); --everwise-safe-top: var(--surface-grouped); --everwise-safe-bottom: var(--surface-grouped); }
+.partner-dashboard { flex: 1; min-height: 0; width: 100%; overflow-y: auto; background: var(--surface-grouped); color: var(--text-primary); font-size: calc(17px * var(--text-scale)); line-height: 1.5; }
+.partner-dashboard-content { max-width: 1120px; margin-inline: auto; padding: 24px 24px max(40px, env(safe-area-inset-bottom)); }
+.partner-dashboard-header > p, .partner-dashboard-partner-lockup { color: var(--text-secondary); }
+.partner-dashboard-partner-lockup { display: flex; align-items: center; gap: 12px; margin-top: 24px; }
+.partner-dashboard-partner-logo { width: 32px; height: 32px; object-fit: contain; flex: none; }
+.partner-dashboard h1 { margin-top: 16px; font-size: calc(30px * var(--heading-scale)); line-height: 1.2; letter-spacing: -.025em; font-weight: 650; text-wrap: initial; }
+.partner-dashboard h2 { font-size: calc(22px * var(--heading-scale)); line-height: 1.3; letter-spacing: -.015em; font-weight: 650; text-wrap: initial; }
+.partner-dashboard h3 { font-size: calc(18px * var(--text-scale)); line-height: 1.4; font-weight: 650; }
+.partner-dashboard-header h1 + p { margin-top: 12px; }
+.partner-dashboard-updated { margin-top: 8px; font-size: calc(15px * var(--text-scale)); }
+.partner-dashboard-toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.partner-dashboard-toolbar > button { width: auto; flex: 1 1 240px; }
+.partner-dashboard-summaries { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(22rem * var(--text-scale))), 1fr)); gap: 16px; margin-top: 32px; }
+.partner-dashboard-summary { padding: 20px; border: 1px solid var(--separator); border-radius: 16px; background: var(--surface); }
+.partner-dashboard-summary h2 { font-size: calc(17px * var(--heading-scale)); letter-spacing: 0; color: var(--text-secondary); }
+.partner-dashboard-summary > p:last-child { margin-top: 8px; color: var(--text-secondary); }
+.partner-dashboard-lead { margin-top: 12px; font-size: calc(24px * var(--text-scale)); line-height: 1.3; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.partner-dashboard-section { margin-top: 32px; }
+.partner-dashboard-threshold { margin-top: 16px; padding: 20px; border: 1px solid var(--separator); border-radius: 12px; color: var(--text-secondary); }
+.partner-dashboard-distributions { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%, calc(24rem * var(--text-scale))),1fr)); gap: 28px; margin-top: 20px; }
+.partner-dashboard-breakdown { min-width: 0; container-type: inline-size; }
+.partner-dashboard-cell-label { display: none; }
+.partner-dashboard table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: calc(16px * var(--text-scale)); }
+.partner-dashboard th, .partner-dashboard td { padding: 12px 8px; vertical-align: top; border-bottom: 1px solid var(--separator); }
+.partner-dashboard th:first-child { padding-left: 0; text-align: left; overflow-wrap: anywhere; }
+.partner-dashboard th:not(:first-child), .partner-dashboard td { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.partner-dashboard th:last-child, .partner-dashboard td:last-child { padding-right: 0; }
+.partner-dashboard thead th { color: var(--text-secondary); font-weight: 600; }
+.partner-dashboard tbody th { font-weight: 500; }
+.partner-dashboard-invitation { padding-top: 28px; border-top: 1px solid var(--separator); }
+.partner-dashboard-invitation > p { margin-top: 12px; color: var(--text-secondary); }
+.partner-dashboard-invitation-status { font-weight: 600; }
+.partner-dashboard-invitation > button { margin-top: 20px; width: auto; }
+.partner-dashboard-confirmation, .partner-dashboard-replacement { display: grid; gap: 16px; max-width: 680px; padding: 20px; margin-top: 20px; border: 1px solid var(--separator); border-radius: 12px; background: var(--surface); }
+.partner-dashboard-confirmation { border-left: 3px solid var(--danger); }
+.partner-dashboard-button-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.partner-dashboard-button-row > button { flex: 1 1 200px; width: auto; }
+.partner-dashboard .partner-dashboard-destructive { color: var(--danger); border-color: #bf756a; }
+.partner-dashboard-replacement label { font-weight: 600; }
+.partner-dashboard-replacement input { min-width: 0; width: 100%; min-height: 56px; padding: 12px; font: inherit; border: 1px solid var(--control-border); border-radius: 12px; background: var(--surface); }
+.partner-dashboard-feedback { margin-top: 16px; border-left: 3px solid var(--danger); padding: 12px 16px; color: #922e21; background: var(--danger-subtle); border-radius: 8px; }
+@media (min-width: 768px) { .partner-dashboard { overflow: visible; } .partner-dashboard-content { padding: 32px 32px 48px; } }
+@media (max-width: 479px) { .partner-dashboard-invitation > button { width: 100%; } }
+/* Give the group name a full row when three columns would fragment its words.
+   Explicit table/row/cell roles preserve associations when display changes. */
+@container (max-width: 22em) {
+  .partner-dashboard table, .partner-dashboard tbody { display: block; }
+  .partner-dashboard thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .partner-dashboard tbody tr { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px 16px; padding-block: 16px; border-bottom: 1px solid var(--separator); }
+  .partner-dashboard tbody th { grid-column: 1 / -1; padding: 0; border: 0; }
+  .partner-dashboard tbody td { padding: 0; border: 0; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+  .partner-dashboard-cell-label { display: block; margin-bottom: 4px; color: var(--text-secondary); font-size: .875em; }
+}
+
+/* Preserve readable row labels when container queries are unavailable. */
+@supports not (container-type: inline-size) {
+  .partner-dashboard table, .partner-dashboard tbody { display: block; }
+  .partner-dashboard thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .partner-dashboard tbody tr { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px 16px; padding-block: 16px; border-bottom: 1px solid var(--separator); }
+  .partner-dashboard tbody th { grid-column: 1 / -1; padding: 0; border: 0; }
+  .partner-dashboard tbody td { padding: 0; border: 0; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+  .partner-dashboard-cell-label { display: block; margin-bottom: 4px; color: var(--text-secondary); font-size: .875em; }
+}

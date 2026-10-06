@@ -1,8 +1,10 @@
 import ReadAloud from "../ReadAloud";
 import BlockShell from "./BlockShell";
+import { useLearningText } from "../../i18n/learning.js";
+import { useState } from "react";
 
 // Opening screen of a scam-protection lesson: the objective, the question the
-// lesson answers, the five universal warning signs reminder, and the reading.
+// lesson answers, the reading, and an optional reminder of earlier lessons.
 export default function ReadingBlock({
   block,
   progress,
@@ -11,77 +13,76 @@ export default function ReadingBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
+  const [expandedBlock, setExpandedBlock] = useState(null);
+  const warningSignsVisible = expandedBlock === block;
+  const reminderTitle = block.reminderTitle ?? "Review warning signs";
+  const paragraphs = t(block.text || "").split(/\n\s*\n/).filter(part => part.trim());
   const speakText = [
-    block.objective && `Learning goal. ${block.objective}`,
+    block.heading,
     block.question,
     block.text,
+    ...(block.objective ? ["Learning goal", block.objective] : []),
+    ...(block.warningSigns?.length ? [reminderTitle, ...(warningSignsVisible ? block.warningSigns : [])] : []),
   ]
     .filter(Boolean)
+    .map(part => t(part))
     .join(". ");
 
   return (
     <BlockShell
-      label={block.label || "Learn"}
+      label={t(block.label || "Learn")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
       onExit={onExit}
       footer={
         <button className="btn-primary" onClick={onContinue}>
-          Continue
+          {t("Continue")}
         </button>
       }
     >
-      <div className="animate-fade-up">
+      <div className="lesson-reading">
         {block.heading && (
           <h1 className="page-title">
-            {block.heading}
+            {t(block.heading)}
           </h1>
         )}
 
         {block.question && (
-          <p className="mt-4 font-sans text-2xl italic leading-snug text-clay">
-            &ldquo;{block.question}&rdquo;
+          <p className="lesson-reading-question">
+            {t(block.question)}
           </p>
         )}
 
-        {block.objective && (
-          <div className="mt-6 rounded-3xl bg-cream-card px-6 py-5 shadow-card">
-            <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-              What you'll learn
-            </p>
-            <p className="mt-2 text-xl leading-relaxed text-ink">
-              {block.objective}
-            </p>
-          </div>
-        )}
+        <div className="lesson-audio"><ReadAloud text={speakText} /></div>
+
+        <div className="lesson-prose">
+          {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+        </div>
+
+        {block.objective && <section className="lesson-learning-goal">
+          <h2 className="lesson-section-label">{t("Learning goal")}</h2>
+          <p>{t(block.objective)}</p>
+        </section>}
 
         {block.warningSigns?.length > 0 && (
-          <div className="mt-5 rounded-3xl bg-clay/10 px-6 py-5">
-            <p className="text-base font-bold uppercase tracking-wide text-clay">
-              The five warning signs
-            </p>
-            <ul className="mt-3 space-y-2">
+          <details className="lesson-warning-reminder" open={warningSignsVisible}
+            onToggle={event => setExpandedBlock(event.currentTarget.open ? block : null)}>
+            <summary>{t(reminderTitle)}</summary>
+            <ul className="lesson-reading-list">
               {block.warningSigns.map((sign) => (
                 <li
                   key={sign}
-                  className="flex gap-3 text-lg leading-snug text-ink"
+                  className="text-lg"
                 >
-                  <span aria-hidden="true">🚩</span>
-                  <span>{sign}</span>
+                  {t(sign)}
                 </li>
               ))}
             </ul>
-          </div>
+          </details>
         )}
 
-        <p className="mt-6 text-2xl leading-relaxed text-ink-soft">
-          {block.text}
-        </p>
-
-        <div className="mt-7">
-          <ReadAloud text={speakText} />
-        </div>
       </div>
     </BlockShell>
   );

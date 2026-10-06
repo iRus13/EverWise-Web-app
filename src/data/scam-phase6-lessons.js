@@ -317,7 +317,7 @@ export const scamPhase6Lessons = [
           {
             text: "Leave the link unopened until you know more.",
             tier: "safe",
-            feedback: "Nothing is lost by waiting."
+            feedback: "Check your order directly before responding. The message alone does not verify the package’s status or deadline."
           },
           {
             text: "Open it immediately because it came from a friend's account.",
@@ -1130,7 +1130,7 @@ export const scamPhase6Lessons = [
           {
             text: "Reply and ask whether the email is real.",
             tier: "unsafe",
-            feedback: "The sender will always say yes."
+            feedback: "A reply goes back to the sender, so it does not independently verify the message. Check through the official app or a trusted number."
           }
         ]
       },
@@ -1305,8 +1305,8 @@ export const scamPhase6Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 13 complete!",
-      subtitle: "You completed Stop, Save, Block, and Report — and all of Phase 13.",
+      title: "Lesson complete!",
+      subtitle: "You completed Stop, Save, Block, and Report.",
       habit: "When communication feels unsafe: stop, save, block, report, and verify.",
       warningSign: "You do not have to continue a conversation to solve the problem.",
       skills: [

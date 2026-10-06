@@ -1,3 +1,4 @@
+import { tr, useLocale } from './i18n';
 import React, { useEffect, useRef, useState } from "react";
 import {
   EmailAuthProvider,
@@ -24,12 +25,13 @@ import {
   lessonsByOrder,
   challengesByOrder,
   examsByOrder,
-} from "./data/lessons";
+} from "./data/course-catalog.js";
 import { getPhase } from "./data/phases";
 import {
   courseStanding,
   isCourseComplete,
   requiredCourseIds,
+  nextCourseActivity,
 } from "./utils/courseProgress.js";
 import {
   isTrialExpired,
@@ -45,6 +47,7 @@ import {
   readLessonPosition,
   saveLessonPosition,
 } from "./utils/lessonProgress.js";
+import {clearAllAssessmentPositions, clearAssessmentPosition, readAssessmentPosition, saveAssessmentPosition} from "./utils/assessmentProgress.js";
 import { consumePartnerFragment } from "./utils/partnerLinks.js";
 import {
   clearPartnerClaimRecovery,
@@ -74,10 +77,14 @@ import Settings, {
 } from "./screens/Settings";
 import Paywall from "./screens/Paywall";
 import LessonPath from "./screens/LessonPath";
-import LessonPlayer from "./screens/LessonPlayer";
-import ChallengePlayer from "./screens/ChallengePlayer";
-import ExamPlayer from "./screens/ExamPlayer";
-import Complete from "./screens/Complete";
+import LearningContent from "./components/LearningContent.jsx";
+import ProgressSaveNotice from "./components/ProgressSaveNotice.jsx";
+import useProgressSync from "./hooks/useProgressSync.js";
+import { canReceivePasswordReset, requestEmailPasswordReset } from "./utils/passwordRecovery.js";
+import { profileForRecreation } from "./utils/profileRecovery.js";
+import { readStartupProfile } from "./utils/startupProfile.js";
+import { readWithDeadline } from "./utils/readWithDeadline.js";
+import { verifyDeletionPassword } from "./utils/verifyDeletionPassword.js";
 import ScamChecker from "./screens/ScamChecker";
 import PartnerAccessError from "./screens/PartnerAccessError";
 import PartnerDashboard from "./screens/PartnerDashboard";
@@ -810,13 +817,19 @@ async function reconcilePartnerClaim({
   inviteToken,
   researchConsent,
   researchSnapshot,
+  operationIsCurrent,
 }) {
+  const requireCurrent = () => {
+    if (!operationIsCurrent()) throw new StalePartnerOperationError();
+  };
+  requireCurrent();
   let access;
   try {
     access = await fetchAuthoritativePartnerAccess(firebaseUser);
   } catch {
     return null;
   }
+  requireCurrent();
   if (!access || typeof access !== "object") return null;
   if (access.status === "active" || access.status === "suspended") {
     return access;
@@ -824,7 +837,8 @@ async function reconcilePartnerClaim({
   if (access.status !== "none") return null;
 
   try {
-    const idToken = await firebaseUser.getIdToken(true);
+    const idToken = await readWithDeadline(() => firebaseUser.getIdToken(true), { message: "Account verification timed out" });
+    requireCurrent();
     return await claimPartnerSeat({
       idToken,
       inviteToken,
@@ -832,6 +846,7 @@ async function reconcilePartnerClaim({
       researchSnapshot,
     });
   } catch (error) {
+    requireCurrent();
     if (isDefinitivePartnerClaimRejection(error)) throw error;
     try {
       access = await fetchAuthoritativePartnerAccess(firebaseUser);
@@ -892,13 +907,13 @@ async function fetchAuthoritativePartnerAccess(firebaseUser) {
   // a refresh on every call was firing extra token/auth-state churn that
   // left the billing-fetch effect's authSettledRef never staying settled
   // long enough for a Retry click to land in a working window.
-  const idToken = await firebaseUser.getIdToken();
+  const idToken = await readWithDeadline(() => firebaseUser.getIdToken(), { message: "Account access token timed out" });
   return fetchPartnerAccess({ idToken });
 }
 
-/** Ensure subscription fields exist and expire trials past 7 days. */
-async function normalizeSubscription(uid, data) {
-  let next = { ...data };
+/** Normalize legacy metadata locally; verified providers determine access. */
+function normalizeSubscription(data) {
+  const next = { ...data };
   const updates = {};
 
   if (!next.subscriptionStatus) {
@@ -914,18 +929,7 @@ async function normalizeSubscription(uid, data) {
 
   if (Object.keys(updates).length === 0) return next;
 
-  next = { ...next, ...updates };
-  try {
-    await updateDoc(doc(db, "users", uid), updates);
-  } catch (err) {
-    if (import.meta.env.DEV) {
-      console.error(
-        "[Everwise][firestore] Failed to normalize subscription:",
-        err?.code || err?.name || "unknown",
-      );
-    }
-  }
-  return next;
+  return { ...next, ...updates };
 }
 
 function LearnerApp({ initialPartnerFragment }) {
@@ -958,7 +962,6 @@ function LearnerApp({ initialPartnerFragment }) {
   // refs aren't part of React's dependency tracking).
   const [authSettledVersion, setAuthSettledVersion] = useState(0);
   const [authBootstrapAttempt, setAuthBootstrapAttempt] = useState(0);
-  const [launchAnimationDone, setLaunchAnimationDone] = useState(false);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [screen, setScreen] = useState("landing");
@@ -970,6 +973,7 @@ function LearnerApp({ initialPartnerFragment }) {
   }, [user]);
   const [paywallVariant, setPaywallVariant] = useState("subscribe");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lessonCompletion, setLessonCompletion] = useState(null);
   // Set when the learner chose the quick check from the course path, so the
   // lesson opens on it instead of its first teaching block.
   const [startInTestOut, setStartInTestOut] = useState(false);
@@ -977,6 +981,7 @@ function LearnerApp({ initialPartnerFragment }) {
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [textSize, setTextSize] = useState(getSavedTextSize);
   const [storeProducts, setStoreProducts] = useState([]);
+  const storeProductsRequestRef = useRef(0);
   const [billingOwnerUid, setBillingOwnerUid] = useState(null);
   const [billingStatus, setBillingStatus] = useState("unavailable");
   const [billingAccess, setBillingAccess] = useState(null);
@@ -989,6 +994,7 @@ function LearnerApp({ initialPartnerFragment }) {
     uid: null,
     subscriptionStatus: "expired",
   });
+  const nativeEntitlementRequestRef = useRef(0);
   const authGenerationRef = useRef(0);
   const authSettledRef = useRef(false);
   // authSettledRef is a ref, so flipping it doesn't by itself re-run effects
@@ -1003,6 +1009,8 @@ function LearnerApp({ initialPartnerFragment }) {
   const operationIdRef = useRef(0);
   const activeOperationRef = useRef(null);
   const accountDeletionBusyRef = useRef(false);
+  const logOutInFlightRef = useRef(false);
+  const [logOutState, setLogOutState] = useState({busy:false, slow:false, error:""});
   const releaseConfirmationOperationIdRef = useRef(0);
   const activeReleaseConfirmationRef = useRef(null);
   const partnerFragmentRef = useRef(partnerFragment);
@@ -1020,6 +1028,13 @@ function LearnerApp({ initialPartnerFragment }) {
     screen: "landing",
     itemId: null,
     completedIds: [],
+  });
+  const progressSync = useProgressSync({
+    uid: user?.uid,
+    profile,
+    enabled: Boolean(user && profile && authChecked && !accountDeletionBusy),
+    setProfile,
+    currentUid: currentAuthUidRef,
   });
 
   useEffect(() => {
@@ -1208,10 +1223,18 @@ function LearnerApp({ initialPartnerFragment }) {
     };
   }, [partnerFragment, partnerPreviewAttempt]);
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => setLaunchAnimationDone(true), 3000);
-    return () => window.clearTimeout(timer);
-  }, []);
+  const loadStoreProducts = async () => {
+    // Startup and a learner's Retry can overlap. Only the newest read owns
+    // the catalog, including when an older read eventually fails.
+    const request = ++storeProductsRequestRef.current;
+    try {
+      const products = await getSubscriptionProducts();
+      if (appMountedRef.current && request === storeProductsRequestRef.current) setStoreProducts(products);
+    } catch (error) {
+      if (appMountedRef.current && request === storeProductsRequestRef.current) setStoreProducts([]);
+      throw error;
+    }
+  };
 
   useEffect(() => {
     warnIfNativeApiIsMissing();
@@ -1228,8 +1251,7 @@ function LearnerApp({ initialPartnerFragment }) {
     }
 
     if (platform === "native") {
-      getSubscriptionProducts()
-        .then(setStoreProducts)
+      loadStoreProducts()
         .catch((error) => {
           if (import.meta.env.DEV) {
             console.warn(
@@ -1239,6 +1261,7 @@ function LearnerApp({ initialPartnerFragment }) {
           }
         });
     }
+    return () => { storeProductsRequestRef.current += 1; };
   }, [platform]);
 
   useEffect(() => {
@@ -1251,17 +1274,10 @@ function LearnerApp({ initialPartnerFragment }) {
   }, [textSize]);
 
   useEffect(() => {
-    const screenBackground = screen === "paywall" ? "#F8F5EF" : "#EFE9DC";
+    const screenBackground = screen === "paywall" ? "#F5F5F7"
+      : ["landing", "home", "settings", "login", "password-reset", "interview", "signup", "path", "lesson", "challenge", "exam", "complete", "badges", "scam-checker", "loading", "personal-plan", "billing-error", "billing-confirmation", "partner-error"].includes(screen) ? "#F5F5F7"
+      : "#F5F5F7";
     const root = document.documentElement;
-
-    // LessonPath owns its phase-aware safe-area colors. Do not overwrite them
-    // from the parent after the child effect has selected the active phase.
-    if (screen === "path") {
-      root.style.setProperty("--everwise-safe-top", "#B5502E");
-      const themeColor = document.querySelector('meta[name="theme-color"]');
-      themeColor?.setAttribute("content", "#B5502E");
-      return;
-    }
 
     root.style.setProperty("--everwise-screen-background", screenBackground);
     root.style.setProperty("--everwise-safe-top", screenBackground);
@@ -1278,10 +1294,12 @@ function LearnerApp({ initialPartnerFragment }) {
     const uid = user.uid;
     const generation = authGenerationRef.current;
     setNativeEntitlement({ uid, subscriptionStatus: "expired" });
-    getCurrentEntitlement()
+    const refresh = () => {
+      const request = ++nativeEntitlementRequestRef.current;
+      return getCurrentEntitlement()
       .then(async (entitlement) => {
         if (
-          cancelled ||
+          cancelled || request !== nativeEntitlementRequestRef.current ||
           !appMountedRef.current ||
           generation !== authGenerationRef.current ||
           currentAuthUidRef.current !== uid
@@ -1308,9 +1326,18 @@ function LearnerApp({ initialPartnerFragment }) {
           );
         }
       });
-
+    };
+    const resume = () => { if (document.visibilityState === "visible") void refresh(); };
+    void refresh();
+    window.addEventListener("focus", resume);
+    document.addEventListener("visibilitychange", resume);
+    // Catch expiry, refunds, and approved pending purchases while the app stays open.
+    const interval = window.setInterval(resume, 60_000);
     return () => {
       cancelled = true;
+      window.clearInterval(interval);
+      window.removeEventListener("focus", resume);
+      document.removeEventListener("visibilitychange", resume);
     };
   }, [platform, user]);
 
@@ -1331,7 +1358,9 @@ function LearnerApp({ initialPartnerFragment }) {
       authGenerationRef.current = generation;
       authSettledRef.current = false;
       currentAuthUidRef.current = u?.uid || null;
+      if (previousAuthUid !== currentAuthUidRef.current) setLogOutState(state => ({...state, error:""}));
       if (previousAuthUid && previousAuthUid !== (u?.uid || null)) {
+        setProfile(null);
         pendingProtectedNavigationRef.current = null;
         clearStoredBillingReturnIntent();
       } else if (u?.uid) {
@@ -1400,6 +1429,7 @@ function LearnerApp({ initialPartnerFragment }) {
         return;
       }
 
+      setProfile(null);
       setPartnerOwnerUid(null);
       setPartner(null);
       setPartnerStatus("idle");
@@ -1438,7 +1468,7 @@ function LearnerApp({ initialPartnerFragment }) {
       }
 
       try {
-        const snap = await getDoc(doc(db, "users", u.uid));
+        const snap = await readStartupProfile(() => getDoc(doc(db, "users", u.uid)));
         if (
           generation !== authGenerationRef.current ||
           currentAuthUidRef.current !== u.uid
@@ -1481,6 +1511,8 @@ function LearnerApp({ initialPartnerFragment }) {
               setPartnerOwnerUid(null);
               setPartner(null);
               setPartnerStatus("idle");
+              updatePartnerRecovery({kind:"authenticated-bootstrap", user:u, phase:"profile", busy:false});
+              setScreen("partner-error");
             }
           } catch {
             if (
@@ -1502,7 +1534,7 @@ function LearnerApp({ initialPartnerFragment }) {
           return;
         }
 
-        const normalized = await normalizeSubscription(u.uid, snap.data());
+        const normalized = normalizeSubscription(snap.data());
         if (
           generation !== authGenerationRef.current ||
           currentAuthUidRef.current !== u.uid
@@ -1808,6 +1840,19 @@ function LearnerApp({ initialPartnerFragment }) {
     lessonIdSet.has(id)
   ).length;
   const badgesEarnedCount = (profile?.badges ?? []).length;
+  const nextActivity = nextCourseActivity(completedLessons, {
+    lessons: lessonsByOrder, challenges: challengesByOrder, exams: examsByOrder,
+  });
+  const homeActivity = nextActivity ? {
+    id: nextActivity.id,
+    title: nextActivity.title,
+    kind: nextActivity.kind,
+    phaseNumber: nextActivity.phase,
+    phaseTitle: getPhase(nextActivity.phase)?.title,
+    resumable: Boolean(nextActivity.kind === "lesson"
+      ? readLessonPosition({uid: user?.uid, lessonId: nextActivity.id, storage: window.localStorage})
+      : readAssessmentPosition({uid: user?.uid, itemId: nextActivity.id, storage: window.localStorage})),
+  } : null;
 
   const standing = courseStanding(completedLessons, requiredLearningIds, {
     lessons: lessonsByOrder,
@@ -1970,11 +2015,13 @@ function LearnerApp({ initialPartnerFragment }) {
 
       let sponsoredEntitlement = null;
       if (sponsoredSignup) {
+        let claimRequested = false;
         try {
-          const idToken = await cred.user.getIdToken(true);
+          const idToken = await readWithDeadline(() => cred.user.getIdToken(true), { message: "Account verification timed out" });
           if (!partnerOperationIsCurrent(operation, cred.user.uid)) {
             throw new StalePartnerOperationError();
           }
+          claimRequested = true;
           sponsoredEntitlement = await claimPartnerSeat({
             idToken,
             inviteToken,
@@ -1994,13 +2041,14 @@ function LearnerApp({ initialPartnerFragment }) {
           )
             ? claimError
             : null;
-          if (!definitiveClaimError) {
+          if (!definitiveClaimError && claimRequested) {
             try {
               sponsoredEntitlement = await reconcilePartnerClaim({
                 firebaseUser: cred.user,
                 inviteToken,
                 researchConsent,
                 researchSnapshot,
+                operationIsCurrent: () => partnerOperationIsCurrent(operation, cred.user.uid),
               });
             } catch (reconciliationError) {
               if (isDefinitivePartnerClaimRejection(reconciliationError)) {
@@ -2199,6 +2247,7 @@ function LearnerApp({ initialPartnerFragment }) {
         inviteToken: recovery.inviteToken,
         researchConsent: recovery.researchConsent,
         researchSnapshot: recovery.researchSnapshot,
+        operationIsCurrent: () => strictPartnerOperationIsCurrent(operation),
       });
       if (!strictPartnerOperationIsCurrent(operation)) {
         finishPartnerOperation(operation);
@@ -2512,26 +2561,56 @@ function LearnerApp({ initialPartnerFragment }) {
     }
   };
 
+  // Sign-out changes authentication state, so a slow response is not treated
+  // as cancellation and never starts an automatic retry. Keep one operation
+  // across screen changes and explain both waiting and provider failures.
+  const runLogOut = async (action) => {
+    if (logOutInFlightRef.current) return;
+    logOutInFlightRef.current = true;
+    const uid = currentAuthUidRef.current;
+    setLogOutState({busy:true, slow:false, error:""});
+    const timer = window.setTimeout(() => {
+      if (appMountedRef.current) setLogOutState(state => ({...state, slow:true}));
+    }, 15_000);
+    try {
+      await action(() => appMountedRef.current &&
+        (currentAuthUidRef.current === uid || currentAuthUidRef.current === null));
+    } catch (error) {
+      if (appMountedRef.current && currentAuthUidRef.current === uid) {
+        setLogOutState(state => ({...state, error:"We couldn’t log you out. Please try again."}));
+      }
+      if (import.meta.env.DEV) console.warn("[Everwise] Log out failed:", error?.code || error?.name || "unknown");
+    } finally {
+      window.clearTimeout(timer);
+      logOutInFlightRef.current = false;
+      if (appMountedRef.current) setLogOutState(state => ({...state, busy:false, slow:false}));
+    }
+  };
+
   const retryCleanupSignOut = async () => {
     const recovery = partnerRecoveryRef.current;
     if (recovery?.kind !== "cleanup" || recovery.busy) return;
     updatePartnerRecovery({ ...recovery, busy: true });
-    try {
-      await signOut(auth);
-      const nextRecovery = {
-        ...recovery,
-        cleanup: { ...recovery.cleanup, signedOut: true },
-        busy: false,
-      };
-      setUser(null);
-      setProfile(null);
-      setPartnerOwnerUid(null);
-      updatePartnerRecovery(nextRecovery);
-      setPartnerStatus("unavailable");
-      setScreen("partner-error");
-    } catch {
-      updatePartnerRecovery({ ...recovery, busy: false });
-    }
+    await runLogOut(async (ownsAccount) => {
+      try {
+        await signOut(auth);
+        if (!ownsAccount()) return;
+        const nextRecovery = {
+          ...recovery,
+          cleanup: { ...recovery.cleanup, signedOut: true },
+          busy: false,
+        };
+        setUser(null);
+        setProfile(null);
+        setPartnerOwnerUid(null);
+        updatePartnerRecovery(nextRecovery);
+        setPartnerStatus("unavailable");
+        setScreen("partner-error");
+      } catch (error) {
+        if (ownsAccount()) updatePartnerRecovery({ ...recovery, busy: false });
+        throw error;
+      }
+    });
   };
 
   const logIn = async (identifier, password) => {
@@ -2553,10 +2632,11 @@ function LearnerApp({ initialPartnerFragment }) {
 
   const logOut = async () => {
     if (accountDeletionBusyRef.current) return;
-    operationIdRef.current += 1;
-    activeOperationRef.current = null;
-    try {
+    await runLogOut(async (ownsAccount) => {
+      operationIdRef.current += 1;
+      activeOperationRef.current = null;
       await signOut(auth);
+      if (!ownsAccount()) return;
       authGenerationRef.current += 1;
       authoritativeAccessVersionRef.current += 1;
       backgroundAccessRefreshRef.current = null;
@@ -2577,19 +2657,13 @@ function LearnerApp({ initialPartnerFragment }) {
       setPartnerStatus("idle");
       updatePartnerFragment(null);
       clearAllLessonPositions({ storage: window.localStorage });
+      clearAllAssessmentPositions({ storage: window.localStorage });
       updatePartnerRecovery(null);
       setSignupRetry(null);
       setProfileCompletion(null);
       setAuthChecked(true);
       setScreen("landing");
-    } catch (err) {
-      if (import.meta.env.DEV) {
-        console.error(
-          "[Everwise][auth] Sign out failed:",
-          err?.code || err?.name || "unknown",
-        );
-      }
-    }
+    });
   };
 
   const refreshAuthoritativePartnerAccess = async ({
@@ -3161,7 +3235,7 @@ function LearnerApp({ initialPartnerFragment }) {
     }
   };
 
-  const startLesson = async (index, { testOut = false } = {}) => {
+  const startLesson = async (index, { testOut = false, acceptResult = null } = {}) => {
     const lesson = lessonsByOrder[index];
     let currentAccess = access;
     const requiresFullAccess = !canOpenLesson({
@@ -3171,6 +3245,7 @@ function LearnerApp({ initialPartnerFragment }) {
     if ((requiresFullAccess || sponsoredActive) && user?.uid) {
       const refreshed = await refreshAuthoritativePartnerAccess({
         routeCurrent: false,
+        acceptResult,
       });
       if (!refreshed) return;
       currentAccess = refreshed.fullAccess;
@@ -3210,11 +3285,12 @@ function LearnerApp({ initialPartnerFragment }) {
   // normally; the only difference is where the lesson starts.
   const startLessonTestOut = (index) => startLesson(index, { testOut: true });
 
-  const startChallenge = async (challenge) => {
+  const startChallenge = async (challenge, { acceptResult = null } = {}) => {
     let currentAccess = access;
     if (user?.uid) {
       const refreshed = await refreshAuthoritativePartnerAccess({
         routeCurrent: false,
+        acceptResult,
       });
       if (!refreshed) return;
       currentAccess = refreshed.fullAccess;
@@ -3238,11 +3314,12 @@ function LearnerApp({ initialPartnerFragment }) {
     setScreen("challenge");
   };
 
-  const startExam = async (exam) => {
+  const startExam = async (exam, { acceptResult = null } = {}) => {
     let currentAccess = access;
     if (user?.uid) {
       const refreshed = await refreshAuthoritativePartnerAccess({
         routeCurrent: false,
+        acceptResult,
       });
       if (!refreshed) return;
       currentAccess = refreshed.fullAccess;
@@ -3309,22 +3386,28 @@ function LearnerApp({ initialPartnerFragment }) {
       }
       return;
     }
+    const uid = user?.uid;
+    const generation = authGenerationRef.current;
+    if (!uid || currentAuthUidRef.current !== uid) throw new Error("Please sign in again to continue.");
     const entitlement = await purchaseSubscription(plan);
+    if (!appMountedRef.current || generation !== authGenerationRef.current || currentAuthUidRef.current !== uid) return;
     if (!entitlement.active) {
       throw new Error("The subscription is not active yet.");
     }
+    // A lookup started before this purchase must not overwrite its delivery.
+    nativeEntitlementRequestRef.current += 1;
     if (user?.uid && currentAuthUidRef.current === user.uid) {
       setNativeEntitlement({
         uid: user.uid,
         subscriptionStatus: "active",
       });
     }
-    await updateSubscription({
+    void updateSubscription({
       subscriptionStatus: "active",
       trialStartedAt: null,
       plan: planForProduct(entitlement.productId) || plan,
     });
-    goHome();
+    if (generation === authGenerationRef.current && currentAuthUidRef.current === uid) goHome();
   };
 
   const manageBilling = async () => {
@@ -3359,30 +3442,38 @@ function LearnerApp({ initialPartnerFragment }) {
   };
 
   const restorePurchase = async () => {
+    const uid = user?.uid;
+    const generation = authGenerationRef.current;
+    if (!uid || currentAuthUidRef.current !== uid) throw new Error("Please sign in again to continue.");
     const entitlement = await restoreSubscriptions();
+    if (!appMountedRef.current || generation !== authGenerationRef.current || currentAuthUidRef.current !== uid) return;
     if (!entitlement.active) {
       throw new Error("No active subscription was found for this Apple Account.");
     }
+    nativeEntitlementRequestRef.current += 1;
     if (user?.uid && currentAuthUidRef.current === user.uid) {
       setNativeEntitlement({
         uid: user.uid,
         subscriptionStatus: "active",
       });
     }
-    await updateSubscription({
+    void updateSubscription({
       subscriptionStatus: "active",
       trialStartedAt: null,
       plan: planForProduct(entitlement.productId),
     });
-    goHome();
+    if (generation === authGenerationRef.current && currentAuthUidRef.current === uid) goHome();
   };
 
   const resetPassword = async () => {
-    if (!user?.email) throw new Error("No email address is available.");
-    await sendPasswordResetEmail(auth, user.email);
+    if (!user?.uid || currentAuthUidRef.current !== user.uid || !authSettledRef.current) {
+      throw new Error("The account changed. Open settings again to retry.");
+    }
+    await requestEmailPasswordReset(user.email, email => sendPasswordResetEmail(auth, email));
   };
 
   const finishDeletedAccountLocally = () => {
+    progressSync.clear();
     authGenerationRef.current += 1;
     authoritativeAccessVersionRef.current += 1;
     backgroundAccessRefreshRef.current = null;
@@ -3405,6 +3496,7 @@ function LearnerApp({ initialPartnerFragment }) {
     setPartnerStatus("idle");
     updatePartnerFragment(null);
     clearAllLessonPositions({ storage: window.localStorage });
+    clearAllAssessmentPositions({ storage: window.localStorage });
     updatePartnerRecovery(null);
     setSignupRetry(null);
     setProfileCompletion(null);
@@ -3503,7 +3595,7 @@ function LearnerApp({ initialPartnerFragment }) {
           expectedUser.email,
           currentPassword,
         );
-        await reauthenticateWithCredential(expectedUser, credential);
+        await verifyDeletionPassword(() => reauthenticateWithCredential(expectedUser, credential));
         requireCurrentAccountDeletion(operation);
         // Stop billing BEFORE anything is destroyed. Deleting the Firebase
         // user first would leave a live Stripe subscription charging a card
@@ -3540,7 +3632,7 @@ function LearnerApp({ initialPartnerFragment }) {
         let profileRestored = !profileDeleted || firebaseDeleted;
         if (profileDeleted && !firebaseDeleted) {
           try {
-            await setDoc(doc(db, "users", expectedUid), cachedProfile);
+            await setDoc(doc(db, "users", expectedUid), profileForRecreation(cachedProfile));
             profileRestored = true;
           } catch {
             profileRestored = false;
@@ -3566,7 +3658,7 @@ function LearnerApp({ initialPartnerFragment }) {
         throw new Error(
           profileDeleted
             ? "We could not delete your account right now. Your saved profile was restored."
-            : "We could not delete your account right now. Please try again.",
+            : accountDeletionErrorMessage(err),
         );
       }
       clearPartnerClaimRecovery({
@@ -3602,9 +3694,14 @@ function LearnerApp({ initialPartnerFragment }) {
         expectedUser.email,
         currentPassword,
       );
-      await reauthenticateWithCredential(expectedUser, credential);
+      await verifyDeletionPassword(() => reauthenticateWithCredential(expectedUser, credential));
       requireCurrentAccountDeletion(operation);
-      idToken = await expectedUser.getIdToken(true);
+      try {
+        idToken = await readWithDeadline(() => expectedUser.getIdToken(true), { message: "Account verification timed out" });
+      } catch {
+        // Verification failed before any release or deletion was submitted.
+        throw new PartnerReleasePreparationError();
+      }
       requireCurrentAccountDeletion(operation);
       const intent = await beginPartnerRelease({ idToken });
       if (PARTNER_RELEASE_RECEIPT_PATTERN.test(intent?.receipt)) {
@@ -3685,7 +3782,7 @@ function LearnerApp({ initialPartnerFragment }) {
         }
         if (profileDeleted) {
           try {
-            await setDoc(doc(db, "users", expectedUid), cachedProfile);
+            await setDoc(doc(db, "users", expectedUid), profileForRecreation(cachedProfile));
             profileRestored = true;
           } catch {
             profileRestored = false;
@@ -3807,110 +3904,66 @@ function LearnerApp({ initialPartnerFragment }) {
     }
   };
 
-  const finishChallenge = async () => {
-    if (user && profile && activeChallenge) {
-      const already = completedLessons.includes(activeChallenge.id);
-      if (!already) {
-        const updates = {
-          completedLessons: [...completedLessons, activeChallenge.id],
-        };
-        setProfile((p) => ({ ...p, ...updates }));
-        try {
-          await updateDoc(doc(db, "users", user.uid), updates);
-        } catch (err) {
-          if (import.meta.env.DEV) {
-            console.error(
-              "[Everwise][firestore] Failed to save challenge:",
-              err?.code || err?.name || "unknown",
-            );
-          }
-        }
-      }
+  const canRecordProgress = () => Boolean(
+    user?.uid && profile && authChecked &&
+    currentAuthUidRef.current === user.uid && !accountDeletionBusyRef.current
+  );
+
+  const finishChallenge = () => {
+    if (!canRecordProgress() || !activeChallenge) return;
+    clearAssessmentPosition({uid:user.uid, itemId:activeChallenge.id, storage:window.localStorage});
+    if (!completedLessons.includes(activeChallenge.id)) {
+      progressSync.record({ completedLessons: [activeChallenge.id] });
     }
     goPath();
   };
 
-  const finishLesson = async () => {
-    if (user && profile && activeLesson) {
-      const already = completedLessons.includes(activeLesson.id);
-      const prevBadges = profile.badges ?? [];
-
-      const updates = {
-        completedLessons: already
-          ? completedLessons
-          : [...completedLessons, activeLesson.id],
-        badges:
-          already || prevBadges.includes(activeLesson.badge)
-            ? prevBadges
-            : [...prevBadges, activeLesson.badge],
-      };
-
-      setProfile((p) => ({ ...p, ...updates }));
-      try {
-        await updateDoc(doc(db, "users", user.uid), updates);
-      } catch (err) {
-        if (import.meta.env.DEV) {
-          console.error(
-            "[Everwise][firestore] Failed to save progress:",
-            err?.code || err?.name || "unknown",
-          );
-        }
-      }
+  const finishLesson = () => {
+    if (!canRecordProgress() || !activeLesson) return;
+    const firstCompletion = !completedLessons.includes(activeLesson.id);
+    setLessonCompletion({
+      uid: user.uid,
+      lessonId: activeLesson.id,
+      badge: firstCompletion && !(profile.badges ?? []).includes(activeLesson.badge)
+        ? activeLesson.badge : null,
+    });
+    if (firstCompletion) {
+      progressSync.record({
+        completedLessons: [activeLesson.id],
+        badges: activeLesson.badge ? [activeLesson.badge] : [],
+      });
     }
     setScreen("complete");
   };
 
-  const finishExam = async ({
-    tier,
-    earnedPhaseBadge,
-    phaseBadge,
-  }) => {
-    if (user && profile && activeExam && tier) {
-      const already = completedLessons.includes(activeExam.id);
-      const prevBadges = profile.badges ?? [];
-
-      let nextBadges = [...prevBadges];
-      if (!already && tier.title && !nextBadges.includes(tier.title)) {
-        nextBadges.push(tier.title);
-      }
-      if (
-        earnedPhaseBadge &&
-        phaseBadge &&
-        !nextBadges.includes(phaseBadge)
-      ) {
-        nextBadges.push(phaseBadge);
-      }
-
-      const updates = {
-        completedLessons: already
-          ? completedLessons
-          : [...completedLessons, activeExam.id],
-        badges: nextBadges,
-      };
-
-      setProfile((p) => ({ ...p, ...updates }));
-      try {
-        await updateDoc(doc(db, "users", user.uid), updates);
-      } catch (err) {
-        if (import.meta.env.DEV) {
-          console.error(
-            "[Everwise][firestore] Failed to save exam:",
-            err?.code || err?.name || "unknown",
-          );
-        }
-      }
+  const finishExam = ({ tier, earnedPhaseBadge, phaseBadge }) => {
+    if (!canRecordProgress() || !activeExam || !tier) return;
+    clearAssessmentPosition({uid:user.uid, itemId:activeExam.id, storage:window.localStorage});
+    const already = completedLessons.includes(activeExam.id);
+    const ownedBadges = profile.badges ?? [];
+    // A retake can earn a higher tier even when this exam is already complete.
+    // Keep earned awards, but do not add a lower tier after a better result.
+    const improvedTier = !already || !(activeExam.results ?? []).some(result =>
+      ownedBadges.includes(result.title) && result.minScore >= tier.minScore
+    );
+    const badges = [improvedTier && tier.title, earnedPhaseBadge && phaseBadge]
+      .filter(badge => badge && !ownedBadges.includes(badge));
+    if (!already || badges.length) {
+      progressSync.record({
+        completedLessons: already ? [] : [activeExam.id],
+        badges,
+      });
     }
     goPath();
   };
 
   if (
     !authChecked ||
-    !launchAnimationDone ||
     partnerStatus === "previewing"
   ) {
     return (
       <AppShell screen="loading">
-        <Loading />
+        <Loading allowReload={!user} />
       </AppShell>
     );
   }
@@ -3950,6 +4003,9 @@ function LearnerApp({ initialPartnerFragment }) {
           partnerName={partner?.name}
           onRetry={retryReturningPartnerAccess}
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -3965,8 +4021,12 @@ function LearnerApp({ initialPartnerFragment }) {
               : "PARTNER_ACCESS_UNCONFIRMED"
           }
           onRetry={retryAuthenticatedBootstrap}
-          retryLabel={partnerRecovery.busy ? "Retrying…" : "Retry"}
+          retryBusy={partnerRecovery.busy}
+          retryLabel={partnerRecovery.busy ? "Retrying…" : tr("Retry")}
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -3979,8 +4039,12 @@ function LearnerApp({ initialPartnerFragment }) {
           code="PARTNER_ACCESS_UNCONFIRMED"
           partnerName={partnerRecovery.partner?.name || partner?.name}
           onRetry={retryPartnerClaim}
-          retryLabel={partnerRecovery.busy ? "Retrying…" : "Retry"}
+          retryBusy={partnerRecovery.busy}
+          retryLabel={partnerRecovery.busy ? "Retrying…" : tr("Retry")}
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -3993,10 +4057,14 @@ function LearnerApp({ initialPartnerFragment }) {
           code="PARTNER_PROFILE_INCOMPLETE"
           partnerName={partner?.name}
           onRetry={retrySponsoredProfileWrite}
+          retryBusy={partnerRecovery.busy}
           retryLabel={
             partnerRecovery.busy ? "Saving profile…" : "Retry saving profile"
           }
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -4011,6 +4079,9 @@ function LearnerApp({ initialPartnerFragment }) {
           onRetry={startMissingProfileCompletion}
           retryLabel="Complete my profile"
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -4025,6 +4096,9 @@ function LearnerApp({ initialPartnerFragment }) {
           onLogOut={
             partnerRecovery.cleanup.signedOut ? null : retryCleanupSignOut
           }
+          logOutBusy={partnerRecovery.busy || logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
           logOutLabel={
             partnerRecovery.busy ? "Logging out…" : "Try to log out"
           }
@@ -4054,6 +4128,9 @@ function LearnerApp({ initialPartnerFragment }) {
           partnerName={partner?.name}
           onRetry={retryPartnerAccess}
           onLogOut={authenticatedSuspension ? logOut : undefined}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
         />
       </AppShell>
     );
@@ -4125,6 +4202,7 @@ function LearnerApp({ initialPartnerFragment }) {
       content = (
         <LogIn
           onLogIn={logIn}
+          onResetPassword={email => requestEmailPasswordReset(email, address => sendPasswordResetEmail(auth, address))}
           onGoToSignUp={() => setScreen("interview")}
           onBack={() => setScreen(loginInterviewDraft ? "interview" : "landing")}
         />
@@ -4135,12 +4213,19 @@ function LearnerApp({ initialPartnerFragment }) {
         <Home
           partner={sponsoredActive ? partner : null}
           name={profile?.name ?? ""}
-          scamsCaught={profile?.scamsCaught ?? 0}
+          lessonsCompleted={lessonsCompletedCount}
           badgesEarned={badgesEarnedCount}
           allDone={allDone}
+          nextActivity={homeActivity}
           textSize={textSize}
           onTextSizeChange={setTextSize}
           onStart={goPath}
+          onStartNext={(acceptResult) => {
+            if (!accountDeletionAllowsNavigation() || !nextActivity) return;
+            if (nextActivity.kind === "lesson") return startLesson(nextActivity.lessonIndex, {acceptResult});
+            if (nextActivity.kind === "challenge") return startChallenge(nextActivity, {acceptResult});
+            return startExam(nextActivity, {acceptResult});
+          }}
           onOpenBadges={goBadges}
           onOpenSettings={goSettings}
           onOpenScamChecker={goScamChecker}
@@ -4152,22 +4237,27 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "badges":
       content = (
-        <Badges badges={profile?.badges ?? []} onBack={goHome} />
+        <Badges badges={profile?.badges ?? []} onBack={goHome} onLearn={goPath} />
       );
       break;
     case "settings":
       content = (
         <Settings
+          name={profile?.name || ""}
+          key={user?.uid}
           billing={settingsBilling}
           onBack={accountDeletionBusy ? undefined : goHome}
           onLogOut={logOut}
+          logOutBusy={logOutState.busy}
+          logOutSlow={logOutState.slow}
+          logOutError={logOutState.error}
           onOpenPaywall={goPaywall}
           onManageSubscription={manageBilling}
           onRetryBilling={() => {
             setBillingRecovery(null);
             setBillingRefreshAttempt((attempt) => attempt + 1);
           }}
-          onResetPassword={profile?.email ? resetPassword : undefined}
+          onResetPassword={canReceivePasswordReset(user?.email) ? resetPassword : undefined}
           onDeleteAccount={deleteAccount}
           textSize={textSize}
           onTextSizeChange={setTextSize}
@@ -4216,14 +4306,20 @@ function LearnerApp({ initialPartnerFragment }) {
             billingAccess={billingAccess}
             billingBusy={billingBusy}
             billingMessage={billingRecovery?.message || ""}
-            onRetry={() => {
+            onRetry={async () => {
+              if (platform === "native") {
+                await loadStoreProducts();
+                return;
+              }
               setBillingRecovery(null);
               setBillingRefreshAttempt((attempt) => attempt + 1);
             }}
             onStartLearning={() => {
               clearPendingProtectedNavigation();
               setBillingRecovery(null);
-              goHome();
+              const introduction = lessonsByOrder.findIndex((lesson) => lesson.id === "welcome");
+              if (introduction >= 0) void startLesson(introduction);
+              else goHome();
             }}
             onMaybeLater={() => {
               clearPendingProtectedNavigation();
@@ -4302,6 +4398,12 @@ function LearnerApp({ initialPartnerFragment }) {
     case "path":
       content = (
         <LessonPath
+          hasSavedAssessmentPosition={(itemId) => Boolean(readAssessmentPosition({
+            uid:user?.uid, itemId, storage:window.localStorage,
+          }))}
+          hasSavedLessonPosition={(lessonId) => Boolean(readLessonPosition({
+            uid: user?.uid, lessonId, storage: window.localStorage,
+          }))}
           completedLessons={completedLessons}
           textSize={textSize}
           onSelectLesson={startLesson}
@@ -4314,9 +4416,10 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "lesson":
       content = (
-        <LessonPlayer
+        <LearningContent
+          kind="lesson"
+          itemId={activeLesson.id}
           key={activeLesson.id}
-          lesson={activeLesson}
           onBack={goPath}
           initialPosition={readLessonPosition({
             uid: user?.uid,
@@ -4347,9 +4450,19 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "challenge":
       content = (
-        <ChallengePlayer
+        <LearningContent
+          kind="challenge"
+          initialPosition={readAssessmentPosition({
+            uid:user?.uid, itemId:activeChallenge.id, storage:window.localStorage,
+          })}
+          onPositionChange={(position) => {
+            if (!canRecordProgress()) return;
+            const identity = {uid:user.uid, itemId:activeChallenge.id, storage:window.localStorage};
+            if (position) saveAssessmentPosition({...identity, position});
+            else clearAssessmentPosition(identity);
+          }}
+          itemId={activeChallenge.id}
           key={activeChallenge.id}
-          challenge={activeChallenge}
           onBack={goPath}
           onComplete={finishChallenge}
         />
@@ -4357,9 +4470,19 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "exam":
       content = (
-        <ExamPlayer
+        <LearningContent
+          kind="exam"
+          initialPosition={readAssessmentPosition({
+            uid:user?.uid, itemId:activeExam.id, storage:window.localStorage,
+          })}
+          onPositionChange={(position) => {
+            if (!canRecordProgress()) return;
+            const identity = {uid:user.uid, itemId:activeExam.id, storage:window.localStorage};
+            if (position) saveAssessmentPosition({...identity, position});
+            else clearAssessmentPosition(identity);
+          }}
+          itemId={activeExam.id}
           key={activeExam.id}
-          exam={activeExam}
           phaseColor={getPhase(activeExam.phase).accent}
           onBack={goPath}
           onPass={finishExam}
@@ -4368,8 +4491,18 @@ function LearnerApp({ initialPartnerFragment }) {
       break;
     case "complete":
       content = (
-        <Complete
-          lesson={activeLesson}
+        <LearningContent
+          kind="complete"
+          itemId={activeLesson.id}
+          key={`complete:${activeLesson.id}`}
+          progressStatus={progressSync.status}
+          onRetryProgress={progressSync.retry}
+          earnedBadge={lessonCompletion?.uid === user?.uid &&
+            lessonCompletion?.lessonId === activeLesson.id &&
+            !progressSync.status?.pending &&
+            (profile?.badges ?? []).includes(lessonCompletion?.badge)
+              ? lessonCompletion.badge : null}
+          onBack={goPath}
           onDone={goPath}
         />
       );
@@ -4393,6 +4526,7 @@ function LearnerApp({ initialPartnerFragment }) {
       onTextSizeChange={setTextSize}
       courseProgress={courseProgress}
     >
+      {screen !== "complete" && <ProgressSaveNotice status={progressSync.status} onRetry={progressSync.retry} />}
       <div
         key={screen}
         className="screen-content-frame flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden"
@@ -4404,6 +4538,7 @@ function LearnerApp({ initialPartnerFragment }) {
 }
 
 export default function App() {
+  useLocale();
   const [initialPartnerFragment] = useState(capturePartnerFragment);
 
   if (

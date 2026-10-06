@@ -1,0 +1,795 @@
+English key,Spanish presentation,Native locations
+5.1,5.1,patient-portals/lessonNumber
+Patient Portals,Portales para pacientes,patient-portals/title
+Health Portal Pro,Experto en portales de salud,patient-portals/badge
+Explain what a patient portal is.,Explicar qué es un portal del paciente.,patient-portals/goals/0; patient-portals/complete/learned/0
+Log in safely to a patient portal.,Iniciar sesión de forma segura en un portal del paciente.,patient-portals/goals/1
+View medical information securely.,Consultar información médica de forma segura.,patient-portals/goals/2; patient-portals/complete/learned/2
+Send messages to healthcare providers.,Enviar mensajes a profesionales de la salud.,patient-portals/goals/3
+Recognize patient portal scams.,Reconocer estafas relacionadas con portales del paciente.,patient-portals/goals/4; patient-portals/complete/learned/3
+What Is a Patient Portal?,¿Qué es un portal del paciente?,patient-portals/blocks/0/heading
+"A patient portal is a secure website or app provided by your doctor's office, clinic, or hospital. It allows you to manage parts of your healthcare online.","Un portal del paciente es un sitio web o una aplicación segura de tu consultorio, clínica u hospital. Te permite gestionar parte de tu atención médica por internet.",patient-portals/blocks/0/text
+View test results,Consultar resultados de pruebas,patient-portals/blocks/0/bullets/0
+Schedule appointments,Programar citas,patient-portals/blocks/0/bullets/1
+Request prescription refills,Solicitar renovaciones de recetas,patient-portals/blocks/0/bullets/2
+Send messages to your doctor,Enviar mensajes a tu médico,patient-portals/blocks/0/bullets/3
+View visit summaries,Consultar resúmenes de consultas,patient-portals/blocks/0/bullets/4
+Pay medical bills,Pagar facturas médicas,patient-portals/blocks/0/bullets/5
+"You can usually view portal information at any time, but messages may not be read right away. For urgent concerns, call your healthcare provider instead of waiting for a portal reply.","Normalmente puedes consultar el portal a cualquier hora, pero los mensajes pueden tardar en leerse. Si tienes una preocupación urgente, llama a tu profesional de la salud en vez de esperar una respuesta en el portal.",patient-portals/blocks/0/footer
+Keeping Your Patient Portal Secure,Protege tu portal del paciente,patient-portals/blocks/1/heading
+"Because your portal contains private health information, you should:","El portal contiene información médica privada. Por eso, conviene:",patient-portals/blocks/1/text
+Use a strong password,Usar una contraseña segura,patient-portals/blocks/1/bullets/0
+Turn on two-factor authentication (2FA) if available,"Activar la autenticación de dos factores (2FA), si está disponible",patient-portals/blocks/1/bullets/1
+Log out when using a shared computer,Cerrar la sesión si usas una computadora compartida,patient-portals/blocks/1/bullets/2
+Only log in through your healthcare provider's official website or app,Entrar solo desde el sitio web o la aplicación oficial de tu centro de salud,patient-portals/blocks/1/bullets/3
+Never share your username or password,No compartir nunca tu nombre de usuario ni tu contraseña,patient-portals/blocks/1/bullets/4
+Patient Portal Scams,Estafas con portales del paciente,patient-portals/blocks/2/heading
+"Scammers sometimes send fake emails or texts saying ""Your medical records are locked,"" ""Click here to view your lab results,"" or ""Your account will be deleted today.""
+
+These messages may lead to fake websites designed to steal your login information. Instead, go directly to your provider's official website or app.","Algunos estafadores envían correos o mensajes falsos como «Tus registros médicos están bloqueados», «Pulsa aquí para ver tus resultados» o «Tu cuenta se eliminará hoy».
+
+Estos mensajes pueden llevarte a sitios falsos que intentan robar tus datos de acceso. Entra por tu cuenta al sitio web o la aplicación oficial de tu centro de salud.",patient-portals/blocks/2/text
+Which Actions Are Safe?,¿Qué acciones son seguras?,patient-portals/blocks/3/title; medicare-website/blocks/3/title; irs-website/blocks/3/title
+Tap every safe action.,Selecciona todas las acciones seguras.,patient-portals/blocks/3/prompt; medicare-website/blocks/3/prompt; irs-website/blocks/3/prompt; dmv-websites/blocks/4/prompt
+Log in through your healthcare provider's official website or app.,Entrar desde el sitio web o la aplicación oficial de tu centro de salud.,patient-portals/blocks/3/options/0/text
+Log out when using a public computer.,Cerrar la sesión al usar una computadora pública.,patient-portals/blocks/3/options/1/text
+Use a strong password.,Usar una contraseña segura.,patient-portals/blocks/3/options/2/text
+Enable two-factor authentication if available.,"Activar la autenticación de dos factores, si está disponible.",patient-portals/blocks/3/options/3/text
+Share your portal password with neighbors.,Compartir la contraseña del portal con vecinos.,patient-portals/blocks/3/options/4/text
+Click every medical email link immediately.,Abrir de inmediato todos los enlaces de correos sobre salud.,patient-portals/blocks/3/options/5/text
+Save your password on a public computer.,Guardar la contraseña en una computadora pública.,patient-portals/blocks/3/options/6/text
+Excellent! Your patient portal contains sensitive medical information and should be protected like your bank account.,Bien. Tu portal contiene información médica sensible y conviene protegerlo tanto como tu cuenta bancaria.,patient-portals/blocks/3/feedback
+Flashcards,Tarjetas,patient-portals/blocks/4/title; telehealth/blocks/5/title; prescription-scams/blocks/4/title; medicare-website/blocks/4/title; irs-website/blocks/4/title; dmv-websites/blocks/5/title; gov-websites/blocks/4/title
+Patient Portal,Portal del paciente,patient-portals/blocks/4/cards/0/front
+A secure website or app where you can manage your healthcare.,Un sitio web o una aplicación segura para gestionar tu atención médica.,patient-portals/blocks/4/cards/0/back
+Medical Records,Registros médicos,patient-portals/blocks/4/cards/1/front
+"Information about your health, appointments, and treatments.","Información sobre tu salud, tus citas y tus tratamientos.",patient-portals/blocks/4/cards/1/back
+Test Results,Resultados de pruebas,patient-portals/blocks/4/cards/2/front
+"Results from blood work, X-rays, or other medical tests.","Resultados de análisis de sangre, radiografías y otras pruebas médicas.",patient-portals/blocks/4/cards/2/back
+Appointment,Cita,patient-portals/blocks/4/cards/3/front
+A scheduled visit with a healthcare provider.,Una consulta programada con un profesional de la salud.,patient-portals/blocks/4/cards/3/back
+Two-Factor Authentication,Verificación en dos pasos,patient-portals/blocks/4/cards/4/front
+An extra layer of security when signing in.,Una protección adicional al iniciar sesión.,patient-portals/blocks/4/cards/4/back
+Fill in the Blank,Completa la frase,patient-portals/blocks/5/title; telehealth/blocks/6/title; prescription-scams/blocks/5/title; medicare-website/blocks/5/title; irs-website/blocks/5/title; dmv-websites/blocks/6/title; gov-websites/blocks/5/title
+Portal,Portal,patient-portals/blocks/5/wordBank/0; patient-portals/blocks/5/questions/0/answer
+Official,Oficial,patient-portals/blocks/5/wordBank/1; patient-portals/blocks/5/questions/1/answer; patient-portals/quiz/3/options/0; telehealth/blocks/6/wordBank/3; dmv-websites/blocks/6/wordBank/1; dmv-websites/blocks/6/questions/1/answer
+Password,Contraseña,patient-portals/blocks/5/wordBank/2; patient-portals/blocks/5/questions/2/answer; prescription-scams/quiz/3/options/1; medicare-website/quiz/3/options/2
+Appointments,Citas,patient-portals/blocks/5/wordBank/3
+A patient ______ lets you view your healthcare information online.,Un ______ del paciente permite consultar tu información médica por internet.,patient-portals/blocks/5/questions/0/text
+Always sign in through your provider's ______ website or app.,Entra siempre desde el sitio web o la aplicación ______ de tu centro de salud.,patient-portals/blocks/5/questions/1/text
+Use a strong ______ to protect your account.,Usa una ______ segura para proteger tu cuenta.,patient-portals/blocks/5/questions/2/text
+Scenario 1,Situación 1,patient-portals/blocks/6/title; telehealth/blocks/7/title; prescription-scams/blocks/6/title; medicare-website/blocks/6/title; irs-website/blocks/6/title; dmv-websites/blocks/7/title; gov-websites/blocks/6/title
+"Margaret receives an email saying ""Click here immediately to see your lab results."" She wasn't expecting any test results. What should she do?",Margaret recibe un correo que dice: «Pulsa aquí de inmediato para ver tus resultados». No esperaba ningún resultado. ¿Qué debería hacer?,patient-portals/blocks/6/text
+Click the link.,Pulsar el enlace.,patient-portals/blocks/6/options/0; prescription-scams/blocks/7/options/0; prescription-scams/blocks/10/options/0; medicare-website/blocks/7/options/0; irs-website/blocks/7/options/0; irs-website/blocks/10/options/0; irs-website/quiz/5/options/0; dmv-websites/blocks/11/options/0; gov-websites/blocks/12/options/0
+Reply with her password.,Responder con su contraseña.,patient-portals/blocks/6/options/1
+Open her healthcare provider's official website or app directly if she wants to check her account.,Abrir por su cuenta el sitio web o la aplicación oficial de su centro de salud para consultar su cuenta.,patient-portals/blocks/6/options/2
+Forward the email to friends.,Reenviar el correo a sus amigos.,patient-portals/blocks/6/options/3; medicare-website/blocks/7/options/3
+Unexpected medical emails can sometimes be phishing attempts. Never sign in through unexpected links.,Un correo médico inesperado puede intentar robar tus datos. No inicies sesión desde enlaces inesperados.,patient-portals/blocks/6/explanation
+"Margaret receives an email saying ""Click here immediately to see your lab results."" She wasn't expecting any test results.",Margaret recibe un correo que dice: «Pulsa aquí de inmediato para ver tus resultados». No esperaba ningún resultado.,patient-portals/blocks/6/presentation/story
+What should she do?,¿Qué debería hacer?,patient-portals/blocks/6/presentation/question; telehealth/blocks/7/presentation/question; prescription-scams/blocks/6/presentation/question; prescription-scams/blocks/8/presentation/question; medicare-website/blocks/6/presentation/question; medicare-website/blocks/8/presentation/question; irs-website/blocks/7/presentation/question; dmv-websites/blocks/7/presentation/question; gov-websites/blocks/8/presentation/question
+Scenario 2,Situación 2,patient-portals/blocks/7/title; telehealth/blocks/8/title; prescription-scams/blocks/7/title; medicare-website/blocks/7/title; irs-website/blocks/7/title; dmv-websites/blocks/8/title; gov-websites/blocks/7/title
+"Robert uses a library computer to check his patient portal. When he's finished, what should he do?",Robert consulta su portal del paciente en una computadora de la biblioteca. ¿Qué debería hacer al terminar?,patient-portals/blocks/7/text
+Leave the website open.,Dejar el sitio abierto.,patient-portals/blocks/7/options/0; dmv-websites/blocks/9/options/0
+Save his password.,Guardar su contraseña.,patient-portals/blocks/7/options/1
+Log out completely and close the browser.,Cerrar la sesión por completo y cerrar el navegador.,patient-portals/blocks/7/options/2; dmv-websites/blocks/9/options/2
+Leave the computer without signing out.,Irse sin cerrar la sesión.,patient-portals/blocks/7/options/3
+Logging out helps protect your medical information on shared computers.,Cerrar la sesión ayuda a proteger tu información médica en computadoras compartidas.,patient-portals/blocks/7/explanation
+Robert uses a library computer to check his patient portal.,Robert consulta su portal del paciente en una computadora de la biblioteca.,patient-portals/blocks/7/presentation/story
+"When he's finished, what should he do?",¿Qué debería hacer al terminar?,patient-portals/blocks/7/presentation/question
+Quick Tip,Consejo breve,patient-portals/blocks/8/heading; telehealth/blocks/9/heading; prescription-scams/blocks/9/heading; medicare-website/blocks/9/heading; irs-website/blocks/9/heading; dmv-websites/blocks/10/heading; gov-websites/blocks/9/heading
+"Before signing in, ask yourself: Am I using the official website or app? Is my password strong? Am I on my own device or a shared one? If anything seems unusual, stop and verify before signing in.","Antes de entrar, comprueba: ¿Estoy en el sitio web o la aplicación oficial? ¿Mi contraseña es segura? ¿Uso mi propio dispositivo o uno compartido? Si algo parece extraño, detente y verifícalo antes de iniciar sesión.",patient-portals/blocks/8/text
+What is a patient portal?,¿Qué es un portal del paciente?,patient-portals/quiz/0/question
+A social media app,Una aplicación de redes sociales,patient-portals/quiz/0/options/0
+A search engine,Un buscador,patient-portals/quiz/0/options/1
+A secure website or app where you manage your healthcare,Un sitio web o una aplicación segura para gestionar tu atención médica,patient-portals/quiz/0/options/2
+A video game,Un videojuego,patient-portals/quiz/0/options/3
+Which activities can you do in a patient portal?,¿Qué puedes hacer en un portal del paciente?,patient-portals/quiz/1/question
+Only pay bills,Solo pagar facturas,patient-portals/quiz/1/options/0
+"View test results, schedule appointments, message your doctor, and request refills","Consultar resultados, programar citas, enviar mensajes al médico y solicitar renovaciones de recetas",patient-portals/quiz/1/options/1
+True or False: You should always click login links from unexpected medical emails.,Verdadero o falso: Siempre debes abrir los enlaces de acceso de correos médicos inesperados.,patient-portals/quiz/2/question
+True,Verdadero,patient-portals/quiz/2/options/0; telehealth/quiz/2/options/0; prescription-scams/quiz/2/options/0; medicare-website/quiz/2/options/0; irs-website/quiz/2/options/0; dmv-websites/quiz/2/options/0; gov-websites/quiz/2/options/0
+False,Falso,patient-portals/quiz/2/options/1; telehealth/quiz/2/options/1; prescription-scams/quiz/2/options/1; medicare-website/quiz/2/options/1; irs-website/quiz/2/options/1; dmv-websites/quiz/2/options/1; gov-websites/quiz/2/options/1
+Always log in through your provider's ______ website or app.,Entra siempre desde el sitio web o la aplicación ______ de tu centro de salud.,patient-portals/quiz/3/question
+Camera,Cámara,patient-portals/quiz/3/options/1; telehealth/blocks/5/cards/3/front; prescription-scams/quiz/3/options/2; irs-website/quiz/3/options/1
+Speaker,Altavoz,patient-portals/quiz/3/options/2; telehealth/quiz/3/options/1
+Why should you log out of a shared computer?,¿Por qué conviene cerrar la sesión en una computadora compartida?,patient-portals/quiz/4/question
+To make the computer faster.,Para que la computadora funcione más rápido.,patient-portals/quiz/4/options/0
+To save electricity.,Para ahorrar electricidad.,patient-portals/quiz/4/options/1; dmv-websites/quiz/6/options/1
+To help protect your private medical information.,Para ayudar a proteger tu información médica privada.,patient-portals/quiz/4/options/2
+To update your account.,Para actualizar tu cuenta.,patient-portals/quiz/4/options/3
+Great Job!,¡Muy bien!,patient-portals/complete/title; telehealth/complete/title; prescription-scams/complete/title
+You completed Lesson 1: Patient Portals!,Completaste la lección 1: Portales del paciente.,patient-portals/complete/subtitle
+Log in safely.,Iniciar sesión de forma segura.,patient-portals/complete/learned/1
+Telehealth,Consultas médicas a distancia,patient-portals/complete/next; telehealth/title; telehealth/blocks/5/cards/0/front; phase5-challenge/blocks/1/cards/0/front
+5.2,5.2,telehealth/lessonNumber
+Virtual Visit Expert,Experto en consultas virtuales,telehealth/badge
+Explain what telehealth is.,Explicar qué es una consulta médica a distancia.,telehealth/goals/0; telehealth/complete/learned/0
+Prepare for a virtual doctor's appointment.,Prepararse para una consulta médica virtual.,telehealth/goals/1
+Join a telehealth visit safely.,Acceder de forma segura a una consulta a distancia.,telehealth/goals/2; telehealth/complete/learned/2
+Protect their privacy during online appointments.,Proteger tu privacidad durante las consultas en línea.,telehealth/goals/3
+Recognize telehealth scams.,Reconocer estafas de consultas a distancia.,telehealth/goals/4; telehealth/complete/learned/3
+What Is Telehealth?,¿Qué es una consulta a distancia?,telehealth/blocks/0/heading
+"Telehealth allows you to speak with a healthcare provider using a computer, smartphone, or tablet. Instead of traveling to the doctor's office, you can meet through a secure video or phone call.","La atención médica a distancia permite hablar con un profesional de la salud desde una computadora, un teléfono o una tableta. En lugar de ir al consultorio, puedes tener una consulta por videollamada o por teléfono de forma segura.",telehealth/blocks/0/text
+Follow-up visits,Consultas de seguimiento,telehealth/blocks/0/bullets/0
+Medication questions,Preguntas sobre medicamentos,telehealth/blocks/0/bullets/1
+Minor illnesses,Enfermedades leves,telehealth/blocks/0/bullets/2
+Mental health appointments,Consultas de salud mental,telehealth/blocks/0/bullets/3
+Preparing for a Telehealth Visit,Prepárate para una consulta a distancia,telehealth/blocks/1/heading
+Before your appointment:,Antes de la cita:,telehealth/blocks/1/text
+Charge your device,Carga tu dispositivo,telehealth/blocks/1/bullets/0
+Test your camera and microphone,Prueba la cámara y el micrófono,telehealth/blocks/1/bullets/1
+"Find a quiet, private place",Busca un lugar tranquilo y privado,telehealth/blocks/1/bullets/2
+Have your medications nearby,Ten tus medicamentos a mano,telehealth/blocks/1/bullets/3
+Write down any questions you want to ask,Anota las preguntas que quieras hacer,telehealth/blocks/1/bullets/4
+Join a few minutes early,Conéctate unos minutos antes,telehealth/blocks/1/bullets/5
+Keeping Your Appointment Private,Protege la privacidad de tu consulta,telehealth/blocks/2/heading
+During your visit:,Durante la consulta:,telehealth/blocks/2/text
+Use your healthcare provider's official app or link,Usa la aplicación o el enlace oficial de tu centro de salud,telehealth/blocks/2/bullets/0
+Avoid public Wi-Fi if discussing sensitive health information,Evita las redes wifi públicas al hablar de información médica sensible,telehealth/blocks/2/bullets/1
+Wear headphones if you're in a shared space,Usa auriculares si compartes el espacio con otras personas,telehealth/blocks/2/bullets/2
+Make sure you know who is on the call,Comprueba quién participa en la llamada,telehealth/blocks/2/bullets/3
+Telehealth Scams,Estafas de consultas a distancia,telehealth/blocks/3/heading
+"Be cautious about unexpected appointment links, unfamiliar software, demands for immediate payment, or requests to send your Medicare number or password by email or text. A real practice may charge a copay; verify an unexpected request through a phone number you already know.
+
+Use the appointment instructions you confirmed with your healthcare provider.","Ten cuidado con los enlaces de citas inesperadas, programas desconocidos, exigencias de pago inmediato o peticiones de enviar tu número de Medicare o contraseña por correo o mensaje. Un consultorio real puede cobrar un copago; verifica cualquier petición inesperada llamando a un número que ya conozcas.
+
+Sigue las instrucciones de la cita que confirmaste con tu centro de salud.",telehealth/blocks/3/text
+Which Are Good Telehealth Habits?,¿Qué hábitos ayudan en una consulta a distancia?,telehealth/blocks/4/title
+Tap every good habit.,Selecciona todos los buenos hábitos.,telehealth/blocks/4/prompt
+Test your camera before the appointment.,Probar la cámara antes de la cita.,telehealth/blocks/4/options/0/text
+"Join from a quiet, private location.",Conectarte desde un lugar tranquilo y privado.,telehealth/blocks/4/options/1/text
+Use the official appointment link from your healthcare provider.,Usar el enlace oficial de la cita que te dio tu centro de salud.,telehealth/blocks/4/options/2/text
+Write down questions before your visit.,Anotar tus preguntas antes de la consulta.,telehealth/blocks/4/options/3/text
+Join using a random link from a stranger.,Entrar desde un enlace cualquiera enviado por un desconocido.,telehealth/blocks/4/options/4/text
+Share your portal password during the call.,Compartir la contraseña del portal durante la llamada.,telehealth/blocks/4/options/5/text
+Ignore who's on the video call.,No comprobar quién participa en la videollamada.,telehealth/blocks/4/options/6/text
+Excellent! Preparing ahead helps your appointment go smoothly and protects your privacy.,Bien. Prepararte con tiempo ayuda a que la consulta vaya bien y protege tu privacidad.,telehealth/blocks/4/feedback
+Healthcare provided through secure video or phone appointments.,Atención médica mediante consultas seguras por video o teléfono.,telehealth/blocks/5/cards/0/back
+Virtual Appointment,Consulta virtual,telehealth/blocks/5/cards/1/front
+A medical visit that takes place online or by phone.,Una consulta médica por internet o por teléfono.,telehealth/blocks/5/cards/1/back
+Microphone,Micrófono,telehealth/blocks/5/cards/2/front
+Lets your doctor hear you during the appointment.,Permite que tu médico te escuche durante la consulta.,telehealth/blocks/5/cards/2/back
+Lets you and your doctor see each other.,Permite que tú y tu médico se vean.,telehealth/blocks/5/cards/3/back
+Privacy,Privacidad,telehealth/blocks/5/cards/4/front
+Keeping your personal health information protected.,Mantener protegida tu información médica personal.,telehealth/blocks/5/cards/4/back
+Video,Video,telehealth/blocks/6/wordBank/0; telehealth/blocks/6/questions/0/answer
+Private,Privado,telehealth/blocks/6/wordBank/1; telehealth/blocks/6/questions/1/answer; telehealth/quiz/3/options/0; medicare-website/blocks/5/wordBank/1; medicare-website/blocks/5/questions/1/answer; irs-website/blocks/5/wordBank/2; irs-website/blocks/5/questions/2/answer
+Questions,Preguntas,telehealth/blocks/6/wordBank/2; telehealth/blocks/6/questions/2/answer
+Telehealth often uses ______ calls.,La atención médica a distancia suele utilizar llamadas de ______.,telehealth/blocks/6/questions/0/text
+Choose a ______ place for your appointment.,Elige un lugar ______ para la consulta.,telehealth/blocks/6/questions/1/text; telehealth/quiz/3/question
+Write down your ______ before meeting your doctor.,Anota tus ______ antes de hablar con el médico.,telehealth/blocks/6/questions/2/text
+"Linda receives a text saying ""Click this link to pay $250 before your telehealth visit."" She wasn't expecting this message. What should she do?",Linda recibe un mensaje: «Pulsa este enlace para pagar $250 antes de tu consulta a distancia». No esperaba ese mensaje. ¿Qué debería hacer?,telehealth/blocks/7/text
+Click the link and pay.,Abrir el enlace y pagar.,telehealth/blocks/7/options/0; dmv-websites/blocks/7/options/0; dmv-websites/quiz/4/options/0
+Give her credit card information.,Dar los datos de su tarjeta de crédito.,telehealth/blocks/7/options/1
+Contact her healthcare provider using their official phone number or website to verify the message.,Contactar con su centro de salud mediante su número o sitio web oficial para verificar el mensaje.,telehealth/blocks/7/options/2
+Download the software in the text.,Descargar el programa del mensaje.,telehealth/blocks/7/options/3
+Unexpected payment requests can be scams. Always verify through official contact methods.,Las peticiones de pago inesperadas pueden ser estafas. Verifícalas siempre por los canales oficiales.,telehealth/blocks/7/explanation
+"Linda receives a text saying ""Click this link to pay $250 before your telehealth visit."" She wasn't expecting this message.",Linda recibe un mensaje: «Pulsa este enlace para pagar $250 antes de tu consulta a distancia». No esperaba ese mensaje.,telehealth/blocks/7/presentation/story
+David joins his telehealth appointment from a busy coffee shop using public Wi-Fi. What's a better choice?,"David entra a su consulta a distancia desde una cafetería concurrida, usando wifi público. ¿Qué opción sería mejor?",telehealth/blocks/8/text
+Continue discussing private medical information loudly.,Seguir hablando en voz alta de su información médica privada.,telehealth/blocks/8/options/0
+"If possible, move to a private location or wait until he has a secure connection before discussing sensitive information.","Si es posible, ir a un lugar privado o esperar a tener una conexión segura antes de hablar de información sensible.",telehealth/blocks/8/options/1
+Share his medical history with everyone nearby.,Compartir su historial médico con las personas que lo rodean.,telehealth/blocks/8/options/2
+Give strangers his appointment link.,Dar el enlace de la consulta a desconocidos.,telehealth/blocks/8/options/3
+A private space helps protect your personal health information.,Un espacio privado ayuda a proteger tu información médica personal.,telehealth/blocks/8/explanation
+David joins his telehealth appointment from a busy coffee shop using public Wi-Fi.,"David entra a su consulta a distancia desde una cafetería concurrida, usando wifi público.",telehealth/blocks/8/presentation/story
+What's a better choice?,¿Qué opción sería mejor?,telehealth/blocks/8/presentation/question
+"Before your appointment, ask yourself: Is your device charged? Do you have the official appointment link? Are you in a quiet place? Do you have your questions ready? If yes, you're ready for your visit!","Antes de la cita, comprueba: ¿Está cargado tu dispositivo? ¿Tienes el enlace oficial? ¿Estás en un lugar tranquilo? ¿Anotaste tus preguntas? Así estarás preparado para la consulta.",telehealth/blocks/9/text
+What is telehealth?,¿Qué es una consulta a distancia?,telehealth/quiz/0/question
+Shopping online,Comprar por internet,telehealth/quiz/0/options/0
+Banking online,Usar la banca en línea,telehealth/quiz/0/options/1
+Meeting with a healthcare provider by secure video or phone,Consultar a un profesional de la salud por video o teléfono de forma segura,telehealth/quiz/0/options/2
+Sending emails,Enviar correos,telehealth/quiz/0/options/3
+Which should you do before a telehealth appointment?,¿Qué conviene hacer antes de una consulta a distancia?,telehealth/quiz/1/question
+Nothing special,Nada en especial,telehealth/quiz/1/options/0
+"Charge your device, test your camera, prepare your questions, and join a few minutes early","Cargar el dispositivo, probar la cámara, preparar tus preguntas y conectarte unos minutos antes",telehealth/quiz/1/options/1
+True or False: You should give your password to anyone who joins your telehealth call.,Verdadero o falso: Debes dar tu contraseña a cualquier persona que entre a tu consulta a distancia.,telehealth/quiz/2/question
+Public,Público,telehealth/quiz/3/options/2
+You receive an unexpected message asking you to pay before your appointment. What should you do?,Recibes un mensaje inesperado que te pide pagar antes de la cita. ¿Qué deberías hacer?,telehealth/quiz/4/question
+Pay immediately.,Pagar de inmediato.,telehealth/quiz/4/options/0; medicare-website/blocks/6/options/0; medicare-website/quiz/4/options/0; gov-websites/blocks/11/options/0; gov-websites/quiz/4/options/0
+Click every link.,Abrir todos los enlaces.,telehealth/quiz/4/options/1
+Contact your healthcare provider using their official contact information to verify the request.,Contactar con tu centro de salud por sus canales oficiales para verificar la petición.,telehealth/quiz/4/options/2
+Share your Medicare number.,Compartir tu número de Medicare.,telehealth/quiz/4/options/3
+You completed Lesson 2: Telehealth!,Completaste la lección 2: Consultas médicas a distancia.,telehealth/complete/subtitle
+Prepare for a virtual appointment.,Prepararte para una consulta virtual.,telehealth/complete/learned/1
+Prescription Scams,Estafas con medicamentos recetados,telehealth/complete/next; prescription-scams/title
+5.3,5.3,prescription-scams/lessonNumber
+Medication Safety Hero,Protector de los medicamentos,prescription-scams/badge
+Explain what a prescription scam is.,Explicar qué es una estafa con medicamentos recetados.,prescription-scams/goals/0
+Recognize fake pharmacies and medication scams.,Reconocer farmacias falsas y estafas con medicamentos.,prescription-scams/goals/1
+Buy medications safely online.,Comprar medicamentos por internet de forma segura.,prescription-scams/goals/2
+Protect their health and personal information.,Proteger tu salud y tu información personal.,prescription-scams/goals/3
+Know what to do if they suspect a prescription scam.,Saber qué hacer si sospechas una estafa con medicamentos.,prescription-scams/goals/4
+What Is a Prescription Scam?,¿Qué es una estafa con medicamentos recetados?,prescription-scams/blocks/0/heading
+"A prescription scam is when someone tries to trick you into buying fake medicine, paying for medicine you'll never receive, or giving away your personal information.
+
+Scammers may pretend to be an online pharmacy, your doctor's office, a medication delivery company, or your insurance company. Their goal is often to steal your money, identity, or health information.","Es un engaño para que compres medicamentos falsos, pagues por medicamentos que no recibirás o entregues información personal.
+
+Los estafadores pueden hacerse pasar por una farmacia en línea, un consultorio, un servicio de entrega o tu aseguradora. Suelen intentar robar tu dinero, tu identidad o tus datos de salud.",prescription-scams/blocks/0/text
+Where Should You Get Prescription Medicine?,¿Dónde comprar medicamentos recetados?,prescription-scams/blocks/1/heading
+The safest places to get prescription medicine are:,Las opciones más seguras son:,prescription-scams/blocks/1/text
+Your local pharmacy,Tu farmacia habitual,prescription-scams/blocks/1/bullets/0
+A pharmacy recommended by your doctor or insurance company,Una farmacia recomendada por tu médico o tu aseguradora,prescription-scams/blocks/1/bullets/1
+A licensed online pharmacy,Una farmacia en línea con licencia,prescription-scams/blocks/1/bullets/2
+"For prescription medicines in the U.S., check that an online pharmacy requires a valid prescription, has a licensed pharmacist, gives a U.S. address and phone number, and is licensed by your state board of pharmacy. Use the FDA's BeSafeRx resources to check the license.","Para comprar medicamentos recetados en Estados Unidos, comprueba que la farmacia en línea exija una receta válida, tenga un farmacéutico con licencia, indique una dirección y un teléfono en Estados Unidos, y esté autorizada por la junta de farmacia de tu estado. Usa los recursos BeSafeRx de la FDA para verificar la licencia.",prescription-scams/blocks/1/footer
+Warning Signs of a Prescription Scam,Señales de una estafa con medicamentos,prescription-scams/blocks/2/heading
+Be cautious if a website or message:,Ten cuidado si un sitio o mensaje:,prescription-scams/blocks/2/text
+Sells prescription medicine without requiring a prescription,Vende medicamentos recetados sin pedir una receta,prescription-scams/blocks/2/bullets/0
+"Promises a ""miracle cure""",Promete una «cura milagrosa»,prescription-scams/blocks/2/bullets/1
+Offers prices that seem unbelievably low,Ofrece precios increíblemente bajos,prescription-scams/blocks/2/bullets/2
+Pressures you to buy immediately,Te presiona para comprar de inmediato,prescription-scams/blocks/2/bullets/3
+Only accepts gift cards or cryptocurrency,Solo acepta tarjetas de regalo o criptomonedas,prescription-scams/blocks/2/bullets/4
+Has no phone number or customer support,No tiene teléfono ni atención al cliente,prescription-scams/blocks/2/bullets/5
+Sends unexpected refill messages,Envía mensajes inesperados para renovar recetas,prescription-scams/blocks/2/bullets/6
+Even one warning sign is a reason to pause. Check with your doctor or pharmacist before buying if anything is unclear.,"Una sola señal de alerta ya es motivo para detenerte. Si algo no está claro, consulta con tu médico o farmacéutico antes de comprar.",prescription-scams/blocks/2/footer
+Which Are Safe Ways to Get Medicine?,¿Qué formas de conseguir medicamentos son seguras?,prescription-scams/blocks/3/title
+Tap every safe choice.,Selecciona todas las opciones seguras.,prescription-scams/blocks/3/prompt
+Fill prescriptions at your regular pharmacy.,Surtir tus recetas en tu farmacia habitual.,prescription-scams/blocks/3/options/0/text
+Ask your doctor or pharmacist if an online pharmacy is trustworthy.,Preguntar a tu médico o farmacéutico si una farmacia en línea es confiable.,prescription-scams/blocks/3/options/1/text
+Use a pharmacy recommended by your insurance company or healthcare provider.,Usar una farmacia recomendada por tu aseguradora o profesional de la salud.,prescription-scams/blocks/3/options/2/text
+Buy medicine from a random advertisement on social media.,Comprar medicamentos desde un anuncio cualquiera en redes sociales.,prescription-scams/blocks/3/options/3/text
+Purchase prescription medicine from a website that doesn't require a prescription.,Comprar medicamentos recetados en un sitio que no pide una receta.,prescription-scams/blocks/3/options/4/text
+Pay for medicine using gift cards because the seller requested it.,Pagar con tarjetas de regalo porque lo pide el vendedor.,prescription-scams/blocks/3/options/5/text
+Excellent! Trusted pharmacies help ensure your medication is safe and legitimate.,Bien. Las farmacias confiables ayudan a que recibas medicamentos seguros y auténticos.,prescription-scams/blocks/3/feedback
+Prescription,Receta,prescription-scams/blocks/4/cards/0/front; prescription-scams/blocks/5/wordBank/1; prescription-scams/blocks/5/questions/1/answer
+Medicine authorized by a licensed healthcare provider.,Medicamento autorizado por un profesional de la salud con licencia.,prescription-scams/blocks/4/cards/0/back
+Licensed Pharmacy,Farmacia con licencia,prescription-scams/blocks/4/cards/1/front
+A pharmacy legally allowed to dispense medications.,Una farmacia autorizada legalmente para dispensar medicamentos.,prescription-scams/blocks/4/cards/1/back
+Prescription Scam,Estafa con medicamentos recetados,prescription-scams/blocks/4/cards/2/front
+A scam involving fake medicine or fake pharmacies.,Un engaño relacionado con medicamentos o farmacias falsas.,prescription-scams/blocks/4/cards/2/back; prescription-scams/quiz/0/options/2
+Refill,Renovación de receta,prescription-scams/blocks/4/cards/3/front
+Getting more of a medicine you already have a prescription for.,Obtener más cantidad de un medicamento para el que ya tienes receta.,prescription-scams/blocks/4/cards/3/back
+Pharmacist,Farmacéutico,prescription-scams/blocks/4/cards/4/front
+A healthcare professional who prepares and dispenses medications.,Un profesional de la salud que prepara y dispensa medicamentos.,prescription-scams/blocks/4/cards/4/back
+Pharmacy,Farmacia,prescription-scams/blocks/5/wordBank/0; prescription-scams/blocks/5/questions/0/answer; prescription-scams/quiz/3/options/0
+Doctor,Médico,prescription-scams/blocks/5/wordBank/2; prescription-scams/blocks/5/questions/2/answer
+Gift Cards,Tarjetas de regalo,prescription-scams/blocks/5/wordBank/3; dmv-websites/blocks/6/wordBank/3
+Buy prescription medicine from a trusted ______.,Compra medicamentos recetados en una ______ confiable.,prescription-scams/blocks/5/questions/0/text; prescription-scams/quiz/3/question
+Many medications require a ______ from a licensed healthcare provider.,Muchos medicamentos requieren una ______ de un profesional de la salud autorizado.,prescription-scams/blocks/5/questions/1/text
+"If you're unsure about an online pharmacy, ask your ______.","Si dudas de una farmacia en línea, consulta con tu ______.",prescription-scams/blocks/5/questions/2/text
+"Margaret sees this advertisement: ""Blood pressure medicine! 90% OFF! No prescription needed!"" What should she do?",Margaret ve este anuncio: «¡Medicamentos para la presión! ¡90 % de descuento! ¡Sin receta!». ¿Qué debería hacer?,prescription-scams/blocks/6/text
+Buy it before it sells out.,Comprarlos antes de que se agoten.,prescription-scams/blocks/6/options/0
+Enter her credit card number.,Introducir el número de su tarjeta de crédito.,prescription-scams/blocks/6/options/1
+Do not buy it. Use a trusted pharmacy and talk to her doctor if she needs medication.,No comprarlos. Usar una farmacia confiable y consultar con su médico si necesita medicamentos.,prescription-scams/blocks/6/options/2
+Share the advertisement with her friends.,Compartir el anuncio con sus amigos.,prescription-scams/blocks/6/options/3
+"Medicine from unknown sellers may be fake, unsafe, or never arrive.","Los medicamentos de vendedores desconocidos pueden ser falsos, peligrosos o no llegar nunca.",prescription-scams/blocks/6/explanation
+"Margaret sees this advertisement: ""Blood pressure medicine! 90% OFF! No prescription needed!""",Margaret ve este anuncio: «¡Medicamentos para la presión! ¡90 % de descuento! ¡Sin receta!».,prescription-scams/blocks/6/presentation/story
+"Robert receives this text: ""Click here to refill your prescription now."" He wasn't expecting a refill reminder. What should he do?",Robert recibe un mensaje: «Pulsa aquí para renovar tu receta ahora». No esperaba un recordatorio. ¿Qué debería hacer?,prescription-scams/blocks/7/text
+Reply with his insurance information.,Responder con los datos de su seguro.,prescription-scams/blocks/7/options/1
+Contact his pharmacy directly using the phone number or website he already knows.,Contactar directamente con su farmacia usando el número o sitio web que ya conoce.,prescription-scams/blocks/7/options/2
+Send his date of birth.,Enviar su fecha de nacimiento.,prescription-scams/blocks/7/options/3
+Unexpected refill messages can be phishing scams.,Los mensajes inesperados para renovar recetas pueden intentar robar tus datos.,prescription-scams/blocks/7/explanation
+"Robert receives this text: ""Click here to refill your prescription now."" He wasn't expecting a refill reminder.",Robert recibe un mensaje: «Pulsa aquí para renovar tu receta ahora». No esperaba un recordatorio.,prescription-scams/blocks/7/presentation/story
+What should he do?,¿Qué debería hacer?,prescription-scams/blocks/7/presentation/question; medicare-website/blocks/7/presentation/question; irs-website/blocks/6/presentation/question
+Scenario 3,Situación 3,prescription-scams/blocks/8/title; medicare-website/blocks/8/title; irs-website/blocks/8/title; dmv-websites/blocks/9/title; gov-websites/blocks/8/title
+"Linda finds a website selling prescription medication. It has no phone number, doesn't list an address, only accepts gift cards, and doesn't require a prescription. What should she do?","Linda encuentra un sitio que vende medicamentos recetados. No tiene teléfono ni dirección, solo acepta tarjetas de regalo y no pide receta. ¿Qué debería hacer?",prescription-scams/blocks/8/text
+Buy the medicine because it's inexpensive.,Comprar los medicamentos porque son baratos.,prescription-scams/blocks/8/options/0
+Pay with gift cards.,Pagar con tarjetas de regalo.,prescription-scams/blocks/8/options/1
+Leave the website and use a trusted pharmacy instead.,Salir del sitio y acudir a una farmacia confiable.,prescription-scams/blocks/8/options/2; prescription-scams/quiz/4/options/2
+Give the website her Medicare number.,Dar al sitio su número de Medicare.,prescription-scams/blocks/8/options/3
+Multiple warning signs suggest this could be a prescription scam.,Varias señales de alerta indican que podría ser una estafa con medicamentos.,prescription-scams/blocks/8/explanation
+"Linda finds a website selling prescription medication. It has no phone number, doesn't list an address, only accepts gift cards, and doesn't require a prescription.","Linda encuentra un sitio que vende medicamentos recetados. No tiene teléfono ni dirección, solo acepta tarjetas de regalo y no pide receta.",prescription-scams/blocks/8/presentation/story
+"Before buying medicine online, ask yourself: Is this a trusted pharmacy? Did my healthcare provider prescribe this medicine? Does the website provide contact information? Am I being pressured to buy quickly? If you're unsure, stop and ask your doctor or pharmacist first.","Antes de comprar medicamentos por internet, comprueba: ¿Es una farmacia confiable? ¿Mi profesional de la salud me recetó este medicamento? ¿Hay datos de contacto? ¿Me presionan para comprar rápido? Si dudas, detente y consulta primero con tu médico o farmacéutico.",prescription-scams/blocks/9/text
+What Should You Do?,¿Qué deberías hacer?,prescription-scams/blocks/10/title; prescription-scams/blocks/11/title; prescription-scams/blocks/12/title; medicare-website/blocks/10/title; medicare-website/blocks/11/title; medicare-website/blocks/12/title; irs-website/blocks/10/title; irs-website/blocks/11/title; irs-website/blocks/12/title; dmv-websites/blocks/11/title; dmv-websites/blocks/12/title; dmv-websites/blocks/13/title; gov-websites/blocks/10/title; gov-websites/blocks/11/title; gov-websites/blocks/12/title
+"You receive an email: ""Your prescription is waiting. Click here immediately."" You weren't expecting any medication.",Recibes un correo: «Tu receta está lista. Pulsa aquí de inmediato». No esperabas ningún medicamento.,prescription-scams/blocks/10/text
+Reply with your password.,Responder con tu contraseña.,prescription-scams/blocks/10/options/1
+Contact your pharmacy directly using a phone number or website you already know.,Contactar directamente con tu farmacia usando un número o sitio web que ya conoces.,prescription-scams/blocks/10/options/2
+Give your Medicare number.,Dar tu número de Medicare.,prescription-scams/blocks/10/options/3; prescription-scams/quiz/5/options/3; medicare-website/blocks/11/options/0; medicare-website/quiz/4/options/1
+Unexpected refill emails are often phishing attempts.,Los correos inesperados sobre renovaciones de recetas suelen intentar robar tus datos.,prescription-scams/blocks/10/explanation
+"A website says: ""No prescription needed! Buy any medication today!""",Un sitio dice: «¡Sin receta! ¡Compra cualquier medicamento hoy!».,prescription-scams/blocks/11/text
+Purchase the medication.,Comprar el medicamento.,prescription-scams/blocks/11/options/0
+Share your insurance information.,Compartir los datos de tu seguro.,prescription-scams/blocks/11/options/1
+Leave the website and talk to your doctor if you need prescription medicine.,Salir del sitio y consultar con tu médico si necesitas un medicamento recetado.,prescription-scams/blocks/11/options/2
+Recommend the website to friends.,Recomendar el sitio a tus amigos.,prescription-scams/blocks/11/options/3
+You're unsure whether an online pharmacy is trustworthy. What should you do?,No sabes si una farmacia en línea es confiable. ¿Qué deberías hacer?,prescription-scams/blocks/12/text
+Guess.,Adivinar.,prescription-scams/blocks/12/options/0
+Buy one bottle to test it.,Comprar un frasco para probarlo.,prescription-scams/blocks/12/options/1
+Ask your doctor or pharmacist before ordering.,Consultar con tu médico o farmacéutico antes de hacer el pedido.,prescription-scams/blocks/12/options/2
+Trust it because it has low prices.,Confiar en ella porque tiene precios bajos.,prescription-scams/blocks/12/options/3
+Healthcare professionals can help you determine whether a pharmacy is legitimate.,Los profesionales de la salud pueden ayudarte a comprobar si una farmacia es legítima.,prescription-scams/blocks/12/explanation
+Remember,Recordar,prescription-scams/blocks/13/heading; medicare-website/blocks/13/heading; irs-website/blocks/13/heading; dmv-websites/blocks/14/heading; gov-websites/blocks/13/heading
+"Prescription scams can put your money and your health at risk. Use trusted pharmacies, follow your healthcare provider's instructions, verify refill requests, and ask your doctor or pharmacist if you're unsure. Never buy prescription medicine from unknown websites, believe ""miracle cure"" advertisements, pay with gift cards, or click unexpected refill links.","Estas estafas ponen en riesgo tu dinero y tu salud. Usa farmacias confiables, sigue las indicaciones de tu profesional de la salud, verifica las peticiones de renovación y consulta con tu médico o farmacéutico si dudas. No compres medicamentos recetados en sitios desconocidos, no creas anuncios de «curas milagrosas», no pagues con tarjetas de regalo ni abras enlaces inesperados de renovación.",prescription-scams/blocks/13/text
+What is a prescription scam?,¿Qué es una estafa con medicamentos recetados?,prescription-scams/quiz/0/question
+A doctor writing a prescription.,Que un médico escriba una receta.,prescription-scams/quiz/0/options/0
+Picking up medicine at a pharmacy.,Recoger medicamentos en una farmacia.,prescription-scams/quiz/0/options/1
+Reading medicine instructions.,Leer las instrucciones de un medicamento.,prescription-scams/quiz/0/options/3
+Which are warning signs of a prescription scam?,¿Cuáles son señales de una estafa con medicamentos?,prescription-scams/quiz/1/question
+A pharmacy asking for your prescription,Una farmacia que pide tu receta,prescription-scams/quiz/1/options/0
+"Medicine sold without a prescription, unbelievable prices, gift card requests, and no contact information","Medicamentos sin receta, precios increíbles, pagos con tarjetas de regalo y falta de datos de contacto",prescription-scams/quiz/1/options/1
+"True or False: If you're unsure about an online pharmacy, you should ask your doctor or pharmacist before ordering.","Verdadero o falso: Si dudas de una farmacia en línea, conviene consultar con tu médico o farmacéutico antes de hacer un pedido.",prescription-scams/quiz/2/question
+A website advertises prescription medicine without requiring a prescription and only accepts gift cards. What should you do?,Un sitio vende medicamentos recetados sin pedir receta y solo acepta tarjetas de regalo. ¿Qué deberías hacer?,prescription-scams/quiz/4/question
+Buy the medicine.,Comprar los medicamentos.,prescription-scams/quiz/4/options/0
+Enter your payment information.,Introducir tus datos de pago.,prescription-scams/quiz/4/options/1
+Share the website with family members.,Compartir el sitio con tu familia.,prescription-scams/quiz/4/options/3
+What should you do if you receive an unexpected text asking you to refill your prescription?,¿Qué deberías hacer si recibes un mensaje inesperado para renovar tu receta?,prescription-scams/quiz/5/question
+Click the link immediately.,Abrir el enlace de inmediato.,prescription-scams/quiz/5/options/0; medicare-website/blocks/10/options/0
+Reply with your insurance number.,Responder con tu número de seguro.,prescription-scams/quiz/5/options/1
+Contact your pharmacy directly using the phone number or website you already know.,Contactar directamente con tu farmacia usando el número o sitio web que ya conoces.,prescription-scams/quiz/5/options/2
+Which statement is TRUE?,¿Qué afirmación es verdadera?,prescription-scams/quiz/6/question
+Prescription medicine is always safe if it's the cheapest option.,Los medicamentos recetados siempre son seguros si son la opción más barata.,prescription-scams/quiz/6/options/0
+Every online pharmacy is trustworthy.,Todas las farmacias en línea son confiables.,prescription-scams/quiz/6/options/1
+Legitimate pharmacies usually provide contact information and follow prescription requirements.,Las farmacias legítimas suelen facilitar datos de contacto y cumplir los requisitos de las recetas.,prescription-scams/quiz/6/options/2
+Social media advertisements are the safest place to buy medicine.,Los anuncios de redes sociales son el lugar más seguro para comprar medicamentos.,prescription-scams/quiz/6/options/3
+Which payment method is a major warning sign when buying prescription medicine?,¿Qué forma de pago es una señal de alerta importante al comprar medicamentos recetados?,prescription-scams/quiz/7/question
+Credit card,Tarjeta de crédito,prescription-scams/quiz/7/options/0
+Debit card,Tarjeta de débito,prescription-scams/quiz/7/options/1
+Gift cards,Tarjetas de regalo,prescription-scams/quiz/7/options/2
+Paying at your local pharmacy,Pagar en tu farmacia habitual,prescription-scams/quiz/7/options/3
+You completed Lesson 3: Prescription Scams!,Completaste la lección 3: Estafas con medicamentos recetados.,prescription-scams/complete/subtitle
+Recognize fake pharmacies.,Reconocer farmacias falsas.,prescription-scams/complete/learned/0
+Buy medications safely.,Comprar medicamentos de forma segura.,prescription-scams/complete/learned/1
+Spot common prescription scams.,Detectar estafas comunes con medicamentos recetados.,prescription-scams/complete/learned/2
+Protect your health and personal information.,Proteger tu salud y tu información personal.,prescription-scams/complete/learned/3
+Using the Medicare Website Safely,Usar el sitio web de Medicare de forma segura,prescription-scams/complete/next; medicare-website/title
+5.4,5.4,medicare-website/lessonNumber
+Medicare Safety Expert,Seguridad con Medicare,medicare-website/badge
+Explain what Medicare is.,Explicar qué es Medicare.,medicare-website/goals/0
+Recognize the official Medicare website.,Reconocer el sitio web oficial de Medicare.,medicare-website/goals/1; medicare-website/complete/learned/0
+Use Medicare.gov safely.,Usar Medicare.gov de forma segura.,medicare-website/goals/2; medicare-website/complete/learned/1
+Protect their Medicare information.,Proteger tus datos de Medicare.,medicare-website/goals/3
+Recognize common Medicare scams.,Reconocer estafas comunes de Medicare.,medicare-website/goals/4; medicare-website/complete/learned/3
+What Is Medicare?,¿Qué es Medicare?,medicare-website/blocks/0/heading
+"Medicare is a U.S. government health insurance program for most adults age 65 and older, some younger people with certain disabilities, and people with certain medical conditions.
+
+The official Medicare website is medicare.gov.","Medicare es un programa de seguro médico del gobierno de Estados Unidos para la mayoría de las personas de 65 años o más, algunas personas más jóvenes con ciertas discapacidades y personas con determinadas enfermedades.
+
+Su sitio web oficial es medicare.gov.",medicare-website/blocks/0/text
+Learn about your Medicare coverage,Conocer tu cobertura de Medicare,medicare-website/blocks/0/bullets/0
+Compare health and prescription drug plans,Comparar planes de salud y de medicamentos recetados,medicare-website/blocks/0/bullets/1
+Find doctors and healthcare providers,Buscar médicos y otros profesionales de la salud,medicare-website/blocks/0/bullets/2
+View important Medicare information,Consultar información importante de Medicare,medicare-website/blocks/0/bullets/3
+Learn about costs and benefits,Conocer los costos y beneficios,medicare-website/blocks/0/bullets/4
+Protecting Your Medicare Information,Protege tus datos de Medicare,medicare-website/blocks/1/heading
+"Your Medicare number is personal. Treat it like you would a credit card number or your bank account number.
+
+Never share your Medicare number unless you're working with a trusted healthcare provider, insurer, or Medicare representative when appropriate. Keep it private.","Tu número de Medicare es personal. Protégelo como el número de tu tarjeta de crédito o de tu cuenta bancaria.
+
+Compártelo solo cuando corresponda y estés tratando con un profesional de la salud, una aseguradora o un representante de Medicare de confianza. Mantenlo privado.",medicare-website/blocks/1/text
+Common Medicare Scams,Estafas comunes de Medicare,medicare-website/blocks/2/heading
+Scammers may pretend to be from Medicare. They might say:,Los estafadores pueden hacerse pasar por Medicare. Tal vez digan:,medicare-website/blocks/2/text
+"""Your Medicare card has expired.""",«Tu tarjeta de Medicare ha vencido».,medicare-website/blocks/2/bullets/0
+"""You must pay today to keep your benefits.""",«Debes pagar hoy para conservar tus beneficios».,medicare-website/blocks/2/bullets/1
+"""We need your Medicare number immediately.""",«Necesitamos tu número de Medicare de inmediato».,medicare-website/blocks/2/bullets/2
+"""We'll send you free medical equipment.""",«Te enviaremos equipo médico gratis».,medicare-website/blocks/2/bullets/3
+Medicare generally will not unexpectedly call you asking for payment or sensitive personal information.,"Por lo general, Medicare no te llama de forma inesperada para pedir pagos o información personal sensible.",medicare-website/blocks/2/footer
+Visit medicare.gov by typing the address into your browser.,Escribir medicare.gov en el navegador para visitar el sitio.,medicare-website/blocks/3/options/0/text
+Keep your Medicare number private.,Mantener privado tu número de Medicare.,medicare-website/blocks/3/options/1/text
+Contact Medicare using official contact information if you're unsure.,Contactar con Medicare por sus canales oficiales si tienes dudas.,medicare-website/blocks/3/options/2/text
+Ask a trusted family member or caregiver for help navigating the website.,Pedir ayuda a un familiar o cuidador de confianza para navegar por el sitio.,medicare-website/blocks/3/options/3/text
+Give your Medicare number to an unexpected caller.,Dar tu número de Medicare a alguien que te llama sin que lo esperes.,medicare-website/blocks/3/options/4/text
+"Pay someone who says you need a ""new Medicare card.""",Pagar a alguien que dice que necesitas una «tarjeta nueva de Medicare».,medicare-website/blocks/3/options/5/text
+Click links from unexpected Medicare text messages.,Abrir enlaces de mensajes inesperados de Medicare.,medicare-website/blocks/3/options/6/text
+Excellent! Protecting your Medicare information helps prevent identity theft and healthcare fraud.,Bien. Proteger tus datos de Medicare ayuda a prevenir el robo de identidad y el fraude médico.,medicare-website/blocks/3/feedback
+Medicare,Medicare,medicare-website/blocks/4/cards/0/front; medicare-website/blocks/5/wordBank/3; phase5-challenge/blocks/1/cards/2/front
+A U.S. government health insurance program for eligible individuals.,Un programa de seguro médico del gobierno de Estados Unidos para personas que cumplen sus requisitos.,medicare-website/blocks/4/cards/0/back
+Medicare.gov,Medicare.gov,medicare-website/blocks/4/cards/1/front
+The official Medicare website.,El sitio web oficial de Medicare.,medicare-website/blocks/4/cards/1/back
+Medicare Number,Número de Medicare,medicare-website/blocks/4/cards/2/front
+Your personal Medicare identification number that should be kept private.,"Tu número personal de identificación de Medicare, que debes mantener privado.",medicare-website/blocks/4/cards/2/back
+Coverage,Cobertura,medicare-website/blocks/4/cards/3/front; medicare-website/blocks/5/wordBank/2; medicare-website/blocks/5/questions/2/answer
+The healthcare services your Medicare plan helps pay for.,Los servicios de salud que tu plan de Medicare ayuda a pagar.,medicare-website/blocks/4/cards/3/back
+Medicare Scam,Estafa de Medicare,medicare-website/blocks/4/cards/4/front
+Someone pretending to represent Medicare to steal money or personal information.,Alguien que se hace pasar por Medicare para robar dinero o datos personales.,medicare-website/blocks/4/cards/4/back
+gov,gov,medicare-website/blocks/5/wordBank/0; medicare-website/blocks/5/questions/0/answer; medicare-website/quiz/3/options/0; irs-website/blocks/5/wordBank/0; irs-website/blocks/5/questions/0/answer; irs-website/quiz/3/options/0; gov-websites/blocks/5/wordBank/0; gov-websites/blocks/5/questions/0/answer; gov-websites/quiz/3/options/0
+The official Medicare website is Medicare.______.,El sitio web oficial de Medicare es Medicare.______.,medicare-website/blocks/5/questions/0/text
+Your Medicare number should be kept ______.,Tu número de Medicare debe mantenerse ______.,medicare-website/blocks/5/questions/1/text
+Medicare helps provide health insurance ______.,Medicare ayuda a ofrecer ______ de seguro médico.,medicare-website/blocks/5/questions/2/text
+"Margaret receives a call: ""Your Medicare card expires today. Pay $99 now or your coverage will end."" What should she do?",Margaret recibe una llamada: «Tu tarjeta de Medicare vence hoy. Paga $99 ahora o perderás la cobertura». ¿Qué debería hacer?,medicare-website/blocks/6/text
+Give her Medicare number.,Dar su número de Medicare.,medicare-website/blocks/6/options/1
+Hang up and contact Medicare using the official phone number or Medicare.gov if she's concerned.,Colgar y contactar con Medicare mediante su número oficial o Medicare.gov si está preocupada.,medicare-website/blocks/6/options/2
+Give her credit card number.,Dar el número de su tarjeta de crédito.,medicare-website/blocks/6/options/3
+Scammers often create fake emergencies to pressure people into acting quickly.,Los estafadores suelen inventar emergencias para presionarte a actuar rápido.,medicare-website/blocks/6/explanation
+"Margaret receives a call: ""Your Medicare card expires today. Pay $99 now or your coverage will end.""",Margaret recibe una llamada: «Tu tarjeta de Medicare vence hoy. Paga $99 ahora o perderás la cobertura».,medicare-website/blocks/6/presentation/story
+"Robert receives an email saying ""Click here to update your Medicare account."" The link looks unfamiliar. What should he do?",Robert recibe un correo: «Pulsa aquí para actualizar tu cuenta de Medicare». No reconoce el enlace. ¿Qué debería hacer?,medicare-website/blocks/7/text
+Enter his Medicare number.,Introducir su número de Medicare.,medicare-website/blocks/7/options/1
+Open his browser and type medicare.gov himself if he wants to check his account.,Abrir el navegador y escribir medicare.gov por su cuenta para consultar su cuenta.,medicare-website/blocks/7/options/2
+Typing the official website yourself helps you avoid phishing websites.,Escribir la dirección oficial por tu cuenta ayuda a evitar sitios que roban datos.,medicare-website/blocks/7/explanation
+"Robert receives an email saying ""Click here to update your Medicare account."" The link looks unfamiliar.",Robert recibe un correo: «Pulsa aquí para actualizar tu cuenta de Medicare». No reconoce el enlace.,medicare-website/blocks/7/presentation/story
+"Linda receives a brochure advertising ""Free medical equipment from Medicare."" It asks her to call and provide her Medicare number first. What should she do?",Linda recibe un folleto que ofrece «Equipo médico gratis de Medicare». Le pide llamar y dar primero su número de Medicare. ¿Qué debería hacer?,medicare-website/blocks/8/text
+Call immediately and provide her Medicare number.,Llamar de inmediato y dar su número de Medicare.,medicare-website/blocks/8/options/0
+Give her Medicare number over the phone.,Dar su número de Medicare por teléfono.,medicare-website/blocks/8/options/1
+Verify the offer through Medicare.gov or official contact information before sharing any personal information.,Verificar la oferta en Medicare.gov o por los canales oficiales antes de compartir datos personales.,medicare-website/blocks/8/options/2
+Pay a processing fee.,Pagar una comisión de tramitación.,medicare-website/blocks/8/options/3
+"Scammers often use ""free"" offers to collect Medicare numbers and personal information.",Los estafadores suelen usar ofertas «gratis» para obtener números de Medicare y datos personales.,medicare-website/blocks/8/explanation
+"Linda receives a brochure advertising ""Free medical equipment from Medicare."" It asks her to call and provide her Medicare number first.",Linda recibe un folleto que ofrece «Equipo médico gratis de Medicare». Le pide llamar y dar primero su número de Medicare.,medicare-website/blocks/8/presentation/story
+"Before sharing your Medicare number, ask yourself: Am I using Medicare.gov? Did I contact Medicare, or did someone contact me unexpectedly? Am I being pressured to act immediately? Does this request seem reasonable? If you're unsure, stop and verify through official Medicare contact information first.","Antes de compartir tu número de Medicare, comprueba: ¿Estoy en Medicare.gov? ¿Contacté yo con Medicare o alguien me contactó sin que lo esperara? ¿Me presionan para actuar ya? ¿La petición parece razonable? Si dudas, detente y verifica primero por los canales oficiales.",medicare-website/blocks/9/text
+"You receive a text: ""Your Medicare benefits are suspended. Click here now!""",Recibes un mensaje: «Tus beneficios de Medicare están suspendidos. ¡Pulsa aquí ahora!».,medicare-website/blocks/10/text
+Reply with your Medicare number.,Responder con tu número de Medicare.,medicare-website/blocks/10/options/1; medicare-website/quiz/6/options/1; gov-websites/blocks/12/options/1
+Ignore the link and visit medicare.gov or contact Medicare through official channels if you're concerned.,No usar el enlace. Visitar medicare.gov o contactar con Medicare por sus canales oficiales si te preocupa.,medicare-website/blocks/10/options/2
+Send your Social Security number.,Enviar tu número de Seguro Social.,medicare-website/blocks/10/options/3
+"Someone calls offering ""free diabetic supplies"" if you provide your Medicare number.",Alguien llama y ofrece «suministros gratis para la diabetes» a cambio de tu número de Medicare.,medicare-website/blocks/11/text
+Pay a shipping fee.,Pagar los gastos de envío.,medicare-website/blocks/11/options/1
+Decline the offer and verify it through Medicare if you're interested.,Rechazar la oferta y verificarla con Medicare si te interesa.,medicare-website/blocks/11/options/2
+Share your bank account number.,Compartir el número de tu cuenta bancaria.,medicare-website/blocks/11/options/3
+You want to compare Medicare drug plans. Where should you go?,Quieres comparar planes de medicamentos de Medicare. ¿Qué sitio deberías visitar?,medicare-website/blocks/12/text
+medicare-help.com,medicare-help.com,medicare-website/blocks/12/options/0; medicare-website/quiz/0/options/0
+medicare-discounts.net,medicare-discounts.net,medicare-website/blocks/12/options/1
+medicare.gov,medicare.gov,medicare-website/blocks/12/options/2; medicare-website/quiz/0/options/2; gov-websites/blocks/3/options/1/text; gov-websites/blocks/6/options/1
+health-free-online.com,health-free-online.com,medicare-website/blocks/12/options/3
+"Medicare information is valuable. Use medicare.gov, keep your Medicare number private, verify unexpected phone calls, texts, or emails, and contact Medicare through official channels when you're unsure. Never share your Medicare number with unexpected callers, pay for a ""new Medicare card,"" click suspicious links, or rush because someone creates a sense of urgency.","Tus datos de Medicare son valiosos. Usa medicare.gov, protege tu número y verifica las llamadas, los mensajes y los correos inesperados por canales oficiales. No des tu número a personas que te llamen sin aviso, no pagues por una «tarjeta nueva de Medicare», no abras enlaces sospechosos ni actúes con prisa porque alguien te presiona.",medicare-website/blocks/13/text
+What is the official Medicare website?,¿Cuál es el sitio web oficial de Medicare?,medicare-website/quiz/0/question
+medicare-support.net,medicare-support.net,medicare-website/quiz/0/options/1; gov-websites/blocks/3/options/5/text
+usmedicare.com,usmedicare.com,medicare-website/quiz/0/options/3
+Which information should you protect?,¿Qué información debes proteger?,medicare-website/quiz/1/question
+Your favorite color,Tu color favorito,medicare-website/quiz/1/options/0
+"Your Medicare number, Social Security number, bank account information, and credit card number","Tu número de Medicare, número de Seguro Social y datos de tu cuenta bancaria y tarjeta de crédito",medicare-website/quiz/1/options/1
+True or False: It's safe to give your Medicare number to anyone who calls claiming to be from Medicare.,Verdadero o falso: Es seguro dar tu número de Medicare a cualquiera que llame diciendo que representa a Medicare.,medicare-website/quiz/2/question
+The official Medicare website ends in .______,El sitio web oficial de Medicare termina en .______,medicare-website/quiz/3/question
+Phone,Teléfono,medicare-website/quiz/3/options/1; irs-website/quiz/3/options/2
+Someone unexpectedly calls and says your Medicare card has expired and you must pay immediately. What should you do?,"Alguien te llama sin aviso, dice que tu tarjeta de Medicare venció y exige un pago inmediato. ¿Qué deberías hacer?",medicare-website/quiz/4/question
+Hang up and verify the information through medicare.gov or Medicare's official contact information.,Colgar y verificar la información en medicare.gov o por los canales oficiales de Medicare.,medicare-website/quiz/4/options/2
+Buy gift cards.,Comprar tarjetas de regalo.,medicare-website/quiz/4/options/3; dmv-websites/quiz/4/options/3
+Which is a common Medicare scam?,¿Cuál es una estafa común de Medicare?,medicare-website/quiz/5/question
+A reminder about a scheduled appointment from your doctor's office.,Un recordatorio de tu consultorio sobre una cita programada.,medicare-website/quiz/5/options/0
+A pharmacy asking if you want to refill a prescription you requested.,Una farmacia que pregunta por la renovación de una receta que tú solicitaste.,medicare-website/quiz/5/options/1
+An unexpected caller demanding payment to keep your Medicare benefits.,Alguien que llama sin aviso y exige un pago para conservar tus beneficios de Medicare.,medicare-website/quiz/5/options/2
+Your doctor discussing your treatment plan.,Tu médico habla contigo sobre tu tratamiento.,medicare-website/quiz/5/options/3
+"If you receive an email with a suspicious Medicare link, what is the safest action?",Recibes un correo con un enlace sospechoso de Medicare. ¿Qué opción es más segura?,medicare-website/quiz/6/question
+Click it to see if it's real.,Abrirlo para ver si es auténtico.,medicare-website/quiz/6/options/0
+Type medicare.gov into your browser yourself instead of using the link.,Escribir medicare.gov en el navegador en lugar de usar el enlace.,medicare-website/quiz/6/options/2
+Forward it to friends.,Reenviárselo a sus amigos.,medicare-website/quiz/6/options/3
+Why should you keep your Medicare number private?,¿Por qué debes mantener privado tu número de Medicare?,medicare-website/quiz/7/question
+It helps your internet work faster.,Ayuda a que internet funcione más rápido.,medicare-website/quiz/7/options/0
+It changes your insurance plan automatically.,Cambia tu plan de seguro automáticamente.,medicare-website/quiz/7/options/1
+It can be used by scammers to commit fraud or steal your identity.,Los estafadores pueden usarlo para cometer fraude o robar tu identidad.,medicare-website/quiz/7/options/2
+It improves your doctor's appointment.,Mejora tu consulta médica.,medicare-website/quiz/7/options/3
+Congratulations!,¡Felicidades!,medicare-website/complete/title; irs-website/complete/title; dmv-websites/complete/title; gov-websites/complete/title
+You completed Lesson 4: Using the Medicare Website Safely!,Completaste la lección 4: Usar el sitio de Medicare de forma segura.,medicare-website/complete/subtitle
+Protect your Medicare information.,Proteger tus datos de Medicare.,medicare-website/complete/learned/2
+Using the IRS Website Safely,Usar el sitio web del IRS de forma segura,medicare-website/complete/next; irs-website/title
+5.5,5.5,irs-website/lessonNumber
+Tax Safety Expert,Seguridad con los impuestos,irs-website/badge
+Explain what the IRS is.,Explicar qué es el IRS.,irs-website/goals/0
+Recognize the official IRS website.,Reconocer el sitio web oficial del IRS.,irs-website/goals/1; irs-website/complete/learned/0
+Safely use IRS.gov.,Usar IRS.gov de forma segura.,irs-website/goals/2; irs-website/complete/learned/1
+Identify common IRS scams.,Identificar estafas comunes del IRS.,irs-website/goals/3; irs-website/complete/learned/2
+Know what to do if they receive suspicious tax messages.,Saber qué hacer ante mensajes sospechosos sobre impuestos.,irs-website/goals/4
+What Is the IRS?,¿Qué es el IRS?,irs-website/blocks/0/heading
+The Internal Revenue Service (IRS) is the U.S. government agency responsible for collecting federal taxes and administering tax laws. The official IRS website is irs.gov.,El Servicio de Impuestos Internos (IRS) es la agencia del gobierno de Estados Unidos encargada de recaudar impuestos federales y administrar las leyes tributarias. Su sitio web oficial es irs.gov.,irs-website/blocks/0/text
+Find tax forms,Buscar formularios de impuestos,irs-website/blocks/0/bullets/0
+Learn about tax refunds,Consultar información sobre reembolsos de impuestos,irs-website/blocks/0/bullets/1
+Create or manage an IRS online account,Crear o gestionar una cuenta del IRS en línea,irs-website/blocks/0/bullets/2
+Find answers to tax questions,Resolver dudas sobre impuestos,irs-website/blocks/0/bullets/3
+Make certain tax payments,Realizar determinados pagos de impuestos,irs-website/blocks/0/bullets/4
+"The IRS website can help you find reliable tax information without relying on emails, phone calls, or social media posts.","El sitio del IRS te ofrece información confiable sin depender de correos, llamadas o publicaciones en redes sociales.",irs-website/blocks/0/footer
+Protecting Your Tax Information,Protege tu información tributaria,irs-website/blocks/1/heading
+"Your tax information is private. This includes your Social Security number, tax returns, bank account information, and IRS account login information.
+
+Only enter this information on IRS.gov or when working with a trusted tax professional.","Tu información tributaria es privada. Incluye tu número de Seguro Social, declaraciones de impuestos, datos bancarios y datos de acceso a tu cuenta del IRS.
+
+Introduce estos datos solo en IRS.gov o al trabajar con un profesional de impuestos de confianza.",irs-website/blocks/1/text
+Common IRS Scams,Estafas comunes del IRS,irs-website/blocks/2/heading
+"Scammers often pretend to be the IRS. They may contact you by phone calls, text messages, emails, or fake websites. They might say:","Los estafadores suelen hacerse pasar por el IRS mediante llamadas, mensajes, correos o sitios falsos. Tal vez digan:",irs-website/blocks/2/text
+"""You owe taxes immediately!""",«¡Debes pagar tus impuestos ya!».,irs-website/blocks/2/bullets/0
+"""You'll be arrested today!""",«¡Te arrestarán hoy!».,irs-website/blocks/2/bullets/1
+"""Pay with gift cards.""",«Paga con tarjetas de regalo».,irs-website/blocks/2/bullets/2
+"""Click here to claim your tax refund.""",«Pulsa aquí para reclamar tu reembolso de impuestos».,irs-website/blocks/2/bullets/3
+These are common scam tactics designed to pressure you into acting quickly.,Son tácticas de estafa que buscan presionarte para actuar rápido.,irs-website/blocks/2/footer
+Type irs.gov into your browser.,Escribir irs.gov en el navegador.,irs-website/blocks/3/options/0/text
+Verify suspicious tax messages using IRS.gov.,Verificar en IRS.gov los mensajes sospechosos sobre impuestos.,irs-website/blocks/3/options/1/text
+Keep your Social Security number private.,Mantener privado tu número de Seguro Social.,irs-website/blocks/3/options/2/text
+Contact the IRS using official contact information if you're unsure.,Contactar con el IRS por sus canales oficiales si tienes dudas.,irs-website/blocks/3/options/3/text
+Pay taxes with gift cards because someone called.,Pagar impuestos con tarjetas de regalo porque alguien te llamó.,irs-website/blocks/3/options/4/text
+Click a tax refund link from an unexpected text message.,Abrir un enlace de reembolso de un mensaje inesperado.,irs-website/blocks/3/options/5/text
+Give your bank account information to an unknown caller claiming to be the IRS.,Dar tus datos bancarios a un desconocido que llama diciendo ser del IRS.,irs-website/blocks/3/options/6/text
+Excellent! Official IRS information should come from IRS.gov or verified IRS communications.,Bien. La información oficial debe proceder de IRS.gov o de comunicaciones del IRS que hayas verificado.,irs-website/blocks/3/feedback
+IRS,IRS,irs-website/blocks/4/cards/0/front
+The U.S. government agency responsible for federal taxes.,La agencia del gobierno de Estados Unidos encargada de los impuestos federales.,irs-website/blocks/4/cards/0/back
+IRS.gov,IRS.gov,irs-website/blocks/4/cards/1/front; irs-website/blocks/8/options/2; irs-website/quiz/0/options/2; irs-website/quiz/6/options/2
+The official IRS website.,El sitio web oficial del IRS.,irs-website/blocks/4/cards/1/back
+Tax Return,Declaración de impuestos,irs-website/blocks/4/cards/2/front
+A form filed with the IRS that reports your income and taxes.,Un formulario que presentas al IRS para informar sobre tus ingresos e impuestos.,irs-website/blocks/4/cards/2/back
+Tax Refund,Reembolso de impuestos,irs-website/blocks/4/cards/3/front
+Money returned if you paid more tax than you owed.,Dinero que se devuelve cuando pagaste más impuestos de los que debías.,irs-website/blocks/4/cards/3/back
+Tax Scam,Estafa tributaria,irs-website/blocks/4/cards/4/front
+Someone pretending to represent the IRS to steal money or personal information.,Alguien que se hace pasar por el IRS para robar dinero o datos personales.,irs-website/blocks/4/cards/4/back
+Refund,Reembolso,irs-website/blocks/5/wordBank/1; irs-website/blocks/5/questions/1/answer
+Taxes,Impuestos,irs-website/blocks/5/wordBank/3; dmv-websites/quiz/3/options/1
+The official IRS website is IRS.______.,El sitio web oficial del IRS es IRS.______.,irs-website/blocks/5/questions/0/text
+Money returned after paying too much in taxes is called a tax ______.,El dinero que recuperas por pagar impuestos de más se llama ______ de impuestos.,irs-website/blocks/5/questions/1/text
+Your Social Security number should remain ______.,Tu número de Seguro Social debe mantenerse ______.,irs-website/blocks/5/questions/2/text
+"Robert receives a phone call: ""You owe taxes. If you don't pay within one hour, you'll be arrested."" What should he do?","Robert recibe una llamada: «Debes impuestos. Si no pagas en una hora, te arrestarán». ¿Qué debería hacer?",irs-website/blocks/6/text
+Buy gift cards immediately.,Comprar tarjetas de regalo de inmediato.,irs-website/blocks/6/options/0
+Give his credit card number.,Dar el número de su tarjeta de crédito.,irs-website/blocks/6/options/1
+Hang up and verify the claim using IRS.gov or official IRS contact information.,Colgar y verificar la afirmación en IRS.gov o por los canales oficiales del IRS.,irs-website/blocks/6/options/2
+Give the caller his Social Security number.,Dar su número de Seguro Social a quien llama.,irs-website/blocks/6/options/3
+The IRS does not demand immediate payment through threatening phone calls.,El IRS no exige pagos inmediatos mediante llamadas amenazantes.,irs-website/blocks/6/explanation
+"Robert receives a phone call: ""You owe taxes. If you don't pay within one hour, you'll be arrested.""","Robert recibe una llamada: «Debes impuestos. Si no pagas en una hora, te arrestarán».",irs-website/blocks/6/presentation/story
+"Linda receives this text: ""Congratulations! Claim your IRS refund by clicking here."" She wasn't expecting a refund. What should she do?",Linda recibe un mensaje: «¡Felicidades! Reclama tu reembolso del IRS pulsando aquí». No esperaba un reembolso. ¿Qué debería hacer?,irs-website/blocks/7/text
+Reply with her bank account information.,Responder con sus datos bancarios.,irs-website/blocks/7/options/1
+Ignore the link and visit IRS.gov directly if she wants to check her tax information.,No usar el enlace y entrar directamente a IRS.gov para consultar su información tributaria.,irs-website/blocks/7/options/2
+Forward the text to friends.,Reenviar el mensaje a sus amigos.,irs-website/blocks/7/options/3
+Unexpected refund messages are often phishing scams.,Los mensajes inesperados sobre reembolsos suelen intentar robar tus datos.,irs-website/blocks/7/explanation
+"Linda receives this text: ""Congratulations! Claim your IRS refund by clicking here."" She wasn't expecting a refund.",Linda recibe un mensaje: «¡Felicidades! Reclama tu reembolso del IRS pulsando aquí». No esperaba un reembolso.,irs-website/blocks/7/presentation/story
+Susan needs a tax form for her records. Where should she get it?,Susan necesita un formulario de impuestos para sus archivos. ¿Dónde debería conseguirlo?,irs-website/blocks/8/text
+A random website.,En un sitio cualquiera.,irs-website/blocks/8/options/0; irs-website/quiz/6/options/0
+A social media post.,En una publicación de redes sociales.,irs-website/blocks/8/options/1
+An advertisement.,En un anuncio.,irs-website/blocks/8/options/3
+IRS.gov provides official tax forms and publications.,IRS.gov ofrece formularios y publicaciones oficiales sobre impuestos.,irs-website/blocks/8/explanation
+Susan needs a tax form for her records.,Susan necesita un formulario de impuestos para sus archivos.,irs-website/blocks/8/presentation/story
+Where should she get it?,¿Dónde debería conseguirlo?,irs-website/blocks/8/presentation/question
+"Before responding to an IRS message, ask yourself: Was I expecting this message? Is the website really IRS.gov? Is someone demanding payment immediately? Are they asking for gift cards or unusual payment methods? If you're unsure, stop and verify through IRS.gov before taking action.","Antes de responder a un mensaje del IRS, comprueba: ¿Lo esperaba? ¿El sitio es realmente IRS.gov? ¿Exigen un pago inmediato? ¿Piden tarjetas de regalo u otra forma de pago extraña? Si dudas, detente y verifica la información en IRS.gov antes de actuar.",irs-website/blocks/9/text
+"You receive an email saying: ""Your tax refund is waiting! Click here now!""",Recibes un correo: «¡Tu reembolso de impuestos te espera! ¡Pulsa aquí ahora!».,irs-website/blocks/10/text
+Enter your Social Security number.,Introducir tu número de Seguro Social.,irs-website/blocks/10/options/1
+Go directly to IRS.gov to check your tax information instead.,Entrar directamente a IRS.gov para consultar tu información tributaria.,irs-website/blocks/10/options/2
+Reply with your banking information.,Responder con tus datos bancarios.,irs-website/blocks/10/options/3
+A caller says you must pay your taxes using gift cards.,Alguien llama y dice que debes pagar tus impuestos con tarjetas de regalo.,irs-website/blocks/11/text
+Buy the gift cards.,Comprar las tarjetas de regalo.,irs-website/blocks/11/options/0; irs-website/quiz/4/options/0; dmv-websites/blocks/12/options/0; gov-websites/blocks/11/options/1; gov-websites/quiz/4/options/1
+Give your credit card information instead.,Dar los datos de tu tarjeta de crédito en su lugar.,irs-website/blocks/11/options/1
+Hang up. Gift cards are a major warning sign of a scam.,Colgar. Las tarjetas de regalo son una señal de alerta importante.,irs-website/blocks/11/options/2
+Pay through a random payment app.,Pagar mediante una aplicación de pagos cualquiera.,irs-website/blocks/11/options/3
+You're unsure if an IRS email is legitimate. What should you do?,No sabes si un correo del IRS es auténtico. ¿Qué deberías hacer?,irs-website/blocks/12/text
+Click the link to check.,Abrir el enlace para comprobarlo.,irs-website/blocks/12/options/0
+Reply asking if it's real.,Responder preguntando si es auténtico.,irs-website/blocks/12/options/1
+Visit IRS.gov directly or contact the IRS using official contact information.,Entrar directamente a IRS.gov o contactar con el IRS por sus canales oficiales.,irs-website/blocks/12/options/2
+Ignore the website address completely.,Ignorar por completo la dirección.,irs-website/blocks/12/options/3
+"The IRS will never expect you to pay with gift cards, share sensitive information through unexpected emails or texts, or rush because of threats. Always use IRS.gov, verify suspicious messages, protect your personal information, and contact the IRS through official channels if you're unsure.","El IRS no te pide pagar con tarjetas de regalo, compartir información sensible mediante correos o mensajes inesperados ni actuar con prisa por amenazas. Usa IRS.gov, verifica los mensajes sospechosos, protege tus datos y contacta con el IRS por canales oficiales si tienes dudas.",irs-website/blocks/13/text
+What is the official IRS website?,¿Cuál es el sitio web oficial del IRS?,irs-website/quiz/0/question
+irs-help.com,irs-help.com,irs-website/quiz/0/options/0; gov-websites/blocks/3/options/4/text; gov-websites/blocks/10/options/0
+tax-refund.net,tax-refund.net,irs-website/quiz/0/options/1
+us-irs.org,us-irs.org,irs-website/quiz/0/options/3
+Which information should you keep private?,¿Qué información deberías mantener privada?,irs-website/quiz/1/question
+Your favorite hobby,Tu pasatiempo favorito,irs-website/quiz/1/options/0
+"Social Security number, bank account information, IRS account password, and tax return information","Número de Seguro Social, datos bancarios, contraseña del IRS y datos de tu declaración de impuestos",irs-website/quiz/1/options/1
+True or False: The IRS may demand payment using gift cards.,Verdadero o falso: El IRS puede exigir pagos con tarjetas de regalo.,irs-website/quiz/2/question
+The official IRS website ends in .______,El sitio web oficial del IRS termina en .______,irs-website/quiz/3/question
+A caller threatens to arrest you unless you pay your taxes immediately with gift cards. What should you do?,Alguien amenaza con arrestarte si no pagas tus impuestos de inmediato con tarjetas de regalo. ¿Qué deberías hacer?,irs-website/quiz/4/question
+Give your Social Security number.,Dar tu número de Seguro Social.,irs-website/quiz/4/options/1
+Hang up and verify the information through IRS.gov or official IRS contact information.,Colgar y verificar la información en IRS.gov o por los canales oficiales del IRS.,irs-website/quiz/4/options/2
+Send money through a payment app.,Enviar dinero por una aplicación de pagos.,irs-website/quiz/4/options/3
+You receive an unexpected text saying you have a tax refund waiting. What is the safest action?,Recibes un mensaje inesperado sobre un reembolso de impuestos pendiente. ¿Qué opción es más segura?,irs-website/quiz/5/question
+Reply with your bank information.,Responder con tus datos bancarios.,irs-website/quiz/5/options/1
+Visit IRS.gov directly to check your tax information.,Entrar directamente a IRS.gov para consultar tu información tributaria.,irs-website/quiz/5/options/2
+Forward the message to family.,Reenviar el mensaje a tu familia.,irs-website/quiz/5/options/3
+Where should you download official IRS tax forms?,¿Dónde deberías descargar los formularios oficiales de impuestos del IRS?,irs-website/quiz/6/question
+Social media.,En redes sociales.,irs-website/quiz/6/options/1
+An online advertisement.,En un anuncio de internet.,irs-website/quiz/6/options/3
+Which of these is a warning sign of an IRS scam?,¿Cuál es una señal de una estafa del IRS?,irs-website/quiz/7/question
+A form downloaded from IRS.gov.,Un formulario descargado de IRS.gov.,irs-website/quiz/7/options/0
+A scheduled appointment with your tax professional.,Una cita programada con tu profesional de impuestos.,irs-website/quiz/7/options/1
+Someone demanding immediate payment with gift cards and threatening arrest.,Alguien que exige un pago inmediato con tarjetas de regalo y amenaza con arrestarte.,irs-website/quiz/7/options/2
+Reading tax information on the official IRS website.,Leer información tributaria en el sitio oficial del IRS.,irs-website/quiz/7/options/3
+You completed Lesson 5: Using the IRS Website Safely!,Completaste la lección 5: Usar el sitio del IRS de forma segura.,irs-website/complete/subtitle
+Know what to do with suspicious tax messages.,Saber qué hacer ante mensajes sospechosos sobre impuestos.,irs-website/complete/learned/3
+Using DMV Websites Safely,Usar los sitios web del DMV de forma segura,irs-website/complete/next; dmv-websites/title
+5.6,5.6,dmv-websites/lessonNumber
+DMV Safety Navigator,Trámites de conducción seguros,dmv-websites/badge
+Explain what the DMV is.,Explicar qué es el DMV.,dmv-websites/goals/0
+Recognize the official DMV website for their state.,Reconocer el sitio web oficial del DMV de tu estado.,dmv-websites/goals/1
+Complete common DMV tasks safely online.,Realizar trámites habituales del DMV en línea de forma segura.,dmv-websites/goals/2
+Recognize DMV scams.,Reconocer estafas del DMV.,dmv-websites/goals/3; dmv-websites/complete/learned/2
+Avoid fake DMV websites and phishing messages.,Evitar sitios falsos del DMV y mensajes que intentan robar datos.,dmv-websites/goals/4
+What Is the DMV?,¿Qué es el DMV?,dmv-websites/blocks/0/heading
+The Department of Motor Vehicles (DMV) is a government agency that handles services related to:,El Departamento de Vehículos Motorizados (DMV) es una agencia del gobierno que gestiona servicios relacionados con:,dmv-websites/blocks/0/text
+Driver's licenses,Licencias de conducir,dmv-websites/blocks/0/bullets/0
+Vehicle registration,Registro de vehículos,dmv-websites/blocks/0/bullets/1
+ID cards,Tarjetas de identificación,dmv-websites/blocks/0/bullets/2
+License plates,Placas de vehículos,dmv-websites/blocks/0/bullets/3
+Driver's tests and appointments,Exámenes de conducir y citas,dmv-websites/blocks/0/bullets/4
+Many DMV services can now be completed online using your state's official DMV website. Using the official website can save time and help you avoid scams.,Muchos trámites del DMV pueden hacerse en el sitio web oficial de tu estado. Usarlo puede ahorrarte tiempo y ayudarte a evitar estafas.,dmv-websites/blocks/0/footer
+Finding the Official DMV Website,Encuentra el sitio oficial del DMV,dmv-websites/blocks/1/heading
+"Each state has its own motor vehicle services, and the agency may have a different name. Some states use separate agencies for driver's licenses and vehicle registration.
+
+Start with USA.gov's state motor vehicle services directory or your state's official government website, then follow its link to the service you need. Many official sites use .gov, but some use another established state address.","Cada estado tiene sus propios servicios de vehículos, y la agencia puede tener otro nombre. Algunos estados tienen agencias distintas para las licencias de conducir y el registro de vehículos.
+
+Empieza en el directorio de servicios estatales de vehículos de USA.gov o en el sitio oficial de tu estado. Desde allí, sigue el enlace al servicio que necesitas. Muchos sitios oficiales usan .gov, pero algunos tienen otra dirección estatal reconocida.",dmv-websites/blocks/1/text
+DMV Scam Warning Signs,Señales de estafas del DMV,dmv-websites/blocks/2/heading
+Scammers create fake DMV websites that may:,Los estafadores crean sitios falsos del DMV que pueden:,dmv-websites/blocks/2/text
+"Charge extra ""processing fees""",Cobrar «comisiones de tramitación» adicionales,dmv-websites/blocks/2/bullets/0
+Ask for your Social Security number when it isn't needed,Pedir tu número de Seguro Social sin necesitarlo,dmv-websites/blocks/2/bullets/1
+Send text messages claiming you have unpaid tickets,Enviar mensajes que afirman que tienes multas pendientes,dmv-websites/blocks/2/bullets/2
+Ask you to pay using gift cards or cryptocurrency,Pedir pagos con tarjetas de regalo o criptomonedas,dmv-websites/blocks/2/bullets/3
+Use website addresses that look similar to the real DMV,Usar direcciones parecidas a la del DMV auténtico,dmv-websites/blocks/2/bullets/4
+Real: dmv.ca.gov | Fake: california-dmv-renew.com or dmv-license-help.net. Always read the website address carefully.,Oficial: dmv.ca.gov. Falsas: california-dmv-renew.com o dmv-license-help.net. Lee siempre la dirección con atención.,dmv-websites/blocks/2/footer
+Staying Safe Online,Cuídate al navegar,dmv-websites/blocks/3/heading
+When using a DMV website:,Al usar un sitio del DMV:,dmv-websites/blocks/3/text
+Use the address you verified through USA.gov or your state's official website,Usa la dirección que verificaste en USA.gov o en el sitio oficial de tu estado,dmv-websites/blocks/3/bullets/0
+Check that you're on your state's official website,Comprueba que estás en el sitio oficial de tu estado,dmv-websites/blocks/3/bullets/1
+Be cautious of unexpected emails or text messages,Ten cuidado con los correos y mensajes inesperados,dmv-websites/blocks/3/bullets/2
+Never pay DMV fees with gift cards,No pagues trámites del DMV con tarjetas de regalo,dmv-websites/blocks/3/bullets/3
+Log out if using a shared computer,Cierra la sesión si usas una computadora compartida,dmv-websites/blocks/3/bullets/4
+Which Are Safe?,¿Qué opciones son seguras?,dmv-websites/blocks/4/title
+Use your state's official DMV website.,Usar el sitio oficial del DMV de tu estado.,dmv-websites/blocks/4/options/0/text
+Read the website address carefully.,Leer la dirección web con atención.,dmv-websites/blocks/4/options/1/text
+Type the website address yourself if possible.,"Escribir la dirección por tu cuenta, si es posible.",dmv-websites/blocks/4/options/2/text
+Log out when using a shared computer.,Cerrar la sesión al usar una computadora compartida.,dmv-websites/blocks/4/options/3/text
+Pay DMV fees with gift cards.,Pagar trámites del DMV con tarjetas de regalo.,dmv-websites/blocks/4/options/4/text
+Click every DMV text message you receive.,Abrir todos los mensajes del DMV que recibas.,dmv-websites/blocks/4/options/5/text
+Enter personal information on websites with unfamiliar addresses.,Introducir datos personales en sitios con direcciones desconocidas.,dmv-websites/blocks/4/options/6/text
+Excellent! Official DMV websites help protect your personal information.,Bien. Los sitios oficiales del DMV ayudan a proteger tus datos personales.,dmv-websites/blocks/4/feedback
+DMV,DMV,dmv-websites/blocks/5/cards/0/front
+"Department of Motor Vehicles, the agency that handles driver's licenses and vehicle registration.",Departamento de Vehículos Motorizados: agencia que gestiona licencias de conducir y registro de vehículos.,dmv-websites/blocks/5/cards/0/back
+Driver's License,Licencia de conducir,dmv-websites/blocks/5/cards/1/front
+An official document that allows you to drive.,Un documento oficial que te permite conducir.,dmv-websites/blocks/5/cards/1/back
+Vehicle Registration,Registro de vehículos,dmv-websites/blocks/5/cards/2/front
+The process of registering your vehicle with your state.,El trámite para registrar tu vehículo en tu estado.,dmv-websites/blocks/5/cards/2/back
+Official Website,Sitio web oficial,dmv-websites/blocks/5/cards/3/front; gov-websites/blocks/4/cards/1/front
+The real government website used for DMV services.,El sitio auténtico del gobierno para los servicios del DMV.,dmv-websites/blocks/5/cards/3/back
+Phishing,Phishing,dmv-websites/blocks/5/cards/4/front; gov-websites/blocks/4/cards/4/front
+"A scam that tries to trick you into giving personal information through fake emails, texts, or websites.","Un engaño para obtener tus datos mediante correos, mensajes o sitios falsos.",dmv-websites/blocks/5/cards/4/back
+License,Licencia,dmv-websites/blocks/6/wordBank/0; dmv-websites/blocks/6/questions/0/answer; dmv-websites/quiz/3/options/0
+Registration,Registro,dmv-websites/blocks/6/wordBank/2; dmv-websites/blocks/6/questions/2/answer
+The DMV helps you renew your driver's ______.,El DMV te ayuda a renovar tu ______ de conducir.,dmv-websites/blocks/6/questions/0/text; dmv-websites/quiz/3/question
+Always use the ______ DMV website.,Usa siempre el sitio web ______ del DMV.,dmv-websites/blocks/6/questions/1/text
+The DMV also helps with vehicle ______.,El DMV también ayuda con el ______ de vehículos.,dmv-websites/blocks/6/questions/2/text
+"Margaret receives this text: ""Your driver's license has been suspended. Pay immediately by clicking this link."" What should she do?",Margaret recibe un mensaje: «Tu licencia de conducir está suspendida. Paga de inmediato en este enlace». ¿Qué debería hacer?,dmv-websites/blocks/7/text
+Reply with her driver's license number.,Responder con el número de su licencia.,dmv-websites/blocks/7/options/1
+Go directly to her state's official DMV website or call the DMV using official contact information to verify.,Entrar directamente al sitio oficial del DMV de su estado o llamar a su número oficial para verificarlo.,dmv-websites/blocks/7/options/2
+Send gift cards.,Enviar tarjetas de regalo.,dmv-websites/blocks/7/options/3
+Unexpected texts like this are commonly used in phishing scams.,Los mensajes inesperados de este tipo suelen usarse para robar datos.,dmv-websites/blocks/7/explanation
+"Margaret receives this text: ""Your driver's license has been suspended. Pay immediately by clicking this link.""",Margaret recibe un mensaje: «Tu licencia de conducir está suspendida. Paga de inmediato en este enlace».,dmv-websites/blocks/7/presentation/story
+Robert wants to renew his vehicle registration. He finds dmv.ca.gov and california-dmv-renew.com. Which should he use?,Robert quiere renovar el registro de su vehículo. Encuentra dmv.ca.gov y california-dmv-renew.com. ¿Cuál debería usar?,dmv-websites/blocks/8/text
+california-dmv-renew.com,california-dmv-renew.com,dmv-websites/blocks/8/options/0; dmv-websites/quiz/5/options/0
+dmv.ca.gov,dmv.ca.gov,dmv-websites/blocks/8/options/1; dmv-websites/quiz/5/options/2; gov-websites/blocks/3/options/3/text
+Always choose the official government website. Fake websites often copy the appearance of official sites.,Elige siempre el sitio oficial del gobierno. Los sitios falsos suelen copiar su apariencia.,dmv-websites/blocks/8/explanation
+Robert wants to renew his vehicle registration. He finds dmv.ca.gov and california-dmv-renew.com.,Robert quiere renovar el registro de su vehículo. Encuentra dmv.ca.gov y california-dmv-renew.com.,dmv-websites/blocks/8/presentation/story
+Which should he use?,¿Cuál debería usar?,dmv-websites/blocks/8/presentation/question
+"Linda is using a public library computer to renew her driver's license. When she's finished, what should she do?",Linda usa una computadora de la biblioteca para renovar su licencia de conducir. ¿Qué debería hacer al terminar?,dmv-websites/blocks/9/text
+Save her password.,Guardar su contraseña.,dmv-websites/blocks/9/options/1
+Leave the computer immediately.,Irse de inmediato.,dmv-websites/blocks/9/options/3
+Always sign out when using shared or public computers.,Cierra siempre la sesión cuando uses una computadora compartida o pública.,dmv-websites/blocks/9/explanation
+Linda is using a public library computer to renew her driver's license.,Linda usa una computadora de la biblioteca para renovar su licencia de conducir.,dmv-websites/blocks/9/presentation/story
+"When she's finished, what should she do?",¿Qué debería hacer al terminar?,dmv-websites/blocks/9/presentation/question
+"Before using a DMV website, ask yourself: Is this my state's official DMV website? Did I type the website address myself? Am I being asked for unusual payment methods? Am I being pressured to act immediately? If something seems unusual, stop and verify before entering any information.","Antes de usar un sitio del DMV, comprueba: ¿Es el sitio oficial de mi estado? ¿Escribí la dirección por mi cuenta? ¿Me piden formas de pago extrañas? ¿Me presionan para actuar ya? Si algo parece extraño, detente y verifícalo antes de introducir datos.",dmv-websites/blocks/10/text
+"You receive an email saying ""Renew your driver's license today! Click here!"" You weren't expecting it.",Recibes un correo inesperado: «¡Renueva tu licencia de conducir hoy! ¡Pulsa aquí!».,dmv-websites/blocks/11/text
+Enter your personal information.,Introducir tus datos personales.,dmv-websites/blocks/11/options/1
+Visit your state's official DMV website yourself to see if you need to renew.,Entrar por tu cuenta al sitio oficial del DMV de tu estado para comprobar si necesitas renovarla.,dmv-websites/blocks/11/options/2
+Forward the email to your friends.,Reenviar el correo a tus amigos.,dmv-websites/blocks/11/options/3; gov-websites/blocks/12/options/3
+A website asks you to pay DMV fees using gift cards.,Un sitio te pide pagar trámites del DMV con tarjetas de regalo.,dmv-websites/blocks/12/text
+Continue because the fee is small.,Continuar porque el importe es pequeño.,dmv-websites/blocks/12/options/1
+Leave the website immediately.,Salir del sitio web de inmediato.,dmv-websites/blocks/12/options/2
+Give your bank password instead.,Dar la contraseña de tu banco en su lugar.,dmv-websites/blocks/12/options/3
+You're unsure if a DMV website is legitimate. What should you do?,No sabes si un sitio del DMV es auténtico. ¿Qué deberías hacer?,dmv-websites/blocks/13/text
+Enter your information first.,Introducir tus datos primero.,dmv-websites/blocks/13/options/0
+Ignore the website address.,No prestar atención a la dirección.,dmv-websites/blocks/13/options/1; gov-websites/quiz/5/options/3
+Check the web address carefully and make sure it belongs to your state's official DMV.,Revisar la dirección con atención y comprobar que pertenece al DMV oficial de tu estado.,dmv-websites/blocks/13/options/2
+Trust it because it looks professional.,Confiar en ella porque parece profesional.,dmv-websites/blocks/13/options/3; gov-websites/quiz/5/options/1
+Scammers often create websites that look convincing. Always verify the web address.,Los estafadores crean sitios que parecen convincentes. Verifica siempre la dirección.,dmv-websites/blocks/13/explanation
+"The DMV helps with driver's licenses, vehicle registration, and other driving-related services. Use your state's official DMV website, read website addresses carefully, verify unexpected messages, and protect your personal information. Never pay DMV fees with gift cards, click unexpected renewal links, or share personal information on suspicious websites.","El DMV ayuda con licencias de conducir, registro de vehículos y otros trámites. Usa el sitio oficial de tu estado, lee las direcciones con atención, verifica los mensajes inesperados y protege tus datos. No pagues con tarjetas de regalo, no abras enlaces inesperados de renovación ni compartas datos en sitios sospechosos.",dmv-websites/blocks/14/text
+What does the DMV help with?,¿Con qué trámites ayuda el DMV?,dmv-websites/quiz/0/question
+Grocery shopping,Comprar alimentos,dmv-websites/quiz/0/options/0
+Online banking,Usar la banca en línea,dmv-websites/quiz/0/options/1
+"Driver's licenses, vehicle registration, and ID cards","Licencias de conducir, registro de vehículos y tarjetas de identificación",dmv-websites/quiz/0/options/2
+Email accounts,Cuentas de correo electrónico,dmv-websites/quiz/0/options/3
+Which are safe habits?,¿Qué hábitos son seguros?,dmv-websites/quiz/1/question
+Clicking every DMV text,Abrir todos los mensajes del DMV,dmv-websites/quiz/1/options/0
+"Using your state's official website, verifying texts, logging out on shared computers, and reading addresses carefully","Usar el sitio oficial de tu estado, verificar mensajes, cerrar la sesión en computadoras compartidas y revisar las direcciones",dmv-websites/quiz/1/options/1
+True or False: It's safe to pay DMV fees with gift cards if a text message tells you to.,Verdadero o falso: Es seguro pagar trámites del DMV con tarjetas de regalo si un mensaje lo pide.,dmv-websites/quiz/2/question
+Medicine,Medicamentos,dmv-websites/quiz/3/options/2
+You receive a text saying your driver's license is suspended unless you pay immediately through a link. What should you do?,Un mensaje dice que suspenderán tu licencia si no pagas de inmediato mediante un enlace. ¿Qué deberías hacer?,dmv-websites/quiz/4/question
+Reply with your driver's license number.,Responder con el número de tu licencia.,dmv-websites/quiz/4/options/1
+Go directly to your state's official DMV website or contact the DMV using official information.,Entrar directamente al sitio oficial del DMV de tu estado o contactar con el DMV por sus canales oficiales.,dmv-websites/quiz/4/options/2
+Which website is most likely the official California DMV website?,¿Cuál es probablemente el sitio oficial del DMV de California?,dmv-websites/quiz/5/question
+dmv-help-now.net,dmv-help-now.net,dmv-websites/quiz/5/options/1
+californialicense.org,californialicense.org,dmv-websites/quiz/5/options/3
+Why should you log out after using a public computer?,¿Por qué conviene cerrar la sesión después de usar una computadora pública?,dmv-websites/quiz/6/question
+To make the computer run faster.,Para que la computadora funcione más rápido.,dmv-websites/quiz/6/options/0
+To help protect your personal information from the next user.,Para ayudar a proteger tus datos de la siguiente persona que la use.,dmv-websites/quiz/6/options/2
+To update your driver's license.,Para actualizar tu licencia de conducir.,dmv-websites/quiz/6/options/3
+Which is a warning sign of a fake DMV website?,¿Cuál es una señal de un sitio falso del DMV?,dmv-websites/quiz/7/question
+It belongs to your state's official government.,Pertenece al gobierno oficial de tu estado.,dmv-websites/quiz/7/options/0
+It lets you schedule an appointment.,Te permite programar una cita.,dmv-websites/quiz/7/options/1
+It asks you to pay with gift cards or has a suspicious web address.,Pide pagos con tarjetas de regalo o tiene una dirección sospechosa.,dmv-websites/quiz/7/options/2
+It provides information about renewing your license.,Ofrece información sobre la renovación de licencias.,dmv-websites/quiz/7/options/3
+You completed Lesson 6: Using DMV Websites Safely!,Completaste la lección 6: Usar los sitios del DMV de forma segura.,dmv-websites/complete/subtitle
+Recognize your state's official DMV website.,Reconocer el sitio oficial del DMV de tu estado.,dmv-websites/complete/learned/0
+Complete DMV tasks safely online.,Realizar trámites del DMV en línea de forma segura.,dmv-websites/complete/learned/1
+Avoid fake DMV websites.,Evitar sitios falsos del DMV.,dmv-websites/complete/learned/3
+How to Know a Government Website Is Real,Cómo reconocer un sitio auténtico del gobierno,dmv-websites/complete/next
+5.7,5.7,gov-websites/lessonNumber
+How to Know a Government Website Is Real (.gov),Cómo reconocer un sitio oficial del Gobierno (.gov),gov-websites/title
+Government Website Detective,Detector de sitios oficiales,gov-websites/badge
+Recognize official U.S. government websites.,Reconocer sitios oficiales del gobierno de Estados Unidos.,gov-websites/goals/0; gov-websites/complete/learned/0
+Understand what .gov means.,Entender qué significa .gov.,gov-websites/goals/1; gov-websites/complete/learned/1
+Tell the difference between real and fake government websites.,Distinguir sitios del gobierno auténticos y falsos.,gov-websites/goals/2; gov-websites/complete/learned/2
+Safely access government services online.,Acceder de forma segura a servicios del gobierno en línea.,gov-websites/goals/3
+Avoid fake websites designed to steal personal information.,Evitar sitios falsos que intentan robar datos personales.,gov-websites/goals/4; gov-websites/complete/learned/3
+What Is a .gov Website?,¿Qué es un sitio .gov?,gov-websites/blocks/0/heading
+"Only verified U.S. government organizations can register a .gov domain. Examples include irs.gov, medicare.gov, dmv.ca.gov and weather.gov.
+
+Check the website name in the address bar: it comes after https:// and before the next /. A name like irs.gov.example.com is not irs.gov. Some state or local services use other addresses; confirm them through the government's official website or USA.gov.","Solo las organizaciones del gobierno de Estados Unidos verificadas pueden registrar un dominio .gov. Algunos ejemplos son irs.gov, medicare.gov, dmv.ca.gov y weather.gov.
+
+Revisa el nombre del sitio en la barra de direcciones: aparece después de https:// y antes de la siguiente /. Un nombre como irs.gov.example.com no es irs.gov. Algunos servicios estatales o locales usan otras direcciones; confírmalas en el sitio oficial del gobierno o en USA.gov.",gov-websites/blocks/0/text
+Real vs. Fake Websites,Sitios auténticos y falsos,gov-websites/blocks/1/heading
+Sometimes fake websites look almost identical to real ones.,"A veces, los sitios falsos se parecen mucho a los auténticos.",gov-websites/blocks/1/text
+"Real: irs.gov | Fake: irs-help.com, irsrefund.net","Oficial: irs.gov. Falsos: irs-help.com, irsrefund.net.",gov-websites/blocks/1/bullets/0
+"Real: medicare.gov | Fake: medicare-support.com, medicarebenefits.net","Oficial: medicare.gov. Falsos: medicare-support.com, medicarebenefits.net.",gov-websites/blocks/1/bullets/1
+"Real: dmv.ca.gov | Fake: california-dmv-renew.com, dmvhelponline.net","Oficial: dmv.ca.gov. Falsos: california-dmv-renew.com, dmvhelponline.net.",gov-websites/blocks/1/bullets/2
+A small difference in the web address can mean you're on a fake website.,Una pequeña diferencia en la dirección puede indicar que estás en un sitio falso.,gov-websites/blocks/1/footer
+Why It Matters,¿Por qué importa?,gov-websites/blocks/2/heading
+"Fake government websites may try to steal your Social Security number, credit card numbers, bank information, or passwords. They may also charge unnecessary fees for services that are free or cheaper on official government websites.","Los sitios falsos del gobierno pueden intentar robar tu número de Seguro Social, tus datos bancarios, números de tarjetas o contraseñas. También pueden cobrar comisiones innecesarias por servicios gratuitos o más baratos en los sitios oficiales.",gov-websites/blocks/2/text
+Which Websites Are Official?,¿Qué sitios son oficiales?,gov-websites/blocks/3/title
+Tap every official government website.,Selecciona todos los sitios oficiales del gobierno.,gov-websites/blocks/3/prompt
+irs.gov,irs.gov,gov-websites/blocks/3/options/0/text; gov-websites/blocks/7/options/2; gov-websites/blocks/10/options/1
+weather.gov,weather.gov,gov-websites/blocks/3/options/2/text
+dmv-renew-online.com,dmv-renew-online.com,gov-websites/blocks/3/options/6/text
+Excellent! Official government websites often end in .gov.,Bien. Los sitios oficiales del gobierno suelen terminar en .gov.,gov-websites/blocks/3/feedback
+.gov,.gov,gov-websites/blocks/4/cards/0/front; phase5-challenge/blocks/1/cards/1/front; phase5-challenge/blocks/2/wordBank/0; phase5-challenge/blocks/2/questions/0/answer
+The official web address ending used by U.S. government agencies.,La terminación oficial que usan las agencias del gobierno de Estados Unidos.,gov-websites/blocks/4/cards/0/back
+A legitimate website operated by a government agency or trusted organization.,Un sitio legítimo de una agencia del gobierno o una organización de confianza.,gov-websites/blocks/4/cards/1/back
+Fake Website,Sitio web falso,gov-websites/blocks/4/cards/2/front
+A website designed to look real but used to steal information or money.,"Un sitio que parece auténtico, pero busca robar información o dinero.",gov-websites/blocks/4/cards/2/back
+URL,URL,gov-websites/blocks/4/cards/3/front
+The web address you type into your browser.,La dirección web que escribes en el navegador.,gov-websites/blocks/4/cards/3/back
+A scam that tricks people into entering personal information on fake websites.,Un engaño para que introduzcas datos personales en sitios falsos.,gov-websites/blocks/4/cards/4/back
+Website,Sitio web,gov-websites/blocks/5/wordBank/1; gov-websites/blocks/5/questions/1/answer
+Information,Información,gov-websites/blocks/5/wordBank/2; gov-websites/blocks/5/questions/2/answer
+Fake,Falso,gov-websites/blocks/5/wordBank/3
+Official U.S. government websites usually end in .______,Los sitios web oficiales del gobierno de Estados Unidos suelen terminar en .______,gov-websites/blocks/5/questions/0/text; gov-websites/quiz/3/question
+Check that you are on the official ______ before entering personal information.,Comprueba que estás en el ______ oficial antes de introducir datos personales.,gov-websites/blocks/5/questions/1/text
+Fake government websites may try to steal your personal ______.,Los sitios falsos del gobierno pueden intentar robar tu ______ personal.,gov-websites/blocks/5/questions/2/text
+Margaret wants information about Medicare. She finds medicare.gov and medicare-benefits-online.com. Which should she choose?,Margaret busca información sobre Medicare. Encuentra medicare.gov y medicare-benefits-online.com. ¿Cuál debería elegir?,gov-websites/blocks/6/text
+medicare-benefits-online.com,medicare-benefits-online.com,gov-websites/blocks/6/options/0
+The official Medicare website ends in .gov. Scammers often add extra words to make fake websites look real.,El sitio oficial de Medicare termina en .gov. Los estafadores añaden palabras para que sus sitios parezcan auténticos.,gov-websites/blocks/6/explanation
+Margaret wants information about Medicare. She finds medicare.gov and medicare-benefits-online.com.,Margaret busca información sobre Medicare. Encuentra medicare.gov y medicare-benefits-online.com.,gov-websites/blocks/6/presentation/story
+Which should she choose?,¿Cuál debería elegir?,gov-websites/blocks/6/presentation/question
+"Robert searches online for tax forms. He sees irsrefund.net, irs-help.org, and irs.gov. Which website should he use?","Robert busca formularios de impuestos. Ve irsrefund.net, irs-help.org e irs.gov. ¿Qué sitio debería usar?",gov-websites/blocks/7/text
+irsrefund.net,irsrefund.net,gov-websites/blocks/7/options/0
+irs-help.org,irs-help.org,gov-websites/blocks/7/options/1
+IRS.gov is the official IRS website. Always choose the official government website whenever possible.,"IRS.gov es el sitio oficial del IRS. Siempre que sea posible, elige el sitio oficial del gobierno.",gov-websites/blocks/7/explanation
+"Robert searches online for tax forms. He sees irsrefund.net, irs-help.org, and irs.gov.","Robert busca formularios de impuestos. Ve irsrefund.net, irs-help.org e irs.gov.",gov-websites/blocks/7/presentation/story
+Which website should he use?,¿Qué sitio debería usar?,gov-websites/blocks/7/presentation/question
+"Linda clicks a link in an email claiming to be from the DMV. The website asks for her Social Security number, banking information, and payment with gift cards. What should she do?","Linda abre un enlace de un correo que dice ser del DMV. El sitio pide su número de Seguro Social, datos bancarios y un pago con tarjetas de regalo. ¿Qué debería hacer?",gov-websites/blocks/8/text
+Continue.,Continuar.,gov-websites/blocks/8/options/0
+Give her information.,Dar sus datos.,gov-websites/blocks/8/options/1
+Leave the website immediately and go to her state's official DMV website instead.,Salir del sitio de inmediato y entrar al sitio oficial del DMV de su estado.,gov-websites/blocks/8/options/2
+Recommend it to friends.,Recomendarlo a sus amigos.,gov-websites/blocks/8/options/3
+Government agencies do not ask you to pay with gift cards or pressure you to enter sensitive information.,Las agencias del gobierno no piden pagos con tarjetas de regalo ni te presionan para entregar información sensible.,gov-websites/blocks/8/explanation
+"Linda clicks a link in an email claiming to be from the DMV. The website asks for her Social Security number, banking information, and payment with gift cards.","Linda abre un enlace de un correo que dice ser del DMV. El sitio pide su número de Seguro Social, datos bancarios y un pago con tarjetas de regalo.",gov-websites/blocks/8/presentation/story
+"Before entering personal information, check the website name in the address bar. Is it the agency you need? Did you reach it through a verified address, trusted bookmark or an official government directory? A familiar logo or the letters .gov somewhere in a link are not enough. If unsure, stop and verify through USA.gov or the agency's known contact information.","Antes de introducir datos personales, revisa el nombre del sitio en la barra de direcciones. ¿Es la agencia que necesitas? ¿Llegaste desde una dirección verificada, un marcador de confianza o un directorio oficial? Un logotipo conocido o las letras .gov en alguna parte del enlace no bastan. Si dudas, detente y verifica en USA.gov o mediante los datos de contacto conocidos de la agencia.",gov-websites/blocks/9/text
+You search for the IRS and see irs.gov and irs-help.com. Which should you choose?,Buscas el IRS y ves irs.gov e irs-help.com. ¿Cuál deberías elegir?,gov-websites/blocks/10/text
+Government agencies use official web addresses. Look carefully for .gov.,Las agencias del gobierno usan direcciones oficiales. Revisa con atención la terminación .gov.,gov-websites/blocks/10/explanation
+A website asks you to pay government fees with gift cards.,Un sitio te pide pagar trámites del gobierno con tarjetas de regalo.,gov-websites/blocks/11/text
+Leave the website.,Salir del sitio.,gov-websites/blocks/11/options/2
+Enter your bank password.,Introducir la contraseña de tu banco.,gov-websites/blocks/11/options/3
+You receive an email with a link to renew your Medicare account. What is the safest action?,Recibes un correo con un enlace para renovar tu cuenta de Medicare. ¿Qué opción es más segura?,gov-websites/blocks/12/text
+Open your browser and type medicare.gov yourself instead of clicking the email link.,Abrir el navegador y escribir medicare.gov por tu cuenta en lugar de usar el enlace del correo.,gov-websites/blocks/12/options/2
+Typing the website address yourself helps avoid phishing websites.,Escribir la dirección por tu cuenta ayuda a evitar sitios que roban datos.,gov-websites/blocks/12/explanation
+"Official government websites help protect your personal information. Look for .gov, read the full web address, type official websites yourself when possible, and be cautious of unexpected emails and text messages. Never trust a website just because it looks professional, pay government fees with gift cards, or enter personal information on suspicious websites.","Los sitios oficiales del gobierno ayudan a proteger tus datos. Busca .gov, revisa la dirección completa, escribe las direcciones oficiales por tu cuenta cuando puedas y desconfía de correos o mensajes inesperados. No confíes en un sitio solo porque parece profesional, no pagues trámites con tarjetas de regalo ni introduzcas datos en sitios sospechosos.",gov-websites/blocks/13/text
+What does .gov usually mean?,¿Qué suele indicar .gov?,gov-websites/quiz/0/question
+A shopping website,Un sitio de compras,gov-websites/quiz/0/options/0
+A social media website,Una red social,gov-websites/quiz/0/options/1
+An official U.S. government website,Un sitio oficial del gobierno de Estados Unidos,gov-websites/quiz/0/options/2
+A news website,Un sitio de noticias,gov-websites/quiz/0/options/3
+Which websites are official government websites?,¿Qué sitios son oficiales del gobierno?,gov-websites/quiz/1/question
+irs-help.com and medicare-support.net,irs-help.com y medicare-support.net,gov-websites/quiz/1/options/0
+"irs.gov, medicare.gov, weather.gov, and dmv.ca.gov","irs.gov, medicare.gov, weather.gov y dmv.ca.gov",gov-websites/quiz/1/options/1
+True or False: A website ending in .com is always an official government website.,Verdadero o falso: Un sitio que termina en .com siempre es un sitio oficial del gobierno.,gov-websites/quiz/2/question
+com,com,gov-websites/quiz/3/options/1
+org,org,gov-websites/quiz/3/options/2
+A website asks you to pay government fees with gift cards. What should you do?,Un sitio te pide pagar trámites del gobierno con tarjetas de regalo. ¿Qué deberías hacer?,gov-websites/quiz/4/question
+Leave the website and find the official government website.,Salir del sitio y buscar el sitio oficial del gobierno.,gov-websites/quiz/4/options/2
+Give your credit card number.,Dar el número de tu tarjeta de crédito.,gov-websites/quiz/4/options/3
+You're unsure whether a government website is real. What is the safest action?,No sabes si un sitio del gobierno es auténtico. ¿Qué opción es más segura?,gov-websites/quiz/5/question
+Enter your personal information first.,Introducir primero tus datos personales.,gov-websites/quiz/5/options/0
+Read the full web address carefully and make sure it belongs to the official government agency.,Leer la dirección completa con atención y comprobar que pertenece a la agencia oficial.,gov-websites/quiz/5/options/2
+You completed Lesson 7: How to Know a Government Website Is Real (.gov)!,Completaste la lección 7: Cómo reconocer un sitio auténtico del gobierno (.gov).,gov-websites/complete/subtitle
+Phase 5 Final Challenge,Práctica final de la etapa 5,gov-websites/complete/next; phase5-challenge/title
+Phase 5 Final Exam,Evaluación final de la etapa 5,phase5-challenge/nextLabel
+Quick review,Repaso breve,phase5-challenge/blocks/0/title
+Which signs help identify an official health or government service?,¿Qué señales ayudan a identificar un servicio oficial de salud o del gobierno?,phase5-challenge/blocks/0/prompt
+A government address ending in .gov,Una dirección del gobierno que termina en .gov,phase5-challenge/blocks/0/options/0/text
+A number printed on an official card,Un número impreso en una tarjeta oficial,phase5-challenge/blocks/0/options/1/text
+A trusted health portal you already use,Un portal de salud de confianza que ya utilizas,phase5-challenge/blocks/0/options/2/text
+An urgent demand for gift-card payment,Una exigencia urgente de pago con tarjetas de regalo,phase5-challenge/blocks/0/options/3/text
+Good review. These choices help you stay informed and in control.,Buen repaso. Estas opciones te ayudan a estar informado y mantener el control.,phase5-challenge/blocks/0/feedback
+Take another look at the highlighted choices. Safe actions give you time to verify.,Vuelve a mirar las opciones resaltadas. Las acciones seguras te dan tiempo para comprobar.,phase5-challenge/blocks/0/incorrectFeedback
+Key ideas,Ideas clave,phase5-challenge/blocks/1/title
+A health visit completed remotely by phone or video.,"Una consulta médica a distancia, por teléfono o video.",phase5-challenge/blocks/1/cards/0/back
+The ending used by official United States government websites.,La terminación que usan los sitios oficiales del gobierno de Estados Unidos.,phase5-challenge/blocks/1/cards/1/back
+A federal health insurance program with official contact channels.,Un programa federal de seguro médico con canales oficiales de contacto.,phase5-challenge/blocks/1/cards/2/back
+Recall practice,Práctica de memoria,phase5-challenge/blocks/2/title
+.shop,.shop,phase5-challenge/blocks/2/wordBank/1
+.deal,.deal,phase5-challenge/blocks/2/wordBank/2
+.gift,.gift,phase5-challenge/blocks/2/wordBank/3
+Most official United States government websites end in ______.,La mayoría de los sitios oficiales del gobierno de Estados Unidos termina en ______.,phase5-challenge/blocks/2/questions/0/text
+Real-life decision,Decisión de la vida real,phase5-challenge/blocks/3/title
+A caller says your Medicare benefits end today unless you pay. What should you do?,Alguien llama y dice que perderás tus beneficios de Medicare hoy si no pagas. ¿Qué deberías hacer?,phase5-challenge/blocks/3/text
+Hang up and call the official number on your Medicare card,Colgar y llamar al número oficial de tu tarjeta de Medicare,phase5-challenge/blocks/3/options/0
+Pay now so your benefits stay active,Pagar ahora para conservar los beneficios,phase5-challenge/blocks/3/options/1
+Give the caller your Medicare number first,Dar primero tu número de Medicare a quien llama,phase5-challenge/blocks/3/options/2
+Urgent payment pressure is suspicious. Calling the official number lets you verify safely.,La presión para pagar de inmediato es sospechosa. Llamar al número oficial te permite verificar la información con seguridad.,phase5-challenge/blocks/3/explanation
+A caller says your Medicare benefits end today unless you pay.,Alguien llama y dice que perderás tus beneficios de Medicare hoy si no pagas.,phase5-challenge/blocks/3/presentation/story
+What should you do?,¿Qué deberías hacer?,phase5-challenge/blocks/3/presentation/question
+Final confidence check,Comprobación final de confianza,phase5-challenge/blocks/4/title
+An urgent payment demand is a reason to slow down and verify.,Una exigencia de pago urgente es motivo para detenerte y verificar.,phase5-challenge/blocks/4/questions/0/text
+Scammers use urgency to prevent careful thinking. Pause and use an official contact.,Los estafadores usan la urgencia para que no pienses con calma. Detente y usa un contacto oficial.,phase5-challenge/blocks/4/questions/0/explanation

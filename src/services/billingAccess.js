@@ -1,3 +1,6 @@
+import { hasOwn } from "../utils/hasOwn.js";
+import { readWithDeadline } from "../utils/readWithDeadline.js";
+
 export const MAX_BILLING_RESPONSE_BYTES = 25_000;
 export const BILLING_REQUEST_TIMEOUT_MS = 10_000;
 
@@ -59,7 +62,7 @@ const GRANTING_STATUSES = new Set(["trialing", "active"]);
 
 export class BillingAccessError extends Error {
   constructor(code = "BILLING_UNAVAILABLE", status = null, canManage = false) {
-    const safeCode = Object.hasOwn(SAFE_MESSAGES, code)
+    const safeCode = hasOwn(SAFE_MESSAGES, code)
       ? code
       : "BILLING_UNAVAILABLE";
     super(SAFE_MESSAGES[safeCode]);
@@ -450,7 +453,7 @@ const normalizedApiError = ({ payload, status }) => {
   if (
     typeof code !== "string" ||
     typeof message !== "string" ||
-    !Object.hasOwn(ERROR_STATUSES, code) ||
+    !hasOwn(ERROR_STATUSES, code) ||
     ERROR_STATUSES[code] !== status
   ) {
     return unavailable();
@@ -476,7 +479,14 @@ const billingRequest = async ({
   // before any network activity, which is why this never worked.
   const { fetchImpl, apiEndpointImpl, setTimeoutImpl, clearTimeoutImpl } =
     dependencies;
-  const token = await authenticatedToken(user);
+  let token;
+  try {
+    token = await readWithDeadline(() => authenticatedToken(user), { message: "Billing access token timed out" });
+  } catch (error) {
+    if (error instanceof BillingAccessError) throw error;
+    // An unavailable token is not evidence that the saved login is invalid.
+    throw unavailable();
+  }
   const controller = new AbortController();
   const termination = createRequestTermination(controller);
   let timeoutId = null;

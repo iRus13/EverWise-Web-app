@@ -1,0 +1,411 @@
+English key,Spanish presentation,Native locations
+2.1,2.1,scam-unexpected-call/lessonNumber
+The Unexpected Call,La llamada inesperada,scam-unexpected-call/title; scam-unexpected-call/blocks/0/heading
+Unexpected Calls,Llamadas inesperadas,scam-unexpected-call/pathTitle
+Call Screener,Filtro de llamadas,scam-unexpected-call/badge
+Recognize that an unexpected call is never proof of identity.,Reconoce que una llamada inesperada no demuestra la identidad de quien llama.,scam-unexpected-call/goals/0
+End the call and contact the organization yourself.,Cuelga y comunícate con la organización por tu cuenta.,scam-unexpected-call/goals/1
+"They called me, so they must be real… right?","Me llamaron, así que debe ser verdad… ¿o no?",scam-unexpected-call/blocks/0/question
+Learn that an unexpected phone call should never be trusted simply because it sounds professional or mentions a familiar company.,Aprende a no confiar en una llamada inesperada solo porque suene profesional o mencione una empresa conocida.,scam-unexpected-call/blocks/0/objective
+"Scammers often pretend to be people you already trust, such as your bank, a government agency, a utility company, or a technology company. They may sound friendly and professional, but remember this: you did not start the conversation — they did. An unexpected phone call is never proof that someone is who they claim to be.
+
+Whenever a call involves money, personal information, or your accounts, the safest choice is to end the call and contact the organization yourself using an official phone number.","Los estafadores suelen hacerse pasar por organizaciones que conoces, como tu banco, una agencia del gobierno o una empresa de servicios o tecnología. Pueden sonar amables y profesionales, pero recuerda: ellos iniciaron la conversación. Una llamada inesperada no demuestra que alguien sea quien dice ser.
+
+Si la llamada trata de dinero, información personal o tus cuentas, cuelga y comunícate con la organización por tu cuenta mediante un número oficial.",scam-unexpected-call/blocks/0/text
+Spot the red flag,Reconoce la señal de alerta,scam-unexpected-call/blocks/1/title; scam-keep-it-secret/blocks/1/title; scam-rushing-is-a-warning/blocks/1/title; scam-strange-payments/blocks/1/title
+"Your phone rings unexpectedly. The caller says, ""Hello, I'm calling from your bank.""","Recibes una llamada inesperada. La persona dice: «Hola, le llamo de su banco».",scam-unexpected-call/blocks/1/scenario
+What is the first reason to be cautious?,¿Cuál es el primer motivo para tener cuidado?,scam-unexpected-call/blocks/1/question
+They called you unexpectedly.,Te llamaron sin que lo esperaras.,scam-unexpected-call/blocks/1/options/0/text
+Anyone can claim to represent a company over the phone. The unexpected call itself is your first reason to slow down.,Cualquiera puede decir por teléfono que representa a una empresa. Una llamada inesperada es motivo para hacer una pausa.,scam-unexpected-call/blocks/1/options/0/feedback
+They sounded friendly.,Sonaba amable.,scam-unexpected-call/blocks/1/options/1/text; scam-strange-payments/blocks/1/options/2/text
+"Friendliness is part of the approach, not a warning sign in itself. The unexpected call is.",La amabilidad no es una señal de alerta por sí sola. Lo que debes comprobar es la llamada inesperada.,scam-unexpected-call/blocks/1/options/1/feedback
+They mentioned your bank.,Mencionó tu banco.,scam-unexpected-call/blocks/1/options/2/text
+Naming a real bank costs a scammer nothing. Who contacted whom is what matters.,Un estafador puede mencionar un banco real. Recuerda que esa persona inició el contacto contigo.,scam-unexpected-call/blocks/1/options/2/feedback
+Choose the safest response,Elige la respuesta más segura,scam-unexpected-call/blocks/2/title; scam-keep-it-secret/blocks/2/title; scam-rushing-is-a-warning/blocks/2/title; scam-strange-payments/blocks/2/title; scam-always-verify/blocks/2/title
+An unexpected caller says they need to discuss your account.,Alguien te llama sin que lo esperaras y dice que necesita hablar de tu cuenta.,scam-unexpected-call/blocks/2/scenario
+What should you do?,¿Qué deberías hacer?,scam-unexpected-call/blocks/2/question; scam-keep-it-secret/blocks/2/question; scam-keep-it-secret/blocks/5/practice/0/question; scam-rushing-is-a-warning/blocks/2/question; scam-strange-payments/blocks/2/question; scam-always-verify/blocks/2/question; scam-always-verify/blocks/4/question; phase9-challenge/blocks/3/presentation/question
+Hang up and call the company using an official phone number.,Cuelga y llama a la empresa mediante un número oficial.,scam-unexpected-call/blocks/2/options/0/text
+Calling the company yourself helps you know you are speaking with the real organization.,Llamar por tu cuenta a un número oficial te ayuda a comprobar que hablas con la organización real.,scam-unexpected-call/blocks/2/options/0/feedback
+Stay on the phone because they sound professional.,Sigue en la llamada porque suena profesional.,scam-unexpected-call/blocks/2/options/1/text
+"Sounding professional is a skill, not proof. Anyone can practice it.",Sonar profesional no demuestra la identidad de nadie. Es algo que se puede imitar.,scam-unexpected-call/blocks/2/options/1/feedback
+Give them your account number first.,Dale primero tu número de cuenta.,scam-unexpected-call/blocks/2/options/2/text
+Do not give account details to an unverified caller. End the call and use the number on your bank card; the bank may then ask you to verify your identity.,No des datos de tu cuenta a una persona que no has verificado. Cuelga y llama al número de tu tarjeta bancaria; entonces el banco podría pedirte que confirmes tu identidad.,scam-unexpected-call/blocks/2/options/2/feedback
+Apply the lesson,Pon en práctica lo aprendido,scam-unexpected-call/blocks/3/title; scam-keep-it-secret/blocks/3/title; scam-rushing-is-a-warning/blocks/3/title; scam-strange-payments/blocks/3/title; scam-always-verify/blocks/3/title
+Someone unexpectedly calls and says they work for your electric company.,Recibes una llamada inesperada de alguien que dice trabajar para tu compañía de electricidad.,scam-unexpected-call/blocks/3/scenario
+What should you remember first?,¿Qué debes recordar primero?,scam-unexpected-call/blocks/3/question; scam-strange-payments/blocks/5/practice/0/question
+Unexpected callers can pretend to be any company.,Una persona que te llama puede hacerse pasar por cualquier empresa.,scam-unexpected-call/blocks/3/options/0/text
+"Scammers often pretend to be organizations you recognize, because familiar names make people feel comfortable.",Los estafadores suelen hacerse pasar por organizaciones conocidas porque sus nombres inspiran confianza.,scam-unexpected-call/blocks/3/options/0/feedback
+Utility companies are always trustworthy.,Las compañías de servicios siempre son fiables.,scam-unexpected-call/blocks/3/options/1/text
+The real company may be trustworthy. The person on the phone may not be from the real company.,La empresa real puede ser fiable. Pero quien llama podría no trabajar para ella.,scam-unexpected-call/blocks/3/options/1/feedback
+"If they know your address, they must be real.","Si sabe tu dirección, tiene que ser quien dice ser.",scam-unexpected-call/blocks/3/options/2/text
+Addresses are easy to look up. Knowing one proves nothing.,Las direcciones se pueden encontrar. Conocer la tuya no demuestra su identidad.,scam-unexpected-call/blocks/3/options/2/feedback
+Real-life decision,Decisión de la vida real,scam-unexpected-call/blocks/4/title; scam-keep-it-secret/blocks/4/title; scam-rushing-is-a-warning/blocks/4/title; scam-strange-payments/blocks/4/title; scam-always-verify/blocks/4/title; phase9-challenge/blocks/3/title
+An unexpected caller says there is a problem with one of your accounts and asks you to stay on the phone while they explain.,"Alguien te llama sin que lo esperaras, dice que hay un problema con una cuenta y te pide que sigas en la línea mientras lo explica.",scam-unexpected-call/blocks/4/scenario
+What is the safest first step?,¿Cuál es el primer paso más seguro?,scam-unexpected-call/blocks/4/question; scam-unexpected-call/blocks/5/practice/0/question; scam-always-verify/blocks/1/question
+Hang up and contact the organization yourself.,Cuelga y comunícate con la organización por tu cuenta.,scam-unexpected-call/blocks/4/options/0/text
+Ending the call doesn't prevent you from getting help. It lets you verify that you're speaking with the right person.,Colgar no te impide recibir ayuda. Te permite comprobar que hablas con la persona adecuada.,scam-unexpected-call/blocks/4/options/0/feedback
+Answer a few questions before deciding.,Responde algunas preguntas antes de decidir.,scam-unexpected-call/blocks/4/options/1/text
+"Every answer gives them more to work with, and makes it harder to step away.",Cada respuesta puede darle más información y hacer más difícil que termines la conversación.,scam-unexpected-call/blocks/4/options/1/feedback
+Stay on the phone until they finish.,Sigue en la llamada hasta que termine.,scam-unexpected-call/blocks/4/options/2/text
+Pressure to stay on the line instead of checking independently is a warning sign. You can end the call and use a trusted number.,Presionarte para que sigas en la línea en vez de comprobar la situación por tu cuenta es una señal de alerta. Puedes colgar y usar un número de confianza.,scam-unexpected-call/blocks/4/options/2/feedback
+How confident do you feel about handling unexpected phone calls?,¿Qué tanta confianza tienes para manejar llamadas inesperadas?,scam-unexpected-call/blocks/5/question
+Someone unexpectedly calls claiming to be from Medicare.,Alguien te llama sin que lo esperaras y dice representar a Medicare.,scam-unexpected-call/blocks/5/practice/0/scenario
+Hang up and call Medicare using an official phone number if needed.,"Cuelga y, si lo necesitas, llama a Medicare mediante un número oficial.",scam-unexpected-call/blocks/5/practice/0/options/0/text
+Always verify unexpected callers independently.,Verifica siempre por tu cuenta las llamadas inesperadas.,scam-unexpected-call/blocks/5/practice/0/options/0/feedback
+Stay on the phone because healthcare is important.,Sigue en la llamada porque la atención médica es importante.,scam-unexpected-call/blocks/5/practice/0/options/1/text
+"Importance is exactly why scammers choose healthcare. It's a reason to verify, not to stay.","Los estafadores usan temas de salud precisamente porque son importantes. Es motivo para verificar, no para seguir en la llamada.",scam-unexpected-call/blocks/5/practice/0/options/1/feedback
+Give them your Medicare number.,Dale tu número de Medicare.,scam-unexpected-call/blocks/5/practice/0/options/2/text
+Your Medicare number is valuable to thieves. Never give it to an unexpected caller.,Tu número de Medicare es valioso para los ladrones. No lo des a una persona que te llama sin que lo esperaras.,scam-unexpected-call/blocks/5/practice/0/options/2/feedback
+Someone unexpectedly calls saying they are from your internet provider.,Alguien te llama sin que lo esperaras y dice representar a tu proveedor de internet.,scam-unexpected-call/blocks/5/practice/1/scenario
+What is the safest habit?,¿Cuál es el hábito más seguro?,scam-unexpected-call/blocks/5/practice/1/question; scam-rushing-is-a-warning/blocks/5/practice/1/question
+Contact the company yourself using a trusted phone number.,Comunícate con la empresa por tu cuenta mediante un número de confianza.,scam-unexpected-call/blocks/5/practice/1/options/0/text
+"Start the conversation using a number you already trust, such as the one printed on your internet bill.","Inicia la conversación mediante un número que ya conoces y en el que confías, como el que aparece en tu factura de internet.",scam-unexpected-call/blocks/5/practice/1/options/0/feedback
+Continue the conversation because they knew your name.,Sigue conversando porque sabía tu nombre.,scam-unexpected-call/blocks/5/practice/1/options/1/text
+Your name is not a secret and proves nothing.,Conocer tu nombre no demuestra su identidad.,scam-unexpected-call/blocks/5/practice/1/options/1/feedback
+Follow their instructions immediately.,Sigue sus instrucciones de inmediato.,scam-unexpected-call/blocks/5/practice/1/options/2/text
+Instructions from an unverified caller should never be followed.,No sigas instrucciones de una persona que llama y cuya identidad no has verificado.,scam-unexpected-call/blocks/5/practice/1/options/2/feedback
+"Lesson 1.4 — Stop, Verify, Then Decide","Lección 1.4 — Para, verifica y después decide",scam-unexpected-call/blocks/6/links/0/lesson
+"For an unexpected account request, end the call and use the number on your bank card or statement, not a number the caller supplies.","Ante una llamada inesperada sobre una cuenta, cuelga y usa el número de tu tarjeta bancaria o estado de cuenta, no uno que te dé quien llama.",scam-unexpected-call/blocks/6/links/0/note
+The bank security call,La llamada de seguridad del banco,scam-unexpected-call/blocks/7/title
+Your phone rings.,Suena tu teléfono.,scam-unexpected-call/blocks/7/setup
+Incoming call · Unknown number,Llamada entrante · Número desconocido,scam-unexpected-call/blocks/7/messages/0/from
+"Hello, this is the security department from your bank. We noticed unusual activity on your account and would like to help you.","Hola, le llamamos del departamento de seguridad de su banco. Detectamos actividad inusual en su cuenta y queremos ayudarle.",scam-unexpected-call/blocks/7/messages/0/body
+What should you do first?,¿Qué deberías hacer primero?,scam-unexpected-call/blocks/7/question; scam-keep-it-secret/blocks/6/question; scam-rushing-is-a-warning/blocks/6/question; scam-strange-payments/blocks/6/question; scam-always-verify/blocks/5/practice/1/question; scam-always-verify/blocks/7/question
+Hang up and call your bank using the phone number on your debit or credit card.,Colgar y llamar al banco al número de tu tarjeta de débito o crédito.,scam-unexpected-call/blocks/7/options/0/text
+A claimed identity is not proof. Ending the call and dialing the number on your bank card gives you an independent way to check the request.,Decir quién se es no demuestra la identidad. Colgar y llamar al número de tu tarjeta bancaria te permite comprobar la solicitud por tu cuenta.,scam-unexpected-call/blocks/7/options/0/feedback
+Stay on the phone and hear them out.,Sigue en la llamada y escucha lo que dice.,scam-unexpected-call/blocks/7/options/1/text
+Staying on an unexpected call can increase the pressure to act. End it and contact your bank through the number on your card or statement.,Seguir en una llamada inesperada puede aumentar la presión para actuar. Cuelga y comunícate con tu banco mediante el número de tu tarjeta o estado de cuenta.,scam-unexpected-call/blocks/7/options/1/feedback
+Unexpected contact,Contacto inesperado,scam-unexpected-call/blocks/7/spotted/0; scam-keep-it-secret/blocks/6/spotted/0; scam-rushing-is-a-warning/blocks/6/spotted/0; scam-strange-payments/blocks/6/spotted/0; scam-always-verify/blocks/7/spotted/0
+Refusing independent verification,Impedir que verifiques por tu cuenta,scam-unexpected-call/blocks/7/spotted/1; scam-keep-it-secret/blocks/6/spotted/2; scam-rushing-is-a-warning/blocks/6/spotted/2; scam-always-verify/blocks/7/spotted/1
+Lesson complete!,¡Lección completada!,scam-unexpected-call/complete/title; scam-keep-it-secret/complete/title; scam-rushing-is-a-warning/complete/title; scam-strange-payments/complete/title; scam-always-verify/complete/title
+You completed The Unexpected Call.,Completaste La llamada inesperada.,scam-unexpected-call/complete/subtitle
+"If they called you, verify before you trust them.","Si te llaman, verifica antes de confiar.",scam-unexpected-call/complete/habit
+Unexpected contact.,Contacto inesperado.,scam-unexpected-call/complete/warningSign
+Recognized unexpected contact,Reconociste un contacto inesperado,scam-unexpected-call/complete/skills/0
+Ended a call on your own terms,Terminaste una llamada por decisión propia,scam-unexpected-call/complete/skills/1
+Verified using a number you chose,Verificaste mediante un número que elegiste,scam-unexpected-call/complete/skills/2
+Keep It a Secret,Cuando te piden guardar un secreto,scam-unexpected-call/complete/next; scam-keep-it-secret/title; scam-keep-it-secret/pathTitle; scam-keep-it-secret/blocks/0/heading
+2.2,2.2,scam-keep-it-secret/lessonNumber
+Secret Spotter,Detectar peticiones de secreto,scam-keep-it-secret/badge
+Recognize requests for secrecy as a major warning sign.,Reconoce las peticiones de guardar silencio como una señal de alerta importante.,scam-keep-it-secret/goals/0
+Feel comfortable asking someone you trust for advice.,Siéntete libre de pedir consejo a alguien de confianza.,scam-keep-it-secret/goals/1
+Why would someone tell me not to tell anyone else?,¿Por qué me pedirían que no se lo cuente a nadie?,scam-keep-it-secret/blocks/0/question
+Learn that anyone asking you to keep a financial or personal situation secret is creating a major warning sign.,Aprende a reconocer como señal de alerta que alguien te pida mantener en secreto una situación financiera o personal.,scam-keep-it-secret/blocks/0/objective
+"Honest people understand that you may want to talk with your family or someone you trust before making an important decision. Scammers know that another person may recognize the scam immediately, so they often tell people to keep the conversation secret.
+
+If someone asks you not to tell your family, friends, or bank about what is happening, treat that request as a warning sign. Asking for advice is never something you should feel embarrassed about.","Es normal hablar con tu familia o con alguien de confianza antes de tomar una decisión importante. Los estafadores saben que otra persona podría reconocer el engaño, por eso suelen pedir que mantengas la conversación en secreto.
+
+Si alguien te pide que no cuentes lo que ocurre a tu familia, amigos o banco, considéralo una señal de alerta. No tienes por qué sentir vergüenza al pedir consejo.",scam-keep-it-secret/blocks/0/text
+"A caller says, ""Please don't tell your family about this until we're finished.""","Alguien te llama y dice: «Por favor, no se lo cuente a su familia hasta que terminemos».",scam-keep-it-secret/blocks/1/scenario
+What should make you stop and think?,¿Qué debe hacerte parar y pensar?,scam-keep-it-secret/blocks/1/question
+They asked you to keep it secret.,Te pidió que lo mantuvieras en secreto.,scam-keep-it-secret/blocks/1/options/0/text
+Scammers often ask people to keep secrets because another person may recognize the scam.,Los estafadores suelen pedir que guardes silencio porque otra persona podría reconocer el engaño.,scam-keep-it-secret/blocks/1/options/0/feedback
+They spoke quietly.,Hablaba en voz baja.,scam-keep-it-secret/blocks/1/options/1/text
+Tone of voice isn't the issue. The request for secrecy is.,El tono de voz no es el problema. La señal de alerta es la petición de guardar silencio.,scam-keep-it-secret/blocks/1/options/1/feedback
+They knew your name.,Sabía tu nombre.,scam-keep-it-secret/blocks/1/options/2/text
+Names are easy to find. Being told to stay quiet is the real signal.,Los nombres se pueden encontrar. La señal de alerta es que te pida guardar silencio.,scam-keep-it-secret/blocks/1/options/2/feedback
+"Someone says, ""If you tell anyone, they might ruin our investigation.""","Alguien dice: «Si se lo cuenta a otra persona, podría arruinar nuestra investigación».",scam-keep-it-secret/blocks/2/scenario
+Talk to someone you trust before doing anything.,Habla con alguien de confianza antes de hacer nada.,scam-keep-it-secret/blocks/2/options/0/text
+Honest organizations do not expect you to keep important financial matters secret from people you trust.,Una organización honesta comprende que quieras consultar asuntos financieros importantes con alguien de confianza.,scam-keep-it-secret/blocks/2/options/0/feedback
+Wait until tomorrow before telling anyone.,Espera hasta mañana para contárselo a alguien.,scam-keep-it-secret/blocks/2/options/1/text
+"Waiting is better than acting alone, though there's no reason to delay — talk to someone now.","Esperar es mejor que actuar a solas, pero puedes pedir consejo ahora.",scam-keep-it-secret/blocks/2/options/1/feedback
+Keep it secret as requested.,Mantenlo en secreto como te pidió.,scam-keep-it-secret/blocks/2/options/2/text
+"A request to hide an unexpected financial demand can stop you from getting help. Pause, speak with someone you trust, and verify the request independently.","Pedirte que ocultes una exigencia inesperada de dinero puede impedir que recibas ayuda. Haz una pausa, habla con alguien de confianza y verifica la solicitud por tu cuenta.",scam-keep-it-secret/blocks/2/options/2/feedback
+"An email says, ""This offer is only for you. Please don't share it with anyone.""",Un correo dice: «Esta oferta es solo para usted. No la comparta con nadie».,scam-keep-it-secret/blocks/3/scenario
+What should you notice first?,¿En qué debes fijarte primero?,scam-keep-it-secret/blocks/3/question; scam-rushing-is-a-warning/blocks/5/practice/0/question; scam-strange-payments/blocks/3/question
+The request to keep it secret.,La petición de mantenerlo en secreto.,scam-keep-it-secret/blocks/3/options/0/text
+Requests for secrecy should always make you pause and think.,Una petición de guardar silencio debe hacerte detenerte y pensar.,scam-keep-it-secret/blocks/3/options/0/feedback
+The special offer.,La oferta especial.,scam-keep-it-secret/blocks/3/options/1/text
+The offer is the bait. The secrecy is the tell.,La oferta busca atraer tu atención. La petición de guardar silencio es la señal de alerta.,scam-keep-it-secret/blocks/3/options/1/feedback
+The professional logo.,El logotipo profesional.,scam-keep-it-secret/blocks/3/options/2/text
+Logos can be copied in seconds.,Los logotipos se pueden copiar en segundos.,scam-keep-it-secret/blocks/3/options/2/feedback
+Someone asks you not to tell your bank or your family while they help solve a problem.,Alguien te pide que no hables con tu banco ni con tu familia mientras te ayuda a resolver un problema.,scam-keep-it-secret/blocks/4/scenario
+What is the safest response?,¿Cuál es la respuesta más segura?,scam-keep-it-secret/blocks/4/question; scam-rushing-is-a-warning/blocks/4/question; scam-strange-payments/blocks/4/question; scam-strange-payments/blocks/5/practice/1/question
+Speak with someone you trust before continuing.,Habla con alguien de confianza antes de continuar.,scam-keep-it-secret/blocks/4/options/0/text
+You can ask someone you trust for advice. Pressure to stop you from checking an unexpected financial request is a warning sign.,Puedes pedir consejo a alguien de confianza. Presionarte para que no compruebes una solicitud financiera inesperada es una señal de alerta.,scam-keep-it-secret/blocks/4/options/0/feedback
+Follow their instructions until everything is finished.,Sigue sus instrucciones hasta que todo termine.,scam-keep-it-secret/blocks/4/options/1/text
+Being cut off from advice is the point of the request. Don't go along with it.,La petición busca impedir que recibas consejo. No tienes que aceptarla.,scam-keep-it-secret/blocks/4/options/1/feedback
+Keep it secret because they asked politely.,Mantenlo en secreto porque te lo pidió con amabilidad.,scam-keep-it-secret/blocks/4/options/2/text
+Politeness doesn't change what's being asked of you.,La amabilidad no cambia lo que te está pidiendo.,scam-keep-it-secret/blocks/4/options/2/feedback
+How confident do you feel about recognizing when someone is trying to keep you from asking for help?,¿Qué tanta confianza tienes para reconocer cuando alguien intenta impedir que pidas ayuda?,scam-keep-it-secret/blocks/5/question
+"A caller says, ""Don't mention this to anyone until we're done.""",Alguien te llama y dice: «No mencione esto a nadie hasta que terminemos».,scam-keep-it-secret/blocks/5/practice/0/scenario
+Talk to someone you trust.,Habla con alguien de confianza.,scam-keep-it-secret/blocks/5/practice/0/options/0/text
+"Keeping important financial situations secret helps scammers, not you.","Ocultar una situación financiera importante favorece a los estafadores, no a ti.",scam-keep-it-secret/blocks/5/practice/0/options/0/feedback
+Keep it private.,Mantenerla privada.,scam-keep-it-secret/blocks/5/practice/0/options/1/text
+Privacy does not require acting alone under pressure. Check this unexpected request with someone you trust before sending money.,"La privacidad no exige actuar a solas bajo presión. Antes de enviar dinero, consulta esta solicitud inesperada con alguien de confianza.",scam-keep-it-secret/blocks/5/practice/0/options/1/feedback
+Wait until they call back.,Espera a que vuelva a llamar.,scam-keep-it-secret/blocks/5/practice/0/options/2/text
+Waiting on their schedule keeps you inside their control.,Esperar a que esa persona vuelva a llamar te mantiene siguiendo sus tiempos.,scam-keep-it-secret/blocks/5/practice/0/options/2/feedback
+"Someone says, ""Your family won't understand. Just listen to me.""",Alguien dice: «Su familia no lo entenderá. Escúcheme solo a mí».,scam-keep-it-secret/blocks/5/practice/1/scenario
+What is the biggest warning sign?,¿Cuál es la principal señal de alerta?,scam-keep-it-secret/blocks/5/practice/1/question; scam-rushing-is-a-warning/blocks/1/question; scam-strange-payments/blocks/1/question
+They don't want you talking to your family.,No quiere que hables con tu familia.,scam-keep-it-secret/blocks/5/practice/1/options/0/text
+Scammers try to isolate people because trusted friends and family can often recognize the scam.,Los estafadores intentan aislar a las personas porque sus familiares y amigos de confianza podrían reconocer el engaño.,scam-keep-it-secret/blocks/5/practice/1/options/0/feedback
+They sound confident.,Suena seguro de sí mismo.,scam-keep-it-secret/blocks/5/practice/1/options/1/text
+Confidence is easy to perform.,La seguridad al hablar se puede imitar.,scam-keep-it-secret/blocks/5/practice/1/options/1/feedback
+They called in the afternoon.,Llamó por la tarde.,scam-keep-it-secret/blocks/5/practice/1/options/2/text
+Timing is irrelevant here.,La hora de la llamada no es la señal de alerta.,scam-keep-it-secret/blocks/5/practice/1/options/2/feedback
+The private investigation,La investigación privada,scam-keep-it-secret/blocks/6/title
+"You receive an unexpected phone call from someone claiming to be investigating suspicious activity on one of your accounts. They ask you not to tell your family or your bank because they don't want to ""interfere with the investigation.""",Recibes una llamada inesperada de alguien que dice investigar actividad sospechosa en una de tus cuentas. Te pide que no se lo cuentes a tu familia ni a tu banco para que no «interfieran con la investigación».,scam-keep-it-secret/blocks/6/setup
+End the call and speak with someone you trust before taking any action.,Cuelga y habla con alguien de confianza antes de actuar.,scam-keep-it-secret/blocks/6/options/0/text
+Honest organizations understand that you may want advice before making an important decision. Anyone asking you to keep financial matters secret deserves extra caution.,Es normal pedir consejo antes de una decisión importante. Ten especial cuidado si alguien te pide ocultar un asunto financiero.,scam-keep-it-secret/blocks/6/options/0/feedback
+Keep the conversation private until they finish.,Mantén la conversación en secreto hasta que termine.,scam-keep-it-secret/blocks/6/options/1/text
+The request for secrecy made this unexpected financial demand more suspicious. Contact your bank through a trusted number before taking action.,La petición de guardar silencio hizo más sospechosa esta exigencia inesperada de dinero. Comunícate con tu banco mediante un número de confianza antes de actuar.,scam-keep-it-secret/blocks/6/options/1/feedback
+Requests for secrecy,Peticiones de guardar silencio,scam-keep-it-secret/blocks/6/spotted/1
+You completed Keep It a Secret.,Completaste Cuando te piden guardar un secreto.,scam-keep-it-secret/complete/subtitle
+"If someone pressures you to keep a financial request secret, pause and talk to someone you trust.","Si alguien te presiona para ocultar una solicitud financiera, haz una pausa y habla con alguien de confianza.",scam-keep-it-secret/complete/habit
+"""Don't tell anyone.""",«No se lo cuente a nadie».,scam-keep-it-secret/complete/warningSign
+Recognized a request for secrecy,Reconociste una petición de guardar silencio,scam-keep-it-secret/complete/skills/0
+Chose to ask for advice,Elegiste pedir consejo,scam-keep-it-secret/complete/skills/1
+Refused to be isolated,Evitaste que te aislaran,scam-keep-it-secret/complete/skills/2
+Rushing Is a Warning,La prisa es una señal de alerta,scam-keep-it-secret/complete/next; scam-rushing-is-a-warning/title; scam-rushing-is-a-warning/blocks/0/heading
+2.3,2.3,scam-rushing-is-a-warning/lessonNumber
+Rushing,Cuando te meten prisa,scam-rushing-is-a-warning/pathTitle
+Deadline Detector,Detectar la presión del tiempo,scam-rushing-is-a-warning/badge
+Treat deadlines and pressure as a warning sign.,Reconoce los plazos y la presión como señales de alerta.,scam-rushing-is-a-warning/goals/0
+Know you are never required to decide while someone waits.,Recuerda que puedes decidir después de terminar una llamada.,scam-rushing-is-a-warning/goals/1
+Why are they trying to make me hurry?,¿Por qué intentan meterme prisa?,scam-rushing-is-a-warning/blocks/0/question
+"Learn that when someone tries to make you act quickly, it is a warning sign that you should slow down and think.","Aprende que, cuando alguien intenta hacerte actuar con prisa, conviene detenerte y pensar.",scam-rushing-is-a-warning/blocks/0/objective
+"Honest businesses understand that important decisions take time. Scammers often do the opposite — they create deadlines, pressure, or emergencies to keep you from thinking clearly.
+
+Whether someone says ""right now,"" ""today only,"" or ""don't wait,"" remember that rushing is a warning sign, not a reason to act faster. Slowing down gives you time to think, verify the situation, and make a better decision.","Las decisiones importantes necesitan tiempo. Los estafadores suelen crear plazos, presión o emergencias para que no puedas pensar con claridad.
+
+Si alguien dice «ahora mismo», «solo por hoy» o «no espere», recuerda que la prisa es una señal de alerta, no un motivo para actuar más rápido. Detenerte te da tiempo para pensar, verificar la situación y decidir mejor.",scam-rushing-is-a-warning/blocks/0/text
+"A caller says, ""If you don't decide within the next five minutes, you'll lose this opportunity.""","Alguien te llama y dice: «Si no decide en los próximos cinco minutos, perderá esta oportunidad».",scam-rushing-is-a-warning/blocks/1/scenario
+They are trying to rush you.,Está intentando apurarte.,scam-rushing-is-a-warning/blocks/1/options/0/text
+Creating urgency is one of the most common ways scammers stop people from thinking carefully.,Crear urgencia es una forma habitual de impedir que las personas piensen con calma.,scam-rushing-is-a-warning/blocks/1/options/0/feedback
+They offered an opportunity.,Te ofreció una oportunidad.,scam-rushing-is-a-warning/blocks/1/options/1/text
+Opportunities aren't warning signs. Five-minute deadlines are.,La oferta por sí sola no es la señal de alerta. Lo es el plazo de cinco minutos.,scam-rushing-is-a-warning/blocks/1/options/1/feedback
+They spoke clearly.,Hablaba con claridad.,scam-rushing-is-a-warning/blocks/1/options/2/text
+Clear speech tells you nothing about honesty.,Hablar con claridad no demuestra honestidad.,scam-rushing-is-a-warning/blocks/1/options/2/feedback
+"An email says, ""This is your final warning. Respond immediately.""",Un correo dice: «Este es su último aviso. Responda de inmediato».,scam-rushing-is-a-warning/blocks/2/scenario
+Slow down and verify the message before responding.,Haz una pausa y verifica el mensaje antes de responder.,scam-rushing-is-a-warning/blocks/2/options/0/text
+Important decisions deserve time. A message demanding immediate action should always be verified first.,Las decisiones importantes merecen tiempo. Verifica primero un mensaje que exige actuar de inmediato.,scam-rushing-is-a-warning/blocks/2/options/0/feedback
+Respond immediately.,Responde de inmediato.,scam-rushing-is-a-warning/blocks/2/options/1/text
+That's precisely the reaction the wording was chosen to produce.,Esa es precisamente la reacción que el mensaje intenta provocar.,scam-rushing-is-a-warning/blocks/2/options/1/feedback
+Delete every email you receive.,Borra todos los correos que recibas.,scam-rushing-is-a-warning/blocks/2/options/2/text
+You don't need to avoid email. Just verify before acting on urgent demands.,No tienes que dejar de usar el correo. Verifica antes de actuar ante una exigencia urgente.,scam-rushing-is-a-warning/blocks/2/options/2/feedback
+"A text message says, ""Claim your prize before midnight or it will be given to someone else.""",Un mensaje de texto dice: «Reclame su premio antes de medianoche o se lo daremos a otra persona».,scam-rushing-is-a-warning/blocks/3/scenario
+What is the warning sign?,¿Cuál es la señal de alerta?,scam-rushing-is-a-warning/blocks/3/question
+It creates a deadline to pressure you.,Impone un plazo para presionarte.,scam-rushing-is-a-warning/blocks/3/options/0/text
+Deadlines are often used to encourage quick decisions before people have time to think.,"Los plazos suelen usarse para que decidas rápido, antes de tener tiempo para pensar.",scam-rushing-is-a-warning/blocks/3/options/0/feedback
+It mentions a prize.,Menciona un premio.,scam-rushing-is-a-warning/blocks/3/options/1/text
+The prize is bait. The midnight cutoff is the pressure.,El premio busca atraer tu atención. El límite de medianoche te presiona.,scam-rushing-is-a-warning/blocks/3/options/1/feedback
+It was sent by text.,Llegó por mensaje de texto.,scam-rushing-is-a-warning/blocks/3/options/2/text
+Plenty of real messages arrive by text. The deadline is what stands out.,Muchos mensajes reales llegan por texto. Lo que destaca aquí es el plazo.,scam-rushing-is-a-warning/blocks/3/options/2/feedback
+"Someone tells you, ""I need your answer before we hang up.""",Alguien te dice: «Necesito su respuesta antes de que colguemos».,scam-rushing-is-a-warning/blocks/4/scenario
+End the conversation and decide later.,Termina la conversación y decide después.,scam-rushing-is-a-warning/blocks/4/options/0/text
+You are never required to make an important decision while someone waits on the phone.,No tienes que tomar una decisión importante mientras alguien espera al teléfono.,scam-rushing-is-a-warning/blocks/4/options/0/feedback
+Give an answer before the call ends.,Da una respuesta antes de terminar la llamada.,scam-rushing-is-a-warning/blocks/4/options/1/text
+An answer given under pressure is exactly what they came for.,La persona busca precisamente una respuesta bajo presión.,scam-rushing-is-a-warning/blocks/4/options/1/feedback
+Stay on the phone until they convince you.,Sigue en la llamada hasta que te convenza.,scam-rushing-is-a-warning/blocks/4/options/2/text
+Being convinced isn't the goal — being informed is. You can do that after hanging up.,Lo importante es informarte antes de decidir. Puedes hacerlo después de colgar.,scam-rushing-is-a-warning/blocks/4/options/2/feedback
+How confident do you feel recognizing when someone is trying to rush you?,¿Qué tanta confianza tienes para reconocer cuando alguien intenta apurarte?,scam-rushing-is-a-warning/blocks/5/question
+"A website says, ""Only two minutes left to claim this offer.""",Un sitio web dice: «Solo quedan dos minutos para aprovechar esta oferta».,scam-rushing-is-a-warning/blocks/5/practice/0/scenario
+The short deadline.,En el plazo tan corto.,scam-rushing-is-a-warning/blocks/5/practice/0/options/0/text
+Deadlines are commonly used to pressure people into acting quickly.,Los plazos se usan a menudo para presionar a las personas a actuar rápido.,scam-rushing-is-a-warning/blocks/5/practice/0/options/0/feedback
+The attractive offer.,La oferta atractiva.,scam-rushing-is-a-warning/blocks/5/practice/0/options/1/text
+The offer draws you in; the countdown pushes you.,La oferta atrae tu atención; la cuenta regresiva te presiona.,scam-rushing-is-a-warning/blocks/5/practice/0/options/1/feedback
+The colorful website.,El sitio web colorido.,scam-rushing-is-a-warning/blocks/5/practice/0/options/2/text
+Design proves nothing about honesty.,El diseño no demuestra honestidad.,scam-rushing-is-a-warning/blocks/5/practice/0/options/2/feedback
+"Someone says, ""There's no time to think. Just trust me.""",Alguien dice: «No hay tiempo para pensar. Confíe en mí».,scam-rushing-is-a-warning/blocks/5/practice/1/scenario
+Slow down before making a decision.,Haz una pausa antes de decidir.,scam-rushing-is-a-warning/blocks/5/practice/1/options/0/text
+Anyone discouraging you from thinking carefully deserves extra caution.,Ten especial cuidado con quien te desanime a pensar con calma.,scam-rushing-is-a-warning/blocks/5/practice/1/options/0/feedback
+Trust them because they sound confident.,Confía porque suena seguro de sí mismo.,scam-rushing-is-a-warning/blocks/5/practice/1/options/1/text; scam-always-verify/blocks/4/options/1/text
+Confidence is not evidence.,Sonar seguro de sí mismo no es una prueba.,scam-rushing-is-a-warning/blocks/5/practice/1/options/1/feedback
+Decide immediately.,Decide de inmediato.,scam-rushing-is-a-warning/blocks/5/practice/1/options/2/text
+"""No time to think"" is the warning, not the instruction.","«No hay tiempo para pensar» es una señal de alerta, no una instrucción que debas seguir.",scam-rushing-is-a-warning/blocks/5/practice/1/options/2/feedback
+The expiring offer,La oferta que vence pronto,scam-rushing-is-a-warning/blocks/6/title
+"You receive a phone call about a ""special investment opportunity."" The caller says the offer is only available today and asks you to make a decision before hanging up.",Recibes una llamada sobre una «oportunidad especial de inversión». La persona dice que solo está disponible hoy y te pide decidir antes de colgar.,scam-rushing-is-a-warning/blocks/6/setup
+End the call and give yourself time to think.,Cuelga y date tiempo para pensar.,scam-rushing-is-a-warning/blocks/6/options/0/text
+"You recognized that the deadline was being used to pressure you. Real opportunities can be verified, and honest people will respect your decision to take time before committing.",Reconociste que el plazo intentaba presionarte. Puedes verificar una oportunidad y tomarte tiempo antes de comprometerte.,scam-rushing-is-a-warning/blocks/6/options/0/feedback
+Accept the offer before it expires.,Acepta la oferta antes de que venza.,scam-rushing-is-a-warning/blocks/6/options/1/text
+A short deadline does not prove that an investment is genuine. Do not send money under pressure; check the offer and who is making it independently.,Un plazo corto no demuestra que una inversión sea legítima. No envíes dinero bajo presión; comprueba la oferta y quién la hace por tu cuenta.,scam-rushing-is-a-warning/blocks/6/options/1/feedback
+Pressure to hurry,Presión para actuar rápido,scam-rushing-is-a-warning/blocks/6/spotted/1; scam-strange-payments/blocks/6/spotted/1
+You completed Rushing Is a Warning.,Completaste La prisa es una señal de alerta.,scam-rushing-is-a-warning/complete/subtitle
+"Rushing is a warning sign, not a reason to hurry.","La prisa es una señal de alerta, no un motivo para apresurarte.",scam-rushing-is-a-warning/complete/habit
+"""Right now."" ""Today only."" ""Don't wait.""",«Ahora mismo». «Solo por hoy». «No espere».,scam-rushing-is-a-warning/complete/warningSign
+Recognized manufactured deadlines,Reconociste plazos creados para presionarte,scam-rushing-is-a-warning/complete/skills/0
+Declined to decide under pressure,Evitaste decidir bajo presión,scam-rushing-is-a-warning/complete/skills/1
+Ended a rushed conversation,Terminaste una conversación apresurada,scam-rushing-is-a-warning/complete/skills/2
+Strange Payments Are a Warning,Los pagos inusuales son una señal de alerta,scam-rushing-is-a-warning/complete/next; scam-strange-payments/title; scam-strange-payments/blocks/0/heading
+2.4,2.4,scam-strange-payments/lessonNumber
+Strange Payments,Pagos sospechosos,scam-strange-payments/pathTitle
+Payment Guard,Protector de los pagos,scam-strange-payments/badge
+"Recognize gift cards, crypto, and wire transfers as warning signs.","Reconoce las peticiones de tarjetas de regalo, criptomonedas y transferencias como señales de alerta.",scam-strange-payments/goals/0
+Understand why scammers prefer payments that can't be reversed.,Comprende por qué los estafadores prefieren pagos difíciles de revertir.,scam-strange-payments/goals/1
+Why are they asking me to pay that way?,¿Por qué me piden pagar de esa manera?,scam-strange-payments/blocks/0/question
+Learn that unusual payment methods are one of the strongest warning signs of a scam.,Aprende a reconocer los métodos de pago inusuales como una señal importante de estafa.,scam-strange-payments/blocks/0/objective
+"Most honest businesses let you pay using familiar methods, such as a credit card, debit card, check, or payment through your normal account. Scammers often ask for unusual payment methods because they are difficult to trace or reverse.
+
+If someone insists on gift cards, cryptocurrency, wire transfers, or asks you to send money in an unusual way, stop and think. The payment method itself can be a warning sign, even if the story sounds believable.","La mayoría de las empresas aceptan métodos conocidos, como tarjeta, cheque o pago desde tu cuenta habitual. Los estafadores suelen pedir pagos difíciles de rastrear o recuperar.
+
+Si alguien insiste en tarjetas de regalo, criptomonedas, transferencias bancarias u otra forma inusual de enviar dinero, detente y piensa. El método de pago puede ser una señal de alerta, aunque la historia parezca creíble.",scam-strange-payments/blocks/0/text
+"Someone says, ""To pay your bill, please purchase four gift cards and read me the numbers on the back.""","Alguien dice: «Para pagar su factura, compre cuatro tarjetas de regalo y léame los números del reverso».",scam-strange-payments/blocks/1/scenario
+They want to be paid with gift cards.,Quiere que pagues con tarjetas de regalo.,scam-strange-payments/blocks/1/options/0/text
+A demand to buy gift cards and share their numbers to pay a bill is a scam warning. Do not buy cards for this caller.,Pedirte que compres tarjetas de regalo y compartas sus números para pagar una factura es una señal de estafa. No compres tarjetas para esa persona.,scam-strange-payments/blocks/1/options/0/feedback
+They asked for four cards.,Pidió cuatro tarjetas.,scam-strange-payments/blocks/1/options/1/text
+The number of cards does not matter. A caller demanding gift card numbers to settle a bill is asking for a scam payment.,La cantidad de tarjetas no importa. Exigir sus números para pagar una factura es una petición de pago fraudulenta.,scam-strange-payments/blocks/1/options/1/feedback
+"Friendliness is part of the delivery, not the warning.","La amabilidad acompaña la petición, pero no es la señal de alerta.",scam-strange-payments/blocks/1/options/2/feedback
+A caller says your account has a problem and asks you to send cryptocurrency to fix it.,"Alguien te llama, dice que tu cuenta tiene un problema y te pide enviar criptomonedas para resolverlo.",scam-strange-payments/blocks/2/scenario
+End the conversation and verify the request yourself.,Termina la conversación y verifica la solicitud por tu cuenta.,scam-strange-payments/blocks/2/options/0/text
+A request for cryptocurrency to solve an unexpected problem is a major warning sign.,Pedir criptomonedas para resolver un problema inesperado es una señal de alerta importante.,scam-strange-payments/blocks/2/options/0/feedback
+Send a small amount first.,Envía primero una cantidad pequeña.,scam-strange-payments/blocks/2/options/1/text
+Even a small cryptocurrency payment can be difficult to recover. Verify an unexpected demand before sending any money.,Incluso un pago pequeño con criptomonedas puede ser difícil de recuperar. Verifica una exigencia inesperada antes de enviar dinero.,scam-strange-payments/blocks/2/options/1/feedback
+Ask which cryptocurrency they prefer.,Pregunta qué criptomoneda prefiere.,scam-strange-payments/blocks/2/options/2/text
+Check why this unexpected caller is demanding cryptocurrency. End the conversation and contact the organization through a source you already trust.,Comprueba por qué esta persona que te llama sin avisar exige criptomonedas. Termina la conversación y contacta a la organización por un medio que ya conoces y en el que confías.,scam-strange-payments/blocks/2/options/2/feedback
+Someone asks you to wire money immediately to protect your savings.,Alguien te pide hacer una transferencia de inmediato para proteger tus ahorros.,scam-strange-payments/blocks/3/scenario
+They want an unusual payment method.,Quiere un método de pago inusual.,scam-strange-payments/blocks/3/options/0/text
+"When someone asks for a payment method you don't normally use, slow down and verify the situation.","Si te piden un método de pago que no usas habitualmente, haz una pausa y verifica la situación.",scam-strange-payments/blocks/3/options/0/feedback
+They mentioned your savings.,Mencionó tus ahorros.,scam-strange-payments/blocks/3/options/1/text
+"A wire transfer can be legitimate, but an unexpected demand to move savings for protection is a warning sign. Contact your bank independently.","Una transferencia bancaria puede ser legítima, pero una exigencia inesperada de mover tus ahorros para protegerlos es una señal de alerta. Contacta a tu banco por tu cuenta.",scam-strange-payments/blocks/3/options/1/feedback
+They called in the morning.,Llamó por la mañana.,scam-strange-payments/blocks/3/options/2/text
+Timing is irrelevant.,La hora no es la señal de alerta.,scam-strange-payments/blocks/3/options/2/feedback
+A caller says paying with a gift card is the fastest way to solve your problem.,Alguien te llama y dice que pagar con una tarjeta de regalo es la forma más rápida de resolver tu problema.,scam-strange-payments/blocks/4/scenario
+Hang up and verify the situation yourself.,Cuelga y verifica la situación por tu cuenta.,scam-strange-payments/blocks/4/options/0/text
+The payment method itself is a warning sign. Honest organizations do not solve problems by asking for gift cards.,El método de pago es una señal de alerta. Las organizaciones honestas no resuelven problemas pidiendo tarjetas de regalo.,scam-strange-payments/blocks/4/options/0/feedback
+Ask if one gift card is enough.,Pregunta si basta con una tarjeta de regalo.,scam-strange-payments/blocks/4/options/1/text
+Negotiating the amount accepts the premise. No amount is right here.,Negociar la cantidad supone aceptar la petición. No debes pagar de esta manera.,scam-strange-payments/blocks/4/options/1/feedback
+Buy the gift cards.,Comprar las tarjetas de regalo.,scam-strange-payments/blocks/4/options/2/text
+"Sharing gift card numbers lets the recipient use the balance. If you already shared them, contact the card company immediately and ask whether it can stop the payment or return the money.","Compartir los números permite que la otra persona use el saldo. Si ya los compartiste, contacta de inmediato a la empresa de la tarjeta y pregunta si puede detener el pago o devolver el dinero.",scam-strange-payments/blocks/4/options/2/feedback
+How confident do you feel recognizing unusual payment requests?,¿Qué tanta confianza tienes para reconocer solicitudes de pago inusuales?,scam-strange-payments/blocks/5/question
+An unexpected caller asks you to send money using a wire transfer.,Alguien te llama sin que lo esperaras y te pide enviar dinero mediante una transferencia bancaria.,scam-strange-payments/blocks/5/practice/0/scenario
+Unusual payment methods are warning signs.,Los métodos de pago inusuales son señales de alerta.,scam-strange-payments/blocks/5/practice/0/options/0/text
+Scammers often choose payment methods that are difficult to recover.,Los estafadores suelen elegir métodos de pago que dificultan recuperar el dinero.,scam-strange-payments/blocks/5/practice/0/options/0/feedback
+Wire transfers are always faster.,Las transferencias bancarias siempre son más rápidas.,scam-strange-payments/blocks/5/practice/0/options/1/text
+"Speed is not proof that a request is safe. Before wiring money, verify who is asking through contact information you already trust.","La rapidez no demuestra que una solicitud sea segura. Antes de transferir dinero, verifica quién lo pide mediante información de contacto que ya conoces y en la que confías.",scam-strange-payments/blocks/5/practice/0/options/1/feedback
+They must know what they're doing.,Debe saber lo que hace.,scam-strange-payments/blocks/5/practice/0/options/2/text
+Sounding knowledgeable does not prove who contacted you. Verify the request independently before sending money.,Sonar informado no demuestra quién te contactó. Verifica la solicitud por tu cuenta antes de enviar dinero.,scam-strange-payments/blocks/5/practice/0/options/2/feedback
+"A message asks you to pay with cryptocurrency because it is ""more secure.""",Un mensaje te pide pagar con criptomonedas porque es «más seguro».,scam-strange-payments/blocks/5/practice/1/scenario
+Verify the request before sending any money.,Verifica la solicitud antes de enviar dinero.,scam-strange-payments/blocks/5/practice/1/options/0/text
+"Never send money simply because someone tells you a payment method is ""better"" or ""safer.""",No envíes dinero solo porque alguien diga que un método de pago es «mejor» o «más seguro».,scam-strange-payments/blocks/5/practice/1/options/0/feedback
+Follow the instructions immediately.,Sigue las instrucciones de inmediato.,scam-strange-payments/blocks/5/practice/1/options/1/text
+Cryptocurrency payments usually cannot be reversed. Pause and verify the request before sending money.,Los pagos con criptomonedas normalmente no se pueden revertir. Haz una pausa y verifica la solicitud antes de enviar dinero.,scam-strange-payments/blocks/5/practice/1/options/1/feedback
+Send a small payment first.,Envía primero un pago pequeño.,scam-strange-payments/blocks/5/practice/1/options/2/text
+A small payment can still be difficult to recover. Do not test an unexpected request by sending money; verify it independently.,Un pago pequeño también puede ser difícil de recuperar. No pruebes una solicitud inesperada enviando dinero; verifícala por tu cuenta.,scam-strange-payments/blocks/5/practice/1/options/2/feedback
+The utility bill,La factura de electricidad,scam-strange-payments/blocks/6/title
+You receive an unexpected phone call from someone claiming to be your electric company. They say your service will be disconnected today unless you immediately pay using gift cards purchased from a nearby store.,Recibes una llamada inesperada de alguien que dice representar a tu compañía de electricidad. Afirma que cortarán el servicio hoy si no pagas de inmediato con tarjetas de regalo compradas en una tienda cercana.,scam-strange-payments/blocks/6/setup
+Hang up and contact your electric company using the official phone number on your bill.,Cuelga y llama a tu compañía de electricidad al número oficial de tu factura.,scam-strange-payments/blocks/6/options/0/text
+You recognized that the unusual payment request was the warning sign. Legitimate utility companies do not ask customers to pay bills with gift cards.,Reconociste la solicitud de pago inusual como señal de alerta. Las compañías de electricidad legítimas no piden tarjetas de regalo para pagar facturas.,scam-strange-payments/blocks/6/options/0/feedback
+Purchase the gift cards.,Compra las tarjetas de regalo.,scam-strange-payments/blocks/6/options/1/text
+No real utility company accepts gift cards. The threat of disconnection was there to stop you noticing that.,Las compañías de electricidad no cobran facturas mediante tarjetas de regalo. La amenaza de corte intentaba impedir que lo notaras.,scam-strange-payments/blocks/6/options/1/feedback
+Unusual payment method,Método de pago inusual,scam-strange-payments/blocks/6/spotted/2
+You completed Strange Payments Are a Warning.,Completaste Los pagos inusuales son una señal de alerta.,scam-strange-payments/complete/subtitle
+Unusual payment methods are warning signs. Always verify before paying.,Los métodos de pago inusuales son señales de alerta. Verifica siempre antes de pagar.,scam-strange-payments/complete/habit
+Gift cards. Cryptocurrency. Wire transfers.,Tarjetas de regalo. Criptomonedas. Transferencias bancarias.,scam-strange-payments/complete/warningSign
+Recognized an unusual payment request,Reconociste una solicitud de pago inusual,scam-strange-payments/complete/skills/0
+Refused an unrecoverable payment,Rechazaste un pago difícil de recuperar,scam-strange-payments/complete/skills/1
+Verified through an official number,Verificaste mediante un número oficial,scam-strange-payments/complete/skills/2
+Always Verify,Verifica siempre,scam-strange-payments/complete/next; scam-always-verify/title; scam-always-verify/pathTitle; scam-always-verify/blocks/0/heading
+2.5,2.5,scam-always-verify/lessonNumber
+Warning Sign Expert,Experto en señales de alerta,scam-always-verify/badge
+"Ask ""how can I verify this?"" instead of ""does this look real?""",Pregunta «¿cómo puedo verificarlo?» en vez de «¿parece real?».,scam-always-verify/goals/0
+Recall all five universal warning signs.,Recuerda las cinco señales de alerta habituales.,scam-always-verify/goals/1
+How do I know if it's really them?,¿Cómo sé si de verdad son quienes dicen ser?,scam-always-verify/blocks/0/question
+Learn that the safest way to know if something is real is to verify it yourself using trusted contact information.,Aprende a comprobar por tu cuenta si una solicitud es real mediante información de contacto de confianza.,scam-always-verify/blocks/0/objective
+"Scammers can copy logos, create convincing emails, and impersonate organizations. Caller ID and official-looking websites can be misleading. Instead of asking, “Does this look real?”, ask, “How can I check this myself?”
+
+Use contact information you already trust, such as the number on your bank card, a saved official website, or the company’s app. Someone you trust can help you check, but a convincing appearance alone does not prove who contacted you.","Los estafadores pueden copiar logotipos, crear correos convincentes y hacerse pasar por organizaciones. El identificador de llamadas y los sitios de apariencia oficial pueden engañar. En vez de preguntar «¿parece real?», pregúntate «¿cómo puedo comprobarlo por mi cuenta?».
+
+Usa información de contacto que ya conoces y en la que confías, como el número de tu tarjeta bancaria, un sitio oficial guardado o la aplicación de la empresa. Alguien de confianza puede ayudarte, pero una apariencia convincente no demuestra quién te contactó.",scam-always-verify/blocks/0/text
+Spot the safe choice,Reconoce la opción segura,scam-always-verify/blocks/1/title
+Someone unexpectedly calls and says they work for your bank.,Alguien te llama sin que lo esperaras y dice trabajar para tu banco.,scam-always-verify/blocks/1/scenario
+Hang up and call the number on your bank card.,Cuelga y llama al número de tu tarjeta bancaria.,scam-always-verify/blocks/1/options/0/text
+Using a trusted phone number lets you choose who you are speaking with.,Usar un número de confianza te permite elegir con quién hablas.,scam-always-verify/blocks/1/options/0/feedback
+Continue listening because they knew your name.,Sigue escuchando porque sabía tu nombre.,scam-always-verify/blocks/1/options/1/text
+Knowing your name is not verification.,Conocer tu nombre no demuestra su identidad.,scam-always-verify/blocks/1/options/1/feedback
+Ask them to spell the bank's name.,Pídele que deletree el nombre del banco.,scam-always-verify/blocks/1/options/2/text
+Anyone claiming to be from a bank can spell its name. Tests like this prove nothing.,Cualquiera puede deletrear el nombre de un banco. Eso no comprueba su identidad.,scam-always-verify/blocks/1/options/2/feedback
+You receive an email saying there is a problem with one of your accounts.,Recibes un correo que dice que hay un problema con una de tus cuentas.,scam-always-verify/blocks/2/scenario
+Visit the company's official website yourself.,Abre el sitio web oficial de la empresa por tu cuenta.,scam-always-verify/blocks/2/options/0/text
+Starting from the official website is much safer than following unexpected links.,Entrar desde el sitio oficial es mucho más seguro que seguir enlaces inesperados.,scam-always-verify/blocks/2/options/0/feedback
+Reply and ask if it is real.,Responde y pregunta si es real.,scam-always-verify/blocks/2/options/1/text
+"If it's fake, you're asking the scammer whether the scammer is real.","Si es falso, estarías preguntando al propio estafador si dice la verdad.",scam-always-verify/blocks/2/options/1/feedback
+Click the link in the email.,Haz clic en el enlace del correo.,scam-always-verify/blocks/2/options/2/text; scam-always-verify/blocks/5/practice/1/options/1/text
+The link goes wherever the sender decided. Choose your own route.,El enlace lleva adonde decidió el remitente. Usa una vía que ya conoces y en la que confías.,scam-always-verify/blocks/2/options/2/feedback
+A text message asks you to confirm your account by tapping a link.,Un mensaje de texto te pide confirmar tu cuenta tocando un enlace.,scam-always-verify/blocks/3/scenario
+What is the safest choice?,¿Cuál es la opción más segura?,scam-always-verify/blocks/3/question
+Open the company's official app or website yourself.,Abre la aplicación o el sitio web oficial de la empresa por tu cuenta.,scam-always-verify/blocks/3/options/0/text
+Always begin from a trusted source that you chose — not one chosen for you.,"Empieza desde una fuente de confianza que tú elegiste, no desde la que te envió alguien sin avisar.",scam-always-verify/blocks/3/options/0/feedback
+Tap the link because it looks professional.,Toca el enlace porque parece profesional.,scam-always-verify/blocks/3/options/1/text
+Looking professional takes minutes to fake.,Una apariencia profesional se puede imitar rápidamente.,scam-always-verify/blocks/3/options/1/feedback
+Reply to the message.,Responder al mensaje.,scam-always-verify/blocks/3/options/2/text
+A reply only ever reaches the sender.,Una respuesta solo llega a quien envió el mensaje.,scam-always-verify/blocks/3/options/2/feedback
+"A caller says, ""Don't worry. You don't need to verify me — you can trust me.""",Alguien te llama y dice: «No se preocupe. No necesita verificar quién soy; puede confiar en mí».,scam-always-verify/blocks/4/scenario
+Verify the caller yourself before continuing.,Verifica por tu cuenta quién llama antes de continuar.,scam-always-verify/blocks/4/options/0/text
+"Trust is earned through verification, not through convincing words. Being told not to verify is itself a warning sign.",Las palabras convincentes no sustituyen una verificación. Que te pidan no comprobarlo es una señal de alerta.,scam-always-verify/blocks/4/options/0/feedback
+Someone telling you not to check is the strongest reason to check.,Que alguien te diga que no compruebes algo es motivo para hacerlo.,scam-always-verify/blocks/4/options/1/feedback
+Give them a small amount of information first.,Dale primero un poco de información.,scam-always-verify/blocks/4/options/2/text
+Small pieces of information are used to make the next request sound informed.,Incluso unos pocos datos pueden hacer que la siguiente petición parezca más creíble.,scam-always-verify/blocks/4/options/2/feedback
+How confident do you feel about verifying unexpected requests?,¿Qué tanta confianza tienes para verificar solicitudes inesperadas?,scam-always-verify/blocks/5/question
+Someone unexpectedly calls claiming to work for your insurance company.,Alguien te llama sin que lo esperaras y dice trabajar para tu aseguradora.,scam-always-verify/blocks/5/practice/0/scenario
+What is the safest way to verify them?,¿Cuál es la forma más segura de verificar su identidad?,scam-always-verify/blocks/5/practice/0/question
+Call the phone number on your insurance card.,Llamar al número de tu tarjeta del seguro.,scam-always-verify/blocks/5/practice/0/options/0/text
+The safest verification comes from contact information you already trust.,La mejor verificación empieza con información de contacto que ya conoces y en la que confías.,scam-always-verify/blocks/5/practice/0/options/0/feedback
+Continue asking them questions.,Sigue haciéndole preguntas.,scam-always-verify/blocks/5/practice/0/options/1/text
+An unverified caller can have convincing answers. End the call and contact the organization using a number you already trust.,Una persona no verificada puede tener respuestas convincentes. Cuelga y contacta a la organización mediante un número que ya conoces y en el que confías.,scam-always-verify/blocks/5/practice/0/options/1/feedback
+Let them verify themselves.,Deja que confirme su propia identidad.,scam-always-verify/blocks/5/practice/0/options/2/text
+A caller’s own reassurance is not an independent check. Use contact information you already trust to confirm the request.,La palabra de quien llama no es una comprobación independiente. Confirma la solicitud mediante información de contacto de confianza.,scam-always-verify/blocks/5/practice/0/options/2/feedback
+An email asks you to click a link to update your password.,Un correo te pide hacer clic en un enlace para actualizar tu contraseña.,scam-always-verify/blocks/5/practice/1/scenario
+Go to the company's official website yourself.,Ve al sitio web oficial de la empresa por tu cuenta.,scam-always-verify/blocks/5/practice/1/options/0/text
+Never let an unexpected message decide where you go online.,No dejes que un mensaje inesperado decida adónde vas en internet.,scam-always-verify/blocks/5/practice/1/options/0/feedback
+A link in an unexpected email may lead to a fake password page. Open the official app or a website you already trust instead.,Un enlace en un correo inesperado podría llevarte a una página de contraseña falsa. Abre la aplicación oficial o un sitio que ya conoces y en el que confías.,scam-always-verify/blocks/5/practice/1/options/1/feedback
+Reply asking if the email is real.,Responde preguntando si el correo es real.,scam-always-verify/blocks/5/practice/1/options/2/text
+"A reply goes back to the sender, so it does not independently verify the message. Check through the official app or a trusted number.","La respuesta vuelve al remitente, así que no verifica el mensaje de forma independiente. Comprueba la solicitud mediante la aplicación oficial o un número de confianza.",scam-always-verify/blocks/5/practice/1/options/2/feedback
+Lesson 2.1 — The Unexpected Call,Lección 2.1 — La llamada inesperada,scam-always-verify/blocks/6/links/0/lesson
+An unexpected call does not prove identity. End it and use a number you already trust.,Una llamada inesperada no demuestra identidad. Cuelga y usa un número que ya conoces y en el que confías.,scam-always-verify/blocks/6/links/0/note
+Lesson 2.3 — Rushing Is a Warning,Lección 2.3 — La prisa es una señal de alerta,scam-always-verify/blocks/6/links/1/lesson
+Verifying takes a few minutes. Anyone who won't allow that is telling you something.,Verificar toma unos minutos. Que alguien intente impedírtelo es una señal de alerta.,scam-always-verify/blocks/6/links/1/note
+Lesson 2.4 — Strange Payments,Lección 2.4 — Pagos inusuales,scam-always-verify/blocks/6/links/2/lesson
+"Verify before money moves, not after.","Verifica antes de enviar dinero, no después.",scam-always-verify/blocks/6/links/2/note
+The account alert,La alerta de la cuenta,scam-always-verify/blocks/7/title
+You receive an email that looks like it came from your bank. It uses the bank's logo and your name.,Recibes un correo que parece ser de tu banco. Usa el logotipo del banco y tu nombre.,scam-always-verify/blocks/7/setup
+Email · Your Bank,Correo · Tu banco,scam-always-verify/blocks/7/messages/0/from
+We've detected unusual activity on your account. Click below to review these transactions and secure your account.,Detectamos actividad inusual en su cuenta. Haga clic abajo para revisar estas transacciones y proteger su cuenta.,scam-always-verify/blocks/7/messages/0/body
+Review activity,Revisar actividad,scam-always-verify/blocks/7/messages/0/fakeButton
+Open your bank's official app or call the number on your bank card to verify the message.,Abre la aplicación oficial de tu banco o llama al número de tu tarjeta bancaria para verificar el mensaje.,scam-always-verify/blocks/7/options/0/text
+"The email may look convincing, but appearances are not proof. By choosing to verify the message through an official source, you protected yourself from a common scam.","El correo puede parecer convincente, pero la apariencia no es una prueba. Verificarlo mediante una fuente oficial te ayuda a protegerte de una estafa habitual.",scam-always-verify/blocks/7/options/0/feedback
+Click the link to learn more.,Haz clic en el enlace para saber más.,scam-always-verify/blocks/7/options/1/text
+A logo and your name do not prove that this email came from your bank. Its link could lead to a fake sign-in page; check through the bank’s app or a trusted number.,El logotipo y tu nombre no demuestran que el correo sea de tu banco. Su enlace podría llevarte a una página de inicio de sesión falsa; compruébalo mediante la aplicación del banco o un número de confianza.,scam-always-verify/blocks/7/options/1/feedback
+You completed Always Verify.,Completaste Verifica siempre.,scam-always-verify/complete/subtitle
+Verify first. Trust second.,Primero verifica. Después confía.,scam-always-verify/complete/habit
+A request that can't be independently checked.,Una solicitud que no se puede comprobar por tu cuenta.,scam-always-verify/complete/warningSign
+Verified through a source you chose,Verificaste mediante una fuente que elegiste,scam-always-verify/complete/skills/0
+Ignored an unexpected link,Evitaste un enlace inesperado,scam-always-verify/complete/skills/1
+Recognized all five warning signs,Reconociste las cinco señales de alerta,scam-always-verify/complete/skills/2
+🚩 Unexpected contact,🚩 Contacto inesperado,scam-always-verify/complete/learned/0
+🚩 Requests for secrecy,🚩 Peticiones de guardar silencio,scam-always-verify/complete/learned/1
+🚩 Pressure to hurry,🚩 Presión para actuar rápido,scam-always-verify/complete/learned/2
+🚩 Unusual payment methods,🚩 Métodos de pago inusuales,scam-always-verify/complete/learned/3
+🚩 Refusing to let you verify,🚩 Impedir que verifiques por tu cuenta,scam-always-verify/complete/learned/4
+You don't have to remember every scam — only these five warning signs.,"No necesitas recordar todas las estafas, solo estas cinco señales de alerta.",scam-always-verify/complete/learned/5
+Phase 9 Final Challenge,Desafío final de la fase 9,scam-always-verify/complete/next; phase9-challenge/title
+Phase 10 — The Masks Scammers Wear,Fase 10 — Las identidades que imitan los estafadores,phase9-challenge/nextLabel
+Quick review,Repaso breve,phase9-challenge/blocks/0/title
+Which are common scam warning signs?,¿Cuáles son señales de alerta habituales de una estafa?,phase9-challenge/blocks/0/prompt
+Pressure to act immediately,Presión para actuar de inmediato,phase9-challenge/blocks/0/options/0/text
+A request to keep the situation secret,Una petición de mantener la situación en secreto,phase9-challenge/blocks/0/options/1/text
+Payment by gift card or cryptocurrency,Pago con tarjeta de regalo o criptomonedas,phase9-challenge/blocks/0/options/2/text
+Time to verify through an official source,Tiempo para verificar mediante una fuente oficial,phase9-challenge/blocks/0/options/3/text
+Good review. These choices help you stay informed and in control.,Buen repaso. Estas opciones te ayudan a estar informado y mantener el control.,phase9-challenge/blocks/0/feedback
+Take another look at the highlighted choices. Safe actions give you time to verify.,Vuelve a mirar las opciones resaltadas. Las acciones seguras te dan tiempo para comprobar.,phase9-challenge/blocks/0/incorrectFeedback
+Key ideas,Ideas clave,phase9-challenge/blocks/1/title
+Urgency,Urgencia,phase9-challenge/blocks/1/cards/0/front
+Pressure designed to make you act before checking.,Presión diseñada para que actúes antes de comprobar.,phase9-challenge/blocks/1/cards/0/back
+Secrecy,Secreto,phase9-challenge/blocks/1/cards/1/front
+"A demand not to speak with family, a bank, or another trusted person.","Una exigencia de no hablar con tu familia, un banco u otra persona de confianza.",phase9-challenge/blocks/1/cards/1/back
+Unusual payment,Pago inusual,phase9-challenge/blocks/1/cards/2/front
+"Gift cards, cryptocurrency, or wire transfers demanded unexpectedly.","Tarjetas de regalo, criptomonedas o transferencias bancarias exigidas sin previo aviso.",phase9-challenge/blocks/1/cards/2/back
+Recall practice,Práctica de memoria,phase9-challenge/blocks/2/title
+secret,secreto,phase9-challenge/blocks/2/wordBank/0; phase9-challenge/blocks/2/questions/0/answer
+recorded,registrado,phase9-challenge/blocks/2/wordBank/1
+small,pequeño,phase9-challenge/blocks/2/wordBank/2
+printed,impreso,phase9-challenge/blocks/2/wordBank/3
+A request to keep a payment ______ is a warning sign.,Una petición de mantener un pago en ______ es una señal de alerta.,phase9-challenge/blocks/2/questions/0/text
+A caller demands cryptocurrency within ten minutes. What should you do?,Alguien te llama y exige criptomonedas en diez minutos. ¿Qué debes hacer?,phase9-challenge/blocks/3/text
+Refuse and independently verify the claim,Negarte y verificar lo que dice por tu cuenta,phase9-challenge/blocks/3/options/0
+Pay quickly to avoid the threatened penalty,Pagar rápido para evitar la sanción con la que amenaza,phase9-challenge/blocks/3/options/1
+Ask the caller which cryptocurrency is fastest,Preguntar qué criptomoneda es más rápida,phase9-challenge/blocks/3/options/2
+Urgency plus unusual payment is a strong scam pattern. End the call and verify independently.,La urgencia junto con un pago inusual es un patrón habitual de estafa. Cuelga y verifica por tu cuenta.,phase9-challenge/blocks/3/explanation
+A caller demands cryptocurrency within ten minutes.,Alguien te llama y exige criptomonedas en diez minutos.,phase9-challenge/blocks/3/presentation/story
+Final confidence check,Comprobación final de confianza,phase9-challenge/blocks/4/title
+Urgency is proof that a message is genuine.,La urgencia demuestra que un mensaje es auténtico.,phase9-challenge/blocks/4/questions/0/text
+Urgency is not proof. It is often used to stop you from checking.,La urgencia no es una prueba. Suele usarse para impedir que compruebes la situación.,phase9-challenge/blocks/4/questions/0/explanation

@@ -2,6 +2,9 @@ import { useMemo, useState } from "react";
 import { shuffle } from "../../utils/shuffle";
 import BlockShell from "./BlockShell";
 import { TieredChoiceBody } from "./TieredChoiceBlock";
+import AnswerOption from "./AnswerOption";
+import ReadAloud from "../ReadAloud";
+import { useLearningText } from "../../i18n/learning.js";
 
 // Asks how confident the learner feels. "I'd like more practice" launches
 // extra questions instead of failing them, then asks again. If they still
@@ -14,10 +17,12 @@ export default function ConfidenceBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const [mode, setMode] = useState("ask"); // ask | practice
   const [round, setRound] = useState(0);
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState(null);
+  const [confidence, setConfidence] = useState(null);
 
   const pool = block.practice || [];
   // Reshuffle every round so repeats never feel identical.
@@ -33,6 +38,7 @@ export default function ConfidenceBlock({
       return;
     }
     setMode("practice");
+    setConfidence(null);
     setQIndex(0);
     setSelected(null);
   };
@@ -44,6 +50,7 @@ export default function ConfidenceBlock({
     } else {
       // Round finished — ask how they feel again.
       setMode("ask");
+      setConfidence(null);
       setRound((r) => r + 1);
       setSelected(null);
     }
@@ -54,21 +61,21 @@ export default function ConfidenceBlock({
     return (
       <BlockShell
         key={`practice-${round}-${qIndex}`}
-        label="More practice"
+        label={t("More practice")}
         progress={progress}
         progressTotal={progressTotal}
         onBack={onBack}
-      onExit={onExit}
+        onExit={onExit}
         footer={
           selected != null ? (
             <button className="btn-primary" onClick={nextQuestion}>
-              {qIndex + 1 < questions.length ? "Next" : "Done practicing"}
+              {t(qIndex + 1 < questions.length ? "Next" : "Done practicing")}
             </button>
           ) : null
         }
       >
         <p className="text-lg font-semibold text-ink-faint">
-          Practice {qIndex + 1} of {questions.length}
+          {t("Practice {current} of {total}", {current: qIndex + 1, total: questions.length})}
         </p>
         <TieredChoiceBody
           scenario={q.scenario}
@@ -83,56 +90,37 @@ export default function ConfidenceBlock({
 
   return (
     <BlockShell
-      label="Check in"
+      label={t("Check in")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
+      onExit={onExit}
+      footer={<button className="btn-primary" disabled={confidence == null}
+        onClick={() => confidence === "practice" ? startPractice() : onContinue()}>{t("Continue")}</button>}
     >
       <div className="animate-fade-up">
-        <h1 className="page-title">
-          {block.question || "How confident do you feel?"}
+        <h1 className="page-title lesson-question">
+          {t(block.question || "How confident do you feel?")}
         </h1>
+        <p className="mt-3 text-xl leading-relaxed text-ink-soft">{t("Choose the answer that feels right for you. There is no score.")}</p>
 
         {round > 0 && (
           <p className="mt-4 text-xl leading-relaxed text-ink-soft">
-            Nice work. There's no score here and no wrong answer — practice as
-            much as you'd like.
+            {t("Nice work. There's no score here and no wrong answer — practice as much as you'd like.")}
           </p>
         )}
 
+        <div className="lesson-audio"><ReadAloud text={[
+          block.question || "How confident do you feel?",
+          "Choose the answer that feels right for you. There is no score.",
+          ...(round > 0 ? ["Nice work. There's no score here and no wrong answer — practice as much as you'd like."] : []),
+          "Very confident", "Mostly confident", "I'd like more practice",
+        ].map(part => t(part)).join(". ")} /></div>
+
         <div className="mt-8 space-y-4">
-          <button
-            type="button"
-            onClick={onContinue}
-            className="w-full rounded-2xl border-2 border-sage bg-sage/15 px-6 py-6 text-left text-2xl font-semibold text-sage-dark transition-colors hover:bg-sage/25"
-          >
-            <span className="mr-3" aria-hidden="true">
-              😊
-            </span>
-            Very confident
-          </button>
-
-          <button
-            type="button"
-            onClick={onContinue}
-            className="w-full rounded-2xl border-2 border-sage/50 bg-cream-card px-6 py-6 text-left text-2xl font-semibold text-ink transition-colors hover:bg-sage/10"
-          >
-            <span className="mr-3" aria-hidden="true">
-              🙂
-            </span>
-            Mostly confident
-          </button>
-
-          <button
-            type="button"
-            onClick={startPractice}
-            className="w-full rounded-2xl border-2 border-clay/40 bg-cream-card px-6 py-6 text-left text-2xl font-semibold text-clay transition-colors hover:bg-clay/10"
-          >
-            <span className="mr-3" aria-hidden="true">
-              🤔
-            </span>
-            I'd like more practice
-          </button>
+          {[["very", "Very confident"], ["mostly", "Mostly confident"], ["practice", "I'd like more practice"]].map(([value, label]) => (
+            <AnswerOption key={value} selected={confidence === value} onClick={() => setConfidence(value)}>{t(label)}</AnswerOption>
+          ))}
         </div>
       </div>
     </BlockShell>

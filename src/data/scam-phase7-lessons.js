@@ -1808,8 +1808,8 @@ export const scamPhase7Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 14 complete!",
-      subtitle: "You completed Be Careful with Easy Money Offers — and all of Phase 14.",
+      title: "Lesson complete!",
+      subtitle: "You completed Be Careful with Easy Money Offers.",
       habit: "Before trusting an easy-money offer, check: Promise. Proof. Payment. Pressure. Privacy.",
       warningSign: "Money coming in can still put your money at risk.",
       skills: [

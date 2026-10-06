@@ -5,7 +5,7 @@
 // Boss deliberately uses a different channel — call, text, pop-up, email,
 // letter — so learners see the same five signs arrive in different envelopes.
 
-import { WARNING_SIGNS } from "./scam-phase2-lessons";
+import { WARNING_SIGNS } from "./scam-phase2-lessons.js";
 
 // Shown at the top of every reading in this phase.
 const REMINDER = WARNING_SIGNS;
@@ -36,7 +36,7 @@ export const scamPhase3Lessons = [
         objective:
           "Learn that anyone can pretend to be a trusted person or organization, so you should rely on warning signs instead of appearances.",
         warningSigns: REMINDER,
-        text: "Scammers often pretend to be people you already trust, such as bank employees, police officers, utility workers, or computer technicians. Some even use official logos, uniforms, or caller ID to look convincing. A familiar name or professional appearance does not prove someone is real. Instead of focusing on who they claim to be, look for the warning signs you've already learned and always verify their identity yourself."
+        text: "Scammers often pretend to be people you already trust, such as bank employees, police officers, utility workers, or computer technicians. Some even use official logos, uniforms, or caller ID to look convincing.\n\nA familiar name or professional appearance does not prove someone is real. Instead of focusing on who they claim to be, look for the warning signs you've already learned and always verify their identity yourself."
       },
       {
         type: "tiered",
@@ -101,7 +101,7 @@ export const scamPhase3Lessons = [
             text: "Verify the visit with the company before allowing access.",
             tier: "best",
             feedback:
-              "Uniforms, badges, and logos can all be copied. Verification is the safest choice, and a real worker will wait."
+              "A uniform or badge does not verify a visit. Keep the door closed while you call the company using the number on your bill."
           },
           {
             text: "Let them inside because they are wearing a uniform.",
@@ -136,7 +136,7 @@ export const scamPhase3Lessons = [
             text: "Clicking the link is the fastest way to find out.",
             tier: "unsafe",
             feedback:
-              "Clicking is how you find out the hard way. Check independently instead."
+              "Do not use the link to test the message. Open the bank’s official app or call the number on your bank card."
           }
         ]
       },
@@ -207,7 +207,7 @@ export const scamPhase3Lessons = [
             text: "Let them inside because everything looks official.",
             tier: "unsafe",
             feedback:
-              "Uniforms, badges, and even vehicle signage can all be arranged. A genuine worker will not mind waiting while you call."
+              "A uniform, badge, or marked truck is not enough to verify the visit. Keep the door closed and call the company using the number on your bill."
           }
         ],
         spotted: ["Unexpected contact", "Appearances used as proof"]
@@ -253,7 +253,7 @@ export const scamPhase3Lessons = [
         objective:
           "Learn that someone claiming to be from the government or law enforcement should still be verified before you trust them.",
         warningSigns: REMINDER,
-        text: "Government agencies and law enforcement play important roles in our communities, which is why scammers sometimes pretend to represent them. Hearing names like the IRS, Social Security Administration, or local police can make people feel nervous or pressured to cooperate. Remember the warning signs you've already learned: unexpected contact, pressure to act quickly, requests for secrecy, unusual payment methods, and refusing to let you verify who they are. A government title does not change the rules."
+        text: "Government agencies and law enforcement play important roles in our communities, which is why scammers sometimes pretend to represent them. Hearing names like the IRS, Social Security Administration, or local police can make people feel nervous or pressured to cooperate.\n\nRemember the warning signs you've already learned: unexpected contact, pressure to act quickly, requests for secrecy, unusual payment methods, and refusing to let you verify who they are. A government title does not change the rules."
       },
       {
         type: "tiered",
@@ -334,7 +334,7 @@ export const scamPhase3Lessons = [
         type: "tiered",
         title: "Connect previous lessons",
         scenario:
-          "An unexpected caller claims to be from a government agency, asks you not to tell anyone, and wants payment using gift cards.",
+          "An unexpected caller claims to be from a government agency, asks you not to tell anyone, and demands payment today using gift cards.",
         question: "How many warning signs can you identify?",
         options: [
           {
@@ -371,7 +371,7 @@ export const scamPhase3Lessons = [
                 text: "Hang up and contact the agency using an official number.",
                 tier: "best",
                 feedback:
-                  "Social Security numbers are not suspended by phone call. Verify independently."
+                  "The Social Security Administration does not suspend Social Security numbers. End the call and check through SSA.gov or a trusted agency number."
               },
               {
                 text: "Give them your number to check.",
@@ -394,7 +394,7 @@ export const scamPhase3Lessons = [
                 text: "Police do not take payments over the phone to cancel arrests.",
                 tier: "best",
                 feedback:
-                  "No real law enforcement agency collects money by phone to make a problem go away."
+                  "An unexpected demand to pay by phone to avoid arrest is a scam warning. End the call and check with the agency through a trusted number."
               },
               {
                 text: "They sounded serious.",
@@ -433,13 +433,13 @@ export const scamPhase3Lessons = [
             text: "Purchase the gift cards.",
             tier: "unsafe",
             feedback:
-              "The IRS contacts people by mail and never accepts gift cards. Every element of that call was a warning sign."
+              "The IRS normally first contacts people by mail and does not accept gift cards for taxes. Check this demand through IRS.gov or a trusted IRS number."
           },
           {
             text: "Stay on the phone until you understand the situation.",
             tier: "unsafe",
             feedback:
-              "Understanding won't come from them. Hang up and check with the real agency."
+              "An unverified caller cannot independently confirm the claim. End the call and check with the agency through a trusted number."
           }
         ],
         spotted: [
@@ -490,7 +490,7 @@ export const scamPhase3Lessons = [
         objective:
           "Learn that someone claiming to be from your bank should still be verified before you trust them.",
         warningSigns: REMINDER,
-        text: "Your bank works hard to protect your money, which is why scammers often pretend to represent it. They may say there is suspicious activity on your account or that they need your help to stop fraud. These stories are meant to get your attention, but they do not change the rules you've already learned. If someone contacts you unexpectedly about your money, slow down and verify the situation by contacting your bank yourself using an official phone number or your banking app."
+        text: "Your bank works hard to protect your money, which is why scammers often pretend to represent it. They may say there is suspicious activity on your account or that they need your help to stop fraud. These stories are meant to get your attention, but they do not change the rules you've already learned.\n\nIf someone contacts you unexpectedly about your money, slow down and verify the situation by contacting your bank yourself using an official phone number or your banking app."
       },
       {
         type: "tiered",
@@ -561,12 +561,12 @@ export const scamPhase3Lessons = [
             text: "Tap the link immediately.",
             tier: "unsafe",
             feedback:
-              "If your card really is locked, your own app will tell you."
+              "Check the card’s status through your bank’s official app or the number printed on your bank card."
           },
           {
             text: "Reply to the text asking if it is real.",
             tier: "unsafe",
-            feedback: "The sender will always say yes."
+            feedback: "A reply goes back to the sender, so it does not independently verify the message. Check through the official app or a trusted number."
           }
         ]
       },
@@ -574,7 +574,7 @@ export const scamPhase3Lessons = [
         type: "tiered",
         title: "Connect previous lessons",
         scenario:
-          "An unexpected caller claims to be from your bank. They tell you to keep the call private, insist you must act immediately, and ask you to move your money to a \"safe account.\"",
+          "An unexpected caller claims to be from your bank. They tell you to keep the call private, insist you must act immediately, refuse to let you call the bank yourself, and ask you to move your money to a \"safe account.\"",
         question: "How many warning signs do you notice?",
         options: [
           {
@@ -659,7 +659,7 @@ export const scamPhase3Lessons = [
           {
             from: "Incoming call · \"Your Bank\"",
             body:
-              "We've detected suspicious activity. Please stay on the line while I help you move your money to a safe account. Don't discuss this with anyone — it could interfere with our investigation."
+              "We’ve detected suspicious activity. Move your money to a safe account immediately. Stay on the line; do not call the bank yourself. Don’t discuss this with anyone — it could interfere with our investigation."
           }
         ],
         question: "What should you do first?",
@@ -674,7 +674,7 @@ export const scamPhase3Lessons = [
             text: "Move your money immediately.",
             tier: "unsafe",
             feedback:
-              "There is no such thing as a \"safe account\" your bank moves you to over the phone. That account belongs to the scammer, and the transfer cannot be undone."
+              "Do not transfer money to an account supplied by an unexpected caller. If you already sent money, contact your bank immediately and ask whether it can stop or reverse the transfer."
           },
           {
             text: "Stay on the phone and follow their instructions.",
@@ -720,7 +720,7 @@ export const scamPhase3Lessons = [
     badge: "Tech Support Skeptic",
     xp: 20,
     goals: [
-      "Recognize that real tech companies don't call you about viruses.",
+      "Recognize unsolicited calls claiming your computer has a virus.",
       "Never grant remote access to someone who contacted you."
     ],
     blocks: [
@@ -731,7 +731,7 @@ export const scamPhase3Lessons = [
         objective:
           "Learn that unexpected tech support requests should always be verified before giving someone access to your computer or personal information.",
         warningSigns: REMINDER,
-        text: "Your computer may occasionally have real problems, but legitimate companies usually do not contact you unexpectedly to tell you about them. Scammers often pretend to be computer technicians and claim they found a virus or security issue. Their goal is to make you panic so you'll give them remote access, personal information, or money. Before letting anyone help with your computer, take a moment to verify who they are and whether you asked for their help in the first place."
+        text: "Your computer may occasionally have real problems, but legitimate companies usually do not contact you unexpectedly to tell you about them. Scammers often pretend to be computer technicians and claim they found a virus or security issue. Their goal is to make you panic so you'll give them remote access, personal information, or money.\n\nBefore letting anyone help with your computer, take a moment to verify who they are and whether you asked for their help in the first place."
       },
       {
         type: "tiered",
@@ -744,7 +744,7 @@ export const scamPhase3Lessons = [
             text: "Hang up and contact Microsoft or your computer company through official support if you're concerned.",
             tier: "best",
             feedback:
-              "Microsoft doesn't monitor personal computers and call people unexpectedly. Ending the call and contacting support yourself is the safest response."
+              "Microsoft does not make unsolicited tech support calls. End this unexpected call and use official support you contact yourself."
           },
           {
             text: "Tell them you'll think about it and end the call.",
@@ -756,7 +756,7 @@ export const scamPhase3Lessons = [
             text: "Stay on the phone so they can explain.",
             tier: "unsafe",
             feedback:
-              "The explanation is the trap. There is no virus, and no way for them to have seen one."
+              "The caller’s claim does not prove your computer has a virus. End the call and use trusted support if you are concerned."
           }
         ]
       },
@@ -782,7 +782,7 @@ export const scamPhase3Lessons = [
             text: "Install the program so they can help.",
             tier: "unsafe",
             feedback:
-              "That program hands over control of your computer, your files, and any account you're signed into."
+              "Remote access software can let someone control your computer or access files. Do not install it at an unexpected caller’s request."
           }
         ]
       },
@@ -794,7 +794,7 @@ export const scamPhase3Lessons = [
         question: "What is the best response?",
         options: [
           {
-            text: "Close the message if possible and contact a trusted tech support service yourself if you're concerned.",
+            text: "Close the page using the browser’s own controls, and contact trusted support yourself if you are concerned.",
             tier: "best",
             feedback:
               "Scammers often create alarming pop-up messages to make people react without thinking."
@@ -803,13 +803,13 @@ export const scamPhase3Lessons = [
             text: "Restart your computer and ask someone you trust if the message returns.",
             tier: "safe",
             feedback:
-              "Restarting usually clears these pop-ups and asking someone you trust is sensible."
+              "If you cannot close the browser, restarting may help. Avoid restoring the suspicious page, and use trusted support if the warning returns."
           },
           {
             text: "Call the number on the screen.",
             tier: "unsafe",
             feedback:
-              "That number belongs to the people who made the pop-up. Real warnings never ask you to phone anyone."
+              "Do not use a number supplied by an alarming pop-up. Find support through the company’s official app or a website you already trust."
           }
         ]
       },
@@ -817,7 +817,7 @@ export const scamPhase3Lessons = [
         type: "tiered",
         title: "Connect previous lessons",
         scenario:
-          "An unexpected caller says your computer is infected. They ask you to stay on the phone, tell you not to ask anyone else for help because they'll \"make things worse,\" and want you to buy gift cards to pay for repairs.",
+          "An unexpected caller says your computer is infected. They ask you to stay on the phone, tell you not to ask anyone else for help because they’ll \"make things worse,\" and demand gift card numbers immediately to pay for repairs.",
         question: "Which response is safe?",
         options: [
           {
@@ -836,7 +836,7 @@ export const scamPhase3Lessons = [
             text: "Buy the gift cards because your computer might really be infected.",
             tier: "unsafe",
             feedback:
-              "No repair service is paid in gift cards. That request alone settles it."
+              "A demand to buy gift cards and share their numbers for computer repairs is a scam warning. End the call."
           }
         ]
       },
@@ -856,7 +856,7 @@ export const scamPhase3Lessons = [
               {
                 text: "Ask someone you trust whether the email looks legitimate.",
                 tier: "safe",
-                feedback: "A second opinion is always reasonable."
+                feedback: "Someone you trust can help you check. An email’s appearance alone does not prove who sent it."
               },
               {
                 text: "Reply asking how much they charge.",
@@ -872,10 +872,10 @@ export const scamPhase3Lessons = [
             question: "Which response is best?",
             options: [
               {
-                text: "Close the page and use trusted support if you're concerned.",
+                text: "Close the page using the browser’s controls and use trusted support if you are concerned.",
                 tier: "best",
                 feedback:
-                  "The noise is there to panic you. Closing the page costs nothing."
+                  "Loud sounds can pressure you to act. Use the browser’s own controls to close the page, not buttons inside the warning."
               },
               {
                 text: "Step away for a moment and come back calmly before deciding what to do.",
@@ -927,7 +927,7 @@ export const scamPhase3Lessons = [
             text: "Install the software because they sound like experts.",
             tier: "unsafe",
             feedback:
-              "That software would give a stranger full control of your computer. Every element here was a warning sign: the pop-up, the unexpected call, the secrecy, the urgency, and the gift cards."
+              "Installing remote access software for an unknown caller can expose your computer and files. The unexpected call, secrecy, urgency, and gift card demand are warning signs."
           }
         ],
         spotted: [
@@ -980,7 +980,7 @@ export const scamPhase3Lessons = [
         objective:
           "Learn that even messages claiming to be from a loved one should be verified before sending money or personal information.",
         warningSigns: REMINDER,
-        text: "Scammers sometimes pretend to be a child, grandchild, friend, or another loved one. They know we naturally want to help the people we care about. A message may say they lost their phone, are stranded, or need money right away. Before helping, remember that love and kindness are strengths — but they should always be paired with verification. A quick phone call to a trusted number can protect both your heart and your wallet."
+        text: "Scammers sometimes pretend to be a child, grandchild, friend, or another loved one. They know we naturally want to help the people we care about. A message may say they lost their phone, are stranded, or need money right away.\n\nBefore helping, remember that love and kindness are strengths — but they should always be paired with verification. A quick phone call to a trusted number can protect both your heart and your wallet."
       },
       {
         type: "tiered",
@@ -999,7 +999,7 @@ export const scamPhase3Lessons = [
             text: "Wait until you can talk with them in person before updating the contact.",
             tier: "safe",
             feedback:
-              "Waiting is fine. Calling the number you already have would settle it in a minute."
+              "Waiting to speak in person is reasonable. You can also try the number you already have saved before changing the contact."
           },
           {
             text: "Save the new number immediately because they used your nickname.",
@@ -1032,7 +1032,7 @@ export const scamPhase3Lessons = [
             text: "Send the money because family comes first.",
             tier: "unsafe",
             feedback:
-              "The secrecy request is the giveaway. Real family emergencies don't require hiding things from the rest of the family."
+              "Secrecy combined with an unexpected money request is a warning sign. Check with your loved one or another trusted person before paying."
           }
         ]
       },
@@ -1066,7 +1066,7 @@ export const scamPhase3Lessons = [
         type: "tiered",
         title: "Connect previous lessons",
         scenario:
-          "Someone claiming to be your grandson says they need money immediately, asks you not to tell anyone, and wants payment through a gift card.",
+          "An unexpected message claims to be from your grandson. It asks for money immediately through gift card numbers, says not to tell anyone, and tells you not to call to check.",
         question: "Which response is safe?",
         options: [
           {
@@ -1078,13 +1078,13 @@ export const scamPhase3Lessons = [
           {
             text: "Wait until you've spoken with a trusted family member before sending money.",
             tier: "safe",
-            feedback: "Good instinct — one phone call resolves this."
+            feedback: "Checking with someone you trust gives you another way to verify the story before sending money."
           },
           {
             text: "Buy the gift cards immediately because it's an emergency.",
             tier: "unsafe",
             feedback:
-              "No real emergency is solved with gift card numbers read aloud."
+              "An urgent request for gift card numbers is a scam warning. Verify the emergency through a known number before sending money."
           }
         ]
       },
@@ -1101,7 +1101,7 @@ export const scamPhase3Lessons = [
               {
                 text: "Call your loved one using the phone number you already know.",
                 tier: "best",
-                feedback: "One call to a known number settles it immediately."
+                feedback: "Try the number you already know. If you cannot reach your loved one, check with another trusted family member before sending money."
               },
               {
                 text: "Ask another family member if they've heard from them.",
@@ -1125,12 +1125,12 @@ export const scamPhase3Lessons = [
                 text: "They don't want you to verify who they are.",
                 tier: "best",
                 feedback:
-                  "\"Don't call\" exists for one reason: a call would end the scam."
+                  "In an unexpected request for money, pressure not to call is a reason to verify through another trusted contact."
               },
               {
                 text: "They're asking you to act without checking first.",
                 tier: "safe",
-                feedback: "Yes — and the reason is that checking would expose it."
+                feedback: "Check through a number you already know before acting on this unexpected request."
               },
               {
                 text: "They sound upset.",
@@ -1184,7 +1184,7 @@ export const scamPhase3Lessons = [
             text: "Buy the gift cards because it sounds like a real emergency.",
             tier: "unsafe",
             feedback:
-              "Every warning sign was in that message: a new unknown number, secrecy, urgency, gift cards, and a reason you couldn't call. A single call to your grandchild's real number would have ended it."
+              "The message combines an unknown number, secrecy, urgency, gift cards, and pressure not to call. Try your grandchild’s known number or another trusted family member before acting."
           }
         ],
         spotted: [
@@ -1237,7 +1237,7 @@ export const scamPhase3Lessons = [
         objective:
           "Learn that companies providing services to your home should never pressure you into making immediate payments or sharing information without giving you time to verify the request.",
         warningSigns: REMINDER,
-        text: "Your electric, gas, water, internet, and cable companies all provide important services that you depend on. Because of that, scammers sometimes pretend to represent them. They may claim your service will be disconnected, that your bill wasn't paid, or that there's an emergency with your account. Before reacting, remember that you can always verify the situation yourself. A company that provides your home services should not stop you from checking your account or contacting them through their official customer service number."
+        text: "Your electric, gas, water, internet, and cable companies all provide important services that you depend on. Because of that, scammers sometimes pretend to represent them. They may claim your service will be disconnected, that your bill wasn't paid, or that there's an emergency with your account.\n\nBefore reacting, remember that you can always verify the situation yourself. A company that provides your home services should not stop you from checking your account or contacting them through their official customer service number."
       },
       {
         type: "tiered",
@@ -1256,13 +1256,13 @@ export const scamPhase3Lessons = [
             text: "Log into your online account yourself to check whether there's actually a problem.",
             tier: "safe",
             feedback:
-              "Excellent instinct — your own account is a trusted source and will show any real balance."
+              "Open the company’s official app or website yourself to check your account. If the information is unclear, call the number on your bill."
           },
           {
             text: "Pay immediately to avoid losing power.",
             tier: "unsafe",
             feedback:
-              "Utilities send written notice well before disconnection. Same-day threats by phone are a pressure tactic."
+              "An unexpected threat of immediate disconnection is a scam warning. Check your account directly or call the number on your bill before paying."
           }
         ]
       },
@@ -1308,13 +1308,13 @@ export const scamPhase3Lessons = [
           {
             text: "Ignore the message until you've checked your account.",
             tier: "safe",
-            feedback: "Perfectly reasonable — and your tap still works, doesn't it?"
+            feedback: "Pause the request while you check directly with your water company. Do not rely on the text’s link."
           },
           {
             text: "Tap the link to restore your service.",
             tier: "unsafe",
             feedback:
-              "That link leads to a page built to capture your payment details."
+              "An unexpected link could lead to a fake payment page. Check through the company’s official website or the number on your bill."
           }
         ]
       },
@@ -1334,7 +1334,7 @@ export const scamPhase3Lessons = [
           {
             text: "Log into your online account yourself before making any decisions.",
             tier: "safe",
-            feedback: "Also solid — your own account is a trusted source."
+            feedback: "Use the company’s official app or a website you already trust to check your account."
           },
           {
             text: "Follow the caller's payment instructions.",
@@ -1362,7 +1362,7 @@ export const scamPhase3Lessons = [
               {
                 text: "Wait until you can review your account later today.",
                 tier: "safe",
-                feedback: "Fine — nothing is disconnected in the meantime."
+                feedback: "Check the claimed deadline through the provider’s official app or the number on your bill before paying."
               },
               {
                 text: "Click the email link immediately.",
@@ -1426,13 +1426,13 @@ export const scamPhase3Lessons = [
             text: "Log into your account yourself to check your balance before deciding what to do.",
             tier: "safe",
             feedback:
-              "A strong move — your own account will show immediately whether anything is actually owed."
+              "Check your balance through the official account. Contact the company using the number on your bill if you need help understanding it."
           },
           {
             text: "Click the \"Pay Now\" button because it looks official.",
             tier: "unsafe",
             feedback:
-              "The email and the call arriving together is the tell — that coordination exists to overwhelm you. Real utilities give written notice weeks ahead."
+              "An official-looking email and a follow-up call do not prove a payment is due. Verify the balance and any deadline through the company’s official account or the number on your bill."
           }
         ],
         spotted: [
@@ -1446,7 +1446,7 @@ export const scamPhase3Lessons = [
     complete: {
       title: "Lesson complete!",
       subtitle: "You completed Your Home Services.",
-      habit: "Your home services can wait for verification. Don't let urgency decide.",
+      habit: "Check service-payment demands through your provider’s official account or the number on your bill.",
       warningSign: "Threats of immediate service disconnection.",
       skills: [
         "Stayed calm under pressure",
@@ -1483,7 +1483,7 @@ export const scamPhase3Lessons = [
         objective:
           "Learn that unexpected delivery messages should be verified before clicking links or sharing personal information.",
         warningSigns: REMINDER,
-        text: "Many people receive packages throughout the year, making delivery companies an easy disguise for scammers. You might receive a text or email saying a package couldn't be delivered or that you need to pay a small fee before it can arrive. Even if you're expecting a package, don't assume every message is real. Instead, check your order through the official delivery company's website or the store where you placed the order."
+        text: "Many people receive packages throughout the year, making delivery companies an easy disguise for scammers. You might receive a text or email saying a package couldn't be delivered or that you need to pay a small fee before it can arrive.\n\nEven if you're expecting a package, don't assume every message is real. Instead, check your order through the official delivery company's website or the store where you placed the order."
       },
       {
         type: "tiered",
@@ -1502,7 +1502,7 @@ export const scamPhase3Lessons = [
             text: "Wait until later to see if another update arrives.",
             tier: "safe",
             feedback:
-              "Waiting costs nothing. Checking your order directly answers it faster."
+              "Check your order through the retailer’s official app or website before following an unexpected delivery link."
           },
           {
             text: "Tap the link in the text message.",
@@ -1528,7 +1528,7 @@ export const scamPhase3Lessons = [
           {
             text: "Ignore the message until you confirm you're expecting a package.",
             tier: "safe",
-            feedback: "Sensible. Nothing bad happens by waiting."
+            feedback: "Before paying, confirm the shipment and any fee through the retailer or carrier’s official app or website."
           },
           {
             text: "Pay the $2 because it's only a small amount.",
@@ -1555,7 +1555,7 @@ export const scamPhase3Lessons = [
             text: "Compare the tracking number with your order confirmation before clicking anything.",
             tier: "safe",
             feedback:
-              "Good thinking — a mismatch would expose it immediately."
+              "Compare it with your own order records, then open the retailer’s official app or website. A matching number alone does not prove the text is genuine."
           },
           {
             text: "Tap the text message link because you're expecting a package.",
@@ -1569,7 +1569,7 @@ export const scamPhase3Lessons = [
         type: "tiered",
         title: "Connect previous lessons",
         scenario:
-          "A text says your package will be returned unless you pay immediately using a payment app. The message warns that the offer expires in one hour.",
+          "An unexpected text says your package will be returned unless you pay immediately to a personal account in a payment app. It gives you one hour and says not to contact the carrier to check.",
         question: "Which response is safe?",
         options: [
           {
@@ -1581,13 +1581,13 @@ export const scamPhase3Lessons = [
           {
             text: "Wait until you can log into your account yourself before taking any action.",
             tier: "safe",
-            feedback: "Reasonable — the one-hour deadline is fictional."
+            feedback: "Do not let an unexpected deadline decide for you. Check the shipment and any deadline with the retailer or carrier directly."
           },
           {
             text: "Use the payment link so your package isn't returned.",
             tier: "unsafe",
             feedback:
-              "Carriers don't collect redelivery fees by text with a one-hour deadline."
+              "An urgent request to pay a personal account is a warning sign. Verify any fee through the carrier’s official app or website."
           }
         ]
       },
@@ -1613,7 +1613,7 @@ export const scamPhase3Lessons = [
               {
                 text: "Click the link to update your address.",
                 tier: "unsafe",
-                feedback: "The page behind it is built to harvest details."
+                feedback: "An unexpected link could lead to a fake page that collects your details. Check your order directly instead."
               }
             ]
           },
@@ -1624,12 +1624,12 @@ export const scamPhase3Lessons = [
               {
                 text: "Verify the shipment yourself before taking any action.",
                 tier: "best",
-                feedback: "Packages are not destroyed. That threat is invented."
+                feedback: "This threat is not proof of your package’s status. Check with the retailer or carrier using contact information you already trust."
               },
               {
                 text: "Ignore the message until you've checked your account.",
                 tier: "safe",
-                feedback: "Nothing is lost by waiting."
+                feedback: "Check your order directly before responding. The message alone does not verify the package’s status or deadline."
               },
               {
                 text: "Click the link because it sounds urgent.",
@@ -1678,7 +1678,7 @@ export const scamPhase3Lessons = [
             text: "Wait until you can confirm the package through your order history before making any payment.",
             tier: "safe",
             feedback:
-              "Good judgment. A genuine carrier will simply attempt delivery again."
+              "Verify the status and any delivery options through your order history or the carrier’s official app. Do not assume another delivery attempt is guaranteed."
           },
           {
             text: "Pay the $2 using the text message link so your package won't be returned.",
@@ -1738,7 +1738,7 @@ export const scamPhase3Lessons = [
         objective:
           "Learn that healthcare organizations and Medicare should never pressure you into sharing personal information, making payments, or accepting unexpected offers without giving you time to verify them.",
         warningSigns: REMINDER,
-        text: "Healthcare is personal, so it's natural to pay attention when someone claims to be from Medicare, your doctor's office, or your health insurance company. Scammers know this and may offer free medical equipment, ask you to \"confirm\" your Medicare number, or say your benefits are at risk. Even if the message sounds helpful, remember that you can always verify it by calling your healthcare provider or Medicare using an official phone number before sharing information or accepting offers."
+        text: "Healthcare is personal, so it's natural to pay attention when someone claims to be from Medicare, your doctor's office, or your health insurance company. Scammers know this and may offer free medical equipment, ask you to \"confirm\" your Medicare number, or say your benefits are at risk.\n\nEven if the message sounds helpful, remember that you can always verify it by calling your healthcare provider or Medicare using an official phone number before sharing information or accepting offers."
       },
       {
         type: "tiered",
@@ -1751,7 +1751,7 @@ export const scamPhase3Lessons = [
             text: "End the call and contact Medicare or your healthcare provider using an official phone number.",
             tier: "best",
             feedback:
-              "Unexpected requests for personal information should always be verified first. Medicare already has your number — they don't need to call and ask for it."
+              "Do not share your Medicare number with an unverified caller. Medicare may call in limited situations, such as returning a request for help; check unexpected requests using a trusted number."
           },
           {
             text: "Tell them you'll call back after checking your records.",
@@ -1783,7 +1783,7 @@ export const scamPhase3Lessons = [
           {
             text: "Decline the offer until you've had time to research it.",
             tier: "safe",
-            feedback: "Declining costs you nothing. A genuine benefit will still be there."
+            feedback: "Pause the offer and check eligibility, costs, and any deadline with your healthcare provider or Medicare before agreeing."
           },
           {
             text: "Accept the offer immediately because it's free.",
@@ -1804,7 +1804,7 @@ export const scamPhase3Lessons = [
             text: "Contact Medicare using an official phone number or website to verify the message.",
             tier: "best",
             feedback:
-              "Unexpected emails should never decide where you go online. Medicare benefits don't expire overnight."
+              "An email’s deadline does not verify a benefit change. Contact Medicare through Medicare.gov or a trusted number before sharing information."
           },
           {
             text: "Wait until you can log into your official Medicare account yourself.",
@@ -1822,7 +1822,7 @@ export const scamPhase3Lessons = [
         type: "tiered",
         title: "Connect previous lessons",
         scenario:
-          "Someone claiming to be from Medicare says your benefits are at risk. They tell you to keep the call private because it's a \"security issue,\" ask for your Medicare number, and say you must act today.",
+          "An unexpected caller claims to be from Medicare and says your benefits are at risk. They ask for your Medicare number today, demand secrecy because it is a \"security issue,\" and tell you not to contact Medicare yourself.",
         question: "Which response is safe?",
         options: [
           {
@@ -1841,7 +1841,7 @@ export const scamPhase3Lessons = [
             text: "Give them your information to avoid losing your benefits.",
             tier: "unsafe",
             feedback:
-              "Losing benefits was the threat used to rush you. Medicare doesn't work this way."
+              "The threat is pressuring you to share information before checking. End the call and verify your benefits with Medicare through a trusted number."
           }
         ]
       },
@@ -1856,7 +1856,7 @@ export const scamPhase3Lessons = [
               {
                 text: "Verify the offer through your doctor or Medicare.",
                 tier: "best",
-                feedback: "Your doctor can tell you in a moment whether it's real."
+                feedback: "Your doctor or Medicare can help you check whether the supplies are appropriate and whether the offer is legitimate."
               },
               {
                 text: "Research the company before responding.",
@@ -1883,7 +1883,7 @@ export const scamPhase3Lessons = [
               {
                 text: "Log into your insurance account yourself before doing anything.",
                 tier: "safe",
-                feedback: "Your own account is trustworthy."
+                feedback: "Open your insurer’s official app or a website you already trust. Contact the number on your insurance card if you need help checking the claim."
               },
               {
                 text: "Call the phone number left in the voicemail immediately.",
@@ -1904,7 +1904,7 @@ export const scamPhase3Lessons = [
           },
           {
             lesson: "Lesson 2.5 — Always Verify",
-            note: "Use a phone number or website that you chose, not one you were given."
+            note: "Use a number printed on your Medicare card or a website you already know is official, such as Medicare.gov."
           },
           {
             lesson: "Lesson 3.1 — Anyone Can Pretend",
@@ -1941,13 +1941,13 @@ export const scamPhase3Lessons = [
             text: "Set the letter aside until you can verify the information through an official source before responding.",
             tier: "safe",
             feedback:
-              "Sound judgment. Nothing here needs answering today."
+              "Verify this replacement-card request through Medicare.gov or the number on your Medicare card before responding."
           },
           {
             text: "Complete the process over the phone because the letter looked official.",
             tier: "unsafe",
             feedback:
-              "The letter existed to make the call believable — that's what made this convincing. Medicare never charges for a card and never calls asking you to confirm your number."
+              "A letter and follow-up call do not verify each other. Before sharing your Medicare number, contact Medicare through Medicare.gov or the number on your card."
           }
         ],
         spotted: [
@@ -1960,8 +1960,8 @@ export const scamPhase3Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 10 complete!",
-      subtitle: "You completed Medicare & Healthcare — and all of Phase 10.",
+      title: "Lesson complete!",
+      subtitle: "You completed Medicare & Healthcare.",
       habit: "Protect your health information the same way you protect your money — verify first.",
       warningSign: "Unexpected health requests for personal information.",
       skills: [
@@ -1977,7 +1977,7 @@ export const scamPhase3Lessons = [
         "🚩 Pressure to hurry",
         "🚩 Unusual payment methods",
         "🚩 Refusing to let you verify",
-        "You no longer have to memorize every scam — you can recognize ones you've never seen before."
+        "You can use these warning signs to pause and verify unfamiliar requests before acting."
       ],
       next: "More lessons coming soon"
     }

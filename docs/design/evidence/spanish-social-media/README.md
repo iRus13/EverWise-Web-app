@@ -1,0 +1,1 @@
+Original, unmodified screenshots from the October 6 Social Media review. Native captures come from XCTest attachments; browser captures use production components in a synthetic local harness. Full context and limitations are in the Social Media review note.

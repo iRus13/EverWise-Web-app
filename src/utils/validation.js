@@ -89,5 +89,5 @@ export function isValidEmail(value) {
     return false;
   }
 
-  return labels.at(-1).length >= 2;
+  return labels[labels.length - 1].length >= 2;
 }

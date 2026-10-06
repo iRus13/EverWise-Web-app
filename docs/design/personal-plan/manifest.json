@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-06",
+  "syntheticData": true,
+  "images": [
+    {
+      "file": "web-phone-before.png",
+      "sha256": "b95f4232bc816b4311d20000c9113f7c7bef545b45a80eb3ea4c4c4f72240810"
+    },
+    {
+      "file": "web-phone-after.png",
+      "sha256": "48ea8cef92c0aabfe123829d40223589f6e5432b7e2b6c07f1eda7d017af5e3f"
+    },
+    {
+      "file": "web-phone-max-action.png",
+      "sha256": "5231e089f0dd049f4da00b6ff5c6d20c5309f594d336b38c5c60f7256c8f24ae"
+    },
+    {
+      "file": "web-ipad-after.png",
+      "sha256": "9446729fbf99f94a2839d9daeac6a7233f6278abd75464fec4d0f7af6c0bd120"
+    },
+    {
+      "file": "web-ipad-max-action.png",
+      "sha256": "77556a7bcca319a3d76d50edeca62553922c9d891fcdc6c9f0f356a0bdb46647"
+    }
+  ]
+}

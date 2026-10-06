@@ -1,9 +1,11 @@
+import { tr, useLocale } from '../i18n';
 import { useState } from "react";
 import Field from "../components/Field";
 import BackButton from "../components/BackButton";
 import { authErrorMessage } from "../utils/authErrors";
 
 export default function SignUp({ onSignUp, onGoToLogIn, onBack }) {
+  useLocale();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,16 +33,12 @@ export default function SignUp({ onSignUp, onGoToLogIn, onBack }) {
       <BackButton onClick={onBack} />
 
       <form className="flex flex-1 flex-col" onSubmit={submit} noValidate>
-        <h1 className="page-title mt-6">
-          Create your
-          <br />
-          account
-        </h1>
+        <h1 className="page-title mt-6">{tr("Create your")}<br />{tr("account")}</h1>
 
         <div className="mt-10 space-y-6">
           <Field
             id="name"
-            label="Your name"
+            label={tr("Your name")}
             value={name}
             onChange={setName}
             autoComplete="name"
@@ -48,7 +46,7 @@ export default function SignUp({ onSignUp, onGoToLogIn, onBack }) {
           />
           <Field
             id="email"
-            label="Email"
+            label={tr("Email")}
             type="email"
             value={email}
             onChange={setEmail}
@@ -57,12 +55,12 @@ export default function SignUp({ onSignUp, onGoToLogIn, onBack }) {
           />
           <Field
             id="password"
-            label="Password"
+            label={tr("Password")}
             type="password"
             value={password}
             onChange={setPassword}
             autoComplete="new-password"
-            placeholder="Choose a password"
+            placeholder={tr("Choose a password")}
           />
         </div>
 
@@ -71,23 +69,20 @@ export default function SignUp({ onSignUp, onGoToLogIn, onBack }) {
             role="alert"
             className="mt-6 rounded-2xl bg-alert/12 px-5 py-4 text-lg font-semibold text-alert"
           >
-            {error}
+            {tr(error)}
           </p>
         )}
 
         <div className="mt-auto pt-10">
           <button type="submit" className="btn-primary" disabled={busy}>
-            {busy ? "Creating account…" : "Create account"}
+            {busy ? tr("Creating account…") : tr("Create account")}
           </button>
-          <p className="mt-6 text-center text-lg text-ink-soft">
-            Already have an account?{" "}
+          <p className="mt-6 text-center text-lg text-ink-soft">{tr("Already have an account?")}{" "}
             <button
               type="button"
               onClick={onGoToLogIn}
               className="font-bold text-clay underline underline-offset-4"
-            >
-              Log in
-            </button>
+            >{tr("Log in")}</button>
           </p>
         </div>
       </form>

@@ -1,80 +1,117 @@
-import { useMemo, useState } from "react";
-import BackButton from "../components/BackButton";
+import { hasOwn } from "../utils/hasOwn.js";
+import { tr, useLocale } from '../i18n';
+import { useEffect, useMemo, useRef, useState } from "react";
+import UtilityScreen from "../components/UtilityScreen";
 import ReadAloud from "../components/ReadAloud";
-import { MessageSearchIcon } from "../components/Icons";
+import { ShieldIcon } from "../components/Icons";
+import "../styles/scam-checker.css";
 import { apiEndpoint } from "../utils/apiEndpoint";
 
 const CHECK_MESSAGE_ENDPOINT = apiEndpoint("/api/check-message");
 const MAX_MESSAGE_LENGTH = 6000;
+const RESULT_SAFETY_REMINDER = "Never use a link, phone number, or contact detail from a suspicious message. Find the organization’s official website, app, card, or statement yourself.";
+
+const RESULT_LIMITATION = "This is an AI assessment, not a guarantee.";
 
 const verdictDetails = {
   likely_scam: {
     eyebrow: "High risk",
     title: "This is likely a scam",
-    className: "border-alert/35 bg-alert/10",
-    titleClassName: "text-alert",
+    className: "scam-risk-high",
   },
   uncertain: {
     eyebrow: "Be careful",
-    title: "Uncertain — verify before acting",
-    className: "border-clay/35 bg-clay/10",
-    titleClassName: "text-clay-dark",
+    title: "Verify before deciding",
+    className: "scam-risk-uncertain",
   },
   likely_legitimate: {
     eyebrow: "Lower risk",
-    title: "Likely legitimate — still verify sensitive requests",
-    className: "border-sage/35 bg-sage/10",
-    titleClassName: "text-sage-dark",
+    title: "Fewer warning signs. Still verify.",
+    className: "scam-risk-lower",
   },
 };
 
-function ResultSection({ title, items }) {
-  if (!items?.length) return null;
+function validAssessment(value) {
+  return value && hasOwn(verdictDetails, value.verdict)
+    && typeof value.summary === "string" && value.summary.trim().length > 0
+    && value.summary.length <= 6000
+    && [value.warning_signs, value.next_steps].every((items) => Array.isArray(items)
+      && items.length <= 20 && items.every((item) => typeof item === "string" && item.length <= 6000))
+    && (value.urgent_action === null || (typeof value.urgent_action === "string" && value.urgent_action.length <= 6000));
+}
 
+function ResultSection({ title, items, ordered = false }) {
+  if (!items?.length) return null;
+  const List = ordered ? "ol" : "ul";
   return (
-    <section className="mt-5">
-      <h2 className="font-sans text-xl font-semibold text-ink">{title}</h2>
-      <ul className="mt-2 space-y-2">
-        {items.map((item, index) => (
-          <li
-            key={`${item}-${index}`}
-            className="flex gap-3 text-lg leading-snug text-ink-soft"
-          >
-            <span
-              className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-clay"
-              aria-hidden="true"
-            />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
+    <section className="scam-result-section">
+      <h2>{title}</h2>
+      <List>{items.map((item, index) => <li key={index}>{item}</li>)}</List>
     </section>
   );
 }
 
 export default function ScamChecker({ onBack }) {
+  const locale = useLocale();
   const [message, setMessage] = useState("");
   const [result, setResult] = useState(null);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
+  const requestRef = useRef(null);
+  const timeoutRef = useRef(null);
+  const inputRef = useRef(null);
+  const resultRef = useRef(null);
+  const errorRef = useRef(null);
+  const returnToInputRef = useRef(false);
+  const [notice, setNotice] = useState("");
+  useEffect(() => () => {
+    const controller = requestRef.current;
+    requestRef.current = null;
+    clearTimeout(timeoutRef.current);
+    controller?.abort();
+  }, []);
+  useEffect(() => {
+    const target = status === "success" ? resultRef.current
+      : status === "error" ? errorRef.current
+      : returnToInputRef.current ? inputRef.current : null;
+    if (!target) return;
+    returnToInputRef.current = false;
+    target.focus({ preventScroll: true });
+    const reveal = status === "success" ? target.closest(".scam-verdict") : target;
+    reveal.scrollIntoView?.({ block: "start", behavior: "auto" });
+  }, [status, result]);
   const cleanMessage = message.trim();
   const details = result ? verdictDetails[result.verdict] : null;
 
   const readAloudText = useMemo(() => {
     if (!result || !details) return "";
+    const urgentAction = result.urgent_action ? `${tr("Act now")}: ${result.urgent_action}` : "";
     const warningSigns = result.warning_signs?.length
-      ? `Warning signs: ${result.warning_signs.join(". ")}.`
+      ? `${tr("Warning signs")}: ${result.warning_signs.join(". ")}.`
       : "";
     const nextSteps = result.next_steps?.length
-      ? `What to do next: ${result.next_steps.join(". ")}.`
+      ? `${tr("What to do next")}: ${result.next_steps.join(". ")}.`
       : "";
-    return `${details.title}. ${result.summary}. ${warningSigns} ${nextSteps}`;
-  }, [details, result]);
+    return [tr(details.eyebrow), tr(details.title), result.summary, tr(RESULT_LIMITATION), urgentAction, nextSteps, warningSigns, tr(RESULT_SAFETY_REMINDER)]
+      .filter(Boolean).join(" ");
+  }, [details, result, locale]);
 
   const checkMessage = async (event) => {
     event.preventDefault();
-    if (!cleanMessage || cleanMessage.length > MAX_MESSAGE_LENGTH) return;
+    if (!cleanMessage || cleanMessage.length > MAX_MESSAGE_LENGTH || requestRef.current) return;
+    const controller = new AbortController();
+    requestRef.current = controller;
+    timeoutRef.current = setTimeout(() => {
+      if (requestRef.current !== controller) return;
+      // Release ownership before aborting: a late response cannot replace a
+      // newer check, even if the transport ignores the cancellation signal.
+      requestRef.current = null;
+      controller.abort();
+      setError("This check took too long. Try again, or verify the message another way. Do not click links, send money, or share a code until you verify it.");
+      setStatus("error");
+    }, 30_000);
 
+    setNotice("");
     setStatus("loading");
     setError("");
     setResult(null);
@@ -84,12 +121,10 @@ export default function ScamChecker({ onBack }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: cleanMessage }),
+        signal: controller.signal,
       });
 
       if (!response.ok) {
-        // 503 means the server has no AI key configured. That is a setup
-        // problem, not a network blip, so say so instead of implying the
-        // message itself could not be assessed.
         console.error(
           "[Everwise][scam-checker] Request failed:",
           response.status,
@@ -100,157 +135,120 @@ export default function ScamChecker({ onBack }) {
       }
 
       const nextResult = await response.json();
-      if (!verdictDetails[nextResult.verdict]) {
+      if (!validAssessment(nextResult)) {
         throw new Error("unavailable");
       }
 
+      if (requestRef.current !== controller || controller.signal.aborted) return;
       setResult(nextResult);
       setStatus("success");
     } catch (err) {
+      if (requestRef.current !== controller || controller.signal.aborted) return;
       console.error("[Everwise][scam-checker]", err);
       setError(
         err.message === "not_configured"
-          ? "The scam checker is not set up on this server yet. Do not click links, send money, or share a code until you verify this message another way."
+          ? "Message checking is currently unavailable. Do not click links, send money, or share a code until you verify this message another way."
           : "We could not check this message right now. Do not click links, send money, or share a code until you verify it another way.",
       );
       setStatus("error");
+    } finally {
+      if (requestRef.current === controller) {
+        clearTimeout(timeoutRef.current);
+        requestRef.current = null;
+      }
     }
   };
 
-  const startOver = () => {
-    setMessage("");
+  const returnToMessage = (clear = false) => {
+    if (clear) setMessage("");
+    returnToInputRef.current = true;
     setResult(null);
     setError("");
+    setNotice("");
     setStatus("idle");
   };
 
+  const cancelCheck = () => {
+    const controller = requestRef.current;
+    requestRef.current = null;
+    clearTimeout(timeoutRef.current);
+    controller?.abort();
+    returnToInputRef.current = true;
+    setStatus("idle");
+    setNotice("Check stopped. Your message is still here.");
+  };
+
   return (
-    <div className="scam-checker-screen mx-auto flex min-h-0 w-full max-w-3xl flex-1 flex-col overflow-y-auto px-6 pb-6 pt-4 lg:px-0 lg:pb-12 lg:pt-12">
-      <div className="lg:hidden">
-        <BackButton onClick={onBack} label="Back to home" />
-      </div>
+    <UtilityScreen onBack={onBack}>
+    <div className="scam-checker-screen">
+      <div className="scam-checker-content">
+        <header className="scam-header">
+          <p className="scam-context">{tr("Message Checker")}</p>
+          {status !== "success" && <>
+            <h1>{tr("Check before you reply")}</h1>
+            <p>{tr("Look for warning signs in a text, email, or social message.")}</p>
+          </>}
+        </header>
 
-      <div className="mt-3 flex items-center gap-3">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-clay/10 text-clay">
-          <MessageSearchIcon className="h-7 w-7" />
-        </div>
-        <h1 className="page-title">Is this message a scam?</h1>
-      </div>
-      <p className="mt-2 text-lg leading-snug text-ink-soft">
-        Paste a text, email, or social media message for a careful second
-        opinion.
-      </p>
-
-      <div className="scam-checker-layout">
-        <div className="scam-checker-main">
-          {status !== "success" ? (
-            <form
-              className="mt-4 rounded-3xl bg-cream-card p-4 shadow-card"
-              onSubmit={checkMessage}
-            >
-          <label htmlFor="message-to-check" className="text-lg font-bold text-ink">
-            Message to check
-          </label>
-          <textarea
-            id="message-to-check"
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
-            maxLength={MAX_MESSAGE_LENGTH}
-            rows={6}
-            autoComplete="off"
-            spellCheck="true"
-            placeholder="Paste the message here…"
-            className="mt-2 w-full resize-none rounded-2xl border-2 border-ink/20 bg-cream px-4 py-3 text-lg leading-snug text-ink placeholder:text-ink-faint focus:border-clay"
-          />
-          <div className="responsive-split mt-2 flex items-start justify-between gap-3 text-sm leading-snug text-ink-faint">
-            <p>Remove passwords and account numbers first.</p>
-            <p className="shrink-0">
-              {message.length.toLocaleString()} / {MAX_MESSAGE_LENGTH.toLocaleString()}
-            </p>
-          </div>
-
-          {error ? (
-            <div
-              className="mt-5 rounded-2xl border-2 border-alert/30 bg-alert/10 px-5 py-4 text-lg leading-relaxed text-ink"
-              role="alert"
-            >
-              {error}
+        {status !== "success" ? (
+          <form className="scam-form" onSubmit={checkMessage}>
+            <div data-form-field>
+              <label htmlFor="message-to-check">{tr("Message to check")}</label>
+              <p id="message-help" className="scam-help">{tr("Remove passwords, verification codes, and account numbers before pasting.")}</p>
+              <textarea
+                ref={inputRef}
+                id="message-to-check"
+                aria-describedby="message-help message-count message-privacy"
+                disabled={status === "loading"}
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                maxLength={MAX_MESSAGE_LENGTH}
+                rows={6}
+                autoComplete="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                placeholder={tr("Paste the message here…")}
+              />
+              <p id="message-count" className="scam-count">{message.length.toLocaleString()} / {MAX_MESSAGE_LENGTH.toLocaleString()} {tr("characters")}</p>
             </div>
-          ) : null}
+            <p id="message-privacy" className="scam-help">{tr("When you choose Check this message, the text is sent to our AI provider to generate a result. This is a second opinion, not a guarantee.")}</p>
 
-          <button
-            type="submit"
-            disabled={!cleanMessage || status === "loading"}
-            className="btn-primary mt-4 py-4 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {status === "loading" ? "Checking carefully…" : "Check this message"}
-          </button>
-          <p className="mt-3 text-center text-sm leading-snug text-ink-faint">
-            Everwise gives a careful opinion, not a guarantee. Your message is
-            sent to our AI provider only to generate this result.
-          </p>
-            </form>
-          ) : (
-            <div className="mt-5 animate-fade-up" aria-live="polite">
-          <div className={`rounded-3xl border-2 px-5 py-5 ${details.className}`}>
-            <p className="text-base font-bold uppercase tracking-[0.1em] text-ink-soft">
-              {details.eyebrow}
-            </p>
-            <h2
-              className={`mt-1 font-sans text-2xl font-bold leading-tight ${details.titleClassName}`}
-            >
-              {details.title}
-            </h2>
-            <p className="mt-3 text-lg leading-snug text-ink">
-              {result.summary}
-            </p>
-          </div>
-
-          {result.urgent_action ? (
-            <div className="mt-4 rounded-2xl bg-ink px-5 py-4 text-cream-card">
-              <p className="text-lg font-bold">Act now</p>
-              <p className="mt-1 text-lg leading-snug">{result.urgent_action}</p>
+            {error && <div ref={errorRef} tabIndex={-1} className="scam-error" role="alert">{tr(error)}</div>}
+            <div className="scam-actions">
+              <button type="submit" disabled={!cleanMessage || status === "loading"} className="btn-primary">
+                {status === "loading" ? tr("Checking message…") : tr("Check this message")}
+              </button>
+              {status === "loading" && <button type="button" className="btn-secondary" onClick={cancelCheck}>{tr("Cancel check")}</button>}
             </div>
-          ) : null}
-
-          <ResultSection title="Warning signs" items={result.warning_signs} />
-          <ResultSection title="What to do next" items={result.next_steps} />
-
-          <div className="mt-5">
-            <ReadAloud text={readAloudText} label="Read this result aloud" />
-          </div>
-
-          <p className="mt-5 rounded-2xl bg-cream-deep px-5 py-4 text-base leading-snug text-ink-soft">
-            Never use a link, phone number, or contact detail from a suspicious
-            message. Find the organization’s official website, app, card, or
-            statement yourself.
-          </p>
-
-          <button type="button" className="btn-secondary mt-5" onClick={startOver}>
-            Check another message
-          </button>
+            <p role="status" className="scam-status">{status === "loading" ? tr("Checking your message. This can take up to 30 seconds.") : tr(notice)}</p>
+          </form>
+        ) : (
+          <div className="scam-result">
+            <section className={`scam-verdict ${details.className}`}>
+              <p className="scam-risk-label"><ShieldIcon className="scam-risk-icon" />{tr(details.eyebrow)}</p>
+              <h1 ref={resultRef} tabIndex={-1}>{tr(details.title)}</h1>
+              <p>{result.summary}</p>
+              <p className="scam-help">{tr(RESULT_LIMITATION)}</p>
+            </section>
+            <ReadAloud text={readAloudText} label={tr("Read this result aloud")} />
+            {result.urgent_action && <section className="scam-urgent"><h2>{tr("Act now")}</h2><p>{result.urgent_action}</p></section>}
+            <ResultSection title={tr("What to do next")} items={result.next_steps} ordered />
+            <ResultSection title={tr("Warning signs")} items={result.warning_signs} />
+            <details className="scam-original"><summary>{tr("Message you checked")}</summary><p>{message}</p></details>
+            <p className="scam-safety">{tr(RESULT_SAFETY_REMINDER)}</p>
+            <div className="scam-actions">
+              <button type="button" className="btn-primary" onClick={() => returnToMessage(true)}>{tr("Check another message")}</button>
+              <button type="button" className="btn-secondary" onClick={() => returnToMessage()}>{tr("Edit this message")}</button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
-        <aside className="scam-checker-aside mt-5 rounded-3xl border-2 border-sage/20 bg-sage/10 px-5 py-5">
-          <h2 className="text-xl font-bold text-ink">Check more safely</h2>
-          <ul className="mt-3 space-y-3 text-lg leading-snug text-ink-soft">
-            <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">1.</span>
-              <span>Remove passwords and account numbers before pasting.</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">2.</span>
-              <span>Do not use links or phone numbers from a suspicious message.</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-bold text-sage-dark" aria-hidden="true">3.</span>
-              <span>Contact the organization using its official website, app, card, or statement.</span>
-            </li>
-          </ul>
-        </aside>
+        {status !== "success" && <aside className="scam-safety">
+          <h2>{tr("Verify before acting")}</h2>
+          <p>{tr("Do not use links or phone numbers from a suspicious message. Contact the organization through its official website, app, card, or statement.")}</p>
+        </aside>}
       </div>
     </div>
+    </UtilityScreen>
   );
 }

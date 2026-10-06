@@ -1,10 +1,4 @@
-import { initializeApp } from "firebase/app";
-import {
-  browserLocalPersistence,
-  indexedDBLocalPersistence,
-  initializeAuth,
-} from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { createFirebaseClient } from "./config/firebaseClient.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBh2YBYirlY1KwuPIUwmxJoNfYHhxfbahQ",
@@ -30,16 +24,8 @@ if (isPlaceholderConfig) {
   console.log("[Everwise][firebase] Config loaded for project:", firebaseConfig.projectId);
 }
 
-const app = initializeApp(firebaseConfig);
-
-// Capacitor runs the app on a custom URL scheme. Explicit persistence avoids
-// an indefinite auth startup while preserving sign-in between app launches.
-export const auth = initializeAuth(app, {
-  persistence: [indexedDBLocalPersistence, browserLocalPersistence],
-});
-// This project's Firestore was created as a named database with id "default"
-// (not the special "(default)" database), so reference it by name.
-export const db = getFirestore(app, "default");
+const { app, auth, db } = createFirebaseClient(firebaseConfig);
+export { auth, db };
 
 console.log("[Everwise][firebase] initializeApp complete; auth and db ready.");
 

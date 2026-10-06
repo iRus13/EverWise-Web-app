@@ -1,3 +1,4 @@
+import {tr, useLocale} from "../../i18n";
 import LearnBlock from "./LearnBlock";
 import MultiselectBlock from "./MultiselectBlock";
 import FlashcardsBlock from "./FlashcardsBlock";
@@ -40,15 +41,16 @@ export default function BlockRenderer({
   onBack,
   onExit,
 }) {
+  useLocale();
   const Component = BLOCKS[block.type];
   if (!Component) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
         <p className="text-xl text-ink-soft">
-          Unknown block type: {block.type}
+          {tr("This activity is unavailable.")}
         </p>
         <button className="btn-primary mt-6" onClick={onContinue}>
-          Skip
+          {tr("Skip")}
         </button>
       </div>
     );

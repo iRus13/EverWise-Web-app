@@ -1,0 +1,4 @@
+741233961117afd8de02c715df67b3f010a78a6e6a805e79cf4c26a084df25c2  web-phone-choice.png
+1f9383db9f58ad399fdfe2a4230d4080feceb6bd99ceec223b0f26e42e47be34  web-phone-max-choice.png
+20fd9bdea1b3776e790b406a5746ed86769d3e6ce8838f05c3fd6f8c6506f106  web-ipad-reading.png
+592c579049d28785a474bddc7080fae4c699e8976b89d1d0800e8d40a893f0f7  web-ipad-challenge.png

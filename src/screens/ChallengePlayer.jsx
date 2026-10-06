@@ -1,42 +1,38 @@
+import {useLearningText} from "../i18n/learning.js";
 import { useState } from "react";
 import BlockRenderer from "../components/blocks/BlockRenderer";
-import { BookIcon } from "../components/Icons";
-import { getChallengeCompletionContent } from "../utils/courseProgress.js";
+import {Check} from "lucide-react";
+import LearningSummary from "../components/LearningSummary";
+import {assessmentRevision, restoreAssessmentPosition} from "../utils/assessmentProgress.js";
+import { courseSuccessor, getChallengeCompletionContent } from "../utils/courseProgress.js";
+import {lessonsByOrder, challengesByOrder, examsByOrder} from "../data/course-catalog.js";
 
 // Ungraded phase review: play each block in order, then a simple complete screen.
-export default function ChallengePlayer({ challenge, onBack, onComplete }) {
-  const [blockIndex, setBlockIndex] = useState(0);
-  const [finished, setFinished] = useState(false);
+export default function ChallengePlayer({ challenge, onBack, onComplete, initialPosition, onPositionChange }) {
+  const t = useLearningText();
+  const [position, setPosition] = useState(() =>
+    restoreAssessmentPosition(challenge, "challenge", initialPosition) || {blockIndex:0, finished:false});
+  const {blockIndex, finished} = position;
   const blocks = challenge.blocks || [];
   const total = blocks.length;
   const progress = finished ? total : blockIndex + 1;
   const completion = getChallengeCompletionContent(challenge);
 
   const advance = () => {
-    if (blockIndex + 1 < blocks.length) {
-      setBlockIndex((i) => i + 1);
-    } else {
-      setFinished(true);
-    }
+    const nextPosition = blockIndex + 1 < blocks.length
+      ? {blockIndex:blockIndex + 1, finished:false} : {blockIndex, finished:true};
+    setPosition(nextPosition);
+    onPositionChange?.({kind:"challenge", revision:assessmentRevision(challenge), ...nextPosition});
   };
 
   if (finished) {
-    return (
-      <div className="learning-focus flex flex-1 flex-col items-center overflow-y-auto px-7 pb-10 pt-8 text-center">
-        <div className="mt-10 animate-pop-in flex h-28 w-28 items-center justify-center rounded-full bg-clay text-cream-card shadow-btn">
-          <BookIcon className="h-14 w-14" />
-        </div>
-        <h1 className="page-title mt-8">{completion.title}</h1>
-        <p className="mt-4 text-2xl text-ink-soft">
-          {completion.body}
-        </p>
-        <div className="mt-auto w-full pt-10">
-          <button className="btn-primary" onClick={onComplete}>
-            Back to your path
-          </button>
-        </div>
-      </div>
-    );
+    const next = courseSuccessor(challenge.id, {lessons:lessonsByOrder, challenges:challengesByOrder, exams:examsByOrder});
+    return <LearningSummary eyebrow="Review complete" title={t(completion.title)} subtitle={t("You finished this phase review.")} icon={Check}
+      actions={<button className="btn-primary" onClick={onComplete}>{t("Back to your path")}</button>}>
+      {next && <section className="summary-section summary-next-step">
+        <h2>{t("Up next")}</h2><p className="summary-key-point">{t(next.title)}</p>
+      </section>}
+    </LearningSummary>;
   }
 
   return (

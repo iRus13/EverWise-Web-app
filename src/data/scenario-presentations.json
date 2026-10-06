@@ -1,0 +1,674 @@
+{
+  "A caller demands cryptocurrency within ten minutes. What should you do?": {
+    "question": "What should you do?",
+    "story": "A caller demands cryptocurrency within ten minutes."
+  },
+  "A caller says your Medicare benefits end today unless you pay. What should you do?": {
+    "question": "What should you do?",
+    "story": "A caller says your Medicare benefits end today unless you pay."
+  },
+  "A celebrity giveaway asks for a fee and your password. What should you do?": {
+    "question": "What should you do?",
+    "story": "A celebrity giveaway asks for a fee and your password."
+  },
+  "A familiar voice asks for money but refuses to answer a family question. What should you do?": {
+    "question": "What should you do?",
+    "story": "A familiar voice asks for money but refuses to answer a family question."
+  },
+  "A friend may be in an active financial scam. What should you do?": {
+    "question": "What should you do?",
+    "story": "A friend may be in an active financial scam."
+  },
+  "A login alert links to a page that asks you to reset your password. What should you do?": {
+    "question": "What should you do?",
+    "story": "A login alert links to a page that asks you to reset your password."
+  },
+  "A message creates panic and demands that you act now. What should you do?": {
+    "question": "What should you do?",
+    "story": "A message creates panic and demands that you act now."
+  },
+  "A new online request feels unusual. What should you do?": {
+    "question": "What should you do?",
+    "story": "A new online request feels unusual."
+  },
+  "A new online shop accepts only wire transfer. What should you do?": {
+    "question": "What should you do?",
+    "story": "A new online shop accepts only wire transfer."
+  },
+  "A relative's new number asks for emergency cash. What should you do?": {
+    "question": "What should you do?",
+    "story": "A relative's new number asks for emergency cash."
+  },
+  "A seller demands gift cards for an urgent refund fee. What should you do?": {
+    "question": "What should you do?",
+    "story": "A seller demands gift cards for an urgent refund fee."
+  },
+  "A website asks for your Social Security number before it will show search results. What should you do?": {
+    "question": "What should you do?",
+    "story": "A website asks for your Social Security number before it will show search results."
+  },
+  "AI gives medical advice that conflicts with your doctor. What should you do?": {
+    "question": "What should you do?",
+    "story": "AI gives medical advice that conflicts with your doctor."
+  },
+  "After accepting a friend request, someone immediately sends this message: \"Hi! I'm stranded overseas. Can you send me $500?\" What should you do?": {
+    "question": "What should you do?",
+    "story": "After accepting a friend request, someone immediately sends this message: \"Hi! I'm stranded overseas. Can you send me $500?\""
+  },
+  "An attachment from a known contact is unexpected. What should you do?": {
+    "question": "What should you do?",
+    "story": "An attachment from a known contact is unexpected."
+  },
+  "An unknown caller asks you to move a video call to a secret app. What should you do?": {
+    "question": "What should you do?",
+    "story": "An unknown caller asks you to move a video call to a secret app."
+  },
+  "Carol wants help writing an email inviting friends to lunch. Should she ask ChatGPT?": {
+    "question": "Should she ask ChatGPT?",
+    "story": "Carol wants help writing an email inviting friends to lunch."
+  },
+  "David asks AI what he should eat for dinner based on what's in his refrigerator. Good use of AI?": {
+    "question": "Good use of AI?",
+    "story": "David asks AI what he should eat for dinner based on what's in his refrigerator."
+  },
+  "David joins his telehealth appointment from a busy coffee shop using public Wi-Fi. What's a better choice?": {
+    "question": "What's a better choice?",
+    "story": "David joins his telehealth appointment from a busy coffee shop using public Wi-Fi."
+  },
+  "Emily downloads today's weather forecast. Is she using the internet?": {
+    "question": "Is she using the internet?",
+    "story": "Emily downloads today's weather forecast."
+  },
+  "George forgot how to cook rice. Should he ask ChatGPT for instructions?": {
+    "question": "Should he ask ChatGPT for instructions?",
+    "story": "George forgot how to cook rice."
+  },
+  "John needs directions to the nearest pharmacy. What should he search?": {
+    "question": "What should he search?",
+    "story": "John needs directions to the nearest pharmacy."
+  },
+  "Linda accidentally enters her credit card number into a fake shopping website. She notices a few minutes later. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda accidentally enters her credit card number into a fake shopping website. She notices a few minutes later."
+  },
+  "Linda accidentally gives someone her password. She has 2FA turned on. Does 2FA help protect her account?": {
+    "question": "Does 2FA help protect her account?",
+    "story": "Linda accidentally gives someone her password. She has 2FA turned on."
+  },
+  "Linda answers a phone call. The caller says \"This is the IRS. You must pay immediately with gift cards.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda answers a phone call. The caller says \"This is the IRS. You must pay immediately with gift cards.\""
+  },
+  "Linda clicks a link in an email claiming to be from the DMV. The website asks for her Social Security number, banking information, and payment with gift cards. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda clicks a link in an email claiming to be from the DMV. The website asks for her Social Security number, banking information, and payment with gift cards."
+  },
+  "Linda creates the new password \"Linda1955\". Is this a strong password?": {
+    "question": "Is this a strong password?",
+    "story": "Linda creates the new password \"Linda1955\"."
+  },
+  "Linda creates this password: Blue!River28Coffee. Is this a strong password?": {
+    "question": "Is this a strong password?",
+    "story": "Linda creates this password: Blue!River28Coffee."
+  },
+  "Linda finds a website selling prescription medication. It has no phone number, doesn't list an address, only accepts gift cards, and doesn't require a prescription. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda finds a website selling prescription medication. It has no phone number, doesn't list an address, only accepts gift cards, and doesn't require a prescription."
+  },
+  "Linda forgets one of her shopping website passwords. Her password manager has it saved. Should she use it?": {
+    "question": "Should she use it?",
+    "story": "Linda forgets one of her shopping website passwords. Her password manager has it saved."
+  },
+  "Linda is shopping online. A website asks for her Social Security number, her bank password, and her credit card PIN, just to buy a sweater. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda is shopping online. A website asks for her Social Security number, her bank password, and her credit card PIN, just to buy a sweater."
+  },
+  "Linda is shopping online. One website begins with https:// and another begins with http://. Which is generally the safer choice?": {
+    "question": "Which is generally the safer choice?",
+    "story": "Linda is shopping online. One website begins with https:// and another begins with http://."
+  },
+  "Linda is updating her Facebook profile. Which information is okay to make public?": {
+    "question": "Which information is okay to make public?",
+    "story": "Linda is updating her Facebook profile."
+  },
+  "Linda is using a public library computer to renew her driver's license. When she's finished, what should she do?": {
+    "question": "When she's finished, what should she do?",
+    "story": "Linda is using a public library computer to renew her driver's license."
+  },
+  "Linda joins a family video call. Everyone is talking at once. What's the best thing to do?": {
+    "question": "What's the best thing to do?",
+    "story": "Linda joins a family video call. Everyone is talking at once."
+  },
+  "Linda keeps receiving robocalls selling products. The same number calls every afternoon. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda keeps receiving robocalls selling products. The same number calls every afternoon."
+  },
+  "Linda loses her phone while shopping. What should she do first?": {
+    "question": "What should she do first?",
+    "story": "Linda loses her phone while shopping."
+  },
+  "Linda meets someone online. After chatting for one day, the person asks her to share her live location. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda meets someone online. After chatting for one day, the person asks her to share her live location."
+  },
+  "Linda notices a $27 purchase she doesn't recognize. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda notices a $27 purchase she doesn't recognize."
+  },
+  "Linda notices a credit card account on her credit report that she never opened. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda notices a credit card account on her credit report that she never opened."
+  },
+  "Linda notices an account using her profile picture and pretending to be her. Friends begin asking if it's really her. What should Linda do?": {
+    "question": "What should Linda do?",
+    "story": "Linda notices an account using her profile picture and pretending to be her. Friends begin asking if it's really her."
+  },
+  "Linda opens the App Store and sees that her banking app has an update available. Should she install it?": {
+    "question": "Should she install it?",
+    "story": "Linda opens the App Store and sees that her banking app has an update available."
+  },
+  "Linda reads an article from a trusted news organization. She also finds the same information on an official government website. What should she conclude?": {
+    "question": "What should she conclude?",
+    "story": "Linda reads an article from a trusted news organization. She also finds the same information on an official government website."
+  },
+  "Linda receives $100 in PayPal from someone she doesn't know. A minute later they message: \"That was an accident. Please send it back right away.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives $100 in PayPal from someone she doesn't know. A minute later they message: \"That was an accident. Please send it back right away.\""
+  },
+  "Linda receives a brochure advertising \"Free medical equipment from Medicare.\" It asks her to call and provide her Medicare number first. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives a brochure advertising \"Free medical equipment from Medicare.\" It asks her to call and provide her Medicare number first."
+  },
+  "Linda receives a friend request from someone with 25 mutual friends. She still doesn't recognize the person's name. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives a friend request from someone with 25 mutual friends. She still doesn't recognize the person's name."
+  },
+  "Linda receives a phone call from someone pretending to be a government agency demanding payment with gift cards. She hangs up without paying. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives a phone call from someone pretending to be a government agency demanding payment with gift cards. She hangs up without paying."
+  },
+  "Linda receives a text from her daughter asking for $800. The message says: \"Don't call me. My phone is broken.\" What should Linda do?": {
+    "question": "What should Linda do?",
+    "story": "Linda receives a text from her daughter asking for $800. The message says: \"Don't call me. My phone is broken.\""
+  },
+  "Linda receives a text from her granddaughter: \"Hi Grandma! Can you call me when you have time?\" She recognizes the phone number. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives a text from her granddaughter: \"Hi Grandma! Can you call me when you have time?\" She recognizes the phone number."
+  },
+  "Linda receives a text saying \"Click this link to pay $250 before your telehealth visit.\" She wasn't expecting this message. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives a text saying \"Click this link to pay $250 before your telehealth visit.\" She wasn't expecting this message."
+  },
+  "Linda receives a video from a friend. The person's face looks blurry, and the voice sounds unnatural. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives a video from a friend. The person's face looks blurry, and the voice sounds unnatural."
+  },
+  "Linda receives an email saying \"Your package cannot be delivered. Pay a $2 delivery fee here.\" She wasn't expecting any packages. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives an email saying \"Your package cannot be delivered. Pay a $2 delivery fee here.\" She wasn't expecting any packages."
+  },
+  "Linda receives an email with an attachment from someone she doesn't know. The message says \"Open immediately to receive your prize.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives an email with an attachment from someone she doesn't know. The message says \"Open immediately to receive your prize.\""
+  },
+  "Linda receives this text: \"Congratulations! Claim your IRS refund by clicking here.\" She wasn't expecting a refund. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda receives this text: \"Congratulations! Claim your IRS refund by clicking here.\" She wasn't expecting a refund."
+  },
+  "Linda reports fraud to her bank. The bank cancels her debit card and says a new one will arrive in a few days. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda reports fraud to her bank. The bank cancels her debit card and says a new one will arrive in a few days."
+  },
+  "Linda returns a sweater to a department store. Three days later, the refund appears on the same credit card she used to buy it. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda returns a sweater to a department store. Three days later, the refund appears on the same credit card she used to buy it."
+  },
+  "Linda sees a giveaway on the official page of her local library. It asks people to comment with their favorite book for a chance to win a tote bag. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda sees a giveaway on the official page of her local library. It asks people to comment with their favorite book for a chance to win a tote bag."
+  },
+  "Linda sees a headline: \"You Won't Believe What Happened Next!\" The headline gives no details. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda sees a headline: \"You Won't Believe What Happened Next!\" The headline gives no details."
+  },
+  "Linda shared her location with her son while traveling. She has safely arrived home. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda shared her location with her son while traveling. She has safely arrived home."
+  },
+  "Linda takes a photo of her birthday cake. In the background is a letter showing her home address. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda takes a photo of her birthday cake. In the background is a letter showing her home address."
+  },
+  "Linda uses a VPN but clicks a fake email asking for her bank password. Will the VPN stop the scam?": {
+    "question": "Will the VPN stop the scam?",
+    "story": "Linda uses a VPN but clicks a fake email asking for her bank password."
+  },
+  "Linda uses the same password for every online account. Is this the safest choice?": {
+    "question": "Is this the safest choice?",
+    "story": "Linda uses the same password for every online account."
+  },
+  "Linda visits a news website. A giant flashing button says: \"DOWNLOAD NOW!\" She isn't trying to download anything. What should she do?": {
+    "question": "What should she do?",
+    "story": "Linda visits a news website. A giant flashing button says: \"DOWNLOAD NOW!\" She isn't trying to download anything."
+  },
+  "Linda wants ChatGPT to tell her whether she should stop taking her heart medication without talking to her doctor. Is this the safest choice?": {
+    "question": "Is this the safest choice?",
+    "story": "Linda wants ChatGPT to tell her whether she should stop taking her heart medication without talking to her doctor."
+  },
+  "Linda wants to post a picture of her new driver's license on social media because she's excited she renewed it. Is this a good idea?": {
+    "question": "Is this a good idea?",
+    "story": "Linda wants to post a picture of her new driver's license on social media because she's excited she renewed it."
+  },
+  "Linda wants to read today's news while using hotel Wi-Fi. Is that generally okay?": {
+    "question": "Is that generally okay?",
+    "story": "Linda wants to read today's news while using hotel Wi-Fi."
+  },
+  "Linda wants to send her granddaughter a text message. Which app should she open?": {
+    "question": "Which app should she open?",
+    "story": "Linda wants to send her granddaughter a text message."
+  },
+  "Linda wants to share pictures from her vacation. What is the safer choice?": {
+    "question": "What is the safer choice?",
+    "story": "Linda wants to share pictures from her vacation."
+  },
+  "Linda wants to visit Medicare's website. Which address should she use?": {
+    "question": "Which address should she use?",
+    "story": "Linda wants to visit Medicare's website."
+  },
+  "Margaret accidentally enters her email password on a fake website. What should she do first?": {
+    "question": "What should she do first?",
+    "story": "Margaret accidentally enters her email password on a fake website."
+  },
+  "Margaret buys a kitchen appliance from a website she's never used before. The item never arrives, and the website disappears a week later. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret buys a kitchen appliance from a website she's never used before. The item never arrives, and the website disappears a week later."
+  },
+  "Margaret checks her credit card statement and sees a $985 furniture purchase she didn't make. What should she do first?": {
+    "question": "What should she do first?",
+    "story": "Margaret checks her credit card statement and sees a $985 furniture purchase she didn't make."
+  },
+  "Margaret downloads a flashlight app. It asks for access to her location, her contacts, and her microphone. Does it likely need all of these permissions?": {
+    "question": "Does it likely need all of these permissions?",
+    "story": "Margaret downloads a flashlight app. It asks for access to her location, her contacts, and her microphone."
+  },
+  "Margaret downloads a flashlight app. It asks to use her location. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret downloads a flashlight app. It asks to use her location."
+  },
+  "Margaret finds a website selling a $200 coffee maker for only $15. The website has many spelling mistakes and no customer service phone number. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret finds a website selling a $200 coffee maker for only $15. The website has many spelling mistakes and no customer service phone number."
+  },
+  "Margaret has 18 online accounts. She can't remember all of her passwords. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret has 18 online accounts. She can't remember all of her passwords."
+  },
+  "Margaret is at a coffee shop. She sees these Wi-Fi networks: CoffeeHouse Guest, CoffeeHouse_Free_2026, Free Internet, CoffeeHouse Staff. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret is at a coffee shop. She sees these Wi-Fi networks: CoffeeHouse Guest, CoffeeHouse_Free_2026, Free Internet, CoffeeHouse Staff."
+  },
+  "Margaret is leaving for a two-week vacation. She wants to post: \"Leaving tomorrow! My house will be empty until June 20!\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret is leaving for a two-week vacation. She wants to post: \"Leaving tomorrow! My house will be empty until June 20!\""
+  },
+  "Margaret is meeting her daughter at a shopping mall. Her daughter can't find the entrance she's using. What should Margaret do?": {
+    "question": "What should Margaret do?",
+    "story": "Margaret is meeting her daughter at a shopping mall. Her daughter can't find the entrance she's using."
+  },
+  "Margaret learns that a large company where she has an account experienced a data breach. The company says her Social Security number may have been exposed. What should Margaret do?": {
+    "question": "What should Margaret do?",
+    "story": "Margaret learns that a large company where she has an account experienced a data breach. The company says her Social Security number may have been exposed."
+  },
+  "Margaret receives a Zoom invitation from her doctor's office after scheduling an appointment. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives a Zoom invitation from her doctor's office after scheduling an appointment."
+  },
+  "Margaret receives a call from someone claiming to be her bank. They ask her to transfer all of her money to a \"safe account.\" She hangs up because it sounds suspicious. What should she do next?": {
+    "question": "What should she do next?",
+    "story": "Margaret receives a call from someone claiming to be her bank. They ask her to transfer all of her money to a \"safe account.\" She hangs up because it sounds suspicious."
+  },
+  "Margaret receives a call: \"Hello, this is Microsoft. We accidentally charged you $399. Let us connect to your computer so we can issue your refund.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives a call: \"Hello, this is Microsoft. We accidentally charged you $399. Let us connect to your computer so we can issue your refund.\""
+  },
+  "Margaret receives a call: \"Your Medicare card expires today. Pay $99 now or your coverage will end.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives a call: \"Your Medicare card expires today. Pay $99 now or your coverage will end.\""
+  },
+  "Margaret receives a friend request from David Williams. No mutual friends, one profile picture, joined Facebook last week. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives a friend request from David Williams. No mutual friends, one profile picture, joined Facebook last week."
+  },
+  "Margaret receives a friend request from someone using her daughter's name. The profile has only one photo and immediately asks for $200. What should Margaret do?": {
+    "question": "What should Margaret do?",
+    "story": "Margaret receives a friend request from someone using her daughter's name. The profile has only one photo and immediately asks for $200."
+  },
+  "Margaret receives a phone call from someone claiming to be her bank. They ask for her online banking password. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives a phone call from someone claiming to be her bank. They ask for her online banking password."
+  },
+  "Margaret receives a text saying: \"To claim your prize, send $5 through Apple Pay.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives a text saying: \"To claim your prize, send $5 through Apple Pay.\""
+  },
+  "Margaret receives a text: \"Suspicious purchase detected. Reply with your full credit card number to verify your account.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives a text: \"Suspicious purchase detected. Reply with your full credit card number to verify your account.\""
+  },
+  "Margaret receives an email asking her to verify her bank password by clicking a link. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives an email asking her to verify her bank password by clicking a link."
+  },
+  "Margaret receives an email from amazon-support247@gmail.com. The subject says \"URGENT! Your Amazon account is locked.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives an email from amazon-support247@gmail.com. The subject says \"URGENT! Your Amazon account is locked.\""
+  },
+  "Margaret receives an email saying \"Click here immediately to see your lab results.\" She wasn't expecting any test results. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives an email saying \"Click here immediately to see your lab results.\" She wasn't expecting any test results."
+  },
+  "Margaret receives an email saying: \"Your package couldn't be delivered. Click here to update your payment information.\" She clicks the link but realizes the website looks strange before entering anything. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives an email saying: \"Your package couldn't be delivered. Click here to update your payment information.\" She clicks the link but realizes the website looks strange before entering anything."
+  },
+  "Margaret receives an email: \"Your Amazon account has been suspended. Click here to log in.\" The link goes to amaz0n-login-help.com. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives an email: \"Your Amazon account has been suspended. Click here to log in.\" The link goes to amaz0n-login-help.com."
+  },
+  "Margaret receives six scam texts in one week from the same phone number saying \"You've won a prize! Click here!\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives six scam texts in one week from the same phone number saying \"You've won a prize! Click here!\""
+  },
+  "Margaret receives this message: \"Congratulations! Send $15 through Venmo to claim your $500 prize!\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives this message: \"Congratulations! Send $15 through Venmo to claim your $500 prize!\""
+  },
+  "Margaret receives this text: \"FedEx: Your package could not be delivered. Click here immediately to avoid a return fee.\" She isn't expecting a package. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives this text: \"FedEx: Your package could not be delivered. Click here immediately to avoid a return fee.\" She isn't expecting a package."
+  },
+  "Margaret receives this text: \"You owe $6.99 in toll fees. Pay immediately or your license will be suspended.\" She hasn't driven on a toll road. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives this text: \"You owe $6.99 in toll fees. Pay immediately or your license will be suspended.\" She hasn't driven on a toll road."
+  },
+  "Margaret receives this text: \"Your bank account is locked. Click here immediately to restore access.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives this text: \"Your bank account is locked. Click here immediately to restore access.\""
+  },
+  "Margaret receives this text: \"Your driver's license has been suspended. Pay immediately by clicking this link.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret receives this text: \"Your driver's license has been suspended. Pay immediately by clicking this link.\""
+  },
+  "Margaret sees a Facebook post saying \"Your polling place changed today! Share this with everyone!\" The post doesn't say where the information came from. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret sees a Facebook post saying \"Your polling place changed today! Share this with everyone!\" The post doesn't say where the information came from."
+  },
+  "Margaret sees a Facebook post saying: \"Starting tomorrow, all banks in America are closing permanently! Share this before it's deleted!\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret sees a Facebook post saying: \"Starting tomorrow, all banks in America are closing permanently! Share this before it's deleted!\""
+  },
+  "Margaret sees a Facebook post: \"Target is giving away $1,000 gift cards! Just share this post 20 times and send us your credit card to verify your identity.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret sees a Facebook post: \"Target is giving away $1,000 gift cards! Just share this post 20 times and send us your credit card to verify your identity.\""
+  },
+  "Margaret sees a video of a famous actor promoting a new investment opportunity. The video came from an unfamiliar account. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret sees a video of a famous actor promoting a new investment opportunity. The video came from an unfamiliar account."
+  },
+  "Margaret sees this advertisement: \"Blood pressure medicine! 90% OFF! No prescription needed!\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret sees this advertisement: \"Blood pressure medicine! 90% OFF! No prescription needed!\""
+  },
+  "Margaret signs into her email. After entering her password, her phone receives a 6-digit code. Should she enter it?": {
+    "question": "Should she enter it?",
+    "story": "Margaret signs into her email. After entering her password, her phone receives a 6-digit code."
+  },
+  "Margaret uses the password: 123456. Is this a good password?": {
+    "question": "Is this a good password?",
+    "story": "Margaret uses the password: 123456."
+  },
+  "Margaret wants help writing a birthday card for her granddaughter. Should she use AI?": {
+    "question": "Should she use AI?",
+    "story": "Margaret wants help writing a birthday card for her granddaughter."
+  },
+  "Margaret wants information about Medicare. She finds medicare.gov and medicare-benefits-online.com. Which should she choose?": {
+    "question": "Which should she choose?",
+    "story": "Margaret wants information about Medicare. She finds medicare.gov and medicare-benefits-online.com."
+  },
+  "Margaret wants to find a banana bread recipe. What should she use?": {
+    "question": "What should she use?",
+    "story": "Margaret wants to find a banana bread recipe."
+  },
+  "Margaret wants to install Zoom. She searches online and finds zoom.us and free-zoom-download-now.net. Which should she choose?": {
+    "question": "Which should she choose?",
+    "story": "Margaret wants to install Zoom. She searches online and finds zoom.us and free-zoom-download-now.net."
+  },
+  "Margaret wants to log into her bank. She accidentally clicks a link in an email that opens: https://my-bank-login247.net. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret wants to log into her bank. She accidentally clicks a link in an email that opens: https://my-bank-login247.net."
+  },
+  "Margaret wants to post a picture of her new puppy on Facebook. The photo only shows the puppy playing in the yard. What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret wants to post a picture of her new puppy on Facebook. The photo only shows the puppy playing in the yard."
+  },
+  "Margaret's iPhone says: \"Software Update Available.\" What should she do?": {
+    "question": "What should she do?",
+    "story": "Margaret's iPhone says: \"Software Update Available.\""
+  },
+  "Mary is traveling and wants to check her email while using hotel Wi-Fi. Would using a VPN be a good idea?": {
+    "question": "Would using a VPN be a good idea?",
+    "story": "Mary is traveling and wants to check her email while using hotel Wi-Fi."
+  },
+  "Mary wants to check tomorrow's weather. What app should she open?": {
+    "question": "What app should she open?",
+    "story": "Mary wants to check tomorrow's weather."
+  },
+  "Nancy asks AI if a pain in her chest is serious and follows the advice without talking to a doctor. Is this the safest choice?": {
+    "question": "Is this the safest choice?",
+    "story": "Nancy asks AI if a pain in her chest is serious and follows the advice without talking to a doctor."
+  },
+  "Public Wi-Fi asks you to install an unknown update before connecting. What should you do?": {
+    "question": "What should you do?",
+    "story": "Public Wi-Fi asks you to install an unknown update before connecting."
+  },
+  "Robert accidentally enters his email password into a fake website. What should he do first?": {
+    "question": "What should he do first?",
+    "story": "Robert accidentally enters his email password into a fake website."
+  },
+  "Robert accidentally gives his email password to a scam website. What should he do first?": {
+    "question": "What should he do first?",
+    "story": "Robert accidentally gives his email password to a scam website."
+  },
+  "Robert checks his statement and notices a $3.42 charge from a store he's never used. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert checks his statement and notices a $3.42 charge from a store he's never used."
+  },
+  "Robert creates one strong password and uses it for his email, bank, shopping, and Facebook. Is this the safest choice?": {
+    "question": "Is this the safest choice?",
+    "story": "Robert creates one strong password and uses it for his email, bank, shopping, and Facebook."
+  },
+  "Robert installs a navigation app. It asks to use his location. Should he allow it?": {
+    "question": "Should he allow it?",
+    "story": "Robert installs a navigation app. It asks to use his location."
+  },
+  "Robert is shopping at a grocery store. He unlocks his phone with his fingerprint and taps it on the terminal. The phone says \"Payment Approved.\" What should he do next?": {
+    "question": "What should he do next?",
+    "story": "Robert is shopping at a grocery store. He unlocks his phone with his fingerprint and taps it on the terminal. The phone says \"Payment Approved.\""
+  },
+  "Robert is shopping online. The checkout page begins with https:// and the website is one he has used before. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert is shopping online. The checkout page begins with https:// and the website is one he has used before."
+  },
+  "Robert is sitting at home using his own password-protected Wi-Fi. Does he always need a VPN just to browse the internet?": {
+    "question": "Does he always need a VPN just to browse the internet?",
+    "story": "Robert is sitting at home using his own password-protected Wi-Fi."
+  },
+  "Robert is waiting for his flight at the airport. He wants to check his bank account. Should he?": {
+    "question": "Should he?",
+    "story": "Robert is waiting for his flight at the airport. He wants to check his bank account."
+  },
+  "Robert misses a call from an unknown number. The caller leaves a voicemail saying \"Hello Robert, this is Dr. Smith's office confirming tomorrow's appointment.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert misses a call from an unknown number. The caller leaves a voicemail saying \"Hello Robert, this is Dr. Smith's office confirming tomorrow's appointment.\""
+  },
+  "Robert notices two small charges - $1.25 and $2.00 - that he doesn't recognize. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert notices two small charges - $1.25 and $2.00 - that he doesn't recognize."
+  },
+  "Robert reads an article about a new health recommendation. He finds the same information on several trusted news websites and an official government health website. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert reads an article about a new health recommendation. He finds the same information on several trusted news websites and an official government health website."
+  },
+  "Robert receives a Facebook message: \"Congratulations! You've won a cruise. Just pay a $99 processing fee.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives a Facebook message: \"Congratulations! You've won a cruise. Just pay a $99 processing fee.\""
+  },
+  "Robert receives a message claiming \"This law goes into effect tomorrow!\" He can't find the same information anywhere else. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives a message claiming \"This law goes into effect tomorrow!\" He can't find the same information anywhere else."
+  },
+  "Robert receives a phone call: \"You owe taxes. If you don't pay within one hour, you'll be arrested.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives a phone call: \"You owe taxes. If you don't pay within one hour, you'll be arrested.\""
+  },
+  "Robert receives a text message with a six-digit verification code. A stranger calls and asks him to read the code aloud. Should he?": {
+    "question": "Should he?",
+    "story": "Robert receives a text message with a six-digit verification code. A stranger calls and asks him to read the code aloud."
+  },
+  "Robert receives a text that says: \"Your bank account has been frozen. Click here to unlock it.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives a text that says: \"Your bank account has been frozen. Click here to unlock it.\""
+  },
+  "Robert receives a text: \"Your verification code is 483921.\" A few seconds later, someone calls saying: \"I'm from your bank. Please read me the code.\" What should Robert do?": {
+    "question": "What should Robert do?",
+    "story": "Robert receives a text: \"Your verification code is 483921.\" A few seconds later, someone calls saying: \"I'm from your bank. Please read me the code.\""
+  },
+  "Robert receives an email claiming to be from his bank asking him to \"verify\" his password. He realizes it's fake and deletes it. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives an email claiming to be from his bank asking him to \"verify\" his password. He realizes it's fake and deletes it."
+  },
+  "Robert receives an email from his doctor's office reminding him about an appointment he scheduled last week. Should he open it?": {
+    "question": "Should he open it?",
+    "story": "Robert receives an email from his doctor's office reminding him about an appointment he scheduled last week."
+  },
+  "Robert receives an email from someone he doesn't know. It says: \"Open this attachment to claim your prize!\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives an email from someone he doesn't know. It says: \"Open this attachment to claim your prize!\""
+  },
+  "Robert receives an email saying \"Click here to update your Medicare account.\" The link looks unfamiliar. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives an email saying \"Click here to update your Medicare account.\" The link looks unfamiliar."
+  },
+  "Robert receives an email saying \"Your account will be closed today unless you verify your password.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives an email saying \"Your account will be closed today unless you verify your password.\""
+  },
+  "Robert receives an email: \"We accidentally refunded you $900 instead of $90. Please send the extra $810 back immediately using gift cards.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives an email: \"We accidentally refunded you $900 instead of $90. Please send the extra $810 back immediately using gift cards.\""
+  },
+  "Robert receives the same suspicious message from one account every day. It says: \"Click here to claim your free prize!\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives the same suspicious message from one account every day. It says: \"Click here to claim your free prize!\""
+  },
+  "Robert receives this message: \"To claim your prize, send us a picture of your driver's license.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives this message: \"To claim your prize, send us a picture of your driver's license.\""
+  },
+  "Robert receives this message: \"To receive your prize, send your live location immediately.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives this message: \"To receive your prize, send your live location immediately.\""
+  },
+  "Robert receives this text: \"Click here to refill your prescription now.\" He wasn't expecting a refill reminder. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives this text: \"Click here to refill your prescription now.\" He wasn't expecting a refill reminder."
+  },
+  "Robert receives this text: \"URGENT! Your bank meeting starts now! Click here!\" He wasn't expecting any meeting. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert receives this text: \"URGENT! Your bank meeting starts now! Click here!\" He wasn't expecting any meeting."
+  },
+  "Robert searches online for tax forms. He sees irsrefund.net, irs-help.org, and irs.gov. Which website should he use?": {
+    "question": "Which website should he use?",
+    "story": "Robert searches online for tax forms. He sees irsrefund.net, irs-help.org, and irs.gov."
+  },
+  "Robert sees this while browsing: \"YOUR COMPUTER HAS 18 VIRUSES! CLICK HERE TO UPDATE NOW!\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert sees this while browsing: \"YOUR COMPUTER HAS 18 VIRUSES! CLICK HERE TO UPDATE NOW!\""
+  },
+  "Robert uses a library computer to check his patient portal. When he's finished, what should he do?": {
+    "question": "When he's finished, what should he do?",
+    "story": "Robert uses a library computer to check his patient portal."
+  },
+  "Robert uses a navigation app while driving. The app asks to use his location. Should he allow it?": {
+    "question": "Should he allow it?",
+    "story": "Robert uses a navigation app while driving. The app asks to use his location."
+  },
+  "Robert uses the same password for his email, bank, and shopping accounts. That password was exposed in a scam. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert uses the same password for his email, bank, and shopping accounts. That password was exposed in a scam."
+  },
+  "Robert uses the same password for his email, bank, and shopping websites. Is this the safest choice?": {
+    "question": "Is this the safest choice?",
+    "story": "Robert uses the same password for his email, bank, and shopping websites."
+  },
+  "Robert visits a website. His browser says: \"Your connection is not private.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert visits a website. His browser says: \"Your connection is not private.\""
+  },
+  "Robert wants directions to his doctor's office. Which app should he use?": {
+    "question": "Which app should he use?",
+    "story": "Robert wants directions to his doctor's office."
+  },
+  "Robert wants to apply for a car loan, but his credit is frozen. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert wants to apply for a car loan, but his credit is frozen."
+  },
+  "Robert wants to renew his driver's license. He sees dmv.ca.gov and california-dmv-renew-license.com. Which should he choose?": {
+    "question": "Which should he choose?",
+    "story": "Robert wants to renew his driver's license. He sees dmv.ca.gov and california-dmv-renew-license.com."
+  },
+  "Robert wants to renew his vehicle registration. He finds dmv.ca.gov and california-dmv-renew.com. Which should he use?": {
+    "question": "Which should he use?",
+    "story": "Robert wants to renew his vehicle registration. He finds dmv.ca.gov and california-dmv-renew.com."
+  },
+  "Robert wants to see if his Social Security payment was deposited. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert wants to see if his Social Security payment was deposited."
+  },
+  "Robert wants to send $50 to his daughter. He notices two similar names in Venmo: \"Emily Johnson\" and \"Emily Johnson 2.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert wants to send $50 to his daughter. He notices two similar names in Venmo: \"Emily Johnson\" and \"Emily Johnson 2.\""
+  },
+  "Robert wants to video chat with his grandson in another state. What makes this possible?": {
+    "question": "What makes this possible?",
+    "story": "Robert wants to video chat with his grandson in another state."
+  },
+  "Robert watches a video of a government official making a surprising announcement. No trusted news organizations are reporting it. What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert watches a video of a government official making a surprising announcement. No trusted news organizations are reporting it."
+  },
+  "Robert's phone says: \"Software Update Available.\" What should he do?": {
+    "question": "What should he do?",
+    "story": "Robert's phone says: \"Software Update Available.\""
+  },
+  "Susan needs a tax form for her records. Where should she get it?": {
+    "question": "Where should she get it?",
+    "story": "Susan needs a tax form for her records."
+  },
+  "Susan types \"Today's weather\" into Google. What will happen?": {
+    "question": "What will happen?",
+    "story": "Susan types \"Today's weather\" into Google."
+  },
+  "Susan wants to look up a cookie recipe. What should she use?": {
+    "question": "What should she use?",
+    "story": "Susan wants to look up a cookie recipe."
+  },
+  "Tom receives a Facebook message asking \"What's your phone number? I found your profile!\" He doesn't know the person. What should Tom do?": {
+    "question": "What should Tom do?",
+    "story": "Tom receives a Facebook message asking \"What's your phone number? I found your profile!\" He doesn't know the person."
+  },
+  "You sent money to someone who now appears to be a scammer. What should you do first?": {
+    "question": "What should you do first?",
+    "story": "You sent money to someone who now appears to be a scammer."
+  }
+}

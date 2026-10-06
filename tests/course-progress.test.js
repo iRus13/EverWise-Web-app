@@ -7,9 +7,24 @@ import {
   phaseRequirementsComplete,
   isPlayableUnlocked,
   findCurrentPlayableId,
+  nextCourseActivity,
+  courseSuccessor,
   labelFinalLessonsForChallenges,
   getChallengeCompletionContent,
 } from "../src/utils/courseProgress.js";
+
+test("summary successors follow lessons, challenges and exams across phase boundaries", () => {
+  const curriculum = {
+    lessons:[{id:"b",phase:1,order:2},{id:"a",phase:1,order:1},{id:"c",phase:2,order:1}],
+    challenges:[{id:"review",phase:1,order:1}],
+    exams:[{id:"exam",phase:1,order:1}],
+  };
+  for(const [id,next] of [["a","b"],["b","review"],["review","exam"],["exam","c"]]) {
+    assert.equal(courseSuccessor(id,curriculum)?.id,next);
+  }
+  assert.equal(courseSuccessor("c",curriculum),null);
+  assert.equal(courseSuccessor("unknown",curriculum),null);
+});
 
 const lessons = [
   {
@@ -62,6 +77,19 @@ const playables = [
   { ...challenges[1], kind: "challenge" },
   { ...exams[0], kind: "exam" },
 ];
+
+test("Home's next activity follows lessons, challenges and exams without skipping prerequisites", () => {
+  const ids = requiredCourseIds(lessons, challenges, exams);
+  for (let i = 0; i < ids.length; i++) {
+    const next = nextCourseActivity(ids.slice(0, i), curriculum);
+    assert.equal(next.id, ids[i]);
+    assert.equal(next.kind, playables[i].kind);
+    if (next.kind === "lesson") assert.equal(lessons[next.lessonIndex].id, next.id);
+  }
+  assert.equal(nextCourseActivity(ids, curriculum), null);
+  assert.equal(nextCourseActivity(["p2-l1", "foreign-id"], curriculum).id, "p1-l1");
+  assert.equal(nextCourseActivity([], {lessons:[],challenges:[],exams:[]}), null);
+});
 
 test("requiredCourseIds returns every required item in phase order", () => {
   assert.deepEqual(

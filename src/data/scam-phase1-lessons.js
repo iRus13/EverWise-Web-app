@@ -35,7 +35,7 @@ export const scamPhase1Lessons = [
         question: "Why are they trying to make me hurry?",
         objective:
           "Learn to recognize when someone is trying to rush you, and remember that you always have time to think before making a decision.",
-        text: "Many scams begin with one simple trick: making you feel like you must act immediately. Whether it is a phone call, email, or text message, an unexpected request does not become more trustworthy just because it sounds urgent. Honest businesses and organizations will give you time to verify information before making an important decision. Taking a moment to slow down is often the first step toward staying safe."
+        text: "Many scams begin with one simple trick: making you feel like you must act immediately. Whether it is a phone call, email, or text message, an unexpected request does not become more trustworthy just because it sounds urgent.\n\nHonest businesses and organizations will give you time to verify information before making an important decision. Taking a moment to slow down is often the first step toward staying safe."
       },
       {
         type: "tiered",
@@ -128,13 +128,13 @@ export const scamPhase1Lessons = [
             text: "Take a little time to think before responding.",
             tier: "best",
             feedback:
-              "Taking time to think is a smart habit, not a mistake. Notice that an honest organization gave you that option."
+              "Taking time to think helps you check a request. A relaxed deadline does not prove who contacted you; verify through a source you trust."
           },
           {
             text: "Reply immediately because they contacted you first.",
             tier: "safe",
             feedback:
-              "Nothing terrible happens here, but replying right away skips the pause that protects you in the cases that do matter."
+              "Replying immediately can keep you in an unverified conversation. Pause and check the request before sharing information or taking action."
           },
           {
             text: "Ignore them forever.",
@@ -260,7 +260,7 @@ export const scamPhase1Lessons = [
         question: "Do I have to do what they say?",
         objective:
           "Learn that you are always in control of your phone, computer, and online accounts. No one can force you to act immediately.",
-        text: "Scammers often try to sound like they are in charge by telling you exactly what to do. They may ask you to click a link, download a program, or stay on the phone while they give instructions. Remember, your phone and computer belong to you. You can hang up, close a website, or ask someone you trust for help at any time. Staying in control is one of the best ways to stay safe online."
+        text: "Scammers often try to sound like they are in charge by telling you exactly what to do. They may ask you to click a link, download a program, or stay on the phone while they give instructions.\n\nRemember, your phone and computer belong to you. You can hang up, close a website, or ask someone you trust for help at any time. Staying in control is one of the best ways to stay safe online."
       },
       {
         type: "tiered",
@@ -304,7 +304,7 @@ export const scamPhase1Lessons = [
             text: "Download it immediately.",
             tier: "unsafe",
             feedback:
-              "Installing software gives someone access to your device. That decision should always be yours, made calmly."
+              "A remote-access program can let another person control your device. Do not install one at an unexpected caller’s request; seek help through support you already trust."
           },
           {
             text: "Leave the program running overnight.",
@@ -331,7 +331,7 @@ export const scamPhase1Lessons = [
             text: "The message knows your computer.",
             tier: "unsafe",
             feedback:
-              "A pop-up can appear on any computer that visits a page. It knows nothing about yours."
+              "A website may know limited details about your browser, but a pop-up does not prove that your computer has a problem. Use official support to check."
           },
           {
             text: "Every warning message is an emergency.",
@@ -358,7 +358,7 @@ export const scamPhase1Lessons = [
             text: "Stay because they told you to.",
             tier: "unsafe",
             feedback:
-              "A threat like this is meant to trap you on the page. Closing it is safe."
+              "This threat is meant to keep you on the page. Close the browser tab or app using its own controls, not buttons inside the warning."
           },
           {
             text: "Click every button until the message disappears.",
@@ -484,7 +484,7 @@ export const scamPhase1Lessons = [
         question: "Why do I suddenly feel worried or excited?",
         objective:
           "Learn that strong emotions can make it harder to make good decisions, and that taking a moment to stay calm helps you think clearly.",
-        text: "Scammers often try to create strong emotions because emotional decisions are usually faster than careful ones. They may try to make you feel worried, excited, guilty, or even curious. Whenever a message or phone call causes a strong emotional reaction, treat it as a reminder to slow down and think. Staying calm gives you a better chance to recognize scams and make safe choices."
+        text: "Scammers often try to create strong emotions because emotional decisions are usually faster than careful ones. They may try to make you feel worried, excited, guilty, or even curious.\n\nWhenever a message or phone call causes a strong emotional reaction, treat it as a reminder to slow down and think. Staying calm gives you a better chance to recognize scams and make safe choices."
       },
       {
         type: "tiered",
@@ -528,13 +528,13 @@ export const scamPhase1Lessons = [
             text: "Claim the reward immediately.",
             tier: "unsafe",
             feedback:
-              "Acting immediately is what the message is designed to produce. Real rewards don't vanish because you thought about them."
+              "An urgent deadline does not prove that an offer is genuine. Pause and verify it independently before clicking or sharing information."
           },
           {
             text: "Forward the message to your friends.",
             tier: "unsafe",
             feedback:
-              "Passing it along spreads the scam to people who trust you."
+              "Forwarding an unverified offer can expose people who trust you to the same risk. Check it independently first."
           }
         ]
       },
@@ -638,7 +638,7 @@ export const scamPhase1Lessons = [
               {
                 text: "Make a decision as quickly as possible.",
                 tier: "unsafe",
-                feedback: "Speed helps the scammer, never you."
+                feedback: "Pressure can make a suspicious request harder to judge. Pause and verify it before acting."
               }
             ]
           }
@@ -706,7 +706,7 @@ export const scamPhase1Lessons = [
         question: "How do I know if this is really them?",
         objective:
           "Learn that unexpected requests should always be verified before you trust them or take action.",
-        text: "Not every unexpected phone call, email, or text message is a scam, but every unexpected request deserves a moment to be verified. Instead of trusting someone because they sound convincing or use a familiar name, contact the company, bank, or person yourself using an official phone number or website. Taking a minute to verify can prevent hours of stress and protect your personal information."
+        text: "Not every unexpected phone call, email, or text message is a scam, but every unexpected request deserves a moment to be verified.\n\nInstead of trusting someone because they sound convincing or use a familiar name, contact the company, bank, or person yourself using an official phone number or website. Taking a minute to verify can prevent hours of stress and protect your personal information."
       },
       {
         type: "tiered",
@@ -718,7 +718,7 @@ export const scamPhase1Lessons = [
             text: "Hang up and call your bank using the phone number on your bank card.",
             tier: "best",
             feedback:
-              "Using a trusted phone number lets you know who you are really speaking with. You chose the number, so nobody could fake it."
+              "End the unexpected call and dial the number printed on your bank card. Do not use a number supplied by the caller or shown in caller ID, which can be faked."
           },
           {
             text: "Continue talking because they knew your name.",
@@ -730,7 +730,7 @@ export const scamPhase1Lessons = [
             text: "Give them your account number so they can verify you.",
             tier: "unsafe",
             feedback:
-              "You should never have to prove who you are to someone who contacted you unexpectedly. It works the other way around."
+              "Do not give account details to an unverified caller. Contact the bank yourself through a trusted number; the bank may then ask you to verify your identity."
           }
         ]
       },
@@ -799,7 +799,7 @@ export const scamPhase1Lessons = [
             text: "Verify who they are by contacting the organization yourself.",
             tier: "best",
             feedback:
-              "You don't have to prove who you are to someone who contacted you unexpectedly. Verify first."
+              "Pause before sharing personal details. Contact the organization through a number you already trust and check the request there."
           },
           {
             text: "Answer their questions because they called first.",
@@ -896,7 +896,7 @@ export const scamPhase1Lessons = [
             text: "Hang up and call your bank using the phone number on your debit or credit card.",
             tier: "best",
             feedback:
-              "By ending the unexpected call and contacting your bank yourself, you made sure you were speaking with the real organization — not someone pretending to be them."
+              "Ending the unexpected call and dialing the number printed on your bank card gives you an independent way to check the request."
           },
           {
             text: "Give them the information they requested.",
@@ -910,8 +910,8 @@ export const scamPhase1Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 8 complete!",
-      subtitle: "You completed Stop, Verify, Then Decide — and all of Phase 8.",
+      title: "Lesson complete!",
+      subtitle: "You completed Stop, Verify, Then Decide.",
       habit: "Verify unexpected requests before you trust them.",
       warningSign: "Being asked to prove yourself to someone who contacted you.",
       skills: [

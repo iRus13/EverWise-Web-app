@@ -121,7 +121,7 @@ export const phaseChallenges = [
       },
     ],
     fillText:
-      "A ______ connects a device to the internet without a cable.",
+      "A device can connect to a wireless network using ______.",
     fillAnswer: "Wi-Fi",
     fillWords: ["Wi-Fi", "password", "camera", "search"],
     scenarioText:
@@ -245,7 +245,7 @@ export const phaseChallenges = [
       },
     ],
     fillText:
-      "Before paying, check the store address and the ______ symbol.",
+      "A ______ icon may describe an encrypted connection, not whether a store is honest.",
     fillAnswer: "lock",
     fillWords: ["lock", "gift", "camera", "coupon"],
     scenarioText:
@@ -258,7 +258,7 @@ export const phaseChallenges = [
     scenarioExplanation:
       "Real companies do not require gift cards to issue a refund. Use a verified contact method.",
     checkText:
-      "A bank will never need your one-time verification code by text or phone.",
+      "Do not share a one-time code with someone who unexpectedly contacts you claiming to be your bank.",
     checkAnswer: true,
     checkExplanation:
       "One-time codes are for you to enter privately. Do not read them to a caller or send them in a message.",

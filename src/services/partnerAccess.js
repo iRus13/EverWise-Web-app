@@ -1,3 +1,4 @@
+import { hasOwn } from "../utils/hasOwn.js";
 const MAX_PARTNER_PAYLOAD_BYTES = 25_000;
 const PARTNER_REQUEST_TIMEOUT_MS = 10_000;
 const TOKEN_PATTERN = /^[A-Za-z0-9_-]{43}$/;
@@ -130,12 +131,12 @@ function validAccess(value, { allowNone = true } = {}) {
     return true;
   }
   const keys = ["branding", "name", "partnerId", "status"];
-  if (Object.hasOwn(value || {}, "username")) keys.push("username");
+  if (hasOwn(value || {}, "username")) keys.push("username");
   return Boolean(
     hasExactKeys(value, keys) &&
       (value.status === "active" || value.status === "suspended") &&
       validPartnerIdentity(value) &&
-      (!Object.hasOwn(value, "username") ||
+      (!hasOwn(value, "username") ||
         /^everwise(?:00[1-9]|0[1-9]\d|[1-4]\d{2}|500)$/.test(value.username)),
   );
 }

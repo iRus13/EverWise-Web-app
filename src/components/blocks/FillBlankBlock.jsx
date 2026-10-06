@@ -1,6 +1,8 @@
+import {fillBlankParts, useLearningText} from "../../i18n/learning.js";
+import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
-import { CheckIcon } from "../Icons";
+import AnswerFeedback from "./AnswerFeedback";
 import BlockShell from "./BlockShell";
 
 export default function FillBlankBlock({
@@ -11,6 +13,7 @@ export default function FillBlankBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const questions = block.questions || [];
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -24,7 +27,7 @@ export default function FillBlankBlock({
   // connects millions of devices around the world."), which is the opposite
   // of what the blank is meant to teach.
   const filledWord = revealed ? q.answer : null;
-  const [beforeBlank, afterBlank] = q.text.split("______");
+  const {before:beforeBlank, after:afterBlank, word:answerLabel} = fillBlankParts(q.text, q.answer, t);
 
   const pick = (word) => {
     if (revealed) return;
@@ -44,7 +47,7 @@ export default function FillBlankBlock({
 
   return (
     <BlockShell
-      label={block.title || "Fill in the blank"}
+      label={t(block.title || "Fill in the blank")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -54,15 +57,15 @@ export default function FillBlankBlock({
       footer={
         revealed ? (
           <button className="btn-primary" onClick={next}>
-            {qIndex + 1 < questions.length ? "Next" : "Continue"}
+            {t(qIndex + 1 < questions.length ? "Next" : "Continue")}
           </button>
         ) : null
       }
     >
       <p className="text-lg font-semibold text-ink-faint">
-        Question {qIndex + 1} of {questions.length}
+        {t("Question {current} of {total}", {current:qIndex+1,total:questions.length})}
       </p>
-      <h1 className="page-title mt-3">
+      <h1 className="page-title lesson-question mt-3">
         {beforeBlank}
         {filledWord === null ? (
           "______"
@@ -70,73 +73,37 @@ export default function FillBlankBlock({
           // Underlined so the answer is obvious in the sentence itself, which
           // is what makes the correction land for someone who chose wrongly.
           <span className="underline decoration-2 underline-offset-4">
-            {filledWord}
+            {answerLabel}
           </span>
         )}
         {afterBlank}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={q.text.replace("______", "blank")} />
+        <ReadAloud text={`${beforeBlank}${revealed ? answerLabel : t("blank")}${afterBlank}`} />
       </div>
 
-      <div className="mt-8 grid grid-cols-2 gap-3">
+      <div className="lesson-answer-grid mt-8">
         {block.wordBank.map((word) => {
-          let style =
-            "border-ink/15 bg-cream-card text-ink hover:border-clay hover:bg-clay/5";
-          if (revealed) {
-            if (word === q.answer) style = "border-sage bg-sage/15 text-sage-dark";
-            else if (word === selected)
-              style = "border-alert bg-alert/12 text-alert";
-            else style = "border-ink/10 bg-cream-card text-ink-faint";
-          }
           return (
-            <button
+            <AnswerOption
               key={word}
-              type="button"
+
               disabled={revealed}
               onClick={() => pick(word)}
-              className={`rounded-2xl border-2 px-4 py-5 text-center text-xl font-semibold ${style}`}
+              selected={selected === word}
+              state={revealed ? word === q.answer ? "correct" : word === selected ? "incorrect" : "other" : undefined}
+
             >
-              {word}
-            </button>
+              {t(word)}
+            </AnswerOption>
           );
         })}
       </div>
 
-      {revealed && (
-        <div
-          className={`mt-8 flex items-center gap-3 rounded-3xl p-5 ${
-            isCorrect ? "bg-sage/15" : "bg-alert/12"
-          }`}
-        >
-          <div
-            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-cream-card ${
-              isCorrect ? "bg-sage" : "bg-alert"
-            }`}
-          >
-            {isCorrect ? (
-              <CheckIcon className="h-8 w-8" />
-            ) : (
-              <span className="font-sans text-2xl font-bold">!</span>
-            )}
-          </div>
-          <div>
-            <p className="text-xl font-semibold text-ink">
-              {isCorrect
-                ? "That's right."
-                : `Not quite — the answer is “${q.answer}”.`}
-            </p>
-            {/* An explanation of WHY, when the question provides one. Naming
-                the learner's own choice is what turns a correction into a
-                lesson; without it they only ever see the right answer. */}
-            {!isCorrect && (q.why || q.wrong?.[selected]) ? (
-              <p className="mt-1 text-lg leading-snug text-ink">
-                {q.wrong?.[selected] || q.why}
-              </p>
-            ) : null}
-          </div>
-        </div>
-      )}
+      {revealed && <AnswerFeedback positive={isCorrect} title={isCorrect ? "That's right." : t("Not quite — the answer is “{answer}”.", {answer:answerLabel})}>
+        {!isCorrect && (q.why || q.wrong?.[selected]) ? <p>{t(q.wrong?.[selected] || q.why)}</p> : null}
+      </AnswerFeedback>}
+
     </BlockShell>
   );
 }

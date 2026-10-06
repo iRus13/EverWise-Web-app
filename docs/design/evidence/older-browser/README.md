@@ -1,0 +1,1 @@
+Original captures of production components with selected modern browser features omitted in a local review fixture. These are not screenshots from an iOS 15 device. Context and limitations: ../../2026-10-06-older-browser.md.

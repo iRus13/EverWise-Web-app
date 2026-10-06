@@ -770,8 +770,8 @@ export const scamPhase9Lessons = [
     ],
     quiz: [],
     complete: {
-      title: "Phase 16 complete!",
-      subtitle: "You completed Know When to Bring in More Help — and all of Phase 16.",
+      title: "Lesson complete!",
+      subtitle: "You completed Know When to Bring in More Help.",
       habit: "When the risk is serious, don't solve it alone: notice, name, records, route, stay.",
       warningSign: "A stranger offering to recover money you already lost.",
       skills: [

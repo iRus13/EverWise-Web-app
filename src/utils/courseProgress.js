@@ -59,7 +59,7 @@ export function courseStanding(completedIds, requiredIds, curriculum) {
           challenges,
           exams,
         }),
-    ) ?? phases.at(-1) ?? null;
+    ) ?? phases[phases.length - 1] ?? null;
 
   return {
     completed,
@@ -154,6 +154,28 @@ export function findCurrentPlayableId(
   }
 
   return null;
+}
+
+export function nextCourseActivity(completed, curriculum) {
+  const { lessons, challenges, exams } = curriculum;
+  const byId = new Map([
+    ...lessons.map((item, lessonIndex) => [item.id, { ...item, kind: "lesson", lessonIndex }]),
+    ...challenges.map(item => [item.id, { ...item, kind: "challenge" }]),
+    ...exams.map(item => [item.id, { ...item, kind: "exam" }]),
+  ]);
+  const ordered = requiredCourseIds(lessons, challenges, exams).map(id => byId.get(id));
+  const currentId = findCurrentPlayableId(ordered, completed, curriculum);
+  return byId.get(currentId) ?? null;
+}
+
+// Summary copy follows the same ordered curriculum as the path. Authored
+// `complete.next` text may refer to an older course order.
+export function courseSuccessor(itemId, { lessons, challenges, exams }) {
+  const ordered = requiredCourseIds(lessons, challenges, exams);
+  const index = ordered.indexOf(itemId);
+  if (index < 0 || index + 1 >= ordered.length) return null;
+  const nextId = ordered[index + 1];
+  return [...lessons, ...challenges, ...exams].find(item => item.id === nextId) ?? null;
 }
 
 export function labelFinalLessonsForChallenges(lessons, challenges) {

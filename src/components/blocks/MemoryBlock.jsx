@@ -1,5 +1,6 @@
 import ReadAloud from "../ReadAloud";
 import BlockShell from "./BlockShell";
+import { useLearningText } from "../../i18n/learning.js";
 
 // Ties today's lesson back to earlier ones, so lessons feel connected
 // instead of like separate pieces of information.
@@ -11,44 +12,44 @@ export default function MemoryBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const links = block.links || [];
   const speakText = [
-    "Memory connection.",
-    ...links.map((l) => `${l.lesson}. ${l.note}`),
+    t("You've practiced these skills before"),
+    t("Today's lesson builds on what you already know."),
+    ...links.map((l) => `${t(l.lesson)}. ${t(l.note)}`),
   ].join(" ");
 
   return (
     <BlockShell
-      label="Remember"
+      label={t("Remember")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
       onExit={onExit}
       footer={
         <button className="btn-primary" onClick={onContinue}>
-          Continue
+          {t("Continue")}
         </button>
       }
     >
       <div className="animate-fade-up">
         <h1 className="page-title">
-          You've practiced these skills before
+          {t("You've practiced these skills before")}
         </h1>
         <p className="mt-3 text-xl leading-relaxed text-ink-soft">
-          Today's lesson builds on what you already know.
+          {t("Today's lesson builds on what you already know.")}
         </p>
 
-        <div className="mt-7 space-y-4">
+        <div className="lesson-memory-list">
           {links.map((link) => (
             <div
               key={link.lesson}
-              className="rounded-3xl bg-cream-card px-6 py-5 shadow-card"
+              className="lesson-memory-item"
             >
-              <p className="text-base font-bold uppercase tracking-wide text-clay">
-                {link.lesson}
-              </p>
+              <h2 className="lesson-section-label">{t(link.lesson)}</h2>
               <p className="mt-2 text-xl leading-relaxed text-ink">
-                {link.note}
+                {t(link.note)}
               </p>
             </div>
           ))}

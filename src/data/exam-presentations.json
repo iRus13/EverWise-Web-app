@@ -1,0 +1,105 @@
+{
+  "True or False: It's okay to click every attachment in an email.": {
+    "story": "It's okay to click every attachment in an email.",
+    "question": "True or false?"
+  },
+  "True or False: You should send gift cards to receive a refund.": {
+    "story": "You should send gift cards to receive a refund.",
+    "question": "True or false?"
+  },
+  "True or False: HTTPS alone guarantees a website is legitimate.": {
+    "story": "HTTPS alone guarantees a website is legitimate.",
+    "question": "True or false?"
+  },
+  "True or False: If you're unsure whether a government website is real, you should carefully check the web address before entering any personal information.": {
+    "story": "If you're unsure whether a government website is real, you should carefully check the web address before entering any personal information.",
+    "question": "True or false?"
+  },
+  "True or False: If a political post tells you to \"Share this before it's deleted!\", you should verify the information before sharing it.": {
+    "story": "If a political post tells you to \"Share this before it's deleted!\", you should verify the information before sharing it.",
+    "question": "True or false?"
+  },
+  "True or False: A credit freeze prevents criminals from opening most new credit accounts in your name.": {
+    "story": "A credit freeze prevents criminals from opening most new credit accounts in your name.",
+    "question": "True or false?"
+  },
+  "True or False: Small charges you don't recognize should always be ignored.": {
+    "story": "Small charges you don't recognize should always be ignored.",
+    "question": "True or false?"
+  },
+  "You receive a text saying you won a free vacation. What should you do?": {
+    "story": "You receive a text saying you won a free vacation.",
+    "question": "What should you do?"
+  },
+  "A caller asks for your banking password. What should you do?": {
+    "story": "A caller asks for your banking password.",
+    "question": "What should you do?"
+  },
+  "You're having a video appointment with your doctor. Which is the safest place to join the call?": {
+    "story": "You're having a video appointment with your doctor.",
+    "question": "Which is the safest place to join the call?"
+  },
+  "You receive a text saying: \"Your driver's license has been suspended. Click here to pay immediately.\" What should you do?": {
+    "story": "You receive a text saying: \"Your driver's license has been suspended. Click here to pay immediately.\"",
+    "question": "What should you do?"
+  },
+  "You receive an email that says: \"Claim your IRS refund now!\" What is the safest action?": {
+    "story": "You receive an email that says: \"Claim your IRS refund now!\"",
+    "question": "What is the safest action?"
+  },
+  "You find two websites while searching for Medicare information: medicare.gov and medicare-benefits-online.com. Which should you use?": {
+    "story": "You find two websites while searching for Medicare information: medicare.gov and medicare-benefits-online.com.",
+    "question": "Which should you use?"
+  },
+  "Mary wants to refill a prescription. She receives a text with a link to an unfamiliar pharmacy website offering huge discounts, and no prescription is required. What should she do?": {
+    "story": "Mary wants to refill a prescription. She receives a text with a link to an unfamiliar pharmacy website offering huge discounts, and no prescription is required.",
+    "question": "What should she do?"
+  },
+  "Margaret sees this Facebook post: \"Congratulations! You won a $1,000 gift card! Just pay a $25 processing fee to claim it.\" What should she do?": {
+    "story": "Margaret sees this Facebook post: \"Congratulations! You won a $1,000 gift card! Just pay a $25 processing fee to claim it.\"",
+    "question": "What should she do?"
+  },
+  "Robert receives a Facebook message from someone pretending to be his grandson asking for $500. What should he do?": {
+    "story": "Robert receives a Facebook message from someone pretending to be his grandson asking for $500.",
+    "question": "What should he do?"
+  },
+  "You read a shocking news story on an unfamiliar website, but no trusted news organizations are reporting it. What should you do?": {
+    "story": "You read a shocking news story on an unfamiliar website, but no trusted news organizations are reporting it.",
+    "question": "What should you do?"
+  },
+  "Someone repeatedly sends you scam links on Facebook Messenger. What is the best response?": {
+    "story": "Someone repeatedly sends you scam links on Facebook Messenger.",
+    "question": "What is the best response?"
+  },
+  "You accidentally entered your email password on a fake website. What should you do first?": {
+    "story": "You accidentally entered your email password on a fake website.",
+    "question": "What should you do first?"
+  },
+  "Someone claiming to be your grandson texts: \"I'm in trouble. Don't call me. Just send me $2,000.\" What should you do?": {
+    "story": "Someone claiming to be your grandson texts: \"I'm in trouble. Don't call me. Just send me $2,000.\"",
+    "question": "What should you do?"
+  },
+  "You lose money in an online shopping scam. Which organization should you also consider reporting it to?": {
+    "story": "You lose money in an online shopping scam.",
+    "question": "Which organization should you also consider reporting it to?"
+  },
+  "Someone unexpectedly asks for your one-time banking verification code.": {
+    "story": "Someone unexpectedly asks for your one-time banking verification code.",
+    "question": "What should you do?"
+  },
+  "A website asks for your bank password to buy shoes.": {
+    "story": "A website asks for your bank password to buy shoes.",
+    "question": "What should you do?"
+  },
+  "You notice a purchase you don't recognize.": {
+    "story": "You notice a purchase you don't recognize.",
+    "question": "What should you do?"
+  },
+  "Someone says you accidentally received too much refund money and asks you to send gift cards.": {
+    "story": "Someone says you accidentally received too much refund money and asks you to send gift cards.",
+    "question": "What should you do?"
+  },
+  "Which email address looks more trustworthy?": {
+    "question": "Which website address is the official PayPal domain?"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "baseCommit": "3d3b04371efce8eb27991120c6e4e3aa01d891a0",
+  "sourceSHA256": {
+    "scripts/qa-achievements.mjs": "61c3f178d3a856c1bdc6cf2726abad5bac5e340bb90c799030d4a0d8559f5ac6",
+    "scripts/qa-assessments.mjs": "4e43ace4013b1ee4723b82f68b7349c9451c48402f04cf5529791e52fc259f36",
+    "src/App.jsx": "c14feda75fb9bbb419a66bbaf213deea7c3b94abad5b0127300d33bf98553e2c",
+    "src/components/LearningSummary.jsx": "dcb1adce56fad66e0d914402ef57a6408c38ba9c903e1e9bef4ae5f17c066593",
+    "src/components/ProgressSaveNotice.jsx": "7e60d1c9141b6fcad66998e2a26d8385cb899740d51858da2eb24f771b1544f0",
+    "src/i18n/es.json": "90882c51a0cd68ad07bf6dba21b3ca81222d9f2f0c707de81307d92981ba5820",
+    "src/i18n/learning-es.json": "a4b53b5066881c477fc58810b93dfdf91c04a2f04651feaa865c26c8342d150e",
+    "src/screens/ChallengePlayer.jsx": "6bba71e36baa0f5385b9c89010025517add7dc0b748f05bc1eb669e5e7bcb6a8",
+    "src/screens/Complete.jsx": "228ba5aa6154e03eeefa6b3c7b67033f3c6f41b1cfe6eb9f01617ad94eb6ea4b",
+    "src/screens/ExamPlayer.jsx": "d96acc39542ef7d0b663bf8a967011bd4965ecd935853241ee3101824cf0c29f",
+    "src/styles/achievements.css": "e343c1750d20f76975ed88116ee9819783987a9c981d2503d3198250eaaa6fd9",
+    "src/utils/courseProgress.js": "2aeed626426dbaf0f405f96c2b53e0029460ac8b618ee41aef066abdb7f8d9fd",
+    "tests/achievements.test.jsx": "ba50aa1a4482792dd498addbdf5d2b70e5a9b2030195ae2b4807f832fe52ae19",
+    "tests/app-navigation.test.jsx": "3521cf47f973bc3a11cf6cf4b04e17088863d25d3c8960d977f18ff06c1a02bb",
+    "tests/assessment-resume.test.jsx": "4a3425402bf398c593319027d7be586de10da392ce62f1bccfc185c16a268f37",
+    "tests/course-progress.test.js": "396917e6878c9c7c47ac09e1084faacaedc52349edda2549245611ebb588bcc3",
+    "tests/curriculum-audit.test.jsx": "e984e18ab017d93ee861e7a7b96b54e220dcb4cc4645ad73853c90f8ca3cd2b8",
+    "tests/fixtures/app-layout.jsx": "8ebb0724a3246950b9859eefd2528f610183eaa5f86a7219e5342185440d7ec3",
+    "tests/learning-localization.test.jsx": "eafbceab0fc04621004530ecad4a0933877c31258b40ce3b1500a8e7a426362d"
+  },
+  "captures": [
+    {
+      "file": "web-after-next.jpg",
+      "sha256": "e870372e4b29a0e6f83787b6c08d0bdeed154b25bfcbb27caec6f67ac6fcb871"
+    },
+    {
+      "file": "web-before-next.jpg",
+      "sha256": "45c04661f0981d03d68d089ce1b7927e0afce936e07366d4c2a020debb2ad7e1"
+    },
+    {
+      "file": "web-exam-retry-es.jpg",
+      "sha256": "bc5794dbaac22c5bee45c05197de017337b2ad19f1fd48f9176719de039d6d58"
+    },
+    {
+      "file": "web-maximum-save-recovery.jpg",
+      "sha256": "49f74950dd4e00b1cde46e958e4e29ed6ceaabecbbfea658c8483f385be80e62"
+    },
+    {
+      "file": "web-review-complete-maximum.jpg",
+      "sha256": "e953103f41910230a6d2aabd6a5b08ddeb6caa1445cbca7706021b4dc9f3479e"
+    },
+    {
+      "file": "web-tablet-summary.jpg",
+      "sha256": "772614f335dbcdbaed3551f698c559253c71e813f3bbf488af066f310a4d0151"
+    }
+  ],
+  "scope": "Development fixtures; Spanish phone 375x667 and 320x568 maximum text; tablet capture 834x1187. Local callbacks and synthetic saved badge; no production account or billing actions. Before capture is preceding development source, not live App Store app.",
+  "validation": {
+    "componentTests": 2267,
+    "componentFiles": 37,
+    "finalLocalizationTests": 49,
+    "nodeNonBrowserTests": 470,
+    "lint": "passed",
+    "productionBuild": "passed with existing chunk/import warnings",
+    "callbacks": "Real phase7 exam pass and phase1 review completion each called once; retry restarts question1"
+  }
+}

@@ -1,0 +1,667 @@
+English key,Spanish presentation,Native locations
+4.1,4.1,scam-ai-written-words/lessonNumber
+When Words Aren't Written by People,Cuando las palabras no las escribe una persona,scam-ai-written-words/title; scam-ai-written-words/blocks/0/heading
+AI-Written Words,Textos escritos por IA,scam-ai-written-words/pathTitle
+Message Reader,Leer mensajes con atención,scam-ai-written-words/badge
+Understand that good grammar does not prove a message is genuine.,Entender que una buena redacción no demuestra que un mensaje sea auténtico.,scam-ai-written-words/goals/0
+Judge a message by what it asks you to do.,Evaluar un mensaje por lo que te pide hacer.,scam-ai-written-words/goals/1
+How do I know if this message was written by a person or AI?,¿Cómo sé si este mensaje lo escribió una persona o la IA?,scam-ai-written-words/blocks/0/question
+"Learn that AI can write convincing messages, so the writing alone cannot tell you whether a request is safe.","Aprender que la IA puede escribir mensajes convincentes, por lo que la redacción por sí sola no indica si una petición es segura.",scam-ai-written-words/blocks/0/objective
+Slow down,Tómate tu tiempo,scam-ai-written-words/blocks/0/warningSigns/0; scam-ai-voice/blocks/0/warningSigns/0; scam-ai-images/blocks/0/warningSigns/0; scam-ai-video/blocks/0/warningSigns/0; scam-ai-chatbots/blocks/0/warningSigns/0; scam-ai-confidence/blocks/0/warningSigns/0; scam-ai-limits/blocks/0/warningSigns/0; scam-ai-helper/blocks/0/warningSigns/0
+Verify important information,Verifica la información importante,scam-ai-written-words/blocks/0/warningSigns/1; scam-ai-voice/blocks/0/warningSigns/1; scam-ai-images/blocks/0/warningSigns/1; scam-ai-video/blocks/0/warningSigns/1; scam-ai-chatbots/blocks/0/warningSigns/1; scam-ai-confidence/blocks/0/warningSigns/1; scam-ai-limits/blocks/0/warningSigns/1; scam-ai-helper/blocks/0/warningSigns/1
+Ask questions,Haz preguntas,scam-ai-written-words/blocks/0/warningSigns/2; scam-ai-voice/blocks/0/warningSigns/2; scam-ai-images/blocks/0/warningSigns/2; scam-ai-video/blocks/0/warningSigns/2; scam-ai-chatbots/blocks/0/warningSigns/2; scam-ai-confidence/blocks/0/warningSigns/2; scam-ai-limits/blocks/0/warningSigns/2; scam-ai-helper/blocks/0/warningSigns/2
+Make the final decision yourself,Toma tú la decisión final,scam-ai-written-words/blocks/0/warningSigns/3; scam-ai-voice/blocks/0/warningSigns/3; scam-ai-images/blocks/0/warningSigns/3; scam-ai-video/blocks/0/warningSigns/3; scam-ai-chatbots/blocks/0/warningSigns/3; scam-ai-confidence/blocks/0/warningSigns/3; scam-ai-limits/blocks/0/warningSigns/3; scam-ai-helper/blocks/0/warningSigns/3
+"Scam messages can have spelling mistakes, but some have always been well written. Artificial intelligence, or AI, can now help produce clear, friendly, professional messages quickly.
+
+A convincing message may come from a person or AI. You do not need to identify how it was written: focus on what it asks you to do, and verify unexpected requests through a trusted contact route.","Los mensajes fraudulentos pueden tener faltas de ortografía, pero algunos siempre han estado bien escritos. La inteligencia artificial, o IA, permite producir rápidamente mensajes claros, amables y profesionales.
+
+Un mensaje convincente puede provenir de una persona o de la IA. No necesitas identificar cómo se escribió: fíjate en lo que te pide hacer y verifica las peticiones inesperadas por un medio de contacto de confianza.",scam-ai-written-words/blocks/0/text
+Review safe AI habits,Repasar hábitos seguros con la IA,scam-ai-written-words/blocks/0/reminderTitle; scam-ai-voice/blocks/0/reminderTitle; scam-ai-images/blocks/0/reminderTitle; scam-ai-video/blocks/0/reminderTitle; scam-ai-chatbots/blocks/0/reminderTitle; scam-ai-confidence/blocks/0/reminderTitle; scam-ai-limits/blocks/0/reminderTitle; scam-ai-helper/blocks/0/reminderTitle
+Spot the change,Reconocer el cambio,scam-ai-written-words/blocks/1/title
+You receive an email with perfect spelling and grammar asking you to confirm your bank account information.,Recibes un correo sin errores de ortografía ni gramática que te pide confirmar los datos de tu cuenta bancaria.,scam-ai-written-words/blocks/1/scenario
+What should you remember?,¿Qué debes recordar?,scam-ai-written-words/blocks/1/question; scam-ai-images/blocks/1/question; scam-ai-video/blocks/1/question; scam-ai-confidence/blocks/1/question
+A well-written message can still be fake.,Un mensaje bien escrito puede ser falso.,scam-ai-written-words/blocks/1/options/0/text
+AI can write professional messages. Good spelling and grammar do not verify the sender or the request.,La IA puede escribir mensajes profesionales. La buena ortografía y gramática no verifican al remitente ni su petición.,scam-ai-written-words/blocks/1/options/0/feedback
+I should verify the request before responding.,Debo verificar la petición antes de responder.,scam-ai-written-words/blocks/1/options/1/text
+Verify through a trusted route before responding. Good writing alone does not establish trust.,Verifica por un medio de confianza antes de responder. Una buena redacción no basta para establecer confianza.,scam-ai-written-words/blocks/1/options/1/feedback
+Good grammar means the message is trustworthy.,La buena gramática significa que el mensaje es de confianza.,scam-ai-written-words/blocks/1/options/2/text
+Good grammar has never guaranteed that a message is genuine. Check the request through a trusted route.,La buena gramática nunca ha garantizado que un mensaje sea auténtico. Comprueba la petición por un medio de confianza.,scam-ai-written-words/blocks/1/options/2/feedback
+Choose the safest response,Elige la respuesta más segura,scam-ai-written-words/blocks/2/title; scam-ai-voice/blocks/2/title; scam-ai-images/blocks/2/title; scam-ai-video/blocks/2/title; scam-ai-confidence/blocks/2/title; scam-ai-limits/blocks/2/title
+"A professional-looking message says, ""Your account has unusual activity. Please click below to confirm your information.""",Un mensaje de aspecto profesional dice: «Tu cuenta presenta actividad inusual. Haz clic abajo para confirmar tus datos».,scam-ai-written-words/blocks/2/scenario
+Which response is the best?,¿Cuál es la mejor respuesta?,scam-ai-written-words/blocks/2/question; scam-ai-written-words/blocks/3/question; scam-ai-voice/blocks/2/question; scam-ai-voice/blocks/3/question; scam-ai-voice/blocks/5/practice/0/question; scam-ai-voice/blocks/5/practice/1/question; scam-ai-images/blocks/2/question; scam-ai-images/blocks/3/question; scam-ai-images/blocks/5/practice/0/question; scam-ai-images/blocks/5/practice/1/question; scam-ai-video/blocks/2/question; scam-ai-video/blocks/3/question; scam-ai-video/blocks/5/practice/0/question; scam-ai-video/blocks/5/practice/1/question; scam-ai-chatbots/blocks/1/question; scam-ai-chatbots/blocks/2/question; scam-ai-chatbots/blocks/3/question; scam-ai-chatbots/blocks/5/practice/0/question; scam-ai-chatbots/blocks/5/practice/1/question; scam-ai-confidence/blocks/2/question; scam-ai-confidence/blocks/3/question; scam-ai-confidence/blocks/5/practice/0/question; scam-ai-confidence/blocks/5/practice/1/question; scam-ai-limits/blocks/1/question; scam-ai-limits/blocks/2/question; scam-ai-limits/blocks/3/question; scam-ai-limits/blocks/5/practice/0/question; scam-ai-limits/blocks/5/practice/1/question; scam-ai-helper/blocks/1/question; scam-ai-helper/blocks/2/question; scam-ai-helper/blocks/3/question; scam-ai-helper/blocks/5/practice/0/question; scam-ai-helper/blocks/5/practice/1/question
+Visit your bank's official website or call them using a trusted phone number.,Visita el sitio oficial de tu banco o llama a un número de confianza.,scam-ai-written-words/blocks/2/options/0/text
+"Instead of judging how the message looks, you judged what it was asking you to do.",Te fijaste en lo que el mensaje te pedía hacer y no solo en su aspecto.,scam-ai-written-words/blocks/2/options/0/feedback
+Wait until you can verify the request yourself.,Espera hasta que puedas verificar la petición por tu cuenta.,scam-ai-written-words/blocks/2/options/1/text
+Pause the conversation and check your account through the official app or a trusted bank number.,Pausa la conversación y revisa tu cuenta desde la aplicación oficial o un número de confianza del banco.,scam-ai-written-words/blocks/2/options/1/feedback
+Click the link because the email looks official.,Haz clic en el enlace porque el correo parece oficial.,scam-ai-written-words/blocks/2/options/2/text
+Logos and professional writing can be copied. Use a trusted route to check what the message asks you to do.,Los logotipos y la redacción profesional se pueden copiar. Comprueba lo que te pide el mensaje por un medio de confianza.,scam-ai-written-words/blocks/2/options/2/feedback
+Apply the lesson,Pon en práctica lo aprendido,scam-ai-written-words/blocks/3/title; scam-ai-voice/blocks/3/title; scam-ai-images/blocks/3/title; scam-ai-video/blocks/3/title; scam-ai-chatbots/blocks/3/title; scam-ai-confidence/blocks/3/title; scam-ai-limits/blocks/3/title
+Someone sends you a polite email offering a prize if you respond today.,Alguien te envía un correo amable que ofrece un premio si respondes hoy.,scam-ai-written-words/blocks/3/scenario
+Verify the offer before responding.,Verifica la oferta antes de responder.,scam-ai-written-words/blocks/3/options/0/text
+Friendly language is not proof that a message is genuine.,El lenguaje amable no demuestra que un mensaje sea auténtico.,scam-ai-written-words/blocks/3/options/0/feedback
+Ignore the message until you know it's real.,Ignora el mensaje hasta saber si es auténtico.,scam-ai-written-words/blocks/3/options/1/text
+You do not need to respond to an unverified prize message. Check the offer independently before sharing information or money.,No tienes que responder a un mensaje sobre un premio sin verificar. Comprueba la oferta por tu cuenta antes de compartir datos o dinero.,scam-ai-written-words/blocks/3/options/1/feedback
+Trust the message because it sounds friendly.,Confía en el mensaje porque suena amable.,scam-ai-written-words/blocks/3/options/2/text
+AI writes friendly text as easily as formal text.,La IA puede escribir textos amables y también formales.,scam-ai-written-words/blocks/3/options/2/feedback
+Connect previous lessons,Relaciona las lecciones anteriores,scam-ai-written-words/blocks/4/title; scam-ai-voice/blocks/4/title; scam-ai-images/blocks/4/title; scam-ai-video/blocks/4/title; scam-ai-chatbots/blocks/4/title; scam-ai-confidence/blocks/4/title; scam-ai-limits/blocks/4/title
+You receive a perfectly written email claiming to be from your electric company. It says your service may be disconnected today unless you confirm your account information using the link provided.,Recibes un correo perfectamente redactado que dice ser de tu compañía eléctrica. Afirma que pueden cortar el servicio hoy si no confirmas los datos de tu cuenta mediante el enlace incluido.,scam-ai-written-words/blocks/4/scenario
+Which response is safe?,¿Qué respuesta es segura?,scam-ai-written-words/blocks/4/question; scam-ai-voice/blocks/4/question; scam-ai-images/blocks/4/question; scam-ai-video/blocks/4/question; scam-ai-chatbots/blocks/4/question; scam-ai-confidence/blocks/4/question; scam-ai-limits/blocks/4/question; scam-ai-helper/blocks/4/question
+Contact your electric company using the phone number on your bill.,Contacta con tu compañía eléctrica mediante el número de tu factura.,scam-ai-written-words/blocks/4/options/0/text
+"The message looked different from older scam emails, but the warning signs stayed the same: unexpected request, urgency, and being pushed toward their link instead of independent verification.","El mensaje tenía otro aspecto, pero las señales de alerta eran las mismas: una petición inesperada, urgencia y presión para usar su enlace en lugar de verificar por tu cuenta.",scam-ai-written-words/blocks/4/options/0/feedback
+Log into your account yourself to check for notices.,Entra en tu cuenta por tu cuenta para revisar los avisos.,scam-ai-written-words/blocks/4/options/1/text
+Your own account is a trusted source.,Tu cuenta oficial es una fuente de confianza.,scam-ai-written-words/blocks/4/options/1/feedback
+Click the email link because it looks professional.,Haz clic en el enlace del correo porque parece profesional.,scam-ai-written-words/blocks/4/options/2/text
+AI can make messages look professional. Urgency and pressure to use an unexpected link are still reasons to verify.,La IA puede dar un aspecto profesional a los mensajes. La urgencia y la presión para usar un enlace inesperado siguen siendo motivos para verificar.,scam-ai-written-words/blocks/4/options/2/feedback
+How confident do you feel recognizing that AI can write convincing messages?,¿Qué tanta confianza tienes para reconocer que la IA puede escribir mensajes convincentes?,scam-ai-written-words/blocks/5/question
+A text message has perfect grammar and asks you to verify your password.,Un mensaje de texto sin errores gramaticales te pide verificar tu contraseña.,scam-ai-written-words/blocks/5/practice/0/scenario
+Which response is best?,¿Cuál es la mejor respuesta?,scam-ai-written-words/blocks/5/practice/0/question
+Verify through the company's official website.,Verifica desde el sitio oficial de la empresa.,scam-ai-written-words/blocks/5/practice/0/options/0/text
+No company needs your password by text.,No compartas tu contraseña por mensaje de texto con una empresa.,scam-ai-written-words/blocks/5/practice/0/options/0/feedback
+Ignore the message until you've checked your account.,Ignorar el mensaje hasta revisar tu cuenta.,scam-ai-written-words/blocks/5/practice/0/options/1/text
+Safe and simple.,Es una opción sencilla y segura.,scam-ai-written-words/blocks/5/practice/0/options/1/feedback
+Trust it because it was written well.,Confía porque está bien escrito.,scam-ai-written-words/blocks/5/practice/0/options/2/text
+Writing quality does not verify a sender or an unexpected request.,La calidad de la redacción no verifica al remitente ni una petición inesperada.,scam-ai-written-words/blocks/5/practice/0/options/2/feedback
+"Someone says, ""You can always tell a scam because it has bad spelling.""",Alguien dice: «Siempre puedes reconocer una estafa porque tiene faltas de ortografía».,scam-ai-written-words/blocks/5/practice/1/scenario
+Which answer is correct?,¿Qué respuesta es correcta?,scam-ai-written-words/blocks/5/practice/1/question
+"That used to be more common, but AI can now write very professional messages.","Antes era más habitual ver esos errores, pero la IA puede escribir mensajes muy profesionales.",scam-ai-written-words/blocks/5/practice/1/options/0/text
+This is one of the biggest changes AI has brought to scams.,La IA facilita que los mensajes fraudulentos estén bien redactados.,scam-ai-written-words/blocks/5/practice/1/options/0/feedback
+Good writing alone doesn't prove something is real.,La buena redacción por sí sola no demuestra que algo sea auténtico.,scam-ai-written-words/blocks/5/practice/1/options/1/text
+Correct — appearance and honesty are separate things.,El aspecto de un mensaje y la honestidad de quien lo envía son cosas distintas.,scam-ai-written-words/blocks/5/practice/1/options/1/feedback
+That's always true.,Eso siempre es cierto.,scam-ai-written-words/blocks/5/practice/1/options/2/text
+It's a dangerous rule to rely on today. Many scam messages are now flawless.,No es una regla fiable. Muchos mensajes fraudulentos no tienen errores de redacción.,scam-ai-written-words/blocks/5/practice/1/options/2/feedback
+"Lesson 1.4 — Stop, Verify, Then Decide","Lección 1.4 — Para, verifica y después decide",scam-ai-written-words/blocks/6/links/0/lesson; scam-ai-confidence/blocks/6/links/0/lesson
+A convincing message still needs verification.,Un mensaje convincente también necesita verificación.,scam-ai-written-words/blocks/6/links/0/note
+Lesson 3.7 — Deliveries & Packages,Lección 3.7 — Entregas y paquetes,scam-ai-written-words/blocks/6/links/1/lesson
+You learned not to trust a text just because it looked real. AI makes those messages look even better — your response stays the same.,Aprendiste a no confiar en un mensaje solo porque parecía auténtico. La IA puede hacerlo más convincente; tu forma de verificar sigue siendo útil.,scam-ai-written-words/blocks/6/links/1/note
+The perfect email,El correo perfecto,scam-ai-written-words/blocks/7/title
+"An unexpected email uses your name, correct grammar, and your bank's logo. It asks you to use a link immediately instead of contacting the bank yourself.","Un correo inesperado usa tu nombre, una gramática correcta y el logotipo de tu banco. Te pide usar un enlace de inmediato en vez de contactar con el banco por tu cuenta.",scam-ai-written-words/blocks/7/setup
+Email · Your Bank,Correo · Tu banco,scam-ai-written-words/blocks/7/messages/0/from
+"Dear [your name], we detected unusual activity. Confirm your transactions using this link within 30 minutes or your account will be locked. Do not call the bank; this link is the only way to secure your account.",Estimado/a [tu nombre]: detectamos actividad inusual. Confirma tus transacciones mediante este enlace en 30 minutos o tu cuenta se bloqueará. No llames al banco; este enlace es la única forma de proteger tu cuenta.,scam-ai-written-words/blocks/7/messages/0/body
+Secure your account,Proteger tu cuenta,scam-ai-written-words/blocks/7/messages/0/fakeButton
+Which response is the best first step?,¿Cuál es el mejor primer paso?,scam-ai-written-words/blocks/7/question
+Close the email and contact your bank using the number on your card or by logging into your account yourself.,Cierra el correo y contacta con tu banco mediante el número de tu tarjeta o entrando en tu cuenta por tu cuenta.,scam-ai-written-words/blocks/7/options/0/text
+"This lesson wasn't about spotting spelling mistakes — it was about remembering that appearance alone isn't proof. AI can create messages that look professional, but verifying independently still protects you.","Recordaste que el aspecto no demuestra la autenticidad. La IA puede crear mensajes profesionales, pero verificar por tu cuenta sigue ayudándote a protegerte.",scam-ai-written-words/blocks/7/options/0/feedback
+Wait until you can verify the information through the bank's official website.,Espera hasta poder verificar la información en el sitio oficial del banco.,scam-ai-written-words/blocks/7/options/1/text
+Waiting and verifying is exactly right.,Te das tiempo para verificar por un medio de confianza.,scam-ai-written-words/blocks/7/options/1/feedback
+"Click the ""Secure Your Account"" button because the email looks authentic.",Haz clic en «Protege tu cuenta» porque el correo parece auténtico.,scam-ai-written-words/blocks/7/options/2/text
+The logo and wording do not verify the email. The deadline and instruction not to call are warning signs. Check through the number on your card or the official bank app.,El logotipo y la redacción no verifican el correo. El plazo y la instrucción de no llamar son señales de alerta. Comprueba por el número de tu tarjeta o la aplicación oficial del banco.,scam-ai-written-words/blocks/7/options/2/feedback
+Unexpected contact,Contacto inesperado,scam-ai-written-words/blocks/7/spotted/0; scam-ai-voice/blocks/7/spotted/0; scam-ai-video/blocks/7/spotted/0
+Pressure to act,Presión para actuar,scam-ai-written-words/blocks/7/spotted/1
+Refusing independent verification,Impedir que verifiques por tu cuenta,scam-ai-written-words/blocks/7/spotted/2; scam-ai-voice/blocks/7/spotted/3; scam-ai-video/blocks/7/spotted/3
+Lesson complete!,¡Lección completada!,scam-ai-written-words/complete/title; scam-ai-voice/complete/title; scam-ai-images/complete/title; scam-ai-video/complete/title; scam-ai-chatbots/complete/title; scam-ai-confidence/complete/title; scam-ai-limits/complete/title; scam-ai-helper/complete/title
+You completed When Words Aren't Written by People.,Completaste Cuando las palabras no las escribe una persona.,scam-ai-written-words/complete/subtitle
+Judge a message by what it asks you to do — not by how well it's written.,"Evalúa un mensaje por lo que te pide hacer, no solo por lo bien escrito que esté.",scam-ai-written-words/complete/habit
+A flawless message asking for something unexpected.,Un mensaje impecable que te pide algo inesperado.,scam-ai-written-words/complete/warningSign
+Looked beyond appearances,Miraste más allá de las apariencias,scam-ai-written-words/complete/skills/0; scam-ai-images/complete/skills/0
+Verified independently,Verificaste por tu cuenta,scam-ai-written-words/complete/skills/1; scam-ai-voice/complete/skills/0
+Recognized AI's influence on messages,Reconociste cómo la IA puede influir en los mensajes,scam-ai-written-words/complete/skills/2
+When the Voice Isn't Real,Cuando la voz no es auténtica,scam-ai-written-words/complete/next; scam-ai-voice/title; scam-ai-voice/blocks/0/heading
+4.2,4.2,scam-ai-voice/lessonNumber
+Cloned Voices,Voces clonadas,scam-ai-voice/pathTitle
+Voice Verifier,Verificar las voces,scam-ai-voice/badge
+Understand that AI can copy a familiar voice.,Entender que la IA puede copiar una voz conocida.,scam-ai-voice/goals/0
+"Verify through a number you already have, not the call you received.","Verificar mediante un número que ya tienes, no a través de la llamada recibida.",scam-ai-voice/goals/1
+What if the voice sounds exactly like someone I know?,¿Qué pasa si la voz suena exactamente como alguien que conozco?,scam-ai-voice/blocks/0/question
+"Learn that AI can copy a person's voice, so a familiar voice alone is no longer proof of someone's identity.","Aprender que la IA puede copiar la voz de una persona, por lo que una voz conocida no basta para demostrar su identidad.",scam-ai-voice/blocks/0/objective
+"AI can create audio that sounds like a real person. A scammer may imitate a relative, friend, or public figure to make a request feel believable.
+
+If an unexpected call asks for money or secrecy, end it and call a number you already trust. If you cannot reach the person, try another trusted relative or friend. A familiar voice alone does not verify who is calling.","La IA puede crear audio que suena como una persona real. Un estafador puede imitar a un familiar, una amistad o una figura pública para que su petición parezca creíble.
+
+Si una llamada inesperada te pide dinero o guardar un secreto, cuelga y llama a un número de confianza. Si no logras contactar con esa persona, intenta con otro familiar o amistad de confianza. Una voz conocida no verifica por sí sola quién llama.",scam-ai-voice/blocks/0/text
+Spot the new risk,Reconocer el nuevo riesgo,scam-ai-voice/blocks/1/title; scam-ai-images/blocks/1/title; scam-ai-video/blocks/1/title
+"You receive a phone call that sounds exactly like your grandson. He says, ""Grandma, I need your help right away.""","Recibes una llamada que suena exactamente como tu nieto. Dice: «Abuela, necesito tu ayuda ahora mismo».",scam-ai-voice/blocks/1/scenario
+What should you remember first?,¿Qué debes recordar primero?,scam-ai-voice/blocks/1/question
+A familiar voice is not enough to prove someone's identity.,Una voz conocida no basta para demostrar la identidad de alguien.,scam-ai-voice/blocks/1/options/0/text
+AI can imitate voices. A familiar voice should encourage you to verify — not rush.,"La IA puede imitar voces. Una voz conocida es motivo para verificar una petición inusual, no para apresurarte.",scam-ai-voice/blocks/1/options/0/feedback
+I should verify who is calling before taking action.,Debo verificar quién llama antes de actuar.,scam-ai-voice/blocks/1/options/1/text
+"The right action, for exactly the right reason.",Verificar antes de actuar te ayuda a tomar una decisión informada.,scam-ai-voice/blocks/1/options/1/feedback
+"If I recognize the voice, I know it's really him.","Si reconozco la voz, sé que realmente es él.",scam-ai-voice/blocks/1/options/2/text
+"Voices can be imitated. Verify an unusual request through a trusted contact route, even when the voice sounds familiar.","Las voces se pueden imitar. Verifica una petición inusual por un medio de confianza, aunque la voz te resulte conocida.",scam-ai-voice/blocks/1/options/2/feedback
+"The caller says, ""Please don't call Mom or Dad. I just need you to help me.""","Quien llama dice: «Por favor, no llames a mamá ni a papá. Solo necesito que me ayudes».",scam-ai-voice/blocks/2/scenario
+End the call and contact your grandson or another family member using a number you already have.,Cuelga y contacta con tu nieto u otro familiar mediante un número que ya tienes.,scam-ai-voice/blocks/2/options/0/text
+Ending the call puts you back in control and lets you verify independently.,Colgar te permite recuperar el control y verificar por tu cuenta.,scam-ai-voice/blocks/2/options/0/feedback
+Tell the caller you'll call back after checking.,Dile que volverás a llamar después de comprobar la situación.,scam-ai-voice/blocks/2/options/1/text
+Good — just be sure to use your own saved number.,Usa el número que tú ya tenías guardado.,scam-ai-voice/blocks/2/options/1/feedback
+Stay on the line and continue the conversation.,Quédate en la línea y continúa la conversación.,scam-ai-voice/blocks/2/options/2/text
+Staying on the line is how they prevent you from checking. Notice the secrecy request too.,Mantenerte en la línea puede impedir que verifiques. La petición de guardar el secreto también es una señal de alerta.,scam-ai-voice/blocks/2/options/2/feedback
+"The caller sounds upset and says, ""There's no time to explain!""",Quien llama suena angustiado y dice: «¡No hay tiempo para explicar!».,scam-ai-voice/blocks/3/scenario
+Slow down and verify the situation before taking any action.,Tómate tu tiempo y verifica la situación antes de actuar.,scam-ai-voice/blocks/3/options/0/text
+Strong emotions are often used to make people act without thinking.,Las emociones intensas pueden usarse para que las personas actúen sin pensar.,scam-ai-voice/blocks/3/options/0/feedback
+Tell them you'll help after you've confirmed what's happening.,Dile que ayudarás después de confirmar qué está pasando.,scam-ai-voice/blocks/3/options/1/text
+"A clear, kind boundary.",Puedes establecer ese límite con claridad y amabilidad.,scam-ai-voice/blocks/3/options/1/feedback
+Act immediately because they sound scared.,Actúa de inmediato porque parece tener miedo.,scam-ai-voice/blocks/3/options/2/text
+Sounding scared is now something software can produce on demand.,Una voz angustiada también puede generarse con software. Comprueba la situación por otro medio.,scam-ai-voice/blocks/3/options/2/feedback
+"The caller sounds like your granddaughter. She asks you to keep the call secret, buy gift cards immediately, and read the numbers over the phone.","Quien llama suena como tu nieta. Te pide mantener la llamada en secreto, comprar tarjetas de regalo de inmediato y leerle los números por teléfono.",scam-ai-voice/blocks/4/scenario
+End the call and contact your granddaughter using a trusted phone number.,Cuelga y contacta con tu nieta mediante un número de confianza.,scam-ai-voice/blocks/4/options/0/text
+"Even though AI made the voice convincing, you recognized familiar warning signs: pressure, secrecy, and a strange payment request.","Aunque la voz parecía convincente, reconociste señales conocidas: presión, secreto y una petición de pago inusual.",scam-ai-voice/blocks/4/options/0/feedback
+Call another family member to verify the situation.,Llama a otro familiar para verificar la situación.,scam-ai-voice/blocks/4/options/1/text
+Another trusted route to the same answer.,También puedes verificar por otro contacto de confianza.,scam-ai-voice/blocks/4/options/1/feedback
+Buy the gift cards because the voice sounds real.,Compra las tarjetas de regalo porque la voz parece auténtica.,scam-ai-voice/blocks/4/options/2/text
+An urgent request for gift card numbers is a scam warning. End the call and contact your granddaughter through a number you already trust.,Una petición urgente de números de tarjetas de regalo es una señal de estafa. Cuelga y contacta con tu nieta mediante un número de confianza.,scam-ai-voice/blocks/4/options/2/feedback
+How confident do you feel recognizing that AI can imitate voices?,¿Qué tanta confianza tienes para reconocer que la IA puede imitar voces?,scam-ai-voice/blocks/5/question
+Someone who sounds like your daughter asks you to send money immediately.,Alguien que suena como tu hija te pide enviar dinero de inmediato.,scam-ai-voice/blocks/5/practice/0/scenario
+End the call and contact your daughter yourself.,Cuelga y contacta con tu hija por tu cuenta.,scam-ai-voice/blocks/5/practice/0/options/0/text
+"Call her known number. If you cannot reach her, try another trusted relative or friend before sending money.","Llama al número que conoces. Si no responde, intenta con otro familiar o amistad de confianza antes de enviar dinero.",scam-ai-voice/blocks/5/practice/0/options/0/feedback
+Verify with another trusted family member.,Verifica con otro familiar de confianza.,scam-ai-voice/blocks/5/practice/0/options/1/text
+Also effective.,Es otra forma de comprobar la situación.,scam-ai-voice/blocks/5/practice/0/options/1/feedback
+Send the money because you recognize the voice.,Envía el dinero porque reconoces la voz.,scam-ai-voice/blocks/5/practice/0/options/2/text
+Recognition is no longer identification.,Reconocer una voz no basta para verificar la identidad de quien llama.,scam-ai-voice/blocks/5/practice/0/options/2/feedback
+"A familiar voice tells you, ""Don't tell anyone until I explain.""",Una voz conocida te dice: «No se lo cuentes a nadie hasta que te explique».,scam-ai-voice/blocks/5/practice/1/scenario
+Verify the situation independently before continuing.,Verifica la situación por tu cuenta antes de continuar.,scam-ai-voice/blocks/5/practice/1/options/0/text
+Secrecy plus a familiar voice is a combination worth stopping for.,"Una petición de secreto, incluso con una voz conocida, es motivo para detenerte y verificar.",scam-ai-voice/blocks/5/practice/1/options/0/feedback
+End the call and check with another family member.,Cuelga y consulta con otro familiar.,scam-ai-voice/blocks/5/practice/1/options/1/text
+Breaking the isolation is the key move.,Hablar con alguien de confianza ayuda a salir del aislamiento.,scam-ai-voice/blocks/5/practice/1/options/1/feedback
+Keep the conversation secret.,Mantén la conversación en secreto.,scam-ai-voice/blocks/5/practice/1/options/2/text
+Secrecy is what makes the scam survive.,El secreto puede impedir que alguien te ayude a reconocer una estafa.,scam-ai-voice/blocks/5/practice/1/options/2/feedback
+Lesson 2.5 — Always Verify,Lección 2.5 — Verifica siempre,scam-ai-voice/blocks/6/links/0/lesson; scam-ai-limits/blocks/6/links/0/lesson
+The safest way to know who's calling is to contact them yourself.,"Para verificar quién llama, contacta por tu cuenta con la persona.",scam-ai-voice/blocks/6/links/0/note
+Lesson 3.5 — Someone You Love,Lección 3.5 — Alguien que quieres,scam-ai-voice/blocks/6/links/1/lesson
+You learned emotions can rush your decisions. AI now makes those conversations sound even more convincing.,Aprendiste que las emociones pueden apresurar tus decisiones. La IA puede hacer que esas conversaciones suenen aún más convincentes.,scam-ai-voice/blocks/6/links/1/note
+"""Grandma, it's me""","«Abuela, soy yo»",scam-ai-voice/blocks/7/title
+"Your phone rings. The caller sounds exactly like your grandson, and his voice is shaky. You can hear traffic in the background.",Suena tu teléfono. Quien llama suena exactamente como tu nieto y tiene la voz temblorosa. Se oye tráfico de fondo.,scam-ai-voice/blocks/7/setup
+Example call transcript · Unknown number,Transcripción de una llamada de ejemplo · Número desconocido,scam-ai-voice/blocks/7/messages/0/from
+"Grandma... it's me. I was in a small car accident. I'm okay, but I need help right now. My phone is almost dead, so please don't hang up. I don't want Mom and Dad to worry until I figure this out. Can you send money through a payment app so I can get home?","Abuela… soy yo. Tuve un pequeño accidente de coche. Estoy bien, pero necesito ayuda ahora. Mi teléfono está por apagarse, así que no cuelgues. No quiero preocupar a mamá y papá hasta resolverlo. ¿Puedes enviarme dinero por una aplicación de pagos para volver a casa?",scam-ai-voice/blocks/7/messages/0/body
+What should you do first?,¿Qué deberías hacer primero?,scam-ai-voice/blocks/7/question; scam-ai-images/blocks/6/question; scam-ai-video/blocks/7/question; scam-ai-confidence/blocks/7/question; scam-ai-limits/blocks/7/question
+End the call and contact your grandson or another trusted family member using a phone number you already have.,Cuelga y contacta con tu nieto u otro familiar de confianza mediante un número que ya tienes.,scam-ai-voice/blocks/7/options/0/text
+"This was difficult because the voice sounded real. But you remembered the main idea: a familiar voice is no longer proof of identity. Instead of trusting what you heard, you trusted your safety habits.","La voz parecía auténtica, pero recordaste que eso no demuestra la identidad. Usaste tus hábitos de seguridad para verificar antes de actuar.",scam-ai-voice/blocks/7/options/0/feedback
+Tell the caller you'll verify the situation before helping.,Dile que verificarás la situación antes de ayudar.,scam-ai-voice/blocks/7/options/1/text
+A reasonable boundary — just make sure you actually hang up and call the number you have.,"Después, cuelga y llama al número que ya tenías guardado.",scam-ai-voice/blocks/7/options/1/feedback
+Send the money because the voice sounds exactly like him.,Envía el dinero porque la voz suena exactamente como él.,scam-ai-voice/blocks/7/options/2/text
+"The voice may be imitated. The requests to stay on the line, keep the call secret, and send money urgently are reasons to end the call and verify independently.","La voz puede ser una imitación. Las peticiones de no colgar, mantener la llamada en secreto y enviar dinero con urgencia son motivos para colgar y verificar por tu cuenta.",scam-ai-voice/blocks/7/options/2/feedback
+Requests for secrecy,Peticiones de guardar silencio,scam-ai-voice/blocks/7/spotted/1
+Pressure to hurry,Presión para actuar rápido,scam-ai-voice/blocks/7/spotted/2; scam-ai-images/blocks/6/spotted/1; scam-ai-video/blocks/7/spotted/1
+You completed When the Voice Isn't Real.,Completaste Cuando la voz no es auténtica.,scam-ai-voice/complete/subtitle
+Trust your verification process — not a familiar voice.,"Confía en tu forma de verificar, no solo en una voz conocida.",scam-ai-voice/complete/habit
+A familiar voice you didn't expect to hear.,Una voz conocida en una llamada inesperada.,scam-ai-voice/complete/warningSign
+Stayed calm during an emotional call,Mantuviste la calma durante una llamada emotiva,scam-ai-voice/complete/skills/1
+Recognized AI voice cloning,Reconociste la clonación de voz con IA,scam-ai-voice/complete/skills/2
+When the Picture Never Happened,Cuando la imagen nunca ocurrió,scam-ai-voice/complete/next; scam-ai-images/title; scam-ai-images/blocks/0/heading
+4.3,4.3,scam-ai-images/lessonNumber
+Fake Images,Imágenes falsas,scam-ai-images/pathTitle
+Image Checker,Verificar las imágenes,scam-ai-images/badge
+Understand that AI can create realistic images of things that never happened.,Entender que la IA puede crear imágenes realistas de cosas que nunca ocurrieron.,scam-ai-images/goals/0
+Verify a surprising image before believing or sharing it.,Verificar una imagen sorprendente antes de creerla o compartirla.,scam-ai-images/goals/1
+Can I trust a picture just because it looks real?,¿Puedo confiar en una imagen solo porque parece real?,scam-ai-images/blocks/0/question
+"Learn that AI can create realistic images that never actually happened, so a convincing picture alone is not proof that something is real.","Aprender que la IA puede crear imágenes realistas de hechos que nunca ocurrieron, por lo que una imagen convincente no es prueba suficiente.",scam-ai-images/blocks/0/objective
+"AI can create realistic pictures of people, places, and events that never happened. Some are made for art or entertainment; others are used to mislead. Even a real photo can be shared with the wrong date or description.
+
+Before sharing an unexpected image or acting on it, check its source and context. For a possible local emergency, check official alerts and follow safety instructions. A convincing picture alone does not verify the claim.","La IA puede crear imágenes realistas de personas, lugares y hechos que nunca existieron. Algunas se hacen por arte o entretenimiento; otras se usan para engañar. Incluso una foto real puede compartirse con una fecha o descripción incorrecta.
+
+Antes de compartir una imagen inesperada o actuar por ella, verifica su origen y contexto. Ante una posible emergencia local, consulta los avisos oficiales y sigue las instrucciones de seguridad. Una imagen convincente no verifica por sí sola lo que se afirma.",scam-ai-images/blocks/0/text
+A friend sends you a picture of a famous actor standing on the moon. The picture looks incredibly realistic.,Una amistad te envía una imagen de un actor famoso en la Luna. La imagen parece increíblemente realista.,scam-ai-images/blocks/1/scenario
+A realistic picture can still be created by AI.,Una imagen realista puede haber sido creada con IA.,scam-ai-images/blocks/1/options/0/text
+AI can create pictures that look surprisingly realistic. A convincing image isn't proof that it actually happened.,La IA puede crear imágenes muy realistas. Que una imagen convenza no demuestra que el hecho haya ocurrido.,scam-ai-images/blocks/1/options/0/feedback
+It's okay to verify where the picture came from.,Está bien verificar de dónde salió la imagen.,scam-ai-images/blocks/1/options/1/text
+Checking the source is exactly the right instinct.,Comprobar el origen te ayuda a evaluar la imagen.,scam-ai-images/blocks/1/options/1/feedback
+"If it looks real, it must be real.","Si parece real, tiene que ser real.",scam-ai-images/blocks/1/options/2/text
+Realism is now something software produces on request.,El software puede crear imágenes con un aspecto realista.,scam-ai-images/blocks/1/options/2/feedback
+You see an image online claiming a local bridge has collapsed. The post is being shared by many people.,Ves una imagen en internet que afirma que un puente local se derrumbó. Muchas personas la están compartiendo.,scam-ai-images/blocks/2/scenario
+Check official local alerts and trusted local reporting before sharing the image or changing your plans.,Consulta los avisos oficiales locales y medios de confianza antes de compartir la imagen o cambiar tus planes.,scam-ai-images/blocks/2/options/0/text
+Lots of shares don't make a picture true.,Que muchas personas compartan una imagen no demuestra que sea auténtica.,scam-ai-images/blocks/2/options/0/feedback
+Wait until you can learn more before sharing it.,Espera a saber más antes de compartirla.,scam-ai-images/blocks/2/options/1/text
+"Pause before sharing unverified images. For a possible emergency, check official alerts promptly and follow safety instructions.","Haz una pausa antes de compartir imágenes sin verificar. Ante una posible emergencia, consulta pronto los avisos oficiales y sigue las instrucciones de seguridad.",scam-ai-images/blocks/2/options/1/feedback
+Share it immediately because everyone else is.,Compártela de inmediato porque todo el mundo lo hace.,scam-ai-images/blocks/2/options/2/text
+"Sharing spreads it further, and popularity is not evidence.","Compartirla extiende su alcance, pero la popularidad no es una prueba.",scam-ai-images/blocks/2/options/2/feedback
+A picture appears to show a frightened child asking for donations after a natural disaster.,Una imagen parece mostrar a un niño asustado que pide donaciones tras un desastre natural.,scam-ai-images/blocks/3/scenario
+Verify the charity or story before donating or sharing.,Verifica la organización benéfica o la historia antes de donar o compartir.,scam-ai-images/blocks/3/options/0/text
+Scammers sometimes use emotional images to encourage quick decisions. Your habit is to pause and verify.,Algunos estafadores usan imágenes emotivas para provocar decisiones rápidas. Haz una pausa y verifica.,scam-ai-images/blocks/3/options/0/feedback
+Look for the same story from trusted news organizations.,Busca la misma historia en medios de comunicación de confianza.,scam-ai-images/blocks/3/options/1/text
+A good cross-check.,Es una forma de contrastar la información.,scam-ai-images/blocks/3/options/1/feedback
+Donate immediately because the picture is emotional.,Dona de inmediato porque la imagen te conmueve.,scam-ai-images/blocks/3/options/2/text
+The emotion is the point of the image. Real charities can be verified.,Una imagen emotiva no verifica la petición. Comprueba la organización antes de donar.,scam-ai-images/blocks/3/options/2/feedback
+A social media post shows what appears to be your bank's building damaged by fire. The post says customers must immediately move their money using a provided link before accounts are frozen.,Una publicación parece mostrar el edificio de tu banco dañado por un incendio. Dice que los clientes deben mover su dinero de inmediato mediante un enlace antes de que se congelen las cuentas.,scam-ai-images/blocks/4/scenario
+Ignore the post and contact your bank through its official website or phone number.,No uses la publicación; contacta con tu banco mediante su sitio oficial o un número de confianza.,scam-ai-images/blocks/4/options/0/text
+"The picture looked believable, but you recognized familiar warning signs: urgency, an unexpected request, and no independent verification. The technology changed. Your habits didn't.","La imagen parecía creíble, pero reconociste la urgencia, una petición inesperada y la falta de verificación independiente. Tus hábitos de seguridad siguen siendo útiles.",scam-ai-images/blocks/4/options/0/feedback
+Wait until trusted news or your bank confirms the information.,Espera a que tu banco o una fuente de noticias de confianza confirme la información.,scam-ai-images/blocks/4/options/1/text
+Check your order directly before responding. The message alone does not verify the package’s status or deadline.,Consulta tu pedido directamente antes de responder. El mensaje no verifica por sí solo el estado del paquete ni el plazo.,scam-ai-images/blocks/4/options/1/feedback
+Use the link because the picture looks convincing.,Usa el enlace porque la imagen parece convincente.,scam-ai-images/blocks/4/options/2/text
+"""Move your money now"" is the same scam you met in Lesson 3.3, with a new photograph attached.","«Mueve tu dinero ahora» es la misma advertencia que conociste en la lección 3.3, acompañada de una imagen.",scam-ai-images/blocks/4/options/2/feedback
+How confident do you feel recognizing that AI can create realistic images?,¿Qué tanta confianza tienes para reconocer que la IA puede crear imágenes realistas?,scam-ai-images/blocks/5/question
+Someone sends you a realistic picture claiming your town is flooding.,Alguien te envía una imagen realista que afirma que tu localidad se está inundando.,scam-ai-images/blocks/5/practice/0/scenario
+Check official local alerts and trusted local news before sharing the claim.,Consulta los avisos oficiales locales y noticias de confianza antes de compartir la afirmación.,scam-ai-images/blocks/5/practice/0/options/0/text
+News reports may take time. Check official local alerts and follow any safety instructions; a missing news report does not prove there is no emergency.,Las noticias pueden tardar en publicarse. Consulta los avisos oficiales locales y sigue las instrucciones de seguridad; que no haya una noticia no demuestra que no exista una emergencia.,scam-ai-images/blocks/5/practice/0/options/0/feedback
+Wait for more information.,Espera a tener más información.,scam-ai-images/blocks/5/practice/0/options/1/text
+Use the pause to check official alerts. Do not ignore a direct safety warning while waiting for news coverage.,Aprovecha la pausa para consultar los avisos oficiales. No ignores una advertencia directa de seguridad mientras esperas noticias.,scam-ai-images/blocks/5/practice/0/options/1/feedback
+Share it immediately because it looks real.,Compártela de inmediato porque parece real.,scam-ai-images/blocks/5/practice/0/options/2/text
+Sharing unverified alarm helps no one.,Compartir una alarma sin verificar puede confundir a otras personas.,scam-ai-images/blocks/5/practice/0/options/2/feedback
+A picture online seems shocking and makes you want to warn everyone immediately.,Una imagen en internet te sorprende y te dan ganas de avisar a todo el mundo de inmediato.,scam-ai-images/blocks/5/practice/1/scenario
+Pause and verify the picture before sharing it.,Haz una pausa y verifica la imagen antes de compartirla.,scam-ai-images/blocks/5/practice/1/options/0/text
+The urge to warn people is exactly what's being used.,Una imagen puede aprovechar tus ganas de ayudar para que la compartas sin verificar.,scam-ai-images/blocks/5/practice/1/options/0/feedback
+Search for trusted sources reporting the same event.,Busca fuentes de confianza que informen del mismo hecho.,scam-ai-images/blocks/5/practice/1/options/1/text
+A solid check.,Es una forma útil de verificar.,scam-ai-images/blocks/5/practice/1/options/1/feedback
+Share it first and verify later.,Compártela primero y verifica después.,scam-ai-images/blocks/5/practice/1/options/2/text
+By then it has already spread.,"Para entonces, otras personas pueden haberla difundido.",scam-ai-images/blocks/5/practice/1/options/2/feedback
+The neighbor at the door,La visita de tu vecino,scam-ai-images/blocks/6/title
+"One afternoon, your neighbor knocks on your door looking concerned. They show you a photo on their phone that appears to show your local grocery store badly damaged after a fire.","Una tarde, tu vecino llama a la puerta con preocupación. Te muestra en su teléfono una foto que parece mostrar el supermercado local gravemente dañado por un incendio.",scam-ai-images/blocks/6/setup
+"Your neighbor, in person","Tu vecino, en persona",scam-ai-images/blocks/6/messages/0/from
+I saw this online just a few minutes ago. Everyone's rushing to buy food before the store closes. I'm heading there now — you should come too before it's too late.,Lo vi en internet hace unos minutos. Todo el mundo está comprando comida antes de que cierre la tienda. Voy para allá; deberías venir antes de que sea demasiado tarde.,scam-ai-images/blocks/6/messages/0/body
+Check a trusted local news source or the grocery store's official website before believing the picture or changing your plans.,Consulta una fuente local de noticias de confianza o el sitio oficial de la tienda antes de creer la imagen o cambiar tus planes.,scam-ai-images/blocks/6/options/0/text
+"The picture seemed believable, and your neighbor was genuinely trying to help. But instead of reacting to the image, you relied on your safety habits: a realistic picture isn't proof that something really happened.",La imagen parecía creíble y tu vecino quería ayudar. Recordaste que una foto realista no demuestra que el hecho haya ocurrido y decidiste verificar.,scam-ai-images/blocks/6/options/0/feedback
+Thank your neighbor and tell them you'd like to verify the information first.,Agradece a tu vecino y dile que prefieres verificar la información primero.,scam-ai-images/blocks/6/options/1/text
+Kind and sensible — your neighbor may be passing on something they were fooled by too.,Puedes responder con amabilidad. Es posible que tu vecino también haya creído información falsa.,scam-ai-images/blocks/6/options/1/feedback
+Go immediately because the picture looks convincing.,Ve de inmediato porque la imagen parece convincente.,scam-ai-images/blocks/6/options/2/text
+Your neighbor may sincerely believe the image. Check the store or official local sources; a real event may not yet have appeared in the news.,Tu vecino puede creer sinceramente en la imagen. Consulta a la tienda o fuentes oficiales locales; un hecho real puede no haber aparecido todavía en las noticias.,scam-ai-images/blocks/6/options/2/feedback
+An image used as proof,Una imagen usada como prueba,scam-ai-images/blocks/6/spotted/0
+No independent verification,Sin verificación independiente,scam-ai-images/blocks/6/spotted/2
+You completed When the Picture Never Happened.,Completaste Cuando la imagen nunca ocurrió.,scam-ai-images/complete/subtitle
+A picture can be convincing. Verify it before believing or sharing it.,Una imagen puede ser convincente. Verifícala antes de creerla o compartirla.,scam-ai-images/complete/habit
+A shocking image with no trusted source behind it.,Una imagen sorprendente sin una fuente de confianza.,scam-ai-images/complete/warningSign
+Verified with trusted sources,Verificaste con fuentes de confianza,scam-ai-images/complete/skills/1
+Resisted emotional pressure,Resististe la presión emocional,scam-ai-images/complete/skills/2
+When Videos Can Lie,Cuando los videos pueden engañar,scam-ai-images/complete/next; scam-ai-video/title; scam-ai-video/blocks/0/heading
+4.4,4.4,scam-ai-video/lessonNumber
+Deepfake Video,Vídeos manipulados con IA,scam-ai-video/pathTitle
+Video Verifier,Verificar los vídeos,scam-ai-video/badge
+Understand what a deepfake video is.,"Entender qué es un video falso creado con IA, o deepfake.",scam-ai-video/goals/0
+Verify a surprising video before believing or acting on it.,Verificar un video sorprendente antes de creerlo o actuar por él.,scam-ai-video/goals/1
+Can I trust a video just because I can see and hear it?,¿Puedo confiar en un video solo porque puedo verlo y oírlo?,scam-ai-video/blocks/0/question
+Learn that AI can create videos of people appearing to say or do things that never actually happened.,Aprender que la IA puede crear videos donde las personas parecen decir o hacer cosas que nunca ocurrieron.,scam-ai-video/blocks/0/objective
+"AI can create or alter video so that someone appears to say or do something they never did. This is often called a deepfake. Real footage can also be edited or shared out of context.
+
+Seeing a face and hearing a voice do not verify an important claim. Check the original source and trusted independent information before sharing or sending money. For possible emergencies, check official alerts promptly and follow safety instructions.","La IA puede crear o modificar videos para que alguien parezca decir o hacer algo que nunca hizo. Esto suele llamarse deepfake. Las grabaciones reales también pueden editarse o compartirse fuera de contexto.
+
+Ver una cara y oír una voz no verifica una afirmación importante. Consulta la fuente original e información independiente de confianza antes de compartir o enviar dinero. Ante una posible emergencia, consulta pronto los avisos oficiales y sigue las instrucciones de seguridad.",scam-ai-video/blocks/0/text
+You see a video online of a well-known public figure saying something shocking.,Ves en internet un video de una figura pública conocida que dice algo sorprendente.,scam-ai-video/blocks/1/scenario
+A video can be created or changed using AI.,Un video puede crearse o modificarse con IA.,scam-ai-video/blocks/1/options/0/text
+Seeing and hearing something isn't always enough to prove it's true.,Ver y oír algo no siempre basta para demostrar que sea cierto.,scam-ai-video/blocks/1/options/0/feedback
+I should look for trusted sources reporting the same event.,Debo buscar fuentes de confianza que informen del mismo hecho.,scam-ai-video/blocks/1/options/1/text
+"Look for independent, reliable reporting or the original source. A lack of immediate coverage does not prove the video is false.","Busca información independiente y fiable, o la fuente original. La falta de noticias inmediatas no demuestra que el video sea falso.",scam-ai-video/blocks/1/options/1/feedback
+"If it's on video, it must be true.","Si aparece en video, tiene que ser cierto.",scam-ai-video/blocks/1/options/2/text
+Video can be altered or taken out of context. Check an important claim through a trusted source.,Un video puede modificarse o sacarse de contexto. Comprueba las afirmaciones importantes con una fuente de confianza.,scam-ai-video/blocks/1/options/2/feedback
+"A friend sends you a surprising video and writes, ""Everyone needs to see this!""",Una amistad te envía un video sorprendente y escribe: «¡Todo el mundo tiene que verlo!».,scam-ai-video/blocks/2/scenario
+Verify the story with trusted news sources before sharing it.,Verifica la historia con fuentes de noticias de confianza antes de compartirla.,scam-ai-video/blocks/2/options/0/text
+The safest habit is to verify before passing information to others.,Verificar antes de pasar información a otras personas es un hábito útil.,scam-ai-video/blocks/2/options/0/feedback
+Wait until you know more about where the video came from.,Espera a saber más sobre el origen del video.,scam-ai-video/blocks/2/options/1/text
+"Check both who published the video and whether its claims match reliable, independent information.",Comprueba quién publicó el video y si sus afirmaciones coinciden con información fiable e independiente.,scam-ai-video/blocks/2/options/1/feedback
+Share it immediately because it looks convincing.,Compártelo de inmediato porque parece convincente.,scam-ai-video/blocks/2/options/2/text
+Convincing is the goal of a deepfake. Sharing lends it your credibility.,Un video falso puede parecer convincente. Compartirlo puede hacer que otras personas confíen en él.,scam-ai-video/blocks/2/options/2/feedback
+A video makes you feel angry and encourages viewers to act immediately.,Un video te provoca enojo y anima a quienes lo ven a actuar de inmediato.,scam-ai-video/blocks/3/scenario
+Pause and verify the video's claims before taking action.,Haz una pausa y verifica lo que afirma el video antes de actuar.,scam-ai-video/blocks/3/options/0/text
+Strong emotions make anyone more likely to act quickly. Slowing down protects you.,Las emociones intensas pueden apresurar a cualquiera. Tomarte tu tiempo te ayuda a decidir.,scam-ai-video/blocks/3/options/0/feedback
+Look for multiple trusted sources reporting the same story.,Busca varias fuentes de confianza que informen de la misma historia.,scam-ai-video/blocks/3/options/1/text
+"Look for sources that checked the event independently, rather than several sites repeating the same unverified post.","Busca fuentes que hayan comprobado el hecho por su cuenta, no varios sitios que repitan la misma publicación sin verificar.",scam-ai-video/blocks/3/options/1/feedback
+Act immediately because the video feels convincing.,Actúa de inmediato porque el video parece convincente.,scam-ai-video/blocks/3/options/2/text
+Anger plus urgency is a deliberate combination.,El enojo y la urgencia pueden usarse juntos para presionarte.,scam-ai-video/blocks/3/options/2/feedback
+A video appears to show your bank's president announcing that all customers must update their accounts today using a link shown on screen.,Un video parece mostrar al presidente de tu banco anunciando que todos los clientes deben actualizar sus cuentas hoy mediante un enlace en pantalla.,scam-ai-video/blocks/4/scenario
+Contact your bank using the official phone number or website you already trust.,Contacta con tu banco mediante el número o sitio oficial que ya conoces y en el que confías.,scam-ai-video/blocks/4/options/0/text
+"You remembered that AI can create convincing messages, voices, and videos — but your habits remain the same: verify independently, don't rush, ignore unexpected links.","Recordaste que la IA puede crear mensajes, voces y videos convincentes. Verificaste por tu cuenta, sin apresurarte ni usar enlaces inesperados.",scam-ai-video/blocks/4/options/0/feedback
+Ignore the link and verify the announcement independently.,Ignora el enlace y verifica el anuncio por tu cuenta.,scam-ai-video/blocks/4/options/1/text
+"Exactly the right split — ignore their route, choose yours.",Usa un medio de confianza que tú elijas para comprobar la información.,scam-ai-video/blocks/4/options/1/feedback
+Follow the instructions because the speaker appears on video.,Sigue las instrucciones porque la persona aparece en video.,scam-ai-video/blocks/4/options/2/text
+A face and a voice on screen are now both things AI can generate.,La IA puede generar tanto la cara como la voz que aparecen en pantalla.,scam-ai-video/blocks/4/options/2/feedback
+How confident do you feel recognizing that videos can be created or changed with AI?,¿Qué tanta confianza tienes para reconocer que un video puede crearse o modificarse con IA?,scam-ai-video/blocks/5/question
+A video claims your local water supply is unsafe.,Un video afirma que el agua de tu localidad no es segura.,scam-ai-video/blocks/5/practice/0/scenario
+Check your local government or water provider before believing it.,Consulta al gobierno local o a tu proveedor de agua para verificarlo.,scam-ai-video/blocks/5/practice/0/options/0/text
+Official sources handle real public-safety notices.,Las fuentes oficiales publican avisos de seguridad para la comunidad.,scam-ai-video/blocks/5/practice/0/options/0/feedback
+Check official water-safety alerts and follow the instructions while you verify the video.,Consulta los avisos oficiales sobre el agua y sigue las instrucciones mientras verificas el video.,scam-ai-video/blocks/5/practice/0/options/1/text
+Use official safety guidance promptly; do not wait for several news reports before following a public-health warning.,Sigue pronto las instrucciones oficiales de seguridad; no esperes varias noticias antes de atender una advertencia de salud pública.,scam-ai-video/blocks/5/practice/0/options/1/feedback
+Share the video immediately to warn everyone.,Comparte el video de inmediato para avisar a todo el mundo.,scam-ai-video/blocks/5/practice/0/options/2/text
+Spreading an unverified health scare can cause real harm.,Difundir una alarma de salud sin verificar puede causar daño.,scam-ai-video/blocks/5/practice/0/options/2/feedback
+"Someone says, ""You can always trust a video because you can see the person talking.""",Alguien dice: «Siempre puedes confiar en un video porque ves a la persona hablando».,scam-ai-video/blocks/5/practice/1/scenario
+"AI can create or change videos, so important information should always be verified.","La IA puede crear o modificar videos, por lo que la información importante necesita verificación.",scam-ai-video/blocks/5/practice/1/options/0/text
+This is the core change of the last few years.,La IA puede hacer que un video falso parezca convincente.,scam-ai-video/blocks/5/practice/1/options/0/feedback
+"Videos are helpful, but they are not proof by themselves.","Los videos son útiles, pero no bastan como prueba por sí solos.",scam-ai-video/blocks/5/practice/1/options/1/text
+Well put.,Verificar el contexto ayuda a evaluar lo que ves.,scam-ai-video/blocks/5/practice/1/options/1/feedback
+Videos can't be faked.,Los videos no se pueden falsificar.,scam-ai-video/blocks/5/practice/1/options/2/text
+"They can, and increasingly convincingly.",Pueden falsificarse y parecer convincentes.,scam-ai-video/blocks/5/practice/1/options/2/feedback
+Lesson 4.2 — When the Voice Isn't Real,Lección 4.2 — Cuando la voz no es auténtica,scam-ai-video/blocks/6/links/0/lesson
+AI can combine a realistic voice with a realistic video.,La IA puede combinar una voz realista con un video realista.,scam-ai-video/blocks/6/links/0/note
+Lesson 4.3 — When the Picture Never Happened,Lección 4.3 — Cuando la imagen nunca ocurrió,scam-ai-video/blocks/6/links/1/lesson
+"Just as pictures can be fake, videos can be created or changed too.","Al igual que las imágenes, los videos pueden crearse o modificarse.",scam-ai-video/blocks/6/links/1/note
+The emergency broadcast,El anuncio de emergencia,scam-ai-video/blocks/7/title
+"While watching videos online, you see what appears to be an emergency announcement from your city's mayor. The video looks professional and the voice sounds natural. Thousands of comments say things like ""I just registered!"" and ""Everyone do this now!""","Mientras ves videos en internet, aparece lo que parece un anuncio de emergencia de la alcaldía. El video se ve profesional y la voz suena natural. Miles de comentarios dicen cosas como «¡Ya me registré!» y «¡Háganlo ahora!».",scam-ai-video/blocks/7/setup
+"Example video transcript · ""Office of the Mayor""",Transcripción de un video de ejemplo · «Oficina de la alcaldía»,scam-ai-video/blocks/7/messages/0/from
+A dangerous chemical spill has occurred in our city. Use this link to register for assistance before the end of the day. Do not call city offices or check other sites; only this link will work.,Ha ocurrido un derrame químico peligroso en nuestra ciudad. Usa este enlace para registrarte y recibir asistencia antes de terminar el día. No llames a las oficinas municipales ni consultes otros sitios; solo este enlace funcionará.,scam-ai-video/blocks/7/messages/0/body
+Register for assistance,Registrarse para recibir asistencia,scam-ai-video/blocks/7/messages/0/fakeButton
+Open your city's official alert page yourself or contact local authorities through a trusted number. Follow official safety instructions without using the video's link.,Abre por tu cuenta la página oficial de alertas de tu ciudad o contacta con las autoridades locales mediante un número de confianza. Sigue las instrucciones oficiales de seguridad sin usar el enlace del video.,scam-ai-video/blocks/7/options/0/text
+"This scenario combined everything you've learned: the message sounded convincing, the voice sounded real, and the video looked authentic. But instead of trusting appearances, you slowed down, verified independently, and didn't let urgency control your decision.","El mensaje, la voz y el video parecían auténticos. Te tomaste tiempo para verificar por tu cuenta antes de usar el enlace o compartir información.",scam-ai-video/blocks/7/options/0/feedback
+"Check another official emergency channel without using the link, and follow any safety instructions.",Consulta otro canal oficial de emergencias sin usar el enlace y sigue las instrucciones de seguridad.,scam-ai-video/blocks/7/options/1/text
+Official alerts can help you verify the claim. You do not need to wait for every channel to repeat an alert before following official safety guidance.,Los avisos oficiales ayudan a verificar la información. No necesitas esperar a que todos los canales repitan una alerta para seguir las instrucciones oficiales de seguridad.,scam-ai-video/blocks/7/options/1/feedback
+Click the link because the video looks like an official emergency announcement.,Haz clic en el enlace porque el video parece un anuncio oficial de emergencia.,scam-ai-video/blocks/7/options/2/text
+"The face, voice, and comments do not verify this request. The pressure to use only one link is a warning sign. Check official alerts through a trusted route and follow safety instructions.","La cara, la voz y los comentarios no verifican esta petición. La presión para usar un solo enlace es una señal de alerta. Consulta los avisos oficiales por un medio de confianza y sigue las instrucciones de seguridad.",scam-ai-video/blocks/7/options/2/feedback
+An unverified link,Un enlace sin verificar,scam-ai-video/blocks/7/spotted/2
+You completed When Videos Can Lie.,Completaste Cuando los videos pueden engañar.,scam-ai-video/complete/subtitle
+A convincing video is not proof. Verify important information before acting.,Un video convincente no es una prueba. Verifica la información importante antes de actuar.,scam-ai-video/complete/habit
+A shocking video that wants immediate action.,Un video sorprendente que te pide actuar de inmediato.,scam-ai-video/complete/warningSign
+Recognized AI-generated video,Reconociste videos generados con IA,scam-ai-video/complete/skills/0
+Verified with official sources,Verificaste con fuentes oficiales,scam-ai-video/complete/skills/1
+Resisted urgency,Resististe la urgencia,scam-ai-video/complete/skills/2
+Ignored crowd pressure,Resististe la presión de los demás,scam-ai-video/complete/skills/3
+When AI Answers Back,Cuando la IA responde,scam-ai-video/complete/next; scam-ai-chatbots/title; scam-ai-chatbots/blocks/0/heading
+4.5,4.5,scam-ai-chatbots/lessonNumber
+AI Chatbots,Asistentes de conversación con IA,scam-ai-chatbots/pathTitle
+AI Helper,Ayuda de la IA,scam-ai-chatbots/badge
+Use AI chatbots for everyday tasks with confidence.,Usar asistentes de IA con confianza para tareas cotidianas.,scam-ai-chatbots/goals/0
+"Verify AI answers that affect health, money, or safety.","Verificar las respuestas de IA que afecten la salud, el dinero o la seguridad.",scam-ai-chatbots/goals/1
+Can I trust everything an AI chatbot tells me?,¿Puedo confiar en todo lo que me dice un asistente de IA?,scam-ai-chatbots/blocks/0/question
+"Learn that AI chatbots can be helpful for everyday questions, but they can sometimes give incorrect or incomplete answers.","Aprender que los asistentes de IA pueden ayudar con preguntas cotidianas, pero a veces dan respuestas incorrectas o incompletas.",scam-ai-chatbots/blocks/0/objective
+"An AI chatbot is software you can ask questions in everyday language. It can explain ideas, help draft a letter, or suggest recipes and travel plans.
+
+Its answers can be outdated, incomplete, or wrong, even when they sound certain. Review anything you plan to send or act on. Check important health, money, safety, and personal-information decisions with an appropriate trusted source.","Un asistente de IA es un programa al que puedes hacer preguntas con tus propias palabras. Puede explicar ideas, ayudarte a redactar una carta o sugerir recetas y planes de viaje.
+
+Sus respuestas pueden estar desactualizadas, incompletas o equivocadas, aunque parezcan seguras. Revisa lo que vayas a enviar o usar. Verifica las decisiones importantes sobre salud, dinero, seguridad y datos personales con una fuente de confianza adecuada.",scam-ai-chatbots/blocks/0/text
+Know when AI helps,Saber cuándo ayuda la IA,scam-ai-chatbots/blocks/1/title
+You want ideas for meals using the food already in your kitchen.,Quieres ideas para preparar comidas con los alimentos que ya tienes en la cocina.,scam-ai-chatbots/blocks/1/scenario
+Asking an AI chatbot for recipe ideas is a good use of AI.,Pedir recetas a un asistente de IA es un buen uso de esta herramienta.,scam-ai-chatbots/blocks/1/options/0/text
+AI is excellent for brainstorming and everyday tasks.,La IA puede ayudar a generar ideas y organizar tareas cotidianas.,scam-ai-chatbots/blocks/1/options/0/feedback
+AI can help organize your shopping list.,La IA puede ayudarte a organizar la lista de compras.,scam-ai-chatbots/blocks/1/options/1/text
+Another good everyday use.,Es otro uso útil para la vida cotidiana.,scam-ai-chatbots/blocks/1/options/1/feedback
+AI should make all important life decisions for you.,La IA debe tomar todas las decisiones importantes de tu vida.,scam-ai-chatbots/blocks/1/options/2/text
+"Helpful for ideas, not a substitute for your judgment on things that matter.","Puede aportar ideas, pero no sustituye tu criterio en las decisiones importantes.",scam-ai-chatbots/blocks/1/options/2/feedback
+Know when to verify,Saber cuándo verificar,scam-ai-chatbots/blocks/2/title
+An AI chatbot gives you advice about changing your retirement investments.,Un asistente de IA te aconseja cambiar tus inversiones para la jubilación.,scam-ai-chatbots/blocks/2/scenario
+Verify the advice before making financial decisions.,Verifica el consejo antes de tomar decisiones financieras.,scam-ai-chatbots/blocks/2/options/0/text
+"AI can provide useful information, but important financial decisions deserve extra verification.","La IA puede aportar información útil, pero las decisiones financieras importantes requieren verificación.",scam-ai-chatbots/blocks/2/options/0/feedback
+Ask a qualified financial professional if you're unsure.,Consulta a un profesional financiero cualificado si tienes dudas.,scam-ai-chatbots/blocks/2/options/1/text
+A professional can account for your specific situation.,Un profesional puede tener en cuenta tu situación concreta.,scam-ai-chatbots/blocks/2/options/1/feedback
+Make the investment immediately because AI sounds confident.,Invierte de inmediato porque la IA parece segura.,scam-ai-chatbots/blocks/2/options/2/text
+A confident answer may be wrong or unsuitable for you. Verify financial advice before changing retirement investments.,Una respuesta segura puede ser incorrecta o no servir para tu caso. Verifica el consejo antes de cambiar tus inversiones para la jubilación.,scam-ai-chatbots/blocks/2/options/2/feedback
+"You ask an AI chatbot a question about a medication. The answer sounds detailed, but you're unsure.","Le preguntas a un asistente de IA sobre un medicamento. La respuesta parece detallada, pero tienes dudas.",scam-ai-chatbots/blocks/3/scenario
+"Check with your doctor, pharmacist, or another trusted medical source.","Consulta a tu médico, farmacéutico u otra fuente médica de confianza.",scam-ai-chatbots/blocks/3/options/0/text
+"AI can explain information, but healthcare decisions should always be verified with trusted professionals.","La IA puede explicar información, pero las decisiones de salud deben verificarse con profesionales de confianza.",scam-ai-chatbots/blocks/3/options/0/feedback
+"Use AI to help you understand the topic, but verify medical advice.",Usa la IA para entender el tema y verifica los consejos médicos.,scam-ai-chatbots/blocks/3/options/1/text
+"A good balance — learn from it, decide with a professional.",Puedes aprender con la herramienta y decidir con un profesional.,scam-ai-chatbots/blocks/3/options/1/feedback
+Assume the answer is correct because it sounds professional.,Da por hecho que la respuesta es correcta porque parece profesional.,scam-ai-chatbots/blocks/3/options/2/text
+Detailed writing and correct information are two different things.,Una explicación detallada no garantiza que la información sea correcta.,scam-ai-chatbots/blocks/3/options/2/feedback
+An AI chatbot writes an email for you asking your bank about a suspicious charge.,Un asistente de IA redacta un correo para consultar a tu banco sobre un cargo sospechoso.,scam-ai-chatbots/blocks/4/scenario
+Read the email before sending it and make sure it's accurate.,Lee el correo antes de enviarlo y comprueba que sea correcto.,scam-ai-chatbots/blocks/4/options/0/text
+Review the facts and recipient before sending. Keep passwords and full account details out of an AI draft or ordinary email.,Revisa los datos y el destinatario antes de enviar. No incluyas contraseñas ni números de cuenta completos en un borrador para la IA ni en un correo común.,scam-ai-chatbots/blocks/4/options/0/feedback
+Edit the message so it clearly reflects what you want to say.,Edita el mensaje para que exprese claramente lo que quieres decir.,scam-ai-chatbots/blocks/4/options/1/text
+Your own words carry your meaning best.,Tus propias palabras ayudan a expresar tu intención.,scam-ai-chatbots/blocks/4/options/1/feedback
+Send it without reading because AI wrote it.,Envíalo sin leer porque lo escribió la IA.,scam-ai-chatbots/blocks/4/options/2/text
+Read the draft first so you can correct errors and remove information you do not want to share.,Lee primero el borrador para corregir errores y quitar la información que no quieras compartir.,scam-ai-chatbots/blocks/4/options/2/feedback
+How confident do you feel using an AI chatbot safely?,¿Qué tanta confianza tienes para usar un asistente de IA de forma segura?,scam-ai-chatbots/blocks/5/question
+You ask AI to explain a gardening problem.,Le pides a la IA que explique un problema de jardinería.,scam-ai-chatbots/blocks/5/practice/0/scenario
+AI is a good place to start for everyday questions.,La IA puede ser un punto de partida para preguntas cotidianas.,scam-ai-chatbots/blocks/5/practice/0/options/0/text
+"Low stakes, easy to check, genuinely useful.",Puede darte ideas que luego puedes comprobar.,scam-ai-chatbots/blocks/5/practice/0/options/0/feedback
+Compare its advice with another trusted source if needed.,Compara sus consejos con otra fuente de confianza si hace falta.,scam-ai-chatbots/blocks/5/practice/0/options/1/text
+Sensible for anything you'll act on.,Conviene comprobar los consejos antes de ponerlos en práctica.,scam-ai-chatbots/blocks/5/practice/0/options/1/feedback
+AI is always correct.,La IA siempre tiene razón.,scam-ai-chatbots/blocks/5/practice/0/options/2/text
+AI can make mistakes and may not flag them. Check advice before acting on it.,La IA puede equivocarse sin avisar. Comprueba sus consejos antes de actuar.,scam-ai-chatbots/blocks/5/practice/0/options/2/feedback
+AI tells you that you qualify for a government benefit you've never heard of.,La IA dice que cumples los requisitos de una ayuda del gobierno que no conocías.,scam-ai-chatbots/blocks/5/practice/1/scenario
+Verify the information using an official government website before acting.,Verifica la información en un sitio oficial del gobierno antes de actuar.,scam-ai-chatbots/blocks/5/practice/1/options/0/text
+Benefits information changes often and varies by location.,La información sobre ayudas cambia y puede variar según el lugar.,scam-ai-chatbots/blocks/5/practice/1/options/0/feedback
+Ask AI where you can find the official information.,Pregunta a la IA dónde puedes encontrar la información oficial.,scam-ai-chatbots/blocks/5/practice/1/options/1/text
+"AI may suggest a source, but links and citations can also be wrong. Check that the address belongs to the real agency.","La IA puede sugerir una fuente, pero los enlaces y las citas también pueden estar equivocados. Comprueba que la dirección pertenezca a la agencia real.",scam-ai-chatbots/blocks/5/practice/1/options/1/feedback
+Apply immediately because AI told you.,Solicita la ayuda de inmediato porque te lo dijo la IA.,scam-ai-chatbots/blocks/5/practice/1/options/2/text
+Verify eligibility with the agency itself.,Comprueba los requisitos con la propia agencia.,scam-ai-chatbots/blocks/5/practice/1/options/2/feedback
+Planning a trip,Planear un viaje,scam-ai-chatbots/blocks/6/title
+"You're planning a weekend trip to visit family. You ask an AI chatbot to recommend a hotel, suggest a scenic route, and tell you the hotel's cancellation policy. The AI gives you a detailed, organized answer with hotel names, driving times, and policy information.","Planeas visitar a tu familia un fin de semana. Le pides a un asistente de IA que recomiende un hotel, sugiera una ruta con buenas vistas y explique la política de cancelación. Te da una respuesta organizada con hoteles, tiempos de viaje y condiciones.",scam-ai-chatbots/blocks/6/setup
+What should you do before booking?,¿Qué debes hacer antes de reservar?,scam-ai-chatbots/blocks/6/question
+"Check the hotel's official website to confirm availability, prices, and cancellation policies before making a reservation.","Consulta el sitio oficial del hotel para confirmar disponibilidad, precios y condiciones de cancelación antes de reservar.",scam-ai-chatbots/blocks/6/options/0/text
+"This lesson wasn't about spotting a scam — it was about using AI wisely. You let AI help you, but you remembered that important details should still be verified before making a decision.",Usaste la IA como ayuda y recordaste verificar los detalles importantes antes de decidir.,scam-ai-chatbots/blocks/6/options/0/feedback
+Compare the recommendation with another trusted travel website.,Compara la recomendación con otro sitio de viajes de confianza.,scam-ai-chatbots/blocks/6/options/1/text
+A reasonable cross-check.,Es una forma de contrastar la información.,scam-ai-chatbots/blocks/6/options/1/feedback
+Book the hotel immediately because the AI gave a detailed answer.,Reserva el hotel de inmediato porque la IA dio una respuesta detallada.,scam-ai-chatbots/blocks/6/options/2/text
+"Even an AI tool with web access may use outdated or incorrect details. Confirm prices, availability, and cancellation terms with the hotel or booking provider.","Incluso una herramienta de IA con acceso a internet puede usar datos antiguos o incorrectos. Confirma precios, disponibilidad y condiciones de cancelación con el hotel o el proveedor de reservas.",scam-ai-chatbots/blocks/6/options/2/feedback
+You completed When AI Answers Back.,Completaste Cuando la IA responde.,scam-ai-chatbots/complete/subtitle
+Let AI help you think — but verify before making important decisions.,Deja que la IA te ayude a pensar y verifica antes de tomar decisiones importantes.,scam-ai-chatbots/complete/habit
+Acting on an AI answer without checking it.,Actuar según una respuesta de IA sin comprobarla.,scam-ai-chatbots/complete/warningSign
+Used AI for everyday tasks,Usaste la IA para tareas cotidianas,scam-ai-chatbots/complete/skills/0
+Verified important information,Verificaste la información importante,scam-ai-chatbots/complete/skills/1; scam-ai-confidence/complete/skills/1; scam-ai-helper/complete/skills/2
+Reviewed AI-written content before sending,Revisaste contenido escrito por IA antes de enviarlo,scam-ai-chatbots/complete/skills/2
+When AI Sounds Certain,Cuando la IA parece segura,scam-ai-chatbots/complete/next; scam-ai-confidence/title; scam-ai-confidence/blocks/0/heading
+4.6,4.6,scam-ai-confidence/lessonNumber
+AI Sounds Certain,Cuando la IA parece estar segura,scam-ai-confidence/pathTitle
+Confidence Checker,Verificar respuestas seguras de la IA,scam-ai-confidence/badge
+Understand that AI can be confidently wrong.,Entender que la IA puede equivocarse aunque parezca segura.,scam-ai-confidence/goals/0
+"Verify anything affecting health, money, or safety.","Verificar lo que afecte la salud, el dinero o la seguridad.",scam-ai-confidence/goals/1
+"If AI sounds certain, does that mean it's right?","Si la IA parece segura, ¿significa que tiene razón?",scam-ai-confidence/blocks/0/question
+"Learn that AI can give incorrect information with confidence, so confidence is never proof that an answer is correct.","Aprender que la IA puede dar información incorrecta con seguridad, por lo que el tono no demuestra que una respuesta sea correcta.",scam-ai-confidence/blocks/0/objective
+"An AI answer may sound certain while being incomplete or wrong. A confident tone does not show that the information has been checked.
+
+For decisions about money, health, safety, or personal information, verify the important details with a trusted source. You can ask AI for an explanation or sources, but check those sources too.","Una respuesta de IA puede sonar segura y, aun así, estar incompleta o equivocada. Un tono seguro no demuestra que la información se haya comprobado.
+
+Para decisiones sobre dinero, salud, seguridad o datos personales, verifica los detalles importantes con una fuente de confianza. Puedes pedir explicaciones o fuentes a la IA, pero comprueba esas fuentes también.",scam-ai-confidence/blocks/0/text
+Spot the idea,Reconocer la idea,scam-ai-confidence/blocks/1/title; scam-ai-limits/blocks/1/title
+An AI chatbot answers your question quickly and sounds completely sure.,Un asistente de IA responde rápido y parece completamente seguro.,scam-ai-confidence/blocks/1/scenario
+A confident answer can still be incorrect.,Una respuesta segura puede ser incorrecta.,scam-ai-confidence/blocks/1/options/0/text
+AI doesn't always know when it's wrong. That's why confidence alone isn't enough.,La IA puede no detectar sus propios errores. El tono seguro no basta para confiar en una respuesta.,scam-ai-confidence/blocks/1/options/0/feedback
+Important information should be verified.,La información importante debe verificarse.,scam-ai-confidence/blocks/1/options/1/text
+The right conclusion.,Verificar te ayuda a tomar una decisión informada.,scam-ai-confidence/blocks/1/options/1/feedback
+"If AI sounds confident, it's always right.","Si la IA parece segura, siempre tiene razón.",scam-ai-confidence/blocks/1/options/2/text
+"Confidence is a style of writing, not a measure of accuracy.","Un tono seguro es una forma de escribir, no una medida de exactitud.",scam-ai-confidence/blocks/1/options/2/feedback
+"You ask AI when your driver's license expires without showing it your license or connecting any records. It gives you a date, but renewing on time is important.","Le preguntas a la IA cuándo vence tu licencia de conducir sin mostrársela ni conectar registros. Te da una fecha, pero es importante renovar a tiempo.",scam-ai-confidence/blocks/2/scenario
+Check your driver's license or your state's official DMV website to confirm the date.,Consulta tu licencia de conducir o el sitio oficial del DMV de tu estado para confirmar la fecha.,scam-ai-confidence/blocks/2/options/0/text
+"In this example, AI has not been given your license details. Check the document or your official DMV account instead of relying on its answer.","En este ejemplo, la IA no recibió los datos de tu licencia. Consulta el documento o tu cuenta oficial del DMV en lugar de confiar en su respuesta.",scam-ai-confidence/blocks/2/options/0/feedback
+Use the AI answer as a reminder to verify the information yourself.,Usa la respuesta como recordatorio para verificar la información por tu cuenta.,scam-ai-confidence/blocks/2/options/1/text
+"A good use — a prompt to check, not an answer to trust.",Puede servirte para recordar que debes comprobar el dato.,scam-ai-confidence/blocks/2/options/1/feedback
+Trust the date because AI answered confidently.,Confía en la fecha porque la IA respondió con seguridad.,scam-ai-confidence/blocks/2/options/2/text
+AI has not been given the information needed to know your expiration date. Check the license or official record yourself.,La IA no recibió la información necesaria para conocer la fecha de vencimiento. Consulta tú la licencia o el registro oficial.,scam-ai-confidence/blocks/2/options/2/feedback
+AI recommends a medication schedule that seems reasonable.,La IA recomienda un horario para tomar un medicamento que parece razonable.,scam-ai-confidence/blocks/3/scenario
+Follow the instructions from your doctor or pharmacist instead of relying only on AI.,Sigue las instrucciones de tu médico o farmacéutico en lugar de depender solo de la IA.,scam-ai-confidence/blocks/3/options/0/text
+"AI can help explain medical information, but healthcare decisions should come from trusted medical professionals.","La IA puede ayudar a explicar información médica, pero las decisiones de salud deben consultarse con profesionales de confianza.",scam-ai-confidence/blocks/3/options/0/feedback
+"Use AI to help understand the medication, but verify medical advice.",Usa la IA para entender el medicamento y verifica los consejos médicos.,scam-ai-confidence/blocks/3/options/1/text
+Understanding is a fine use. Dosing is not.,"Puedes pedir explicaciones, pero confirma las dosis con un profesional.",scam-ai-confidence/blocks/3/options/1/feedback
+Follow the AI's instructions without checking.,Sigue las instrucciones de la IA sin comprobarlas.,scam-ai-confidence/blocks/3/options/2/text
+"Medication timing can depend on your health, dose, and other medicines. Confirm changes with your prescriber or pharmacist.","El horario puede depender de tu salud, la dosis y otros medicamentos. Confirma los cambios con quien lo recetó o con tu farmacéutico.",scam-ai-confidence/blocks/3/options/2/feedback
+"AI writes, ""I'm certain this investment will earn a high return."" The answer sounds professional and detailed.",La IA escribe: «Estoy segura de que esta inversión dará un rendimiento alto». La respuesta parece profesional y detallada.,scam-ai-confidence/blocks/4/scenario
+Verify the information before making any investment decisions.,Verifica la información antes de tomar decisiones de inversión.,scam-ai-confidence/blocks/4/options/0/text
+The confidence of the answer wasn't the important part. The decision was. You remembered to verify before acting.,"Recordaste comprobar la información antes de actuar, aunque la respuesta sonara segura.",scam-ai-confidence/blocks/4/options/0/feedback
+Speak with a trusted financial professional if you're unsure.,Habla con un profesional financiero de confianza si tienes dudas.,scam-ai-confidence/blocks/4/options/1/text
+A qualified person can assess your actual circumstances.,Una persona cualificada puede evaluar tus circunstancias concretas.,scam-ai-confidence/blocks/4/options/1/feedback
+Invest because the answer sounded confident.,Invierte porque la respuesta parecía segura.,scam-ai-confidence/blocks/4/options/2/text
+A confident prediction does not guarantee an investment return. Check the risks and seek qualified advice before acting.,Una predicción segura no garantiza el rendimiento de una inversión. Revisa los riesgos y busca asesoramiento cualificado antes de actuar.,scam-ai-confidence/blocks/4/options/2/feedback
+How confident do you feel recognizing that AI can sound certain without being correct?,¿Qué tanta confianza tienes para reconocer que la IA puede parecer segura sin tener razón?,scam-ai-confidence/blocks/5/question
+AI gives directions to a business you've never visited.,La IA te da indicaciones para llegar a un negocio que no conoces.,scam-ai-confidence/blocks/5/practice/0/scenario
+Check the address with a trusted map before leaving.,Comprueba la dirección en un mapa de confianza antes de salir.,scam-ai-confidence/blocks/5/practice/0/options/0/text
+Addresses are easy to get subtly wrong.,Una dirección puede contener errores difíciles de notar.,scam-ai-confidence/blocks/5/practice/0/options/0/feedback
+Compare it with another source.,Compárala con otra fuente.,scam-ai-confidence/blocks/5/practice/0/options/1/text
+Check that the sources are reliable and independent; two sites may repeat the same error.,Comprueba que las fuentes sean fiables e independientes; dos sitios pueden repetir el mismo error.,scam-ai-confidence/blocks/5/practice/0/options/1/feedback
+Assume the directions are correct because AI sounded certain.,Da por hecho que las indicaciones son correctas porque la IA parecía segura.,scam-ai-confidence/blocks/5/practice/0/options/2/text
+Certainty is not verification.,La seguridad al responder no sustituye la verificación.,scam-ai-confidence/blocks/5/practice/0/options/2/feedback
+AI confidently tells you a government office is closed today.,La IA afirma con seguridad que una oficina del gobierno está cerrada hoy.,scam-ai-confidence/blocks/5/practice/1/scenario
+Verify the office hours on the official website before changing your plans.,Verifica el horario en el sitio oficial antes de cambiar tus planes.,scam-ai-confidence/blocks/5/practice/1/options/0/text
+Opening hours change and AI may be working from old information.,Los horarios cambian y la IA puede usar información antigua.,scam-ai-confidence/blocks/5/practice/1/options/0/feedback
+Call the office if you're unsure.,Llama a la oficina si tienes dudas.,scam-ai-confidence/blocks/5/practice/1/options/1/text
+The most direct check available.,Puedes comprobarlo directamente con la oficina.,scam-ai-confidence/blocks/5/practice/1/options/1/feedback
+Cancel your trip because AI sounded confident.,Cancela la visita porque la IA parecía segura.,scam-ai-confidence/blocks/5/practice/1/options/2/text
+You may cancel a trip you didn't need to.,Podrías cancelar una visita sin necesidad.,scam-ai-confidence/blocks/5/practice/1/options/2/feedback
+"Whether the information comes from a person or AI, important decisions deserve verification.","Tanto si la información viene de una persona como de la IA, las decisiones importantes requieren verificación.",scam-ai-confidence/blocks/6/links/0/note
+Lesson 4.5 — When AI Answers Back,Lección 4.5 — Cuando la IA responde,scam-ai-confidence/blocks/6/links/1/lesson; scam-ai-helper/blocks/6/links/0/lesson
+"AI can be very helpful, but double-checking important information is still your job.",La IA puede ayudar mucho; conviene comprobar la información importante.,scam-ai-confidence/blocks/6/links/1/note
+The tax refund,El reembolso de impuestos,scam-ai-confidence/blocks/7/title
+You ask an AI chatbot whether you qualify for a tax credit without providing your tax records or full circumstances. You are considering filing based on its answer.,Le preguntas a un asistente de IA si cumples los requisitos de un crédito fiscal sin darle tus documentos fiscales ni todas tus circunstancias. Piensas presentar la declaración basándote en su respuesta.,scam-ai-confidence/blocks/7/setup
+AI chatbot,Asistente de IA,scam-ai-confidence/blocks/7/messages/0/from; scam-ai-limits/blocks/7/messages/0/from; scam-ai-helper/blocks/7/messages/0/from
+"Yes, you definitely qualify. You can expect a refund of about $1,200.","Sí, sin duda cumples los requisitos. Puedes esperar un reembolso de unos $1,200.",scam-ai-confidence/blocks/7/messages/0/body
+Verify the information using official tax resources or a qualified tax professional before filing your taxes.,Verifica la información con recursos fiscales oficiales o un profesional cualificado antes de presentar tu declaración.,scam-ai-confidence/blocks/7/options/0/text
+"The challenge wasn't recognizing a scam — it was recognizing that confidence isn't proof of accuracy. You used AI as a helpful tool, but you didn't let it replace trusted information for an important financial decision.",Reconociste que un tono seguro no demuestra exactitud. Usaste la IA como apoyo y verificaste una decisión financiera importante con una fuente de confianza.,scam-ai-confidence/blocks/7/options/0/feedback
+"Use the AI answer as a starting point, then confirm the details before making any decisions.",Usa la respuesta como punto de partida y confirma los detalles antes de decidir.,scam-ai-confidence/blocks/7/options/1/text
+A sound way to use it.,Es una forma útil de aprovechar la herramienta.,scam-ai-confidence/blocks/7/options/1/feedback
+File your taxes based only on the AI's answer because it sounded confident.,Presenta la declaración basándote solo en la respuesta de la IA porque parecía segura.,scam-ai-confidence/blocks/7/options/2/text
+The chatbot has not been given the facts needed to establish eligibility or a refund amount. Check current official tax guidance or a qualified tax professional before filing.,El asistente no recibió los datos necesarios para determinar si cumples los requisitos ni el importe del reembolso. Consulta las normas fiscales oficiales vigentes o a un profesional cualificado antes de presentar la declaración.,scam-ai-confidence/blocks/7/options/2/feedback
+You completed When AI Sounds Certain.,Completaste Cuando la IA parece segura.,scam-ai-confidence/complete/subtitle
+Confident answers still deserve verification when the decision matters.,Incluso las respuestas seguras necesitan verificación cuando la decisión importa.,scam-ai-confidence/complete/habit
+Certainty where certainty isn't possible.,Certeza cuando no hay información suficiente.,scam-ai-confidence/complete/warningSign
+Separated confidence from accuracy,Distinguiste entre seguridad y exactitud,scam-ai-confidence/complete/skills/0
+"Used AI as a starting point, not a final authority","Usaste la IA como punto de partida, no como autoridad final",scam-ai-confidence/complete/skills/2
+When AI Doesn't Know,Cuando la IA no sabe,scam-ai-confidence/complete/next; scam-ai-limits/title; scam-ai-limits/blocks/0/heading
+4.7,4.7,scam-ai-limits/lessonNumber
+AI's Limits,Los límites de la IA,scam-ai-limits/pathTitle
+Source Finder,Buscar las fuentes,scam-ai-limits/badge
+"Understand that AI may lack accurate current, local, or personal information.","Entender que la IA puede carecer de información exacta sobre asuntos actuales, locales o personales.",scam-ai-limits/goals/0
+Use official sources for anything time-sensitive.,Usar fuentes oficiales para información que dependa del momento.,scam-ai-limits/goals/1
+Does AI know everything?,¿La IA lo sabe todo?,scam-ai-limits/blocks/0/question
+"Learn that AI doesn't have access to every fact or every event, so it may not know the answer to every question.","Aprender que la IA no tiene acceso a todos los datos ni a todos los hechos, por lo que puede no saber la respuesta.",scam-ai-limits/blocks/0/objective
+"Some AI tools can search the web or use information you choose to share. Others cannot. Access does not guarantee accuracy: an answer may use an old source, miss context, or invent details.
+
+Check current schedules and important local information with the organization itself. Do not assume AI knows a private event or your personal circumstances. It can help you start a search, but important answers still need verification.","Algunas herramientas de IA pueden buscar en internet o usar la información que eliges compartir. Otras no. Tener acceso no garantiza exactitud: una respuesta puede usar una fuente antigua, omitir contexto o inventar detalles.
+
+Confirma los horarios actuales y los datos locales importantes con la propia organización. No des por hecho que la IA conoce un hecho privado o tus circunstancias. Puede ayudarte a empezar una búsqueda, pero las respuestas importantes siguen necesitando verificación.",scam-ai-limits/blocks/0/text
+"A friend says, ""AI knows every fact in the world.""",Una amistad dice: «La IA conoce todos los datos del mundo».,scam-ai-limits/blocks/1/scenario
+"AI knows a lot, but it doesn't know everything.","La IA dispone de mucha información, pero no lo sabe todo.",scam-ai-limits/blocks/1/options/0/text
+"AI is powerful, but it isn't connected to every piece of information.",La IA no está conectada a toda la información que existe.,scam-ai-limits/blocks/1/options/0/feedback
+Some information should still be checked with trusted sources.,Hay información que debe comprobarse con fuentes de confianza.,scam-ai-limits/blocks/1/options/1/text
+The practical consequence of that limit.,Verificar ayuda a cubrir esa limitación.,scam-ai-limits/blocks/1/options/1/feedback
+AI always has the correct answer.,La IA siempre tiene la respuesta correcta.,scam-ai-limits/blocks/1/options/2/text
+It often has an answer. That's not the same thing.,Dar una respuesta no significa que sea correcta.,scam-ai-limits/blocks/1/options/2/feedback
+You ask AI whether your doctor's office is open today.,Le preguntas a la IA si el consultorio de tu médico está abierto hoy.,scam-ai-limits/blocks/2/scenario
+Call the doctor's office or check its official website.,Llama al consultorio o consulta su sitio oficial.,scam-ai-limits/blocks/2/options/0/text
+"For current schedules and important information, official sources are the best choice.","Para horarios actuales e información importante, consulta fuentes oficiales.",scam-ai-limits/blocks/2/options/0/feedback
+"Use AI as a starting point, but verify before making the trip.",Usa la IA como punto de partida y verifica antes de hacer el viaje.,scam-ai-limits/blocks/2/options/1/text
+Sensible — especially before a long drive.,"Es útil comprobarlo, especialmente antes de un trayecto largo.",scam-ai-limits/blocks/2/options/1/feedback
+Assume AI knows today's office hours.,Da por hecho que la IA sabe el horario de hoy.,scam-ai-limits/blocks/2/options/2/text
+"The answer may be based on old or incomplete information, even with web access. Confirm today's hours with the doctor's office.","La respuesta puede basarse en información antigua o incompleta, incluso con acceso a internet. Confirma el horario de hoy con el consultorio.",scam-ai-limits/blocks/2/options/2/feedback
+"You ask an AI chatbot, ""Did my granddaughter arrive home safely?"" You have not shared a recent message or connected a source that could confirm it.",Le preguntas a un asistente de IA: «¿Mi nieta llegó bien a casa?». No compartiste un mensaje reciente ni conectaste una fuente que pudiera confirmarlo.,scam-ai-limits/blocks/3/scenario
+Contact your granddaughter or another family member directly.,Contacta directamente con tu nieta u otro familiar.,scam-ai-limits/blocks/3/options/0/text
+"In this example, AI has no information that confirms her arrival. Contact her or another trusted family member directly.","En este ejemplo, la IA no tiene información que confirme su llegada. Contacta directamente con ella u otro familiar de confianza.",scam-ai-limits/blocks/3/options/0/feedback
+"Remember that AI cannot confirm this event without a reliable, current source.",Recuerda que la IA no puede confirmar este hecho sin una fuente fiable y actual.,scam-ai-limits/blocks/3/options/1/text
+Understanding the limit is half the skill.,Reconocer esa limitación te ayuda a elegir dónde consultar.,scam-ai-limits/blocks/3/options/1/feedback
+Ask AI again because it might know now.,Pregunta de nuevo a la IA porque quizá ahora lo sepa.,scam-ai-limits/blocks/3/options/2/text
+Asking again does not provide new evidence. Contact someone who can confirm what happened.,Volver a preguntar no aporta nuevas pruebas. Contacta con alguien que pueda confirmar lo ocurrido.,scam-ai-limits/blocks/3/options/2/feedback
+AI tells you your local pharmacy closes at 8:00 PM tonight. You were planning to pick up an important prescription.,La IA dice que tu farmacia cierra hoy a las 8:00 p. m. Planeas recoger un medicamento importante.,scam-ai-limits/blocks/4/scenario
+Check the pharmacy's official website or call before leaving.,Consulta el sitio oficial de la farmacia o llama antes de salir.,scam-ai-limits/blocks/4/options/0/text
+"AI may be correct — but when something is important, your safest habit is still to verify.","La respuesta puede ser correcta, pero conviene verificar cuando el asunto es importante.",scam-ai-limits/blocks/4/options/0/feedback
+"Use AI's answer as a reminder, then verify it.",Usa la respuesta como recordatorio y luego verifica.,scam-ai-limits/blocks/4/options/1/text
+A good working pattern.,Es una forma práctica de usar la herramienta.,scam-ai-limits/blocks/4/options/1/feedback
+Drive there based only on AI's answer.,Ve a la farmacia basándote solo en la respuesta de la IA.,scam-ai-limits/blocks/4/options/2/text
+A wasted trip is inconvenient. A missed prescription can matter more.,Un viaje en vano resulta incómodo y puede retrasar un medicamento importante.,scam-ai-limits/blocks/4/options/2/feedback
+How confident do you feel recognizing that AI doesn't know everything?,¿Qué tanta confianza tienes para reconocer que la IA no lo sabe todo?,scam-ai-limits/blocks/5/question
+You ask AI whether your favorite restaurant is open today.,Le preguntas a la IA si tu restaurante favorito abre hoy.,scam-ai-limits/blocks/5/practice/0/scenario
+Check the restaurant's official website or call before visiting.,Consulta el sitio oficial del restaurante o llama antes de ir.,scam-ai-limits/blocks/5/practice/0/options/0/text
+"Hours change, especially around holidays.","Los horarios cambian, especialmente en días festivos.",scam-ai-limits/blocks/5/practice/0/options/0/feedback
+"Use AI as a starting point, but verify.",Usa la IA como punto de partida y verifica.,scam-ai-limits/blocks/5/practice/0/options/1/text
+Reasonable.,Es una opción razonable.,scam-ai-limits/blocks/5/practice/0/options/1/feedback
+Assume the hours are correct.,Da por hecho que el horario es correcto.,scam-ai-limits/blocks/5/practice/0/options/2/text
+AI may show old or incorrect hours. Check with the restaurant for today’s schedule.,La IA puede mostrar horarios antiguos o incorrectos. Confirma el de hoy con el restaurante.,scam-ai-limits/blocks/5/practice/0/options/2/feedback
+AI gives you today's weather forecast.,La IA te da el pronóstico del tiempo para hoy.,scam-ai-limits/blocks/5/practice/1/scenario
+Check a trusted weather service before making important outdoor plans.,Consulta un servicio meteorológico de confianza antes de hacer planes importantes al aire libre.,scam-ai-limits/blocks/5/practice/1/options/0/text
+"Some AI tools can retrieve forecasts; others cannot. Check the location, update time, and official weather source.","Algunas herramientas de IA pueden consultar pronósticos y otras no. Revisa el lugar, la hora de actualización y la fuente meteorológica oficial.",scam-ai-limits/blocks/5/practice/1/options/0/feedback
+"Use AI to explain weather terms, then check the current forecast before making plans.",Usa la IA para entender términos meteorológicos y después consulta el pronóstico actual antes de hacer planes.,scam-ai-limits/blocks/5/practice/1/options/1/text
+"An explanation can be useful, but current conditions and alerts need a reliable weather source.","Una explicación puede ayudar, pero las condiciones y alertas actuales requieren una fuente meteorológica fiable.",scam-ai-limits/blocks/5/practice/1/options/1/feedback
+Assume the forecast is always correct.,Da por hecho que el pronóstico siempre es correcto.,scam-ai-limits/blocks/5/practice/1/options/2/text
+Even a current forecast can change. Check a trusted weather service and official warnings for your location.,Incluso un pronóstico actual puede cambiar. Consulta un servicio meteorológico de confianza y los avisos oficiales de tu zona.,scam-ai-limits/blocks/5/practice/1/options/2/feedback
+Official sources are still the best place to confirm important information.,Las fuentes oficiales siguen siendo útiles para confirmar información importante.,scam-ai-limits/blocks/6/links/0/note
+Lesson 4.6 — When AI Sounds Certain,Lección 4.6 — Cuando la IA parece segura,scam-ai-limits/blocks/6/links/1/lesson; scam-ai-helper/blocks/6/links/1/lesson
+"Even when AI sounds confident, it may not have complete or current information.","Aunque la IA suene segura, puede carecer de información completa o actual.",scam-ai-limits/blocks/6/links/1/note
+The community event,El evento de la comunidad,scam-ai-limits/blocks/7/title
+"You're excited to attend your town's annual community fair this afternoon. It's a 40-minute drive. Before leaving, you ask an AI chatbot what time the fair ends.","Quieres asistir esta tarde a la feria anual de tu localidad. El viaje dura 40 minutos. Antes de salir, le preguntas a un asistente de IA a qué hora termina.",scam-ai-limits/blocks/7/setup
+The fair ends at 8:00 PM.,La feria termina a las 8:00 p. m.,scam-ai-limits/blocks/7/messages/0/body
+Check the community fair's official website or social media page before driving there.,Consulta el sitio oficial o la página oficial en redes sociales de la feria antes de viajar.,scam-ai-limits/blocks/7/options/0/text
+"This wasn't about catching a scam — it was about understanding AI's limits. The answer was reasonable, but event schedules change. You used AI as a helpful starting point and confirmed with the official source.",Recordaste que los horarios pueden cambiar. Usaste la respuesta como punto de partida y confirmaste con la fuente oficial.,scam-ai-limits/blocks/7/options/0/feedback
+Call the event organizer if you can't find updated information online.,Llama a la organización del evento si no encuentras información actual en internet.,scam-ai-limits/blocks/7/options/1/text
+A direct and reliable check.,Puedes comprobarlo directamente con quien organiza el evento.,scam-ai-limits/blocks/7/options/1/feedback
+Leave immediately because the AI gave you a specific answer.,Sal de inmediato porque la IA dio una respuesta concreta.,scam-ai-limits/blocks/7/options/2/text
+A specific time may still be wrong or outdated. Confirm this year’s schedule with the organizer before making the trip.,Una hora concreta puede ser incorrecta o estar desactualizada. Confirma el horario de este año con la organización antes de hacer el viaje.,scam-ai-limits/blocks/7/options/2/feedback
+You completed When AI Doesn't Know.,Completaste Cuando la IA no sabe.,scam-ai-limits/complete/subtitle
+AI is a great place to start — but official sources are the best place to finish.,La IA puede ayudarte a empezar; confirma lo importante con fuentes oficiales.,scam-ai-limits/complete/habit
+A specific answer about something current or local.,Una respuesta concreta sobre algo actual o local.,scam-ai-limits/complete/warningSign
+Recognized AI's limits,Reconociste las limitaciones de la IA,scam-ai-limits/complete/skills/0
+Used official sources for current information,Usaste fuentes oficiales para información actual,scam-ai-limits/complete/skills/1
+Verified before acting,Verificaste antes de actuar,scam-ai-limits/complete/skills/2
+Making AI Your Helper,La IA como ayuda cotidiana,scam-ai-limits/complete/next; scam-ai-helper/title; scam-ai-helper/blocks/0/heading
+4.8,4.8,scam-ai-helper/lessonNumber
+AI as Helper,La IA como ayuda,scam-ai-helper/pathTitle
+AI Confident,Confianza al usar la IA,scam-ai-helper/badge
+Use AI confidently for everyday tasks.,Usar la IA con confianza para tareas cotidianas.,scam-ai-helper/goals/0
+Keep the final decision yourself.,Tomar tú la decisión final.,scam-ai-helper/goals/1
+How can AI make my everyday life easier?,¿Cómo puede la IA facilitar mi vida cotidiana?,scam-ai-helper/blocks/0/question
+Learn how to use AI as a helpful everyday assistant while continuing to verify important information.,Aprender a usar la IA como ayuda cotidiana y seguir verificando la información importante.,scam-ai-helper/blocks/0/objective
+"AI can suggest recipes, explain unfamiliar words, draft messages, or help organize a trip. You can use these ideas as a starting point and adjust them to suit you.
+
+Review the details before acting or sending a message. Verify decisions about health, money, safety, and personal information with trusted sources. You choose what to use and make the final decision.","La IA puede sugerir recetas, explicar palabras desconocidas, redactar mensajes o ayudar a organizar un viaje. Puedes usar esas ideas como punto de partida y adaptarlas a tus necesidades.
+
+Revisa los detalles antes de actuar o enviar un mensaje. Verifica las decisiones sobre salud, dinero, seguridad y datos personales con fuentes de confianza. Tú eliges qué usar y tomas la decisión final.",scam-ai-helper/blocks/0/text
+Choosing a good use for AI,Elegir un buen uso de la IA,scam-ai-helper/blocks/1/title
+"You have chicken, rice, and vegetables in your refrigerator but aren't sure what to cook.","Tienes pollo, arroz y verduras en el refrigerador, pero no sabes qué cocinar.",scam-ai-helper/blocks/1/scenario
+Ask AI for recipe ideas.,Pide ideas de recetas a la IA.,scam-ai-helper/blocks/1/options/0/text
+AI is great at helping with everyday planning and ideas.,La IA puede ayudarte con ideas y planes cotidianos.,scam-ai-helper/blocks/1/options/0/feedback
+Ask AI to help make a grocery list.,Pide a la IA que te ayude a hacer una lista de compras.,scam-ai-helper/blocks/1/options/1/text
+Another excellent everyday use.,Es otro uso útil para la vida cotidiana.,scam-ai-helper/blocks/1/options/1/feedback
+Ask AI to decide whether you should stop taking a medication.,Pide a la IA que decida si debes dejar un medicamento.,scam-ai-helper/blocks/1/options/2/text
+"That decision belongs to you and your doctor, not a chatbot.","Esa decisión debes tomarla con tu médico, no con un asistente de IA.",scam-ai-helper/blocks/1/options/2/feedback
+Choosing when to verify,Elegir cuándo verificar,scam-ai-helper/blocks/2/title
+You ask AI whether you should move all of your retirement savings into one investment.,Le preguntas a la IA si debes poner todos tus ahorros para la jubilación en una sola inversión.,scam-ai-helper/blocks/2/scenario
+Verify the information with a trusted financial professional before making changes.,Verifica la información con un profesional financiero de confianza antes de hacer cambios.,scam-ai-helper/blocks/2/options/0/text
+"AI can help you learn, but important financial decisions deserve trusted advice.","La IA puede ayudarte a aprender, pero las decisiones financieras importantes requieren asesoramiento de confianza.",scam-ai-helper/blocks/2/options/0/feedback
+Use AI to understand investment terms before deciding.,Usa la IA para entender términos de inversión antes de decidir.,scam-ai-helper/blocks/2/options/1/text
+Learning the vocabulary is a genuinely good use.,Puede ser útil para aprender vocabulario.,scam-ai-helper/blocks/2/options/1/feedback
+Follow the suggestion immediately because it sounds reasonable.,Sigue la sugerencia de inmediato porque parece razonable.,scam-ai-helper/blocks/2/options/2/text
+Sounding reasonable is not the same as being right for your situation.,Que algo parezca razonable no significa que sea adecuado para tu situación.,scam-ai-helper/blocks/2/options/2/feedback
+Using AI together,Trabajar con la IA,scam-ai-helper/blocks/3/title
+You're writing a birthday card but can't think of the right words.,"Quieres escribir una tarjeta de cumpleaños, pero no encuentras las palabras.",scam-ai-helper/blocks/3/scenario
+"Ask AI to suggest a message, then make it your own.",Pide a la IA una sugerencia y adáptala a tu manera.,scam-ai-helper/blocks/3/options/0/text
+"AI can help you get started, but your personal touch makes the message meaningful.",La IA puede ayudarte a empezar y tú puedes darle un toque personal.,scam-ai-helper/blocks/3/options/0/feedback
+Use AI for ideas and edit the final version.,Usa la IA para generar ideas y edita la versión final.,scam-ai-helper/blocks/3/options/1/text
+Exactly the right working relationship.,Puedes aprovechar sus ideas y decidir qué conservar.,scam-ai-helper/blocks/3/options/1/feedback
+Copy and send the first response without reading it.,Copia y envía la primera respuesta sin leerla.,scam-ai-helper/blocks/3/options/2/text
+"Read the suggestion so you can check the names, tone, and meaning before sending it.","Lee la sugerencia para comprobar los nombres, el tono y el significado antes de enviarla.",scam-ai-helper/blocks/3/options/2/feedback
+Bringing it all together,Reunir lo aprendido,scam-ai-helper/blocks/4/title
+"You're planning a vacation. AI suggests hotels, restaurants, and places to visit.","Planeas unas vacaciones. La IA sugiere hoteles, restaurantes y lugares para visitar.",scam-ai-helper/blocks/4/scenario
+"Verify prices, reservations, and business hours before making plans.","Verifica precios, reservas y horarios antes de hacer planes.",scam-ai-helper/blocks/4/options/0/text
+"You used AI exactly as it's meant to help — organizing ideas, saving time, giving suggestions — then verified the important details yourself.",Usaste la IA para organizar ideas y después verificaste los detalles importantes por tu cuenta.,scam-ai-helper/blocks/4/options/0/feedback
+Use AI's suggestions as a starting point for your research.,Usa las sugerencias como punto de partida para investigar.,scam-ai-helper/blocks/4/options/1/text
+A great way to begin planning.,Pueden ayudarte a comenzar la planificación.,scam-ai-helper/blocks/4/options/1/feedback
+Assume every recommendation is current and accurate.,Da por hecho que todas las recomendaciones son actuales y correctas.,scam-ai-helper/blocks/4/options/2/text
+"Businesses close, prices change, and AI may not know.","Los negocios cierran, los precios cambian y la IA puede no tener esos datos.",scam-ai-helper/blocks/4/options/2/feedback
+How confident do you feel using AI as a helpful everyday tool?,¿Qué tanta confianza tienes para usar la IA como ayuda cotidiana?,scam-ai-helper/blocks/5/question
+You want to learn how to grow tomatoes.,Quieres aprender a cultivar tomates.,scam-ai-helper/blocks/5/practice/0/scenario
+Ask AI for beginner gardening tips.,Pide a la IA consejos de jardinería para principiantes.,scam-ai-helper/blocks/5/practice/0/options/0/text
+A perfect low-stakes use.,Puede darte ideas para empezar y después comprobarlas.,scam-ai-helper/blocks/5/practice/0/options/0/feedback
+Compare AI's advice with a gardening website if needed.,Compara los consejos con un sitio de jardinería si hace falta.,scam-ai-helper/blocks/5/practice/0/options/1/text
+Useful for climate-specific advice.,Es útil para consultar recomendaciones según el clima.,scam-ai-helper/blocks/5/practice/0/options/1/feedback
+Assume every gardening tip will work in every climate.,Da por hecho que todos los consejos sirven en cualquier clima.,scam-ai-helper/blocks/5/practice/0/options/2/text
+Growing advice varies enormously by region.,Las recomendaciones de cultivo varían según la región.,scam-ai-helper/blocks/5/practice/0/options/2/feedback
+You ask AI to help organize your weekly errands.,Le pides a la IA que te ayude a organizar tus recados de la semana.,scam-ai-helper/blocks/5/practice/1/scenario
+Let AI help you organize your schedule.,Deja que la IA te ayude a organizar el horario.,scam-ai-helper/blocks/5/practice/1/options/0/text
+Organizing is one of its genuine strengths.,Puede ayudar a ordenar tareas y planes.,scam-ai-helper/blocks/5/practice/1/options/0/feedback
+Adjust the plan so it fits your own day.,Ajusta el plan para que encaje con tu día.,scam-ai-helper/blocks/5/practice/1/options/1/text
+You know your life better than it does.,Tú conoces mejor tus necesidades y preferencias.,scam-ai-helper/blocks/5/practice/1/options/1/feedback
+Follow the schedule without checking whether it works for you.,Sigue el horario sin comprobar si te sirve.,scam-ai-helper/blocks/5/practice/1/options/2/text
+"Check that the plan fits your appointments, travel time, and energy, even if you have shared those details with AI.","Comprueba que el plan encaje con tus citas, tiempos de viaje y energía, aunque hayas compartido esos detalles con la IA.",scam-ai-helper/blocks/5/practice/1/options/2/feedback
+AI is most helpful when you use it as an assistant instead of expecting it to be perfect.,La IA es más útil como ayuda que como herramienta de la que esperas perfección.,scam-ai-helper/blocks/6/links/0/note
+Even helpful answers should be verified when the decision is important.,Incluso las respuestas útiles necesitan verificación cuando la decisión importa.,scam-ai-helper/blocks/6/links/1/note
+Planning the perfect day,Planear un día especial,scam-ai-helper/blocks/7/title
+"Tomorrow is your anniversary and you want to make the day special, so you ask an AI chatbot to help plan it.",Mañana es tu aniversario y quieres preparar un día especial. Le pides ayuda a un asistente de IA.,scam-ai-helper/blocks/7/setup
+"Here's your day: breakfast at Corner Café (opens 7am), a walk through Riverside Park, the art museum in the afternoon (open until 5pm), and dinner at Bella's. No reservations needed anywhere.","Este es tu plan: desayunar en Corner Café, que abre a las 7:00 a. m.; pasear por Riverside Park; visitar el museo de arte por la tarde, que abre hasta las 5:00 p. m.; y cenar en Bella's. No necesitas reservar en ningún lugar.",scam-ai-helper/blocks/7/messages/0/body
+What should you do before leaving home?,¿Qué debes hacer antes de salir de casa?,scam-ai-helper/blocks/7/question
+"Use AI's plan, but verify the restaurant hours, museum schedule, and whether reservations are needed before you go.","Usa el plan, pero verifica los horarios del restaurante y del museo, y si necesitas reservar, antes de salir.",scam-ai-helper/blocks/7/options/0/text
+"This was the perfect way to use AI. You let it do what it's good at — organizing ideas, saving time, creating a plan — then you did what people do best: verified the important details and made the final decisions.",La IA te ayudó a organizar ideas y tú verificaste los detalles importantes y tomaste las decisiones finales.,scam-ai-helper/blocks/7/options/0/feedback
+Keep the itinerary but check important details using the businesses' official websites or by calling ahead.,Conserva el itinerario y confirma los detalles importantes en los sitios oficiales de los negocios o llamando antes.,scam-ai-helper/blocks/7/options/1/text
+"The same instinct, just as effective.",También es una forma de verificar por tu cuenta.,scam-ai-helper/blocks/7/options/1/feedback
+Follow the plan exactly because AI organized everything for you.,Sigue el plan exactamente porque la IA lo organizó todo.,scam-ai-helper/blocks/7/options/2/text
+Reservation rules and opening hours may be wrong or outdated. Check with the venues before relying on the plan.,Las condiciones de reserva y los horarios pueden ser incorrectos o estar desactualizados. Confirma con los establecimientos antes de seguir el plan.,scam-ai-helper/blocks/7/options/2/feedback
+You completed Making AI Your Helper.,Completaste La IA como ayuda cotidiana.,scam-ai-helper/complete/subtitle
+Let AI help you think. Let yourself make the final decision.,Deja que la IA te ayude a pensar. Toma tú la decisión final.,scam-ai-helper/complete/habit
+Letting a tool make a decision that's yours to make.,Dejar que una herramienta tome una decisión que te corresponde.,scam-ai-helper/complete/warningSign
+Used AI confidently,Usaste la IA con confianza,scam-ai-helper/complete/skills/0
+Chose appropriate tasks for AI,Elegiste tareas adecuadas para la IA,scam-ai-helper/complete/skills/1
+Made informed decisions,Tomaste decisiones informadas,scam-ai-helper/complete/skills/3
+"AI can write, speak, create images, make videos, and help solve everyday problems.","La IA puede escribir, hablar, crear imágenes y videos, y ayudar con problemas cotidianos.",scam-ai-helper/complete/learned/0
+AI changes how information looks — but not the habits that keep you safe.,"La IA cambia el aspecto de la información, pero tus hábitos de seguridad siguen siendo útiles.",scam-ai-helper/complete/learned/1
+Slow down. Verify important information. Ask questions. Make the final decision yourself.,Tómate tu tiempo. Verifica la información importante. Haz preguntas. Toma tú la decisión final.,scam-ai-helper/complete/learned/2
+Next: protecting something just as valuable as your money — your personal information.,A continuación: cómo proteger tus datos personales.,scam-ai-helper/complete/learned/3
+Phase 11 Final Challenge,Reto final de la fase 11,scam-ai-helper/complete/next; phase11-challenge/title
+Phase 12 — Protecting Your Personal Information,Fase 12 — Protege tus datos personales,phase11-challenge/nextLabel
+Quick review,Repaso breve,phase11-challenge/blocks/0/title
+Which AI-made content can be deceptive?,¿Qué contenido creado con IA puede resultar engañoso?,phase11-challenge/blocks/0/prompt
+A copied voice,Una voz copiada,phase11-challenge/blocks/0/options/0/text
+An altered image or video,Una imagen o un video modificado,phase11-challenge/blocks/0/options/1/text
+A confident chatbot answer,Una respuesta segura de un asistente de IA,phase11-challenge/blocks/0/options/2/text
+Only visibly blurry pictures,Solo las imágenes claramente borrosas,phase11-challenge/blocks/0/options/3/text
+Good review. These choices help you stay informed and in control.,Buen repaso. Estas opciones te ayudan a estar informado y mantener el control.,phase11-challenge/blocks/0/feedback
+Take another look at the highlighted choices. Safe actions give you time to verify.,Vuelve a mirar las opciones resaltadas. Las acciones seguras te dan tiempo para comprobar.,phase11-challenge/blocks/0/incorrectFeedback
+Key ideas,Ideas clave,phase11-challenge/blocks/1/title
+Voice clone,Clonación de voz,phase11-challenge/blocks/1/cards/0/front
+AI-generated audio that imitates how a real person sounds.,Audio generado con IA que imita la voz de una persona real.,phase11-challenge/blocks/1/cards/0/back
+Deepfake,Falsificación con IA,phase11-challenge/blocks/1/cards/1/front
+AI-made or altered media that can imitate a real event or person.,Contenido creado o modificado con IA que puede imitar a una persona o un hecho real.,phase11-challenge/blocks/1/cards/1/back
+Chatbot,Chatbot,phase11-challenge/blocks/1/cards/2/front
+Software that responds in conversation and can still make mistakes.,Software que responde en una conversación y puede equivocarse.,phase11-challenge/blocks/1/cards/2/back
+Recall practice,Práctica de memoria,phase11-challenge/blocks/2/title
+clone,clon,phase11-challenge/blocks/2/wordBank/0; phase11-challenge/blocks/2/questions/0/answer
+filter,filtro,phase11-challenge/blocks/2/wordBank/1
+password,contraseña,phase11-challenge/blocks/2/wordBank/2
+update,actualización,phase11-challenge/blocks/2/wordBank/3
+A copied voice made by AI is called a voice ______.,Una voz copiada con IA se llama ______ de voz.,phase11-challenge/blocks/2/questions/0/text
+Real-life decision,Decisión de la vida real,phase11-challenge/blocks/3/title
+A familiar voice asks for money but refuses to answer a family question. What should you do?,"Una voz conocida pide dinero, pero no responde a una pregunta familiar. ¿Qué debes hacer?",phase11-challenge/blocks/3/text
+End the call and verify through a known number,Cuelga y verifica mediante un número conocido,phase11-challenge/blocks/3/options/0
+Send money because the voice sounds accurate,Envía dinero porque la voz parece auténtica,phase11-challenge/blocks/3/options/1
+Give the caller more family details,Da más detalles sobre la familia a quien llama,phase11-challenge/blocks/3/options/2
+A convincing voice is no longer enough. A separate trusted contact confirms the real person.,Una voz convincente no basta. Comprueba la petición mediante un contacto de confianza distinto de la llamada recibida.,phase11-challenge/blocks/3/explanation
+A familiar voice asks for money but refuses to answer a family question.,"Una voz conocida pide dinero, pero no responde a una pregunta familiar.",phase11-challenge/blocks/3/presentation/story
+What should you do?,¿Qué deberías hacer?,phase11-challenge/blocks/3/presentation/question
+Final confidence check,Comprobación final de confianza,phase11-challenge/blocks/4/title
+AI answers should be checked when the decision matters.,Las respuestas de IA deben comprobarse cuando la decisión importa.,phase11-challenge/blocks/4/questions/0/text
+"AI can be helpful and still be wrong. Verify health, money, legal, and safety decisions.","La IA puede ayudar y también equivocarse. Verifica las decisiones sobre salud, dinero, asuntos legales y seguridad.",phase11-challenge/blocks/4/questions/0/explanation

@@ -1,0 +1,6 @@
+.field-label-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; }
+.field-label-row .field-label { min-width: 0; max-width: 100%; }
+.field-password-toggle { flex: none; min-width: 44px; min-height: 44px; padding: 6px 8px; border-radius: 8px; color: var(--accent); font-size: calc(17px * var(--text-scale)); line-height: 1.4; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.field-password-toggle:enabled:active { background: var(--accent-subtle); }
+@media (hover: hover) { .field-password-toggle:enabled:hover { background: var(--accent-subtle); } }
+.field-password-toggle:disabled { opacity: .55; cursor: not-allowed; }

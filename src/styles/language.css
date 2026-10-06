@@ -1,0 +1,8 @@
+.language-preference { width: 100%; }
+.language-control { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: calc(17px * var(--text-scale, 1)); color: var(--text-primary); }
+.language-control select { min-height: 48px; max-width: 100%; padding: 8px 36px 8px 12px; border: 1px solid var(--control-border); border-radius: 10px; background-color: var(--surface); font: inherit; color: inherit; }
+.language-control select:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.language-content-note { margin: 12px 0 0; color: var(--text-secondary); font-size: calc(15px * var(--text-scale, 1)); line-height: 1.5; }
+.welcome-language { min-width: 0; }
+.settings-group > .language-preference { padding: 15px 18px; }
+.account-content > .language-preference { margin-bottom: 24px; }

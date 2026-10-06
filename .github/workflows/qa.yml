@@ -1,0 +1,107 @@
+name: EverWise QA
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lessons:
+    name: Lessons (${{ matrix.browser }}, shard ${{ matrix.shard }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        browser: [chromium, webkit, firefox]
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install application and isolated lesson browser
+        env:
+          LESSON_BROWSER: ${{ matrix.browser }}
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm install --prefix "$RUNNER_TEMP/everwise-lessons" --ignore-scripts --no-audit --no-fund playwright@1.62.1
+          node "$RUNNER_TEMP/everwise-lessons/node_modules/playwright/cli.js" install --with-deps "$LESSON_BROWSER"
+      - name: Complete authored lessons and verify quiz recovery
+        env:
+          EVERWISE_QA_BROWSER: ${{ matrix.browser }}
+          EVERWISE_LESSON_SHARD: ${{ matrix.shard }}
+          EVERWISE_LESSON_SHARDS: "4"
+        run: EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-lessons/node_modules/playwright" node scripts/qa-lessons.mjs
+  firefox:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install application and isolated Firefox runtime
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm install --prefix "$RUNNER_TEMP/everwise-firefox" --ignore-scripts --no-audit --no-fund playwright@1.62.1
+          node "$RUNNER_TEMP/everwise-firefox/node_modules/playwright/cli.js" install --with-deps firefox
+      - name: Firefox layouts and real public navigation
+        run: |
+          EVERWISE_QA_BROWSER=firefox \
+          EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-firefox/node_modules/playwright" \
+          node scripts/qa-webkit.mjs
+  firebase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Install application and isolated emulator tools
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm install --prefix "$RUNNER_TEMP/everwise-firebase" --ignore-scripts --no-audit --no-fund firebase-tools@15.30.2 playwright@1.62.1
+          node "$RUNNER_TEMP/everwise-firebase/node_modules/playwright/cli.js" install --with-deps webkit
+      - name: Real Firebase rules, persistence and browser account journeys
+        run: |
+          EVERWISE_FIREBASE_CLI="$RUNNER_TEMP/everwise-firebase/node_modules/firebase-tools/lib/bin/firebase.js" \
+          EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-firebase/node_modules/playwright" \
+          node scripts/qa-firebase.mjs
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Install isolated WebKit test runtime
+        run: |
+          npm install --prefix "$RUNNER_TEMP/everwise-browser" --ignore-scripts --no-audit --no-fund playwright@1.62.1
+          node "$RUNNER_TEMP/everwise-browser/node_modules/playwright/cli.js" install --with-deps webkit
+      - name: WebKit layouts and real public navigation
+        run: EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-browser/node_modules/playwright" node scripts/qa-webkit.mjs
+      - name: Production startup and asset paths
+        run: |
+          EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-browser/node_modules/playwright" node scripts/qa-production.mjs
+          npm run build:web -- --base=/EverWise/
+          EVERWISE_QA_BASE=/EverWise/ EVERWISE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/everwise-browser/node_modules/playwright" node scripts/qa-production.mjs

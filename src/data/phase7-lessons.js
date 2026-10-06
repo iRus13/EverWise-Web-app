@@ -37,13 +37,13 @@ export const phase7Lessons = [
         type: "learn",
         heading: "Situation A: You Clicked but Didn't Type Anything",
         text: "This is usually less serious. You should:",
-        bullets: ["Close the page", "Don't click anything else", "Run a security scan if you have antivirus software", "Stay alert for unusual activity"]
+        bullets: ["Close the page", "Don't click anything else", "Keep your device updated. If you downloaded something or allowed access, get help through the device maker’s official support.", "Stay alert for unusual activity"]
       },
       {
         type: "learn",
         heading: "Situation B: You Entered a Password",
         text: "This is more serious. You should:",
-        bullets: ["Change that password immediately", "Change it anywhere else you used the same password", "Turn on two-factor authentication (2FA) if available"]
+        bullets: ["Open the real app or website yourself and change the exposed password immediately", "Change it anywhere else you used the same password", "Turn on two-factor authentication (2FA) if available"]
       },
       {
         type: "learn",
@@ -55,7 +55,7 @@ export const phase7Lessons = [
         type: "learn",
         heading: "Situation D: You Entered Your Social Security Number or Other Sensitive Information",
         text: "You should:",
-        bullets: ["Monitor your accounts carefully", "Consider placing a fraud alert or freezing your credit", "Report identity theft if needed"]
+        bullets: ["Monitor your accounts carefully", "Consider placing a fraud alert or freezing your credit", "Use IdentityTheft.gov for recovery steps if your information was misused"]
       },
       {
         type: "learn",
@@ -434,13 +434,13 @@ export const phase7Lessons = [
       {
         type: "learn",
         heading: "Local Police",
-        text: "Contact your local police if money was stolen, your identity was stolen, someone threatened you, or a crime occurred in person.",
+        text: "For a past theft, identity theft or a threat without immediate danger, contact local police through their non-emergency number. If anyone is in immediate danger, call emergency services.",
         footer: "Police reports may also help when working with banks or insurance companies."
       },
       {
         type: "learn",
         heading: "Emergency Services (911)",
-        text: "Only call 911 if there is an immediate emergency, such as someone in immediate danger, a crime happening right now, or a medical or safety emergency.",
+        text: "In the United States, call 911 for immediate danger or a medical or safety emergency. Outside the United States, use the local emergency number.",
         footer: "Most online scams are not 911 emergencies, but they should still be reported to the appropriate organization."
       },
       {
@@ -467,7 +467,7 @@ export const phase7Lessons = [
       {
         type: "choice",
         title: "Who Should You Contact?",
-        text: "Someone breaks into your house and steals your computer.",
+        text: "You discover that someone stole your computer while you were away. You are safe and there is no immediate danger.",
         options: ["Your cable company", "Facebook", "Local police", "A restaurant"],
         correctIndex: 2,
         explanation: "Knowing who to contact saves valuable time."
@@ -616,12 +616,12 @@ export const phase7Lessons = [
         heading: "When Should You Freeze Your Credit?",
         text: "Consider freezing your credit if:",
         bullets: ["You shared sensitive personal information with a scammer", "Your identity has been stolen", "You receive bills for accounts you didn't open", "A company tells you your information was exposed in a data breach"],
-        footer: "If you're not sure whether you need a credit freeze, you can contact your bank or the credit bureaus for guidance."
+        footer: "In the United States, request a free credit freeze separately from Equifax, Experian and TransUnion. Use their official websites or phone numbers. A freeze protects new credit; keep checking your existing accounts for fraud."
       },
       {
         type: "learn",
         heading: "Can You Remove the Freeze?",
-        text: "Yes! A credit freeze is not permanent. If you apply for a mortgage, a car loan, or a new credit card, you can temporarily lift the freeze so the lender can check your credit. Afterward, you can freeze it again."
+        text: "A freeze stays in place until you lift it. When you need new credit, ask the lender which credit bureau it uses and temporarily lift the freeze there. Set an end date or restore the freeze afterward."
       },
       {
         type: "truefalse",
@@ -765,7 +765,7 @@ export const phase7Lessons = [
       {
         type: "learn",
         heading: "When Should You Change Your Password?",
-        text: "Change your password immediately if you entered it on a suspicious website, you clicked a fake login page, you received a message saying your account was accessed from a new device, you shared it with someone by mistake, or a company tells you your account was part of a data breach.",
+        text: "Change an exposed password immediately by opening the real app or website yourself. If a message reports an unfamiliar login or data breach, check through the official service, not the message’s link. Merely opening a fake page is different from entering your password there.",
         footer: "The sooner you change it, the less time a scammer has to use it."
       },
       {
@@ -776,7 +776,7 @@ export const phase7Lessons = [
       {
         type: "learn",
         heading: "Create a Strong New Password",
-        text: "A strong password is long (12+ characters), unique, hard to guess, and not used on any other account.\n\nGood examples: Sunset!CoffeeTrain42, BlueRiver$Garden88, Piano#MapleCloud71.\n\nWeak examples: password123, 123456, qwerty, your birthday, your pet's name."
+        text: "Use a long password that is unique to that account. A password manager can create and save it for you.\n\nThe examples in this lesson are for practice only. Do not use them on a real account. Avoid names, birthdays, common words and simple changes to an old password."
       },
       {
         type: "learn",
@@ -786,7 +786,7 @@ export const phase7Lessons = [
       {
         type: "learn",
         heading: "Turn On Two-Factor Authentication (2FA)",
-        text: "2FA adds an extra layer of protection. After entering your password, you'll also enter a code sent to your phone or generated by an app. This means: if your password is stolen, that's not enough - a scammer would also need your phone or authentication app.",
+        text: "Two-factor authentication adds a second check, such as a code or a security key. It helps protect an account if its password is stolen, but scammers may also try to steal codes or get you to approve a sign-in. Never share a code or approve a sign-in you did not start.",
         footer: "Whenever available, turn on 2FA."
       },
       {
@@ -872,12 +872,12 @@ export const phase7Lessons = [
         text: "Linda creates the new password \"Linda1955\". Is this a strong password?",
         options: ["Yes", "No"],
         correctIndex: 1,
-        explanation: "It uses her name and birth year, which are easier for scammers to guess. A better password would be something like BlueRiver$Garden88."
+        explanation: "Her name and birth year are easy to guess. Use a long, unique password generated by a password manager. Do not copy a password from this lesson."
       },
       {
         type: "learn",
         heading: "Quick Tip",
-        text: "Your password recovery checklist: change the exposed password immediately, update any other accounts that used the same password, create a completely new password, turn on 2FA, and watch for suspicious login alerts.",
+        text: "Open the official service yourself. Change the exposed password and any other account that reused it, using a different password for each. Turn on 2FA. Review signed-in devices and recovery details, and sign out unfamiliar sessions. If you cannot sign in, use the service’s official account recovery.",
         footer: "Think of passwords like house keys: if a key is lost or copied, replace the lock, not just the keychain."
       },
       {
@@ -949,7 +949,7 @@ export const phase7Lessons = [
       {
         type: "learn",
         heading: "What Is the FBI IC3?",
-        text: "The FBI Internet Crime Complaint Center (IC3) is a website where people in the United States can report internet-related crimes and scams. Examples include online shopping scams, phishing emails and text messages, investment scams, romance scams, tech support scams, and identity theft.",
+        text: "The FBI’s Internet Crime Complaint Center (IC3) receives reports of internet-related crime at ic3.gov. Examples include online shopping fraud, phishing, investment and romance scams, and identity theft. This lesson covers U.S. reporting options; local reporting services differ elsewhere.",
         footer: "Reporting a scam helps law enforcement identify patterns and investigate criminals. Even if you didn't lose money, your report may help prevent someone else from becoming a victim."
       },
       {
@@ -969,7 +969,7 @@ export const phase7Lessons = [
         type: "learn",
         heading: "What Happens After You Report?",
         text: "After submitting a report, the FBI reviews the information, your report may be combined with similar reports, and the information may help investigators identify scam patterns.",
-        footer: "Submitting a report does not guarantee that lost money will be recovered, but it can help law enforcement investigate and may protect future victims."
+        footer: "A report does not guarantee an investigation, a reply or the return of money. IC3 does not charge to file a report. Be wary of anyone who asks you to pay to recover lost funds or claims to work with IC3 on your recovery."
       },
       {
         type: "choice",

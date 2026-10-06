@@ -1,60 +1,23 @@
-import { useEffect, useRef } from "react";
+import { tr, useLocale } from '../i18n';
+import StatusScreen from "../components/StatusScreen";
 
-export default function BillingConfirmation({
-  phase = "checking",
-  onRetry,
-  onManageBilling,
-  onBack,
-}) {
-  const headingRef = useRef(null);
-
-  useEffect(() => {
-    headingRef.current?.focus();
-  }, [phase]);
-
+export default function BillingConfirmation({ phase = "checking", onRetry, onManageBilling, onBack }) {
+  useLocale();
   const timedOut = phase === "timeout";
-
   return (
-    <main className="mx-auto flex h-full w-full max-w-2xl flex-col justify-center px-6 py-10 text-center">
-      <section
-        className="rounded-3xl bg-cream-card px-6 py-8 shadow-card sm:px-10"
-        role="region"
-        aria-label="Subscription confirmation status"
-        aria-live="polite"
-      >
-        <h1
-          ref={headingRef}
-          className="font-serif text-4xl font-bold text-ink"
-          tabIndex={-1}
-        >
-          {timedOut ? "Access is still being confirmed" : "Confirming your access"}
-        </h1>
-        <p className="mt-5 text-xl leading-relaxed text-ink-soft">
-          {timedOut
-            ? "We still could not confirm your access. You can retry, manage billing, or return to the free lessons."
-            : "Checking your access now. This can take a few moments."}
-        </p>
-        {!timedOut ? (
-          <p className="mt-4 font-semibold text-sage-dark">Verification in progress…</p>
-        ) : null}
-        <div className="mt-7 flex flex-col gap-3">
-          {timedOut && onRetry ? (
-            <button type="button" className="btn-primary" onClick={onRetry}>
-              Retry
-            </button>
-          ) : null}
-          {timedOut && onManageBilling ? (
-            <button type="button" className="btn-secondary" onClick={onManageBilling}>
-              Manage billing
-            </button>
-          ) : null}
-          {onBack ? (
-            <button type="button" className="btn-secondary" onClick={onBack}>
-              Back to free lessons
-            </button>
-          ) : null}
-        </div>
-      </section>
-    </main>
+    <StatusScreen
+      regionLabel="Subscription confirmation status"
+      label={tr("Subscription")}
+      title={timedOut ? tr("Access is still being confirmed") : tr("Confirming your access")}
+      description={timedOut
+        ? tr("We still could not confirm your access. You can retry, manage billing, or return home.")
+        : tr("Checking your access now. This can take a few moments.")}
+      progressLabel={timedOut ? undefined : "Verification in progress…"}
+      actions={<>
+        {timedOut && onRetry && <button type="button" className="btn-primary" onClick={onRetry}>{tr("Retry")}</button>}
+        {timedOut && onManageBilling && <button type="button" className="btn-secondary" onClick={onManageBilling}>Manage billing</button>}
+        {onBack && <button type="button" className="btn-secondary" onClick={onBack}>{tr("Back to home")}</button>}
+      </>}
+    />
   );
 }

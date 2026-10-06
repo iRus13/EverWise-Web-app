@@ -1,6 +1,9 @@
+import {useLearningText} from "../../i18n/learning.js";
+import AnswerOption from "./AnswerOption";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
 import BlockShell from "./BlockShell";
+import AnswerFeedback from "./AnswerFeedback";
 
 // Builder: pick one item from each column; selections combine into one string.
 export default function BuilderBlock({
@@ -11,13 +14,14 @@ export default function BuilderBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const columns = block.columns || [];
   // selection per column index
   const [picks, setPicks] = useState(() => columns.map(() => null));
   const [revealed, setRevealed] = useState(false);
 
   const allPicked = picks.every((p) => p != null);
-  const combined = picks.filter(Boolean).join("");
+  const combined = picks.filter(Boolean).map(item => t(item)).join("");
 
   const pick = (colIndex, item) => {
     if (revealed) return;
@@ -30,16 +34,17 @@ export default function BuilderBlock({
 
   return (
     <BlockShell
-      label={block.title || "Build"}
+      label={t(block.title || "Build")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
       onExit={onExit}
       onSkip={onContinue}
+      revealKey={revealed ? "revealed" : null}
       footer={
         revealed ? (
           <button className="btn-primary" onClick={onContinue}>
-            Continue
+            {t("Continue")}
           </button>
         ) : (
           <button
@@ -47,45 +52,40 @@ export default function BuilderBlock({
             disabled={!allPicked}
             onClick={() => setRevealed(true)}
           >
-            Continue
+            {t("Continue")}
           </button>
         )
       }
     >
       <h1 className="page-title">
-        {block.title || "Build"}
+        {t(block.title || "Build")}
       </h1>
       {block.prompt && (
-        <p className="mt-3 text-xl leading-relaxed text-ink-soft">{block.prompt}</p>
+        <p className="mt-3 text-xl leading-relaxed text-ink-soft">{t(block.prompt)}</p>
       )}
       <div className="mt-4">
-        <ReadAloud text={`${block.title || ""}. ${block.prompt || ""}`} />
+        <ReadAloud text={`${t(block.title || "")}. ${t(block.prompt || "")}`} />
       </div>
 
-      {/* Columns side by side — scroll horizontally on narrow phones if needed */}
-      <div className="mt-8 flex gap-3 overflow-x-auto pb-2">
+      {/* Stack on narrow screens so every choice remains readable and reachable. */}
+      <div className="builder-columns mt-8 grid shrink-0 gap-3 pb-2">
         {columns.map((col, ci) => (
-          <div key={col.label} className="min-w-[7.5rem] flex-1">
-            <p className="mb-3 text-center text-base font-bold uppercase tracking-wide text-ink-faint">
-              {col.label}
+          <div key={col.label} className="min-w-0">
+            <p className="lesson-builder-label">
+              {t(col.label)}
             </p>
             <div className="space-y-2">
               {col.items.map((item) => {
                 const active = picks[ci] === item;
                 return (
-                  <button
+                  <AnswerOption
                     key={item}
-                    type="button"
                     disabled={revealed}
                     onClick={() => pick(ci, item)}
-                    className={`w-full rounded-2xl border-2 px-3 py-4 text-center text-lg font-semibold ${
-                      active
-                        ? "border-clay bg-clay/10 text-ink"
-                        : "border-ink/15 bg-cream-card text-ink hover:border-clay/50"
-                    }`}
+                    selected={active}
                   >
-                    {item}
-                  </button>
+                    {t(item)}
+                  </AnswerOption>
                 );
               })}
             </div>
@@ -94,24 +94,24 @@ export default function BuilderBlock({
       </div>
 
       {/* Combined result */}
-      <div className="mt-8 rounded-3xl bg-cream-card px-5 py-5 shadow-card">
-        <p className="text-base font-bold uppercase tracking-wide text-ink-faint">
-          Your password
+      <div className="lesson-reading-section lesson-builder-result mt-8">
+        <p className="lesson-section-label">
+          {t("Practice password")}
         </p>
         <p className="mt-2 break-all font-sans text-3xl font-semibold text-ink">
           {combined || "—"}
         </p>
         {block.example && (
           <p className="mt-3 text-lg text-ink-soft">
-            Example: <span className="font-semibold text-ink">{block.example}</span>
+            {t("Example:")} <span className="font-semibold text-ink">{t(block.example)}</span>
           </p>
         )}
       </div>
 
       {revealed && block.feedback && (
-        <p className="mt-6 rounded-3xl bg-sage/15 px-5 py-5 text-xl leading-relaxed text-ink">
-          {block.feedback}
-        </p>
+        <AnswerFeedback positive title="Your example is ready">
+          <p>{t(block.feedback)}</p>
+        </AnswerFeedback>
       )}
     </BlockShell>
   );

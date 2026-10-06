@@ -1,0 +1,59 @@
+/* Everwise: neutral reading surfaces, a warm accent, and system typography.
+   Spacing stays stable while text follows both device and in-app preferences. */
+:root {
+  --surface-grouped: #f5f5f7;
+  --surface: #ffffff;
+  --surface-pressed: #e8e8ed;
+  --text-primary: #1d1d1f;
+  --text-secondary: #64646b;
+  --separator: #dedee3;
+  --control-border: #85858d;
+  --accent: #98482f;
+  --accent-subtle: #f5eae5;
+  --success: #326046;
+  --success-subtle: #eaf2ed;
+  --danger: #af302e;
+  --danger-subtle: #fbefee;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-control: 12px;
+  --radius-group: 16px;
+  --radius-feature: 24px;
+}
+html { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body { font-feature-settings: "kern"; }
+button, input, textarea, select { font-family: inherit; }
+.app-viewport { background: var(--surface-grouped); }
+.app-shell { max-width: none; }
+html[data-text-size] :is(.btn-primary, .btn-secondary), .btn-primary, .btn-secondary {
+  min-height: 52px; padding: 14px 20px; border-radius: var(--radius-control);
+  font-size: calc(17px * var(--text-scale)); line-height: 1.4; font-weight: 600;
+  box-shadow: none; transform: none; transition: background-color 160ms ease, opacity 160ms ease;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:enabled:active { background: #783720; }
+.btn-secondary { background: var(--surface); color: var(--accent); border: 1px solid var(--separator); }
+.btn-secondary:enabled:active { background: var(--surface-pressed); }
+.btn-primary:disabled { background: #e4ddd9; color: #776b65; opacity: 1; }
+html[data-text-size] .text-size-control button { min-height: 44px; }
+@media (min-width:768px) {
+  .app-viewport { padding: 0; }
+  .app-shell { border: 0; border-radius: 0; box-shadow: none; min-height: var(--app-viewport-height, 100vh); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}
+
+/* Essential control boundaries stay distinguishable from quiet separators. */
+@media (prefers-contrast: more) {
+  :root {
+    --text-secondary: #414148;
+    --control-border: #64646b;
+    --separator: #85858d;
+  }
+}

@@ -1,7 +1,9 @@
+import {useLearningText} from "../../i18n/learning.js";
 import { useState } from "react";
 import ReadAloud from "../ReadAloud";
 import { CheckIcon } from "../Icons";
 import BlockShell from "./BlockShell";
+import AnswerFeedback from "./AnswerFeedback";
 
 export default function MultiselectBlock({
   block,
@@ -11,6 +13,7 @@ export default function MultiselectBlock({
   onBack,
   onExit,
 }) {
+  const t = useLearningText();
   const [picked, setPicked] = useState(() => new Set());
   const [checked, setChecked] = useState(false);
 
@@ -20,9 +23,19 @@ export default function MultiselectBlock({
       opt.correct ? picked.has(i) : !picked.has(i)
     );
 
-  const resultMessage = fullyCorrect
-    ? block.feedback
-    : block.incorrectFeedback || block.feedback;
+  const hasIncorrectChoice = block.options.some((option, index) => picked.has(index) && !option.correct);
+  const resultTitle = fullyCorrect ? "That's right" : "Let's review your choices";
+  const resultMessage = fullyCorrect ? block.feedback
+    : !hasIncorrectChoice && picked.size > 0
+      ? "You found some correct choices. Review the others below."
+      : block.incorrectFeedback?.trim() || "Some choices need another look. Review the answers below.";
+  const reviewLabel = (option, index) => !checked ? null
+    : picked.has(index) ? option.correct ? "Your choice · Correct" : "Your choice · Not correct"
+    : option.correct ? "Correct choice · Not selected" : null;
+  const narration = [block.prompt || block.title,
+    ...(checked ? [resultTitle, resultMessage] : []),
+    ...block.options.flatMap((option, index) => [option.text, reviewLabel(option, index)])
+  ].filter(Boolean).map(text => t(text)).join("\n\n");
 
   const toggle = (i) => {
     if (checked) return;
@@ -36,7 +49,7 @@ export default function MultiselectBlock({
 
   return (
     <BlockShell
-      label={block.title || "Select"}
+      label={t(block.title || "Select")}
       progress={progress}
       progressTotal={progressTotal}
       onBack={onBack}
@@ -46,7 +59,7 @@ export default function MultiselectBlock({
       footer={
         checked ? (
           <button className="btn-primary" onClick={onContinue}>
-            Continue
+            {t("Continue")}
           </button>
         ) : (
           <button
@@ -54,29 +67,24 @@ export default function MultiselectBlock({
             onClick={() => setChecked(true)}
             disabled={picked.size === 0}
           >
-            Check
+            {t("Check")}
           </button>
         )
       }
     >
-      <h1 className="page-title">
-        {block.prompt || block.title}
+      <h1 className="page-title lesson-question">
+        {t(block.prompt || block.title)}
       </h1>
       <div className="mt-5">
-        <ReadAloud text={block.prompt || block.title} />
+        <ReadAloud text={narration} />
       </div>
+
+      {checked && <AnswerFeedback positive={fullyCorrect} title={resultTitle}>
+        {resultMessage && <p>{t(resultMessage)}</p>}
+      </AnswerFeedback>}
 
       <div className="mt-8 space-y-3">
         {block.options.map((opt, i) => {
-          let style =
-            "border-ink/15 bg-cream-card text-ink hover:border-clay hover:bg-clay/5";
-          if (checked) {
-            if (opt.correct) style = "border-sage bg-sage/15 text-sage-dark";
-            else if (picked.has(i)) style = "border-alert bg-alert/12 text-alert";
-            else style = "border-ink/10 bg-cream-card text-ink-faint";
-          } else if (picked.has(i)) {
-            style = "border-clay bg-clay/10 text-ink";
-          }
           return (
             <button
               key={i}
@@ -84,35 +92,28 @@ export default function MultiselectBlock({
               onClick={() => toggle(i)}
               disabled={checked}
               aria-pressed={picked.has(i)}
-              className={`flex w-full items-center gap-3 rounded-2xl border-2 px-5 py-5 text-left text-xl font-semibold transition-colors ${style}`}
+              data-answer-state={checked ? opt.correct ? "correct" : picked.has(i) ? "incorrect" : "other" : picked.has(i) ? "selected" : undefined}
+              className="lesson-answer lesson-answer-multiple"
             >
               <span
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md border-2 ${
-                  picked.has(i) || (checked && opt.correct)
-                    ? "border-transparent bg-clay text-cream-card"
-                    : "border-ink/25"
+                className={`lesson-multiple-mark ${
+                  checked && picked.has(i) && opt.correct ? "is-correct"
+                    : checked && picked.has(i) ? "is-incorrect"
+                    : picked.has(i) ? "is-selected" : ""
                 }`}
                 aria-hidden="true"
               >
-                {(picked.has(i) || (checked && opt.correct)) && (
-                  <CheckIcon className="h-5 w-5" />
-                )}
+                {picked.has(i) && <CheckIcon className="h-5 w-5" />}
               </span>
-              {opt.text}
+              <span className="lesson-multiple-copy">
+                <span>{t(opt.text)}</span>
+                {reviewLabel(opt, i) && <span className="lesson-answer-review">{t(reviewLabel(opt, i))}</span>}
+              </span>
             </button>
           );
         })}
       </div>
 
-      {checked && resultMessage && (
-        <p
-          className={`mt-8 rounded-3xl px-5 py-5 text-xl leading-relaxed text-ink ${
-            fullyCorrect ? "bg-sage/15" : "bg-alert/12"
-          }`}
-        >
-          {resultMessage}
-        </p>
-      )}
     </BlockShell>
   );
 }

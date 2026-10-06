@@ -2,8 +2,7 @@
 // Phase 2: Safe Internet Habits
 // Biome: Forest | Color: #3F5E45
 //
-// All lessons exactly as written by the team.
-// Append these to the existing lessons array in src/data/lessons.js
+// Team curriculum with reviewed connection-security and permission guidance.
 
 export const phase2Lessons = [
   // ============================================================
@@ -836,7 +835,7 @@ export const phase2Lessons = [
         bullets: [
           "Ask an employee for the official Wi-Fi name",
           "Make sure the network name matches exactly",
-          "Visit websites that use https:// (look for the lock icon)",
+          "Check for https://, the exact website address, and browser warnings",
           "Turn on Two-Factor Authentication (2FA) for important accounts",
           "Consider using a VPN, especially when handling sensitive information"
         ]
@@ -875,7 +874,7 @@ export const phase2Lessons = [
         title: "Flashcards",
         cards: [
           { front: "Public Wi-Fi", back: "Internet that many people can use in public places." },
-          { front: "Secure Website", back: "A website that uses https:// and shows a lock icon." },
+          { front: "Encrypted Connection", back: "HTTPS encrypts data in transit. It does not prove that a website is trustworthy." },
           { front: "Fake Wi-Fi Network", back: "A wireless network created by scammers to trick people into connecting." },
           { front: "VPN", back: "A tool that helps create a more private internet connection." },
           { front: "Official Network", back: "The real Wi-Fi network provided by the business or organization." }
@@ -899,7 +898,7 @@ export const phase2Lessons = [
         questions: [
           { text: "Before connecting to Wi-Fi at a coffee shop, ask an ______ for the official network name.", answer: "Employee" },
           { text: "A ______ can add extra privacy while using public Wi-Fi.", answer: "VPN" },
-          { text: "A secure website usually begins with ______.", answer: "HTTPS" }
+          { text: "An encrypted website connection usually uses ______.", answer: "HTTPS" }
         ]
       },
       {
@@ -939,7 +938,7 @@ export const phase2Lessons = [
       {
         type: "learn",
         heading: "Quick Tip",
-        text: "Before entering passwords or payment information online, look for https:// and the lock icon in your browser. These signs indicate that your connection to the website is encrypted, though you should still make sure you're on the correct website."
+        text: "Before entering passwords or payment details, check the exact website address and its connection information. HTTPS encrypts data in transit, but scammers can use it too. Browser symbols vary. Stop if the browser warns that the connection is not secure."
       },
       {
         type: "sort",
@@ -1003,16 +1002,16 @@ export const phase2Lessons = [
       {
         type: "learn",
         heading: "Remember",
-        text: "Public Wi-Fi is useful, but it requires extra caution. Ask for the official network. Look for https:// and the lock. Consider using a VPN. Turn on 2FA. Avoid banking, entering credit card information, and sharing sensitive personal information whenever possible on public Wi-Fi."
+        text: "Verify the official Wi-Fi network. Check the website address, HTTPS, and browser warnings. Keep your device updated and use 2FA. A VPN can add connection privacy, but cannot make a scam website trustworthy. For sensitive tasks, use mobile data or a trusted network if you are unsure."
       }
     ],
     quiz: [
       { question: "What is public Wi-Fi?", options: ["Internet only your family can use.", "Internet available for many people in public places.", "A type of phone.", "A password manager."], correctIndex: 1 },
       { question: "Before connecting to a business's Wi-Fi, what should you do?", options: ["Pick the network with the strongest signal.", "Choose the first network you see.", "Ask an employee for the official Wi-Fi name.", "Connect without checking."], correctIndex: 2 },
       { question: "True or False: It's a good idea to log into your online bank whenever you're using public Wi-Fi.", options: ["True", "False"], correctIndex: 1 },
-      { question: "Secure websites usually begin with ______.", options: ["HTTPS", "Camera", "Browser"], correctIndex: 0 },
+      { question: "Encrypted website connections usually use ______.", options: ["HTTPS", "Camera", "Browser"], correctIndex: 0 },
       { question: "Which activity is generally lower risk on public Wi-Fi?", options: ["Online banking", "Entering your Social Security number", "Reading the news", "Changing your banking password"], correctIndex: 2 },
-      { question: "What symbol usually appears next to a secure website?", options: ["A camera", "A heart", "A lock", "A music note"], correctIndex: 2 },
+      { question: "What does HTTPS tell you about a website connection?", options: ["The website owns a camera", "The website is automatically trustworthy", "Data is encrypted in transit", "The website plays music"], correctIndex: 2 },
       { question: "Which of these help keep you safer on public Wi-Fi?", options: ["Connecting to any open network", "Asking for the official name, using a VPN, looking for https://, and turning on 2FA"], correctIndex: 1 },
       { question: "You connect to hotel Wi-Fi and receive a pop-up asking you to install a \"security app.\" What should you do?", options: ["Install it immediately.", "Enter your credit card to continue.", "Close the pop-up and ask hotel staff if it's legitimate before installing anything.", "Ignore the hotel staff and trust the pop-up."], correctIndex: 2 }
     ],
@@ -1272,8 +1271,8 @@ export const phase2Lessons = [
       },
       {
         type: "learn",
-        heading: "How Can You Tell If a Website Is Safe?",
-        text: "Before entering personal information, look for these signs: the website address begins with https://, and a lock icon appears next to the website address. Example: https://www.bank.com\n\nThese signs mean your connection to the website is encrypted. However, they do NOT guarantee the website itself is trustworthy. Scammers can also create websites that use HTTPS. Always check that you're on the correct website."
+        heading: "Check the Connection and the Website",
+        text: "Check the exact website address before entering personal information. HTTPS encrypts the connection, but it does not prove that the site is trustworthy. Scammers can use HTTPS too.\n\nBrowsers show connection information in different ways; not every browser displays a padlock. Read the site information and any security warnings. If a warning appears, stop and use a known official app or address."
       },
       {
         type: "learn",
@@ -1289,7 +1288,7 @@ export const phase2Lessons = [
       {
         type: "learn",
         heading: "Browser Warnings",
-        text: "Sometimes your browser will display warnings like \"Warning: This site may be unsafe\" or \"Your connection is not private.\" These warnings are there to protect you. If you see one: don't ignore it, don't enter personal information, and leave the website unless you're certain it's safe."
+        text: "Your browser may warn that a site is unsafe or that the connection is not private. Do not bypass the warning or enter personal information. Close the page and use a known official app or address. If the warning continues, contact the service through a trusted channel."
       },
       {
         type: "multiselect",
@@ -1310,8 +1309,8 @@ export const phase2Lessons = [
         title: "Flashcards",
         cards: [
           { front: "Browser", back: "An app used to visit websites." },
-          { front: "HTTPS", back: "A secure connection between your browser and a website." },
-          { front: "Lock Icon", back: "Shows your connection is encrypted." },
+          { front: "HTTPS", back: "An encrypted connection between your browser and a website. It does not establish the website's honesty." },
+          { front: "Connection Security", back: "Describes the connection to a website. Symbols and menus vary between browsers." },
           { front: "Website Address (URL)", back: "The web address you type or click to visit a website." },
           { front: "Browser Warning", back: "A message that alerts you when a website may not be safe." }
         ]
@@ -1323,7 +1322,7 @@ export const phase2Lessons = [
           { word: "Browser", match: "Visits websites" },
           { word: "HTTPS", match: "Secure connection" },
           { word: "URL", match: "Website address" },
-          { word: "Lock Icon", match: "Encrypted connection" },
+          { word: "Connection Security", match: "Encrypted connection" },
           { word: "Browser Warning", match: "Alerts you to possible danger" }
         ]
       },
@@ -1333,7 +1332,7 @@ export const phase2Lessons = [
         wordBank: ["Browser", "HTTPS", "URL", "Warning"],
         questions: [
           { text: "A web ______ lets you visit websites.", answer: "Browser" },
-          { text: "Secure websites usually begin with ______.", answer: "HTTPS" },
+          { text: "Encrypted website connections usually use ______.", answer: "HTTPS" },
           { text: "If your browser displays a security ______, stop before continuing.", answer: "Warning" }
         ]
       },
@@ -1357,7 +1356,7 @@ export const phase2Lessons = [
         options: [
           "Continue anyway.",
           "Enter his credit card number.",
-          "Leave the website unless he knows exactly why the warning appeared.",
+          "Close the page and use a known official app or website address.",
           "Ignore the warning."
         ],
         correctIndex: 2,
@@ -1430,7 +1429,7 @@ export const phase2Lessons = [
       { question: "What should you check before entering personal information?", options: ["Only the page colors", "The website address, whether it begins with https://, browser warnings, and whether you're on the correct website"], correctIndex: 1 },
       { question: "True or False: Every website with HTTPS is automatically trustworthy.", options: ["True", "False"], correctIndex: 1 },
       { question: "A web ______ lets you visit websites.", options: ["Browser", "Camera", "Television"], correctIndex: 0 },
-      { question: "Your browser says, \"Warning: This site may be unsafe.\" What should you do?", options: ["Continue and enter your password.", "Ignore the warning.", "Leave the website unless you're certain it's safe.", "Refresh the page repeatedly."], correctIndex: 2 },
+      { question: "Your browser says, \"Warning: This site may be unsafe.\" What should you do?", options: ["Continue and enter your password.", "Ignore the warning.", "Close the page and use a known official app or website address.", "Refresh the page repeatedly."], correctIndex: 2 },
       { question: "Which website is most likely the official PayPal website?", options: ["paypal-secure-login.net", "paypal-help247.com", "paypal.com", "paypal-login-support.org"], correctIndex: 2 },
       { question: "What is the safest way to visit your bank's website?", options: ["Click a link from an unexpected email.", "Search and click the first advertisement.", "Type the official website address yourself or use a trusted bookmark or the bank's official app.", "Use any website with a similar name."], correctIndex: 2 },
       { question: "You accidentally click a suspicious link. What should you do?", options: ["Enter your password to see if it's real.", "Continue browsing.", "Close the page without entering any information.", "Share the link with a friend."], correctIndex: 2 }
@@ -1475,7 +1474,7 @@ export const phase2Lessons = [
       {
         type: "learn",
         heading: "Why Are Privacy Settings Important?",
-        text: "Some apps need certain permissions. A maps app needs your location. A camera app needs access to your camera. But some apps ask for information they don't really need. Before tapping \"Allow,\" ask yourself: does this app really need this information? If the answer is no, choose \"Don't Allow\" or \"Allow While Using the App\" when available."
+        text: "Some features need permission: a video call uses your camera, and turn-by-turn directions use your location. Before tapping Allow, ask whether you want the feature and whether the access makes sense. If not, choose Don't Allow. If location is useful, choose a limited option such as While Using the App when available. You can change your choice in Settings."
       },
       {
         type: "learn",
@@ -1687,7 +1686,7 @@ export const phase2Lessons = [
         heading: "Different Types of Location Sharing",
         text: "There are three common ways apps use your location.",
         bullets: [
-          "While Using the App - the app only knows your location while it is open. This is often the safest choice.",
+          "While Using the App - limits location access to when the app is in use. An active navigation session may continue in the background. Watch for the device's location indicator.",
           "Always - the app can access your location all the time, even when you aren't using it. Only a few apps truly need this.",
           "Never - the app cannot access your location. Some apps may not work properly if location is turned off."
         ]
@@ -1729,7 +1728,7 @@ export const phase2Lessons = [
         title: "Flashcards",
         cards: [
           { front: "Location Sharing", back: "Allowing an app or person to know where you are." },
-          { front: "While Using the App", back: "The app only uses your location when it is open." },
+          { front: "While Using the App", back: "Limits location access to app use; an active navigation session may continue in the background." },
           { front: "Always", back: "The app can use your location anytime." },
           { front: "Never", back: "The app cannot use your location." },
           { front: "Trusted Contact", back: "A family member or friend you know personally." }
@@ -1739,7 +1738,7 @@ export const phase2Lessons = [
         type: "match",
         title: "Match the Permission",
         pairs: [
-          { word: "While Using the App", match: "Uses your location only when open" },
+          { word: "While Using the App", match: "Limits location access to app use" },
           { word: "Always", match: "Can use your location anytime" },
           { word: "Never", match: "Cannot access your location" },
           { word: "Trusted Contact", match: "Someone you know personally" },

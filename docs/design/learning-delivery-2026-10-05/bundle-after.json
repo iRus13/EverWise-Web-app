@@ -1,0 +1,46 @@
+{
+  "initial": {
+    "files": [
+      "assets/index-BB7pQKUG.js"
+    ],
+    "bytes": 1029608,
+    "gzipBytes": 303125
+  },
+  "additionalActivityDownloads": {
+    "firstLesson": {
+      "files": [
+        "assets/BlockRenderer-BDxZvw7g.js",
+        "assets/BlockShell-Dt_nFnZ0.js",
+        "assets/phase1-lessons-BzE4QSM2.js",
+        "assets/LessonPlayer-CjYSwRXg.js",
+        "assets/learningScreens-754l7uoQ.js"
+      ],
+      "bytes": 104213,
+      "gzipBytes": 28384
+    },
+    "firstPractice": {
+      "files": [
+        "assets/BlockRenderer-BDxZvw7g.js",
+        "assets/BlockShell-Dt_nFnZ0.js",
+        "assets/LearningSummary-CkIOm_-u.js",
+        "assets/phase-challenges-afdfE6Ez.js",
+        "assets/ChallengePlayer-FMm8PLuh.js",
+        "assets/learningScreens-754l7uoQ.js"
+      ],
+      "bytes": 52528,
+      "gzipBytes": 16138
+    },
+    "firstExam": {
+      "files": [
+        "assets/BlockShell-Dt_nFnZ0.js",
+        "assets/LearningSummary-CkIOm_-u.js",
+        "assets/phase3-lessons-Fxlm7RK7.js",
+        "assets/ExamPlayer-m2LpJWpl.js",
+        "assets/learningScreens-754l7uoQ.js"
+      ],
+      "bytes": 79804,
+      "gzipBytes": 22623
+    }
+  },
+  "note": "Built JS files and static dependencies, excluding the already-loaded application. Gzip is an estimate, not server transfer timing."
+}

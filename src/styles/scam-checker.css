@@ -1,0 +1,49 @@
+.app-screen-scam-checker { --everwise-screen-background: var(--surface-grouped); --everwise-safe-top: var(--surface-grouped); --everwise-safe-bottom: var(--surface-grouped); }
+.scam-checker-screen { flex: 1; min-height: 0; width: 100%; overflow-y: auto; overscroll-behavior: contain; color: var(--text-primary); background: var(--surface-grouped); }
+.scam-checker-content { max-width: 720px; margin-inline: auto; padding: 24px 24px max(32px,env(safe-area-inset-bottom)); overflow-wrap: anywhere; }
+.scam-header { margin: 0 0 24px; }
+.scam-header h1, .scam-verdict h1 { font-size: calc(24px * var(--heading-scale)); font-weight: 650; line-height: 1.25; letter-spacing: -.015em; }
+.scam-header p { margin-top: 12px; color: var(--text-secondary); font-size: calc(17px * var(--text-scale)); line-height: 1.5; }
+.scam-header .scam-context { margin: 0 0 16px; font-size: calc(15px * var(--text-scale)); font-weight: 600; }
+.scam-header .scam-context:only-child { margin-bottom: 0; }
+.scam-form { display: grid; gap: 20px; }
+.scam-form label { font-size: calc(17px * var(--text-scale)); font-weight: 600; line-height: 1.4; }
+.scam-help, .scam-count, .scam-status, .scam-safety { font-size: calc(15px * var(--text-scale)); color: var(--text-secondary); line-height: 1.5; }
+.scam-form label + .scam-help { margin-top: 8px; }
+.scam-form textarea { display: block; width: 100%; margin-top: 12px; border: 1px solid var(--control-border); border-radius: var(--radius-control); padding: 12px; color: var(--text-primary); background: var(--surface); font: inherit; font-size: calc(17px * var(--text-scale)); line-height: 1.5; resize: vertical; height: 176px; min-height: 176px; overflow-y: auto; }
+.scam-form textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.scam-form textarea:disabled { opacity: .7; }
+.scam-form textarea::placeholder { color: var(--text-secondary); }
+.scam-count { margin-top: 8px; text-align: right; font-variant-numeric: tabular-nums; }
+.scam-status:empty { display: none; }
+.scam-error { padding: 16px; border-left: 3px solid var(--danger); border-radius: 8px; color: var(--danger); background: var(--danger-subtle); font-size: calc(17px * var(--text-scale)); line-height: 1.5; scroll-margin-top: 16px; }
+.scam-actions { display: grid; gap: 12px; }
+.scam-checker-screen .scam-actions button { min-height: 56px; font-size: calc(17px * var(--text-scale)); line-height: 1.4; padding: 14px 18px; border-radius: var(--radius-control); box-shadow: none; transform: none; }
+.scam-result { display: grid; gap: 24px; }
+.scam-verdict { scroll-margin-top: 24px; }
+.scam-risk-label { display: flex; align-items: baseline; gap: 8px; color: var(--text-secondary); font-size: calc(15px * var(--text-scale)); font-weight: 600; }
+.scam-risk-icon { flex: 0 0 20px; width: 20px; height: 20px; align-self: center; }
+.scam-risk-high .scam-risk-label { color: var(--danger); }
+.scam-verdict h1 { margin-top: 12px; scroll-margin-top: 20px; }
+.scam-verdict h1 + p, .scam-result-section li, .scam-urgent p, .scam-original p { font-size: calc(17px * var(--text-scale)); line-height: 1.5; white-space: pre-wrap; }
+.scam-verdict h1 + p { margin-top: 16px; }
+.scam-verdict .scam-help { margin-top: 12px; }
+.scam-result h2, .scam-safety h2, .scam-original summary { font-size: calc(18px * var(--heading-scale)); font-weight: 650; line-height: 1.4; }
+.scam-result-section ul, .scam-result-section ol { margin-top: 12px; padding-left: 26px; }
+.scam-result-section ul { list-style: disc; }
+.scam-result-section ol { list-style: decimal; }
+.scam-result-section li { padding-left: 4px; }
+.scam-result-section li::marker { color: var(--text-secondary); }
+.scam-result-section li + li { margin-top: 12px; }
+.scam-urgent { border-left: 3px solid var(--danger); padding: 16px; border-radius: 8px; background: var(--danger-subtle); }
+.scam-urgent p { margin-top: 8px; }
+.scam-safety { border-top: 1px solid var(--separator); padding-top: 20px; }
+.scam-safety h2 { color: var(--text-primary); margin-bottom: 8px; }
+.scam-form + .scam-safety { margin-top: 24px; }
+.scam-original summary { min-height: 48px; padding: 10px 0; cursor: pointer; color: var(--accent); }
+.scam-original summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.scam-original p { margin-top: 12px; user-select: text; -webkit-user-select: text; }
+.scam-result .read-aloud button { min-height: 48px; max-width: 100%; box-shadow: none; font-size: calc(17px * var(--text-scale)); line-height: 1.4; text-align: left; }
+.scam-result .read-aloud button svg { flex: 0 0 24px; width: 24px; height: 24px; }
+.scam-result .read-aloud button[aria-pressed=false]:not([aria-busy=true]) { background: transparent; border: 0; padding-inline: 0; color: var(--accent); }
+@media (min-width: 768px) { .scam-checker-content { padding-top: 32px; } .scam-checker-screen { overflow: visible; } }
